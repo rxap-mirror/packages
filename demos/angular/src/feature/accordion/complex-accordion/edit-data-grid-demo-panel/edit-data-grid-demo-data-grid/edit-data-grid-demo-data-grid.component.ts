@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
-  Component,
-} from '@angular/core';
+  Component, inject } from '@angular/core';
 import {
   FormProviders,
   FormComponentProviders,
@@ -38,9 +37,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 export class EditDataGridDemoDataGridComponent {
 
 
-  constructor(
-    public readonly dataGridDataSource: EditDataGridDemoDataGridDataSource,
-  ) {}
+  public readonly dataGridDataSource = inject(EditDataGridDemoDataGridDataSource);
 
 
 }

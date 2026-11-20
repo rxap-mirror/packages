@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import {
   RowAnimation,
   TableColumnMenuModule,
@@ -53,8 +53,7 @@ import { TestTableControllerGetPageRemoteMethod } from 'open-api-service-nest/sr
   ],
 })
 export class TestTableComponent {
-  @Input()
-  public parameters?: Observable<Record<string, unknown>>;
+  public readonly parameters = input<Observable<Record<string, unknown>>>();
 }
 
 export default TestTableComponent;

@@ -29,9 +29,7 @@ import { DataGridCollectionDemoPanelMethod } from './data-grid-collection-demo-p
     ]
 })
 export class DataGridCollectionDemoPanelComponent {
-  constructor(
-    public readonly dataGridDataSource: DataGridCollectionDemoDataGridDataSource
-  ) {}
+  public readonly dataGridDataSource = inject(DataGridCollectionDemoDataGridDataSource);
 
   public readonly panelDataSource = inject(
     DataGridCollectionDemoPanelDataSource

@@ -3,7 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   INJECTOR,
-  Input,
+  input,
 } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -111,8 +111,7 @@ import { InputSelectOptionsDirective } from '@rxap/form-system';
     ]
 })
 export class FilterTableComponent {
-  @Input()
-  public parameters?: Observable<Record<string, unknown>>;
+  public readonly parameters = input<Observable<Record<string, unknown>>>();
 }
 
 export default FilterTableComponent;

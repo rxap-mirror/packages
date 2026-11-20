@@ -31,18 +31,19 @@
       </mat-card-header>
 
       <mat-card-content>
-        <rxap-data-source-error
-          *ngIf="tableDataSourceDirective.hasError$ | async"
-          [error]="tableDataSourceDirective.dataSource?.error$"
+        @if (tableDataSourceDirective.hasError$ | async) {
+          <rxap-data-source-error
+          [error]="tableDataSourceDirective.dataSource()?.error$"
           [loading]="tableDataSourceDirective.loading$"
           [refresh]="tableDataSourceDirective.retry">
         </rxap-data-source-error>
+        }
         <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
           <table
             #tableDataSourceDirective="rxapTableDataSource"
             [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
             [paginator]="paginator"
-            [parameters]="parameters"
+            [parameters]="parameters()"
             id="icon"
             mat-table
             matSort
@@ -65,14 +66,14 @@
 
 
             <tr
-              *matHeaderRowDef="rxapTableColumns.displayColumns"
+              *matHeaderRowDef="rxapTableColumns.displayColumns()"
               mat-header-row
             ></tr>
 
             <tr
               *matRowDef="
               let element;
-              columns: rxapTableColumns.displayColumns;
+              columns: rxapTableColumns.displayColumns();
               let odd = odd;
               let even = even
             "

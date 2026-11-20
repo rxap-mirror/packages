@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input,
 } from '@angular/core';
 import { NavigateBackButtonComponent } from '@rxap/components';
 import { ComplexAccordion } from '../complex-accordion';
@@ -16,8 +16,5 @@ import { ComplexAccordion } from '../complex-accordion';
     ]
 })
 export class AccordionHeaderComponent {
-  @Input({
-    required: true,
-  })
-  public data!: ComplexAccordion;
+  public readonly data = input.required<ComplexAccordion>();
 }

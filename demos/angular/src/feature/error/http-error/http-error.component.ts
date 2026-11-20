@@ -1,9 +1,6 @@
 
 import { HttpClient } from '@angular/common/http';
-import {
-  Component,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component,   inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   interval,
@@ -13,6 +10,7 @@ import {
 } from 'rxjs';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'rxap-http-error',
     imports: [MatButtonModule],
     templateUrl: './http-error.component.html',

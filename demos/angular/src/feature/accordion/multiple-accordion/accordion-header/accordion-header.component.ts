@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input,
 } from '@angular/core';
 import { NavigateBackButtonComponent } from '@rxap/components';
 import { MultipleAccordion } from '../multiple-accordion';
@@ -16,8 +16,5 @@ import { MultipleAccordion } from '../multiple-accordion';
     ]
 })
 export class AccordionHeaderComponent {
-  @Input({
-    required: true,
-  })
-  public data!: MultipleAccordion;
+  public readonly data = input.required<MultipleAccordion>();
 }

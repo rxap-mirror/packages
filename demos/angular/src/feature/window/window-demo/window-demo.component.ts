@@ -1,8 +1,5 @@
 
-import {
-  Component,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component,   inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   RxapWindowSystemModule,
@@ -12,6 +9,7 @@ import { LargeWindowComponent } from './large-window/large-window.component';
 import { SmallWindowComponent } from './small-window/small-window.component';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'rxap-window-demo',
     imports: [MatButtonModule, RxapWindowSystemModule],
     templateUrl: './window-demo.component.html',

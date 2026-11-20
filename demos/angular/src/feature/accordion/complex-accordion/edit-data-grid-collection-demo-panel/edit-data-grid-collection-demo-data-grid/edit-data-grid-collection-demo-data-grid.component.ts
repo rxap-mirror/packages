@@ -7,7 +7,7 @@ import {
   FormComponentProviders,
 } from './form.providers';
 
-import { Input } from '@angular/core';
+import { input } from '@angular/core';
 
 import { DataGridModule } from '@rxap/data-grid';
 import { RxapFormsModule } from '@rxap/forms';
@@ -37,7 +37,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 export class EditDataGridCollectionDemoDataGridComponent {
 
 
-  @Input() data!: any;
+  public readonly data = input<any>();
 
 
 }

@@ -30,7 +30,9 @@ import { TreeTableDemoPanelMethod } from './tree-table-demo-panel.method';
 export class TreeTableDemoPanelComponent {
   public readonly parameters$: Observable<{ uuid: string }>;
 
-  constructor(private readonly route: ActivatedRoute) {
+  private readonly route = inject(ActivatedRoute);
+
+  constructor() {
     this.parameters$ = this.route.params.pipe(
       map(({ uuid }) => uuid),
       throwIfEmpty('Could not extract the uuid from route'),

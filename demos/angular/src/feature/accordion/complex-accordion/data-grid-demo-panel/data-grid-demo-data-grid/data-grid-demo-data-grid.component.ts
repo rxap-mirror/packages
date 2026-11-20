@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
-  Component,
-} from '@angular/core';
+  Component, inject } from '@angular/core';
 
 import { DataGridDemoDataGridDataSource } from './data-grid-demo-data-grid.data-source';
 
@@ -24,9 +23,7 @@ import { MatCardModule } from '@angular/material/card';
 export class DataGridDemoDataGridComponent {
 
 
-  constructor(
-    public readonly dataGridDataSource: DataGridDemoDataGridDataSource,
-  ) {}
+  public readonly dataGridDataSource = inject(DataGridDemoDataGridDataSource);
 
 
 }

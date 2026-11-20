@@ -1,8 +1,9 @@
 
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { faker } from '@faker-js/faker';
 
 @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'rxap-small-window',
     imports: [],
     templateUrl: './small-window.component.html',

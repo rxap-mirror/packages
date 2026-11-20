@@ -71,7 +71,7 @@
             mat-table
             #tableDataSourceDirective="rxapTableDataSource"
             rxapTableDataSource
-            [parameters]="parameters"
+            [parameters]="parameters()"
             id="minimum"
 
             >
@@ -156,7 +156,7 @@
 
             <tr
               mat-header-row
-              *matHeaderRowDef="rxapTableColumns.displayColumns"
+              *matHeaderRowDef="rxapTableColumns.displayColumns()"
             ></tr>
 
             <tr
@@ -166,7 +166,7 @@
               class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
             *matRowDef="
               let element;
-              columns: rxapTableColumns.displayColumns;
+              columns: rxapTableColumns.displayColumns();
               let odd = odd;
               let even = even
             "

@@ -77,7 +77,7 @@
             [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
             matSort
             #tableDataSourceDirective="rxapTableDataSource"
-            [parameters]="parameters"
+            [parameters]="parameters()"
             rxapTableDataSource
             id="maximum-tree"
             mat-table
@@ -235,7 +235,7 @@
 
             <tr
               mat-header-row
-              *matHeaderRowDef="rxapTableColumns.displayColumns"
+              *matHeaderRowDef="rxapTableColumns.displayColumns()"
             ></tr>
 
             <tr
@@ -245,7 +245,7 @@
               mat-row
               *matRowDef="
               let element;
-              columns: rxapTableColumns.displayColumns;
+              columns: rxapTableColumns.displayColumns();
               let odd = odd;
               let even = even
             "

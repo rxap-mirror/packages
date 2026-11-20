@@ -3,7 +3,7 @@ import {
   Component,
 } from '@angular/core';
 
-import { Input } from '@angular/core';
+import { input } from '@angular/core';
 
 import { DataGridModule } from '@rxap/data-grid';
 import { MatCardModule } from '@angular/material/card';
@@ -22,7 +22,7 @@ import { MatCardModule } from '@angular/material/card';
 export class DataGridCollectionDemoDataGridComponent {
 
 
-  @Input() data!: any;
+  public readonly data = input<any>();
 
 
 }

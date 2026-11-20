@@ -78,7 +78,7 @@
             mat-table
             matSort
             rxapTableDataSource
-            [parameters]="parameters"
+            [parameters]="parameters()"
             id="action"
 
             >
@@ -286,7 +286,7 @@
 
             <tr
               mat-header-row
-              *matHeaderRowDef="rxapTableColumns.displayColumns"
+              *matHeaderRowDef="rxapTableColumns.displayColumns()"
             ></tr>
 
             <tr
@@ -296,7 +296,7 @@
               mat-row
               *matRowDef="
               let element;
-              columns: rxapTableColumns.displayColumns;
+              columns: rxapTableColumns.displayColumns();
               let odd = odd;
               let even = even
             "

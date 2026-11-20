@@ -29,9 +29,7 @@ import { EditDataGridCollectionDemoPanelMethod } from './edit-data-grid-collecti
     ]
 })
 export class EditDataGridCollectionDemoPanelComponent {
-  constructor(
-    public readonly dataGridDataSource: EditDataGridCollectionDemoDataGridDataSource
-  ) {}
+  public readonly dataGridDataSource = inject(EditDataGridCollectionDemoDataGridDataSource);
 
   public readonly panelDataSource = inject(
     EditDataGridCollectionDemoPanelDataSource

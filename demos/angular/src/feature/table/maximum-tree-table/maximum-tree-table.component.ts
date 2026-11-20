@@ -1,5 +1,5 @@
 import { CommonModule, AsyncPipe, NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -113,8 +113,7 @@ import { OpenMaximumTreeFormWindowMethod } from './maximum-tree-form/open-maximu
     ]
 })
 export class MaximumTreeTableComponent {
-  @Input()
-  public parameters?: Observable<Record<string, unknown>>;
+  public readonly parameters = input<Observable<Record<string, unknown>>>();
 }
 
 export default MaximumTreeTableComponent;

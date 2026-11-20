@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input,
 } from '@angular/core';
 import { NavigateBackButtonComponent } from '@rxap/components';
 import { SimpleAccordion } from '../simple-accordion';
@@ -16,8 +16,5 @@ import { SimpleAccordion } from '../simple-accordion';
     ]
 })
 export class AccordionHeaderComponent {
-  @Input({
-    required: true,
-  })
-  public data!: SimpleAccordion;
+  public readonly data = input.required<SimpleAccordion>();
 }
