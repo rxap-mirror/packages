@@ -1,8 +1,4 @@
-import {
-  Directive,
-  HostListener,
-  output
-} from '@angular/core';
+import { Directive, HostListener, output, inject } from '@angular/core';
 import { RxapAuthenticationService } from './authentication.service';
 
 @Directive({
@@ -10,13 +6,12 @@ import { RxapAuthenticationService } from './authentication.service';
   standalone: true,
 })
 export class SignOutDirective {
+  private readonly auth = inject(RxapAuthenticationService);
+
 
   public readonly successful = output<void>();
 
   public readonly failure = output<Error>();
-
-  constructor(private readonly auth: RxapAuthenticationService) {
-  }
 
   @HostListener('click')
   public async onClick() {

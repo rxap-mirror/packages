@@ -1,28 +1,5 @@
 import type { Injector } from '@angular/core';
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Directive,
-  DoCheck,
-  EmbeddedViewRef,
-  Inject,
-  INJECTOR,
-  Input,
-  isDevMode,
-  IterableChangeRecord,
-  IterableChanges,
-  IterableDiffer,
-  IterableDiffers,
-  NgZone,
-  OnChanges,
-  OnDestroy,
-  SimpleChanges,
-  TemplateRef,
-  TrackByFunction,
-  ViewContainerRef,
-  input,
-  output
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Directive, DoCheck, EmbeddedViewRef, INJECTOR, Input, isDevMode, IterableChangeRecord, IterableChanges, IterableDiffer, IterableDiffers, NgZone, OnChanges, OnDestroy, SimpleChanges, TemplateRef, TrackByFunction, ViewContainerRef, input, output, inject } from '@angular/core';
 import {
   BaseDataSource,
   BaseDataSourceViewer,
@@ -88,6 +65,14 @@ export interface DataSourceCollectionErrorTemplateContext {
 })
 export class DataSourceCollectionDirective<Data = any>
   implements OnChanges, OnDestroy, AfterViewInit, DoCheck {
+  private readonly dataSourceLoader = inject<DataSourceLoader>(DataSourceLoader);
+  private readonly template = inject<TemplateRef<DataSourceCollectionTemplateContext<Data>>>(TemplateRef);
+  private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
+  private readonly injector = inject<Injector>(INJECTOR);
+  private readonly differs = inject<IterableDiffers>(IterableDiffers);
+  private readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+  private readonly zone = inject<NgZone>(NgZone);
+
   // eslint-disable-next-line @angular-eslint/no-input-rename
   public readonly dataSourceOrIdOrToken = input.required<IdOrInstanceOrToken<BaseDataSource<Data[]>>>({ alias: "rxapDataSourceCollectionFrom" });
   public readonly viewer = input<BaseDataSourceViewer>({ id: '[rxapDataSourceCollection]' }, { alias: "rxapDataSourceCollectionViewer" });
@@ -125,26 +110,6 @@ public readonly error = output();
    */
   private _emptyTemplateViewRef: EmbeddedViewRef<void> | null = null;
   private _dataSourceLoadingSubscription: Subscription | null = null;
-
-  constructor(
-    @Inject(DataSourceLoader)
-    private readonly dataSourceLoader: DataSourceLoader,
-    @Inject(TemplateRef)
-    private readonly template: TemplateRef<
-      DataSourceCollectionTemplateContext<Data>
-    >,
-    @Inject(ViewContainerRef)
-    private readonly viewContainerRef: ViewContainerRef,
-    @Inject(INJECTOR)
-    private readonly injector: Injector,
-    @Inject(IterableDiffers)
-    private readonly differs: IterableDiffers,
-    @Inject(ChangeDetectorRef)
-    private readonly cdr: ChangeDetectorRef,
-    @Inject(NgZone)
-    private readonly zone: NgZone,
-  ) {
-  }
 
   /**
    * A function that defines how to track changes for items in the iterable.

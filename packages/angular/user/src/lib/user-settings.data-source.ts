@@ -1,7 +1,4 @@
-import {
-  Inject,
-  Injectable,
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   MethodDataSource,
   RxapDataSource,
@@ -16,10 +13,9 @@ import { SettingsControllerGetResponse } from './openapi/responses/settings-cont
 })
 export class UserSettingsDataSource<T> extends MethodDataSource<SettingsControllerGetResponse<T>, void> {
 
-  constructor(
-    @Inject(SettingsControllerGetRemoteMethod)
-    method: SettingsControllerGetRemoteMethod<T>,
-  ) {
+  constructor() {
+    const method = inject<SettingsControllerGetRemoteMethod<T>>(SettingsControllerGetRemoteMethod);
+
     super(method, true);
   }
 

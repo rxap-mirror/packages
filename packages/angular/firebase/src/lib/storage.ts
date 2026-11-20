@@ -1,22 +1,16 @@
-import {
-  Inject,
-  InjectionToken,
-  NgModule,
-  Optional,
-} from '@angular/core';
+import { InjectionToken, NgModule, inject } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 export const USE_STORAGE_EMULATOR = new InjectionToken<[ string, number ]>('rxap/firebase/use-storage-emulator');
 
 @NgModule({})
 export class RxapAngularFireStorageModule {
+  private readonly storage = inject(AngularFireStorage);
 
-  constructor(
-    private readonly storage: AngularFireStorage,
-    @Optional()
-    @Inject(USE_STORAGE_EMULATOR)
-      useEmulator: [ string, number ] | null,
-  ) {
+
+  constructor() {
+    const useEmulator = inject(USE_STORAGE_EMULATOR, { optional: true });
+
     if (useEmulator) {
       this.storage.storage.useEmulator(...useEmulator);
     }

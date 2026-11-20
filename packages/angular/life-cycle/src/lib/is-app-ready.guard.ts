@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
@@ -10,9 +10,8 @@ import { LifeCycleService } from './life-cycle.service';
   providedIn: 'root',
 })
 export class IsAppReadyGuard {
+  private readonly lifecycle = inject(LifeCycleService);
 
-  constructor(private readonly lifecycle: LifeCycleService) {
-  }
 
   public canActivate(
     next: ActivatedRouteSnapshot,

@@ -1,8 +1,4 @@
-import {
-  NgModule,
-  Pipe,
-  PipeTransform,
-} from '@angular/core';
+import { NgModule, Pipe, PipeTransform, inject } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 
 @Pipe({
@@ -10,9 +6,8 @@ import { CurrencyPipe } from '@angular/common';
   standalone: true,
 })
 export class RxapCurrencyPipe implements PipeTransform {
+  private readonly currency = inject(CurrencyPipe);
 
-  constructor(private readonly currency: CurrencyPipe) {
-  }
 
   /**
    *

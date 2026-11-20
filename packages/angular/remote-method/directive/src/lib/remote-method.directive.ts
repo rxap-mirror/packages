@@ -1,17 +1,4 @@
-import {
-  Directive,
-  HostListener,
-  Inject,
-  Injector,
-  INJECTOR,
-  Input,
-  isDevMode,
-  OnInit,
-  Optional,
-  Self,
-  input,
-  output
-} from '@angular/core';
+import { Directive, HostListener, Injector, INJECTOR, Input, isDevMode, OnInit, input, output, inject } from '@angular/core';
 import {
   BaseRemoteMethod,
   BaseRemoteMethodMetadata,
@@ -33,6 +20,10 @@ import { ToggleSubject } from '@rxap/rxjs';
 })
 export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata extends BaseRemoteMethodMetadata = BaseRemoteMethodMetadata>
   implements OnInit {
+  protected readonly remoteMethodLoader = inject<RemoteMethodLoader>(RemoteMethodLoader);
+  private readonly injector = inject<Injector>(INJECTOR) ?? Injector.NULL;
+  private readonly remoteMethodToken = inject(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, { optional: true, self: true });
+
 
   public readonly parameters = input<Parameters>();
   public readonly metadata = input<Metadata>();
@@ -48,16 +39,7 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
    */
   public executing$ = new ToggleSubject();
 
-  constructor(
-    @Inject(RemoteMethodLoader)
-    protected readonly remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR)
-    private readonly injector: Injector = Injector.NULL,
-    @Optional()
-    @Self()
-    @Inject(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN)
-    private readonly remoteMethodToken?: any,
-  ) {
+  constructor() {
     if (this.remoteMethodToken) {
       this._remoteMethodOrIdOrToken = this.remoteMethodToken;
     }

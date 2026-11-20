@@ -1,12 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Directive,
-  OnDestroy,
-  SkipSelf,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Directive, OnDestroy, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 import {
   ControlContainer,
   UntypedFormArray,
@@ -39,18 +31,15 @@ export interface ForFormArrayItemsDirectiveContext {
   standalone: true,
 })
 export class ForFormArrayItemsDirective implements AfterViewInit, OnDestroy {
+  private readonly container = inject(ControlContainer, { skipSelf: true });
+  private readonly template = inject<TemplateRef<ForFormArrayItemsDirectiveContext>>(TemplateRef);
+  private readonly viewContainerRef = inject(ViewContainerRef);
+  private readonly cdr = inject(ChangeDetectorRef);
+
 
   private _formArrayValueSubscription?: Subscription;
 
   private formArray!: RxapFormArray;
-
-  constructor(
-    @SkipSelf() private readonly container: ControlContainer,
-    private readonly template: TemplateRef<ForFormArrayItemsDirectiveContext>,
-    private readonly viewContainerRef: ViewContainerRef,
-    private readonly cdr: ChangeDetectorRef,
-  ) {
-  }
 
   ngAfterViewInit() {
     if (this.container.control instanceof RxapFormArray) {

@@ -43,6 +43,8 @@ export interface ServiceStatus {
     styleUrls: ['./status-check.component.scss']
 })
 export class StatusCheckComponent implements OnInit, OnDestroy {
+  private readonly route = inject(ActivatedRoute);
+
 
   services: Signal<Array<ServiceStatus>>;
 
@@ -77,9 +79,7 @@ export class StatusCheckComponent implements OnInit, OnDestroy {
   private subscription?: Subscription;
 
   private readonly statusCheckService = inject(StatusCheckService);
-  constructor(
-    private readonly route: ActivatedRoute,
-  ) {
+  constructor() {
     this.url = toSignal(
       this.route.queryParamMap.pipe(
         map(map => map.get('url')),

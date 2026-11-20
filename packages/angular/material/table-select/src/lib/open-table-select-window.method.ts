@@ -1,11 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  INJECTOR,
-  Injector,
-  StaticProvider,
-  ViewContainerRef,
-} from '@angular/core';
+import { Injectable, INJECTOR, Injector, StaticProvider, ViewContainerRef, inject } from '@angular/core';
 import '@rxap/rxjs';
 import {
   BaseDataSource,
@@ -82,13 +75,9 @@ export interface OpenTableSelectWindowMethodParameters<Data extends Record<strin
 @Injectable()
 export class OpenTableSelectWindowMethod<Data extends Record<string, any> = Record<string, any>>
   implements Method<Data[], OpenTableSelectWindowMethodParameters<Data>> {
+  private readonly windowService = inject(WindowService);
+  private readonly injector = inject<Injector>(INJECTOR);
 
-  constructor(
-    private readonly windowService: WindowService,
-    @Inject(INJECTOR)
-    private readonly injector: Injector,
-  ) {
-  }
 
   public async call(parameters: OpenTableSelectWindowMethodParameters<Data>): Promise<Data[]> {
 

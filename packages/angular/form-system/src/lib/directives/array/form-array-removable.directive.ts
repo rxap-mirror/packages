@@ -1,9 +1,4 @@
-import {
-  AfterViewInit,
-  Directive,
-  OnDestroy,
-  Optional,
-} from '@angular/core';
+import { AfterViewInit, Directive, OnDestroy, inject } from '@angular/core';
 import {
   ControlContainer,
   UntypedFormArray,
@@ -23,14 +18,13 @@ import {
   standalone: true,
 })
 export class FormArrayRemovableDirective implements AfterViewInit, OnDestroy {
+  protected readonly parent = inject(ControlContainer, { optional: true });
+
 
   protected formGroup!: RxapFormGroup<{ deleted: boolean }>;
 
   protected deletedControl!: RxapFormControl<boolean>;
   private _deletedControlValueSubscription?: Subscription;
-
-  constructor(@Optional() protected readonly parent: ControlContainer) {
-  }
 
   get isDeleted(): boolean {
     return this.deletedControl.value;

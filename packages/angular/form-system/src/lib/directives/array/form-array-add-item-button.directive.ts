@@ -1,12 +1,4 @@
-import {
-  AfterViewInit,
-  Directive,
-  HostBinding,
-  HostListener,
-  OnDestroy,
-  Optional,
-  SkipSelf,
-} from '@angular/core';
+import { AfterViewInit, Directive, HostBinding, HostListener, OnDestroy, inject } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { RxapFormArray } from '@rxap/forms';
@@ -21,17 +13,14 @@ import {
   standalone: true,
 })
 export class FormArrayAddItemButtonDirective implements AfterViewInit, OnDestroy {
+  protected readonly parent = inject(ControlContainer, { optional: true, skipSelf: true });
+  protected readonly matButton = inject(MatButton, { optional: true });
+
 
   @HostBinding('type')
   type = 'button';
   protected formArray!: RxapFormArray;
   private _controlDisabledSubscription?: Subscription;
-
-  constructor(
-    @Optional() @SkipSelf() protected readonly parent: ControlContainer,
-    @Optional() protected readonly matButton: MatButton,
-  ) {
-  }
 
   @HostBinding('disabled')
   get disabled() {

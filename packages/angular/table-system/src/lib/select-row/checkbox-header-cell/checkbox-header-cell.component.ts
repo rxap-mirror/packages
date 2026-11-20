@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { SelectRowService } from '../select-row.service';
 import {
   EMPTY,
@@ -26,16 +21,12 @@ import { AsyncPipe } from '@angular/common';
     imports: [MatCheckboxModule, AsyncPipe]
 })
 export class CheckboxHeaderCellComponent<Data extends Record<string, any>> implements OnInit {
+  private readonly cdkTable = inject<CdkTable<Data>>(CdkTable);
+  private readonly selectRow = inject<SelectRowService<Data>>(SelectRowService);
+
 
   public indeterminate$: Observable<boolean> = EMPTY;
   public checked$: Observable<boolean> = EMPTY;
-
-  constructor(
-    @Inject(CdkTable)
-    private readonly cdkTable: CdkTable<Data>,
-    private readonly selectRow: SelectRowService<Data>,
-  ) {
-  }
 
   public ngOnInit() {
     this.indeterminate$ = this.selectRow.selectedRows$.pipe(

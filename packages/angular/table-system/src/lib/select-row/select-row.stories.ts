@@ -1,5 +1,5 @@
 import { addDecorator, moduleMetadata } from '@storybook/angular';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,6 +41,8 @@ import { SelectRowService } from './select-row.service';
     standalone: false
 })
 class DemoTableComponent {
+  readonly selectRow = inject<SelectRowService<any>>(SelectRowService);
+
   public data = [
     { name: 'Name1' },
     { name: 'Name2' },
@@ -50,8 +52,6 @@ class DemoTableComponent {
     { name: 'Name6' },
     { name: 'Name7' },
   ];
-
-  constructor(public readonly selectRow: SelectRowService<any>) {}
 }
 
 addDecorator(

@@ -1,22 +1,14 @@
 import { IdOrInstanceOrToken } from './types';
 import type { Injector } from '@angular/core';
-import {
-  Inject,
-  Injectable,
-  InjectOptions,
-  INJECTOR
-} from '@angular/core';
+import { Injectable, InjectOptions, INJECTOR, inject } from '@angular/core';
 import { BaseDefinitionMetadata } from './definition.metadata';
 import { BaseDefinition } from './definition';
 import { RxapDefinitionError } from './error';
 
 @Injectable({ providedIn: 'root' })
 export class DefinitionLoader {
-  constructor(
-    @Inject(INJECTOR)
-    private readonly injector: Injector,
-  ) {
-  }
+  private readonly injector = inject<Injector>(INJECTOR);
+
 
   public load<Definition extends BaseDefinition>(
     definitionIdOrInstanceOrInjectionToken: IdOrInstanceOrToken<Definition>,

@@ -1,11 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  HostBinding,
-  HostListener,
-  input,
-  output
-} from '@angular/core';
+import { Directive, ElementRef, HostBinding, HostListener, input, output, inject } from '@angular/core';
 import { DebounceCall } from '@rxap/utilities';
 import { Method } from '@rxap/pattern';
 
@@ -19,6 +12,8 @@ export interface ContenteditableEvent {
   standalone: true,
 })
 export class ContenteditableDirective {
+  private readonly elementRef = inject(ElementRef);
+
 
   @HostBinding('attr.contenteditable')
   public contenteditable = true;
@@ -34,9 +29,6 @@ public readonly change = output<ContenteditableEvent>({ alias: 'rxapContentedita
   public readonly parameters = input<any>();
 
   public readonly initial = input<string>();
-
-  constructor(private readonly elementRef: ElementRef) {
-  }
 
   @HostListener('click', [ '$event' ])
   public onClick($event: Event) {

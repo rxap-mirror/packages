@@ -1,9 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  isDevMode,
-  Optional,
-} from '@angular/core';
+import { Injectable, isDevMode, inject } from '@angular/core';
 import {
   OpenAPI,
   OpenAPIV3,
@@ -33,11 +28,9 @@ export class OpenApiConfigService {
     return Object.keys(this.serverConfigMap);
   }
 
-  constructor(
-    @Optional()
-    @Inject(RXAP_OPEN_API_CONFIG)
-      config: OpenAPIV3.Document | null = null,
-  ) {
+  constructor() {
+    const config = inject<OpenAPIV3.Document | null>(RXAP_OPEN_API_CONFIG, { optional: true }) ?? null;
+
     config = config ?? OpenApiConfigService.Config;
     if (config) {
       this._config = config;

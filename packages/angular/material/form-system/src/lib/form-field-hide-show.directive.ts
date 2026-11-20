@@ -1,12 +1,4 @@
-import {
-  AfterContentInit,
-  Directive,
-  ElementRef,
-  Inject,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-} from '@angular/core';
+import { AfterContentInit, Directive, ElementRef, OnDestroy, OnInit, Renderer2, inject } from '@angular/core';
 import {
   MAT_FORM_FIELD,
   MatFormField,
@@ -106,21 +98,15 @@ export interface FormFieldHideShowDirective extends ExtractHideShowMixin, Extrac
   standalone: true,
 })
 export class FormFieldHideShowDirective implements AfterContentInit, OnDestroy {
+  private readonly formField = inject<MatFormField>(MAT_FORM_FIELD);
+  private readonly renderer = inject<Renderer2>(Renderer2);
+  private readonly elementRef = inject<ElementRef>(ElementRef);
+
 
   public controlId!: string;
   public formDefinition!: FormDefinition;
   public control!: RxapFormControl;
   private subscription = new Subscription();
-
-  constructor(
-    @Inject(MAT_FORM_FIELD)
-    private readonly formField: MatFormField,
-    @Inject(Renderer2)
-    private readonly renderer: Renderer2,
-    @Inject(ElementRef)
-    private readonly elementRef: ElementRef,
-  ) {
-  }
 
   public ngAfterContentInit() {
     const control = this.formField._control.ngControl?.control;

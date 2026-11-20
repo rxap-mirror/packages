@@ -1,9 +1,4 @@
-import {
-  Directive,
-  Inject,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Directive, OnDestroy, OnInit, inject } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
 import { Subscription } from 'rxjs';
 import {
@@ -17,13 +12,10 @@ import {
   standalone: true,
 })
 export class ScrollToTabOnFocusDirective implements OnInit, OnDestroy {
+  private readonly matTabGroup = inject<MatTabGroup>(MatTabGroup);
+
 
   public subscription: Subscription | null = null;
-
-  constructor(
-    @Inject(MatTabGroup)
-    private readonly matTabGroup: MatTabGroup,
-  ) { }
 
   public ngOnInit() {
 

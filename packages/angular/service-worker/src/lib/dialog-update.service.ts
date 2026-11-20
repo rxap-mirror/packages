@@ -1,10 +1,4 @@
-import {
-  ApplicationRef,
-  createComponent,
-  Inject,
-  Injectable,
-  Injector,
-} from '@angular/core';
+import { ApplicationRef, createComponent, Injectable, Injector, inject } from '@angular/core';
 import {
   SwUpdate,
   VersionEvent,
@@ -26,13 +20,9 @@ import {
   providedIn: 'root',
 })
 export class DialogUpdateService {
-  constructor(
-    @Inject(ApplicationRef)
-    private readonly applicationRef: ApplicationRef,
-    @Inject(SwUpdate)
-    private readonly updates: SwUpdate,
-  ) {
-  }
+  private readonly applicationRef = inject<ApplicationRef>(ApplicationRef);
+  private readonly updates = inject<SwUpdate>(SwUpdate);
+
 
   public start(): void {
     console.debug('start dialog update service');

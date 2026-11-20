@@ -4,15 +4,7 @@ import {
   PositionStrategy,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import {
-  Directive,
-  ElementRef,
-  HostListener,
-  Inject,
-  Input,
-  OnDestroy,
-  output
-} from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnDestroy, output, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {
   take,
@@ -25,6 +17,9 @@ import { ConfirmComponent } from './confirm.component';
   standalone: true,
 })
 export class ConfirmDirective<T = any> implements OnDestroy {
+  protected readonly overlay = inject<Overlay>(Overlay);
+  protected readonly elementRef = inject<ElementRef>(ElementRef);
+
   // use a set input to allow auto import detection if the eventValue
   // is not set
   // TODO: Skipped for migration because:
@@ -50,12 +45,7 @@ export class ConfirmDirective<T = any> implements OnDestroy {
 
   protected isOverlyOpen = false;
 
-  constructor(
-    @Inject(Overlay)
-    protected readonly overlay: Overlay,
-    @Inject(ElementRef)
-    protected readonly elementRef: ElementRef,
-  ) {
+  constructor() {
     this.positionStrategy = this.overlay
                                 .position()
                                 .flexibleConnectedTo(this.elementRef.nativeElement)

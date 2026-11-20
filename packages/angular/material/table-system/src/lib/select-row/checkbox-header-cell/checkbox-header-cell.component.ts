@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 import { SelectRowService } from '../select-row.service';
 import type { Observable } from 'rxjs';
 import { EMPTY } from 'rxjs';
@@ -28,16 +23,15 @@ import { AsyncPipe } from '@angular/common';
 })
 export class CheckboxHeaderCellComponent<Data extends Record<string, any>>
   implements OnInit {
+  private readonly cdkTable = inject<CdkTable<Data>>(CdkTable);
+  private readonly selectRow = inject<SelectRowService<Data>>(SelectRowService);
+
   public indeterminate$: Observable<boolean> = EMPTY;
   public checked$: Observable<boolean> = EMPTY;
 
   public isMultipleSelection = false;
 
-  constructor(
-    @Inject(CdkTable)
-    private readonly cdkTable: CdkTable<Data>,
-    private readonly selectRow: SelectRowService<Data>,
-  ) {
+  constructor() {
     this.isMultipleSelection =
       this.selectRow.selectionModel.isMultipleSelection();
   }

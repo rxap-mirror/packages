@@ -1,12 +1,5 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import {
-  Inject,
-  Injectable,
-  InjectionToken,
-  isDevMode,
-  OnDestroy,
-  Optional,
-} from '@angular/core';
+import { Injectable, InjectionToken, isDevMode, OnDestroy, inject } from '@angular/core';
 import {
   BaseDataSourceViewer,
   RXAP_DATA_SOURCE_METADATA,
@@ -72,6 +65,12 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
   Parameters = any>
   extends AbstractTableDataSource<RowDataWithNode<RowData>, Parameters>
   implements OnDestroy {
+  readonly rootMethod: Method<RowData | RowData[], TreeTableEvent>;
+  readonly childrenMethod = inject<Method<RowData[], {
+    node: Node<RowData>;
+    event: TreeTableEvent;
+}>>(RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD);
+
   public tree$ = new BehaviorSubject<Array<Node<RowData>>>([]);
 
   public expanded!: SelectionModel<string>;
@@ -79,27 +78,14 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
   private _expandedLocalStorageSubscription: Subscription | null = null;
   private _subscription?: Subscription;
 
-  constructor(
-    @Inject(RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD)
-    public readonly rootMethod: Method<RowData | RowData[], TreeTableEvent>,
-    @Inject(RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD)
-    public readonly childrenMethod: Method<RowData[], { node: Node<RowData>, event: TreeTableEvent }>,
-    @Optional()
-    @Inject(RXAP_TABLE_DATA_SOURCE_PAGINATOR)
-      paginator: PaginatorLike | null           = null,
-    @Optional()
-    @Inject(RXAP_TABLE_DATA_SOURCE_SORT)
-      sort: SortLike | null                     = null,
-    @Optional()
-    @Inject(RXAP_TABLE_DATA_SOURCE_FILTER)
-      filter: FilterLike | null                 = null,
-    @Optional()
-    @Inject(RXAP_TABLE_DATA_SOURCE_PARAMETERS)
-      parameters: Observable<Parameters> | null = null,
-    @Optional()
-    @Inject(RXAP_DATA_SOURCE_METADATA)
-      metadata: TableDataSourceMetadata | null  = rootMethod.metadata,
-  ) {
+  constructor() {
+    const rootMethod = inject<Method<RowData | RowData[], TreeTableEvent>>(RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD);
+    const paginator = inject<PaginatorLike | null>(RXAP_TABLE_DATA_SOURCE_PAGINATOR, { optional: true }) ?? null;
+    const sort = inject<SortLike | null>(RXAP_TABLE_DATA_SOURCE_SORT, { optional: true }) ?? null;
+    const filter = inject<FilterLike | null>(RXAP_TABLE_DATA_SOURCE_FILTER, { optional: true }) ?? null;
+    const parameters = inject<Observable<Parameters> | null>(RXAP_TABLE_DATA_SOURCE_PARAMETERS, { optional: true }) ?? null;
+    const metadata = inject<TableDataSourceMetadata | null>(RXAP_DATA_SOURCE_METADATA, { optional: true }) ?? rootMethod.metadata;
+
     super(
       paginator,
       sort,
@@ -107,6 +93,8 @@ export class TreeTableDataSource<RowData extends WithIdentifier & WithChildren,
       parameters,
       metadata ?? rootMethod.metadata ?? {id: 'tree-table-data-source'},
     );
+    this.rootMethod = rootMethod;
+
     this.tree$
       .pipe(
         debounceTime(100),

@@ -1,10 +1,4 @@
-import {
-  Directive,
-  Inject,
-  OnDestroy,
-  OnInit,
-  input
-} from '@angular/core';
+import { Directive, OnDestroy, OnInit, input, inject } from '@angular/core';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { LocalStorageService } from '@rxap/ngx-memory';
 import { Subscription } from 'rxjs';
@@ -18,6 +12,9 @@ import { tap } from 'rxjs/operators';
   standalone: true,
 })
 export class PersistentExpansionPanelDirective implements OnInit, OnDestroy {
+  private readonly localStorage = inject<LocalStorageService>(LocalStorageService);
+  readonly expansionPanel = inject<MatExpansionPanel>(MatExpansionPanel);
+
 
   public static BASE_KEY = 'mat-expansion-panel';
   // eslint-disable-next-line @angular-eslint/no-input-rename
@@ -25,14 +22,6 @@ export class PersistentExpansionPanelDirective implements OnInit, OnDestroy {
   public readonly uuid = input<string>();
   public readonly group = input<string>();
   private subscription?: Subscription;
-
-  constructor(
-    @Inject(LocalStorageService)
-    private readonly localStorage: LocalStorageService,
-    @Inject(MatExpansionPanel)
-    public readonly expansionPanel: MatExpansionPanel,
-  ) {
-  }
 
   public get key(): string {
     return [ PersistentExpansionPanelDirective.BASE_KEY, this.group(), this.uuid(), this.id(), 'isExpanded' ].join('/');

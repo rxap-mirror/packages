@@ -1,10 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  INJECTOR,
-  Injector,
-  Provider,
-} from '@angular/core';
+import { Injectable, INJECTOR, Injector, Provider, inject } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
@@ -38,16 +32,11 @@ export const RXAP_RESET_PASSWORD_FORM = 'rxap-reset-password';
 
 @Injectable()
 export class ResetPasswordFormSubmitMethod implements FormSubmitMethod<any> {
-  constructor(
-    @Inject(ActivatedRoute)
-    private readonly route: ActivatedRoute,
-    private readonly setNewPasswordWithResetTokenMethod: SetNewPasswordWithResetTokenMethod,
-    @Inject(MatSnackBar)
-    private readonly snackBar: MatSnackBar,
-    @Inject(Router)
-    private readonly router: Router,
-  ) {
-  }
+  private readonly route = inject<ActivatedRoute>(ActivatedRoute);
+  private readonly setNewPasswordWithResetTokenMethod = inject(SetNewPasswordWithResetTokenMethod);
+  private readonly snackBar = inject<MatSnackBar>(MatSnackBar);
+  private readonly router = inject<Router>(Router);
+
 
   public call(value: { password: string }): boolean | Promise<boolean> {
     return firstValueFrom(this.route.params

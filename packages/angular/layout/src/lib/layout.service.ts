@@ -1,16 +1,5 @@
 import { MediaMatcher } from '@angular/cdk/layout';
-import {
-  computed,
-  effect,
-  Inject,
-  inject,
-  Injectable,
-  isDevMode,
-  Optional,
-  signal,
-  Signal,
-  WritableSignal,
-} from '@angular/core';
+import { computed, effect, inject, Injectable, isDevMode, signal, Signal, WritableSignal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import {
@@ -42,11 +31,9 @@ export class LayoutService {
   private readonly config = inject(ConfigService);
   private readonly mediaMatcher = inject(MediaMatcher);
 
-  constructor(
-    @Inject(RXAP_NAVIGATION_LAYOUT_CONFIG_DEFAULTS)
-    @Optional()
-    navigationConfigDefaults: Omit<NavigationConfig, 'apps'> | null = null,
-  ) {
+  constructor() {
+    const navigationConfigDefaults = inject<Omit<NavigationConfig, 'apps'> | null>(RXAP_NAVIGATION_LAYOUT_CONFIG_DEFAULTS, { optional: true }) ?? null;
+
     const mobileQuery = this.mediaMatcher.matchMedia(navigationConfigDefaults?.mobileQuery ?? '(max-width: 959px)');
     this.isMobile = toSignal(new Observable<boolean>(subscriber => {
       mobileQuery.addEventListener('change', (event) => {

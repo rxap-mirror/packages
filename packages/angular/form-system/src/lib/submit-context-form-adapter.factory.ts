@@ -1,8 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  InjectionToken,
-} from '@angular/core';
+import { Injectable, InjectionToken, inject } from '@angular/core';
 import { RXAP_FORM_CONTEXT } from '@rxap/forms';
 import type {
   OpenApiRemoteMethod,
@@ -15,13 +11,12 @@ export const SUBMIT_CONTEXT_FORM_ADAPTER_METHOD = new InjectionToken('submit-con
 @Injectable()
 export class SubmitContextFormAdapter
   extends ProxyRemoteMethod<unknown, Record<string, unknown>, OpenApiRemoteMethodParameter<Record<string, unknown>>> {
+  private readonly context = inject<Record<string, unknown>>(RXAP_FORM_CONTEXT);
 
-  constructor(
-    @Inject(SUBMIT_CONTEXT_FORM_ADAPTER_METHOD)
-      remoteMethod: OpenApiRemoteMethod<unknown, OpenApiRemoteMethodParameter<Record<string, unknown>>, Record<string, unknown>>,
-    @Inject(RXAP_FORM_CONTEXT)
-    private readonly context: Record<string, unknown>,
-  ) {
+
+  constructor() {
+    const remoteMethod = inject<OpenApiRemoteMethod<unknown, OpenApiRemoteMethodParameter<Record<string, unknown>>, Record<string, unknown>>>(SUBMIT_CONTEXT_FORM_ADAPTER_METHOD);
+
     super(remoteMethod);
   }
 

@@ -1,8 +1,4 @@
-import {
-  AfterContentInit,
-  Directive,
-  Inject,
-} from '@angular/core';
+import { AfterContentInit, Directive, inject } from '@angular/core';
 import {
   MAT_FORM_FIELD,
   MatFormField,
@@ -13,12 +9,8 @@ import {
   standalone: true,
 })
 export class RequiredDirective implements AfterContentInit {
+  private readonly formField = inject<MatFormField>(MAT_FORM_FIELD);
 
-  constructor(
-    @Inject(MAT_FORM_FIELD)
-    private readonly formField: MatFormField,
-  ) {
-  }
 
   public ngAfterContentInit() {
     const control = this.formField._control.ngControl?.control;

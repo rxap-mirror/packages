@@ -1,12 +1,4 @@
-import {
-  computed,
-  Directive,
-  Inject,
-  input,
-  OnDestroy,
-  Optional,
-  output,
-} from '@angular/core';
+import { computed, Directive, input, OnDestroy, output, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { ConfirmClick } from '@rxap/directives';
@@ -34,6 +26,9 @@ import { FormDirective } from './form.directive';
   exportAs: 'rxapFormSubmit',
 })
 export class FormSubmitDirective extends ConfirmClick implements OnDestroy {
+  private readonly formDirective = inject<FormDirective>(FormDirective);
+  private readonly router = inject<Router | null>(Router, { optional: true }) ?? null;
+
 
   public type = input<'button' | 'submit' | 'reset'>('button');
 
@@ -50,15 +45,6 @@ export class FormSubmitDirective extends ConfirmClick implements OnDestroy {
   disabled = computed(() => this.disableWhileSubmitting() && this.submitting())
 
   private subscription?: Subscription;
-
-  constructor(
-    @Inject(FormDirective) private readonly formDirective: FormDirective,
-    @Optional()
-    @Inject(Router)
-    private readonly router: Router | null = null,
-  ) {
-    super();
-  }
 
   protected execute() {
     this.formDirective.form.markAllAsDirty();

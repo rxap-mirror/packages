@@ -1,10 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  isDevMode,
-  Optional,
-  Signal,
-} from '@angular/core';
+import { Injectable, isDevMode, Signal, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
   BaseDefinition,
@@ -93,11 +87,9 @@ export class BaseDataSource<
 
   public hasError?: Signal<boolean>;
 
-  constructor(
-    @Optional()
-    @Inject(RXAP_DEFINITION_METADATA)
-      metadata: Metadata | null = null,
-  ) {
+  constructor() {
+    const metadata = inject<Metadata | null>(RXAP_DEFINITION_METADATA, { optional: true }) ?? null;
+
     super(metadata);
   }
 

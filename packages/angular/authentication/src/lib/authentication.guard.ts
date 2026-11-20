@@ -1,8 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  Optional,
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   Router,
@@ -14,19 +10,12 @@ import { RXAP_AUTHENTICATION_DEACTIVATED } from './tokens';
 
 @Injectable({ providedIn: 'root' })
 export class RxapAuthenticationGuard {
+  authentication = inject<RxapAuthenticationService>(RxapAuthenticationService);
+  router = inject<Router>(Router);
+  private readonly deactivated = inject(RXAP_AUTHENTICATION_DEACTIVATED, { optional: true }) ?? null;
+
 
   public lastUrl: string | null = null;
-
-  constructor(
-    @Inject(RxapAuthenticationService)
-    public authentication: RxapAuthenticationService,
-    @Inject(Router)
-    public router: Router,
-    @Optional()
-    @Inject(RXAP_AUTHENTICATION_DEACTIVATED)
-    private readonly deactivated: boolean | null = null,
-  ) {
-  }
 
   public canActivate(
     route: ActivatedRouteSnapshot,

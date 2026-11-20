@@ -1,14 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  Inject,
-  OnDestroy,
-  OnInit,
-  input,
-  output,
-  viewChild
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnDestroy, OnInit, input, output, viewChild, inject } from '@angular/core';
 import {
   fromEvent,
   Subscription,
@@ -53,9 +43,9 @@ export class WindowResizerComponent implements OnInit, OnDestroy {
 
   private _subscription = new Subscription();
 
-  constructor(
-    @Inject(RXAP_WINDOW_CONTEXT) context: any,
-  ) {
+  constructor() {
+    const context = inject(RXAP_WINDOW_CONTEXT);
+
     this.windowRef = context.windowRef;
   }
 

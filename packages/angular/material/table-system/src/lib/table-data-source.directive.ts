@@ -1,16 +1,5 @@
 import { CdkTable } from '@angular/cdk/table';
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  InjectionToken,
-  Input,
-  isDevMode,
-  OnDestroy,
-  OnInit,
-  Optional,
-  input
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, InjectionToken, Input, isDevMode, OnDestroy, OnInit, input, inject } from '@angular/core';
 import type { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { pipeDataSource } from '@rxap/data-source';
@@ -62,6 +51,14 @@ export type TableRemoteMethodAdapterFactory<
 })
 export class TableDataSourceDirective<Data extends Record<string, any> = any>
   implements OnInit, OnDestroy {
+  private readonly matTable = inject<CdkTable<Data>>(CdkTable);
+  protected readonly cdr = inject(ChangeDetectorRef);
+  private readonly sourceMethod = inject<Method<Data[] | any, TableEvent | any> | null>(RXAP_TABLE_METHOD, { optional: true });
+  private readonly sourceDataSource = inject<AbstractTableDataSource<Data> | null>(TABLE_DATA_SOURCE, { optional: true });
+  private readonly matSort = inject<MatSort | null>(MatSort, { optional: true });
+  private readonly tableFilter = inject<TableFilterService | null>(TableFilterService, { optional: true });
+  private readonly _tableFilter = inject<FilterLike | null>(RXAP_TABLE_FILTER, { optional: true });
+
   /**
    * @deprecated use dataSource instead
    */
@@ -115,30 +112,9 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
   private readonly adapterFactory: TableRemoteMethodAdapterFactory<Data> | null =
     null;
 
-  constructor(
-    @Inject(CdkTable)
-    private readonly matTable: CdkTable<Data>,
-    protected readonly cdr: ChangeDetectorRef,
-    @Optional()
-    @Inject(RXAP_TABLE_METHOD)
-    private readonly sourceMethod: Method<Data[] | any,
-      TableEvent | any> | null,
-    @Optional()
-    @Inject(TABLE_DATA_SOURCE)
-    private readonly sourceDataSource: AbstractTableDataSource<Data> | null,
-    @Optional()
-    @Inject(TABLE_REMOTE_METHOD_ADAPTER_FACTORY)
-      adapterFactory: any,
-    @Optional()
-    @Inject(MatSort)
-    private readonly matSort: MatSort | null,
-    @Optional()
-    @Inject(TableFilterService)
-    private readonly tableFilter: TableFilterService | null,
-    @Optional()
-    @Inject(RXAP_TABLE_FILTER)
-    private readonly _tableFilter: FilterLike | null,
-  ) {
+  constructor() {
+    const adapterFactory = inject(TABLE_REMOTE_METHOD_ADAPTER_FACTORY, { optional: true });
+
     this.matTable.trackBy = this.trackBy;
     this.adapterFactory = adapterFactory;
     this.retry = this.retry.bind(this);

@@ -1,9 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  InjectOptions,
-  Injector
-} from '@angular/core';
+import { Injectable, InjectOptions, Injector, inject } from '@angular/core';
 import { HttpDataSource } from './http.data-source';
 import { HttpDataSourceOptions } from './http.data-source.options';
 import { HttpDataSourceMetadata } from './http.data-source.metadata';
@@ -15,11 +10,8 @@ import { IdOrInstanceOrToken } from '@rxap/definition';
 
 @Injectable({ providedIn: 'root' })
 export class HttpDataSourceLoader {
+  private readonly dataSourceLoader = inject<DataSourceLoader>(DataSourceLoader);
 
-  // Instead of extanding the DataSourceLoader class the DataSourceLoader instance
-  // will be injected, else there could be multiple instance of DataSourceLoader's.
-  constructor(@Inject(DataSourceLoader) private readonly dataSourceLoader: DataSourceLoader) {
-  }
 
   public request$<Data>(
     dataSourceIdOrInstanceOrToken: IdOrInstanceOrToken<HttpDataSource<Data>>,

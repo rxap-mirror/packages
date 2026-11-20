@@ -1,10 +1,4 @@
-import {
-  Directive,
-  HostBinding,
-  HostListener,
-  Inject,
-  input
-} from '@angular/core';
+import { Directive, HostBinding, HostListener, input, inject } from '@angular/core';
 import {
   DebounceCall,
   Required,
@@ -16,6 +10,8 @@ import { HttpRemoteMethodLoader } from '@rxap/remote-method/http';
   standalone: true,
 })
 export class ContenteditableDirective {
+  private readonly httpRemoteMethodLoader = inject<HttpRemoteMethodLoader>(HttpRemoteMethodLoader);
+
   @HostBinding('attr.contenteditable')
   public contenteditable = true;
 
@@ -24,12 +20,6 @@ export class ContenteditableDirective {
   public readonly property = input.required<string>();
 
   public readonly uuid = input.required<string>();
-
-  constructor(
-    @Inject(HttpRemoteMethodLoader)
-    private readonly httpRemoteMethodLoader: HttpRemoteMethodLoader,
-  ) {
-  }
 
   @HostListener('click', [ '$event' ])
   public onClick($event: Event) {

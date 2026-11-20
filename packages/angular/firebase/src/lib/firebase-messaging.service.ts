@@ -1,8 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  Optional,
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import {
   mergeMapTo,
@@ -23,15 +19,12 @@ export interface Message {
 
 @Injectable({ providedIn: 'root' })
 export class RxapFirebaseMessagingService {
+  readonly messaging = inject<AngularFireMessaging>(AngularFireMessaging);
+  readonly requestPermissionImminently = inject(RXAP_REQUEST_CLOUD_MESSAGING_TOKEN, { optional: true }) ?? false;
+
   public token$ = new ReplaySubject<string | null>(1);
 
-  constructor(
-    @Inject(AngularFireMessaging)
-    public readonly messaging: AngularFireMessaging,
-    @Optional()
-    @Inject(RXAP_REQUEST_CLOUD_MESSAGING_TOKEN)
-    public readonly requestPermissionImminently = false,
-  ) {
+  constructor() {
     this.messaging.messages
         .pipe(
           tap((message: any) =>

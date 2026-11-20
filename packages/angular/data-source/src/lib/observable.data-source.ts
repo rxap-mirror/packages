@@ -1,8 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  Optional,
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   BaseDataSource,
   BaseDataSourceMetadata,
@@ -22,10 +18,10 @@ export interface ObservableDataSourceMetadata<Data> extends BaseDataSourceMetada
 @Injectable()
 export class ObservableDataSource<Data> extends BaseDataSource<Data, ObservableDataSourceMetadata<Data>> {
 
-  constructor(
-    @Optional() @Inject(RXAP_OBSERVABLE_DATA_SOURCE) observable: Observable<Data> | null,
-    @Optional() @Inject(RXAP_DATA_SOURCE_METADATA) metadata: ObservableDataSourceMetadata<Data> | null = null,
-  ) {
+  constructor() {
+    const observable = inject<Observable<Data> | null>(RXAP_OBSERVABLE_DATA_SOURCE, { optional: true });
+    const metadata = inject<ObservableDataSourceMetadata<Data> | null>(RXAP_DATA_SOURCE_METADATA, { optional: true }) ?? null;
+
     super(metadata);
     if (observable) {
       this._data$ = observable;

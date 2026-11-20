@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
@@ -28,10 +24,9 @@ export class ConfirmDialogComponent {
   public readonly data: ConfirmDialogData;
 
 
-  constructor(
-    @Inject(MAT_DIALOG_DATA)
-      data: ConfirmDialogData,
-  ) {
+  constructor() {
+    const data = inject<ConfirmDialogData>(MAT_DIALOG_DATA);
+
     this.data = data;
     this.action = this.data.action ?? 'OK';
   }

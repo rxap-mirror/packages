@@ -1,12 +1,4 @@
-import {
-  Directive,
-  forwardRef,
-  Inject,
-  Optional,
-  Self,
-  SkipSelf,
-  input
-} from '@angular/core';
+import { Directive, forwardRef, input, inject } from '@angular/core';
 import {
   AsyncValidator,
   AsyncValidatorFn,
@@ -45,13 +37,12 @@ export class FormControlNameDirective extends FormControlName {
 
   public override readonly name = input.required<string | number | null>({ alias: "rxapFormControlName" });
 
-  constructor(
-    @Optional() @SkipSelf() parent: ControlContainer,
-    @Optional() @Self() @Inject(NG_VALIDATORS) validators: Array<Validator | ValidatorFn>,
-    @Optional() @Self() @Inject(NG_ASYNC_VALIDATORS) asyncValidators:
-      Array<AsyncValidator | AsyncValidatorFn>,
-    @Optional() @Self() @Inject(NG_VALUE_ACCESSOR) valueAccessors: ControlValueAccessor[],
-  ) {
+  constructor() {
+    const parent = inject(ControlContainer, { optional: true, skipSelf: true });
+    const validators = inject<Array<Validator | ValidatorFn>>(NG_VALIDATORS, { optional: true, self: true });
+    const asyncValidators = inject<Array<AsyncValidator | AsyncValidatorFn>>(NG_ASYNC_VALIDATORS, { optional: true, self: true });
+    const valueAccessors = inject(NG_VALUE_ACCESSOR, { optional: true, self: true });
+
     super(parent, validators, asyncValidators, valueAccessors, null);
   }
 

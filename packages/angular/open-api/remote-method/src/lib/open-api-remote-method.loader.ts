@@ -1,21 +1,14 @@
-import {
-  Inject,
-  Injectable,
-  Injector,
-} from '@angular/core';
+import { Injectable, Injector, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { OpenApiRemoteMethod } from './open-api.remote-method';
 import { OpenApiConfigService } from '@rxap/open-api';
 
 @Injectable({ providedIn: 'root' })
 export class OpenApiRemoteMethodLoader {
+  readonly openApiConfig = inject<OpenApiConfigService>(OpenApiConfigService);
+  readonly http = inject<HttpClient>(HttpClient);
+  readonly injector = inject(Injector);
 
-  constructor(
-    @Inject(OpenApiConfigService) public readonly openApiConfig: OpenApiConfigService,
-    @Inject(HttpClient) public readonly http: HttpClient,
-    public readonly injector: Injector,
-  ) {
-  }
 
   public load(definitionId: string): OpenApiRemoteMethod | null {
     const operation = this.openApiConfig.getOperation(definitionId);

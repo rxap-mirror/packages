@@ -4,15 +4,7 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
-import {
-  Directive,
-  forwardRef,
-  Inject,
-  INJECTOR,
-  Injector,
-  isDevMode,
-  input
-} from '@angular/core';
+import { Directive, forwardRef, INJECTOR, Injector, isDevMode, input, inject } from '@angular/core';
 import {
   BaseDataSourceViewer,
   DataSourceLoader,
@@ -38,16 +30,11 @@ export interface IsSelectableValueDirective extends ExtractOptionsDataSourceMixi
   standalone: true,
 })
 export class IsSelectableValueDirective implements Validator {
+  protected readonly dataSourceLoader = inject<DataSourceLoader>(DataSourceLoader);
+  protected readonly injector = inject<Injector>(INJECTOR);
+
 
   public readonly viewer = input<BaseDataSourceViewer>({ id: '[rxapIsSelectableValue]' });
-
-  constructor(
-    @Inject(DataSourceLoader)
-    protected readonly dataSourceLoader: DataSourceLoader,
-    @Inject(INJECTOR)
-    protected readonly injector: Injector,
-  ) {
-  }
 
   public validate(control: AbstractControl): ValidationErrors | null {
     if (control.value) {

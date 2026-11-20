@@ -1,8 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  Optional,
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   getIdentifierPropertyValue,
   hasIdentifierProperty,
@@ -23,11 +19,9 @@ export class SelectRowService<Data = unknown> {
     return this.selectionModel.selected;
   }
 
-  constructor(
-    @Optional()
-    @Inject(RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS)
-      options: SelectRowOptions<Data> | null = null,
-  ) {
+  constructor() {
+    const options = inject<SelectRowOptions<Data> | null>(RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS, { optional: true }) ?? null;
+
     this.selectionModel = new SelectionModel<Data>(
       options?.multiple,
       options?.selected,

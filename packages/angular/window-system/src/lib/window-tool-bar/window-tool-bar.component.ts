@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { WindowRef } from '../window-ref';
 import { RXAP_WINDOW_CONTEXT } from '../tokens';
 import { MatButtonModule } from '@angular/material/button';
@@ -30,7 +26,9 @@ export class WindowToolBarComponent<D> {
 
   public windowRef: WindowRef<D>;
 
-  constructor(@Inject(RXAP_WINDOW_CONTEXT) context: any) {
+  constructor() {
+    const context = inject(RXAP_WINDOW_CONTEXT);
+
     this.windowRef = context.windowRef;
   }
 

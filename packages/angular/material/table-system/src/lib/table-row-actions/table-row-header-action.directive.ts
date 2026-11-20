@@ -1,18 +1,5 @@
 import { Overlay } from '@angular/cdk/overlay';
-import {
-  ChangeDetectorRef,
-  Directive,
-  ElementRef,
-  Inject,
-  INJECTOR,
-  Injector,
-  OnDestroy,
-  OnInit,
-  Optional,
-  Renderer2,
-  ViewContainerRef,
-  input
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, ElementRef, INJECTOR, Injector, OnDestroy, OnInit, Renderer2, ViewContainerRef, input, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -37,40 +24,26 @@ import { TableRowActionMethod } from './types';
 export class TableRowHeaderActionDirective<Data extends Record<string, any>>
   extends AbstractTableRowAction<Data>
   implements OnInit, OnDestroy {
+  private readonly selectRowService = inject<SelectRowService<Data> | null>(SelectRowService, { optional: true });
+
 
   public override readonly isHeader = true;
 
   private _subscription?: Subscription;
 
-  constructor(
-    @Inject(Renderer2)
-      renderer: Renderer2,
-    @Inject(Overlay)
-      overlay: Overlay,
-    @Inject(ElementRef)
-      elementRef: ElementRef,
-    @Inject(RXAP_TABLE_ROW_ACTION_METHOD)
-      actionMethod: TableRowActionMethod<Data>,
-    @Inject(ChangeDetectorRef)
-      cdr: ChangeDetectorRef,
-    @Inject(ViewContainerRef)
-      vcr: ViewContainerRef,
-    @Inject(TableDataSourceDirective)
-      tableDataSourceDirective: TableDataSourceDirective,
-    @Inject(MatSnackBar)
-      snackBar: MatSnackBar,
-    @Optional()
-    @Inject(MatButton)
-      matButton: MatButton | null,
-    @Optional()
-    @Inject(MatTooltip)
-      matTooltip: MatTooltip | null,
-    @Inject(INJECTOR)
-      injector: Injector,
-    @Optional()
-    @Inject(SelectRowService)
-    private readonly selectRowService: SelectRowService<Data> | null,
-  ) {
+  constructor() {
+    const renderer = inject<Renderer2>(Renderer2);
+    const overlay = inject<Overlay>(Overlay);
+    const elementRef = inject<ElementRef>(ElementRef);
+    const actionMethod = inject<TableRowActionMethod<Data>>(RXAP_TABLE_ROW_ACTION_METHOD);
+    const cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+    const vcr = inject<ViewContainerRef>(ViewContainerRef);
+    const tableDataSourceDirective = inject<TableDataSourceDirective>(TableDataSourceDirective);
+    const snackBar = inject<MatSnackBar>(MatSnackBar);
+    const matButton = inject<MatButton | null>(MatButton, { optional: true });
+    const matTooltip = inject<MatTooltip | null>(MatTooltip, { optional: true });
+    const injector = inject<Injector>(INJECTOR);
+
     super(
       renderer,
       overlay,

@@ -1,9 +1,4 @@
-import {
-  Component,
-  Inject,
-  InjectionToken,
-  Optional,
-} from '@angular/core';
+import { Component, InjectionToken, inject } from '@angular/core';
 import { WindowService } from '../../window.service';
 import { WindowTaskBarComponent } from '../window-task-bar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -32,16 +27,14 @@ export const RXAP_WINDOW_TASK_BAR_CONTAINER_SETTINGS = new InjectionToken('rxap/
 ]
 })
 export class WindowTaskBarContainerComponent {
+  windowService = inject<WindowService>(WindowService);
+
 
   public expand = true;
 
-  constructor(
-    @Inject(WindowService)
-    public windowService: WindowService,
-    @Optional()
-    @Inject(RXAP_WINDOW_TASK_BAR_CONTAINER_SETTINGS)
-      settings: WindowTaskBarContainerSettings | null = null,
-  ) {
+  constructor() {
+    const settings = inject<WindowTaskBarContainerSettings | null>(RXAP_WINDOW_TASK_BAR_CONTAINER_SETTINGS, { optional: true }) ?? null;
+
     if (settings) {
       if (settings.expand !== undefined) {
         this.expand = settings.expand;

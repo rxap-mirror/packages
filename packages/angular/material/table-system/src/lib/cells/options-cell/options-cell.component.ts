@@ -2,16 +2,7 @@ import type {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import {
-  AfterContentInit,
-  ChangeDetectionStrategy,
-  Component,
-  isDevMode,
-  OnDestroy,
-  Renderer2,
-  input,
-  contentChildren
-} from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, isDevMode, OnDestroy, Renderer2, input, contentChildren, inject } from '@angular/core';
 import { MatOption } from '@angular/material/core';
 import { Subscription } from 'rxjs';
 import {
@@ -28,6 +19,8 @@ import {
   standalone: true,
 })
 export class OptionsCellComponent implements AfterContentInit, OnDestroy, OnChanges {
+  private readonly renderer = inject(Renderer2);
+
   public readonly value = input<any>(undefined, { alias: "rxap-options-cell" });
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
@@ -42,7 +35,7 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy, OnChan
 
   private _initialised = false;
 
-  constructor(private readonly renderer: Renderer2) {
+  constructor() {
     this.defaultViewValue = ''; // $localize`:@@rxap-material.table-system.options-cell.unknown:unknown`;
     this.emptyViewValue = ''; // $localize`:@@rxap-material.table-system.options-cell.empty:empty`;
   }

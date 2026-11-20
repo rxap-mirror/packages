@@ -1,4 +1,4 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component, TemplateRef, inject } from '@angular/core';
 import { Story } from '@storybook/angular';
 import { WindowService } from './window.service';
 
@@ -24,7 +24,8 @@ import { WindowService } from './window.service';
   standalone: true,
 })
 class WindowSystemPlaygroundComponent {
-  constructor(private readonly windowService: WindowService) {}
+  private readonly windowService = inject(WindowService);
+
 
   openWindow(windowContent: TemplateRef<any>) {
     this.windowService.open({

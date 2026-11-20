@@ -8,7 +8,7 @@ import {
   map,
   take,
 } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   Auth,
   AuthProvider,
@@ -29,13 +29,13 @@ import { traceUntilFirst } from '@angular/fire/performance';
 
 @Injectable()
 export class IdentityPlatformService {
+  readonly auth = inject(Auth);
+
   isAuthenticated$: BehaviorSubject<boolean | null> = new BehaviorSubject<boolean | null>(null);
 
   public readonly user: Observable<User | null> = EMPTY;
 
-  constructor(
-    public readonly auth: Auth,
-  ) {
+  constructor() {
     this.user = authState(this.auth);
     this.isAuthenticated().then(isAuthenticated => this.isAuthenticated$.next(isAuthenticated));
   }

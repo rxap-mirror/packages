@@ -1,17 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Inject,
-  Input,
-  isDevMode,
-  OnInit,
-  Optional,
-  Output,
-  input,
-  output
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, isDevMode, OnInit, Output, input, output, inject } from '@angular/core';
 import { FormDirective } from '@rxap/forms';
 import {
   Observable,
@@ -49,6 +36,11 @@ declare const $localize: any;
 ]
 })
 export class FormControlsComponent<FormData> implements OnInit {
+  private readonly formDirective = inject<FormDirective>(FormDirective);
+  private readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+  private readonly snackBar = inject<MatSnackBar>(MatSnackBar);
+  private readonly router = inject<Router | null>(Router, { optional: true });
+
   public submitting$!: Observable<boolean>;
   public invalid = false;
   public readonly navigateAfterSubmit = input<string[]>();
@@ -62,19 +54,6 @@ export class FormControlsComponent<FormData> implements OnInit {
    * @private
    */
   private _submitted: FormData[] = [];
-
-  constructor(
-    @Inject(FormDirective)
-    private readonly formDirective: FormDirective,
-    @Inject(ChangeDetectorRef)
-    private readonly cdr: ChangeDetectorRef,
-    @Inject(MatSnackBar)
-    private readonly snackBar: MatSnackBar,
-    @Optional()
-    @Inject(Router)
-    private readonly router: Router | null,
-  ) {
-  }
 
   public _allowResubmit = false;
 

@@ -1,9 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  Optional,
-  Provider,
-} from '@angular/core';
+import { Injectable, Provider, inject } from '@angular/core';
 import { HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { coerceArray } from '@rxap/utilities';
 import {
@@ -25,17 +20,15 @@ import {
 
 @Injectable()
 export class FirebaseAppCheckHttpInterceptor implements HttpInterceptor {
+  readonly appCheck = inject(AppCheck);
+  private readonly enabled = inject(APP_CHECK_ENABLED, { optional: true });
+
 
   private readonly urlPattern: RegExp[] = [];
 
-  constructor(
-    public readonly appCheck: AppCheck,
-    @Inject(FIREBASE_APP_CHECK_HTTP_INTERCEPTOR_URL_PATTERN)
-      urlPattern: RegExp | RegExp[],
-    @Optional()
-    @Inject(APP_CHECK_ENABLED)
-    private readonly enabled: boolean | null,
-  ) {
+  constructor() {
+    const urlPattern = inject<RegExp | RegExp[]>(FIREBASE_APP_CHECK_HTTP_INTERCEPTOR_URL_PATTERN);
+
     this.urlPattern = coerceArray(urlPattern);
   }
 

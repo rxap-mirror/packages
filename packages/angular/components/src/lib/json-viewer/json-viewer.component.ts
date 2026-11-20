@@ -1,16 +1,5 @@
 import { NgClass } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  forwardRef,
-  Inject,
-  isDevMode,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-  input
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, isDevMode, OnChanges, OnInit, SimpleChanges, input, inject } from '@angular/core';
 import { isTeardownLogic } from '@rxap/rxjs';
 import {
   clone,
@@ -39,6 +28,8 @@ export interface Segment {
     imports: [NgClass, forwardRef(() => JsonViewerComponent)]
 })
 export class JsonViewerComponent implements OnInit, OnChanges {
+  cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+
 
   // TODO : add object input. The json input will not be cleaned
   public readonly json = input<object | Record<string | number | symbol, unknown>>({});
@@ -53,11 +44,10 @@ export class JsonViewerComponent implements OnInit, OnChanges {
 
   public segments: Segment[] = [];
 
-  constructor(
-    @Inject(JSON_VIEW_IGNORED_PROPERTIES) ignoredProperties: Array<string | RegExp | Array<string | RegExp>>,
-    @Inject(JSON_VIEW_IGNORED_TYPES) ignoredTypes: Array<any | any[]>,
-    @Inject(ChangeDetectorRef) public cdr: ChangeDetectorRef,
-  ) {
+  constructor() {
+    const ignoredProperties = inject<Array<string | RegExp | Array<string | RegExp>>>(JSON_VIEW_IGNORED_PROPERTIES);
+    const ignoredTypes = inject<Array<any | any[]>>(JSON_VIEW_IGNORED_TYPES);
+
     function flat(acc: any[], cur: any | any[]): any[] {
       if (Array.isArray(cur)) {
         acc.push(...cur.reduce(flat, []));

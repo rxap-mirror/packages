@@ -1,7 +1,4 @@
-import {
-  Inject,
-  Injectable,
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   firstValueFrom,
   Observable,
@@ -14,15 +11,11 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class ConfigLoaderService {
+  readonly http = inject<HttpClient>(HttpClient);
+
   public readonly configs = new Map<string, any>();
 
   public readonly configLoading = new Map<string, Observable<any>>();
-
-  constructor(
-    @Inject(HttpClient)
-    public readonly http: HttpClient,
-  ) {
-  }
 
   public async load$<T = any>(url: string): Promise<T> {
     if (this.configs.has(url)) {

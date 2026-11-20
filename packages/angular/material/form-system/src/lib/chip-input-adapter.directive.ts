@@ -2,11 +2,7 @@ import {
   COMMA,
   ENTER,
 } from '@angular/cdk/keycodes';
-import {
-  Directive,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Directive, OnDestroy, OnInit, inject } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatChipInput } from '@angular/material/chips';
 import { unique } from '@rxap/utilities';
@@ -21,12 +17,12 @@ import {
   standalone: true,
 })
 export class ChipInputAdapterDirective implements OnDestroy, OnInit {
+  private readonly matChipInput = inject(MatChipInput);
+  private readonly ngControl = inject(NgControl);
+
   private _subscription?: Subscription;
 
-  constructor(
-    private readonly matChipInput: MatChipInput,
-    private readonly ngControl: NgControl,
-  ) {
+  constructor() {
     this.matChipInput.separatorKeyCodes = [ ENTER, COMMA ] as const;
     this.matChipInput.addOnBlur = true;
   }

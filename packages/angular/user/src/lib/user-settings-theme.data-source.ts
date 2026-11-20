@@ -1,7 +1,4 @@
-import {
-  Inject,
-  Injectable,
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   PipeDataSource,
   RxapPipeDataSource,
@@ -18,10 +15,9 @@ import { UserSettingsDataSource } from './user-settings.data-source';
 export class UserSettingsThemeDataSource<T = unknown>
   extends PipeDataSource<SettingsControllerGetResponse<T>, SettingsControllerGetResponse<T>['theme']> {
 
-  constructor(
-    @Inject(UserSettingsDataSource)
-    dataSource: UserSettingsDataSource<T>,
-  ) {
+  constructor() {
+    const dataSource = inject<UserSettingsDataSource<T>>(UserSettingsDataSource);
+
     super(
       dataSource,
       map((settings) => settings.theme),

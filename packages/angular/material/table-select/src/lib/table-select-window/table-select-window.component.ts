@@ -1,9 +1,5 @@
 import { AsyncPipe, KeyValuePipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   FormsModule,
   ReactiveFormsModule,
@@ -79,6 +75,10 @@ import { OpenTableSelectWindowMethodParameters } from '../open-table-select-wind
 ]
 })
 export class TableSelectWindowComponent<Data = unknown> {
+  readonly data = inject<OpenTableSelectWindowMethodParameters>(RXAP_WINDOW_DATA);
+  private readonly selectRows = inject<SelectRowService<Data>>(SelectRowService);
+  private readonly windowRef = inject<WindowRef>(RXAP_WINDOW_REF);
+
 
   public readonly displayColumns: string[];
   public readonly filterDisplayColumns: string[];
@@ -87,13 +87,7 @@ export class TableSelectWindowComponent<Data = unknown> {
 
   public hasNotSelected$: Observable<boolean>;
 
-  constructor(
-    @Inject(RXAP_WINDOW_DATA)
-    public readonly data: OpenTableSelectWindowMethodParameters,
-    private readonly selectRows: SelectRowService<Data>,
-    @Inject(RXAP_WINDOW_REF)
-    private readonly windowRef: WindowRef
-  ) {
+  constructor() {
     this.id = this.data.id;
     this.displayColumns = [ ...this.data.columns.keys() ];
     if (this.data.multiple) {

@@ -1,9 +1,4 @@
-import {
-  Directive,
-  Inject,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { Directive, OnDestroy, OnInit, inject } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { RXAP_TABLE_FILTER } from '@rxap/material-table-system';
 import { Subscription } from 'rxjs';
@@ -18,15 +13,10 @@ import { TableFullTextSearchService } from './table-full-text-search.service';
   standalone: true,
 })
 export class TableFilterInputDirective implements OnInit, OnDestroy {
-  private _subscription?: Subscription;
+  private readonly ngModel = inject<NgModel>(NgModel);
+  private readonly stringFilterService = inject<TableFullTextSearchService>(RXAP_TABLE_FILTER);
 
-  constructor(
-    @Inject(NgModel)
-    private readonly ngModel: NgModel,
-    @Inject(RXAP_TABLE_FILTER)
-    private readonly stringFilterService: TableFullTextSearchService,
-  ) {
-  }
+  private _subscription?: Subscription;
 
   public ngOnDestroy() {
     this._subscription?.unsubscribe();

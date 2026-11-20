@@ -1,10 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  Optional,
-  input
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, input, inject } from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -19,22 +13,16 @@ import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
   standalone: true,
 })
 export class MatSlideToggleHasEnablePermissionDirective extends HasEnablePermission {
+  private readonly matSlideToggle = inject<MatSlideToggle>(MatSlideToggle);
+
   public override readonly identifier = input.required<string>({ alias: "rxapHasEnablePermission" });
 
-  constructor(
-    @Inject(AuthorizationService)
-      authorization: AuthorizationService,
-    @Inject(ChangeDetectorRef)
-      cdr: ChangeDetectorRef,
-    @Inject(MatSlideToggle)
-    private readonly matSlideToggle: MatSlideToggle,
-    @Optional()
-    @Inject(RXAP_AUTHORIZATION_SCOPE)
-      scope: string,
-    @Optional()
-    @Inject(NG_VALUE_ACCESSOR)
-      valueAccessor: ControlValueAccessor[] | null = null,
-  ) {
+  constructor() {
+    const authorization = inject<AuthorizationService>(AuthorizationService);
+    const cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+    const scope = inject(RXAP_AUTHORIZATION_SCOPE, { optional: true });
+    const valueAccessor = inject(NG_VALUE_ACCESSOR, { optional: true }) ?? null;
+
     super(authorization, cdr, scope, valueAccessor);
   }
 

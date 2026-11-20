@@ -1,9 +1,4 @@
-import {
-  Directive,
-  HostBinding,
-  HostListener,
-  Inject,
-} from '@angular/core';
+import { Directive, HostBinding, HostListener, inject } from '@angular/core';
 import {
   MAT_FORM_FIELD,
   MatFormField,
@@ -15,18 +10,14 @@ import {
   standalone: true,
 })
 export class InputClearButtonDirective {
+  private formField = inject<MatFormField>(MAT_FORM_FIELD);
+
 
   @HostBinding('attr.type')
   public type = 'button';
 
   @HostBinding('attr.tabindex')
   public tabIndex = '-1';
-
-  constructor(
-    @Inject(MAT_FORM_FIELD)
-    private formField: MatFormField,
-  ) {
-  }
 
   public get control(): MatFormFieldControl<any> {
     return this.formField._control;

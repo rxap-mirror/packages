@@ -45,6 +45,8 @@ export interface ColorPaletteConfig {
 
 @Injectable({ providedIn: 'root' })
 export class ThemeService {
+  private readonly mediaMatcher = inject(MediaMatcher);
+
 
   public readonly config = inject(ConfigService);
   public readonly pubSub = inject(PubSubService);
@@ -58,7 +60,7 @@ export class ThemeService {
 
   protected syncSubscription?: Subscription;
 
-  constructor(private readonly mediaMatcher: MediaMatcher) {
+  constructor() {
     this.themeName = signal(this.getTheme());
     this.density = signal(this.getDensity());
     this.typography = signal(this.getTypography());

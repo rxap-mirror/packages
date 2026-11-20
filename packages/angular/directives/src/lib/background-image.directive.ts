@@ -1,13 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  Inject,
-  OnChanges,
-  OnInit,
-  Renderer2,
-  SimpleChanges,
-  input
-} from '@angular/core';
+import { Directive, ElementRef, OnChanges, OnInit, Renderer2, SimpleChanges, input, inject } from '@angular/core';
 import { ImageLoaderService } from '@rxap/services';
 
 export enum GlobalStyleOptions {
@@ -53,6 +44,10 @@ export type BackgroundPosition =
   standalone: true,
 })
 export class BackgroundImageDirective implements OnChanges, OnInit {
+  private readonly host = inject<ElementRef>(ElementRef);
+  private readonly renderer = inject<Renderer2>(Renderer2);
+  private readonly imageLoader = inject<ImageLoaderService>(ImageLoaderService);
+
   public readonly imageUrl = input<string | null | undefined>(null, { alias: "rxapBackgroundImage" });
 
   public readonly placeholderImageUrl = input.required<string>();
@@ -62,18 +57,6 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
   public readonly repeat = input<BackgroundRepeat>();
 
   public readonly position = input<BackgroundPosition>();
-
-  // TODO : add inputs for all 'background-*' styles
-
-  constructor(
-    @Inject(ElementRef)
-    private readonly host: ElementRef,
-    @Inject(Renderer2)
-    private readonly renderer: Renderer2,
-    @Inject(ImageLoaderService)
-    private readonly imageLoader: ImageLoaderService,
-  ) {
-  }
 
   public ngOnInit() {
     const size = this.size();

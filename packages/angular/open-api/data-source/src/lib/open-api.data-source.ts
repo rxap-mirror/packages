@@ -1,8 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  Optional,
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   DEFAULT_OPEN_API_DATA_SOURCE_META_DATA,
   DISABLE_SCHEMA_VALIDATION,
@@ -92,33 +88,23 @@ export interface OpenApiDataSource<Response = any, Parameters extends Record<str
 @Injectable()
 export class OpenApiDataSource<Response = any, Parameters extends Record<string, any> | void = any>
   extends BaseHttpDataSource<Response> {
+  private readonly openApiConfigService = inject<OpenApiConfigService>(OpenApiConfigService);
+
 
   protected readonly strict: boolean = false;
   protected readonly disableSchemaValidation: boolean = false;
   protected readonly disableValidation: boolean = false;
 
-  constructor(
-    @Inject(HttpClient)
-      http: HttpClient,
-    @Inject(OpenApiConfigService)
-    private readonly openApiConfigService: OpenApiConfigService,
-    @Optional()
-    @Inject(DEFAULT_OPEN_API_DATA_SOURCE_META_DATA)
-      metadata: OpenApiDataSourceMetadata | null = null,
-    @Optional()
-    @Inject(RXAP_DATA_SOURCE_REFRESH)
-      refresh$: Subject<HttpDataSourceOptions> | null = null,
-    @Optional()
-    @Inject(RXAP_OPEN_API_STRICT_VALIDATOR)
-      strict: boolean | null = null,
-    @Optional()
-    @Inject(DISABLE_SCHEMA_VALIDATION)
-      disableSchemaValidation: boolean | null = null,
-    @Optional()
-    @Inject(DISABLE_VALIDATION)
-      disableValidation: boolean | null = null,
-  ) {
+  constructor() {
+    const http = inject<HttpClient>(HttpClient);
+    const metadata = inject<OpenApiDataSourceMetadata | null>(DEFAULT_OPEN_API_DATA_SOURCE_META_DATA, { optional: true }) ?? null;
+    const strict = inject(RXAP_OPEN_API_STRICT_VALIDATOR, { optional: true }) ?? null;
+    const disableSchemaValidation = inject(DISABLE_SCHEMA_VALIDATION, { optional: true }) ?? null;
+    const disableValidation = inject(DISABLE_VALIDATION, { optional: true }) ?? null;
+
     super(http, metadata as any);
+    const openApiConfigService = this.openApiConfigService;
+
     let operation: OperationObjectWithMetadata;
     if (!this.metadata['operation']) {
       this.metadata['operation'] = operation = openApiConfigService.getOperation(this.metadata.id);

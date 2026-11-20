@@ -2,10 +2,7 @@ import {
   RxapDataSource,
   StaticDataSource,
 } from '@rxap/data-source';
-import {
-  Component,
-  Injectable,
-} from '@angular/core';
+import { Component, Injectable, inject } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DataSourceCollectionDirective } from './data-source-collection.directive';
@@ -51,9 +48,7 @@ describe('@rxap/data-source/directive', () => {
     standalone: false
 })
     class TestComponent {
-
-      constructor(public readonly dataSource: TestDataSource) {
-      }
+      readonly dataSource = inject(TestDataSource);
 
     }
 

@@ -1,8 +1,4 @@
-import {
-  Directive,
-  Inject,
-  TemplateRef,
-} from '@angular/core';
+import { Directive, TemplateRef, inject } from '@angular/core';
 
 export interface DataGridEditCellDefDirectiveContext<T extends Record<string, any> = Record<string, any>> {
   $implicit: T[keyof T];
@@ -14,16 +10,12 @@ export interface DataGridEditCellDefDirectiveContext<T extends Record<string, an
   standalone: true,
 })
 export class DataGridEditCellDefDirective<T extends Record<string, any>> {
+  template = inject<TemplateRef<DataGridEditCellDefDirectiveContext<T>>>(TemplateRef);
+
   public static ngTemplateContextGuard<T extends Record<string, any>>(
     dir: DataGridEditCellDefDirective<T>,
     ctx: any,
   ): ctx is DataGridEditCellDefDirectiveContext<T> {
     return true;
-  }
-
-  constructor(
-    @Inject(TemplateRef)
-    public template: TemplateRef<DataGridEditCellDefDirectiveContext<T>>,
-  ) {
   }
 }

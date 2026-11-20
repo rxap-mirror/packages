@@ -1,16 +1,4 @@
-import {
-  Directive,
-  HostListener,
-  Inject,
-  Injector,
-  INJECTOR,
-  Input,
-  OnDestroy,
-  Optional,
-  StaticProvider,
-  input,
-  output
-} from '@angular/core';
+import { Directive, HostListener, Injector, INJECTOR, Input, OnDestroy, StaticProvider, input, output, inject } from '@angular/core';
 import { coerceBoolean } from '@rxap/utilities';
 import { WindowRef } from '@rxap/window-system';
 import { FormDefinition } from '@rxap/forms';
@@ -25,6 +13,8 @@ export class OpenFormWindowMethodDirective<
   FormData extends Record<string, any> = Record<string, any>,
   Initial extends Partial<Record<string, any>> = Partial<Record<string, any>>>
   implements OnDestroy {
+  private readonly injector = inject<Injector | null>(INJECTOR, { optional: true }) ?? null;
+
 
   public readonly method = input.required<Method<WindowRef<FormDefinition, FormData>, Initial>>({ alias: "rxapOpenFormWindowMethod" });
 
@@ -51,13 +41,6 @@ export class OpenFormWindowMethodDirective<
    * @protected
    */
   protected _windowRefInstance = new Set<WindowRef<FormDefinition, FormData>>();
-
-  constructor(
-    @Optional()
-    @Inject(INJECTOR)
-    private readonly injector: Injector | null = null,
-  ) {
-  }
 
   private _hasConfirmDirective = false;
 

@@ -1,21 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  Injector,
-  INJECTOR,
-  Input,
-  isDevMode,
-  OnChanges,
-  OnInit,
-  Optional,
-  Self,
-  SimpleChanges,
-  TemplateRef,
-  ViewContainerRef,
-  input,
-  output
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, Injector, INJECTOR, Input, isDevMode, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewContainerRef, input, output, inject } from '@angular/core';
 import {
   BaseRemoteMethod,
   BaseRemoteMethodMetadata,
@@ -45,6 +28,13 @@ export interface RemoteMethodTemplateDirectiveErrorContext {
 })
 export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, Metadata extends BaseRemoteMethodMetadata = BaseRemoteMethodMetadata>
   implements OnChanges, OnInit {
+  private readonly template = inject<TemplateRef<RemoteMethodTemplateDirectiveContext<ReturnType>>>(TemplateRef);
+  protected readonly remoteMethodLoader = inject<RemoteMethodLoader>(RemoteMethodLoader);
+  private readonly injector = inject<Injector>(INJECTOR);
+  private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
+  protected readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+  private readonly remoteMethodToken = inject(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, { optional: true, self: true });
+
 
   // TODO : remove template context Guard
   // the template context Guard must be defined with a concrete context type
@@ -70,22 +60,7 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
   public readonly withoutParameters = input(false, { alias: "rxapRemoteMethodWithoutParameters" });
   public readonly embedded = output();
 
-  constructor(
-    @Inject(TemplateRef)
-    private readonly template: TemplateRef<RemoteMethodTemplateDirectiveContext<ReturnType>>,
-    @Inject(RemoteMethodLoader)
-    protected readonly remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR)
-    private readonly injector: Injector,
-    @Inject(ViewContainerRef)
-    private readonly viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef)
-    protected readonly cdr: ChangeDetectorRef,
-    @Optional()
-    @Self()
-    @Inject(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN)
-    private readonly remoteMethodToken?: any,
-  ) {
+  constructor() {
     if (this.remoteMethodToken) {
       this._remoteMethodOrIdOrToken = this.remoteMethodToken;
     }

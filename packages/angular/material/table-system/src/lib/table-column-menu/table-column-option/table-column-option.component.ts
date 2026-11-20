@@ -1,11 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  Inject,
-  Input,
-  OnInit,
-  input
-} from '@angular/core';
+import { Component, ElementRef, Input, OnInit, input, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   coerceBoolean,
@@ -19,6 +12,9 @@ import {
   standalone: true,
 })
 export class TableColumnOptionComponent implements OnInit {
+  private _element = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly router = inject(Router);
+
   public readonly name = input.required<string>();
 
   public readonly active = input(true);
@@ -60,13 +56,6 @@ export class TableColumnOptionComponent implements OnInit {
 
   private get cacheId(): string {
     return this.router.url + '--' + this.name();
-  }
-
-  constructor(
-    @Inject(ElementRef)
-    private _element: ElementRef<HTMLElement>,
-    private readonly router: Router,
-  ) {
   }
 
   public ngOnInit() {

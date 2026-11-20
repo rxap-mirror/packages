@@ -1,28 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  DoCheck,
-  EmbeddedViewRef,
-  Inject,
-  Injector,
-  INJECTOR,
-  Input,
-  isDevMode,
-  IterableChangeRecord,
-  IterableChanges,
-  IterableDiffer,
-  IterableDiffers,
-  NgZone,
-  OnChanges,
-  OnInit,
-  Optional,
-  Self,
-  SimpleChanges,
-  TemplateRef,
-  TrackByFunction,
-  ViewContainerRef,
-  input
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, DoCheck, EmbeddedViewRef, Injector, INJECTOR, Input, isDevMode, IterableChangeRecord, IterableChanges, IterableDiffer, IterableDiffers, NgZone, OnChanges, OnInit, SimpleChanges, TemplateRef, TrackByFunction, ViewContainerRef, input, inject } from '@angular/core';
 import {
   BaseRemoteMethod,
   BaseRemoteMethodMetadata,
@@ -85,6 +61,15 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
   Parameters = any,
   Metadata extends BaseRemoteMethodMetadata = BaseRemoteMethodMetadata>
   implements OnChanges, DoCheck, OnInit {
+  private readonly template = inject<TemplateRef<RemoteMethodTemplateCollectionDirectiveContext<ReturnType>>>(TemplateRef);
+  protected readonly remoteMethodLoader = inject<RemoteMethodLoader>(RemoteMethodLoader);
+  private readonly injector = inject<Injector>(INJECTOR);
+  private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
+  protected readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+  private readonly differs = inject<IterableDiffers>(IterableDiffers);
+  private readonly zone = inject<NgZone>(NgZone);
+  private readonly remoteMethodToken = inject(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, { optional: true, self: true });
+
 
   public readonly parameters = input<Parameters>(undefined, { alias: "rxapRemoteMethodCollectionParameters" });
   // eslint-disable-next-line @angular-eslint/no-input-rename
@@ -132,26 +117,7 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
    */
   private _errorTemplateViewRef: EmbeddedViewRef<RemoteMethodTemplateCollectionDirectiveErrorContext> | null = null;
 
-  constructor(
-    @Inject(TemplateRef)
-    private readonly template: TemplateRef<RemoteMethodTemplateCollectionDirectiveContext<ReturnType>>,
-    @Inject(RemoteMethodLoader)
-    protected readonly remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR)
-    private readonly injector: Injector,
-    @Inject(ViewContainerRef)
-    private readonly viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef)
-    protected readonly cdr: ChangeDetectorRef,
-    @Inject(IterableDiffers)
-    private readonly differs: IterableDiffers,
-    @Inject(NgZone)
-    private readonly zone: NgZone,
-    @Optional()
-    @Self()
-    @Inject(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN)
-    private readonly remoteMethodToken?: any,
-  ) {
+  constructor() {
     if (this.remoteMethodToken) {
       this._remoteMethodOrIdOrToken = this.remoteMethodToken;
     }

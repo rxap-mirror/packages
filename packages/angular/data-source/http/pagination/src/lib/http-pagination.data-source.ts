@@ -7,11 +7,7 @@ import {
   RXAP_PAGINATION_DATA_SOURCE_PAGINATOR,
   RxapAbstractPaginationDataSource,
 } from '@rxap/data-source/pagination';
-import {
-  Inject,
-  Injectable,
-  Optional,
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import type { HttpDataSource } from '@rxap/data-source/http';
 import {
   HttpDataSourceOptions,
@@ -72,20 +68,15 @@ export type PageEventToHttpOptionsFunction = (
 export class HttpPaginationDataSource<
   Data
 > extends AbstractPaginationDataSource<Data> {
-  constructor(
-    @Inject(RXAP_PAGINATION_DATA_SOURCE)
-    private readonly dataSource: HttpDataSource<PaginationData<Data>>,
-    @Optional()
-    @Inject(RXAP_PAGINATION_DATA_SOURCE_PAGINATOR)
-      paginator: PaginatorLike | null = null,
-    @Optional()
-    @Inject(RXAP_HTTP_PAGINATION_DATA_SOURCE_TO_OPTIONS_FUNCTION)
-      pageEventToHttpOptions: any | null = null,
-    @Optional()
-    @Inject(RXAP_DATA_SOURCE_METADATA)
-      metadata: HttpPaginationDataSourceMetadata = dataSource.metadata,
-  ) {
+  private readonly dataSource = inject<HttpDataSource<PaginationData<Data>>>(RXAP_PAGINATION_DATA_SOURCE);
+
+  constructor() {
+    const paginator = inject<PaginatorLike | null>(RXAP_PAGINATION_DATA_SOURCE_PAGINATOR, { optional: true }) ?? null;
+    const metadata = inject<HttpPaginationDataSourceMetadata>(RXAP_DATA_SOURCE_METADATA, { optional: true }) ?? dataSource.metadata;
+
     super(paginator, metadata);
+  
+    const dataSource = this.dataSource;
   }
 
   public pageEventToHttpOptions(event: PageEvent): HttpDataSourceOptions {

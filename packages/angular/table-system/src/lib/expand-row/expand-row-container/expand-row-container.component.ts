@@ -1,13 +1,4 @@
-import {
-  AfterContentInit,
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  OnDestroy,
-  ViewContainerRef,
-  input,
-  contentChild
-} from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, Component, OnDestroy, ViewContainerRef, input, contentChild, inject } from '@angular/core';
 import {
   ExpandCellContentDirectiveContext,
   ExpandRowContentDirective,
@@ -51,6 +42,9 @@ import { AsyncPipe } from '@angular/common';
     imports: [PortalModule, AsyncPipe]
 })
 export class ExpandRowContainerComponent<Data extends Record<string, any>> implements AfterContentInit, OnDestroy {
+  private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
+  readonly expandCell = inject<ExpandRowService<Data>>(ExpandRowService);
+
 
   public readonly element = input.required<Data>({ alias: "rxap-expand-row" });
 
@@ -59,14 +53,6 @@ export class ExpandRowContainerComponent<Data extends Record<string, any>> imple
   public portal: TemplatePortal<ExpandCellContentDirectiveContext<Data>> | null = null;
 
   private _subscription?: Subscription;
-
-  constructor(
-    @Inject(ViewContainerRef)
-    private readonly viewContainerRef: ViewContainerRef,
-    @Inject(ExpandRowService)
-    public readonly expandCell: ExpandRowService<Data>,
-  ) {
-  }
 
   public ngOnDestroy() {
     this._subscription?.unsubscribe();

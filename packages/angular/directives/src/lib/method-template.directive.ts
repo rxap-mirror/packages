@@ -1,17 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  HostListener,
-  Inject,
-  isDevMode,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-  TemplateRef,
-  ViewContainerRef,
-  input,
-  output
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, HostListener, isDevMode, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewContainerRef, input, output, inject } from '@angular/core';
 import { ToggleSubject } from '@rxap/rxjs';
 import { Method } from '@rxap/pattern';
 
@@ -30,6 +17,10 @@ export interface MethodTemplateDirectiveErrorContext {
   standalone: true,
 })
 export class MethodTemplateDirective<ReturnType = any, Parameters = any> implements OnInit, OnChanges {
+  private readonly template = inject<TemplateRef<MethodTemplateDirectiveContext<ReturnType>>>(TemplateRef);
+  private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
+  protected readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+
 
   public readonly method = input.required<Method<ReturnType, Parameters>>({ alias: "rxapMethodCall" });
   public readonly parameters = input<Parameters>(undefined, { alias: "rxapMethodParameters" });
@@ -46,16 +37,6 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
   @Output('executing')
   public executing$ = new ToggleSubject();
   public readonly embedded = output();
-
-  constructor(
-    @Inject(TemplateRef)
-    private readonly template: TemplateRef<MethodTemplateDirectiveContext<ReturnType>>,
-    @Inject(ViewContainerRef)
-    private readonly viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef)
-    protected readonly cdr: ChangeDetectorRef,
-  ) {
-  }
 
   static ngTemplateContextGuard<T>(dir: MethodTemplateDirective<T>, ctx: any):
     ctx is MethodTemplateDirectiveContext<T> {

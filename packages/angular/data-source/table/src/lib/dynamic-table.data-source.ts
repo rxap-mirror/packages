@@ -1,11 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  InjectionToken,
-  isDevMode,
-  OnInit,
-  Optional,
-} from '@angular/core';
+import { Injectable, InjectionToken, isDevMode, OnInit, inject } from '@angular/core';
 import {
   BaseDataSourceViewer,
   DataSourceViewerId,
@@ -79,6 +72,8 @@ export interface DynamicTableDataSourceViewer<Parameters> extends BaseDataSource
 @Injectable()
 export class DynamicTableDataSource<Data extends Record<any, any> = any, Parameters = any>
   extends AbstractTableDataSource<Data, Parameters> implements OnInit {
+  protected readonly method = inject<MethodWithParameters<Data[], TableEvent<Parameters>>>(RXAP_TABLE_METHOD, { optional: true });
+
 
   public paginatorMap = new Map<string, PaginatorLike>();
   public sortMap = new Map<string, SortLike>();
@@ -86,27 +81,16 @@ export class DynamicTableDataSource<Data extends Record<any, any> = any, Paramet
   public parametersMap = new Map<string, Observable<Parameters>>();
   protected _refresh$ = new BehaviorSubject<number>(Date.now());
 
-  constructor(
-    @Optional()
-    @Inject(RXAP_TABLE_METHOD)
-    protected readonly method: MethodWithParameters<Data[], TableEvent<Parameters>>,
-    @Optional()
-    @Inject(RXAP_TABLE_DATA_SOURCE_PAGINATOR)
-      paginator: PaginatorLike | null = null,
-    @Optional()
-    @Inject(RXAP_TABLE_DATA_SOURCE_SORT)
-      sort: SortLike | null = null,
-    @Optional()
-    @Inject(RXAP_TABLE_DATA_SOURCE_FILTER)
-      filter: FilterLike | null = null,
-    @Optional()
-    @Inject(RXAP_TABLE_DATA_SOURCE_PARAMETERS)
-      parameters: Observable<Parameters> | null = null,
-    @Optional()
-    @Inject(RXAP_DATA_SOURCE_METADATA)
-      metadata: TableDataSourceMetadata | null = method.metadata,
-  ) {
+  constructor() {
+    const paginator = inject<PaginatorLike | null>(RXAP_TABLE_DATA_SOURCE_PAGINATOR, { optional: true }) ?? null;
+    const sort = inject<SortLike | null>(RXAP_TABLE_DATA_SOURCE_SORT, { optional: true }) ?? null;
+    const filter = inject<FilterLike | null>(RXAP_TABLE_DATA_SOURCE_FILTER, { optional: true }) ?? null;
+    const parameters = inject<Observable<Parameters> | null>(RXAP_TABLE_DATA_SOURCE_PARAMETERS, { optional: true }) ?? null;
+    const metadata = inject<TableDataSourceMetadata | null>(RXAP_DATA_SOURCE_METADATA, { optional: true }) ?? method.metadata;
+
     super(paginator, sort, filter, parameters, metadata);
+  
+    const method = this.method;
   }
 
   /**

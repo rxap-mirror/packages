@@ -1,19 +1,5 @@
 import { AsyncPipe, NgClass, NgTemplateOutlet } from '@angular/common';
-import {
-  AfterContentInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  isDevMode,
-  OnDestroy,
-  OnInit,
-  Optional,
-  QueryList,
-  input,
-  output,
-  contentChildren
-} from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, isDevMode, OnDestroy, OnInit, QueryList, input, output, contentChildren, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -98,6 +84,10 @@ function IsDataGridMode(value: string): value is DataGridMode {
 ]
 })
 export class DataGridComponent<T extends Record<string, any>> implements OnInit, OnDestroy, AfterContentInit {
+  private readonly cdr = inject(ChangeDetectorRef);
+  private readonly router = inject(Router);
+  private readonly formDirective = inject(FormDirective, { optional: true });
+
 
   public isDevMode = isDevMode();
 
@@ -133,12 +123,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   private _mode$                                                  = new BehaviorSubject<DataGridMode>(DataGridMode.PLAIN);
   private _routerEventSubscription: Subscription | null           = null;
 
-  constructor(
-    private readonly cdr: ChangeDetectorRef,
-    private readonly router: Router,
-    @Optional()
-    private readonly formDirective?: FormDirective,
-  ) {
+  constructor() {
     this.isEditMode$  = this._editMode$.asObservable();
     this.mode$        = this._mode$.asObservable();
     this.isFormMode$  = this.mode$.pipe(map(mode => mode === DataGridMode.FORM));

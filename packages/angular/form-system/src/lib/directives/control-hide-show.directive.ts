@@ -1,14 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  Inject,
-  OnDestroy,
-  OnInit,
-  Optional,
-  Renderer2,
-  Self,
-  input
-} from '@angular/core';
+import { Directive, ElementRef, OnDestroy, OnInit, Renderer2, input, inject } from '@angular/core';
 import {
   AbstractControl,
   FormDefinition,
@@ -76,27 +66,17 @@ export interface ControlHideShowDirective extends ExtractControlFromParentMixin,
   standalone: true,
 })
 export class ControlHideShowDirective implements OnInit, OnDestroy {
+  private readonly renderer = inject<Renderer2>(Renderer2);
+  private readonly elementRef = inject<ElementRef>(ElementRef);
+  private readonly parent = inject<ControlContainer | null>(ControlContainer, { optional: true });
+  private readonly ngControl = inject<NgControl | null>(NgControl, { self: true, optional: true });
+
 
   public readonly controlId = input<string>(undefined, { alias: "rxapControlHideShow" });
 
   public control!: RxapFormControl;
 
   private subscription = new Subscription();
-
-  constructor(
-    @Inject(Renderer2)
-    private readonly renderer: Renderer2,
-    @Inject(ElementRef)
-    private readonly elementRef: ElementRef,
-    @Optional()
-    @Inject(ControlContainer)
-    private readonly parent: ControlContainer | null,
-    @Self()
-    @Optional()
-    @Inject(NgControl)
-    private readonly ngControl: NgControl | null,
-  ) {
-  }
 
   public ngOnInit() {
 

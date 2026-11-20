@@ -1,17 +1,6 @@
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { NgClass } from '@angular/common';
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  forwardRef,
-  HostBinding,
-  Input,
-  OnDestroy,
-  Optional,
-  Self,
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, HostBinding, Input, OnDestroy, inject } from '@angular/core';
 import {
   AbstractControl,
   NgControl,
@@ -45,6 +34,9 @@ import { tap } from 'rxjs/operators';
 export class TableSelectInputComponent<Data extends Record<string, any> = Record<string, any>>
   extends ControlValueAccessor<Data>
   implements MatFormFieldControl<Data>, OnDestroy, AfterViewInit {
+  ngControl = inject(NgControl, { optional: true, self: true });
+  private readonly cdr = inject(ChangeDetectorRef);
+
 
   static nextId = 0;
 
@@ -123,10 +115,7 @@ export class TableSelectInputComponent<Data extends Record<string, any> = Record
     return this._value;
   }
 
-  constructor(
-    @Optional() @Self() public ngControl: NgControl | null,
-    private readonly cdr: ChangeDetectorRef,
-  ) {
+  constructor() {
     super();
     // Replace the provider from above with this.
     if (this.ngControl != null) {

@@ -1,10 +1,4 @@
-import {
-  Directive,
-  Inject,
-  OnInit,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, OnInit, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 import {
   RXAP_WINDOW_REF,
   WindowRef,
@@ -26,18 +20,11 @@ export interface FormWindowFooterTemplateContext<Data = any> {
   standalone: true,
 })
 export class FormWindowFooterDirective<Data> implements OnInit {
+  private readonly formDirective = inject<FormDirective<Data>>(FormDirective);
+  private readonly windowRef = inject<WindowRef<Data>>(RXAP_WINDOW_REF);
+  private readonly template = inject<TemplateRef<FormWindowFooterTemplateContext<Data>>>(TemplateRef);
+  private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
 
-  constructor(
-    @Inject(FormDirective)
-    private readonly formDirective: FormDirective<Data>,
-    @Inject(RXAP_WINDOW_REF)
-    private readonly windowRef: WindowRef<Data>,
-    @Inject(TemplateRef)
-    private readonly template: TemplateRef<FormWindowFooterTemplateContext<Data>>,
-    @Inject(ViewContainerRef)
-    private readonly viewContainerRef: ViewContainerRef,
-  ) {
-  }
 
   /**
    * Asserts the correct type of the context for the template that `NgForOf` will render.

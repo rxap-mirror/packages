@@ -1,8 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  SecurityContext,
-} from '@angular/core';
+import { Injectable, SecurityContext, inject } from '@angular/core';
 import {
   DomSanitizer,
   SafeValue,
@@ -13,8 +9,8 @@ import {
   providedIn: 'root',
 })
 export class SantizationService {
-  constructor(@Inject(DomSanitizer) private _sanitizer: DomSanitizer) {
-  }
+  private _sanitizer = inject<DomSanitizer>(DomSanitizer);
+
 
   transform(
     value: string | null,

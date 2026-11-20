@@ -1,7 +1,4 @@
-import {
-  Directive,
-  HostListener,
-} from '@angular/core';
+import { Directive, HostListener, inject } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 
 @Directive({
@@ -9,9 +6,8 @@ import { ControlContainer } from '@angular/forms';
   standalone: true,
 })
 export class FormControlMarkTouchedDirective {
+  private readonly parent = inject(ControlContainer);
 
-  constructor(private readonly parent: ControlContainer) {
-  }
 
   @HostListener('click')
   public onClick() {

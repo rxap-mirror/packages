@@ -1,16 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  signal,
-  SimpleChanges,
-  input
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, OnInit, signal, SimpleChanges, input, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {
@@ -45,6 +34,8 @@ export interface DataSourceLikeForErrorHandling {
 ]
 })
 export class DataSourceErrorComponent implements OnChanges, OnInit, OnDestroy {
+  private readonly environment = inject<Environment>(RXAP_ENVIRONMENT);
+
 
   public readonly error = input<unknown | null | Observable<unknown>>();
 
@@ -76,10 +67,9 @@ export class DataSourceErrorComponent implements OnChanges, OnInit, OnDestroy {
 
   private _subscription?: Subscription;
 
-  constructor(
-    @Inject(RXAP_ENVIRONMENT)
-    private readonly environment: Environment,
-  ) {
+  constructor() {
+    const environment = this.environment;
+
     this.isNotRelease = IsNotReleaseVersion(environment);
   }
 

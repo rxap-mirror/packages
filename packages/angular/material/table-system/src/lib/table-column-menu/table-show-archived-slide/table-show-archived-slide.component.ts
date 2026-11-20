@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  Optional,
-  input
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, input, inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import {
   MatSlideToggleChange,
@@ -24,19 +17,12 @@ import { TableColumnMenuComponent } from '../table-column-menu.component';
     imports: [StopPropagationDirective, MatSlideToggleModule]
 })
 export class TableShowArchivedSlideComponent implements AfterViewInit {
+  private readonly tableFilter = inject<TableFilterService | null>(TableFilterService, { optional: true });
+  private readonly tableColumnMenu = inject<TableColumnMenuComponent>(TableColumnMenuComponent);
+  private readonly selectRows = inject<SelectRowService | null>(SelectRowService);
+
 
   public readonly paginator = input<MatPaginator>();
-
-  constructor(
-    @Optional()
-    @Inject(TableFilterService)
-    private readonly tableFilter: TableFilterService | null,
-    @Inject(TableColumnMenuComponent)
-    private readonly tableColumnMenu: TableColumnMenuComponent,
-    @Inject(SelectRowService)
-    private readonly selectRows: SelectRowService | null,
-  ) {
-  }
 
   public onChange($event: MatSlideToggleChange) {
     this.paginator()?.firstPage();

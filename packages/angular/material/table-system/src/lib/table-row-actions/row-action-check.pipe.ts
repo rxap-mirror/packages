@@ -1,9 +1,4 @@
-import {
-  Inject,
-  Optional,
-  Pipe,
-  PipeTransform,
-} from '@angular/core';
+import { Pipe, PipeTransform, inject } from '@angular/core';
 import { coerceArray } from '@rxap/utilities';
 import { TableRowActionTypeMethod } from './types';
 import { RXAP_TABLE_ROW_ACTION_METHOD } from './tokens';
@@ -22,11 +17,9 @@ export class RowActionCheckPipe<RowType extends Record<string, unknown> = Record
 
   private readonly actionMethodList: Array<TableRowActionTypeMethod<RowType>>;
 
-  constructor(
-    @Optional()
-    @Inject(RXAP_TABLE_ROW_ACTION_METHOD)
-      tableRowActionMethodList: Array<TableRowActionTypeMethod<RowType>> | TableRowActionTypeMethod<RowType> | null,
-  ) {
+  constructor() {
+    const tableRowActionMethodList = inject<Array<TableRowActionTypeMethod<RowType>> | TableRowActionTypeMethod<RowType> | null>(RXAP_TABLE_ROW_ACTION_METHOD, { optional: true });
+
     this.actionMethodList = coerceArray(tableRowActionMethodList);
   }
 

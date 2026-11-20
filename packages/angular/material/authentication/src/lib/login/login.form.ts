@@ -1,10 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  INJECTOR,
-  Injector,
-  Provider,
-} from '@angular/core';
+import { Injectable, INJECTOR, Injector, Provider, inject } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ConfigService } from '@rxap/config';
@@ -34,6 +28,8 @@ export interface ILoginForm {
   id: 'rxap-login',
 }) @Injectable()
 export class LoginForm implements FormType<ILoginForm>, RxapOnInit {
+  readonly config = inject<ConfigService<any>>(ConfigService);
+
   public rxapFormGroup!: RxapFormGroup;
 
   public loading = true;
@@ -54,9 +50,6 @@ export class LoginForm implements FormType<ILoginForm>, RxapOnInit {
   })
   public remember!: RxapFormControl;
 
-  constructor(public readonly config: ConfigService<any>) {
-  }
-
   public rxapOnInit() {
     const email = this.config.get<string>('authentication.default.email');
     if (email) {
@@ -71,8 +64,8 @@ export class LoginForm implements FormType<ILoginForm>, RxapOnInit {
 
 @Injectable()
 export class LoginFormSubmitMethod implements FormSubmitMethod<any> {
-  constructor(private readonly signInWithEmailAndPasswordMethod: SignInWithEmailAndPasswordMethod) {
-  }
+  private readonly signInWithEmailAndPasswordMethod = inject(SignInWithEmailAndPasswordMethod);
+
 
   public call(value: {
     email: string;
@@ -90,11 +83,8 @@ export class LoginFormSubmitMethod implements FormSubmitMethod<any> {
 @Injectable()
 export class LoginFormSubmitSuccessful
   implements FormSubmitSuccessfulMethod<any> {
-  constructor(
-    @Inject(Router)
-    private readonly router: Router,
-  ) {
-  }
+  private readonly router = inject<Router>(Router);
+
 
   public call(): Promise<any> {
     console.debug('Login was successful. Navigate to application root');

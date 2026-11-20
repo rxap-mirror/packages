@@ -1,11 +1,4 @@
-import {
-  inject,
-  Inject,
-  Injectable,
-  Injector,
-  INJECTOR,
-  Optional,
-} from '@angular/core';
+import { inject, Injectable, Injector, INJECTOR } from '@angular/core';
 import {
   combineLatest,
   from,
@@ -44,13 +37,10 @@ export class NavigationService {
 
   private readonly injector: Injector = inject(INJECTOR);
 
-  constructor(
-    @Inject(RXAP_NAVIGATION_CONFIG)
-      navigation: any,
-    @Optional()
-    @Inject(RXAP_NAVIGATION_CONFIG_INSERTS)
-      inserts: any | null = null,
-  ) {
+  constructor() {
+    const navigation = inject(RXAP_NAVIGATION_CONFIG);
+    const inserts = inject(RXAP_NAVIGATION_CONFIG_INSERTS, { optional: true }) ?? null;
+
     if (typeof navigation === 'function') {
       this.navigation = navigation();
     } else {

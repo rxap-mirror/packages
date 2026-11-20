@@ -1,11 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  INJECTOR,
-  Injector,
-  Optional,
-  StaticProvider
-} from '@angular/core';
+import { Injectable, INJECTOR, Injector, Optional, StaticProvider, inject } from '@angular/core';
 import { FormSystemMetadataKeys } from '@rxap/form-system';
 import {
   FormDefinition,
@@ -54,13 +47,9 @@ export interface FormWindowOptions<FormData, D = any, T = any>
   providedIn: 'root',
 })
 export class FormWindowService {
-  constructor(
-    @Inject(WindowService)
-    private readonly windowService: WindowService,
-    @Inject(INJECTOR)
-    private readonly injector: Injector,
-  ) {
-  }
+  private readonly windowService = inject<WindowService>(WindowService);
+  private readonly injector = inject<Injector>(INJECTOR);
+
 
   public open<FormData>(
     formDefinitionConstructor: Constructor<FormType<any>>,

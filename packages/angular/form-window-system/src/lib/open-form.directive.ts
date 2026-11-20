@@ -1,17 +1,4 @@
-import {
-  Directive,
-  HostBinding,
-  Inject,
-  InjectionToken,
-  Injector,
-  INJECTOR,
-  Input,
-  isDevMode,
-  OnDestroy,
-  Optional,
-  input,
-  output
-} from '@angular/core';
+import { Directive, HostBinding, InjectionToken, Injector, INJECTOR, Input, isDevMode, OnDestroy, input, output, inject } from '@angular/core';
 import { ConfirmClick } from '@rxap/directives';
 import {
   FormType,
@@ -46,6 +33,9 @@ export const RXAP_WINDOW_FORM_SYSTEM_OPEN_FORM_CONSTRUCTOR = new InjectionToken(
 export class OpenFormDirective<Data, Result = Data>
   extends ConfirmClick
   implements OnDestroy {
+  private readonly formWindowService = inject<FormWindowService>(FormWindowService);
+  private readonly injector = inject<Injector>(INJECTOR);
+
   @HostBinding('attr.type')
 public readonly type = input('button');
 
@@ -60,15 +50,9 @@ public readonly type = input('button');
   public readonly panelClass = input<string>();
   private _formWindowRef?: WindowRef;
 
-  constructor(
-    @Optional()
-    @Inject(RXAP_WINDOW_FORM_SYSTEM_OPEN_FORM_CONSTRUCTOR)
-      formDefinitionConstructor: Constructor<FormType<any>> | null,
-    @Inject(FormWindowService)
-    private readonly formWindowService: FormWindowService,
-    @Inject(INJECTOR)
-    private readonly injector: Injector,
-  ) {
+  constructor() {
+    const formDefinitionConstructor = inject<Constructor<FormType<any>> | null>(RXAP_WINDOW_FORM_SYSTEM_OPEN_FORM_CONSTRUCTOR, { optional: true });
+
     super();
     if (formDefinitionConstructor) {
       this._formDefinitionConstructor = formDefinitionConstructor;

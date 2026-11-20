@@ -1,16 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  INJECTOR,
-  Injector,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-  TemplateRef,
-  ViewContainerRef,
-  input
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, INJECTOR, Injector, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewContainerRef, input, inject } from '@angular/core';
 import {
   Constructor,
   ControlOption,
@@ -95,6 +83,13 @@ export interface OptionsFromRemoteMethodDirective<Value, Parameters> extends OnI
   standalone: true,
 })
 export class OptionsFromRemoteMethodDirective<Value, Parameters> implements OnChanges {
+  private readonly ngControl = inject<NgControl>(NgControl);
+  private readonly template = inject<TemplateRef<OptionsFromRemoteMethodTemplateContext>>(TemplateRef);
+  private readonly remoteMethodLoader = inject<RemoteMethodLoader>(RemoteMethodLoader);
+  private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
+  private readonly injector = inject<Injector>(INJECTOR);
+  private readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+
 
   public readonly parameters = input<Parameters>(undefined, { alias: "rxapOptionsFromRemoteMethodParameters" });
 
@@ -103,22 +98,6 @@ export class OptionsFromRemoteMethodDirective<Value, Parameters> implements OnCh
   public readonly withoutParameters = input(false, { alias: "rxapOptionsFromRemoteMethodWithoutParameters" });
 
   private remoteMethodToken!: IdOrInstanceOrToken<BaseRemoteMethod>;
-
-  constructor(
-    @Inject(NgControl)
-    private readonly ngControl: NgControl,
-    @Inject(TemplateRef)
-    private readonly template: TemplateRef<OptionsFromRemoteMethodTemplateContext>,
-    @Inject(RemoteMethodLoader)
-    private readonly remoteMethodLoader: RemoteMethodLoader,
-    @Inject(ViewContainerRef)
-    private readonly viewContainerRef: ViewContainerRef,
-    @Inject(INJECTOR)
-    private readonly injector: Injector,
-    @Inject(ChangeDetectorRef)
-    private readonly cdr: ChangeDetectorRef,
-  ) {
-  }
 
   public ngOnChanges(changes: SimpleChanges) {
     const parametersChanges = changes['parameters'];

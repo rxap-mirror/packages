@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   MethodDataSource,
   RxapDataSource
@@ -12,6 +12,8 @@ import {
 @RxapDataSource('oauth2-proxy-user-profile')
 export class Oauth2ProxyUserProfileDataSource extends MethodDataSource<Oauth2ProxyUserProfile> {
 
-  constructor(method: GetOauth2ProxyUserProfileMethod) {super(method);}
+  constructor() {
+const method = inject(GetOauth2ProxyUserProfileMethod);
+super(method);}
 
 }

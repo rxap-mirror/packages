@@ -1,10 +1,4 @@
-import {
-  Directive,
-  Inject,
-  OnDestroy,
-  OnInit,
-  OutputRefSubscription,
-} from '@angular/core';
+import { Directive, OnDestroy, OnInit, OutputRefSubscription, inject } from '@angular/core';
 import { FormSubmitDirective } from '@rxap/forms';
 import type { WindowRef } from '@rxap/window-system';
 import { RXAP_WINDOW_REF } from '@rxap/window-system';
@@ -14,15 +8,10 @@ import { RXAP_WINDOW_REF } from '@rxap/window-system';
   standalone: true,
 })
 export class CloseWindowAfterSubmitDirective implements OnInit, OnDestroy {
-  private _subscription?: OutputRefSubscription;
+  private readonly formSubmit = inject<FormSubmitDirective>(FormSubmitDirective);
+  private readonly windowRef = inject<WindowRef>(RXAP_WINDOW_REF);
 
-  constructor(
-    @Inject(FormSubmitDirective)
-    private readonly formSubmit: FormSubmitDirective,
-    @Inject(RXAP_WINDOW_REF)
-    private readonly windowRef: WindowRef,
-  ) {
-  }
+  private _subscription?: OutputRefSubscription;
 
   public ngOnInit() {
     this._subscription = this.formSubmit.afterSubmit.subscribe(() => this.windowRef.complete());

@@ -1,16 +1,5 @@
 import { Overlay } from '@angular/cdk/overlay';
-import {
-  ChangeDetectorRef,
-  Directive,
-  ElementRef,
-  HostListener,
-  Inject,
-  Input,
-  isDevMode,
-  OnInit,
-  Optional,
-  input
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, ElementRef, HostListener, Input, isDevMode, OnInit, input, inject } from '@angular/core';
 import { MatMiniFabButton } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -31,6 +20,12 @@ import { TABLE_HEADER_BUTTON_METHOD } from './tokens';
 })
 export class TableHeaderButtonDirective<Data extends Record<string, any>> extends ConfirmDirective
   implements OnInit {
+  private readonly method = inject<Method>(TABLE_HEADER_BUTTON_METHOD);
+  private readonly snackBar = inject<MatSnackBar>(MatSnackBar);
+  private readonly matTooltip = inject<MatTooltip | null>(MatTooltip, { optional: true });
+  private readonly matButton = inject<MatMiniFabButton | null>(MatMiniFabButton, { optional: true });
+  protected readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+
 
   public readonly tableDataSourceDirective = input.required<TableDataSourceDirective<Data>>({ alias: "rxapTableHeaderButton" });
 
@@ -45,24 +40,10 @@ export class TableHeaderButtonDirective<Data extends Record<string, any>> extend
   private _actionDisabled = false;
   private _currentStatus: TableHeaderButtonActionStatus = TableHeaderButtonActionStatus.DONE;
 
-  constructor(
-    @Inject(Overlay)
-      overlay: Overlay,
-    @Inject(ElementRef)
-      elementRef: ElementRef,
-    @Inject(TABLE_HEADER_BUTTON_METHOD)
-    private readonly method: Method,
-    @Inject(MatSnackBar)
-    private readonly snackBar: MatSnackBar,
-    @Optional()
-    @Inject(MatTooltip)
-    private readonly matTooltip: MatTooltip | null,
-    @Optional()
-    @Inject(MatMiniFabButton)
-    private readonly matButton: MatMiniFabButton | null,
-    @Inject(ChangeDetectorRef)
-    protected readonly cdr: ChangeDetectorRef,
-  ) {
+  constructor() {
+    const overlay = inject<Overlay>(Overlay);
+    const elementRef = inject<ElementRef>(ElementRef);
+
     super(overlay, elementRef);
   }
 

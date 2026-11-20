@@ -1,25 +1,15 @@
-import {
-  Directive,
-  EmbeddedViewRef,
-  isDevMode,
-  OnDestroy,
-  OnInit,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, EmbeddedViewRef, isDevMode, OnDestroy, OnInit, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 
 @Directive({
   selector: '[rxapIsDevMode]',
   standalone: true,
 })
 export class IsDevModeDirective implements OnInit, OnDestroy {
+  private readonly template = inject<TemplateRef<unknown>>(TemplateRef);
+  private readonly vcr = inject(ViewContainerRef);
+
 
   private embeddedViewRef?: EmbeddedViewRef<unknown>;
-
-  constructor(
-    private readonly template: TemplateRef<unknown>,
-    private readonly vcr: ViewContainerRef,
-  ) {}
 
   ngOnInit() {
     if (isDevMode()) {

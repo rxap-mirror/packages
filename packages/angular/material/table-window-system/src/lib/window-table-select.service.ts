@@ -1,12 +1,4 @@
-import {
-  ComponentRef,
-  Inject,
-  Injectable,
-  INJECTOR,
-  Injector,
-  StaticProvider,
-  ViewContainerRef,
-} from '@angular/core';
+import { ComponentRef, Injectable, INJECTOR, Injector, StaticProvider, ViewContainerRef, inject } from '@angular/core';
 import {
   RXAP_WINDOW_SETTINGS,
   WindowConfig,
@@ -43,13 +35,9 @@ declare const $localize: any;
 
 @Injectable({ providedIn: 'root' })
 export class WindowTableSelectService {
-  constructor(
-    @Inject(WindowService)
-    private readonly windowService: WindowService,
-    @Inject(INJECTOR)
-    private readonly injector: Injector,
-  ) {
-  }
+  private readonly windowService = inject<WindowService>(WindowService);
+  private readonly injector = inject<Injector>(INJECTOR);
+
 
   public open<RowData extends Record<string, any>>(
     component: ComponentType<any>,

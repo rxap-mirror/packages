@@ -1,11 +1,4 @@
-import {
-  AfterViewInit,
-  Directive,
-  Inject,
-  OnDestroy,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { AfterViewInit, Directive, OnDestroy, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { FormDirective } from './form.directive';
@@ -15,15 +8,14 @@ import { FormDirective } from './form.directive';
   standalone: true,
 })
 export class FormSubmitFailedDirective implements AfterViewInit, OnDestroy {
+  private readonly formDirective = inject<FormDirective>(FormDirective);
+  private readonly template = inject<TemplateRef<{
+    $implicit: Error;
+}>>(TemplateRef);
+  private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
+
 
   private subscription?: Subscription;
-
-  constructor(
-    @Inject(FormDirective) private readonly formDirective: FormDirective,
-    @Inject(TemplateRef) private readonly template: TemplateRef<{ $implicit: Error }>,
-    @Inject(ViewContainerRef) private readonly viewContainerRef: ViewContainerRef,
-  ) {
-  }
 
   public ngAfterViewInit() {
     this.subscription = this.formDirective.submitError$.pipe(

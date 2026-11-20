@@ -1,12 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  OnDestroy,
-  OnInit,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SelectRowService } from './select-row.service';
 import {
@@ -23,20 +15,13 @@ export interface SelectedRowsDirectiveContext<Data extends Record<string, any>> 
   standalone: true,
 })
 export class SelectedRowsDirective<Data extends Record<string, any>> implements OnInit, OnDestroy {
+  private readonly template = inject<TemplateRef<SelectedRowsDirectiveContext<Data>>>(TemplateRef);
+  private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
+  private readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+  private readonly selectRowService = inject<SelectRowService<Data>>(SelectRowService);
+
 
   private _subscription?: Subscription;
-
-  constructor(
-    @Inject(TemplateRef)
-    private readonly template: TemplateRef<SelectedRowsDirectiveContext<Data>>,
-    @Inject(ViewContainerRef)
-    private readonly viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef)
-    private readonly cdr: ChangeDetectorRef,
-    @Inject(SelectRowService)
-    private readonly selectRowService: SelectRowService<Data>,
-  ) {
-  }
 
   public ngOnDestroy() {
     this._subscription?.unsubscribe();

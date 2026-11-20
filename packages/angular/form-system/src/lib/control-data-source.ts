@@ -3,13 +3,7 @@ import {
   BaseDataSourceMetadata,
   RXAP_DATA_SOURCE_METADATA,
 } from '@rxap/data-source';
-import {
-  Inject,
-  Injectable,
-  InjectionToken,
-  isDevMode,
-  Optional,
-} from '@angular/core';
+import { Injectable, InjectionToken, isDevMode, inject } from '@angular/core';
 import { AbstractControl } from '@rxap/forms';
 import {
   distinctUntilChanged,
@@ -24,13 +18,11 @@ export const RXAP_FORM_CONTROL_SOURCE = new InjectionToken(
 
 @Injectable()
 export class ControlDataSource extends BaseDataSource {
-  constructor(
-    @Inject(RXAP_FORM_CONTROL_SOURCE)
-    private readonly control: AbstractControl,
-    @Optional()
-    @Inject(RXAP_DATA_SOURCE_METADATA)
-      metadata: BaseDataSourceMetadata | null = null,
-  ) {
+  private readonly control = inject<AbstractControl>(RXAP_FORM_CONTROL_SOURCE);
+
+  constructor() {
+    const metadata = inject<BaseDataSourceMetadata | null>(RXAP_DATA_SOURCE_METADATA, { optional: true }) ?? null;
+
     super(metadata);
   }
 

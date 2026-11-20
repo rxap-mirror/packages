@@ -1,7 +1,4 @@
-import {
-  Inject,
-  Injectable,
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   MethodDataSource,
   RxapDataSource,
@@ -13,10 +10,9 @@ import { ProfileControllerGetResponse } from './openapi/responses/profile-contro
 @RxapDataSource('user-profile')
 export class UserProfileDataSource<T = unknown> extends MethodDataSource<ProfileControllerGetResponse<T>> {
 
-  constructor(
-    @Inject(ProfileControllerGetRemoteMethod)
-    method: ProfileControllerGetRemoteMethod<T>,
-  ) {
+  constructor() {
+    const method = inject<ProfileControllerGetRemoteMethod<T>>(ProfileControllerGetRemoteMethod);
+
     super(method, true);
   }
 

@@ -1,12 +1,5 @@
 import { ComponentType } from '@angular/cdk/portal';
-import {
-  Inject,
-  Injectable,
-  InjectionToken,
-  Injector,
-  INJECTOR,
-  Optional,
-} from '@angular/core';
+import { Injectable, InjectionToken, Injector, INJECTOR, inject } from '@angular/core';
 import {
   FormDefinition,
   FormType,
@@ -33,21 +26,12 @@ export const RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_COMPONENT = new InjectionToken(
 export class OpenFormWindowMethod<
   FormData extends Record<string, any> = Record<string, any>
 > implements Method<WindowRef<FormDefinition, FormData>, Partial<FormData>> {
-  constructor(
-    @Inject(FormWindowService)
-    private readonly formWindowService: FormWindowService,
-    @Inject(RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFINITION_CONSTRUCTOR)
-    private readonly formDefinitionConstructor: Constructor<FormType<FormData>>,
-    @Inject(INJECTOR)
-    private readonly injector: Injector,
-    @Optional()
-    @Inject(RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_COMPONENT)
-    private readonly formComponent: ComponentType<any> | null = null,
-    @Optional()
-    @Inject(RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFAULT_OPTIONS)
-    private readonly defaultOptions: FormWindowOptions<FormData> | null = null,
-  ) {
-  }
+  private readonly formWindowService = inject<FormWindowService>(FormWindowService);
+  private readonly formDefinitionConstructor = inject<Constructor<FormType<FormData>>>(RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFINITION_CONSTRUCTOR);
+  private readonly injector = inject<Injector>(INJECTOR);
+  private readonly formComponent = inject<ComponentType<any> | null>(RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_COMPONENT, { optional: true }) ?? null;
+  private readonly defaultOptions = inject<FormWindowOptions<FormData> | null>(RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFAULT_OPTIONS, { optional: true }) ?? null;
+
 
   public call(
     initial?: Partial<FormData>,

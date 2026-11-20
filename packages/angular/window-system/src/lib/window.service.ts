@@ -3,14 +3,7 @@ import {
   OverlayConfig,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import {
-  ComponentFactoryResolver,
-  Inject,
-  Injectable,
-  Injector,
-  Optional,
-  ViewContainerRef
-} from '@angular/core';
+import { ComponentFactoryResolver, Injectable, Injector, ViewContainerRef, inject } from '@angular/core';
 import { LoadingIndicatorService } from '@rxap/services';
 import { GenerateRandomString } from '@rxap/utilities';
 import { Subject } from 'rxjs';
@@ -41,19 +34,13 @@ import { WindowRef } from './window-ref';
 
 @Injectable({ providedIn: 'root' })
 export class WindowService {
+  private readonly injector = inject<Injector>(Injector);
+  private readonly overlay = inject<Overlay>(Overlay);
+  private readonly componentFactoryResolver = inject<ComponentFactoryResolver>(ComponentFactoryResolver);
+  private readonly defaultWindowSettings = inject<WindowSettings>(RXAP_WINDOW_DEFAULT_SETTINGS, { optional: true });
+
   public readonly activeCount$ = new Subject<number>();
   private readonly active = new Map<string, WindowRef<any>>();
-
-  constructor(
-    @Inject(Injector) private readonly injector: Injector,
-    @Inject(Overlay) private readonly overlay: Overlay,
-    @Inject(ComponentFactoryResolver)
-    private readonly componentFactoryResolver: ComponentFactoryResolver,
-    @Optional()
-    @Inject(RXAP_WINDOW_DEFAULT_SETTINGS)
-    private readonly defaultWindowSettings?: WindowSettings,
-  ) {
-  }
 
   public get hasActiveWindows(): boolean {
     return this.active.size !== 0;

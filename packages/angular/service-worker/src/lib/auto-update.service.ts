@@ -1,7 +1,4 @@
-import {
-  Inject,
-  Injectable,
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { filter } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -10,12 +7,8 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AutoUpdateService {
+  private readonly updates = inject<SwUpdate>(SwUpdate);
 
-  constructor(
-    @Inject(SwUpdate)
-    private readonly updates: SwUpdate,
-  ) {
-  }
 
   public start(): void {
     console.debug('start auto update service');

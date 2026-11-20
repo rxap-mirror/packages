@@ -1,11 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  isDevMode,
-  NgModule,
-  NgZone,
-  Optional,
-} from '@angular/core';
+import { Injectable, isDevMode, NgModule, NgZone, inject } from '@angular/core';
 import { ConfigService } from '@rxap/config';
 import {
   EMPTY,
@@ -33,29 +26,20 @@ import {
 
 @Injectable()
 export class AppCheckService {
+  private readonly config = inject(ConfigService);
+  private readonly enabled = inject(APP_CHECK_ENABLED, { optional: true });
+
 
   public readonly onTokenChanged$: Observable<AppCheckTokenResult> = EMPTY;
   private readonly _appCheck: AppCheck | null = null;
 
-  constructor(
-    @Inject(FIREBASE_OPTIONS)
-      options: FirebaseOptions,
-    @Optional()
-    @Inject(FIREBASE_APP_NAME)
-      nameOrConfig: string,
-    @Inject(NgZone)
-      zone: NgZone,
-    private readonly config: ConfigService,
-    @Optional()
-    @Inject(APP_CHECK_ENABLED)
-    private readonly enabled: boolean | null,
-    @Optional()
-    @Inject(APP_CHECK_SITE_KEY)
-      siteKey: string | null,
-    @Optional()
-    @Inject(APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED)
-      isTokenAutoRefreshEnabled: boolean | null,
-  ) {
+  constructor() {
+    const options = inject<FirebaseOptions>(FIREBASE_OPTIONS);
+    const nameOrConfig = inject(FIREBASE_APP_NAME, { optional: true });
+    const zone = inject<NgZone>(NgZone);
+    const siteKey = inject(APP_CHECK_SITE_KEY, { optional: true });
+    const isTokenAutoRefreshEnabled = inject(APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED, { optional: true });
+
     if (this.enabled) {
       if (siteKey) {
         const app: any = ɵfirebaseAppFactory(options, zone, nameOrConfig);
@@ -106,11 +90,6 @@ export class AppCheckService {
   providers: [ AppCheckService ],
 })
 export class RxapAngularFireAppCheckModule {
-
-  constructor(
-    @Inject(AppCheckService)
-    public readonly appCheck: AppCheckService,
-  ) {
-  }
+  readonly appCheck = inject<AppCheckService>(AppCheckService);
 
 }

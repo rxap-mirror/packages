@@ -1,13 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  HostListener,
-  Inject,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-  input
-} from '@angular/core';
+import { Directive, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, input, inject } from '@angular/core';
 import { Method } from '@rxap/pattern';
 import {
   isObservable,
@@ -23,19 +14,13 @@ import { TABLE_CREATE_REMOTE_METHOD } from './tokens';
 })
 export class TableCreateButtonDirective<Data extends Record<string, any>>
   implements OnInit, OnDestroy {
+  private readonly method = inject<Method<any, Data | Observable<Data>>>(TABLE_CREATE_REMOTE_METHOD);
+  private readonly elementRef = inject<ElementRef>(ElementRef);
+  private readonly renderer = inject<Renderer2>(Renderer2);
+
   public readonly dataSource = input.required<TableDataSourceDirective<Data>>({ alias: "rxapTableCreate" });
 
   private _createObservable?: Observable<any>;
-
-  constructor(
-    @Inject(TABLE_CREATE_REMOTE_METHOD)
-    private readonly method: Method<any, Data | Observable<Data>>,
-    @Inject(ElementRef)
-    private readonly elementRef: ElementRef,
-    @Inject(Renderer2)
-    private readonly renderer: Renderer2,
-  ) {
-  }
 
   public ngOnInit() {
     this.renderer.setStyle(

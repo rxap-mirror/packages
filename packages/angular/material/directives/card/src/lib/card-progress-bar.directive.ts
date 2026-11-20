@@ -1,15 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  effect,
-  HostBinding,
-  Inject,
-  input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  SimpleChanges
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, effect, HostBinding, input, OnChanges, OnDestroy, OnInit, SimpleChanges, inject } from '@angular/core';
 import {
   MatProgressBar,
   ProgressBarMode,
@@ -25,6 +14,9 @@ import { tap } from 'rxjs/operators';
   standalone: true,
 })
 export class CardProgressBarDirective implements OnInit, OnDestroy, OnChanges {
+  private readonly progressBar = inject<MatProgressBar>(MatProgressBar);
+  private readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+
 
   @HostBinding('style.top')
   public top = '0px';
@@ -47,12 +39,7 @@ export class CardProgressBarDirective implements OnInit, OnDestroy, OnChanges {
 
   private subscription?: Subscription;
 
-  constructor(
-    @Inject(MatProgressBar)
-    private readonly progressBar: MatProgressBar,
-    @Inject(ChangeDetectorRef)
-    private readonly cdr: ChangeDetectorRef,
-  ) {
+  constructor() {
     effect(() => {
       const mode = this.mode();
       if (this.progressBar) {

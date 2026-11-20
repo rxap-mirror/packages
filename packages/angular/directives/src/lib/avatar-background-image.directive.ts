@@ -1,11 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  Inject,
-  Input,
-  Renderer2,
-  input
-} from '@angular/core';
+import { Directive, ElementRef, Input, Renderer2, input, inject } from '@angular/core';
 import {
   AvatarImageService,
   ImageLoaderService,
@@ -21,20 +14,17 @@ import {
   standalone: true,
 })
 export class AvatarBackgroundImageDirective extends BackgroundImageDirective {
+  private readonly avatarImage = inject<AvatarImageService>(AvatarImageService);
+
   public override readonly imageUrl = input<string | null | undefined>(null, { alias: "rxapAvatarBackgroundImage" });
   public override size = BackgroundSizeOptions.COVER;
   public override repeat = BackgroundRepeatOptions.NO_REPEAT;
 
-  constructor(
-    @Inject(ElementRef)
-      host: ElementRef,
-    @Inject(Renderer2)
-      renderer: Renderer2,
-    @Inject(ImageLoaderService)
-      imageLoader: ImageLoaderService,
-    @Inject(AvatarImageService)
-    private readonly avatarImage: AvatarImageService,
-  ) {
+  constructor() {
+    const host = inject<ElementRef>(ElementRef);
+    const renderer = inject<Renderer2>(Renderer2);
+    const imageLoader = inject<ImageLoaderService>(ImageLoaderService);
+
     super(host, renderer, imageLoader);
   }
 

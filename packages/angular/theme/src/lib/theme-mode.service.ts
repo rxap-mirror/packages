@@ -1,17 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 
-import {
-  computed,
-  effect,
-  inject,
-  Inject,
-  Injectable,
-  OnDestroy,
-  Renderer2,
-  signal,
-  WritableSignal,
-  DOCUMENT
-} from '@angular/core';
+import { computed, effect, inject, Injectable, OnDestroy, Renderer2, signal, WritableSignal, DOCUMENT } from '@angular/core';
 import { ConfigService } from '@rxap/config';
 import {
   PubSubService,
@@ -45,6 +34,9 @@ export const THEME_SETTING_KEY = 'rxap_theme_settings';
  */
 @Injectable({ providedIn: 'root' })
 export class ThemeModeService implements OnDestroy {
+  protected readonly mediaMatcher = inject(MediaMatcher);
+  protected readonly document = inject<Document>(DOCUMENT);
+
 
   public readonly config = inject(ConfigService);
   public readonly pubSub = inject(PubSubService);
@@ -60,10 +52,7 @@ export class ThemeModeService implements OnDestroy {
 
   protected syncSubscription?: Subscription;
 
-  constructor(
-    protected readonly mediaMatcher: MediaMatcher,
-    @Inject(DOCUMENT) protected readonly document: Document,
-  ) {
+  constructor() {
     this.darkColorSchemaMediaQuery = this.mediaMatcher.matchMedia('(prefers-color-scheme: dark)');
     this.themeSetting = signal(this.restoreThemeSetting());
     let activeTheme: ActiveTheme;

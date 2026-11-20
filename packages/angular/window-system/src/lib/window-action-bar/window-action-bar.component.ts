@@ -1,8 +1,4 @@
-import {
-  Component,
-  Inject,
-  Injector,
-} from '@angular/core';
+import { Component, Injector, inject } from '@angular/core';
 import { RXAP_WINDOW_CONTEXT } from '../tokens';
 import { ButtonDefinition } from '@rxap/rxjs';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -15,11 +11,15 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     imports: [MatToolbarModule]
 })
 export class WindowActionBarComponent {
+  injector = inject(Injector);
+
 
   public definitions: ButtonDefinition<any>[] | null = null;
   public position = 'start';
 
-  constructor(@Inject(RXAP_WINDOW_CONTEXT) context: any, public injector: Injector) {
+  constructor() {
+    const context = inject(RXAP_WINDOW_CONTEXT);
+
     if (context.windowRef.settings.actions) {
       this.definitions = context.windowRef.settings.actions.definitions;
       this.position = context.windowRef.settings.actions.position || this.position;

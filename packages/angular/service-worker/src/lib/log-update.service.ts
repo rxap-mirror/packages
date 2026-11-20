@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
 import { filter } from 'rxjs';
 
@@ -6,9 +6,8 @@ import { filter } from 'rxjs';
   providedIn: 'root',
 })
 export class LogUpdateService {
+  private readonly updates = inject(SwUpdate);
 
-  constructor(private readonly updates: SwUpdate) {
-  }
 
   public start() {
     console.debug('start log update');

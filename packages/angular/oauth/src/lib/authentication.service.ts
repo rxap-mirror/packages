@@ -1,8 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  Optional,
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   AuthenticationAccessToken,
   AuthenticationEvent,
@@ -33,6 +29,11 @@ const JONE_DOE_JWT = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3O
 
 @Injectable()
 export class AuthenticationService implements IAuthenticationService {
+  private readonly oauthService = inject(OAuthService);
+  private readonly authConfig = inject<AuthConfig>(AUTH_CONFIG, { optional: true });
+  private readonly authenticationAccessToken = inject<BehaviorSubject<AuthenticationAccessToken | null>>(RXAP_AUTHENTICATION_ACCESS_TOKEN);
+  private readonly isAuthDisabled = inject(RXAP_AUTHENTICATION_DEACTIVATED);
+
   events$: Observable<AuthenticationEvent> = EMPTY;
   public readonly isAuthenticated$ = new BehaviorSubject<boolean | null>(null);
 
@@ -42,16 +43,7 @@ export class AuthenticationService implements IAuthenticationService {
    */
   private readonly _events$ = new Subject<AuthenticationEvent>();
 
-  constructor(
-    private readonly oauthService: OAuthService,
-    @Optional()
-    @Inject(AUTH_CONFIG)
-    private readonly authConfig: AuthConfig,
-    @Inject(RXAP_AUTHENTICATION_ACCESS_TOKEN)
-    private readonly authenticationAccessToken: BehaviorSubject<AuthenticationAccessToken | null>,
-    @Inject(RXAP_AUTHENTICATION_DEACTIVATED)
-    private readonly isAuthDisabled: boolean,
-  ) {
+  constructor() {
     if (this.isAuthDisabled) {
       this.events$ = this._events$.asObservable();
       this.linkEventsAndIsAuthenticated();

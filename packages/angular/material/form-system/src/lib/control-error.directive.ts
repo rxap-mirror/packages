@@ -1,13 +1,4 @@
-import {
-  AfterContentInit,
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  OnDestroy,
-  TemplateRef,
-  ViewContainerRef,
-  input
-} from '@angular/core';
+import { AfterContentInit, ChangeDetectorRef, Directive, OnDestroy, TemplateRef, ViewContainerRef, input, inject } from '@angular/core';
 import {
   AbstractControl,
   ValidationErrors,
@@ -31,21 +22,14 @@ export interface ControlErrorDirectiveContext {
   standalone: true,
 })
 export class ControlErrorDirective implements AfterContentInit, OnDestroy {
+  private readonly formField = inject<MatFormField>(MAT_FORM_FIELD);
+  protected readonly template = inject<TemplateRef<ControlErrorDirectiveContext>>(TemplateRef);
+  protected readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
+  protected readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+
   public readonly key = input.required<string>({ alias: "rxapControlErrorKey" });
   private _subscription?: Subscription;
   private _control?: AbstractControl;
-
-  constructor(
-    @Inject(MAT_FORM_FIELD)
-    private readonly formField: MatFormField,
-    @Inject(TemplateRef)
-    protected readonly template: TemplateRef<ControlErrorDirectiveContext>,
-    @Inject(ViewContainerRef)
-    protected readonly viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef)
-    protected readonly cdr: ChangeDetectorRef,
-  ) {
-  }
 
   static ngTemplateContextGuard<T>(
     dir: ControlErrorDirective,

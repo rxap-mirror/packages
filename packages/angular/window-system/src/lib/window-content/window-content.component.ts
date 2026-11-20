@@ -1,15 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component,
-  ComponentRef,
-  Inject,
-  Injector,
-  isDevMode,
-  OnInit,
-  ViewContainerRef,
-  viewChild
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, ComponentRef, Injector, isDevMode, OnInit, ViewContainerRef, viewChild, inject } from '@angular/core';
 import {
   RXAP_WINDOW_CONTAINER_CONTEXT,
   RXAP_WINDOW_REF,
@@ -48,6 +37,11 @@ import { isDefined } from '@rxap/rxjs';
     imports: [PortalModule]
 })
 export class WindowContentComponent implements AfterViewInit, OnInit {
+  private readonly windowRef = inject<WindowRef>(RXAP_WINDOW_REF);
+  private readonly injector = inject(Injector);
+  private readonly viewContainerRef = inject(ViewContainerRef);
+  private readonly loadingIndicatorService = inject(LoadingIndicatorService);
+
 
   public context: WindowContainerContext<any>;
 
@@ -55,15 +49,9 @@ export class WindowContentComponent implements AfterViewInit, OnInit {
 
   public readonly portalOutlet = viewChild.required(CdkPortalOutlet);
 
-  constructor(
-    @Inject(RXAP_WINDOW_CONTAINER_CONTEXT)
-      context: any,
-    @Inject(RXAP_WINDOW_REF)
-    private readonly windowRef: WindowRef,
-    private readonly injector: Injector,
-    private readonly viewContainerRef: ViewContainerRef,
-    private readonly loadingIndicatorService: LoadingIndicatorService,
-  ) {
+  constructor() {
+    const context = inject(RXAP_WINDOW_CONTAINER_CONTEXT);
+
     this.context = context;
   }
 

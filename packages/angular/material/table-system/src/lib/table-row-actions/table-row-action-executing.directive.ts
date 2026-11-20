@@ -1,19 +1,13 @@
-import {
-  Directive,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 
 @Directive({
   selector: '[rxapTableRowActionExecuting]',
   standalone: true,
 })
 export class TableRowActionExecutingDirective {
-  constructor(
-    public readonly templateRef: TemplateRef<void>,
-    private readonly vcr: ViewContainerRef,
-  ) {
-  }
+  readonly templateRef = inject<TemplateRef<void>>(TemplateRef);
+  private readonly vcr = inject(ViewContainerRef);
+
 
   public show(): void {
     this.vcr.createEmbeddedView(this.templateRef);

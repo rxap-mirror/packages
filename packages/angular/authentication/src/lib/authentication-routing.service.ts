@@ -1,8 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  Optional,
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { RxapAuthenticationService } from './authentication.service';
 import { RXAP_AUTHENTICATION_DEACTIVATED } from './tokens';
@@ -12,16 +8,14 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthenticationRoutingService {
+  private readonly router = inject<Router>(Router);
+  private readonly authenticationService = inject<RxapAuthenticationService>(RxapAuthenticationService);
+  private readonly deactivated = inject(RXAP_AUTHENTICATION_DEACTIVATED, { optional: true }) ?? null;
 
-  constructor(
-    @Inject(Router)
-    private readonly router: Router,
-    @Inject(RxapAuthenticationService)
-    private readonly authenticationService: RxapAuthenticationService,
-    @Optional()
-    @Inject(RXAP_AUTHENTICATION_DEACTIVATED)
-    private readonly deactivated: boolean | null = null,
-  ) {
+
+  constructor() {
+    const deactivated = this.deactivated;
+
     if (!deactivated) {
       console.log('Authentication is enabled');
       this.authenticationService.isAuthenticated$.pipe(

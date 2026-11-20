@@ -1,10 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  Optional,
-  input
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, input, inject } from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -19,24 +13,18 @@ import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
   standalone: true,
 })
 export class MatInputHasEnablePermissionDirective extends HasEnablePermission {
+  private readonly matInput = inject<MatInput>(MatInput);
+
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
   public override readonly identifier = input.required<string>({ alias: "rxapHasEnablePermission" });
 
-  constructor(
-    @Inject(AuthorizationService)
-      authorization: AuthorizationService,
-    @Inject(ChangeDetectorRef)
-      cdr: ChangeDetectorRef,
-    @Inject(MatInput)
-    private readonly matInput: MatInput,
-    @Optional()
-    @Inject(RXAP_AUTHORIZATION_SCOPE)
-      scope: string,
-    @Optional()
-    @Inject(NG_VALUE_ACCESSOR)
-      valueAccessor: ControlValueAccessor[] | null = null,
-  ) {
+  constructor() {
+    const authorization = inject<AuthorizationService>(AuthorizationService);
+    const cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+    const scope = inject(RXAP_AUTHORIZATION_SCOPE, { optional: true });
+    const valueAccessor = inject(NG_VALUE_ACCESSOR, { optional: true }) ?? null;
+
     super(authorization, cdr, scope, valueAccessor);
   }
 

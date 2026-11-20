@@ -3,14 +3,7 @@ import {
   SelectionModel,
 } from '@angular/cdk/collections';
 import { FlatTreeControl } from '@angular/cdk/tree';
-import {
-  Inject,
-  Injectable,
-  InjectionToken,
-  isDevMode,
-  OnInit,
-  Optional,
-} from '@angular/core';
+import { Injectable, InjectionToken, isDevMode, OnInit, inject } from '@angular/core';
 import {
   BaseDataSource,
   BaseDataSourceMetadata,
@@ -240,6 +233,9 @@ export class TreeDataSource<
   RootParameters = any,
   NodeParameters = any,
 > extends BaseDataSource<Array<Node<Data>>, TreeDataSourceMetadata> implements OnInit {
+  readonly rootRemoteMethod = inject<Method<Data | Data[], RootParameters>>(RXAP_TREE_DATA_SOURCE_ROOT_REMOTE_METHOD);
+  readonly childrenRemoteMethod = inject<Method<Data[], Node<Data>> | null>(RXAP_TREE_DATA_SOURCE_CHILDREN_REMOTE_METHOD, { optional: true }) ?? null;
+
   public tree$                                                   = new BehaviorSubject<Array<Node<Data>>>([]);
   @Required public treeControl!: FlatTreeControl<Node<Data>>;
   public selected!: SelectionModel<Node<Data>>;
@@ -255,19 +251,10 @@ export class TreeDataSource<
   private _refreshMatchFilter                                    = new Subject<void>();
   private readonly applyFilterMethod: Method<Array<Node<Data>>, TreeApplyFilterParameter>;
 
-  constructor(
-    @Inject(RXAP_TREE_DATA_SOURCE_ROOT_REMOTE_METHOD)
-    public readonly rootRemoteMethod: Method<Data | Data[], RootParameters>,
-    @Optional()
-    @Inject(RXAP_TREE_DATA_SOURCE_CHILDREN_REMOTE_METHOD)
-    public readonly childrenRemoteMethod: Method<Data[], Node<Data>> | null         = null,
-    @Optional()
-    @Inject(RXAP_TREE_DATA_SOURCE_APPLY_FILTER_METHOD)
-      applyFilterMethod: Method<Array<Node<Data>>, TreeApplyFilterParameter> | null = null,
-    @Optional()
-    @Inject(RXAP_DATA_SOURCE_METADATA)
-      metadata: TreeDataSourceMetadata | null                                       = null,
-  ) {
+  constructor() {
+    const applyFilterMethod = inject<Method<Array<Node<Data>>, TreeApplyFilterParameter> | null>(RXAP_TREE_DATA_SOURCE_APPLY_FILTER_METHOD, { optional: true }) ?? null;
+    const metadata = inject<TreeDataSourceMetadata | null>(RXAP_DATA_SOURCE_METADATA, { optional: true }) ?? null;
+
     super(metadata);
     this.applyFilterMethod = applyFilterMethod ?? new DefaultTreeApplyFilterMethod();
     // TODO add new SelectModel class that saves the select model to the localStorage

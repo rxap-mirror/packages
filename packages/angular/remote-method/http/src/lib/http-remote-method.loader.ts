@@ -5,22 +5,13 @@ import {
   RxapRemoteMethodError,
 } from '@rxap/remote-method';
 import { HttpRemoteMethod } from './http.remote-method';
-import {
-  Inject,
-  Injectable,
-  InjectOptions,
-  Injector
-} from '@angular/core';
+import { Injectable, InjectOptions, Injector, inject } from '@angular/core';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 
 @Injectable({ providedIn: 'root' })
 export class HttpRemoteMethodLoader {
+  private readonly remoteMethodLoader = inject<RemoteMethodLoader>(RemoteMethodLoader);
 
-  // Instead of extanding the RemoteMethodLoader class the RemoteMethodLoader instance
-  // will be injected, else there could be multiple instance of RemoteMethodLoader's. Then
-  // the RefreshService will not trigger a refresh for HttpRemoteMethod's
-  constructor(@Inject(RemoteMethodLoader) private readonly remoteMethodLoader: RemoteMethodLoader) {
-  }
 
   public request$<ReturnType = any, Parameters = any, Metadata extends BaseRemoteMethodMetadata = BaseRemoteMethodMetadata>(
     remoteMethodIdOrInstanceOrToken: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType, Parameters, Metadata>>,

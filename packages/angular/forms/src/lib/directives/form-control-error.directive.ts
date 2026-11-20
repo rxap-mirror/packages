@@ -1,13 +1,4 @@
-import {
-  Directive,
-  Host,
-  OnDestroy,
-  OnInit,
-  SkipSelf,
-  TemplateRef,
-  ViewContainerRef,
-  input
-} from '@angular/core';
+import { Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef, input, inject } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import {
@@ -25,6 +16,12 @@ import { ValidationErrors } from '../types';
   standalone: true,
 })
 export class FormControlErrorDirective implements OnInit, OnDestroy {
+  private readonly template = inject<TemplateRef<{
+    $implicit: ValidationErrors;
+}>>(TemplateRef);
+  private readonly parent = inject(ControlContainer, { host: true, skipSelf: true });
+  private readonly viewContainerRef = inject(ViewContainerRef);
+
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
   public readonly name = input.required<string>({ alias: "rxapFormControlErrorFrom" });
@@ -33,13 +30,6 @@ export class FormControlErrorDirective implements OnInit, OnDestroy {
   public readonly errorKey = input.required<string>({ alias: "rxapFormControlErrorIf" });
 
   private subscription?: Subscription;
-
-  constructor(
-    private readonly template: TemplateRef<{ $implicit: ValidationErrors }>,
-    @Host() @SkipSelf() private readonly parent: ControlContainer,
-    private readonly viewContainerRef: ViewContainerRef,
-  ) {
-  }
 
   public ngOnInit() {
     const control = this.parent.control?.get(this.name());

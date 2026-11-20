@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Directive,
-  Inject,
-  OnDestroy,
-  input
-} from '@angular/core';
+import { AfterViewInit, Directive, OnDestroy, input, inject } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import {
@@ -20,18 +14,13 @@ import { TableColumnFilterService } from './table-column-filter.service';
   standalone: true,
 })
 export class TableColumnFilterInputDirective implements AfterViewInit, OnDestroy {
+  private readonly ngModel = inject<NgModel>(NgModel);
+  private readonly tableColumnFilterService = inject<TableColumnFilterService>(RXAP_TABLE_FILTER);
+
 
   public readonly column = input.required<string>();
 
   private _subscription?: Subscription;
-
-  constructor(
-    @Inject(NgModel)
-    private readonly ngModel: NgModel,
-    @Inject(RXAP_TABLE_FILTER)
-    private readonly tableColumnFilterService: TableColumnFilterService,
-  ) {
-  }
 
   public ngOnDestroy() {
     this._subscription?.unsubscribe();

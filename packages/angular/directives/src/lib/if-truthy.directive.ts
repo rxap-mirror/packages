@@ -1,12 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  OnChanges,
-  SimpleChanges,
-  TemplateRef,
-  ViewContainerRef,
-  input
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, OnChanges, SimpleChanges, TemplateRef, ViewContainerRef, input, inject } from '@angular/core';
 import { Method } from '@rxap/pattern';
 
 export interface IfTruthyDirectiveTemplateContext<Data> {
@@ -20,18 +12,15 @@ export interface IfTruthyDirectiveTemplateContext<Data> {
   standalone: true,
 })
 export class IfTruthyDirective<Data, Parameters = any> implements OnChanges {
+  private readonly templateRef = inject<TemplateRef<IfTruthyDirectiveTemplateContext<Data>>>(TemplateRef);
+  private readonly viewContainerRef = inject(ViewContainerRef);
+  private readonly cdr = inject(ChangeDetectorRef);
+
 
   public readonly method = input.required<Method<Data, Parameters>>({ alias: "rxapIfTruthy" });
   public readonly parameters = input.required<Parameters>({ alias: "rxapIfTruthyParameters" });
   public readonly trackBy = input.required<(data: Data) => any>({ alias: "rxapIfTruthyTrackBy" });
   private _last?: Data;
-
-  constructor(
-    private readonly templateRef: TemplateRef<IfTruthyDirectiveTemplateContext<Data>>,
-    private readonly viewContainerRef: ViewContainerRef,
-    private readonly cdr: ChangeDetectorRef,
-  ) {
-  }
 
   /**
    * Asserts the correct type of the context for the template that `NgForOf` will render.

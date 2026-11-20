@@ -1,10 +1,4 @@
-import {
-  Directive,
-  Inject,
-  OnInit,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, OnInit, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 import { WindowRef } from './window-ref';
 import { RXAP_WINDOW_REF } from './tokens';
 import { TemplatePortal } from '@angular/cdk/portal';
@@ -18,16 +12,10 @@ export interface WindowFooterTemplateContext {
   standalone: true,
 })
 export class WindowFooterDirective implements OnInit {
+  private readonly windowRef = inject<WindowRef>(RXAP_WINDOW_REF);
+  private readonly template = inject<TemplateRef<WindowFooterTemplateContext>>(TemplateRef);
+  private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
 
-  constructor(
-    @Inject(RXAP_WINDOW_REF)
-    private readonly windowRef: WindowRef,
-    @Inject(TemplateRef)
-    private readonly template: TemplateRef<WindowFooterTemplateContext>,
-    @Inject(ViewContainerRef)
-    private readonly viewContainerRef: ViewContainerRef,
-  ) {
-  }
 
   /**
    * Asserts the correct type of the context for the template that `NgForOf` will render.

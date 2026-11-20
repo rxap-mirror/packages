@@ -1,7 +1,4 @@
-import {
-  Pipe,
-  PipeTransform,
-} from '@angular/core';
+import { Pipe, PipeTransform, inject } from '@angular/core';
 import { SafeValue } from '@angular/platform-browser';
 import { SantizationService } from './santization.service';
 
@@ -10,8 +7,8 @@ import { SantizationService } from './santization.service';
   standalone: true,
 })
 export class SantizationPipe implements PipeTransform {
-  constructor(private readonly santizationService: SantizationService) {
-  }
+  private readonly santizationService = inject(SantizationService);
+
 
   transform(
     value: string | null,

@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  input
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, inject } from '@angular/core';
 import { Required } from '@rxap/utilities';
 import { SelectRowService } from '../select-row.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -17,13 +12,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     imports: [MatCheckboxModule]
 })
 export class CheckboxCellComponent<Data extends Record<string, any>> {
+  readonly selectRow = inject<SelectRowService<Data>>(SelectRowService);
+
 
   public readonly element = input.required<Data>();
-
-  constructor(
-    @Inject(SelectRowService)
-    public readonly selectRow: SelectRowService<Data>,
-  ) {
-  }
 
 }

@@ -1,13 +1,4 @@
-import {
-  Directive,
-  HostBinding,
-  HostListener,
-  isDevMode,
-  OnDestroy,
-  OnInit,
-  Renderer2,
-  input
-} from '@angular/core';
+import { Directive, HostBinding, HostListener, isDevMode, OnDestroy, OnInit, Renderer2, input, inject } from '@angular/core';
 import { Required } from '@rxap/utilities';
 import {
   fromEvent,
@@ -20,6 +11,8 @@ import { tap } from 'rxjs/operators';
   standalone: true,
 })
 export class MovableDividerDirective implements OnDestroy, OnInit {
+  private readonly renderer = inject(Renderer2);
+
 
   public readonly containerElement = input.required<HTMLDivElement>();
 
@@ -41,9 +34,6 @@ export class MovableDividerDirective implements OnDestroy, OnInit {
    * @private
    */
   private _fixedElementWidth: number | null = null;
-
-  constructor(private readonly renderer: Renderer2) {
-  }
 
   public ngOnDestroy() {
     this._subscription?.unsubscribe();

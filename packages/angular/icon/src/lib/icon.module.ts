@@ -2,10 +2,7 @@ import {
   provideHttpClient,
   withInterceptorsFromDi,
 } from '@angular/common/http';
-import {
-  ModuleWithProviders,
-  NgModule,
-} from '@angular/core';
+import { ModuleWithProviders, NgModule, inject } from '@angular/core';
 import { IconLoaderService } from './icon-loader.service';
 import {
   DefaultIconSvgFilePath,
@@ -18,9 +15,9 @@ import {
 @NgModule({ imports: [], providers: [provideHttpClient(withInterceptorsFromDi())] })
 export class IconModule {
 
-  constructor(
-    iconLoaderService: IconLoaderService,
-  ) {
+  constructor() {
+    const iconLoaderService = inject(IconLoaderService);
+
     iconLoaderService.load();
   }
 

@@ -1,22 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  EventEmitter,
-  forwardRef,
-  HostBinding,
-  Inject,
-  input,
-  Input,
-  isDevMode,
-  model,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Optional,
-  Output,
-  SimpleChanges,
-  SkipSelf,
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, EventEmitter, forwardRef, HostBinding, input, Input, isDevMode, model, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, inject } from '@angular/core';
 import {
   ControlContainer,
   FormGroupDirective,
@@ -118,6 +100,10 @@ import {
 export class FormDirective<T = any>
   extends FormGroupDirective
   implements OnInit, OnChanges, OnDestroy {
+  readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+  protected readonly formDefinitionBuilder = inject<RxapFormBuilder | null>(RXAP_FORM_DEFINITION_BUILDER, { skipSelf: true, optional: true }) ?? null;
+  protected readonly loadingIndicatorService = inject<LoadingIndicatorService | null>(LoadingIndicatorService, { optional: true }) ?? null;
+
   public override form!: RxapFormGroup<T>;
 
   public readonly initial = model<T | null>(null);
@@ -202,57 +188,20 @@ export class FormDirective<T = any>
 
   private _autoSubmitSubscription = new Subscription();
 
-  constructor(
-    @Inject(ChangeDetectorRef) public readonly cdr: ChangeDetectorRef,
-    @Optional()
-    @Inject(RXAP_FORM_DEFINITION)
-    formDefinition: FormDefinition | null = null,
-    // skip self, bc the token is set to null
-    @SkipSelf()
-    @Optional()
-    @Inject(RXAP_FORM_SUBMIT_METHOD)
-    submitMethod: FormSubmitMethod<any> | null = null,
-    // skip self, bc the token is set to null
-    @SkipSelf()
-    @Optional()
-    @Inject(RXAP_FORM_LOAD_METHOD)
-    loadMethod: FormLoadMethod | null = null,
-    // skip self, bc the token is set to null
-    @SkipSelf()
-    @Optional()
-    @Inject(RXAP_FORM_LOAD_FAILED_METHOD)
-    loadFailedMethod: FormLoadFailedMethod | null = null,
-    // skip self, bc the token is set to null
-    @SkipSelf()
-    @Optional()
-    @Inject(RXAP_FORM_LOAD_SUCCESSFUL_METHOD)
-    loadSuccessfulMethod: FormLoadSuccessfulMethod | null = null,
-    // skip self, bc the token is set to null
-    @SkipSelf()
-    @Optional()
-    @Inject(RXAP_FORM_SUBMIT_FAILED_METHOD)
-    submitFailedMethod: FormSubmitFailedMethod | null = null,
-    // skip self, bc the token is set to null
-    @SkipSelf()
-    @Optional()
-    @Inject(RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD)
-    submitSuccessfulMethod: FormSubmitSuccessfulMethod | null = null,
-    // skip self, bc the token is set to null
-    @SkipSelf()
-    @Optional()
-    @Inject(RXAP_FORM_DEFINITION_BUILDER)
-    protected readonly formDefinitionBuilder: RxapFormBuilder | null = null,
-    @Optional()
-    @Inject(LoadingIndicatorService)
-    protected readonly loadingIndicatorService: LoadingIndicatorService | null = null,
-    @Optional()
-    @Inject(RXAP_FORM_CONTEXT)
-    context: unknown = null,
-    @Optional()
-    @Inject(RXAP_FORM_INITIAL_STATE)
-    initial: T | null = null,
-  ) {
+  constructor() {
+    const formDefinition = inject<FormDefinition | null>(RXAP_FORM_DEFINITION, { optional: true }) ?? null;
+    const submitMethod = inject<FormSubmitMethod<any> | null>(RXAP_FORM_SUBMIT_METHOD, { skipSelf: true, optional: true }) ?? null;
+    const loadMethod = inject<FormLoadMethod | null>(RXAP_FORM_LOAD_METHOD, { skipSelf: true, optional: true }) ?? null;
+    const loadFailedMethod = inject<FormLoadFailedMethod | null>(RXAP_FORM_LOAD_FAILED_METHOD, { skipSelf: true, optional: true }) ?? null;
+    const loadSuccessfulMethod = inject<FormLoadSuccessfulMethod | null>(RXAP_FORM_LOAD_SUCCESSFUL_METHOD, { skipSelf: true, optional: true }) ?? null;
+    const submitFailedMethod = inject<FormSubmitFailedMethod | null>(RXAP_FORM_SUBMIT_FAILED_METHOD, { skipSelf: true, optional: true }) ?? null;
+    const submitSuccessfulMethod = inject<FormSubmitSuccessfulMethod | null>(RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD, { skipSelf: true, optional: true }) ?? null;
+    const context = inject(RXAP_FORM_CONTEXT, { optional: true }) ?? null;
+    const initial = inject<T | null>(RXAP_FORM_INITIAL_STATE, { optional: true }) ?? null;
+
     super([], []);
+    const formDefinitionBuilder = this.formDefinitionBuilder;
+
     this.submitMethod = submitMethod ?? this.submitMethod();
     this.loadMethod = loadMethod ?? this.loadMethod();
     this.loadFailedMethod = loadFailedMethod ?? this.loadFailedMethod();

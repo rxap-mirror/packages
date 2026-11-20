@@ -1,10 +1,4 @@
-import {
-  Directive,
-  Inject,
-  isDevMode,
-  OnInit,
-  input
-} from '@angular/core';
+import { Directive, isDevMode, OnInit, input, inject } from '@angular/core';
 import { MatSelect } from '@angular/material/select';
 import {
   equals,
@@ -16,13 +10,9 @@ import {
   standalone: true,
 })
 export class CompareWithDirective implements OnInit {
-  public readonly objectPath = input.required<string>({ alias: "rxapCompareWith" });
+  private readonly matSelect = inject<MatSelect>(MatSelect);
 
-  constructor(
-    @Inject(MatSelect)
-    private readonly matSelect: MatSelect,
-  ) {
-  }
+  public readonly objectPath = input.required<string>({ alias: "rxapCompareWith" });
 
   public ngOnInit() {
     this.matSelect.compareWith = this.compareWith.bind(this);

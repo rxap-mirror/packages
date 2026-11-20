@@ -1,13 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  Injector,
-  INJECTOR,
-  OnInit,
-  Optional,
-  input
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, Injector, INJECTOR, OnInit, input, inject } from '@angular/core';
 import {
   MatButton,
   MatFabButton,
@@ -27,21 +18,17 @@ interface CanDisable {
   standalone: true,
 })
 export class MatButtonHasEnablePermissionDirective extends HasEnablePermission implements OnInit {
+  private readonly injector = inject<Injector>(INJECTOR);
+
   public override readonly identifier = input.required<string>({ alias: "rxapHasEnablePermission" });
 
   private _button!: CanDisable;
 
-  constructor(
-    @Inject(AuthorizationService)
-      authorization: AuthorizationService,
-    @Inject(ChangeDetectorRef)
-      cdr: ChangeDetectorRef,
-    @Inject(INJECTOR)
-    private readonly injector: Injector,
-    @Optional()
-    @Inject(RXAP_AUTHORIZATION_SCOPE)
-      scope: string,
-  ) {
+  constructor() {
+    const authorization = inject<AuthorizationService>(AuthorizationService);
+    const cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+    const scope = inject(RXAP_AUTHORIZATION_SCOPE, { optional: true });
+
     super(authorization, cdr, scope);
   }
 

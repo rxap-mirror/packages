@@ -1,17 +1,4 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  Injector,
-  INJECTOR,
-  isDevMode,
-  OnDestroy,
-  Optional,
-  TemplateRef,
-  ViewContainerRef,
-  input
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Directive, Injector, INJECTOR, isDevMode, OnDestroy, TemplateRef, ViewContainerRef, input, inject } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import {
   BaseDataSource,
@@ -92,6 +79,14 @@ export interface InputSelectOptionsDirective extends OnDestroy, AfterViewInit,
   standalone: true,
 })
 export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
+  protected readonly template = inject<TemplateRef<InputSelectOptionsTemplateContext>>(TemplateRef);
+  protected readonly dataSourceLoader = inject<DataSourceLoader>(DataSourceLoader);
+  protected readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
+  protected readonly injector = inject<Injector>(INJECTOR);
+  protected readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+  protected ngControl = inject<NgControl | null>(NgControl, { optional: true }) ?? null;
+  protected matFormField = inject<MatFormField | null>(MAT_FORM_FIELD, { optional: true }) ?? null;
+
 
   public readonly viewer = input<BaseDataSourceViewer>({ id: '[rxapInputSelectOptions]' }, { alias: "rxapInputSelectOptionsViewer" });
 
@@ -117,28 +112,6 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
    * once.
    */
   private isAutocompleteToDisplayTriggered = false;
-
-  constructor(
-    @Inject(TemplateRef)
-    protected readonly template: TemplateRef<InputSelectOptionsTemplateContext>,
-    @Inject(DataSourceLoader)
-    protected readonly dataSourceLoader: DataSourceLoader,
-    @Inject(ViewContainerRef)
-    protected readonly viewContainerRef: ViewContainerRef,
-    @Inject(INJECTOR)
-    protected readonly injector: Injector,
-    @Inject(ChangeDetectorRef)
-    protected readonly cdr: ChangeDetectorRef,
-    // The ngControl could be unknown on construction
-    // bc it is available after the content is init
-    @Optional()
-    @Inject(NgControl)
-    protected ngControl: NgControl | null = null,
-    @Optional()
-    @Inject(MAT_FORM_FIELD)
-    protected matFormField: MatFormField | null = null,
-  ) {
-  }
 
   public ngAfterViewInit() {
     this.extractOptionsDatasource();

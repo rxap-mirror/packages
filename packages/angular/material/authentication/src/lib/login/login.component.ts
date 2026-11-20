@@ -1,10 +1,5 @@
 import { AsyncPipe } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  inject,
-  Inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -70,18 +65,13 @@ import { RequestResetPasswordMethod } from './request-reset-password.method';
 ]
 })
 export class LoginComponent {
+  private readonly authentication = inject<RxapAuthenticationService>(RxapAuthenticationService);
+  private readonly snackBar = inject<MatSnackBar>(MatSnackBar);
+
 
   public readonly requestingPasswordReset$ = new ToggleSubject();
 
   private readonly requestPasswordResetMethod = inject(RequestResetPasswordMethod);
-
-  constructor(
-    @Inject(RxapAuthenticationService)
-    private readonly authentication: RxapAuthenticationService,
-    @Inject(MatSnackBar)
-    private readonly snackBar: MatSnackBar,
-  ) {
-  }
 
   public async requestPasswordReset(email: string) {
     this.requestingPasswordReset$.enable();

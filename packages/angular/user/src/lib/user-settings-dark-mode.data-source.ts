@@ -1,7 +1,4 @@
-import {
-  Inject,
-  Injectable,
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   PipeDataSource,
   RxapPipeDataSource,
@@ -17,10 +14,9 @@ import { UserSettingsDataSource } from './user-settings.data-source';
 })
 export class UserSettingsDarkModeDataSource<T> extends PipeDataSource<SettingsControllerGetResponse<T>, boolean> {
 
-  constructor(
-    @Inject(UserSettingsDataSource)
-    dataSource: UserSettingsDataSource<T>,
-  ) {
+  constructor() {
+    const dataSource = inject<UserSettingsDataSource<T>>(UserSettingsDataSource);
+
     super(
       dataSource,
       map((settings) => settings.darkMode),

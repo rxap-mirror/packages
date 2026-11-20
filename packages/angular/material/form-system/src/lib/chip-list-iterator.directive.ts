@@ -1,15 +1,4 @@
-import {
-  Directive,
-  EmbeddedViewRef,
-  IterableChangeRecord,
-  IterableChanges,
-  IterableDiffer,
-  IterableDiffers,
-  OnDestroy,
-  OnInit,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, EmbeddedViewRef, IterableChangeRecord, IterableChanges, IterableDiffer, IterableDiffers, OnDestroy, OnInit, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatChipEvent } from '@angular/material/chips';
 import { Subscription } from 'rxjs';
@@ -41,18 +30,15 @@ class RecordViewTuple {
   standalone: true,
 })
 export class ChipListIteratorDirective implements OnInit, OnDestroy {
+  private readonly template = inject<TemplateRef<ChipListTemplateContext>>(TemplateRef);
+  private readonly viewContainerRef = inject(ViewContainerRef);
+  private readonly ngControl = inject(NgControl);
+  private readonly differs = inject(IterableDiffers);
+
   private _subscription?: Subscription;
 
   private _dirty = true;
   private _differ: IterableDiffer<string> | null = null;
-
-  constructor(
-    private readonly template: TemplateRef<ChipListTemplateContext>,
-    private readonly viewContainerRef: ViewContainerRef,
-    private readonly ngControl: NgControl,
-    private readonly differs: IterableDiffers,
-  ) {
-  }
 
   public ngOnInit() {
     this._subscription = this.ngControl.valueChanges

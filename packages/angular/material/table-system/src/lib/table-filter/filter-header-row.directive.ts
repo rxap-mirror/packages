@@ -1,13 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  forwardRef,
-  Inject,
-  Input,
-  OnDestroy,
-  OnInit,
-  Optional,
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, forwardRef, Input, OnDestroy, OnInit, inject } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import {
   FormDefinition,
@@ -38,6 +29,8 @@ import { RXAP_TABLE_FILTER_FORM_DEFINITION } from './tokens';
 export class FilterHeaderRowDirective
   extends FormDirective
   implements OnInit, OnDestroy {
+  private readonly tableFilter = inject(TableFilterService);
+
 
   // TODO: Skipped for migration because:
   //  Accessor inputs cannot be migrated as they are too complex.
@@ -51,13 +44,10 @@ export class FilterHeaderRowDirective
 
   private _subscription?: Subscription;
 
-  constructor(
-    private readonly tableFilter: TableFilterService,
-    cdr: ChangeDetectorRef,
-    @Optional()
-    @Inject(RXAP_TABLE_FILTER_FORM_DEFINITION)
-      formDefinition: FormDefinition | null,
-  ) {
+  constructor() {
+    const cdr = inject(ChangeDetectorRef);
+    const formDefinition = inject<FormDefinition | null>(RXAP_TABLE_FILTER_FORM_DEFINITION, { optional: true });
+
     super(cdr, formDefinition);
   }
 

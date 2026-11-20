@@ -1,8 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  OnInit,
-} from '@angular/core';
+import { Injectable, OnInit, inject } from '@angular/core';
 import { Method } from '@rxap/pattern';
 import { ToggleSubject } from '@rxap/rxjs';
 import {
@@ -34,6 +30,9 @@ import {
 export class MethodDataSource<Data, Parameters = any>
   extends BaseDataSource<Data, BaseDataSourceMetadata, (BaseDataSourceViewer & Parameters) | BaseDataSourceViewer<Parameters>>
   implements OnInit {
+  protected readonly method: Method<Data, Parameters>;
+  protected readonly withoutParameters = inject(RXAP_DATA_SOURCE_METHOD_WITHOUT_PARAMETERS) ?? false;
+
 
   protected override readonly _data$ = new ReplaySubject<Data>(1);
 
@@ -41,13 +40,12 @@ export class MethodDataSource<Data, Parameters = any>
 
   private readonly _refresh = new Subject<void>();
 
-  constructor(
-    @Inject(RXAP_DATA_SOURCE_METHOD)
-    protected readonly method: Method<Data, Parameters>,
-    @Inject(RXAP_DATA_SOURCE_METHOD_WITHOUT_PARAMETERS)
-    protected readonly withoutParameters = false,
-  ) {
+  constructor() {
+    const method = inject<Method<Data, Parameters>>(RXAP_DATA_SOURCE_METHOD);
+
     super(method.metadata);
+  
+    this.method = method;
   }
 
   public ngOnInit(): void {

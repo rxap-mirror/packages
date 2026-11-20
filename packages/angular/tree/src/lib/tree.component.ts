@@ -4,25 +4,7 @@ import {
 } from '@angular/cdk/portal';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { AsyncPipe, NgClass, NgStyle } from '@angular/common';
-import {
-  AfterContentInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  HostListener,
-  Inject,
-  isDevMode,
-  OnInit,
-  Optional,
-  Renderer2,
-  signal,
-  ViewContainerRef,
-  input,
-  output,
-  contentChild,
-  viewChild
-} from '@angular/core';
+import { AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, HostListener, isDevMode, OnInit, Renderer2, signal, ViewContainerRef, input, output, contentChild, viewChild, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDividerModule } from '@angular/material/divider';
@@ -80,6 +62,12 @@ import { TreeDataSource } from './tree.data-source';
 })
 export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   implements OnInit, AfterContentInit {
+  private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
+  private readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+  private readonly renderer = inject(Renderer2);
+  private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  readonly searchForm = inject<SearchForm | null>(RXAP_FORM_DEFINITION, { optional: true });
+
   public treeControl: FlatTreeControl<Node<Data>>;
   public readonly dataSource = input.required<TreeDataSource<Data>>();
   public readonly contentEditableMethod = input<Method<any, string | null> | null>();
@@ -112,20 +100,9 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
    */
   private _treeContainerWidth: number | null = null;
 
-  constructor(
-    @Inject(ViewContainerRef)
-    private readonly viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef)
-    private readonly cdr: ChangeDetectorRef,
-    @Optional()
-    @Inject(RXAP_TREE_CONTENT_EDITABLE_METHOD)
-      contentEditableMethod: Method<any, string | null> | null,
-    private readonly renderer: Renderer2,
-    private readonly elementRef: ElementRef<HTMLElement>,
-    @Optional()
-    @Inject(RXAP_FORM_DEFINITION)
-    public readonly searchForm: SearchForm | null,
-  ) {
+  constructor() {
+    const contentEditableMethod = inject<Method<any, string | null> | null>(RXAP_TREE_CONTENT_EDITABLE_METHOD, { optional: true });
+
     this.treeControl           = new FlatTreeControl(this.getLevel, this.isExpandable);
     this.contentEditableMethod = contentEditableMethod;
   }

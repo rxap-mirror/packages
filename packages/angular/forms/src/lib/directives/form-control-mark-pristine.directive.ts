@@ -1,7 +1,4 @@
-import {
-  Directive,
-  HostListener,
-} from '@angular/core';
+import { Directive, HostListener, inject } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { hasIndexSignature } from '@rxap/utilities';
 
@@ -10,9 +7,8 @@ import { hasIndexSignature } from '@rxap/utilities';
   standalone: true,
 })
 export class FormControlMarkPristineDirective {
+  private readonly parent = inject(ControlContainer);
 
-  constructor(private readonly parent: ControlContainer) {
-  }
 
   @HostListener('click')
   public onClick() {

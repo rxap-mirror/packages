@@ -1,9 +1,4 @@
-import {
-  Directive,
-  HostListener,
-  Inject,
-  input
-} from '@angular/core';
+import { Directive, HostListener, input, inject } from '@angular/core';
 import { ExpandRowService } from './expand-row.service';
 import { Required } from '@rxap/utilities';
 
@@ -12,6 +7,8 @@ import { Required } from '@rxap/utilities';
   standalone: true,
 })
 export class ExpandRowDirective<Data extends Record<string, any>> {
+  private readonly expandCell = inject<ExpandRowService<Data>>(ExpandRowService);
+
 
   @HostListener('expanded-row')
   public get isExpanded() {
@@ -19,12 +16,6 @@ export class ExpandRowDirective<Data extends Record<string, any>> {
   }
 
   public readonly element = input.required<Data>({ alias: "rxapExpandRow" });
-
-  constructor(
-    @Inject(ExpandRowService)
-    private readonly expandCell: ExpandRowService<Data>,
-  ) {
-  }
 
   @HostListener('click')
   public onClick() {

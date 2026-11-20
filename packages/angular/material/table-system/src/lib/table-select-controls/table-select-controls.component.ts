@@ -1,8 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import type { WindowRef } from '@rxap/window-system';
 import { RXAP_WINDOW_REF } from '@rxap/window-system';
 import type { Observable } from 'rxjs';
@@ -22,13 +18,12 @@ import { MatButtonModule } from '@angular/material/button';
     ]
 })
 export class TableSelectControlsComponent {
+  private readonly selectRows = inject<SelectRowService<any>>(SelectRowService);
+  private readonly windowRef = inject<WindowRef>(RXAP_WINDOW_REF);
+
   public hasNotSelected$: Observable<boolean>;
 
-  constructor(
-    private readonly selectRows: SelectRowService<any>,
-    @Inject(RXAP_WINDOW_REF)
-    private readonly windowRef: WindowRef,
-  ) {
+  constructor() {
     this.hasNotSelected$ = this.selectRows.selectedRows$.pipe(
       map((selected) => selected.length === 0),
     );

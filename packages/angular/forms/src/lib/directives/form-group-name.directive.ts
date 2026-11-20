@@ -1,12 +1,4 @@
-import {
-  Directive,
-  forwardRef,
-  Inject,
-  Optional,
-  Self,
-  SkipSelf,
-  input
-} from '@angular/core';
+import { Directive, forwardRef, input, inject } from '@angular/core';
 import {
   ControlContainer,
   FormGroupName,
@@ -41,11 +33,11 @@ export class FormGroupNameDirective extends FormGroupName {
     return this.formDirective!.getFormGroup(this) as any;
   }
 
-  constructor(
-    @Optional() @SkipSelf() parent: ControlContainer,
-    @Optional() @Self() @Inject(NG_VALIDATORS) validators: any[],
-    @Optional() @Self() @Inject(NG_ASYNC_VALIDATORS) asyncValidators: any[],
-  ) {
+  constructor() {
+    const parent = inject(ControlContainer, { optional: true, skipSelf: true });
+    const validators = inject(NG_VALIDATORS, { optional: true, self: true });
+    const asyncValidators = inject(NG_ASYNC_VALIDATORS, { optional: true, self: true });
+
     super(parent, validators, asyncValidators);
   }
 

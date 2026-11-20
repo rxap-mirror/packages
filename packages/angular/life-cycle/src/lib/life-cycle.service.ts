@@ -1,8 +1,4 @@
-import {
-  ApplicationRef,
-  Inject,
-  Injectable,
-} from '@angular/core';
+import { ApplicationRef, Injectable, inject } from '@angular/core';
 import { isPromiseLike } from '@rxap/utilities';
 import {
   BehaviorSubject,
@@ -26,11 +22,15 @@ export interface LifeCycleHook {
   providedIn: 'root',
 })
 export class LifeCycleService {
+  readonly appRef = inject<ApplicationRef>(ApplicationRef);
+
 
   private static hooks = new Map<string, LifeCycleHook>();
   public isReady$ = new BehaviorSubject(false);
 
-  constructor(@Inject(ApplicationRef) public readonly appRef: ApplicationRef) {
+  constructor() {
+    const appRef = this.appRef;
+
 
     LifeCycleService.AddHook('stable', firstValueFrom(appRef.isStable.pipe(
       tap(isStable => console.log('app state:', isStable ? 'stable' : 'unstable')),

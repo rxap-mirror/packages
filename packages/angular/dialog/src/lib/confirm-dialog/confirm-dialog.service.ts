@@ -1,9 +1,6 @@
 import { Direction } from '@angular/cdk/bidi';
 import { ScrollStrategy } from '@angular/cdk/overlay';
-import {
-  Inject,
-  Injectable,
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   DialogPosition,
   MatDialog,
@@ -63,11 +60,8 @@ export interface ConfirmDialogConfig {
 
 @Injectable({ providedIn: 'root' })
 export class ConfirmDialogService {
-  constructor(
-    @Inject(MatDialog)
-    private readonly dialog: MatDialog,
-  ) {
-  }
+  private readonly dialog = inject<MatDialog>(MatDialog);
+
 
   public open(
     message: string,

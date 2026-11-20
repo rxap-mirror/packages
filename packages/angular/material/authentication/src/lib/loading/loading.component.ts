@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Router } from '@angular/router';
 import { RxapAuthenticationService } from '@rxap/authentication';
@@ -22,15 +16,10 @@ import {
     imports: [MatProgressBarModule]
 })
 export class LoadingComponent implements OnInit, OnDestroy {
-  public subscription?: Subscription;
+  readonly authentication = inject<RxapAuthenticationService>(RxapAuthenticationService);
+  readonly router = inject<Router>(Router);
 
-  constructor(
-    @Inject(RxapAuthenticationService)
-    public readonly authentication: RxapAuthenticationService,
-    @Inject(Router)
-    public readonly router: Router,
-  ) {
-  }
+  public subscription?: Subscription;
 
   public ngOnInit(): void {
     // TODO : remove the concept of isAuthenticated$

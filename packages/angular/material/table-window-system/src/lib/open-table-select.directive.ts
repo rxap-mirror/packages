@@ -1,16 +1,4 @@
-import {
-  Directive,
-  HostBinding,
-  HostListener,
-  Inject,
-  INJECTOR,
-  Injector,
-  isDevMode,
-  OnDestroy,
-  OnInit,
-  ViewContainerRef,
-  input
-} from '@angular/core';
+import { Directive, HostBinding, HostListener, INJECTOR, Injector, isDevMode, OnDestroy, OnInit, ViewContainerRef, input, inject } from '@angular/core';
 import {
   MAT_FORM_FIELD,
   MatFormField,
@@ -119,6 +107,11 @@ export interface OpenTableSelectDirective<Data extends Record<string, any>> exte
   standalone: true,
 })
 export class OpenTableSelectDirective<Data extends Record<string, any>> implements OnInit, OnDestroy {
+  private readonly formField = inject<MatFormField>(MAT_FORM_FIELD);
+  protected readonly dataSourceLoader = inject<DataSourceLoader>(DataSourceLoader);
+  protected readonly injector = inject<Injector>(INJECTOR);
+  private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
+
 
   @HostBinding('type')
   public type = 'button';
@@ -128,18 +121,6 @@ export class OpenTableSelectDirective<Data extends Record<string, any>> implemen
   private tableSelectDataSource!: BaseDataSource<Data[]>;
 
   private _windowRef: WindowRef | null = null;
-
-  constructor(
-    @Inject(MAT_FORM_FIELD)
-    private readonly formField: MatFormField,
-    @Inject(DataSourceLoader)
-    protected readonly dataSourceLoader: DataSourceLoader,
-    @Inject(INJECTOR)
-    protected readonly injector: Injector,
-    @Inject(ViewContainerRef)
-    private readonly viewContainerRef: ViewContainerRef,
-  ) {
-  }
 
   public ngOnInit() {
     const control = this.formField._control.ngControl?.control;

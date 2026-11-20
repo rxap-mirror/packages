@@ -1,21 +1,5 @@
 import type { Injector } from '@angular/core';
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Directive,
-  EmbeddedViewRef,
-  Inject,
-  INJECTOR,
-  isDevMode,
-  NgZone,
-  OnChanges,
-  OnDestroy,
-  SimpleChanges,
-  TemplateRef,
-  ViewContainerRef,
-  input,
-  output
-} from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Directive, EmbeddedViewRef, INJECTOR, isDevMode, NgZone, OnChanges, OnDestroy, SimpleChanges, TemplateRef, ViewContainerRef, input, output, inject } from '@angular/core';
 import {
   BaseDataSource,
   BaseDataSourceViewer,
@@ -51,6 +35,13 @@ export interface DataSourceErrorTemplateContext {
 })
 export class DataSourceDirective<Data = any>
   implements OnDestroy, OnChanges, AfterViewInit {
+  private readonly dataSourceLoader = inject(DataSourceLoader);
+  private readonly template = inject<TemplateRef<DataSourceTemplateContext<Data>>>(TemplateRef);
+  private readonly viewContainerRef = inject(ViewContainerRef);
+  private readonly injector = inject<Injector>(INJECTOR);
+  private readonly cdr = inject(ChangeDetectorRef);
+  private readonly zone = inject(NgZone);
+
 
   /**
    * Asserts the correct type of the context for the template that `NgForOf` will render.
@@ -86,15 +77,7 @@ public readonly error = output();
   private _dataSourceLoadingSubscription: Subscription | null = null;
   private _dataSourceConnectionSubscription: Subscription | null = null;
 
-  constructor(
-    private readonly dataSourceLoader: DataSourceLoader,
-    private readonly template: TemplateRef<DataSourceTemplateContext<Data>>,
-    private readonly viewContainerRef: ViewContainerRef,
-    @Inject(INJECTOR)
-    private readonly injector: Injector,
-    private readonly cdr: ChangeDetectorRef,
-    private readonly zone: NgZone,
-  ) {
+  constructor() {
     this.viewer = this;
   }
 

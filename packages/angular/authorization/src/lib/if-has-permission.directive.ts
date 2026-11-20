@@ -1,14 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  OnDestroy,
-  OnInit,
-  Optional,
-  TemplateRef,
-  ViewContainerRef,
-  input
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef, input, inject } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {
   distinctUntilChanged,
@@ -22,27 +12,18 @@ import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
   standalone: true,
 })
 export class IfHasPermissionDirective implements OnInit, OnDestroy {
+  private readonly authorization = inject<AuthorizationService>(AuthorizationService);
+  private readonly template = inject<TemplateRef<any>>(TemplateRef);
+  private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
+  private readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+  private readonly scope = inject(RXAP_AUTHORIZATION_SCOPE, { optional: true }) ?? null;
+
 
   public readonly identifier = input.required<string>({ alias: "rxapIfHasPermission" });
 
   public readonly else = input<TemplateRef<any>>(undefined, { alias: "rxapIfHasPermissionElse" });
 
   private _subscription?: Subscription;
-
-  constructor(
-    @Inject(AuthorizationService)
-    private readonly authorization: AuthorizationService,
-    @Inject(TemplateRef)
-    private readonly template: TemplateRef<any>,
-    @Inject(ViewContainerRef)
-    private readonly viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef)
-    private readonly cdr: ChangeDetectorRef,
-    @Optional()
-    @Inject(RXAP_AUTHORIZATION_SCOPE)
-    private readonly scope: string | null = null,
-  ) {
-  }
 
   public ngOnInit() {
     this._subscription = this.authorization

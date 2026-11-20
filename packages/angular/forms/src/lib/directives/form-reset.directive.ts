@@ -1,9 +1,4 @@
-import {
-  Directive,
-  HostBinding,
-  Inject,
-  input
-} from '@angular/core';
+import { Directive, HostBinding, input, inject } from '@angular/core';
 import { ConfirmClick } from '@rxap/directives';
 import { FormDirective } from './form.directive';
 
@@ -16,15 +11,11 @@ import { FormDirective } from './form.directive';
   standalone: true,
 })
 export class FormResetDirective extends ConfirmClick {
+  private readonly formDirective = inject<FormDirective>(FormDirective);
+
 
   @HostBinding('type')
 public readonly type = input('button');
-
-  constructor(
-    @Inject(FormDirective) private readonly formDirective: FormDirective,
-  ) {
-    super();
-  }
 
   protected execute() {
     this.formDirective.reset();

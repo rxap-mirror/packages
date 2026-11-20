@@ -1,9 +1,4 @@
-import {
-  Directive,
-  OnDestroy,
-  OnInit,
-  input
-} from '@angular/core';
+import { Directive, OnDestroy, OnInit, input, inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -13,15 +8,12 @@ import { tap } from 'rxjs/operators';
   standalone: true,
 })
 export class PersistentPaginatorDirective implements OnInit, OnDestroy {
+  private readonly matPaginator = inject(MatPaginator);
+
 
   public readonly id = input<string>();
 
   private _subscription?: Subscription;
-
-  constructor(
-    private readonly matPaginator: MatPaginator,
-  ) {
-  }
 
   public ngOnInit() {
     const config = this.restoreConfig();

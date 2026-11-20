@@ -1,8 +1,4 @@
-import {
-  Inject,
-  Injectable,
-  Optional,
-} from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Environment } from '@rxap/environment';
 import {
   coerceArray,
@@ -125,7 +121,9 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
   public static Urls = [];
   public readonly config!: Config;
 
-  constructor(@Optional() @Inject(RXAP_CONFIG) config: any | null = null) {
+  constructor() {
+    const config = inject(RXAP_CONFIG, { optional: true }) ?? null;
+
     this.config = ConfigService.Config;
     if (config) {
       this.config = deepMerge(this.config ?? {}, config);
