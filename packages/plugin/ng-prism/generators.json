@@ -1,0 +1,26 @@
+{
+  "generators": {
+    "init": {
+      "factory": "./src/generators/init/generator",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Initialize the shared ng-prism styleguide host application in the workspace"
+    },
+    "init-library": {
+      "factory": "./src/generators/init-library/generator",
+      "schema": "./src/generators/init-library/schema.json",
+      "description": "Add the prism, prism-build and prism-strip targets to an Angular library"
+    }
+  },
+  "schematics": {
+    "init": {
+      "factory": "./src/generators/init/index",
+      "schema": "./src/generators/init/schema.json",
+      "description": "Initialize the shared ng-prism styleguide host application in the workspace"
+    },
+    "init-library": {
+      "factory": "./src/generators/init-library/index",
+      "schema": "./src/generators/init-library/schema.json",
+      "description": "Add the prism, prism-build and prism-strip targets to an Angular library"
+    }
+  }
+}

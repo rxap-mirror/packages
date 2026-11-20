@@ -7363,6 +7363,54 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ng-prism/core@npm:22.8.0":
+  version: 22.8.0
+  resolution: "@ng-prism/core@npm:22.8.0"
+  dependencies:
+    axe-core: ^4.11.1
+    chokidar: ^5.0.0
+    jsonc-parser: ^3.3.1
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular-devkit/architect": ">=0.2000.0"
+    "@angular-devkit/core": ">=20.0.0"
+    "@angular-devkit/schematics": ">=20.0.0"
+    "@angular/common": ">=20.0.0"
+    "@angular/compiler": ">=20.0.0"
+    "@angular/core": ">=20.0.0"
+    highlight.js: ">=11.0.0"
+    ngx-highlightjs: ">=14.0.0"
+    typescript: ">=5.5.0"
+  peerDependenciesMeta:
+    "@angular-devkit/architect":
+      optional: false
+    "@angular-devkit/schematics":
+      optional: false
+  bin:
+    ng-prism-strip: dist/transformer/cli.js
+  checksum: 09536157ba07fb77b5a7ee423d13cc39e1f2f263cac91d0d1d25b0f5aee7f4ca0f1044cb0dfcc61d8738a00bff45dbfed686e76d3a2c768e707451d8e7b2cc52
+  languageName: node
+  linkType: hard
+
+"@ng-prism/plugin-jsdoc@npm:22.8.0":
+  version: 22.8.0
+  resolution: "@ng-prism/plugin-jsdoc@npm:22.8.0"
+  dependencies:
+    marked: ^15.0.12
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular-devkit/schematics": ">=20.0.0"
+    "@angular/common": ">=20.0.0"
+    "@angular/core": ">=20.0.0"
+    "@angular/platform-browser": ">=20.0.0"
+    "@ng-prism/core": ^22.8.0-0
+    highlight.js: ">=11.0.0"
+    ngx-highlightjs: ">=14.0.0"
+    typescript: ">=5.5.0"
+  checksum: 21cfc9ce7620846312ed9b7dc3380a360bb7b091120a2be4b6baef0ed7e48440bd39b3dddc9054fc33caf462d76441715516a526107088931ce9d577b2802ac1
+  languageName: node
+  linkType: hard
+
 "@ngtools/webpack@npm:21.2.16":
   version: 21.2.16
   resolution: "@ngtools/webpack@npm:21.2.16"
@@ -11447,6 +11495,17 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@rxap/plugin-ng-prism@workspace:packages/plugin/ng-prism":
+  version: 0.0.0-use.local
+  resolution: "@rxap/plugin-ng-prism@workspace:packages/plugin/ng-prism"
+  dependencies:
+    "@nx/devkit": 22.7.5
+    "@rxap/utilities": ^16.5.2-dev.0
+    "@rxap/workspace-utilities": ^22.0.1-dev.0
+    tslib: 2.6.2
+  languageName: unknown
+  linkType: soft
+
 "@rxap/plugin-open-api@^22.0.1-dev.0, @rxap/plugin-open-api@workspace:packages/plugin/open-api":
   version: 0.0.0-use.local
   resolution: "@rxap/plugin-open-api@workspace:packages/plugin/open-api"
@@ -11832,6 +11891,8 @@ __metadata:
     "@nestjs/testing": 11.1.27
     "@nestjs/throttler": 6.5.0
     "@nestjs/typeorm": ^11.0.2
+    "@ng-prism/core": 22.8.0
+    "@ng-prism/plugin-jsdoc": 22.8.0
     "@nx/angular": 22.7.5
     "@nx/cypress": 22.7.5
     "@nx/devkit": 22.7.5
@@ -11915,6 +11976,7 @@ __metadata:
     glob: 10.3.10
     handlebars: ^4.7.8
     helmet: 8.2.0
+    highlight.js: ^11.12.0
     html-webpack-plugin: 5.6.0
     husky: 8.0.3
     ignore: 5.2.4
@@ -11936,6 +11998,7 @@ __metadata:
     neo4j-driver: ^5.23.0
     ng-mocks: 14.12.2
     ng-packagr: 21.2.5
+    ngx-highlightjs: ^14.0.1
     ngx-markdown: 19.1.0
     node-vault: ^0.10.2
     nx: 22.7.5
@@ -16623,6 +16686,13 @@ __metadata:
   version: 1.13.2
   resolution: "aws4@npm:1.13.2"
   checksum: 9ac924e4a91c088b4928ea86b68d8c4558b0e6289ccabaae0e3e96a611bd75277c2eab6e3965821028768700516f612b929a5ce822f33a8771f74ba2a8cedb9c
+  languageName: node
+  linkType: hard
+
+"axe-core@npm:^4.11.1":
+  version: 4.14.1
+  resolution: "axe-core@npm:4.14.1"
+  checksum: 0c9b25ed2dbab3acfb579030afdbb92c6b032f5b7a24159ed1dc57f826ee2c0d37110e07e1dcba9a3e1ba0bac82ff72a2e8b476ba225bde9b3bec609814589ba
   languageName: node
   linkType: hard
 
@@ -23575,6 +23645,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"highlight.js@npm:^11.11.1, highlight.js@npm:^11.12.0":
+  version: 11.12.0
+  resolution: "highlight.js@npm:11.12.0"
+  checksum: ee53ad7a20f78e2904d809caf01b6f6c52a5cc99acf36d29788ce65d22ae4a7f59d4c8c275a5c52bf6ef65096a6a43b44b68101c730b8561a75e3eb39de5cc56
+  languageName: node
+  linkType: hard
+
 "homedir-polyfill@npm:^1.0.0, homedir-polyfill@npm:^1.0.1":
   version: 1.0.3
   resolution: "homedir-polyfill@npm:1.0.3"
@@ -27745,6 +27822,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"marked@npm:^15.0.12":
+  version: 15.0.12
+  resolution: "marked@npm:15.0.12"
+  bin:
+    marked: bin/marked.js
+  checksum: 2ac72fc0bc7ecb47de246e396c7054d311f55379957e4e01796c12d196cb84480e8d53e54948f957a078f9166692fea8b0309fc597f26f855573e7ba5c1ec7eb
+  languageName: node
+  linkType: hard
+
 "marked@npm:^15.0.7":
   version: 15.0.7
   resolution: "marked@npm:15.0.7"
@@ -28795,6 +28881,21 @@ __metadata:
   bin:
     ng-packagr: src/cli/main.js
   checksum: 3a37dd8dd21f532aa6242b962107de0f1c1b3bf3da002e12121036ccb66c5357d8dc39eff077afb89a1f235962d8ff1176063e93b162f304086bcdcd6cb326e0
+  languageName: node
+  linkType: hard
+
+"ngx-highlightjs@npm:^14.0.1":
+  version: 14.0.1
+  resolution: "ngx-highlightjs@npm:14.0.1"
+  dependencies:
+    highlight.js: ^11.11.1
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular/cdk": ">=19.0.0"
+    "@angular/common": ">=19.0.0"
+    "@angular/core": ">=19.0.0"
+    rxjs: ">=7.0.0"
+  checksum: 4fb53d4a9423904c725a6423dfe8c6b85678ee79cbb5e71d9619f7c2b779958ca77341ea57169f32772fbf7575d133915e3e1909e1a30f53cbe1569a9b821abd
   languageName: node
   linkType: hard
 

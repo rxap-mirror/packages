@@ -243,6 +243,7 @@
       "@rxap/plugin-readme-generator": [
         "packages/plugin/readme-generator/src/index.ts"
       ],
+      "@rxap/plugin-ng-prism": ["packages/plugin/ng-prism/src/index.ts"],
       "@rxap/plugin-storybook": ["packages/plugin/storybook/src/index.ts"],
       "@rxap/plugin-typedoc": ["packages/plugin/typedoc/src/index.ts"],
       "@rxap/plugin-utilities": ["packages/plugin/utilities/src/index.ts"],
@@ -338,7 +339,9 @@
       "web3-storage": ["packages/plugin/web3-storage/src/index.ts"],
       "workspace": ["tools/workspace/src/index.ts"],
       "workspace/commands": ["tools/workspace/src/cypress/commands.ts"],
-      "workspace/support": ["tools/workspace/src/cypress/support.ts"]
+      "workspace/support": ["tools/workspace/src/cypress/support.ts"],
+      "ng-prism.config": ["./ng-prism.config.ts"],
+      "prism-manifest/*": ["./ng-prism-cache/*/prism-manifest.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

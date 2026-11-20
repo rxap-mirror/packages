@@ -1,0 +1,42 @@
+{
+  "name": "plugin-ng-prism",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/plugin/ng-prism/src",
+  "projectType": "library",
+  "tags": ["plugin", "nx", "nx-plugin", "packages"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/plugin/ng-prism",
+        "main": "packages/plugin/ng-prism/src/index.ts",
+        "tsConfig": "packages/plugin/ng-prism/tsconfig.lib.json",
+        "assets": [
+          "packages/plugin/ng-prism/*.md",
+          {
+            "input": "./packages/plugin/ng-prism/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/plugin/ng-prism/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/plugin/ng-prism",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/plugin/ng-prism",
+            "glob": "executors.json",
+            "output": "."
+          },
+          "packages/plugin/ng-prism/docs"
+        ]
+      }
+    }
+  }
+}

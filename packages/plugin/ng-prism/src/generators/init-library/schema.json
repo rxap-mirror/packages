@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "InitLibrary",
+  "title": "",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project to initialize.",
+      "examples": [
+        "angular-layout"
+      ]
+    },
+    "projects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A list of projects to initialize.",
+      "examples": [
+        [
+          "angular-layout",
+          "angular-tree"
+        ]
+      ]
+    },
+    "prismProject": {
+      "type": "string",
+      "default": "prism-host",
+      "description": "The name of the shared styleguide host application project.",
+      "examples": [
+        "prism-host"
+      ]
+    },
+    "port": {
+      "type": "number",
+      "default": 4400,
+      "description": "The port of the styleguide dev server."
+    },
+    "skipFormat": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to skip formatting generated files.",
+      "examples": [
+        true,
+        false
+      ]
+    },
+    "overwrite": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to overwrite existing targets.",
+      "examples": [
+        true,
+        false
+      ]
+    },
+    "skipProjects": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to skip executing project-specific initialization logic.",
+      "examples": [
+        true,
+        false
+      ]
+    }
+  },
+  "required": []
+}

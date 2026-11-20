@@ -1,0 +1,43 @@
+{
+  "version": "22.0.1-dev.0",
+  "name": "@rxap/plugin-ng-prism",
+  "description": "This plugin provides generators to set up ng-prism styleguides for Angular libraries within an Nx workspace. It creates a shared styleguide host application, adds the prism, prism-build and prism-strip targets to libraries and removes the @Showcase decorators from the built packages before publishing.\n",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "@nx/devkit": "22.7.5",
+    "@rxap/utilities": "^16.5.2-dev.0",
+    "@rxap/workspace-utilities": "^22.0.1-dev.0",
+    "tslib": "2.6.2"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "generators": "./generators.json",
+  "homepage": "https:/gitlab.com/rxap/packages/packages/plugin/ng-prism",
+  "keywords": [
+    "ng-prism",
+    "nx",
+    "nx-plugin",
+    "packages",
+    "plugin",
+    "plugin-ng-prism",
+    "rxap",
+    "styleguide"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "directory": "../../../dist/packages/plugin/ng-prism"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/plugin/ng-prism"
+  },
+  "schematics": "./generators.json",
+  "type": "commonjs"
+}
