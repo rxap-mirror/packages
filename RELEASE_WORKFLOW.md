@@ -1,6 +1,6 @@
 # Release Workflow
 
-Releases are driven by **`nx release`** (Nx 20.5.0) through the orchestrator at
+Releases are driven by **`nx release`** (Nx 22.x) through the orchestrator at
 [`tools/scripts/release.mjs`](tools/scripts/release.mjs). This replaced the former Lerna +
 bash-hook pipeline; the orchestrator preserves every pre-step that pipeline performed.
 
@@ -34,6 +34,22 @@ The branch determines the release channel (ported from the old scripts):
 Nx keeps a prerelease line incrementing (`-dev.N`) until you **graduate** it. To graduate to a
 stable release, run on `latest`/`master` with an explicit specifier, e.g.
 `yarn release --specifier=patch` (or `minor` / `major` / an exact version).
+
+### Bootstrap release (first 21 / 22 / 11 prerelease)
+
+The manifests were raised to Angular 21 / Nx 22 / Nest 11 by hand, so no tag exists for these
+majors and the `git-tag` resolver would resolve the old 19.x/20.x tags. For this one release the
+commit `chore(release): TEMPORARY bootstrap config` sets `currentVersionResolver: disk` and
+`specifierSource: prompt` (Nx rejects `disk` together with `conventional-commits`):
+
+```shell
+yarn release:dry --specifier=prerelease   # check every version has the right major
+yarn release --specifier=prerelease       # every package -> <disk version>+patch-dev.0
+```
+
+Afterwards **revert that commit** so the regular `git-tag` + conventional-commits flow resumes
+(tags now exist). To graduate the prereleases, run on `latest` with an explicit specifier
+(see above).
 
 ### Useful flags
 
@@ -75,7 +91,8 @@ groups (`packages` for the `tag:packages` libraries, excluding the `demos/**` fi
 `package.json`; `rxap` for the umbrella), conventional-commit
 versioning with the `git-tag` current-version resolver (`disk` fallback for packages without a
 matching tag yet), `^` version prefix, per-project changelogs, and
-`nx-release-publish.packageRoot = dist/{projectRoot}` (publish from dist) in `targetDefaults`.
+`preserveMatchingDependencyRanges: false` (internal ranges are always re-pinned, prereleases
+would otherwise fail the range check), and `nx-release-publish.packageRoot = dist/{projectRoot}` (publish from dist) in `targetDefaults`.
 
 > Tags use `@rxap/{projectName}@{version}` (and `rxap@{version}` for the umbrella). Where an Nx
 > project name differs from its published package name (e.g. project `angular-environment` →
