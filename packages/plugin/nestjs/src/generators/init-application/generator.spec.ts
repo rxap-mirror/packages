@@ -14,8 +14,12 @@ import initApplicationGenerator from './generator';
 describe('plugin-nestjs:init-application (golden master)', () => {
 
   let tree: Tree;
+  const originalEnv = { IMAGE_NAME: process.env.IMAGE_NAME, REGISTRY: process.env.REGISTRY };
 
   beforeEach(async () => {
+    // Nx loads the workspace .env into the test process; keep the snapshot independent of it
+    delete process.env.IMAGE_NAME;
+    delete process.env.REGISTRY;
     tree = createTreeWithEmptyWorkspace();
     const rootPackageJson = readJson(tree, 'package.json');
     rootPackageJson.dependencies = {
@@ -29,6 +33,16 @@ describe('plugin-nestjs:init-application (golden master)', () => {
       directory: 'api',
       skipFormat: true,
     } as any);
+  });
+
+  afterEach(() => {
+    for (const [key, value] of Object.entries(originalEnv)) {
+      if (value === undefined) {
+        delete process.env[key];
+      } else {
+        process.env[key] = value;
+      }
+    }
   });
 
   it('should produce a stable standalone init-application tree (features off)', async () => {
