@@ -1,4 +1,9 @@
-import { Injectable, OnDestroy, inject } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+  OnDestroy,
+  Optional,
+} from '@angular/core';
 import { Constructor } from '@rxap/utilities';
 import {
   Observable,
@@ -45,19 +50,15 @@ export function RxapPipeDataSource(
 export class PipeDataSource<Source = any, Target = Source>
   extends BaseDataSource<Target>
   implements OnDestroy {
-  readonly dataSource: BaseDataSource<Source>;
-
 
   private readonly _refresh = new Subject<void>();
 
-  constructor() {
-    const dataSource = inject<BaseDataSource<Source>>(RXAP_DATA_SOURCE);
-    const operation = inject<OperatorFunction<Source, any> | null>(RXAP_PIPE_DATA_SOURCE_OPERATOR, { optional: true }) ?? null;
-    const operations = inject<Array<OperatorFunction<any, any> | PipeDataSourceMetadata>>(Array);
-
+  constructor(
+    @Inject(RXAP_DATA_SOURCE) public readonly dataSource: BaseDataSource<Source>,
+    @Optional() @Inject(RXAP_PIPE_DATA_SOURCE_OPERATOR) operation: OperatorFunction<Source, any> | null = null,
+    ...operations: Array<OperatorFunction<any, any> | PipeDataSourceMetadata>
+  ) {
     super(dataSource.metadata);
-    this.dataSource = dataSource;
-
     this.loading$ = this.dataSource.loading$;
     if (operation) {
       this.setOperations(

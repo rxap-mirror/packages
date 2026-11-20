@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Directive, DoCheck, EmbeddedViewRef, Injector, INJECTOR, Input, isDevMode, IterableChangeRecord, IterableChanges, IterableDiffer, IterableDiffers, NgZone, OnChanges, OnInit, SimpleChanges, TemplateRef, TrackByFunction, ViewContainerRef, input, inject } from '@angular/core';
+import { ChangeDetectorRef, Directive, DoCheck, EmbeddedViewRef, Injector, INJECTOR, Input, isDevMode, IterableChangeRecord, IterableChanges, IterableDiffer, IterableDiffers, NgZone, OnInit, TemplateRef, TrackByFunction, ViewContainerRef, input, inject, computed, effect, untracked } from '@angular/core';
 import {
   BaseRemoteMethod,
   BaseRemoteMethodMetadata,
@@ -60,7 +60,7 @@ class RecordViewTuple<T> {
 export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
   Parameters = any,
   Metadata extends BaseRemoteMethodMetadata = BaseRemoteMethodMetadata>
-  implements OnChanges, DoCheck, OnInit {
+  implements DoCheck, OnInit {
   private readonly template = inject<TemplateRef<RemoteMethodTemplateCollectionDirectiveContext<ReturnType>>>(TemplateRef);
   protected readonly remoteMethodLoader = inject<RemoteMethodLoader>(RemoteMethodLoader);
   private readonly injector = inject<Injector>(INJECTOR);
@@ -68,7 +68,7 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
   protected readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
   private readonly differs = inject<IterableDiffers>(IterableDiffers);
   private readonly zone = inject<NgZone>(NgZone);
-  private readonly remoteMethodToken = inject(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, { optional: true, self: true });
+  private readonly remoteMethodToken = inject<any>(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, { optional: true, self: true });
 
 
   public readonly parameters = input<Parameters>(undefined, { alias: "rxapRemoteMethodCollectionParameters" });
@@ -117,12 +117,6 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
    */
   private _errorTemplateViewRef: EmbeddedViewRef<RemoteMethodTemplateCollectionDirectiveErrorContext> | null = null;
 
-  constructor() {
-    if (this.remoteMethodToken) {
-      this._remoteMethodOrIdOrToken = this.remoteMethodToken;
-    }
-  }
-
   get trackBy(): TrackByFunction<ReturnType> {
     return this._trackByFn;
   }
@@ -159,17 +153,9 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
     this._trackByFn = fn;
   }
 
-  protected _remoteMethodOrIdOrToken!: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType[], Parameters, Metadata>>;
+  public readonly remoteMethodOrIdOrToken = input<IdOrInstanceOrToken<BaseRemoteMethod<ReturnType[], Parameters, Metadata>>>(undefined, { alias: 'rxapRemoteMethodCollectionCall' });
 
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input('rxapRemoteMethodCollectionCall')
-  public set remoteMethodOrIdOrToken(value: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType[], Parameters, Metadata>>) {
-    if (value) {
-      this._remoteMethodOrIdOrToken = value;
-    }
-  }
+  protected readonly _remoteMethodOrIdOrToken = computed(() => this.remoteMethodOrIdOrToken() || this.remoteMethodToken);
 
   /**
    * Holds the data that should be displayed
@@ -193,11 +179,14 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
     return true;
   }
 
-  public ngOnChanges(changes: SimpleChanges) {
-    const parametersChanges = changes['parameters'];
-    if (parametersChanges) {
-      this.call(parametersChanges.currentValue);
-    }
+  constructor() {
+    // re-run whenever the bound parameters change
+    effect(() => {
+      const parameters = this.parameters();
+      if (parameters !== undefined) {
+        untracked(() => this.call(parameters));
+      }
+    });
   }
 
   public ngOnInit() {
@@ -212,7 +201,7 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
       tap(() => {
         this.zone.run(() => {
           this.remoteMethodLoader
-              .call$(this._remoteMethodOrIdOrToken, parameters, undefined, this.injector)
+              .call$(this._remoteMethodOrIdOrToken(), parameters, undefined, this.injector)
               .then(response => {
                 // guard against non-array responses (null/undefined/scalar) to
                 // avoid reading .length off a non-iterable and crashing

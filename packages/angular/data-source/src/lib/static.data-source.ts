@@ -10,7 +10,12 @@ import {
   ReplaySubject,
   Subscription,
 } from 'rxjs';
-import { Injectable, OnDestroy, inject } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+  OnDestroy,
+  Optional,
+} from '@angular/core';
 import {
   RXAP_DATA_SOURCE_METADATA,
   RXAP_STATIC_DATA_SOURCE_DATA,
@@ -41,10 +46,14 @@ export class StaticDataSource<Data = any>
   protected override _data$ = new ReplaySubject<Data>(1);
   private _dataSubscription?: Subscription;
 
-  constructor() {
-    const data = inject(RXAP_STATIC_DATA_SOURCE_DATA, { optional: true });
-    const metadata = inject<StaticDataSourceMetadata | null>(RXAP_DATA_SOURCE_METADATA, { optional: true });
-
+  constructor(
+    @Optional()
+    @Inject(RXAP_STATIC_DATA_SOURCE_DATA)
+      data: any | null,
+    @Optional()
+    @Inject(RXAP_DATA_SOURCE_METADATA)
+      metadata: StaticDataSourceMetadata | null,
+  ) {
     super(metadata);
     if ((data === undefined || data === null) && this.metadata.data !== undefined) {
       data = this.metadata.data;

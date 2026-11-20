@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Directive, HostListener, isDevMode, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewContainerRef, input, output, inject } from '@angular/core';
+import { ChangeDetectorRef, Directive, HostListener, isDevMode, OnInit, TemplateRef, ViewContainerRef, input, output, inject, linkedSignal, effect, untracked, outputFromObservable } from '@angular/core';
 import { ToggleSubject } from '@rxap/rxjs';
 import { Method } from '@rxap/pattern';
 
@@ -16,7 +16,7 @@ export interface MethodTemplateDirectiveErrorContext {
   exportAs: 'rxapMethod',
   standalone: true,
 })
-export class MethodTemplateDirective<ReturnType = any, Parameters = any> implements OnInit, OnChanges {
+export class MethodTemplateDirective<ReturnType = any, Parameters = any> implements OnInit {
   private readonly template = inject<TemplateRef<MethodTemplateDirectiveContext<ReturnType>>>(TemplateRef);
   private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
   protected readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
@@ -24,6 +24,7 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
 
   public readonly method = input.required<Method<ReturnType, Parameters>>({ alias: "rxapMethodCall" });
   public readonly parameters = input<Parameters>(undefined, { alias: "rxapMethodParameters" });
+  protected readonly currentParameters = linkedSignal(() => this.parameters());
   public readonly errorTemplate = input<TemplateRef<MethodTemplateDirectiveErrorContext>>(undefined, { alias: "rxapMethodError" });
   public readonly loadingTemplate = input<TemplateRef<void>>(undefined, { alias: "rxapMethodLoading" });
   public readonly withoutParameters = input(false, { alias: "rxapMethodWithoutParameters" });
@@ -34,8 +35,8 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
   /**
    * true - a remote method call is in progress
    */
-  @Output('executing')
   public executing$ = new ToggleSubject();
+  public readonly executing = outputFromObservable(this.executing$, { alias: 'executing' });
   public readonly embedded = output();
 
   static ngTemplateContextGuard<T>(dir: MethodTemplateDirective<T>, ctx: any):
@@ -43,11 +44,14 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
     return true;
   }
 
-  public ngOnChanges(changes: SimpleChanges) {
-    const parametersChanges = changes['parameters'];
-    if (parametersChanges) {
-      this.execute(parametersChanges.currentValue);
-    }
+  constructor() {
+    // re-run whenever the bound parameters change
+    effect(() => {
+      const parameters = this.parameters();
+      if (parameters !== undefined) {
+        untracked(() => this.execute(parameters));
+      }
+    });
   }
 
   public ngOnInit() {
@@ -62,7 +66,7 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
     return this.execute();
   }
 
-  public async execute(parameters: Parameters | undefined = this.parameters()): Promise<void> {
+  public async execute(parameters: Parameters | undefined = this.currentParameters()): Promise<void> {
     this.executing$.enable();
     try {
       const result = await this.method().call(parameters);
@@ -85,7 +89,7 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
   }
 
   public updateParameters(parameters: Partial<Parameters>): void {
-    this.parameters = { ...(this.parameters() ?? {}), ...parameters } as any;
+    this.currentParameters.set({ ...(this.currentParameters() ?? {}), ...parameters } as any);
   }
 
   protected executed(result: any) {

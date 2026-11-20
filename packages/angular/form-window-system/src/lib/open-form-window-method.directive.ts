@@ -42,15 +42,7 @@ export class OpenFormWindowMethodDirective<
    */
   protected _windowRefInstance = new Set<WindowRef<FormDefinition, FormData>>();
 
-  private _hasConfirmDirective = false;
-
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input('rxapConfirm')
-  public set hasConfirmDirective(value: any) {
-    this._hasConfirmDirective = coerceBoolean(value);
-  }
+  public readonly hasConfirmDirective = input(false, { alias: 'rxapConfirm', transform: coerceBoolean });
 
   public ngOnDestroy() {
     this._windowRefInstance.forEach(windowRef => windowRef.complete());
@@ -63,7 +55,7 @@ export class OpenFormWindowMethodDirective<
 
   @HostListener('click')
   public onClick() {
-    if (!this._hasConfirmDirective) {
+    if (!this.hasConfirmDirective()) {
       this.execute();
     } else {
       console.debug('skip remote method call. Wait for confirmation.');

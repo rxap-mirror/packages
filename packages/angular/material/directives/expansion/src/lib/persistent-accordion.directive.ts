@@ -1,58 +1,37 @@
 import {
-  AfterContentInit,
-  ChangeDetectorRef,
+  afterRenderEffect,
+  contentChildren,
   Directive,
   ElementRef,
-  inject,
-  OnDestroy,
-  QueryList,
   input,
-  contentChildren
+  QueryList,
 } from '@angular/core';
 import {
   MatExpansionPanel,
   MatExpansionPanelHeader,
 } from '@angular/material/expansion';
-import {
-  startWith,
-  Subscription,
-} from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 
 @Directive({
   selector: 'mat-accordion[rxapPersistentAccordion]',
   standalone: true,
 })
-export class PersistentAccordionDirective implements AfterContentInit, OnDestroy {
+export class PersistentAccordionDirective {
 
   public readonly key = input.required<string>({ alias: "rxapPersistentAccordion" });
 
   private readonly expansionPanel = contentChildren(MatExpansionPanel);
 
-  protected cdr = inject(ChangeDetectorRef);
-
-  private _subscription?: Subscription;
-
-  private _expandedChangeSubscription?: Subscription;
-
-  ngOnDestroy() {
-    this._subscription?.unsubscribe();
-    this._expandedChangeSubscription?.unsubscribe();
-  }
-
-  public ngAfterContentInit() {
-    this._subscription = this.expansionPanel().changes.pipe(
-      startWith(this.expansionPanel),
-      tap(panelList => {
-        this._expandedChangeSubscription?.unsubscribe();
-        this._expandedChangeSubscription = new Subscription();
-        for (const panel of panelList) {
-          this._expandedChangeSubscription.add(this.trackExpandState(panel));
-          this.restoreState(panel);
-        }
-        this.cdr.detectChanges();
-      }),
-    ).subscribe();
+  constructor() {
+    // runs after render, once the panels and their headers are resolved, and again whenever the panels change
+    afterRenderEffect((onCleanup) => {
+      const subscription = new Subscription();
+      for (const panel of this.expansionPanel()) {
+        subscription.add(this.trackExpandState(panel));
+        this.restoreState(panel);
+      }
+      onCleanup(() => subscription.unsubscribe());
+    });
   }
 
   protected restoreState(panel: MatExpansionPanel) {

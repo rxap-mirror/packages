@@ -47,15 +47,7 @@ export class TableHeaderButtonDirective<Data extends Record<string, any>> extend
     super(overlay, elementRef);
   }
 
-  private _hasConfirmDirective = false;
-
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input('rxapConfirm')
-  public set hasConfirmDirective(value: any) {
-    this._hasConfirmDirective = coerceBoolean(value);
-  }
+  public readonly hasConfirmDirective = input(false, { alias: 'rxapConfirm', transform: coerceBoolean });
 
   @HostListener('confirmed')
   public override onConfirmed() {
@@ -65,7 +57,7 @@ export class TableHeaderButtonDirective<Data extends Record<string, any>> extend
   @HostListener('click', [ '$event' ])
   public override onClick($event: Event) {
     $event.stopPropagation();
-    if (!this._hasConfirmDirective && !this.options?.confirm) {
+    if (!this.hasConfirmDirective() && !this.options?.confirm) {
       return this.execute();
     } else if (this.options?.confirm) {
       this.openConfirmOverly();

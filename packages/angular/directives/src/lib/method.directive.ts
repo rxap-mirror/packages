@@ -1,12 +1,4 @@
-import {
-  Directive,
-  HostListener,
-  Input,
-  isDevMode,
-  OnInit,
-  input,
-  output
-} from '@angular/core';
+import { Directive, HostListener, Input, isDevMode, OnInit, input, output, linkedSignal } from '@angular/core';
 import { coerceBoolean } from '@rxap/utilities';
 import { ToggleSubject } from '@rxap/rxjs';
 import { Method } from '@rxap/pattern';
@@ -20,6 +12,7 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
 
   public readonly method = input.required<Method<ReturnType, Parameters>>({ alias: "rxapMethod" });
   public readonly parameters = input<Parameters>();
+  protected readonly currentParameters = linkedSignal(() => this.parameters());
   public readonly immediately = input(false);
   public readonly executed$ = output({ alias: 'executed' });
   public readonly failure$ = output<Error>({ alias: 'failure' });
@@ -29,14 +22,7 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
    */
   public executing$ = new ToggleSubject();
 
-  private _hasConfirmDirective = false;
-
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input('rxapConfirm')
-  public set hasConfirmDirective(value: any) {
-    this._hasConfirmDirective = coerceBoolean(value);
-  }
+  public readonly hasConfirmDirective = input(false, { alias: 'rxapConfirm', transform: coerceBoolean });
 
   public ngOnInit() {
     if (this.immediately()) {
@@ -51,7 +37,7 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
 
   @HostListener('click')
   public onClick() {
-    if (!this._hasConfirmDirective) {
+    if (!this.hasConfirmDirective()) {
       return this.execute();
     } else {
       if (isDevMode()) {
@@ -64,7 +50,7 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
   public async execute(): Promise<void> {
     this.executing$.enable();
     try {
-      const result = await this.method().call(this.parameters());
+      const result = await this.method().call(this.currentParameters());
       this.executed(result);
       this.successful(result);
     } catch (error: any) {
@@ -82,7 +68,7 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
   }
 
   public updateParameters(parameters: Partial<Parameters>): void {
-    this.parameters = { ...(this.parameters() ?? {}), ...parameters } as any;
+    this.currentParameters.set({ ...(this.currentParameters() ?? {}), ...parameters } as any);
   }
 
   protected executed(result: any) {

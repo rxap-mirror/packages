@@ -95,15 +95,7 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
     this.actionMethodList = coerceArray(actionMethodList);
   }
 
-  private _hasConfirmDirective = false;
-
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input('rxapConfirm')
-  public set hasConfirmDirective(value: any) {
-    this._hasConfirmDirective = coerceBoolean(value);
-  }
+  public readonly hasConfirmDirective = input(false, { alias: 'rxapConfirm', transform: coerceBoolean });
 
   // eslint-disable-next-line @angular-eslint/contextual-lifecycle
   ngOnInit() {
@@ -139,7 +131,7 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
   @HostListener('click', [ '$event' ])
   public override onClick($event: Event) {
     $event.stopPropagation();
-    if (!this._hasConfirmDirective && !this.options?.confirm) {
+    if (!this.hasConfirmDirective() && !this.options?.confirm) {
       return this.execute();
     } else if (this.options?.confirm) {
       this.openConfirmOverly();

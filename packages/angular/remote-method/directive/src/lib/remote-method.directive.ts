@@ -1,4 +1,4 @@
-import { Directive, HostListener, Injector, INJECTOR, Input, isDevMode, OnInit, input, output, inject } from '@angular/core';
+import { Directive, HostListener, Injector, INJECTOR, Input, isDevMode, OnInit, input, output, inject, linkedSignal, computed } from '@angular/core';
 import {
   BaseRemoteMethod,
   BaseRemoteMethodMetadata,
@@ -22,10 +22,11 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
   implements OnInit {
   protected readonly remoteMethodLoader = inject<RemoteMethodLoader>(RemoteMethodLoader);
   private readonly injector = inject<Injector>(INJECTOR) ?? Injector.NULL;
-  private readonly remoteMethodToken = inject(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, { optional: true, self: true });
+  private readonly remoteMethodToken = inject<any>(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, { optional: true, self: true });
 
 
   public readonly parameters = input<Parameters>();
+  protected readonly currentParameters = linkedSignal(() => this.parameters());
   public readonly metadata = input<Metadata>();
   // eslint-disable-next-line @angular-eslint/no-output-rename
   public readonly executed$ = output({ alias: 'executed' });
@@ -39,32 +40,11 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
    */
   public executing$ = new ToggleSubject();
 
-  constructor() {
-    if (this.remoteMethodToken) {
-      this._remoteMethodOrIdOrToken = this.remoteMethodToken;
-    }
-  }
+  public readonly remoteMethodOrIdOrToken = input<IdOrInstanceOrToken<BaseRemoteMethod<ReturnType, Parameters, Metadata>>>(undefined, { alias: 'rxapRemoteMethod' });
 
-  protected _remoteMethodOrIdOrToken!: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType, Parameters, Metadata>>;
+  protected readonly _remoteMethodOrIdOrToken = computed(() => this.remoteMethodOrIdOrToken() || this.remoteMethodToken);
 
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input('rxapRemoteMethod')
-  public set remoteMethodOrIdOrToken(value: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType, Parameters, Metadata>>) {
-    if (value) {
-      this._remoteMethodOrIdOrToken = value;
-    }
-  }
-
-  private _hasConfirmDirective = false;
-
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input('rxapConfirm')
-  public set hasConfirmDirective(value: any) {
-    this._hasConfirmDirective = coerceBoolean(value);
-  }
+  public readonly hasConfirmDirective = input(false, { alias: 'rxapConfirm', transform: coerceBoolean });
 
   public ngOnInit(): void {
     if (this.immediately()) {
@@ -79,7 +59,7 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
 
   @HostListener('click')
   public onClick() {
-    if (!this._hasConfirmDirective) {
+    if (!this.hasConfirmDirective()) {
       this.execute();
     } else {
       console.debug('skip remote method call. Wait for confirmation.');
@@ -90,8 +70,8 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
     this.executing$.enable();
     try {
       const result = await this.remoteMethodLoader.call$(
-        this._remoteMethodOrIdOrToken,
-        this.parameters(),
+        this._remoteMethodOrIdOrToken(),
+        this.currentParameters(),
         this.metadata(),
         this.injector,
       );
@@ -112,7 +92,7 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
   }
 
   public updateParameters(parameters: Partial<Parameters>): void {
-    this.parameters = { ...(this.parameters() ?? {}), ...parameters } as any;
+    this.currentParameters.set({ ...(this.currentParameters() ?? {}), ...parameters } as any);
   }
 
   protected executed(result: any) {
@@ -135,8 +115,8 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
   protected async call(): Promise<any> {
     this.executing$.enable();
     const result = await this.remoteMethodLoader.call$(
-      this._remoteMethodOrIdOrToken,
-      this.parameters(),
+      this._remoteMethodOrIdOrToken(),
+      this.currentParameters(),
       this.metadata(),
       this.injector,
     );

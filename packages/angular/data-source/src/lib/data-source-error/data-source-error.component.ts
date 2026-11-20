@@ -1,5 +1,5 @@
 import { JsonPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, OnChanges, OnDestroy, OnInit, signal, SimpleChanges, input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, signal, untracked } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {
@@ -7,10 +7,7 @@ import {
   IsNotReleaseVersion,
   RXAP_ENVIRONMENT,
 } from '@rxap/environment';
-import {
-  Observable,
-  Subscription,
-} from 'rxjs';
+import { Observable } from 'rxjs';
 
 export interface DataSourceLikeForErrorHandling {
   refresh?: () => void;
@@ -33,9 +30,8 @@ export interface DataSourceLikeForErrorHandling {
     JsonPipe
 ]
 })
-export class DataSourceErrorComponent implements OnChanges, OnInit, OnDestroy {
+export class DataSourceErrorComponent {
   private readonly environment = inject<Environment>(RXAP_ENVIRONMENT);
-
 
   public readonly error = input<unknown | null | Observable<unknown>>();
 
@@ -45,79 +41,79 @@ export class DataSourceErrorComponent implements OnChanges, OnInit, OnDestroy {
 
   public readonly reset = input<() => void>();
 
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  public set dataSourceLike(value: DataSourceLikeForErrorHandling) {
-    this.refresh() ??= value.refresh;
-    this.retry() ??= value.retry;
-    this.reset() ??= value.reset;
-    this.loading() ??= value.loading ?? value.loading$;
-    this.error() ??= value.error ?? value.error$;
-  }
-
   public readonly loading = input<Observable<boolean> | boolean>();
 
-  public isNotRelease = false;
+  /**
+   * Fallback source for refresh, retry, reset, loading and error. The explicit inputs take precedence.
+   */
+  public readonly dataSourceLike = input<DataSourceLikeForErrorHandling>();
 
-  public errorMessage = signal('Unknown Error');
+  protected readonly effectiveRefresh = computed(() => this.refresh() ?? this.dataSourceLike()?.refresh);
+  protected readonly effectiveRetry = computed(() => this.retry() ?? this.dataSourceLike()?.retry);
+  protected readonly effectiveReset = computed(() => this.reset() ?? this.dataSourceLike()?.reset);
+  protected readonly effectiveLoading = computed(() => {
+    const dataSourceLike = this.dataSourceLike();
+    return this.loading() ?? dataSourceLike?.loading ?? dataSourceLike?.loading$;
+  });
+  protected readonly effectiveError = computed(() => {
+    const dataSourceLike = this.dataSourceLike();
+    return this.error() ?? dataSourceLike?.error ?? dataSourceLike?.error$;
+  });
 
-  public retryInProgress = signal(false);
-  public resetInProgress = signal(false);
+  public readonly isNotRelease = IsNotReleaseVersion(this.environment);
 
-  private _subscription?: Subscription;
+  public readonly errorMessage = signal('Unknown Error');
+
+  public readonly retryInProgress = signal(false);
+  public readonly resetInProgress = signal(false);
 
   constructor() {
-    const environment = this.environment;
+    // a new error value ends any running retry or reset
+    effect(() => {
+      this.effectiveError();
+      untracked(() => this.clearProgress());
+    });
 
-    this.isNotRelease = IsNotReleaseVersion(environment);
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['error']) {
-      this.retryInProgress.set(false);
-      this.resetInProgress.set(false);
-    }
-    if (changes['loading']) {
-      if (!changes['loading'].currentValue && typeof changes['loading'].currentValue === 'boolean') {
-        this.retryInProgress.set(false);
-        this.resetInProgress.set(false);
+    // a plain boolean loading flag that turned false ends any running retry or reset
+    effect(() => {
+      if (this.effectiveLoading() === false) {
+        untracked(() => this.clearProgress());
       }
-    }
+    });
+
+    effect((onCleanup) => {
+      const loading = this.effectiveLoading();
+      if (loading instanceof Observable) {
+        const subscription = loading.subscribe((value) => {
+          if (!value) {
+            this.clearProgress();
+          }
+        });
+        onCleanup(() => subscription.unsubscribe());
+      }
+    });
+
+    effect((onCleanup) => {
+      const error = this.effectiveError();
+      if (error instanceof Observable) {
+        const subscription = error.subscribe((value: any) => {
+          if (value) {
+            this.errorMessage.set(value.message);
+          }
+        });
+        onCleanup(() => subscription.unsubscribe());
+      }
+    });
   }
 
-  ngOnDestroy() {
-    this._subscription?.unsubscribe();
-  }
-
-  ngOnInit() {
-    this._subscription = new Subscription();
-    const loadingValue = this.loading();
-    if (loadingValue instanceof Observable) {
-      this._subscription.add(loadingValue.subscribe((loading) => {
-        if (!loading) {
-          if (this.retryInProgress()) {
-            this.retryInProgress.set(false);
-          }
-          if (this.resetInProgress()) {
-            this.resetInProgress.set(false);
-          }
-        }
-      }));
-    }
-    const errorValue = this.error();
-    if (errorValue instanceof Observable) {
-      this._subscription.add(errorValue.subscribe((error) => {
-        if (error) {
-          this.errorMessage.set(error.message);
-        }
-      }));
-    }
+  private clearProgress() {
+    this.retryInProgress.set(false);
+    this.resetInProgress.set(false);
   }
 
   triggerRetry() {
-    const refresh = this.refresh();
-    const retry = this.retry();
+    const retry = this.effectiveRetry();
+    const refresh = this.effectiveRefresh();
     if (retry) {
       this.retryInProgress.set(true);
       retry();
@@ -128,7 +124,7 @@ export class DataSourceErrorComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   triggerReset() {
-    const reset = this.reset();
+    const reset = this.effectiveReset();
     if (reset) {
       this.resetInProgress.set(true);
       reset();

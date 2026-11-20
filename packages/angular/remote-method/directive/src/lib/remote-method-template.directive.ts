@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Directive, Injector, INJECTOR, Input, isDevMode, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewContainerRef, input, output, inject } from '@angular/core';
+import { ChangeDetectorRef, Directive, Injector, INJECTOR, Input, isDevMode, OnInit, TemplateRef, ViewContainerRef, input, output, inject, linkedSignal, computed, effect, untracked } from '@angular/core';
 import {
   BaseRemoteMethod,
   BaseRemoteMethodMetadata,
@@ -27,13 +27,13 @@ export interface RemoteMethodTemplateDirectiveErrorContext {
   standalone: true,
 })
 export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, Metadata extends BaseRemoteMethodMetadata = BaseRemoteMethodMetadata>
-  implements OnChanges, OnInit {
+  implements OnInit {
   private readonly template = inject<TemplateRef<RemoteMethodTemplateDirectiveContext<ReturnType>>>(TemplateRef);
   protected readonly remoteMethodLoader = inject<RemoteMethodLoader>(RemoteMethodLoader);
   private readonly injector = inject<Injector>(INJECTOR);
   private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
   protected readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
-  private readonly remoteMethodToken = inject(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, { optional: true, self: true });
+  private readonly remoteMethodToken = inject<any>(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, { optional: true, self: true });
 
 
   // TODO : remove template context Guard
@@ -53,6 +53,7 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
    */
   public executing$ = new ToggleSubject();
   public readonly parameters = input<Parameters>(undefined, { alias: "rxapRemoteMethodParameters" });
+  protected readonly currentParameters = linkedSignal(() => this.parameters());
   // eslint-disable-next-line @angular-eslint/no-input-rename
   public readonly errorTemplate = input<TemplateRef<RemoteMethodTemplateDirectiveErrorContext>>(undefined, { alias: "rxapRemoteMethodError" });
   // eslint-disable-next-line @angular-eslint/no-input-rename
@@ -60,23 +61,9 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
   public readonly withoutParameters = input(false, { alias: "rxapRemoteMethodWithoutParameters" });
   public readonly embedded = output();
 
-  constructor() {
-    if (this.remoteMethodToken) {
-      this._remoteMethodOrIdOrToken = this.remoteMethodToken;
-    }
-  }
+  public readonly remoteMethodOrIdOrToken = input<IdOrInstanceOrToken<BaseRemoteMethod<ReturnType, Parameters, Metadata>>>(undefined, { alias: 'rxapRemoteMethodCall' });
 
-  protected _remoteMethodOrIdOrToken!: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType, Parameters, Metadata>>;
-
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input('rxapRemoteMethodCall')
-  public set remoteMethodOrIdOrToken(value: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType, Parameters, Metadata>>) {
-    if (value) {
-      this._remoteMethodOrIdOrToken = value;
-    }
-  }
+  protected readonly _remoteMethodOrIdOrToken = computed(() => this.remoteMethodOrIdOrToken() || this.remoteMethodToken);
 
   // !! add generation of concrete template context guard to openapi schematics !!
   static ngTemplateContextGuard<T>(dir: RemoteMethodTemplateDirective<T>, ctx: any):
@@ -84,11 +71,14 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
     return true;
   }
 
-  public ngOnChanges(changes: SimpleChanges) {
-    const parametersChanges = changes['parameters'];
-    if (parametersChanges) {
-      this.execute(parametersChanges.currentValue);
-    }
+  constructor() {
+    // re-run whenever the bound parameters change
+    effect(() => {
+      const parameters = this.parameters();
+      if (parameters !== undefined) {
+        untracked(() => this.execute(parameters));
+      }
+    });
   }
 
   public ngOnInit() {
@@ -98,12 +88,12 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
     }
   }
 
-  public async execute(parameters: Parameters | undefined = this.parameters()): Promise<void> {
+  public async execute(parameters: Parameters | undefined = this.currentParameters()): Promise<void> {
     this.executing$.enable();
     this.renderLoadingTemplate();
     try {
       const result = await this.remoteMethodLoader.call$(
-        this._remoteMethodOrIdOrToken,
+        this._remoteMethodOrIdOrToken(),
         parameters,
         this.metadata(),
         this.injector,
@@ -136,7 +126,7 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
   }
 
   public updateParameters(parameters: Partial<Parameters>): void {
-    this.parameters = { ...(this.parameters() ?? {}), ...parameters } as any;
+    this.currentParameters.set({ ...(this.currentParameters() ?? {}), ...parameters } as any);
   }
 
   protected executed(result: any) {
