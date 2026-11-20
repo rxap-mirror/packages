@@ -1,8 +1,9 @@
 
 import {
+  ChangeDetectionStrategy,
   Component,
-  Input,
-  ViewChild,
+  input,
+  viewChild,
 } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -13,10 +14,11 @@ describe(PersistentAccordionDirective.name, () => {
 
   @Component({
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
       <mat-accordion rxapPersistentAccordion="testing" multi>
         
-        @if (a) {
+        @if (a()) {
 <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
@@ -30,7 +32,7 @@ describe(PersistentAccordionDirective.name, () => {
         </mat-expansion-panel>
 }
         
-        @if (b) {
+        @if (b()) {
 <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
@@ -44,7 +46,7 @@ describe(PersistentAccordionDirective.name, () => {
         </mat-expansion-panel>
 }
         
-        @if (c) {
+        @if (c()) {
 <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
@@ -68,17 +70,10 @@ describe(PersistentAccordionDirective.name, () => {
   })
   class TestComponent  {
 
-    @Input()
-    a = true;
-
-    @Input()
-    b = false;
-
-    @Input()
-    c = true;
-
-    @ViewChild(PersistentAccordionDirective)
-    public directive!: PersistentAccordionDirective;
+    readonly a = input(true);
+    readonly b = input(false);
+    readonly c = input(true);
+    readonly directive = viewChild.required(PersistentAccordionDirective);
 
   }
 
@@ -112,7 +107,7 @@ describe(PersistentAccordionDirective.name, () => {
 
   it('should create an instance', () => {
     cy.mount(TestComponent).then(response => {
-      const directive = response.component.directive;
+      const directive = response.component.directive();
       expect(directive instanceof PersistentAccordionDirective).to.be.true;
     });
   });
@@ -128,7 +123,7 @@ describe(PersistentAccordionDirective.name, () => {
     setExpandedState('Personal data B', true);
     cy.mount(TestComponent).then(response => {
       cy.contains('.mat-expansion-panel-content', 'Some content A').should('be.visible').then(() => {
-        response.component.b = true;
+        response.fixture.componentRef.setInput('b', true);
         response.fixture.detectChanges();
         cy.contains('.mat-expansion-panel-content', 'Some content A').should('be.visible');
         cy.contains('.mat-expansion-panel-content', 'Some content B').should('be.visible');

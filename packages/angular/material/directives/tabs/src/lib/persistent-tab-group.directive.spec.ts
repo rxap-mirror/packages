@@ -1,99 +1,22 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   ComponentFixture,
   fakeAsync,
   TestBed,
   tick,
 } from '@angular/core/testing';
-import {
-  MatTabGroup,
-  MatTabsModule,
-} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {
   EphemeralStorageService,
   LocalStorageService,
 } from '@rxap/ngx-memory';
-import { Subject } from 'rxjs';
 import { PersistentTabGroupDirective } from './persistent-tab-group.directive';
 
 describe('@rxap/directives/material/expansion', () => {
 
   describe('PersistentTabGroupDirective', () => {
-
-    describe('Class', () => {
-
-      let directive: PersistentTabGroupDirective;
-      let group: MatTabGroup;
-      let localStorage: EphemeralStorageService;
-      let selectedIndexChange: Subject<number>;
-
-      beforeAll(() => {
-        localStorage = new EphemeralStorageService();
-      });
-
-      afterEach(() => {
-        localStorage.clear();
-        jest.resetAllMocks();
-      });
-
-      beforeEach(() => {
-
-        selectedIndexChange = new Subject<number>();
-
-        group = {
-          selectedIndex: null,
-          selectedIndexChange,
-        } as any;
-
-        directive = new PersistentTabGroupDirective(localStorage, group);
-
-        directive.id = 'id';
-        directive.uuid = 'uuid';
-
-      });
-
-      it('should build the key', () => {
-        expect(directive.key).toEqual([ PersistentTabGroupDirective.BASE_KEY, 'uuid', 'id', 'isExpanded' ].join('/'));
-      });
-
-      it('should set tab group index to 0 local storage item not exists', () => {
-
-        directive.ngOnInit();
-
-        expect(group.selectedIndex).toEqual(0);
-
-      });
-
-      it('selectedIndex should return 0 if local storage item not exists', () => {
-
-        expect(localStorage.has(directive.key)).toBeFalsy();
-        expect(directive.selectedIndex).toEqual(0);
-
-      });
-
-      it('should store tab group selected index local storage', () => {
-
-        directive.ngOnInit();
-
-        expect(localStorage.has(directive.key)).toBeFalsy();
-
-        selectedIndexChange.next(0);
-        expect(localStorage.get(directive.key)).toEqual('0');
-
-        selectedIndexChange.next(1);
-        expect(localStorage.get(directive.key)).toEqual('1');
-
-        selectedIndexChange.next(2);
-        expect(localStorage.get(directive.key)).toEqual('2');
-
-        selectedIndexChange.next(3);
-        expect(localStorage.get(directive.key)).toEqual('3');
-
-      });
-
-    });
 
     describe('Component', () => {
 
@@ -102,6 +25,7 @@ describe('@rxap/directives/material/expansion', () => {
       let directive: PersistentTabGroupDirective;
 
       @Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
           <mat-tab-group rxapPersistentTabGroup="name">
             <mat-tab label="1"></mat-tab>

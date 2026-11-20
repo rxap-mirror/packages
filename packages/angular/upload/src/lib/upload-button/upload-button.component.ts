@@ -6,20 +6,18 @@ import {
 import { AsyncPipe } from '@angular/common';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   computed,
+  DOCUMENT,
+  effect,
   ElementRef,
-  EventEmitter,
-  HostListener,
   inject,
   input,
-  Input,
+  linkedSignal,
   OnDestroy,
   output,
-  Output,
   signal,
-  DOCUMENT
+  untracked,
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -35,6 +33,7 @@ import {
 } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MethodDirective } from '@rxap/directives';
+import { coerceBoolean } from '@rxap/utilities';
 import { Subject } from 'rxjs';
 import { ReadAsDataURLPipe } from './read-as-data-url.pipe';
 
@@ -44,7 +43,11 @@ import { ReadAsDataURLPipe } from './read-as-data-url.pipe';
     styleUrls: ['./upload-button.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
   
-    host: { class: 'rxap-upload-button' },
+    host: {
+      class: 'rxap-upload-button',
+      '(focusin)': 'onFocusIn($event)',
+      '(focusout)': 'onFocusOut($event)',
+    },
     providers: [
         {
             provide: MatFormFieldControl,
@@ -70,7 +73,10 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
 
   public accept = input<string | string[]>('**/**');
 
-  readonly acceptAttribute = computed(() => Array.isArray(this.accept) ? this.accept.join(',') : this.accept);
+  readonly acceptAttribute = computed(() => {
+    const accept = this.accept();
+    return Array.isArray(accept) ? accept.join(',') : accept;
+  });
 
   public allowDownload = input(false);
 
@@ -89,37 +95,38 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
   touched = false;
 
   // region MatFormFieldControl
-  public readonly disabled = input(false);
+  public readonly disabledInput = input(false, { alias: 'disabled', transform: coerceBoolean });
+  private readonly _disabled = linkedSignal(() => this.disabledInput());
+  public get disabled(): boolean {
+    return this._disabled();
+  }
   autofilled?: boolean | undefined;
   controlType?: string | undefined = 'rxap-upload-button';
   errorState = false;
   focused = false;
-  public readonly required = input(false);
+  public readonly requiredInput = input(false, { alias: 'required', transform: coerceBoolean });
+  public get required(): boolean {
+    return this.requiredInput();
+  }
   shouldLabelFloat = true;
   public stateChanges = new Subject<void>();
   userAriaDescribedBy?: string | undefined;
-  public value: File | null = null;
+  private readonly _value = signal<File | null>(null);
+  public get value(): File | null {
+    return this._value();
+  }
   public readonly ngControl = inject(NgControl, {
     optional: true,
     self: true,
   });
-  private _placeholder!: string;
-  get placeholder() {
-    return this._placeholder;
-  }
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  set placeholder(plh) {
-    this._placeholder = plh;
-    this.stateChanges.next();
+  public readonly placeholderInput = input('', { alias: 'placeholder' });
+  public get placeholder(): string {
+    return this.placeholderInput();
   }
   public get empty(): boolean {
-    return this.value === null;
+    return this._value() === null;
   }
-  public get id(): string {
-    return `rxap-upload-button-${ UploadButtonComponent.nextId++ }`;
-  }
+  public readonly id = `rxap-upload-button-${ UploadButtonComponent.nextId++ }`;
   // endregion
 
   private onChange?: (file: File) => any;
@@ -127,7 +134,6 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
 
   public readonly snackBar = inject(MatSnackBar);
 
-  private readonly cdr = inject(ChangeDetectorRef);
   private readonly _elementRef = inject(ElementRef);
   private readonly document = inject(DOCUMENT);
 
@@ -135,6 +141,14 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
     if (this.ngControl != null) {
       this.ngControl.valueAccessor = this;
     }
+    // notify the mat-form-field about changes of the signal based state
+    effect(() => {
+      this.placeholderInput();
+      this._disabled();
+      this.requiredInput();
+      this._value();
+      untracked(() => this.stateChanges.next());
+    });
   }
 
   get isImage(): boolean {
@@ -167,13 +181,12 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
   }
 
   public setDisabledState(isDisabled: boolean) {
-    this.disabled = isDisabled;
+    this._disabled.set(isDisabled);
   }
   // endregion
 
   public writeValue(file: File): void {
-    this.value = file;
-    this.cdr.detectChanges();
+    this._value.set(file);
   }
 
   public openOverlay() {
@@ -182,7 +195,6 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
     }
   }
 
-  @HostListener('focusin', [ '$event' ])
   onFocusIn(event: FocusEvent) {
     if (!this.focused) {
       this.focused = true;
@@ -190,7 +202,6 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
     }
   }
 
-  @HostListener('focusout', [ '$event' ])
   onFocusOut(event: FocusEvent) {
     if (!this._elementRef.nativeElement.contains(event.relatedTarget as Element)) {
       this.touched = true;
@@ -220,7 +231,7 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
       this.snackBar.open('No file selected', 'close', { duration: 3000 });
     } else {
       this.uploaded.emit(file);
-      this.value = file;
+      this._value.set(file);
       if (this.onChange) {
         this.onChange(file);
       }
@@ -229,7 +240,7 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
   }
 
   clear() {
-    this.value = null;
+    this._value.set(null);
   }
 
 }

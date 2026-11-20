@@ -11,7 +11,7 @@ import {
   Sort,
   SortLike,
 } from '@rxap/data-source/table';
-import { Injectable, inject } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import {
   BaseDataSourceViewer,
   RXAP_DATA_SOURCE_METADATA,
@@ -70,18 +70,29 @@ export class OpenApiTableDataSource<
   Data extends object = any,
   Parameters extends Record<string, any> = any
 > extends AbstractTableDataSource<Data> {
-  private readonly dataSource = inject<OpenApiDataSource<PaginationData<Data>>>(RXAP_TABLE_DATA_SOURCE);
-
-  constructor() {
-    const paginator = inject<PaginatorLike | null>(RXAP_TABLE_DATA_SOURCE_PAGINATOR, { optional: true }) ?? null;
-    const tableEventToOpenApiParameters = inject(RXAP_OPEN_API_TABLE_DATA_SOURCE_TO_PARAMETERS_FUNCTION, { optional: true }) ?? null;
-    const sort = inject<SortLike | null>(RXAP_TABLE_DATA_SOURCE_SORT, { optional: true }) ?? null;
-    const filter = inject<FilterLike | null>(RXAP_TABLE_DATA_SOURCE_FILTER, { optional: true }) ?? null;
-    const parameters = inject<Observable<Parameters> | null>(RXAP_TABLE_DATA_SOURCE_PARAMETERS, { optional: true }) ?? null;
-    const metadata = inject<OpenApiTableDataSourceMetadata | null>(RXAP_DATA_SOURCE_METADATA, { optional: true }) ?? dataSource.metadata;
-
+  constructor(
+    @Inject(RXAP_TABLE_DATA_SOURCE)
+    private readonly dataSource: OpenApiDataSource<PaginationData<Data>>,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_PAGINATOR)
+      paginator: PaginatorLike | null = null,
+    @Optional()
+    @Inject(RXAP_OPEN_API_TABLE_DATA_SOURCE_TO_PARAMETERS_FUNCTION)
+      tableEventToOpenApiParameters: any | null = null,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_SORT)
+      sort: SortLike | null = null,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_FILTER)
+      filter: FilterLike | null = null,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_PARAMETERS)
+      parameters: Observable<Parameters> | null = null,
+    @Optional()
+    @Inject(RXAP_DATA_SOURCE_METADATA)
+      metadata: OpenApiTableDataSourceMetadata | null = dataSource.metadata,
+  ) {
     super(paginator, sort, filter, parameters, metadata);
-    const dataSource = this.dataSource;
 
     if (tableEventToOpenApiParameters) {
       this.tableEventToOpenApiParameters = tableEventToOpenApiParameters;

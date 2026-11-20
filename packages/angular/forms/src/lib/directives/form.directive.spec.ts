@@ -1,3 +1,4 @@
+import { outputToObservable } from '@angular/core/rxjs-interop';
 import {
   ChangeDetectorRef,
   DebugElement,
@@ -90,11 +91,11 @@ describe('@rxap/forms', () => {
           providers: [TestFormProviders, FormDirective],
         });
         const formDirective = TestBed.inject(FormDirective);
-        expect(formDirective.loaded).toBeFalsy();
-        expect(formDirective.loading).toBeFalsy();
+        expect(formDirective.loaded()).toBeFalsy();
+        expect(formDirective.loading()).toBeFalsy();
         formDirective.ngOnInit();
-        expect(formDirective.loaded).toBeTruthy();
-        expect(formDirective.loading).toBeFalsy();
+        expect(formDirective.loaded()).toBeTruthy();
+        expect(formDirective.loading()).toBeFalsy();
       });
 
       it('should call the load method(sync)', () => {
@@ -117,17 +118,17 @@ describe('@rxap/forms', () => {
         });
 
         const formDirective = TestBed.inject(FormDirective);
-        expect(formDirective.loaded).toBeFalsy();
-        expect(formDirective.loading).toBeFalsy();
+        expect(formDirective.loaded()).toBeFalsy();
+        expect(formDirective.loading()).toBeFalsy();
         expect(formDirective.value).toEqual({
           username: null,
           password: null,
         });
 
         formDirective.ngOnInit();
-        expect(formDirective.loaded).toBeTruthy();
-        expect(formDirective.loading).toBeFalsy();
-        expect(formDirective.loadingError).toBeNull();
+        expect(formDirective.loaded()).toBeTruthy();
+        expect(formDirective.loading()).toBeFalsy();
+        expect(formDirective.loadingError()).toBeNull();
         expect(formDirective.value).toEqual({
           username: 'rxap',
           password: 'paxr',
@@ -151,17 +152,17 @@ describe('@rxap/forms', () => {
         });
 
         const formDirective = TestBed.inject(FormDirective);
-        expect(formDirective.loaded).toBeFalsy();
-        expect(formDirective.loading).toBeFalsy();
+        expect(formDirective.loaded()).toBeFalsy();
+        expect(formDirective.loading()).toBeFalsy();
         expect(formDirective.value).toEqual({
           username: null,
           password: null,
         });
 
         formDirective.ngOnInit();
-        expect(formDirective.loaded).toBeFalsy();
-        expect(formDirective.loading).toBeFalsy();
-        expect(formDirective.loadingError).toEqual(new Error('failed'));
+        expect(formDirective.loaded()).toBeFalsy();
+        expect(formDirective.loading()).toBeFalsy();
+        expect(formDirective.loadingError()).toEqual(new Error('failed'));
         expect(formDirective.value).toEqual({
           username: null,
           password: null,
@@ -188,8 +189,8 @@ describe('@rxap/forms', () => {
         });
 
         const formDirective = TestBed.inject(FormDirective);
-        expect(formDirective.loaded).toBeFalsy();
-        expect(formDirective.loading).toBeFalsy();
+        expect(formDirective.loaded()).toBeFalsy();
+        expect(formDirective.loading()).toBeFalsy();
         expect(formDirective.value).toEqual({
           username: null,
           password: null,
@@ -197,13 +198,13 @@ describe('@rxap/forms', () => {
 
         formDirective.ngOnInit();
 
-        expect(formDirective.loading).toBeTruthy();
+        expect(formDirective.loading()).toBeTruthy();
 
         tick();
 
-        expect(formDirective.loaded).toBeTruthy();
-        expect(formDirective.loading).toBeFalsy();
-        expect(formDirective.loadingError).toBeNull();
+        expect(formDirective.loaded()).toBeTruthy();
+        expect(formDirective.loading()).toBeFalsy();
+        expect(formDirective.loadingError()).toBeNull();
         expect(formDirective.value).toEqual({
           username: 'rxap',
           password: 'paxr',
@@ -227,8 +228,8 @@ describe('@rxap/forms', () => {
         });
 
         const formDirective = TestBed.inject(FormDirective);
-        expect(formDirective.loaded).toBeFalsy();
-        expect(formDirective.loading).toBeFalsy();
+        expect(formDirective.loaded()).toBeFalsy();
+        expect(formDirective.loading()).toBeFalsy();
         expect(formDirective.value).toEqual({
           username: null,
           password: null,
@@ -236,13 +237,13 @@ describe('@rxap/forms', () => {
 
         formDirective.ngOnInit();
 
-        expect(formDirective.loading).toBeTruthy();
+        expect(formDirective.loading()).toBeTruthy();
 
         tick();
 
-        expect(formDirective.loaded).toBeFalsy();
-        expect(formDirective.loading).toBeFalsy();
-        expect(formDirective.loadingError).toEqual(new Error('failed'));
+        expect(formDirective.loaded()).toBeFalsy();
+        expect(formDirective.loading()).toBeFalsy();
+        expect(formDirective.loadingError()).toEqual(new Error('failed'));
         expect(formDirective.value).toEqual({
           username: null,
           password: null,
@@ -273,7 +274,7 @@ describe('@rxap/forms', () => {
 
         const rxapSubmitSpy = jest.fn();
 
-        formDirective.rxapSubmit.subscribe(rxapSubmitSpy);
+        outputToObservable(formDirective.rxapSubmit).subscribe(rxapSubmitSpy);
 
         formDirective.onSubmit(new Event('submit'));
 
@@ -283,8 +284,8 @@ describe('@rxap/forms', () => {
           password: 'paxr',
         });
         expect(formDirective.submitted).toBeTruthy();
-        expect(formDirective.submitting).toBeFalsy();
-        expect(formDirective.submitError).toBeNull();
+        expect(formDirective.submitting()).toBeFalsy();
+        expect(formDirective.submitError()).toBeNull();
       });
 
       it('should call the submit method(sync) with error', () => {
@@ -311,14 +312,14 @@ describe('@rxap/forms', () => {
 
         const rxapSubmitSpy = jest.fn();
 
-        formDirective.rxapSubmit.subscribe(rxapSubmitSpy);
+        outputToObservable(formDirective.rxapSubmit).subscribe(rxapSubmitSpy);
 
         formDirective.onSubmit(new Event('submit'));
 
         expect(rxapSubmitSpy).not.toHaveBeenCalled();
         expect(formDirective.submitted).toBeFalsy();
-        expect(formDirective.submitting).toBeFalsy();
-        expect(formDirective.submitError).toEqual(new Error('failed'));
+        expect(formDirective.submitting()).toBeFalsy();
+        expect(formDirective.submitError()).toEqual(new Error('failed'));
       });
 
       it('should call the submit method(async)', fakeAsync(() => {
@@ -345,11 +346,11 @@ describe('@rxap/forms', () => {
 
         const rxapSubmitSpy = jest.fn();
 
-        formDirective.rxapSubmit.subscribe(rxapSubmitSpy);
+        outputToObservable(formDirective.rxapSubmit).subscribe(rxapSubmitSpy);
 
         formDirective.onSubmit(new Event('submit'));
 
-        expect(formDirective.submitting).toBeTruthy();
+        expect(formDirective.submitting()).toBeTruthy();
 
         tick();
 
@@ -359,8 +360,8 @@ describe('@rxap/forms', () => {
           password: 'paxr',
         });
         expect(formDirective.submitted).toBeTruthy();
-        expect(formDirective.submitting).toBeFalsy();
-        expect(formDirective.submitError).toBeNull();
+        expect(formDirective.submitting()).toBeFalsy();
+        expect(formDirective.submitError()).toBeNull();
       }));
 
       it('should call the submit method(async) with error', fakeAsync(() => {
@@ -387,18 +388,18 @@ describe('@rxap/forms', () => {
 
         const rxapSubmitSpy = jest.fn();
 
-        formDirective.rxapSubmit.subscribe(rxapSubmitSpy);
+        outputToObservable(formDirective.rxapSubmit).subscribe(rxapSubmitSpy);
 
         formDirective.onSubmit(new Event('submit'));
 
-        expect(formDirective.submitting).toBeTruthy();
+        expect(formDirective.submitting()).toBeTruthy();
 
         tick();
 
         expect(rxapSubmitSpy).not.toHaveBeenCalled();
         expect(formDirective.submitted).toBeFalsy();
-        expect(formDirective.submitting).toBeFalsy();
-        expect(formDirective.submitError).toEqual(new Error('failed'));
+        expect(formDirective.submitting()).toBeFalsy();
+        expect(formDirective.submitError()).toEqual(new Error('failed'));
       }));
 
       it('should auto submit', fakeAsync(() => {

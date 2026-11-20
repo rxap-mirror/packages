@@ -13,7 +13,7 @@ import {
 export class Oauth2ProxyUserProfileDataSource extends MethodDataSource<Oauth2ProxyUserProfile> {
 
   constructor() {
-const method = inject(GetOauth2ProxyUserProfileMethod);
-super(method);}
+    super(inject(GetOauth2ProxyUserProfileMethod));
+  }
 
 }

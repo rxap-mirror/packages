@@ -1,12 +1,6 @@
-import { ChangeDetectorRef, Directive, input, inject } from '@angular/core';
-import {
-  ControlValueAccessor,
-  NG_VALUE_ACCESSOR,
-  NgControl,
-} from '@angular/forms';
-import { AuthorizationService } from './authorization.service';
+import { Directive, inject } from '@angular/core';
+import { NgControl } from '@angular/forms';
 import { HasEnablePermission } from './has-enable-permission';
-import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 
 @Directive({
   selector: '[formControl][rxapHasEnablePermission],[formControlName][rxapHasEnablePermission]',
@@ -14,19 +8,6 @@ import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 })
 export class FormControlHasEnablePermissionDirective extends HasEnablePermission {
   private readonly ngControl = inject<NgControl>(NgControl);
-
-
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  public override readonly identifier = input.required<string>({ alias: "rxapHasEnablePermission" });
-
-  constructor() {
-    const authorization = inject<AuthorizationService>(AuthorizationService);
-    const cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
-    const scope = inject(RXAP_AUTHORIZATION_SCOPE, { optional: true });
-    const valueAccessor = inject(NG_VALUE_ACCESSOR, { optional: true }) ?? null;
-
-    super(authorization, cdr, scope, valueAccessor);
-  }
 
   public setDisabled(disabled: boolean) {
     if (this.ngControl.control) {

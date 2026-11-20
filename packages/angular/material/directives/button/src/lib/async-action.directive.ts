@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Directive, HostListener, OnDestroy, OnInit, TemplateRef, ViewContainerRef, input, inject } from '@angular/core';
+import { ChangeDetectorRef, Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef, input, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { ToggleSubject } from '@rxap/rxjs';
 import { isPromise } from '@rxap/utilities';
@@ -10,6 +10,9 @@ import {
 @Directive({
   selector: '[rxapAsyncAction]',
   standalone: true,
+  host: {
+    '(click)': 'onClick()',
+  },
 })
 export class AsyncActionDirective {
   private readonly cdr = inject(ChangeDetectorRef);
@@ -22,7 +25,6 @@ export class AsyncActionDirective {
 
   readonly method = input.required<() => Promise<any> | void>({ alias: "rxapAsyncAction" });
 
-  @HostListener('click')
   public onClick() {
     const method = this.method();
     if (!(typeof method === 'function')) {

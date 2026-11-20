@@ -1,5 +1,5 @@
-import { computed, Directive, input, OnDestroy, output, inject } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { computed, Directive, inject, input, OnDestroy, output } from '@angular/core';
+import { outputToObservable, toSignal } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { ConfirmClick } from '@rxap/directives';
 import {
@@ -17,8 +17,6 @@ import { FormDirective } from './form.directive';
   selector: '[rxapFormSubmit]',
 
   host: {
-    '(click)': 'onClick()',
-    '(confirmed)': 'onConfirm()',
     '[disabled]': 'disabled()',
     '[type]': 'type()',
   },
@@ -30,27 +28,26 @@ export class FormSubmitDirective extends ConfirmClick implements OnDestroy {
   private readonly router = inject<Router | null>(Router, { optional: true }) ?? null;
 
 
-  public type = input<'button' | 'submit' | 'reset'>('button');
+  public readonly type = input<'button' | 'submit' | 'reset'>('button');
 
-  resetAfterSubmit = input<boolean | '', boolean>(false, { transform: coerceBoolean });
+  public readonly resetAfterSubmit = input<boolean | '', boolean>(false, { transform: coerceBoolean });
 
-  public navigateAfterSubmit = input<string[]>();
+  public readonly navigateAfterSubmit = input<string[]>();
 
-  public afterSubmit = output<any>();
+  public readonly afterSubmit = output<any>();
 
-  disableWhileSubmitting = input(true);
+  public readonly disableWhileSubmitting = input(true);
 
-  submitting = toSignal(this.formDirective.submitting$, { initialValue: false });
+  public readonly submitting = toSignal(this.formDirective.submitting$, { initialValue: false });
 
-  disabled = computed(() => this.disableWhileSubmitting() && this.submitting())
+  public readonly disabled = computed(() => this.disableWhileSubmitting() && this.submitting())
 
   private subscription?: Subscription;
 
   protected execute() {
     this.formDirective.form.markAllAsDirty();
     this.formDirective.form.markAllAsTouched();
-    this.formDirective.cdr.markForCheck();
-    this.subscription = this.formDirective.rxapSubmit.pipe(
+    this.subscription = outputToObservable(this.formDirective.rxapSubmit).pipe(
       take(1),
       tap(value => {
         const clonedValue = clone(value);

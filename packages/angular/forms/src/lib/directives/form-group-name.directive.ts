@@ -1,7 +1,11 @@
-import { Directive, forwardRef, input, inject } from '@angular/core';
+import { Directive, forwardRef, inject } from '@angular/core';
 import {
   ControlContainer,
+  AsyncValidator,
+  AsyncValidatorFn,
   FormGroupName,
+  Validator,
+  ValidatorFn,
   NG_ASYNC_VALIDATORS,
   NG_VALIDATORS,
 } from '@angular/forms';
@@ -21,12 +25,12 @@ import { RxapFormGroup } from '../form-group';
       useExisting: forwardRef(() => FormGroupNameDirective),
     },
   ],
+  // the base class declares the `name` input (alias formGroupName); re-alias it to rxapFormGroupName
+  inputs: [ { name: 'name', alias: 'rxapFormGroupName' } ],
   exportAs: 'rxapFormGroup',
   standalone: true,
 })
 export class FormGroupNameDirective extends FormGroupName {
-
-  public override readonly name = input.required<string | number | null>({ alias: "rxapFormGroupName" });
 
   public override get control(): RxapFormGroup {
     // TODO : add type check
@@ -34,9 +38,9 @@ export class FormGroupNameDirective extends FormGroupName {
   }
 
   constructor() {
-    const parent = inject(ControlContainer, { optional: true, skipSelf: true });
-    const validators = inject(NG_VALIDATORS, { optional: true, self: true });
-    const asyncValidators = inject(NG_ASYNC_VALIDATORS, { optional: true, self: true });
+    const parent = inject(ControlContainer, { optional: true, skipSelf: true })!;
+    const validators = [ ...(inject(NG_VALIDATORS, { optional: true, self: true }) ?? []) ] as Array<Validator | ValidatorFn>;
+    const asyncValidators = [ ...(inject(NG_ASYNC_VALIDATORS, { optional: true, self: true }) ?? []) ] as Array<AsyncValidator | AsyncValidatorFn>;
 
     super(parent, validators, asyncValidators);
   }

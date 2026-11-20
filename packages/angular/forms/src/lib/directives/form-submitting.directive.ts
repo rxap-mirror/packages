@@ -1,37 +1,28 @@
-import { AfterViewInit, Directive, OnDestroy, TemplateRef, ViewContainerRef, inject } from '@angular/core';
-import { Subscription } from 'rxjs';
-import {
-  distinctUntilChanged,
-  tap,
-} from 'rxjs/operators';
+import { Directive, effect, inject, TemplateRef, untracked, ViewContainerRef } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormDirective } from './form.directive';
 
 @Directive({
   selector: '[rxapFormSubmitting]',
   standalone: true,
 })
-export class FormSubmittingDirective implements AfterViewInit, OnDestroy {
+export class FormSubmittingDirective {
   private readonly formDirective = inject<FormDirective>(FormDirective);
   private readonly template = inject<TemplateRef<void>>(TemplateRef);
   private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
 
+  private readonly state = toSignal(this.formDirective.submitting$, { initialValue: false });
 
-  private subscription?: Subscription;
-
-  public ngAfterViewInit() {
-    this.subscription = this.formDirective.submitting$.pipe(
-      distinctUntilChanged(),
-      tap(loading => {
+  constructor() {
+    effect(() => {
+      const active = this.state();
+      untracked(() => {
         this.viewContainerRef.clear();
-        if (loading) {
+        if (active) {
           this.viewContainerRef.createEmbeddedView(this.template);
         }
-      }),
-    ).subscribe();
-  }
-
-  public ngOnDestroy() {
-    this.subscription?.unsubscribe();
+      });
+    });
   }
 
 }

@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Directive, EventEmitter, forwardRef, HostBinding, input, Input, isDevMode, model, OnChanges, OnDestroy, OnInit, Output, SimpleChanges, inject } from '@angular/core';
+import { ChangeDetectorRef, computed, Directive, forwardRef, inject, input, isDevMode, OnChanges, OnDestroy, OnInit, output, SimpleChanges } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import {
   ControlContainer,
   FormGroupDirective,
@@ -91,7 +92,14 @@ import {
     // endregion
   ],
 
-  host: { '(reset)': 'onReset()' },
+  host: {
+    '(reset)': 'onReset()',
+    '[class.rxap-submitting]': 'submitting()',
+    '[class.rxap-submit-error]': '!!submitError()',
+    '[class.rxap-loading]': 'loading()',
+    '[class.rxap-loaded]': 'loaded()',
+    '[class.rxap-loading-error]': '!!loadingError()',
+  },
   // eslint-disable-next-line @angular-eslint/no-outputs-metadata-property
   outputs: [ 'ngSubmit' ],
   exportAs: 'rxapForm',
@@ -100,15 +108,46 @@ import {
 export class FormDirective<T = any>
   extends FormGroupDirective
   implements OnInit, OnChanges, OnDestroy {
+  /**
+   * @deprecated the directive does not rely on manual change detection anymore
+   */
   readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
   protected readonly formDefinitionBuilder = inject<RxapFormBuilder | null>(RXAP_FORM_DEFINITION_BUILDER, { skipSelf: true, optional: true }) ?? null;
   protected readonly loadingIndicatorService = inject<LoadingIndicatorService | null>(LoadingIndicatorService, { optional: true }) ?? null;
 
+  // skip self, bc the tokens are set to null in the providers of this directive
+  private readonly injectedSubmitMethod = inject<FormSubmitMethod<any> | null>(RXAP_FORM_SUBMIT_METHOD, { skipSelf: true, optional: true }) ?? null;
+  private readonly injectedLoadMethod = inject<FormLoadMethod | null>(RXAP_FORM_LOAD_METHOD, { skipSelf: true, optional: true }) ?? null;
+  private readonly injectedLoadFailedMethod = inject<FormLoadFailedMethod | null>(RXAP_FORM_LOAD_FAILED_METHOD, { skipSelf: true, optional: true }) ?? null;
+  private readonly injectedLoadSuccessfulMethod = inject<FormLoadSuccessfulMethod | null>(RXAP_FORM_LOAD_SUCCESSFUL_METHOD, { skipSelf: true, optional: true }) ?? null;
+  private readonly injectedSubmitFailedMethod = inject<FormSubmitFailedMethod | null>(RXAP_FORM_SUBMIT_FAILED_METHOD, { skipSelf: true, optional: true }) ?? null;
+  private readonly injectedSubmitSuccessfulMethod = inject<FormSubmitSuccessfulMethod | null>(RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD, { skipSelf: true, optional: true }) ?? null;
+  private readonly injectedFormDefinition = inject<FormDefinition | null>(RXAP_FORM_DEFINITION, { optional: true }) ?? null;
+  private readonly injectedContext = inject(RXAP_FORM_CONTEXT, { optional: true }) ?? null;
+  private readonly injectedInitial = inject<T | null>(RXAP_FORM_INITIAL_STATE, { optional: true }) ?? null;
+
   public override form!: RxapFormGroup<T>;
 
-  public readonly initial = model<T | null>(null);
+  public readonly initial = input<T | null>(null);
 
-  public readonly context = model<unknown | null>(null);
+  public readonly context = input<unknown | null>(null);
+
+  /**
+   * The initial value: the input value or, as fallback, the value provided by the RXAP_FORM_INITIAL_STATE token
+   */
+  protected readonly currentInitial = computed<T | null>(() => {
+    const initial = this.initial();
+    if (initial) {
+      return initial;
+    }
+    const injected = this.injectedInitial;
+    return injected && typeof injected === 'object' && !Array.isArray(injected) ? injected : null;
+  });
+
+  /**
+   * The context: the input value or, as fallback, the value provided by the RXAP_FORM_CONTEXT token
+   */
+  protected readonly currentContext = computed<unknown | null>(() => this.context() ?? this.injectedContext);
 
   /**
    * Emits when the submit method is executed without errors. The result of the
@@ -117,60 +156,33 @@ export class FormDirective<T = any>
    * If no submit method is defined then emit after the submit button
    * is clicked.
    */
-  @Output()
-  public rxapSubmit = new EventEmitter();
+  public readonly rxapSubmit = output<any>();
 
-  @Output()
-  public invalidSubmit = new EventEmitter<Record<string, any>>();
+  public readonly invalidSubmit = output<Record<string, any>>();
 
-  // eslint-disable-next-line @angular-eslint/no-output-rename
-  @Output('submitSuccessful')
-  public submitSuccessful$ = new EventEmitter();
-
-  @HostBinding('class.rxap-submitting')
-  public get submitting(): boolean {
-    return this.submitting$.value;
-  }
-
-  @HostBinding('class.rxap-submit-error')
-  public get submitError(): Error | null {
-    return this.submitError$.value;
-  }
-
-  @HostBinding('class.rxap-loading')
-  public get loading(): boolean {
-    return this.loading$.value;
-  }
-
-  @HostBinding('class.rxap-loaded')
-  public get loaded(): boolean {
-    return this.loaded$.value;
-  }
-
-  @HostBinding('class.rxap-loading-error')
-  public get loadingError(): Error | null {
-    return this.loadingError$.value;
-  }
-
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input('rxapForm')
-  public set useFormDefinition(value: FormDefinition<T> | '') {
-    if (value) {
-      this._formDefinition = value as any;
-      this.form = value.rxapFormGroup;
-    }
-  }
-
-  public get formDefinition(): FormDefinition<T> {
-    return this._formDefinition;
-  }
+  public readonly submitSuccessful$ = output<any>({ alias: 'submitSuccessful' });
 
   public readonly submitting$ = new ToggleSubject();
   public readonly submitError$ = new BehaviorSubject<Error | null>(null);
   public readonly loading$ = new ToggleSubject();
   public readonly loaded$ = new ToggleSubject();
   public readonly loadingError$ = new BehaviorSubject<Error | null>(null);
+
+  public readonly submitting = toSignal(this.submitting$, { initialValue: false });
+  public readonly submitError = toSignal(this.submitError$, { initialValue: null });
+  public readonly loading = toSignal(this.loading$, { initialValue: false });
+  public readonly loaded = toSignal(this.loaded$, { initialValue: false });
+  public readonly loadingError = toSignal(this.loadingError$, { initialValue: null });
+
+  /**
+   * The form definition instance. Overrides the form definition provided by the
+   * RXAP_FORM_DEFINITION token or the RXAP_FORM_DEFINITION_BUILDER
+   */
+  public readonly useFormDefinition = input<FormDefinition<T> | ''>('', { alias: 'rxapForm' });
+
+  public get formDefinition(): FormDefinition<T> {
+    return this._formDefinition;
+  }
 
   protected _formDefinition!: FormDefinition<T>;
 
@@ -186,46 +198,44 @@ export class FormDirective<T = any>
 
   public readonly submitSuccessfulMethod = input<FormSubmitSuccessfulMethod | null>(null);
 
+  // the input value has precedence over the value provided by the injection token
+  protected readonly currentSubmitMethod = computed(() => this.submitMethod() ?? this.injectedSubmitMethod);
+  protected readonly currentLoadMethod = computed(() => this.loadMethod() ?? this.injectedLoadMethod);
+  protected readonly currentLoadFailedMethod = computed(() => this.loadFailedMethod() ?? this.injectedLoadFailedMethod);
+  protected readonly currentLoadSuccessfulMethod = computed(() => this.loadSuccessfulMethod() ?? this.injectedLoadSuccessfulMethod);
+  protected readonly currentSubmitFailedMethod = computed(() => this.submitFailedMethod() ?? this.injectedSubmitFailedMethod);
+  protected readonly currentSubmitSuccessfulMethod = computed(() => this.submitSuccessfulMethod() ?? this.injectedSubmitSuccessfulMethod);
+
   private _autoSubmitSubscription = new Subscription();
 
   constructor() {
-    const formDefinition = inject<FormDefinition | null>(RXAP_FORM_DEFINITION, { optional: true }) ?? null;
-    const submitMethod = inject<FormSubmitMethod<any> | null>(RXAP_FORM_SUBMIT_METHOD, { skipSelf: true, optional: true }) ?? null;
-    const loadMethod = inject<FormLoadMethod | null>(RXAP_FORM_LOAD_METHOD, { skipSelf: true, optional: true }) ?? null;
-    const loadFailedMethod = inject<FormLoadFailedMethod | null>(RXAP_FORM_LOAD_FAILED_METHOD, { skipSelf: true, optional: true }) ?? null;
-    const loadSuccessfulMethod = inject<FormLoadSuccessfulMethod | null>(RXAP_FORM_LOAD_SUCCESSFUL_METHOD, { skipSelf: true, optional: true }) ?? null;
-    const submitFailedMethod = inject<FormSubmitFailedMethod | null>(RXAP_FORM_SUBMIT_FAILED_METHOD, { skipSelf: true, optional: true }) ?? null;
-    const submitSuccessfulMethod = inject<FormSubmitSuccessfulMethod | null>(RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD, { skipSelf: true, optional: true }) ?? null;
-    const context = inject(RXAP_FORM_CONTEXT, { optional: true }) ?? null;
-    const initial = inject<T | null>(RXAP_FORM_INITIAL_STATE, { optional: true }) ?? null;
-
     super([], []);
-    const formDefinitionBuilder = this.formDefinitionBuilder;
-
-    this.submitMethod = submitMethod ?? this.submitMethod();
-    this.loadMethod = loadMethod ?? this.loadMethod();
-    this.loadFailedMethod = loadFailedMethod ?? this.loadFailedMethod();
-    this.loadSuccessfulMethod = loadSuccessfulMethod ?? this.loadSuccessfulMethod();
-    this.submitFailedMethod = submitFailedMethod ?? this.submitFailedMethod();
-    this.submitSuccessfulMethod = submitSuccessfulMethod ?? this.submitSuccessfulMethod();
-    if (!formDefinition && formDefinitionBuilder) {
-      formDefinition = formDefinitionBuilder.build<FormDefinition>();
+    let formDefinition = this.injectedFormDefinition;
+    if (!formDefinition && this.formDefinitionBuilder) {
+      formDefinition = this.formDefinitionBuilder.build<FormDefinition>();
     }
     if (formDefinition) {
-      this._formDefinition = formDefinition;
-      this.form = formDefinition.rxapFormGroup;
+      this._formDefinition = formDefinition as FormDefinition<T>;
+      this.form = formDefinition.rxapFormGroup as RxapFormGroup<T>;
     }
     this.loadingIndicatorService?.attachLoading(this.loading$);
     this.loadingIndicatorService?.attachLoading(this.submitting$);
-    if (context) {
-      this.context.set(context);
-    }
-    if (initial && typeof initial === 'object' && !Array.isArray(initial)) {
-      this.initial.set(initial);
+  }
+
+  /**
+   * Applies the form definition passed with the rxapForm input
+   */
+  private applyFormDefinitionInput() {
+    const value = this.useFormDefinition();
+    if (value) {
+      this._formDefinition = value as any;
+      this.form = value.rxapFormGroup;
     }
   }
 
   public override ngOnChanges(changes: SimpleChanges) {
+    // the form must be set before the FormGroupDirective validates its presence
+    this.applyFormDefinitionInput();
     super.ngOnChanges(changes);
 
     const formChange = changes['form'];
@@ -236,6 +246,7 @@ export class FormDirective<T = any>
   }
 
   public ngOnInit() {
+    this.applyFormDefinitionInput();
     if (!this._formDefinition) {
       // TODO : replace with rxap error
       throw new Error('The form definition instance is not defined');
@@ -363,19 +374,19 @@ export class FormDirective<T = any>
   }
 
   protected loadInitialState(form: RxapFormGroup): void {
-    const initial = this.initial();
-    if (initial && typeof initial === 'object' && !Array.isArray(initial)) {
+    const initial = this.currentInitial();
+    if (initial) {
       if (isDevMode()) {
         console.log('use the value from input initial');
       }
       form.patchValue(initial, { setInitialValue: true });
     } else {
-      const loadMethod = this.loadMethod();
+      const loadMethod = this.currentLoadMethod();
       if (loadMethod) {
         this.loading$.enable();
 
         try {
-          const resultOrPromise = loadMethod.call({ context: this.context(), initial: this.initial() });
+          const resultOrPromise = loadMethod.call({ context: this.currentContext(), initial: this.currentInitial() });
           if (isPromise(resultOrPromise)) {
             resultOrPromise
               .then((value) => {
@@ -389,7 +400,6 @@ export class FormDirective<T = any>
               })
               .finally(() => {
                 this.loading$.disable();
-                this.cdr.detectChanges();
               });
           } else if (isObject(resultOrPromise)) {
             form.patchValue(resultOrPromise, { setInitialValue: true });
@@ -415,7 +425,7 @@ export class FormDirective<T = any>
   }
 
   protected loadSuccessful(value: any) {
-    const loadSuccessfulMethod = this.loadSuccessfulMethod();
+    const loadSuccessfulMethod = this.currentLoadSuccessfulMethod();
     if (loadSuccessfulMethod) {
       loadSuccessfulMethod.call(value);
     } else if (isDevMode()) {
@@ -428,7 +438,7 @@ export class FormDirective<T = any>
   protected loadFailed(error: Error) {
     console.debug('Load Error:', error);
     console.error('Load Error:', error.message);
-    const loadFailedMethod = this.loadFailedMethod();
+    const loadFailedMethod = this.currentLoadFailedMethod();
     if (loadFailedMethod) {
       loadFailedMethod?.call(error);
     } else if (isDevMode()) {
@@ -452,13 +462,13 @@ export class FormDirective<T = any>
 
   protected submit() {
     const value = this.getSubmitValue();
-    const submitMethod = this.submitMethod();
+    const submitMethod = this.currentSubmitMethod();
     if (submitMethod) {
       Reflect.set(this, 'submitted', false);
       this.submitting$.enable();
       this.submitError$.next(null);
       try {
-        const resultOrPromise = submitMethod.call(value, this.context(), this.initial());
+        const resultOrPromise = submitMethod.call(value, this.currentContext(), this.currentInitial());
         if (isPromise(resultOrPromise)) {
           resultOrPromise
             .then((result) => {
@@ -472,7 +482,6 @@ export class FormDirective<T = any>
             })
             .finally(() => {
               this.submitting$.disable();
-              this.cdr.detectChanges();
             });
         } else {
           Reflect.set(this, 'submitted', true);
@@ -500,7 +509,7 @@ export class FormDirective<T = any>
   protected submitFailed(error: Error) {
     console.debug('Submit Error:', error);
     console.error('Submit Error:', error.message);
-    const submitFailedMethod = this.submitFailedMethod();
+    const submitFailedMethod = this.currentSubmitFailedMethod();
     if (submitFailedMethod) {
       submitFailedMethod.call(error);
     } else if (isDevMode()) {
@@ -512,8 +521,8 @@ export class FormDirective<T = any>
   }
 
   protected submitSuccessful(value: any) {
-    this.submitSuccessful$.next(value);
-    const submitSuccessfulMethod = this.submitSuccessfulMethod();
+    this.submitSuccessful$.emit(value);
+    const submitSuccessfulMethod = this.currentSubmitSuccessfulMethod();
     if (submitSuccessfulMethod) {
       submitSuccessfulMethod.call(value);
     } else if (isDevMode()) {

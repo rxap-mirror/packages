@@ -1,8 +1,19 @@
-import { ChangeDetectorRef, Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef, input, inject } from '@angular/core';
-import { Subscription } from 'rxjs';
+import {
+  Directive,
+  effect,
+  inject,
+  input,
+  TemplateRef,
+  untracked,
+  ViewContainerRef,
+} from '@angular/core';
+import {
+  toObservable,
+  toSignal,
+} from '@angular/core/rxjs-interop';
 import {
   distinctUntilChanged,
-  tap,
+  switchMap,
 } from 'rxjs/operators';
 import { AuthorizationService } from './authorization.service';
 import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
@@ -11,40 +22,38 @@ import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
   selector: '[rxapIfHasPermission]',
   standalone: true,
 })
-export class IfHasPermissionDirective implements OnInit, OnDestroy {
-  private readonly authorization = inject<AuthorizationService>(AuthorizationService);
+export class IfHasPermissionDirective {
+  private readonly authorization = inject(AuthorizationService);
   private readonly template = inject<TemplateRef<any>>(TemplateRef);
-  private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
-  private readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+  private readonly viewContainerRef = inject(ViewContainerRef);
   private readonly scope = inject(RXAP_AUTHORIZATION_SCOPE, { optional: true }) ?? null;
 
+  public readonly identifier = input.required<string>({ alias: 'rxapIfHasPermission' });
 
-  public readonly identifier = input.required<string>({ alias: "rxapIfHasPermission" });
+  public readonly else = input<TemplateRef<any> | undefined>(undefined, { alias: 'rxapIfHasPermissionElse' });
 
-  public readonly else = input<TemplateRef<any>>(undefined, { alias: "rxapIfHasPermissionElse" });
+  private readonly hasPermission = toSignal(
+    toObservable(this.identifier).pipe(
+      switchMap(identifier => this.authorization.hasPermission$(identifier, this.scope)),
+      distinctUntilChanged(),
+    ),
+  );
 
-  private _subscription?: Subscription;
-
-  public ngOnInit() {
-    this._subscription = this.authorization
-                             .hasPermission$(this.identifier(), this.scope || null)
-                             .pipe(
-                               distinctUntilChanged(),
-                               tap((hasPermission) => {
-                                 this.viewContainerRef.clear();
-                                 const else = this.else();
-                                 if (hasPermission) {
-                                   this.viewContainerRef.createEmbeddedView(this.template);
-                                 } else if (else) {
-                                   this.viewContainerRef.createEmbeddedView(else);
-                                 }
-                                 this.cdr.markForCheck();
-                               }),
-                             )
-                             .subscribe();
-  }
-
-  public ngOnDestroy() {
-    this._subscription?.unsubscribe();
+  constructor() {
+    effect(() => {
+      const hasPermission = this.hasPermission();
+      const elseTemplate = this.else();
+      if (hasPermission === undefined) {
+        return;
+      }
+      untracked(() => {
+        this.viewContainerRef.clear();
+        if (hasPermission) {
+          this.viewContainerRef.createEmbeddedView(this.template);
+        } else if (elseTemplate) {
+          this.viewContainerRef.createEmbeddedView(elseTemplate);
+        }
+      });
+    });
   }
 }

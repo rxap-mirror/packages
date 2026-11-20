@@ -1,36 +1,37 @@
-import { ChangeDetectorRef, Directive, HostBinding, OnDestroy, OnInit, input, inject } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import {
+  Directive,
+  inject,
+  input,
+} from '@angular/core';
+import {
+  toObservable,
+  toSignal,
+} from '@angular/core/rxjs-interop';
+import {
+  map,
+  switchMap,
+} from 'rxjs/operators';
 import { AuthorizationService } from './authorization.service';
 import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 
 @Directive({
   selector: '[rxapHasWritePermission]',
   standalone: true,
+  host: {
+    '[readonly]': 'readonly()',
+  },
 })
-export class HasWritePermissionDirective implements OnInit, OnDestroy {
-  private readonly authorization = inject<AuthorizationService>(AuthorizationService);
-  protected readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
+export class HasWritePermissionDirective {
+  private readonly authorization = inject(AuthorizationService);
   private readonly scope = inject(RXAP_AUTHORIZATION_SCOPE, { optional: true }) ?? null;
 
-  public readonly identifier = input.required<string>({ alias: "rxapHasWritePermission" });
-  @HostBinding('readonly')
-  public readonly = false;
-  private _subscription?: Subscription;
+  public readonly identifier = input.required<string>({ alias: 'rxapHasWritePermission' });
 
-  public ngOnInit() {
-    this._subscription = this.authorization
-                             .hasPermission$(this.identifier(), this.scope || null)
-                             .pipe(
-                               tap((hasPermission) => {
-                                 this.readonly = !hasPermission;
-                                 this.cdr.markForCheck();
-                               }),
-                             )
-                             .subscribe();
-  }
-
-  public ngOnDestroy() {
-    this._subscription?.unsubscribe();
-  }
+  public readonly readonly = toSignal(
+    toObservable(this.identifier).pipe(
+      switchMap(identifier => this.authorization.hasPermission$(identifier, this.scope)),
+      map(hasPermission => !hasPermission),
+    ),
+    { initialValue: false },
+  );
 }

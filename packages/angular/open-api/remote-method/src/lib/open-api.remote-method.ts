@@ -5,7 +5,7 @@ import {
   HttpEventType,
   HttpResponse,
 } from '@angular/common/http';
-import { Injectable, Injector, isDevMode, inject } from '@angular/core';
+import { Inject, Injectable, Injector, isDevMode, Optional } from '@angular/core';
 import { Mixin } from '@rxap/mixin';
 import {
   DEFAULT_OPEN_API_REMOTE_METHOD_META_DATA,
@@ -105,15 +105,23 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
   protected readonly disableValidation: boolean = false;
   private readonly strict: boolean = false;
 
-  constructor() {
-    const http = inject<HttpClient>(HttpClient);
-    const injector = inject<Injector>(Injector);
-    const openApiConfigService = inject<OpenApiConfigService>(OpenApiConfigService);
-    const metadata = inject<OpenApiRemoteMethodMetadata | null>(DEFAULT_OPEN_API_REMOTE_METHOD_META_DATA, { optional: true }) ?? null;
-    const strict = inject(RXAP_OPEN_API_STRICT_VALIDATOR, { optional: true }) ?? null;
-    const disableSchemaValidation = inject(DISABLE_SCHEMA_VALIDATION, { optional: true }) ?? null;
-    const disableValidation = inject(DISABLE_VALIDATION, { optional: true }) ?? null;
-
+  constructor(
+    @Inject(HttpClient) http: HttpClient,
+    @Inject(Injector) injector: Injector,
+    @Inject(OpenApiConfigService) openApiConfigService: OpenApiConfigService,
+    @Optional()
+    @Inject(DEFAULT_OPEN_API_REMOTE_METHOD_META_DATA)
+      metadata: OpenApiRemoteMethodMetadata | null = null,
+    @Optional()
+    @Inject(RXAP_OPEN_API_STRICT_VALIDATOR)
+      strict: boolean | null = null,
+    @Optional()
+    @Inject(DISABLE_SCHEMA_VALIDATION)
+      disableSchemaValidation: boolean | null = null,
+    @Optional()
+    @Inject(DISABLE_VALIDATION)
+      disableValidation: boolean | null = null,
+  ) {
     super(http, injector, metadata);
     this.metadata['operation'] ??= openApiConfigService.getOperation(this.metadata.id);
     if (typeof this.metadata['operation'] === 'string') {

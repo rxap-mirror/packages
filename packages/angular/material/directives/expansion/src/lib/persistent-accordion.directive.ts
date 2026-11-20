@@ -5,6 +5,7 @@ import {
   ElementRef,
   input,
   QueryList,
+  untracked,
 } from '@angular/core';
 import {
   MatExpansionPanel,
@@ -25,11 +26,14 @@ export class PersistentAccordionDirective {
   constructor() {
     // runs after render, once the panels and their headers are resolved, and again whenever the panels change
     afterRenderEffect((onCleanup) => {
+      const panels = this.expansionPanel();
       const subscription = new Subscription();
-      for (const panel of this.expansionPanel()) {
-        subscription.add(this.trackExpandState(panel));
-        this.restoreState(panel);
-      }
+      untracked(() => {
+        for (const panel of panels) {
+          subscription.add(this.trackExpandState(panel));
+          this.restoreState(panel);
+        }
+      });
       onCleanup(() => subscription.unsubscribe());
     });
   }
@@ -43,11 +47,11 @@ export class PersistentAccordionDirective {
   }
 
   protected getPanelIdentifier(panel: MatExpansionPanel): string {
-    const headers = (panel.accordion as any)._headers as QueryList<MatExpansionPanelHeader>;
-    const header = headers.find(item => item.panel === panel);
-    const element = ((header as any)._element as ElementRef);
-    const nativeElement = element.nativeElement as HTMLElement;
-    const title = nativeElement.querySelector('mat-panel-title')?.textContent;
+    const headers = (panel.accordion as any)?._headers as QueryList<MatExpansionPanelHeader> | undefined;
+    const header = headers?.find(item => item.panel === panel);
+    const element = (header as any)?._element as ElementRef | undefined;
+    const nativeElement = element?.nativeElement as HTMLElement | undefined;
+    const title = nativeElement?.querySelector('mat-panel-title')?.textContent;
     return title ? this.hashString(title) : panel.id;
   }
 

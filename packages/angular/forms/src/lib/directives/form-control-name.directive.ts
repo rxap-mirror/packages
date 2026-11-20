@@ -1,4 +1,4 @@
-import { Directive, forwardRef, input, inject } from '@angular/core';
+import { Directive, forwardRef, inject } from '@angular/core';
 import {
   AsyncValidator,
   AsyncValidatorFn,
@@ -28,6 +28,8 @@ import { RxapFormControl } from '../form-control';
       useExisting: forwardRef(() => FormControlNameDirective),
     },
   ],
+  // the base class declares the `name` input (alias formControlName); re-alias it to rxapFormControlName
+  inputs: [ { name: 'name', alias: 'rxapFormControlName' } ],
   exportAs: 'rxapFormControl',
   standalone: true,
 })
@@ -35,13 +37,11 @@ export class FormControlNameDirective extends FormControlName {
 
   override readonly control!: RxapFormControl;
 
-  public override readonly name = input.required<string | number | null>({ alias: "rxapFormControlName" });
-
   constructor() {
-    const parent = inject(ControlContainer, { optional: true, skipSelf: true });
-    const validators = inject<Array<Validator | ValidatorFn>>(NG_VALIDATORS, { optional: true, self: true });
-    const asyncValidators = inject<Array<AsyncValidator | AsyncValidatorFn>>(NG_ASYNC_VALIDATORS, { optional: true, self: true });
-    const valueAccessors = inject(NG_VALUE_ACCESSOR, { optional: true, self: true });
+    const parent = inject(ControlContainer, { optional: true, skipSelf: true })!;
+    const validators = inject<Array<Validator | ValidatorFn>>(NG_VALIDATORS, { optional: true, self: true }) ?? [];
+    const asyncValidators = inject<Array<AsyncValidator | AsyncValidatorFn>>(NG_ASYNC_VALIDATORS, { optional: true, self: true }) ?? [];
+    const valueAccessors = [ ...(inject(NG_VALUE_ACCESSOR, { optional: true, self: true }) ?? []) ];
 
     super(parent, validators, asyncValidators, valueAccessors, null);
   }

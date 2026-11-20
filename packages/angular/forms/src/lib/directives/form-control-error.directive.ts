@@ -1,6 +1,5 @@
-import { Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef, input, inject } from '@angular/core';
+import { Directive, effect, inject, input, TemplateRef, untracked, ViewContainerRef } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
-import { Subscription } from 'rxjs';
 import {
   filter,
   startWith,
@@ -15,7 +14,7 @@ import { ValidationErrors } from '../types';
   selector: '[rxapFormControlError]',
   standalone: true,
 })
-export class FormControlErrorDirective implements OnInit, OnDestroy {
+export class FormControlErrorDirective {
   private readonly template = inject<TemplateRef<{
     $implicit: ValidationErrors;
 }>>(TemplateRef);
@@ -29,31 +28,33 @@ export class FormControlErrorDirective implements OnInit, OnDestroy {
   // eslint-disable-next-line @angular-eslint/no-input-rename
   public readonly errorKey = input.required<string>({ alias: "rxapFormControlErrorIf" });
 
-  private subscription?: Subscription;
+  constructor() {
+    effect((onCleanup) => {
+      const name = this.name();
+      const errorKey = this.errorKey();
+      untracked(() => {
+        const control = this.parent.control?.get(name);
 
-  public ngOnInit() {
-    const control = this.parent.control?.get(this.name());
-
-    if (!control) {
-      throw new Error('Could not extract form control instance');
-    }
-
-    this.subscription = control.statusChanges.pipe(
-      startWith(control.status),
-      filter(status => status === 'INVALID'),
-      tap(() => {
-        this.viewContainerRef.clear();
-        const errorKey = this.errorKey();
-        if (control.hasError(errorKey)) {
-          this.viewContainerRef.createEmbeddedView(this.template, { $implicit: control.getError(errorKey) });
+        if (!control) {
+          throw new Error('Could not extract form control instance');
         }
-      }),
-    ).subscribe();
 
-  }
-
-  public ngOnDestroy() {
-    this.subscription?.unsubscribe();
+        const subscription = control.statusChanges.pipe(
+          startWith(control.status),
+          filter(status => status === 'INVALID'),
+          tap(() => {
+            this.viewContainerRef.clear();
+            if (control.hasError(errorKey)) {
+              this.viewContainerRef.createEmbeddedView(this.template, { $implicit: control.getError(errorKey) });
+            }
+          }),
+        ).subscribe();
+        onCleanup(() => {
+          subscription.unsubscribe();
+          this.viewContainerRef.clear();
+        });
+      });
+    });
   }
 
 }

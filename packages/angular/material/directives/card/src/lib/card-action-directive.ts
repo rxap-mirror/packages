@@ -1,25 +1,13 @@
-import {
-  Directive,
-  HostBinding,
-} from '@angular/core';
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[rxapCardAction]',
   standalone: true,
+  host: {
+    '[style.position]': '"absolute"',
+    '[style.top]': '"8px"',
+    '[style.right]': '"8px"',
+  },
 })
 export class CardActionDirective {
-
-  @HostBinding('style.position')
-  public position = 'absolute';
-
-  @HostBinding('style.top')
-  public top = '8px';
-
-  @HostBinding('style.right')
-  public right = '8px';
-
 }
-
-
-
-

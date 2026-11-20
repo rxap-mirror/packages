@@ -1,12 +1,6 @@
-import { ChangeDetectorRef, Directive, input, inject } from '@angular/core';
-import {
-  ControlValueAccessor,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { Directive, inject } from '@angular/core';
 import { MatInput } from '@angular/material/input';
-import { AuthorizationService } from './authorization.service';
 import { HasEnablePermission } from './has-enable-permission';
-import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 
 @Directive({
   selector: '[matInput][rxapHasEnablePermission]:not([formControl]):not([formControlName])',
@@ -14,19 +8,6 @@ import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 })
 export class MatInputHasEnablePermissionDirective extends HasEnablePermission {
   private readonly matInput = inject<MatInput>(MatInput);
-
-
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  public override readonly identifier = input.required<string>({ alias: "rxapHasEnablePermission" });
-
-  constructor() {
-    const authorization = inject<AuthorizationService>(AuthorizationService);
-    const cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
-    const scope = inject(RXAP_AUTHORIZATION_SCOPE, { optional: true });
-    const valueAccessor = inject(NG_VALUE_ACCESSOR, { optional: true }) ?? null;
-
-    super(authorization, cdr, scope, valueAccessor);
-  }
 
   public setDisabled(disabled: boolean) {
     this.matInput.disabled = disabled;
