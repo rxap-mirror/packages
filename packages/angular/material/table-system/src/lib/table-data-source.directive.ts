@@ -1,5 +1,5 @@
 import { CdkTable } from '@angular/cdk/table';
-import { ChangeDetectorRef, Directive, InjectionToken, Input, isDevMode, OnDestroy, OnInit, input, inject } from '@angular/core';
+import { ChangeDetectorRef, Directive, InjectionToken, isDevMode, OnDestroy, OnInit, input, inject, linkedSignal } from '@angular/core';
 import type { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { pipeDataSource } from '@rxap/data-source';
@@ -62,15 +62,9 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
   /**
    * @deprecated use dataSource instead
    */
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input('rxapTableDataSource')
-  public set setDataSource(dataSource: AbstractTableDataSource<Data> | '') {
-    if (typeof dataSource !== 'string') {
-      this.dataSource = dataSource;
-    }
-  }
+  public readonly deprecatedDataSource = input<AbstractTableDataSource<Data> | ''>('', { alias: 'rxapTableDataSource' });
+
+  public readonly dataSourceInput = input<AbstractTableDataSource<Data> | undefined>(undefined, { alias: 'dataSource' });
 
   public readonly paginator = input<MatPaginator>();
 
@@ -78,7 +72,14 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
 
   public readonly id = input.required<string>();
   public readonly parameters = input<Observable<Record<string, any>>>();
-  public readonly dataSource = input<AbstractTableDataSource<Data>>();
+  /**
+   * The current data source. Initialised with the dataSource input - if not defined the
+   * data source is created from the TABLE_DATA_SOURCE or RXAP_TABLE_METHOD token on init.
+   */
+  public readonly dataSource = linkedSignal<AbstractTableDataSource<Data> | undefined>(() => {
+    const deprecated = this.deprecatedDataSource();
+    return this.dataSourceInput() ?? (deprecated !== '' ? deprecated : undefined);
+  });
 
   public method?: Method<Data[], TableEvent>;
 
@@ -113,7 +114,7 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
     null;
 
   constructor() {
-    const adapterFactory = inject(TABLE_REMOTE_METHOD_ADAPTER_FACTORY, { optional: true });
+    const adapterFactory = inject<TableRemoteMethodAdapterFactory<Data> | null>(TABLE_REMOTE_METHOD_ADAPTER_FACTORY, { optional: true });
 
     this.matTable.trackBy = this.trackBy;
     this.adapterFactory = adapterFactory;
@@ -128,10 +129,10 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
 
   public ngOnInit() {
     const tableFilter = this._tableFilter ?? this.tableFilter ?? undefined;
-    const dataSource = this.dataSource();
+    let dataSource = this.dataSource();
     if (!dataSource) {
       if (this.sourceDataSource) {
-        this.dataSource = this.sourceDataSource;
+        dataSource = this.sourceDataSource;
       } else if (this.sourceMethod) {
         if (this.adapterFactory) {
           this.method = this.adapterFactory(
@@ -144,7 +145,7 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
         } else {
           this.method = this.sourceMethod;
         }
-        this.dataSource = new DynamicTableDataSource<Data>(
+        dataSource = new DynamicTableDataSource<Data>(
           this.method,
           this.paginator(),
           this.matSort,
@@ -158,6 +159,7 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
           'The TABLE_DATA_SOURCE and RXAP_TABLE_METHOD token are not defined!',
         );
       }
+      this.dataSource.set(dataSource);
     }
     dataSource.paginator = this.paginator();
     dataSource.sort = this.matSort ?? undefined;

@@ -1,10 +1,9 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import type { WindowRef } from '@rxap/window-system';
 import { RXAP_WINDOW_REF } from '@rxap/window-system';
-import type { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { SelectRowService } from '../select-row/select-row.service';
-import { AsyncPipe } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -14,20 +13,18 @@ import { MatButtonModule } from '@angular/material/button';
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         MatButtonModule,
-        AsyncPipe,
     ]
 })
 export class TableSelectControlsComponent {
   private readonly selectRows = inject<SelectRowService<any>>(SelectRowService);
   private readonly windowRef = inject<WindowRef>(RXAP_WINDOW_REF);
 
-  public hasNotSelected$: Observable<boolean>;
-
-  constructor() {
-    this.hasNotSelected$ = this.selectRows.selectedRows$.pipe(
+  public readonly hasNotSelected = toSignal(
+    this.selectRows.selectedRows$.pipe(
       map((selected) => selected.length === 0),
-    );
-  }
+    ),
+    { initialValue: true },
+  );
 
   public cancel() {
     this.windowRef.close();

@@ -1,4 +1,4 @@
-import { Directive, HostBinding, InjectionToken, Injector, INJECTOR, Input, isDevMode, OnDestroy, input, output, inject } from '@angular/core';
+import { computed, Directive, InjectionToken, Injector, INJECTOR, isDevMode, OnDestroy, input, output, inject } from '@angular/core';
 import { ConfirmClick } from '@rxap/directives';
 import {
   FormType,
@@ -23,10 +23,8 @@ export const RXAP_WINDOW_FORM_SYSTEM_OPEN_FORM_CONSTRUCTOR = new InjectionToken(
  */
 @Directive({
   selector: '[rxapOpenForm]',
-
   host: {
-    '(click)': 'onClick()',
-    '(confirmed)': 'onConfirm()',
+    '[attr.type]': 'type()',
   },
   standalone: true,
 })
@@ -36,8 +34,7 @@ export class OpenFormDirective<Data, Result = Data>
   private readonly formWindowService = inject<FormWindowService>(FormWindowService);
   private readonly injector = inject<Injector>(INJECTOR);
 
-  @HostBinding('attr.type')
-public readonly type = input('button');
+  public readonly type = input('button');
 
   public readonly submitted = output<Result>();
   public readonly initial = input<Partial<Data>>();
@@ -50,33 +47,20 @@ public readonly type = input('button');
   public readonly panelClass = input<string>();
   private _formWindowRef?: WindowRef;
 
-  constructor() {
-    const formDefinitionConstructor = inject<Constructor<FormType<any>> | null>(RXAP_WINDOW_FORM_SYSTEM_OPEN_FORM_CONSTRUCTOR, { optional: true });
+  private readonly defaultFormDefinitionConstructor = inject<Constructor<FormType<any>> | null>(RXAP_WINDOW_FORM_SYSTEM_OPEN_FORM_CONSTRUCTOR, { optional: true });
 
-    super();
-    if (formDefinitionConstructor) {
-      this._formDefinitionConstructor = formDefinitionConstructor;
-    }
-  }
+  public readonly formDefinitionConstructorInput = input<Constructor<FormType<any>> | ''>('', { alias: 'rxapOpenForm' });
 
-  private _formDefinitionConstructor!: Constructor<FormType<any>>;
+  private readonly formDefinitionConstructor = computed(
+    () => this.formDefinitionConstructorInput() || this.defaultFormDefinitionConstructor,
+  );
 
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input('rxapOpenForm')
-  public set formDefinitionConstructor(value: Constructor<FormType<any>> | '') {
-    if (value) {
-      this._formDefinitionConstructor = value;
-    }
-  }
-
-  @Input()
-  public onSubmit(value: Data): any | Promise<any> {
+  public readonly onSubmit = input<(value: Data) => any | Promise<any>>((value: Data) => {
     if (isDevMode()) {
       console.warn('[rxapOpenForm] No "onSubmit" method is provided!');
     }
     return value;
-  }
+  });
 
   public onSubmitSuccessful(result: Result): void {
     this.submitted.emit(result);
@@ -89,7 +73,7 @@ public readonly type = input('button');
 
   protected execute() {
     this._formWindowRef = this.formWindowService.open(
-      this._formDefinitionConstructor,
+      this.formDefinitionConstructor()!,
       {
         injector: this.injector,
         submitSuccessfulMethod: ToFormMethod(

@@ -1,4 +1,5 @@
 import { ComponentType } from '@angular/cdk/overlay';
+import { outputToObservable } from '@angular/core/rxjs-interop';
 
 import {
   ApplicationRef,
@@ -63,7 +64,7 @@ export class ErrorCaptureDialogService<Error = any> implements IErrorCaptureDial
     });
     this.applicationRef.attachView(componentRef.hostView);
     return new Observable<void>(subscriber => {
-      const subscription = componentRef.instance.closeDialog.pipe(
+      const subscription = outputToObservable(componentRef.instance.closeDialog).pipe(
         take(1),
         tap(() => {
           subscriber.next();

@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectionStrategy, Component, input, inject } from '@angular/core';
+import { afterNextRender, ChangeDetectionStrategy, Component, input, inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import {
   MatSlideToggleChange,
@@ -16,7 +16,7 @@ import { TableColumnMenuComponent } from '../table-column-menu.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [StopPropagationDirective, MatSlideToggleModule]
 })
-export class TableShowArchivedSlideComponent implements AfterViewInit {
+export class TableShowArchivedSlideComponent {
   private readonly tableFilter = inject<TableFilterService | null>(TableFilterService, { optional: true });
   private readonly tableColumnMenu = inject<TableColumnMenuComponent>(TableColumnMenuComponent);
   private readonly selectRows = inject<SelectRowService | null>(SelectRowService);
@@ -43,12 +43,14 @@ export class TableShowArchivedSlideComponent implements AfterViewInit {
     }
   }
 
-  public ngAfterViewInit() {
-    this.tableColumnMenu.deactivate('removedAt');
-    this.tableColumnMenu.deactivate('__removedAt');
-    this.tableColumnMenu.deactivate('__--removed-at');
-    this.tableColumnMenu.deactivate('removed-at');
-    this.tableColumnMenu.deactivate('__removed-at');
+  constructor() {
+    afterNextRender(() => {
+      this.tableColumnMenu.deactivate('removedAt');
+      this.tableColumnMenu.deactivate('__removedAt');
+      this.tableColumnMenu.deactivate('__--removed-at');
+      this.tableColumnMenu.deactivate('removed-at');
+      this.tableColumnMenu.deactivate('__removed-at');
+    });
   }
 
 }

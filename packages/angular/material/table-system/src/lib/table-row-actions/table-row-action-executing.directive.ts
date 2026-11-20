@@ -10,7 +10,7 @@ export class TableRowActionExecutingDirective {
 
 
   public show(): void {
-    this.vcr.createEmbeddedView(this.templateRef);
+    this.vcr.createEmbeddedView(this.templateRef).detectChanges();
   }
 
   public hide(): void {

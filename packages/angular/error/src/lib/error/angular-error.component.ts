@@ -1,5 +1,6 @@
 import { KeyValuePipe } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   inject,
 } from '@angular/core';
@@ -10,6 +11,7 @@ import { AngularErrorDialogData } from './angular-error-dialog-data';
 
 @Component({
     selector: 'rxap-angular-error',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [DataGridModule, KeyValuePipe],
     templateUrl: './angular-error.component.html',
     styleUrls: ['./angular-error.component.scss']

@@ -1,14 +1,5 @@
-import type {
-  OnChanges,
-  SimpleChanges
-} from '@angular/core';
-import { AfterContentInit, ChangeDetectionStrategy, Component, isDevMode, OnDestroy, Renderer2, input, contentChildren, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, contentChildren, effect, inject, input, Renderer2, untracked } from '@angular/core';
 import { MatOption } from '@angular/material/core';
-import { Subscription } from 'rxjs';
-import {
-  startWith,
-  tap,
-} from 'rxjs/operators';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -18,75 +9,36 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class OptionsCellComponent implements AfterContentInit, OnDestroy, OnChanges {
+export class OptionsCellComponent {
   private readonly renderer = inject(Renderer2);
 
-  public readonly value = input<any>(undefined, { alias: "rxap-options-cell" });
+  public readonly value = input<any>(undefined, { alias: 'rxap-options-cell' });
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  public readonly defaultViewValue = input.required<string>({ alias: "default" });
+  public readonly defaultViewValue = input('', { alias: 'default' });
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  public readonly emptyViewValue = input.required<string>({ alias: "empty" });
-
-  public viewValue!: string;
-
-  private readonly _subscription = new Subscription();
-
-  private _initialised = false;
-
-  constructor() {
-    this.defaultViewValue = ''; // $localize`:@@rxap-material.table-system.options-cell.unknown:unknown`;
-    this.emptyViewValue = ''; // $localize`:@@rxap-material.table-system.options-cell.empty:empty`;
-  }
+  public readonly emptyViewValue = input('', { alias: 'empty' });
 
   public readonly options = contentChildren(MatOption, { descendants: true });
 
-  public ngAfterContentInit() {
-    // Hide the mat-option elements
-    this._subscription.add(this.options().changes.pipe(
-      startWith(null),
-      tap(() => this.options().forEach(option => this.renderer.setStyle(option._getHostElement(), 'display', 'none'))),
-    ).subscribe());
-    this.setViewValue();
-    this._initialised = true;
-  }
-
-  public setViewValue() {
+  public readonly viewValue = computed(() => {
     const value = this.value();
     if (value === undefined || value === null) {
-      this.viewValue = this.emptyViewValue();
-    } else {
-      const options = this.options();
-      if (options) {
-        this._subscription.add(options.changes
-                                   .pipe(
-                                     startWith(null),
-                                     tap(() => (this.viewValue = this.getViewValue())),
-                                   )
-                                   .subscribe());
-      } else if (isDevMode()) {
-        console.log('Could not load any option');
-      }
+      return this.emptyViewValue();
     }
-  }
+    return this.options().find((option) => option.value === value)?.viewValue ?? this.defaultViewValue();
+  });
 
-  public ngOnChanges(changes: SimpleChanges) {
-    if (this._initialised) {
-      if (changes['value']) {
-        this.setViewValue();
-      }
-    }
+  constructor() {
+    // Hide the mat-option elements
+    effect(() => {
+      const options = this.options();
+      untracked(() => options.forEach(option => this.renderer.setStyle(option._getHostElement(), 'display', 'none')));
+    });
   }
 
   public getViewValue(): string {
-    return (
-      this.options().find((option) => option.value === this.value())?.viewValue ??
-      this.defaultViewValue()
-    );
-  }
-
-  public ngOnDestroy() {
-    this._subscription?.unsubscribe();
+    return this.viewValue();
   }
 }

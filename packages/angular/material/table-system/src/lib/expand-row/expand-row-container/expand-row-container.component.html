@@ -1,4 +1,4 @@
-<div [@detailExpand]="(expandCell.isExpanded$(element()) | async) ? 'expanded' : 'collapsed'" class="element-detail">
+<div [@detailExpand]="expandCell.isExpanded(element()) ? 'expanded' : 'collapsed'" class="element-detail">
   <ng-content></ng-content>
-  <ng-template [cdkPortalOutlet]="portal"></ng-template>
+  <ng-template [cdkPortalOutlet]="portal()"></ng-template>
 </div>

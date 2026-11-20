@@ -1,22 +1,19 @@
-import { Overlay } from '@angular/cdk/overlay';
 import {
-  ChangeDetectorRef,
-  ElementRef,
-  HostListener,
-  Inject,
-  Injectable,
+  computed,
+  Directive,
+  effect,
   INJECTOR,
   Injector,
-  Input,
-  isDevMode,
-  OnInit,
-  Optional,
-  Renderer2,
-  ViewContainerRef,
   input,
-  contentChild
+  contentChild,
+  inject,
+  isDevMode,
+  Renderer2,
+  Signal,
+  ViewContainerRef,
+  untracked,
 } from '@angular/core';
-import { MatIconButton } from '@angular/material/button';
+import { MatButton, MatIconButton } from '@angular/material/button';
 import { ThemePalette } from '@angular/material/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -42,10 +39,14 @@ import {
   TableRowActionTypeSwitchMethod,
 } from './types';
 
-@Injectable()
-export abstract class AbstractTableRowAction<Data extends Record<string, any>> extends ConfirmDirective
-  implements OnInit {
-  public abstract type: string;
+/**
+ * Subclasses must be decorated with @Directive, declare the `type` signal input and
+ * implement `getElementList`. No constructor arguments are required anymore - all
+ * dependencies are acquired with inject().
+ */
+@Directive()
+export abstract class AbstractTableRowAction<Data extends Record<string, any>> extends ConfirmDirective {
+  public abstract readonly type: Signal<string>;
   public readonly errorMessage = input<string>();
   public readonly successMessage = input<string>();
   /**
@@ -55,85 +56,66 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
 
   public readonly color = input<ThemePalette>();
 
-  public readonly isHeader: boolean = false;
-
-  protected options: TableActionMethodOptions | null = null;
-  private readonly executingDirective = contentChild(TableRowActionExecutingDirective);
-  private _currentStatus: TableRowActionStatus = TableRowActionStatus.DONE;
-  private readonly actionMethodList: Array<TableRowActionMethod<Data>>;
-  private _actionDisabled = false;
-
-  constructor(
-    @Inject(Renderer2)
-    protected readonly renderer: Renderer2,
-    @Inject(Overlay)
-      overlay: Overlay,
-    @Inject(ElementRef)
-      elementRef: ElementRef,
-    @Inject(RXAP_TABLE_ROW_ACTION_METHOD)
-      actionMethodList:
-      | Array<TableRowActionMethod<Data>>
-      | TableRowActionMethod<Data>,
-    @Inject(ChangeDetectorRef)
-    protected readonly cdr: ChangeDetectorRef,
-    @Inject(ViewContainerRef)
-    protected readonly vcr: ViewContainerRef,
-    @Inject(TableDataSourceDirective)
-    protected readonly tableDataSourceDirective: TableDataSourceDirective,
-    @Inject(MatSnackBar)
-    protected readonly snackBar: MatSnackBar,
-    @Optional()
-    @Inject(MatIconButton)
-    protected matButton: MatIconButton | null,
-    @Optional()
-    @Inject(MatTooltip)
-    protected matTooltip: MatTooltip | null,
-    @Inject(INJECTOR)
-    protected readonly injector: Injector,
-  ) {
-    super(overlay, elementRef);
-    this.actionMethodList = coerceArray(actionMethodList);
-  }
-
   public readonly hasConfirmDirective = input(false, { alias: 'rxapConfirm', transform: coerceBoolean });
 
-  // eslint-disable-next-line @angular-eslint/contextual-lifecycle
-  ngOnInit() {
-    this.options = this.getTableActionOptions();
-    const color = this.color();
-    if (this.options) {
-      this.refresh() ??= this.options.refresh ?? false;
-      this.errorMessage() ??= this.options.errorMessage ?? undefined;
-      this.successMessage() ??= this.options.successMessage ?? undefined;
-      if (this.matTooltip && this.options.tooltip) {
-        this.matTooltip.message = this.options.tooltip;
+  public readonly isHeader: boolean = false;
+
+  protected readonly renderer = inject(Renderer2);
+  protected readonly vcr = inject(ViewContainerRef);
+  protected readonly tableDataSourceDirective = inject(TableDataSourceDirective);
+  protected readonly snackBar = inject(MatSnackBar);
+  protected readonly matButton: MatIconButton | MatButton | null = inject(MatIconButton, { optional: true }) ??
+    inject(MatButton, { optional: true });
+  protected readonly matTooltip = inject(MatTooltip, { optional: true });
+  protected readonly injector = inject<Injector>(INJECTOR);
+  private readonly actionMethodList: Array<TableRowActionMethod<Data>> = coerceArray(
+    inject<Array<TableRowActionMethod<Data>> | TableRowActionMethod<Data>>(RXAP_TABLE_ROW_ACTION_METHOD),
+  );
+
+  protected readonly options: Signal<TableActionMethodOptions | null> = computed(() => this.getTableActionOptions());
+
+  protected readonly effectiveRefresh = computed(() => this.refresh() ?? this.options()?.refresh ?? false);
+  protected readonly effectiveErrorMessage = computed(() => this.errorMessage() ?? this.options()?.errorMessage ?? undefined);
+  protected readonly effectiveSuccessMessage = computed(() => this.successMessage() ?? this.options()?.successMessage ?? undefined);
+  protected readonly effectiveColor = computed(() => this.color() ?? this.options()?.color ?? undefined);
+
+  private readonly executingDirective = contentChild(TableRowActionExecutingDirective);
+  private _currentStatus: TableRowActionStatus = TableRowActionStatus.DONE;
+  private _actionDisabled = false;
+
+  protected constructor() {
+    super();
+    effect(() => {
+      const tooltip = this.options()?.tooltip;
+      if (this.matTooltip && tooltip) {
+        untracked(() => this.matTooltip!.message = tooltip);
       }
-      color ??= this.options.color ?? undefined;
-    }
-    if (this.matButton) {
-      if (color) {
-        this.matButton.color = color;
+    });
+    effect(() => {
+      const color = this.effectiveColor();
+      if (this.matButton && color) {
+        untracked(() => this.matButton!.color = color);
       }
-    }
-    if (this.isHeader) {
-      this.renderer.addClass(this.elementRef.nativeElement, 'rxap-table-row-header-action');
-    } else {
-      this.renderer.addClass(this.elementRef.nativeElement, 'rxap-table-row-action');
-    }
-    this.renderer.addClass(this.elementRef.nativeElement, `rxap-action-${ dasherize(this.type) }`);
+    });
+    effect(() => {
+      const type = this.type();
+      const element = this.elementRef.nativeElement;
+      untracked(() => {
+        this.renderer.addClass(element, this.isHeader ? 'rxap-table-row-header-action' : 'rxap-table-row-action');
+        this.renderer.addClass(element, `rxap-action-${ dasherize(type) }`);
+      });
+    });
   }
 
-  @HostListener('confirmed')
   public override onConfirmed() {
     return this.execute();
   }
 
-  @HostListener('click', [ '$event' ])
-  public override onClick($event: Event) {
-    $event.stopPropagation();
-    if (!this.hasConfirmDirective() && !this.options?.confirm) {
+  public override onClick($event?: Event) {
+    $event?.stopPropagation();
+    if (!this.hasConfirmDirective() && !this.options()?.confirm) {
       return this.execute();
-    } else if (this.options?.confirm) {
+    } else if (this.options()?.confirm) {
       this.openConfirmOverly();
     } else {
       if (isDevMode()) {
@@ -156,7 +138,7 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
               this.findUntypedActionMethod().map((am) => {
                   return am.call({
                     element,
-                    type: this.type,
+                    type: this.type(),
                   });
                 },
               ),
@@ -216,7 +198,7 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
    * @private
    */
   private findTypedActionMethod(): Array<TableRowActionTypeMethod<Data>> {
-    return this.actionMethodList.filter(IsTableRowActionTypeMethod(this.type));
+    return this.actionMethodList.filter(IsTableRowActionTypeMethod(this.type()));
   }
 
   private setStatus(status: TableRowActionStatus) {
@@ -224,15 +206,15 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
       return;
     }
     this._currentStatus = status;
-    const errorMessage = this.errorMessage();
-    const successMessage = this.successMessage();
+    const errorMessage = this.effectiveErrorMessage();
+    const successMessage = this.effectiveSuccessMessage();
     switch (status) {
       case TableRowActionStatus.EXECUTING:
         this.setButtonDisabled();
         this.executingDirective()?.show();
         break;
       case TableRowActionStatus.SUCCESS:
-        if (this.refresh()) {
+        if (this.effectiveRefresh()) {
           this.tableDataSourceDirective.refresh();
         }
         if (successMessage) {
@@ -251,7 +233,6 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
         this.executingDirective()?.hide();
         break;
     }
-    this.cdr.detectChanges();
   }
 
   private getTableActionOptions(): TableActionMethodOptions | null {
@@ -260,7 +241,7 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
       return null;
     }
     // TODO : handle multiple metadata or not exist metadata
-    return metadataList.filter(metadata => metadata.type === this.type)
+    return metadataList.filter(metadata => metadata.type === this.type())
                        .sort((a, b) => (a.priority ?? 0) - (b.priority ?? 0))[0];
   }
 

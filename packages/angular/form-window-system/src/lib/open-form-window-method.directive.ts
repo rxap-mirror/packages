@@ -1,4 +1,4 @@
-import { Directive, HostListener, Injector, INJECTOR, Input, OnDestroy, StaticProvider, input, output, inject } from '@angular/core';
+import { Directive, Injector, INJECTOR, OnDestroy, StaticProvider, input, output, inject } from '@angular/core';
 import { coerceBoolean } from '@rxap/utilities';
 import { WindowRef } from '@rxap/window-system';
 import { FormDefinition } from '@rxap/forms';
@@ -7,6 +7,10 @@ import { Method } from '@rxap/pattern';
 
 @Directive({
   selector: '[rxapOpenFormWindowMethod]',
+  host: {
+    '(confirmed)': 'onConfirmed()',
+    '(click)': 'onClick()',
+  },
   standalone: true,
 })
 export class OpenFormWindowMethodDirective<
@@ -48,12 +52,10 @@ export class OpenFormWindowMethodDirective<
     this._windowRefInstance.forEach(windowRef => windowRef.complete());
   }
 
-  @HostListener('confirmed')
   public onConfirmed() {
     this.execute();
   }
 
-  @HostListener('click')
   public onClick() {
     if (!this.hasConfirmDirective()) {
       this.execute();

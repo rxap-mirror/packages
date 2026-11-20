@@ -1,4 +1,4 @@
-import { Directive, HostBinding, HostListener, inject } from '@angular/core';
+import { Directive, inject } from '@angular/core';
 import {
   MAT_FORM_FIELD,
   MatFormField,
@@ -8,27 +8,29 @@ import {
 @Directive({
   selector: '[rxapInputClearButton]',
   standalone: true,
+  host: {
+    '[attr.type]': 'type',
+    '[attr.tabindex]': 'tabIndex',
+    '[disabled]': 'isDisabled',
+    '(click)': 'onClick()',
+  },
 })
 export class InputClearButtonDirective {
   private formField = inject<MatFormField>(MAT_FORM_FIELD);
 
 
-  @HostBinding('attr.type')
   public type = 'button';
 
-  @HostBinding('attr.tabindex')
   public tabIndex = '-1';
 
   public get control(): MatFormFieldControl<any> {
     return this.formField._control;
   }
 
-  @HostBinding('disabled')
   public get isDisabled() {
     return this.control.disabled;
   }
 
-  @HostListener('click')
   public onClick() {
     if (this.control.ngControl) {
       if (this.control.ngControl.control) {

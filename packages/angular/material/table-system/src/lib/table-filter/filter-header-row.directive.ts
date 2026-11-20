@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Directive, forwardRef, Input, OnDestroy, OnInit, inject } from '@angular/core';
+import { Directive, forwardRef, OnDestroy, OnInit, inject } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import {
   FormDefinition,
@@ -25,6 +25,8 @@ import { RXAP_TABLE_FILTER_FORM_DEFINITION } from './tokens';
     },
   ],
   standalone: true,
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
+  inputs: [ 'useFormDefinition: rxap-filter-header-row' ],
 })
 export class FilterHeaderRowDirective
   extends FormDirective
@@ -32,23 +34,15 @@ export class FilterHeaderRowDirective
   private readonly tableFilter = inject(TableFilterService);
 
 
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input('rxap-filter-header-row')
-  public override set useFormDefinition(value: FormDefinition | '') {
-    if (value) {
-      this._formDefinition = value as any;
-      this.form = value.rxapFormGroup;
-    }
-  }
-
   private _subscription?: Subscription;
 
   constructor() {
-    const cdr = inject(ChangeDetectorRef);
+    super();
     const formDefinition = inject<FormDefinition | null>(RXAP_TABLE_FILTER_FORM_DEFINITION, { optional: true });
-
-    super(cdr, formDefinition);
+    if (formDefinition) {
+      this._formDefinition = formDefinition as any;
+      this.form = formDefinition.rxapFormGroup as any;
+    }
   }
 
   public override ngOnInit() {

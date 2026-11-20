@@ -1,10 +1,7 @@
-import { ChangeDetectorRef, Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef, inject } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Directive, effect, TemplateRef, untracked, ViewContainerRef, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { SelectRowService } from './select-row.service';
-import {
-  distinctUntilChanged,
-  tap,
-} from 'rxjs/operators';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 export interface SelectedRowsDirectiveContext<Data extends Record<string, any>> {
   $implicit: Data[];
@@ -14,30 +11,23 @@ export interface SelectedRowsDirectiveContext<Data extends Record<string, any>> 
   selector: '[rxapSelectedRows]',
   standalone: true,
 })
-export class SelectedRowsDirective<Data extends Record<string, any>> implements OnInit, OnDestroy {
+export class SelectedRowsDirective<Data extends Record<string, any>> {
   private readonly template = inject<TemplateRef<SelectedRowsDirectiveContext<Data>>>(TemplateRef);
   private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
-  private readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
   private readonly selectRowService = inject<SelectRowService<Data>>(SelectRowService);
 
+  private readonly selectedRows = toSignal(this.selectRowService.selectedRows$.pipe(distinctUntilChanged()));
 
-  private _subscription?: Subscription;
-
-  public ngOnDestroy() {
-    this._subscription?.unsubscribe();
-  }
-
-  public ngOnInit() {
-    this._subscription = this.selectRowService.selectedRows$.pipe(
-      distinctUntilChanged(),
-      tap(selectedAllRows => {
+  constructor() {
+    effect(() => {
+      const selectedRows = this.selectedRows();
+      untracked(() => {
         this.viewContainerRef.clear();
-        if (selectedAllRows) {
+        if (selectedRows) {
           this.viewContainerRef.createEmbeddedView(this.template, { $implicit: this.selectRowService.selectedRows });
         }
-        this.cdr.detectChanges();
-      }),
-    ).subscribe();
+      });
+    });
   }
 
 }

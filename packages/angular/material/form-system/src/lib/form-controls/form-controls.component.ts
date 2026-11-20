@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, isDevMode, OnInit, Output, input, output, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, isDevMode, OnInit, input, output, inject, signal } from '@angular/core';
+import { outputToObservable } from '@angular/core/rxjs-interop';
 import { FormDirective } from '@rxap/forms';
-import {
-  Observable,
-  Subscription,
-} from 'rxjs';
+import { Subscription } from 'rxjs';
 import {
   clone,
   coerceBoolean,
@@ -18,7 +16,7 @@ import {
   MatSnackBarModule,
 } from '@angular/material/snack-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { AsyncPipe, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 declare const $localize: any;
 
@@ -31,22 +29,19 @@ declare const $localize: any;
     MatButtonModule,
     NgClass,
     MatProgressSpinnerModule,
-    AsyncPipe,
     MatSnackBarModule
 ]
 })
 export class FormControlsComponent<FormData> implements OnInit {
   private readonly formDirective = inject<FormDirective>(FormDirective);
-  private readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
   private readonly snackBar = inject<MatSnackBar>(MatSnackBar);
   private readonly router = inject<Router | null>(Router, { optional: true });
 
-  public submitting$!: Observable<boolean>;
-  public invalid = false;
+  public readonly submitting = this.formDirective.submitting;
+  public readonly invalid = signal(false);
   public readonly navigateAfterSubmit = input<string[]>();
-  @Output()
   // eslint-disable-next-line @angular-eslint/no-output-native
-  public close = new EventEmitter<FormData | FormData[] | void>();
+  public readonly close = output<FormData | FormData[] | void>();
   public readonly submitted = output<FormData>();
   public isDevMode = isDevMode();
   /**
@@ -55,22 +50,10 @@ export class FormControlsComponent<FormData> implements OnInit {
    */
   private _submitted: FormData[] = [];
 
-  public _allowResubmit = false;
-
-  public get allowResubmit(): boolean | '' {
-    return this._allowResubmit;
-  }
-
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  public set allowResubmit(value: boolean | '') {
-    this._allowResubmit = coerceBoolean(value);
-  }
+  public readonly allowResubmit = input(false, { transform: coerceBoolean });
 
   public ngOnInit() {
-    this.submitting$ = this.formDirective.submitting$;
-    this.close
+    outputToObservable(this.close)
         .pipe(
           take(1),
           tap(() => {
@@ -91,7 +74,7 @@ export class FormControlsComponent<FormData> implements OnInit {
   }
 
   public reset() {
-    this.invalid = false;
+    this.invalid.set(false);
     this.formDirective.reset();
   }
 
@@ -102,17 +85,15 @@ export class FormControlsComponent<FormData> implements OnInit {
   public submit(closeAfterSubmit?: boolean) {
     this.formDirective.form.markAllAsDirty();
     this.formDirective.form.markAllAsTouched();
-    this.formDirective.cdr.markForCheck();
     // eslint-disable-next-line prefer-const
     let submitSubscription: Subscription;
 
     const invalidSubmitSubscription: Subscription =
-      this.formDirective.invalidSubmit
+      outputToObservable(this.formDirective.invalidSubmit)
           .pipe(
             take(1),
             tap(() => submitSubscription?.unsubscribe()),
-            tap(() => (this.invalid = true)),
-            tap(() => this.cdr.detectChanges()),
+            tap(() => this.invalid.set(true)),
             tap(() =>
               this.snackBar.open(
                 $localize`:@@rxap-material.form-system.form-controls.form-is-invalid:Form is not valid`,
@@ -123,7 +104,7 @@ export class FormControlsComponent<FormData> implements OnInit {
           )
           .subscribe();
 
-    submitSubscription = this.formDirective.rxapSubmit
+    submitSubscription = outputToObservable(this.formDirective.rxapSubmit)
                              .pipe(
                                take(1),
                                tap((value) => {
@@ -144,8 +125,7 @@ export class FormControlsComponent<FormData> implements OnInit {
                                  }
 
                                  invalidSubmitSubscription.unsubscribe();
-                                 this.invalid = false;
-                                 this.cdr.detectChanges();
+                                 this.invalid.set(false);
                                }),
                              )
                              .subscribe();

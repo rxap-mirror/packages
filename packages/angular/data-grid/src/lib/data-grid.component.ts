@@ -1,5 +1,6 @@
 import { AsyncPipe, NgClass, NgTemplateOutlet } from '@angular/common';
-import { AfterContentInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, isDevMode, OnDestroy, OnInit, QueryList, input, output, contentChildren, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, isDevMode, OnDestroy, OnInit, input, output, contentChildren, inject, linkedSignal, signal } from '@angular/core';
+import { outputToObservable, toObservable } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,13 +24,11 @@ import {
   ReplacePipe,
 } from '@rxap/pipes';
 import { ToggleSubject } from '@rxap/rxjs';
-import { clone } from '@rxap/utilities';
+import { clone, coerceBoolean } from '@rxap/utilities';
 import {
-  BehaviorSubject,
   combineLatest,
   debounceTime,
   EMPTY,
-  merge,
   Observable,
   of,
   Subscription,
@@ -60,6 +59,13 @@ function IsDataGridMode(value: string): value is DataGridMode {
   return [ DataGridMode.PLAIN, DataGridMode.FORM ].includes(value as any);
 }
 
+function coerceDataGridMode(value: DataGridMode | string): DataGridMode {
+  if (IsDataGridMode(value)) {
+    return value;
+  }
+  throw new Error(`The data grid mode only support 'plain' and 'form' - given '${ value }'`);
+}
+
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'rxap-data-grid',
@@ -83,15 +89,14 @@ function IsDataGridMode(value: string): value is DataGridMode {
     IsEmptyPipe
 ]
 })
-export class DataGridComponent<T extends Record<string, any>> implements OnInit, OnDestroy, AfterContentInit {
-  private readonly cdr = inject(ChangeDetectorRef);
+export class DataGridComponent<T extends Record<string, any>> implements OnInit, OnDestroy {
   private readonly router = inject(Router);
   private readonly formDirective = inject(FormDirective, { optional: true });
 
 
   public isDevMode = isDevMode();
 
-  public readonly header = input(false);
+  public readonly header = input(false, { transform: coerceBoolean });
 
   public readonly dataSource = input<DataSource<T>>();
 
@@ -101,9 +106,14 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
 
   public readonly data = input<T>();
 
+  /**
+   * The current data. Initialized from the data input and updated with the values emitted by the data source
+   */
+  protected readonly currentData = linkedSignal(() => this.data());
+
   public readonly displayProperties = input<string[] | null>(null);
 
-  public readonly hideEmptyProperties = input(false);
+  public readonly hideEmptyProperties = input(false, { transform: coerceBoolean });
 
   public readonly rows = contentChildren(DataGridRowDefDirective);
   public readonly editModeChange = output<{
@@ -111,42 +121,24 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
     data?: T;
     done: () => void;
 }>();
-  public rows$: Observable<QueryList<DataGridRowDefDirective<T>>> = EMPTY;
+  public readonly rows$ = toObservable(this.rows);
   public hasError$: Observable<boolean>                           = of(false);
   public dataLoading$: Observable<boolean>                        = of(false);
   public loading$                                                 = new ToggleSubject();
-  public readonly isEditMode$: Observable<boolean>;
-  public readonly mode$: Observable<DataGridMode>;
-  public readonly isFormMode$: Observable<boolean>;
-  public readonly isPlainMode$: Observable<boolean>;
-  private _editMode$                                              = new BehaviorSubject<boolean>(false);
-  private _mode$                                                  = new BehaviorSubject<DataGridMode>(DataGridMode.PLAIN);
+  public readonly mode = input<DataGridMode, DataGridMode | string>(DataGridMode.PLAIN, { transform: coerceDataGridMode });
+  private readonly _editMode                                      = signal(false);
+  public readonly isEditMode$: Observable<boolean>                = toObservable(this._editMode);
+  public readonly mode$: Observable<DataGridMode>                 = toObservable(this.mode);
+  public readonly isFormMode$: Observable<boolean>                = this.mode$.pipe(map(mode => mode === DataGridMode.FORM));
+  public readonly isPlainMode$: Observable<boolean>               = this.mode$.pipe(map(mode => mode === DataGridMode.PLAIN));
   private _routerEventSubscription: Subscription | null           = null;
 
-  constructor() {
-    this.isEditMode$  = this._editMode$.asObservable();
-    this.mode$        = this._mode$.asObservable();
-    this.isFormMode$  = this.mode$.pipe(map(mode => mode === DataGridMode.FORM));
-    this.isPlainMode$ = this.mode$.pipe(map(mode => mode === DataGridMode.PLAIN));
-  }
-
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  public set mode(value: DataGridMode | string) {
-    if (IsDataGridMode(value)) {
-      this._mode$.next(value);
-    } else {
-      throw new Error(`The data grid mode only support 'plain' and 'form' - given '${ value }'`);
-    }
-  }
-
   public get isFormModeOrHasAnyEditCells() {
-    return this._mode$.value === DataGridMode.FORM || this.hasAnyEditCells;
+    return this.mode() === DataGridMode.FORM || this.hasAnyEditCells;
   }
 
   public get isFormMode() {
-    return this._mode$.value === DataGridMode.FORM;
+    return this.mode() === DataGridMode.FORM;
   }
 
   public get hasAnyEditCells() {
@@ -154,11 +146,11 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   }
 
   public get isEditMode() {
-    return this._editMode$.value;
+    return this._editMode();
   }
 
   public set editMode(value: boolean) {
-    this._editMode$.next(value);
+    this._editMode.set(value);
   }
 
   /**
@@ -166,13 +158,6 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
    */
   public get loading() {
     return this.loading$.value;
-  }
-
-  public ngAfterContentInit() {
-    this.rows$ = merge(
-      of(this.rows()),
-      this.rows().changes,
-    );
   }
 
   public logCurrentFormState() {
@@ -188,7 +173,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
     ).subscribe();
 
     const dataSource = this.dataSource();
-    const dataValue = this.data();
+    const dataValue = this.currentData();
     if (dataSource && dataValue) {
       throw new Error('You can not use both dataSource and data input');
     }
@@ -209,7 +194,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
 
     this.data$ = data$.pipe(
       debounceTime(100),
-      tap(data => this.data = data),
+      tap(data => this.currentData.set(data)),
       tap(data => {
         if (this.formDirective && this.isFormMode) {
           this.formDirective.form.patchValue(data, {
@@ -229,8 +214,8 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
     }
     if (this.formDirective && this.isFormMode) {
       this.formDirective.form.disabledWhile(combineLatest([
-        this._editMode$,
-        this._mode$,
+        this.isEditMode$,
+        this.mode$,
       ]).pipe(
         map(([ editMode, mode ]) => !editMode && mode === 'form'),
       ), {onlySelf: false});
@@ -256,7 +241,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
       return;
     }
     this.editMode = true;
-    const data = this.data();
+    const data = this.currentData();
     if (!skipPatchValue && data) {
       this.formDirective.form.patchValue(data, {
         coerce: true,
@@ -297,14 +282,13 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
     this.loading$.enable();
     this.formDirective.form.markAllAsDirty();
     this.formDirective.form.markAllAsTouched();
-    this.formDirective.cdr.markForCheck();
-    this.formDirective.rxapSubmit.pipe(
+    outputToObservable(this.formDirective.rxapSubmit).pipe(
       take(1),
       tap(() => {
         this.disableEditMode();
       }),
     ).subscribe();
-    this.formDirective.invalidSubmit.pipe(
+    outputToObservable(this.formDirective.invalidSubmit).pipe(
       take(1),
       tap(() => {
         this.loading$.disable();
@@ -318,7 +302,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
         this.enableEditMode(true);
       }),
     ).subscribe();
-    this.formDirective.submitSuccessful$.pipe(
+    outputToObservable(this.formDirective.submitSuccessful$).pipe(
       take(1),
       tap(() => {
         this.loading$.disable();
@@ -329,7 +313,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   }
 
   public reset() {
-    const data = this.data();
+    const data = this.currentData();
     if (this.formDirective && data && this.isFormModeOrHasAnyEditCells) {
       this.formDirective.form.patchValue(data, {
         coerce: true,

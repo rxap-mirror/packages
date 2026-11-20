@@ -1,23 +1,23 @@
 <div class="flex flex-row justify-between items-center gap-8">
   <div class="flex grow-0 flex-row justify-end items-center gap-8 w-full">
     <button (click)="reset()"
-      [disabled]="submitting$ | async"
+      [disabled]="submitting()"
       class="grow-0"
       mat-stroked-button
       type="button">
       <ng-container i18n>Reset</ng-container>
     </button>
     <button (click)="cancel()"
-      [disabled]="submitting$ | async"
+      [disabled]="submitting()"
       color="warn"
       class="grow-0"
       mat-stroked-button
       type="button">
       <ng-container i18n>Cancel</ng-container>
     </button>
-    <button (click)="submit(!allowResubmit)"
-      [disabled]="submitting$ | async"
-      [ngClass]="{ invalid: invalid }"
+    <button (click)="submit(!allowResubmit())"
+      [disabled]="submitting()"
+      [ngClass]="{ invalid: invalid() }"
       color="primary"
       class="grow-0"
       mat-raised-button
@@ -26,16 +26,16 @@
         <span class="grow-0">
           <ng-container i18n>Submit</ng-container>
         </span>
-        @if (submitting$ | async) {
+        @if (submitting()) {
           <mat-spinner [diameter]="15" color="accent" class="grow-0"
           mode="indeterminate"></mat-spinner>
         }
       </span>
     </button>
-    @if (allowResubmit) {
+    @if (allowResubmit()) {
       <button (click)="submit(true)"
-        [disabled]="submitting$ | async"
-        [ngClass]="{ invalid: invalid }"
+        [disabled]="submitting()"
+        [ngClass]="{ invalid: invalid() }"
         color="primary"
         class="grow-0"
         mat-raised-button
@@ -44,7 +44,7 @@
           <span class="grow-0">
             <ng-container i18n>Submit and Close</ng-container>
           </span>
-          @if (submitting$ | async) {
+          @if (submitting()) {
             <mat-spinner [diameter]="15" color="accent" class="grow-0"
             mode="indeterminate"></mat-spinner>
           }

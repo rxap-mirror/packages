@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import type { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -6,6 +7,8 @@ import { map } from 'rxjs/operators';
 @Injectable()
 export class ExpandRowService<Data extends Record<string, any>> {
   public expandedRow = new BehaviorSubject<Data | null>(null);
+
+  public readonly expandedRowSignal = toSignal(this.expandedRow, { requireSync: true });
 
   public toggleRow(row: Data): void {
     if (this.expandedRow.value === row) {
@@ -16,7 +19,7 @@ export class ExpandRowService<Data extends Record<string, any>> {
   }
 
   public isExpanded(row: Data) {
-    return this.expandedRow.value === row;
+    return this.expandedRowSignal() === row;
   }
 
   public isExpanded$(row: Data): Observable<boolean> {

@@ -1,12 +1,11 @@
 import { NgClass } from '@angular/common';
 
 import {
-  AfterContentInit,
   ChangeDetectionStrategy,
   Component,
-  HostBinding,
-  Input,
-  contentChildren
+  computed,
+  contentChildren,
+  input,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -22,6 +21,10 @@ import { TableColumnOptionComponent } from './table-column-option/table-column-o
     styleUrls: ['./table-column-menu.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     exportAs: 'rxapTableColumns',
+    host: {
+      '[class.inline]': 'inline()',
+      '[class.mat-card-mode]': 'matCard()',
+    },
     imports: [
     MatButtonModule,
     MatMenuModule,
@@ -31,71 +34,35 @@ import { TableColumnOptionComponent } from './table-column-option/table-column-o
     NgClass
 ]
 })
-export class TableColumnMenuComponent implements AfterContentInit {
-
-  public get visibleColumns() {
-    return this.columns()?.filter((option) => !option.hidden);
-  }
+export class TableColumnMenuComponent {
 
   public readonly columns = contentChildren(TableColumnOptionComponent);
 
-  public displayColumns: string[] = [];
+  public readonly visibleColumns = computed(() => this.columns().filter((option) => !option.isHidden()));
 
-  @HostBinding('class.inline')
-  private _inline = false;
-
-  public get inline(): boolean | '' {
-    return this._inline;
-  }
+  /**
+   * The names of all currently active columns
+   */
+  public readonly displayColumns = computed<string[]>(() => this.columns()
+                                                             .filter((option) => option.active())
+                                                             .map((option) => option.name()));
 
   /**
    * true - the menu is displayed inline and not absolute
-   * @param value
    */
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  public set inline(value: boolean | '') {
-    this._inline = coerceBoolean(value);
-  }
+  public readonly inline = input(false, { transform: coerceBoolean });
 
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  public set matCard(value: boolean | '') {
-    this._matCardMode = coerceBoolean(value);
-  }
-
-  @HostBinding('class.mat-card-mode')
-  private _matCardMode = false;
-
-  public ngAfterContentInit() {
-    this.updateDisplayColumns();
-  }
-
-  public updateDisplayColumns() {
-    const columns = this.columns();
-    if (!columns) {
-      throw new Error(
-        'Could not query content children of TableColumnOptionComponent',
-      );
-    }
-    this.displayColumns = columns
-                              .filter((option) => option.active())
-                              .map((option) => option.name());
-  }
+  public readonly matCard = input(false, { transform: coerceBoolean });
 
   public activate(columnName: string) {
     this.columns()
-        ?.filter((option) => option.name() === columnName)
+        .filter((option) => option.name() === columnName)
         .forEach((column) => column.activate());
-    this.updateDisplayColumns();
   }
 
   public deactivate(columnName: string) {
     this.columns()
-        ?.filter((option) => option.name() === columnName)
+        .filter((option) => option.name() === columnName)
         .forEach((column) => column.deactivate());
-    this.updateDisplayColumns();
   }
 }

@@ -1,4 +1,4 @@
-import { Directive, ElementRef, HostListener, OnDestroy, OnInit, Renderer2, input, inject } from '@angular/core';
+import { Directive, OnDestroy, input, inject } from '@angular/core';
 import { Method } from '@rxap/pattern';
 import {
   isObservable,
@@ -11,24 +11,18 @@ import { TABLE_CREATE_REMOTE_METHOD } from './tokens';
 @Directive({
   selector: 'button[rxapTableCreate]',
   standalone: true,
+  host: {
+    '(click)': 'onClick()',
+    'style': 'margin-bottom: 6px',
+  },
 })
 export class TableCreateButtonDirective<Data extends Record<string, any>>
-  implements OnInit, OnDestroy {
+  implements OnDestroy {
   private readonly method = inject<Method<any, Data | Observable<Data>>>(TABLE_CREATE_REMOTE_METHOD);
-  private readonly elementRef = inject<ElementRef>(ElementRef);
-  private readonly renderer = inject<Renderer2>(Renderer2);
 
   public readonly dataSource = input.required<TableDataSourceDirective<Data>>({ alias: "rxapTableCreate" });
 
   private _createObservable?: Observable<any>;
-
-  public ngOnInit() {
-    this.renderer.setStyle(
-      this.elementRef.nativeElement,
-      'margin-bottom',
-      '6px',
-    );
-  }
 
   public ngOnDestroy() {
     if (this._createObservable instanceof Subject) {
@@ -36,7 +30,6 @@ export class TableCreateButtonDirective<Data extends Record<string, any>>
     }
   }
 
-  @HostListener('click')
   public async onClick() {
     const result = this._createObservable = await this.method.call();
     if (isObservable(result)) {

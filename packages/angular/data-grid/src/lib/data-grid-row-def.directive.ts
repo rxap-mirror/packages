@@ -3,6 +3,7 @@ import {
   input,
   contentChild
 } from '@angular/core';
+import { coerceBoolean } from '@rxap/utilities';
 import { DataGridCellDefDirective } from './data-grid-cell-def.directive';
 import { DataGridHeaderCellDefDirective } from './data-grid-header-cell-def.directive';
 import { DataGridEditCellDefDirective } from './data-grid-edit-cell-def.directive';
@@ -33,7 +34,7 @@ export class DataGridRowDefDirective<T extends Record<string, any>> {
    * Content (colspan 2)
    *
    */
-  public readonly flip = input(false);
+  public readonly flip = input(false, { transform: coerceBoolean });
 
   public readonly cell = contentChild(DataGridCellDefDirective);
 

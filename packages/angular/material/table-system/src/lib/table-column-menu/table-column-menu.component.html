@@ -3,15 +3,15 @@
 </button>
 
 <mat-menu #columnMenu="matMenu">
-  @for (column of $any(visibleColumns ?? []); track column) {
+  @for (column of visibleColumns(); track column) {
     <span
       [disableRipple]="true"
       mat-menu-item
       rxapStopPropagation
       >
       <mat-checkbox
-        (change)="column.toggle(); updateDisplayColumns()"
-        [checked]="column.active">
+        (change)="column.toggle()"
+        [checked]="column.active()">
         {{ column.display }}
       </mat-checkbox>
     </span>

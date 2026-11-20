@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, input, inject } from '@angular/core';
-import { Required } from '@rxap/utilities';
+import { ChangeDetectionStrategy, Component, computed, input, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { SelectRowService } from '../select-row.service';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 
@@ -8,7 +8,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     selector: 'td[rxap-checkbox-cell]',
     templateUrl: './checkbox-cell.component.html',
     styleUrls: ['./checkbox-cell.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [MatCheckboxModule]
 })
 export class CheckboxCellComponent<Data extends Record<string, any>> {
@@ -16,5 +16,12 @@ export class CheckboxCellComponent<Data extends Record<string, any>> {
 
 
   public readonly element = input.required<Data>();
+
+  private readonly selectedRows = toSignal(this.selectRow.selectedRows$, { initialValue: this.selectRow.selectedRows });
+
+  public readonly isSelected = computed(() => {
+    this.selectedRows();
+    return this.selectRow.selectionModel.isSelected(this.element());
+  });
 
 }

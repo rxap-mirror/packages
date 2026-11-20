@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   DoCheck,
-  OnInit,
+  computed,
   input
 } from '@angular/core';
 import { IconConfig } from '@rxap/utilities';
@@ -23,20 +23,17 @@ import { RowDataWithNode } from '@rxap/data-source/table/tree';
     IconDirective
 ]
 })
-export class TreeControlCellComponent implements OnInit, DoCheck {
+export class TreeControlCellComponent implements DoCheck {
 
-  public offset!: string;
+  public readonly offset = computed(() => (this.element().__node.depth * 24) + 'px');
+
   public icon!: IconConfig;
 
   public expandIcon!: string;
 
   public readonly element = input<RowDataWithNode<any>>(undefined, { alias: "rxap-tree-control-cell" });
 
-  public ngOnInit() {
-    this.offset = (this.element().__node.depth * 24) + 'px';
-    this.updateIcon();
-  }
-
+  // the tree node state (expanded) is not reactive, therefore the icons must be re-evaluated on each check
   public ngDoCheck() {
     this.updateIcon();
   }

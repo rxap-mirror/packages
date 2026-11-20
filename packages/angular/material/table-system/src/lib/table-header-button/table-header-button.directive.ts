@@ -1,5 +1,4 @@
-import { Overlay } from '@angular/cdk/overlay';
-import { ChangeDetectorRef, Directive, ElementRef, HostListener, Input, isDevMode, OnInit, input, inject } from '@angular/core';
+import { computed, Directive, effect, untracked, isDevMode, input, inject } from '@angular/core';
 import { MatMiniFabButton } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltip } from '@angular/material/tooltip';
@@ -18,13 +17,11 @@ import { TABLE_HEADER_BUTTON_METHOD } from './tokens';
   selector: 'button[mat-mini-fab][rxapTableHeaderButton]',
   standalone: true,
 })
-export class TableHeaderButtonDirective<Data extends Record<string, any>> extends ConfirmDirective
-  implements OnInit {
+export class TableHeaderButtonDirective<Data extends Record<string, any>> extends ConfirmDirective {
   private readonly method = inject<Method>(TABLE_HEADER_BUTTON_METHOD);
   private readonly snackBar = inject<MatSnackBar>(MatSnackBar);
   private readonly matTooltip = inject<MatTooltip | null>(MatTooltip, { optional: true });
   private readonly matButton = inject<MatMiniFabButton | null>(MatMiniFabButton, { optional: true });
-  protected readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
 
 
   public readonly tableDataSourceDirective = input.required<TableDataSourceDirective<Data>>({ alias: "rxapTableHeaderButton" });
@@ -36,30 +33,35 @@ export class TableHeaderButtonDirective<Data extends Record<string, any>> extend
    */
   public readonly refresh = input<boolean>();
 
-  protected options: TableHeaderButtonMethodOptions | null = null;
+  protected readonly options = computed<TableHeaderButtonMethodOptions | null>(() => this.getTableHeaderButtonOptions());
+
+  protected readonly effectiveRefresh = computed(() => this.refresh() ?? this.options()?.refresh ?? false);
+  protected readonly effectiveErrorMessage = computed(() => this.errorMessage() ?? this.options()?.errorMessage ?? undefined);
+  protected readonly effectiveSuccessMessage = computed(() => this.successMessage() ?? this.options()?.successMessage ?? undefined);
   private _actionDisabled = false;
   private _currentStatus: TableHeaderButtonActionStatus = TableHeaderButtonActionStatus.DONE;
 
-  constructor() {
-    const overlay = inject<Overlay>(Overlay);
-    const elementRef = inject<ElementRef>(ElementRef);
-
-    super(overlay, elementRef);
-  }
-
   public readonly hasConfirmDirective = input(false, { alias: 'rxapConfirm', transform: coerceBoolean });
 
-  @HostListener('confirmed')
+  constructor() {
+    super();
+    effect(() => {
+      const tooltip = this.options()?.tooltip;
+      if (this.matTooltip && tooltip) {
+        untracked(() => this.matTooltip!.message = tooltip);
+      }
+    });
+  }
+
   public override onConfirmed() {
     return this.execute();
   }
 
-  @HostListener('click', [ '$event' ])
-  public override onClick($event: Event) {
-    $event.stopPropagation();
-    if (!this.hasConfirmDirective() && !this.options?.confirm) {
+  public override onClick($event?: Event) {
+    $event?.stopPropagation();
+    if (!this.hasConfirmDirective() && !this.options()?.confirm) {
       return this.execute();
-    } else if (this.options?.confirm) {
+    } else if (this.options()?.confirm) {
       this.openConfirmOverly();
     } else {
       if (isDevMode()) {
@@ -80,18 +82,6 @@ export class TableHeaderButtonDirective<Data extends Record<string, any>> extend
     } catch (e: any) {
       console.error(`Failed to execute table header action: ${ e.message }`);
       this.setStatus(TableHeaderButtonActionStatus.ERROR);
-    }
-  }
-
-  ngOnInit() {
-    this.options = this.getTableHeaderButtonOptions();
-    if (this.options) {
-      this.refresh() ??= this.options.refresh ?? false;
-      this.errorMessage() ??= this.options.errorMessage ?? undefined;
-      this.successMessage() ??= this.options.successMessage ?? undefined;
-      if (this.matTooltip && this.options.tooltip) {
-        this.matTooltip.message = this.options.tooltip;
-      }
     }
   }
 
@@ -123,14 +113,14 @@ export class TableHeaderButtonDirective<Data extends Record<string, any>> extend
       return;
     }
     this._currentStatus = status;
-    const errorMessage = this.errorMessage();
-    const successMessage = this.successMessage();
+    const errorMessage = this.effectiveErrorMessage();
+    const successMessage = this.effectiveSuccessMessage();
     switch (status) {
       case TableHeaderButtonActionStatus.EXECUTING:
         this.setButtonDisabled();
         break;
       case TableHeaderButtonActionStatus.SUCCESS:
-        if (this.refresh()) {
+        if (this.effectiveRefresh()) {
           this.tableDataSourceDirective().refresh();
         }
         if (successMessage) {
@@ -148,7 +138,6 @@ export class TableHeaderButtonDirective<Data extends Record<string, any>> extend
         this.setButtonEnabled();
         break;
     }
-    this.cdr.detectChanges();
   }
 
   private getTableHeaderButtonOptions(): TableHeaderButtonMethodOptions {

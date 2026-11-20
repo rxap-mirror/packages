@@ -4,16 +4,15 @@ import {
 } from '@angular/cdk/portal';
 import { NgClass } from '@angular/common';
 import {
-  AfterViewInit,
+  afterNextRender,
   ChangeDetectionStrategy,
   Component,
   computed,
   ElementRef,
-  EventEmitter,
   inject,
   INJECTOR,
   Injector,
-  Output,
+  output,
   signal,
   Signal,
   viewChild
@@ -32,13 +31,13 @@ export interface IErrorDialogComponent<Error = any> {
     selector: 'rxap-error-dialog',
     templateUrl: './error-dialog.component.html',
     styleUrls: ['./error-dialog.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
     NgClass,
     PortalModule
 ]
 })
-export class ErrorDialogComponent implements AfterViewInit {
+export class ErrorDialogComponent {
 
   public readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
 
@@ -50,8 +49,7 @@ export class ErrorDialogComponent implements AfterViewInit {
     const end = Math.min(this.data().length, start + 5);
     return Array.from({ length: end - start }, (_, i) => start + i);
   });
-  @Output()
-  public closeDialog = new EventEmitter<void>();
+  public readonly closeDialog = output<void>();
   private readonly component = inject(RXAP_ERROR_DIALOG_COMPONENT);
   private readonly injector = inject(INJECTOR);
   public readonly componentPortal = computed(() => {
@@ -69,8 +67,8 @@ export class ErrorDialogComponent implements AfterViewInit {
     return new ComponentPortal(this.component, null, injector);
   });
 
-  ngAfterViewInit() {
-    this.dialog().nativeElement.showModal();
+  constructor() {
+    afterNextRender(() => this.dialog().nativeElement.showModal());
   }
 
   close() {

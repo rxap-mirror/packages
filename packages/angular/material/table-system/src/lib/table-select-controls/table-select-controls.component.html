@@ -2,7 +2,7 @@
   <button (click)="cancel()" class="grow-0" mat-stroked-button type="button">
     <ng-container i18n>Cancel</ng-container>
   </button>
-  <button (click)="select()" [disabled]="hasNotSelected$ | async" class="grow-0" mat-raised-button type="button">
+  <button (click)="select()" [disabled]="hasNotSelected()" class="grow-0" mat-raised-button type="button">
     <ng-container i18n>Select</ng-container>
   </button>
 </div>
