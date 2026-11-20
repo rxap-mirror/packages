@@ -372,8 +372,8 @@
         "tag": false,
         "stageChanges": false
       },
-      "specifierSource": "conventional-commits",
-      "currentVersionResolver": "git-tag",
+      "specifierSource": "prompt",
+      "currentVersionResolver": "disk",
       "fallbackCurrentVersionResolver": "disk",
       "versionPrefix": "^",
       "updateDependents": "auto",
