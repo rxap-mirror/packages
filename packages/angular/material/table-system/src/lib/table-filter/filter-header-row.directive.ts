@@ -1,4 +1,4 @@
-import { Directive, forwardRef, OnDestroy, OnInit, inject } from '@angular/core';
+import { Directive, forwardRef, inject, input, OnDestroy, OnInit } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import {
   FormDefinition,
@@ -25,14 +25,16 @@ import { RXAP_TABLE_FILTER_FORM_DEFINITION } from './tokens';
     },
   ],
   standalone: true,
-  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: [ 'useFormDefinition: rxap-filter-header-row' ],
 })
 export class FilterHeaderRowDirective
   extends FormDirective
   implements OnInit, OnDestroy {
   private readonly tableFilter = inject(TableFilterService);
 
+  /**
+   * Optional form definition bound with the selector attribute. Falls back to RXAP_TABLE_FILTER_FORM_DEFINITION.
+   */
+  public readonly filterFormDefinition = input<FormDefinition | ''>('', { alias: 'rxap-filter-header-row' });
 
   private _subscription?: Subscription;
 
@@ -46,6 +48,11 @@ export class FilterHeaderRowDirective
   }
 
   public override ngOnInit() {
+    const formDefinition = this.filterFormDefinition();
+    if (formDefinition) {
+      this._formDefinition = formDefinition as any;
+      this.form = formDefinition.rxapFormGroup as any;
+    }
     super.ngOnInit();
     this._subscription = new Subscription();
     this._subscription.add(this.tableFilter.reset$.subscribe(() => this.form.reset()));

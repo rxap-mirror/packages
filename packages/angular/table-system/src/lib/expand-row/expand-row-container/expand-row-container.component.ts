@@ -1,4 +1,5 @@
-import { AfterContentInit, ChangeDetectionStrategy, Component, OnDestroy, ViewContainerRef, input, contentChild, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewContainerRef, input, contentChild, inject, linkedSignal } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import {
   ExpandCellContentDirectiveContext,
   ExpandRowContentDirective,
@@ -7,7 +8,6 @@ import {
   PortalModule,
   TemplatePortal,
 } from '@angular/cdk/portal';
-import { Required } from '@rxap/utilities';
 import {
   animate,
   state,
@@ -16,12 +16,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { ExpandRowService } from '../expand-row.service';
-import { Subscription } from 'rxjs';
-import {
-  filter,
-  tap,
-} from 'rxjs/operators';
-import { AsyncPipe } from '@angular/common';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -39,9 +34,9 @@ import { AsyncPipe } from '@angular/common';
             transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
         ]),
     ],
-    imports: [PortalModule, AsyncPipe]
+    imports: [PortalModule]
 })
-export class ExpandRowContainerComponent<Data extends Record<string, any>> implements AfterContentInit, OnDestroy {
+export class ExpandRowContainerComponent<Data extends Record<string, any>> {
   private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
   readonly expandCell = inject<ExpandRowService<Data>>(ExpandRowService);
 
@@ -50,26 +45,17 @@ export class ExpandRowContainerComponent<Data extends Record<string, any>> imple
 
   public readonly expandCellContent = contentChild(ExpandRowContentDirective);
 
-  public portal: TemplatePortal<ExpandCellContentDirectiveContext<Data>> | null = null;
+  public readonly expanded = toSignal(
+    toObservable(this.element).pipe(switchMap(element => this.expandCell.isExpanded$(element))),
+    { initialValue: false },
+  );
 
-  private _subscription?: Subscription;
-
-  public ngOnDestroy() {
-    this._subscription?.unsubscribe();
-  }
-
-  public ngAfterContentInit() {
-    if (this.expandCellContent()) {
-      this._subscription = this.expandCell.isExpanded$(this.element()).pipe(
-        filter(Boolean),
-        tap(() => {
-          if (!this.portal) {
-            this.portal =
-              new TemplatePortal(this.expandCellContent()!.template, this.viewContainerRef, { $implicit: this.element() });
-          }
-        }),
-      ).subscribe();
-    }
-  }
+  public readonly portal = linkedSignal<{ expanded: boolean, content: ExpandRowContentDirective<Data> | undefined }, TemplatePortal<ExpandCellContentDirectiveContext<Data>> | null>({
+    source: () => ({ expanded: this.expanded(), content: this.expandCellContent() }),
+    computation: ({ expanded, content }, previous) => previous?.value ??
+      (expanded && content ?
+        new TemplatePortal(content.template, this.viewContainerRef, { $implicit: this.element() }) :
+        null),
+  });
 
 }

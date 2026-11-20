@@ -1,18 +1,18 @@
 import {
-  AfterViewInit,
+  afterNextRender,
+  computed,
   Directive,
-  EventEmitter,
-  HostBinding,
-  HostListener,
+  effect,
   inject,
   INJECTOR,
   Injector,
   input,
   isDevMode,
-  OnChanges,
+  linkedSignal,
   OnDestroy,
-  OnInit,
-  Output
+  output,
+  signal,
+  untracked,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
@@ -48,24 +48,31 @@ export interface OpenTableSelectWindowDirective<Data extends Record<string, any>
   selector: '[rxapOpenTableSelectWindow]',
   standalone: true,
   providers: [ OpenTableSelectWindowMethod ],
+  host: {
+    type: 'button',
+    '[disabled]': 'disabled()',
+    '(click)': 'onClick($event)',
+  },
 })
 export class OpenTableSelectWindowDirective<Data extends Record<string, any> = Record<string, any>, Value = Data>
-  implements OnChanges, OnInit, OnDestroy, AfterViewInit {
-  public readonly data = input<Data[] | BaseDataSource<Data[]> | AbstractTableDataSource<Data>>();
-  public readonly columns = input<Map<string, TableSelectColumn> | Record<string, TableSelectColumn>>();
-  public readonly selected = input<Data[]>([]);
+  implements OnDestroy {
+  public readonly dataInput = input<Data[] | BaseDataSource<Data[]> | AbstractTableDataSource<Data>>(undefined, { alias: 'data' });
+  public readonly data = linkedSignal(() => this.dataInput());
+  public readonly columnsInput = input<Map<string, TableSelectColumn> | Record<string, TableSelectColumn>>(undefined, { alias: 'columns' });
+  public readonly columns = linkedSignal(() => this.columnsInput());
+  public readonly selectedInput = input<Data[]>([], { alias: 'selected' });
+  public readonly selected = linkedSignal(() => this.selectedInput());
   public readonly parameters = input<Observable<Record<string, unknown>>>();
-  @Output()
-  public selectedChange                 = new EventEmitter<Data[]>();
-  public readonly label = input<string>();
+  public readonly selectedChange = output<Data[]>();
+  public readonly labelInput = input<string>(undefined, { alias: 'label' });
+  public readonly label = linkedSignal(() => this.labelInput());
   public readonly id = input<string>();
   public _internalId                    = GenerateRandomString();
-  public readonly compareWith = input<(o1: Data, o2: Data) => boolean>();
+  public readonly compareWithInput = input<(o1: Data, o2: Data) => boolean>(undefined, { alias: 'compareWith' });
+  public readonly compareWith = linkedSignal(() => this.compareWithInput());
 
   public readonly multiple              = input(false);
 
-  @HostBinding('type')
-  public type                           = 'button';
   public control?: RxapFormControl;
   // required for the use mixin ExtractDatasourceMixin
   public readonly dataSourceLoader      = inject(DataSourceLoader);
@@ -74,27 +81,28 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
   protected readonly windowService      = inject(WindowService);
   protected readonly injector: Injector = inject(INJECTOR);
   protected matButton                   = inject(MatButton, {optional: true});
-  private invalidInputs                 = false;
 
-  private _disabled = false;
+  private readonly _disabled = signal(false);
 
-  @HostBinding('disabled')
-  get disabled(): boolean {
-    return this._disabled || this.invalidInputs;
+  private readonly invalidInputs = computed(() => !this.columns() || !this.data());
+
+  public readonly disabled = computed(() => this._disabled() || this.invalidInputs());
+
+  public readonly toValueInput = input<(value: Data) => Value | Promise<Value>>(undefined, { alias: 'toValue' });
+  public readonly toValue = linkedSignal(() => this.toValueInput());
+
+  constructor() {
+    effect(() => {
+      const data = this.data();
+      const columns = this.columns();
+      const disabled = this.disabled();
+      untracked(() => this.checkInputs(data, columns, disabled));
+    });
+    afterNextRender(() => this.initFromFormField());
   }
 
-  set disabled(value: boolean) {
-    this._disabled = value;
-  }
-
-  public readonly toValue = input<(value: Data) => Value | Promise<Value>>();
-
-  public ngOnChanges() {
-    this.checkInputs();
-  }
-
-  public ngOnInit() {
-    this.checkInputs();
+  public setDisabled(value: boolean) {
+    this._disabled.set(value);
   }
 
   ngOnDestroy() {
@@ -103,11 +111,10 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
     }
   }
 
-  @HostListener('click', [ '$event' ])
   public async onClick($event: Event) {
     $event.stopPropagation();
-    if (this.disabled || this._hasOpenWindow) {
-      console.debug('disabled or has open window', {disabled: this.disabled, hasOpenWindow: this._hasOpenWindow});
+    if (this.disabled() || this._hasOpenWindow) {
+      console.debug('disabled or has open window', {disabled: this.disabled(), hasOpenWindow: this._hasOpenWindow});
       return;
     }
     const data = this.data();
@@ -136,7 +143,7 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
     if (isDevMode()) {
       console.debug('selected', selected);
     }
-    this.selected       = selected ?? [];
+    this.selected.set(selected ?? []);
     this._hasOpenWindow = false;
     const selectedValue = this.selected();
     this.selectedChange.emit(selectedValue);
@@ -152,35 +159,38 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
     }
   }
 
-  ngAfterViewInit() {
+  private initFromFormField() {
     const hasNgControl    = !!this.injector.get(NgControl, null);
     const hasMatFormField = !!this.injector.get(MatFormField, null);
     if (hasMatFormField || hasNgControl) {
       this.matFormField = this.injector.get(MatFormField);
       this.ngControl    = this.matFormField._control.ngControl;
       this.control ??= this.ngControl?.control as RxapFormControl ?? null;
-      this.data() ??= this.extractTableSelectDataSource();
-      this.columns() ??= this.extractTableSelectColumnMap();
-      this.toValue() ??= this.extractTableSelectToValue() ?? (value => value as any);
+      if (!this.data()) {
+        this.data.set(this.extractTableSelectDataSource());
+      }
+      if (!this.columns()) {
+        this.columns.set(this.extractTableSelectColumnMap());
+      }
+      if (!this.toValue()) {
+        this.toValue.set(this.extractTableSelectToValue() ?? (value => value as any));
+      }
       if (this.control) {
-        this.disabled = this.control.disabled;
+        this.setDisabled(this.control.disabled);
         this.control.registerOnDisabledChange(isDisabled => {
-          this.disabled = isDisabled;
+          this.setDisabled(isDisabled);
         });
       }
     }
-    this.checkInputs();
   }
 
-  public checkInputs() {
-    const data = this.data();
-    const columns = this.columns();
+  private checkInputs(
+    data: Data[] | BaseDataSource<Data[]> | AbstractTableDataSource<Data> | undefined,
+    columns: Map<string, TableSelectColumn> | Record<string, TableSelectColumn> | undefined,
+    disabled: boolean,
+  ) {
     if (!columns || !data) {
       console.warn('columns or data is not defined');
-      this.invalidInputs = true;
-      if (this.matButton) {
-        this.matButton.disabled = this.disabled;
-      }
     } else {
       if (typeof columns !== 'object') {
         throw new Error('Ensure that the input columns has a valid value');
@@ -188,10 +198,9 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
       if (!Array.isArray(data) && !(data instanceof BaseDataSource)) {
         throw new Error('Ensure that the input data has a valid value');
       }
-      this.invalidInputs = false;
-      if (this.matButton) {
-        this.matButton.disabled = this.disabled;
-      }
+    }
+    if (this.matButton) {
+      this.matButton.disabled = disabled;
     }
   }
 

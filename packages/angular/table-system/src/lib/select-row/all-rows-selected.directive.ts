@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Directive, OnDestroy, OnInit, TemplateRef, ViewContainerRef, inject } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { ChangeDetectorRef, DestroyRef, Directive, TemplateRef, ViewContainerRef, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { SelectRowService } from './select-row.service';
 import {
   distinctUntilChanged,
@@ -16,7 +16,7 @@ export interface AllRowsSelectedDirectiveContext<Data extends Record<string, any
   selector: '[rxapAllRowsSelected]',
   standalone: true,
 })
-export class AllRowsSelectedDirective<Data extends Record<string, any>> implements OnInit, OnDestroy {
+export class AllRowsSelectedDirective<Data extends Record<string, any>> {
   private readonly template = inject<TemplateRef<AllRowsSelectedDirectiveContext<Data>>>(TemplateRef);
   private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
   private readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
@@ -24,14 +24,8 @@ export class AllRowsSelectedDirective<Data extends Record<string, any>> implemen
   private readonly cdkTable = inject<CdkTable<Data>>(CdkTable);
 
 
-  private _subscription?: Subscription;
-
-  public ngOnDestroy() {
-    this._subscription?.unsubscribe();
-  }
-
-  public ngOnInit() {
-    this._subscription = this.selectRowService.selectedRows$.pipe(
+  constructor() {
+    this.selectRowService.selectedRows$.pipe(
       map(selectedRows => !!selectedRows.length && selectedRows.length === this.cdkTable['_data']?.length),
       distinctUntilChanged(),
       tap(selectedAllRows => {
@@ -41,6 +35,7 @@ export class AllRowsSelectedDirective<Data extends Record<string, any>> implemen
         }
         this.cdr.detectChanges();
       }),
+      takeUntilDestroyed(inject(DestroyRef)),
     ).subscribe();
   }
 

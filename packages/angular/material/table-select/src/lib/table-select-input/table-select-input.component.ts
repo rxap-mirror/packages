@@ -1,6 +1,5 @@
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { NgClass } from '@angular/common';
-import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, HostBinding, Input, OnDestroy, inject } from '@angular/core';
+import { afterNextRender, booleanAttribute, ChangeDetectionStrategy, Component, effect, forwardRef, inject, input, linkedSignal, OnDestroy, signal } from '@angular/core';
 import {
   AbstractControl,
   NgControl,
@@ -29,18 +28,20 @@ import { tap } from 'rxjs/operators';
             useExisting: forwardRef(() => TableSelectInputComponent),
         },
     ],
+    host: {
+        '[id]': 'id',
+        '[class.floating]': 'shouldLabelFloat',
+    },
     imports: [NgClass]
 })
 export class TableSelectInputComponent<Data extends Record<string, any> = Record<string, any>>
   extends ControlValueAccessor<Data>
-  implements MatFormFieldControl<Data>, OnDestroy, AfterViewInit {
+  implements MatFormFieldControl<Data>, OnDestroy {
   ngControl = inject(NgControl, { optional: true, self: true });
-  private readonly cdr = inject(ChangeDetectorRef);
-
 
   static nextId = 0;
 
-  @HostBinding() id = `rxap-table-select-input-${ TableSelectInputComponent.nextId++ }`;
+  id = `rxap-table-select-input-${ TableSelectInputComponent.nextId++ }`;
 
   stateChanges = new Subject<void>();
 
@@ -50,34 +51,23 @@ export class TableSelectInputComponent<Data extends Record<string, any> = Record
   focused = false;
 
   get empty() {
-    return this._value === null;
+    return this._value() === null;
   }
 
-  @HostBinding('class.floating')
   get shouldLabelFloat() {
     return this.focused || !this.empty;
   }
 
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
+  public readonly requiredInput = input(false, { alias: 'required', transform: booleanAttribute });
+
   get required() {
-    return this._required;
-  }
-  set required(req) {
-    this._required = coerceBooleanProperty(req);
-    this.stateChanges.next();
+    return this.requiredInput();
   }
 
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  get disabled(): boolean { return this._disabled; }
+  public readonly disabledInput = input(false, { alias: 'disabled', transform: booleanAttribute });
+  private readonly _disabled = linkedSignal(() => this.disabledInput());
 
-  set disabled(value: boolean) {
-    this._disabled = coerceBooleanProperty(value);
-    this.stateChanges.next();
-  }
+  get disabled(): boolean { return this._disabled(); }
 
   private _subscription = new Subscription();
 
@@ -85,34 +75,20 @@ export class TableSelectInputComponent<Data extends Record<string, any> = Record
     return this.ngControl?.invalid || false;
   }
 
+  private readonly _value = signal<Data | null>(null);
 
-  private _disabled = false;
+  public readonly placeholderInput = input('', { alias: 'placeholder' });
 
-  private _required = false;
-
-  private _value: Data | null = null;
-
-  private _placeholder = '';
-
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
   get placeholder() {
-    return this._placeholder;
-  }
-
-  set placeholder(placeholder: string) {
-    this._placeholder = placeholder;
-    this.stateChanges.next();
+    return this.placeholderInput();
   }
 
   set value(value: Data | null) {
-    this._value = value;
-    this.stateChanges.next();
+    this._value.set(value);
   }
 
   get value(): Data | null {
-    return this._value;
+    return this._value();
   }
 
   constructor() {
@@ -123,17 +99,24 @@ export class TableSelectInputComponent<Data extends Record<string, any> = Record
       // the providers) to avoid running into a circular import.
       this.ngControl.valueAccessor = this;
     }
+    effect(() => {
+      this.requiredInput();
+      this._disabled();
+      this.placeholderInput();
+      this._value();
+      this.stateChanges.next();
+    });
+    afterNextRender(() => this.initControl());
   }
 
-  private _display?: string;
+  private readonly _display = signal<string | undefined>(undefined);
 
   get display(): string | undefined {
-    return this._display;
+    return this._display();
   }
 
   set display(value: string | undefined) {
-    this._display = value;
-    this.cdr.detectChanges();
+    this._display.set(value);
   }
 
   public writeValue(value: Data) {
@@ -147,7 +130,7 @@ export class TableSelectInputComponent<Data extends Record<string, any> = Record
     }
   }
 
-  ngAfterViewInit() {
+  private initControl() {
     if (this.ngControl) {
       this.control = this.ngControl.control;
       if (this.control instanceof RxapFormControl) {
@@ -157,14 +140,13 @@ export class TableSelectInputComponent<Data extends Record<string, any> = Record
     this._subscription.add(this.control?.valueChanges.pipe(
       startWith(this.control?.value ?? null),
       delay(100), // TODO : remove timing workaround
-      // the method updateTableSelectInput of TableSelectControlDirective is called in the ngAfterViewInit
-      // and will be executed AFTER the first value is used to create the display
-      // solution: it must be ensured the the this.toDisplay function is called after the updateTableSelectInput
-      // execution else for the first this.toDisplay function the default implementation is used
+      // the toDisplay function of this component is replaced by the TableSelectControlDirective
+      // after the form field was initialized. The delay ensures the the this.toDisplay function
+      // is called after that replacement else for the first value the default implementation is used
       tap(async value => this.display = value === null ? '' : await this.toDisplay(value)),
     ).subscribe());
     this._subscription.add(this.rxapControl?.disabled$.pipe(
-      tap(disabled => this.disabled = disabled),
+      tap(disabled => this._disabled.set(disabled)),
     ).subscribe());
   }
 

@@ -1,18 +1,19 @@
 import {
-  AfterContentInit,
-  AfterViewInit,
+  afterNextRender,
   Directive,
+  effect,
   ElementRef,
   inject,
   INJECTOR,
   Injector,
-  isDevMode,
-  OnChanges,
-  OnDestroy,
-  SimpleChanges,
   input,
+  isDevMode,
+  linkedSignal,
   contentChildren,
-  contentChild
+  contentChild,
+  DestroyRef,
+  signal,
+  untracked,
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
@@ -27,7 +28,7 @@ import { WindowTableSelectOptions } from '@rxap/material-table-window-system';
 import { Mixin } from '@rxap/mixin';
 import { Method } from '@rxap/pattern';
 import { coerceArray } from '@rxap/utilities';
-import { Subscription } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { tap } from 'rxjs/operators';
 import { ExtractTableSelectColumnMapMixin } from './extract-table-select-column-map.mixin';
 import { ExtractTableSelectDataSourceMixin } from './extract-table-select-data-source.mixin';
@@ -50,16 +51,17 @@ export interface TableSelectControlDirective<Data extends Record<string, any>>
   selector: 'mat-form-field[rxapTableSelectControl]',
   standalone: true,
 })
-export class TableSelectControlDirective<Data extends Record<string, any> = Record<string, any>>
-  implements AfterViewInit, AfterContentInit, OnChanges, OnDestroy {
+export class TableSelectControlDirective<Data extends Record<string, any> = Record<string, any>> {
 
   public readonly multiple = input<boolean>();
 
   public readonly openMethod = input.required<Method<Data[], WindowTableSelectOptions<Data>>>();
 
-  public readonly data = input<Data[] | BaseDataSource<Data[]> | AbstractTableDataSource<Data>>();
+  public readonly dataInput = input<Data[] | BaseDataSource<Data[]> | AbstractTableDataSource<Data>>(undefined, { alias: 'data' });
+  public readonly data = linkedSignal(() => this.dataInput());
 
-  public readonly columns = input<Map<string, TableSelectColumn> | Record<string, TableSelectColumn>>();
+  public readonly columnsInput = input<Map<string, TableSelectColumn> | Record<string, TableSelectColumn>>(undefined, { alias: 'columns' });
+  public readonly columns = linkedSignal(() => this.columnsInput());
 
   public ngControl: NgControl | null = null;
 
@@ -72,121 +74,114 @@ export class TableSelectControlDirective<Data extends Record<string, any> = Reco
   public readonly tableSelectInput = contentChild.required(TableSelectInputComponent);
 
   public readonly matLabel = contentChild<ElementRef>('mat-label');
-  public readonly toValue = input<(value: Data) => unknown | Promise<unknown>>();
+  public readonly toValueInput = input<(value: Data) => unknown | Promise<unknown>>(undefined, { alias: 'toValue' });
+  public readonly toValue = linkedSignal(() => this.toValueInput());
   public readonly injector: Injector          = inject(INJECTOR);
   // required for the use mixin ExtractDatasourceMixin
   public readonly dataSourceLoader            = inject(DataSourceLoader);
-  protected disabled                          = false;
+  protected readonly disabled                 = signal(false);
   protected matFormField: MatFormField | null = null;
-  private readonly _subscription              = new Subscription();
 
   public get selected(): Data[] {
     return this.value !== null ? [ this.value ] : [];
   }
 
-  public readonly toDisplay = input<(value: Data) => string | Promise<string>>(value => value as any);
+  public readonly toDisplayInput = input<(value: Data) => string | Promise<string>>(value => value as any, { alias: 'toDisplay' });
+  public readonly toDisplay = linkedSignal(() => this.toDisplayInput());
 
-  public ngOnChanges(changes: SimpleChanges) {
-    const columnsChange = changes['columns'];
-    const dataChange    = changes['data'];
-    if (this.openTableSelectWindow()) {
-      if (columnsChange || dataChange) {
-        this.updateOpenTableSelectWindow();
-      }
-    }
+  constructor() {
+    // push the resolved inputs into the projected open table select window directives
+    effect(() => {
+      const windows = this.openTableSelectWindow();
+      const columns = this.columns();
+      const data = this.data();
+      const toValue = this.toValue();
+      const matLabel = this.matLabel();
+      untracked(() => this.updateOpenTableSelectWindow(windows, columns, data, toValue, matLabel));
+    });
+    effect(() => {
+      const windows = this.openTableSelectWindow();
+      const disabled = this.disabled();
+      untracked(() => windows.forEach(openTableSelectWindow => openTableSelectWindow.setDisabled(disabled)));
+    });
+    // react to the selection of the projected open table select window directives
+    effect((onCleanup) => {
+      const subscriptions = this.openTableSelectWindow().map(openTableSelectWindow =>
+        openTableSelectWindow.selectedChange.subscribe($event => this.onSelected($event as Data[])),
+      );
+      onCleanup(() => subscriptions.forEach(subscription => subscription.unsubscribe()));
+    });
+    effect(() => {
+      const toDisplay = this.toDisplay();
+      const tableSelectInput = this.tableSelectInput();
+      untracked(() => {
+        if (toDisplay) {
+          tableSelectInput.toDisplay = toDisplay.bind(this);
+        }
+      });
+    });
+    afterNextRender(() => this.initFromFormField());
   }
 
-  public ngAfterViewInit() {
+  private initFromFormField() {
     this.matFormField = this.injector.get(MatFormField, null);
     if (!this.matFormField) {
       throw new Error('The mat form field could not be injected');
     }
     this.ngControl = this.matFormField._control.ngControl as NgControl;
     if (this.ngControl) {
-      if (this.ngControl.control instanceof RxapFormControl) {
-        this.data      = this.extractTableSelectDataSource();
-        this.toDisplay = this.extractTableSelectToDisplay() ?? this.toDisplay();
-        this.toValue   = this.extractTableSelectToValue() ?? this.toValue();
-        this.columns   = this.extractTableSelectColumnMap();
-      }
-      this.updateOpenTableSelectWindow();
-      if (this.ngControl.control instanceof RxapFormControl) {
-        this._subscription?.add(this.control.disabled$.pipe(
-          tap(disabled => this.disabled = disabled),
-          tap(() => this.updateOpenTableSelectWindowDisabledState()),
-        ).subscribe());
+      const control = this.ngControl.control;
+      if (control instanceof RxapFormControl) {
+        this.control = control;
+        this.data.set(this.extractTableSelectDataSource());
+        this.toDisplay.set(this.extractTableSelectToDisplay() ?? this.toDisplay());
+        this.toValue.set(this.extractTableSelectToValue() ?? this.toValue());
+        this.columns.set(this.extractTableSelectColumnMap());
+        control.disabled$.pipe(
+          tap(disabled => this.disabled.set(disabled)),
+          takeUntilDestroyed(this.destroyRef),
+        ).subscribe();
       }
     } else {
       if (isDevMode()) {
         console.log('standalone mode');
       }
     }
-    this.updateTableSelectInput();
   }
 
-  public ngAfterContentInit() {
-    this.updateOpenTableSelectWindow();
-    for (const openTableSelectWindow of this.openTableSelectWindow()) {
-      this._subscription.add(openTableSelectWindow.selectedChange.pipe(
-        tap($event => this.onSelected($event)),
-      ).subscribe());
-    }
+  private readonly destroyRef = inject(DestroyRef);
 
-  }
-
-  public ngOnDestroy() {
-    this._subscription?.unsubscribe();
-  }
-
-  private updateTableSelectInput() {
-    const toDisplay = this.toDisplay();
-    if (toDisplay) {
-      this.tableSelectInput().toDisplay = toDisplay.bind(this);
-    }
-  }
-
-  private updateOpenTableSelectWindowDisabledState() {
-    for (const openTableSelectWindow of this.openTableSelectWindow()) {
-      openTableSelectWindow.disabled = this.disabled;
-      openTableSelectWindow.checkInputs();
-    }
-  }
-
-  private updateOpenTableSelectWindow() {
-    for (const openTableSelectWindow of this.openTableSelectWindow()) {
-      openTableSelectWindow.disabled = this.disabled;
-      const columns = this.columns();
+  private updateOpenTableSelectWindow(
+    windows: readonly OpenTableSelectWindowDirective<any, any>[],
+    columns: Map<string, TableSelectColumn> | Record<string, TableSelectColumn> | undefined,
+    data: Data[] | BaseDataSource<Data[]> | AbstractTableDataSource<Data> | undefined,
+    toValue: ((value: Data) => unknown | Promise<unknown>) | undefined,
+    matLabel: ElementRef | undefined,
+  ) {
+    for (const openTableSelectWindow of windows) {
       if (columns) {
-        openTableSelectWindow.columns = columns;
+        openTableSelectWindow.columns.set(columns);
       }
-      const data = this.data();
       if (data) {
-        openTableSelectWindow.data = data;
+        openTableSelectWindow.data.set(data);
       }
-      if (this.toValue()) {
-        openTableSelectWindow.compareWith = ((o1: Data, o2: Data) => {
-          const toValue = this.toValue();
-          if (toValue) {
-            return toValue(o1) === toValue(o2);
-          }
-          return o1 === o2;
-        });
+      if (toValue) {
+        openTableSelectWindow.compareWith.set((o1: Data, o2: Data) => toValue(o1) === toValue(o2));
       }
-      const matLabel = this.matLabel();
       if (matLabel) {
-        openTableSelectWindow.label = matLabel?.nativeElement.innerText;
+        openTableSelectWindow.label.set(matLabel.nativeElement.innerText);
       }
       if (this.ngControl) {
         const control = this.ngControl.control;
         if (control?.value) {
-          openTableSelectWindow.selected = coerceArray(control.value);
+          openTableSelectWindow.selected.set(coerceArray(control.value));
         }
       }
-      openTableSelectWindow.checkInputs();
     }
   }
 
   private async onSelected($event: Data[]) {
+    const tableSelectInput = this.tableSelectInput();
     if ($event?.length) {
       tableSelectInput.display = await this.toDisplay()($event[0]);
       this.value                    = $event[0];

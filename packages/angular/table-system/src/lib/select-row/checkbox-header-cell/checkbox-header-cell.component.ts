@@ -1,16 +1,12 @@
-import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { SelectRowService } from '../select-row.service';
-import {
-  EMPTY,
-  Observable,
-} from 'rxjs';
 import { map } from 'rxjs/operators';
 import {
   MatCheckboxChange,
   MatCheckboxModule,
 } from '@angular/material/checkbox';
 import { CdkTable } from '@angular/cdk/table';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
@@ -18,24 +14,25 @@ import { AsyncPipe } from '@angular/common';
     templateUrl: './checkbox-header-cell.component.html',
     styleUrls: ['./checkbox-header-cell.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [MatCheckboxModule, AsyncPipe]
+    imports: [MatCheckboxModule]
 })
-export class CheckboxHeaderCellComponent<Data extends Record<string, any>> implements OnInit {
+export class CheckboxHeaderCellComponent<Data extends Record<string, any>> {
   private readonly cdkTable = inject<CdkTable<Data>>(CdkTable);
   private readonly selectRow = inject<SelectRowService<Data>>(SelectRowService);
 
 
-  public indeterminate$: Observable<boolean> = EMPTY;
-  public checked$: Observable<boolean> = EMPTY;
-
-  public ngOnInit() {
-    this.indeterminate$ = this.selectRow.selectedRows$.pipe(
+  public readonly indeterminate = toSignal(
+    this.selectRow.selectedRows$.pipe(
       map(selectedRows => !!selectedRows.length && this.cdkTable['_data']?.length !== selectedRows.length),
-    );
-    this.checked$ = this.selectRow.selectedRows$.pipe(
+    ),
+    { initialValue: false },
+  );
+  public readonly checked = toSignal(
+    this.selectRow.selectedRows$.pipe(
       map(selectedRows => !!selectedRows.length && this.cdkTable['_data']?.length === selectedRows.length),
-    );
-  }
+    ),
+    { initialValue: false },
+  );
 
   public onChange($event: MatCheckboxChange) {
     if ($event.checked) {

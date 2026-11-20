@@ -1,4 +1,4 @@
-import { Directive, HostBinding, HostListener, INJECTOR, Injector, isDevMode, OnDestroy, OnInit, ViewContainerRef, input, inject } from '@angular/core';
+import { Directive, INJECTOR, Injector, isDevMode, OnDestroy, OnInit, ViewContainerRef, input, inject } from '@angular/core';
 import {
   MAT_FORM_FIELD,
   MatFormField,
@@ -105,6 +105,10 @@ export interface OpenTableSelectDirective<Data extends Record<string, any>> exte
 @Directive({
   selector: '[rxapOpenTableSelect]',
   standalone: true,
+  host: {
+    type: 'button',
+    '(click)': 'onClick()',
+  },
 })
 export class OpenTableSelectDirective<Data extends Record<string, any>> implements OnInit, OnDestroy {
   private readonly formField = inject<MatFormField>(MAT_FORM_FIELD);
@@ -112,9 +116,6 @@ export class OpenTableSelectDirective<Data extends Record<string, any>> implemen
   protected readonly injector = inject<Injector>(INJECTOR);
   private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
 
-
-  @HostBinding('type')
-  public type = 'button';
 
   public readonly openMethod = input.required<Method<Data[], WindowTableSelectOptions<Data>>>({ alias: "rxapOpenTableSelect" });
 
@@ -146,7 +147,6 @@ export class OpenTableSelectDirective<Data extends Record<string, any>> implemen
 
   }
 
-  @HostListener('click')
   public async onClick() {
     const selected$ = this.openMethod().call({
       data: this.tableSelectDataSource,
