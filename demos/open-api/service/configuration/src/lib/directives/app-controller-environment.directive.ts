@@ -1,19 +1,9 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  INJECTOR,
-  Injector,
-  Input,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, input, TemplateRef } from '@angular/core';
 import { OpenApiRemoteMethodParameter } from '@rxap/open-api/remote-method';
-import { RemoteMethodLoader } from '@rxap/remote-method';
 import {
+  RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN,
   RemoteMethodDirective,
   RemoteMethodTemplateDirective,
-  RemoteMethodTemplateDirectiveContext,
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
 import { AppControllerEnvironmentRemoteMethod } from '../remote-methods/app-controller-environment.remote-method';
@@ -22,42 +12,20 @@ import { AppControllerEnvironmentResponse } from '../responses/app-controller-en
 @Directive({
   selector: '[appControllerEnvironmentRemoteMethod]',
   exportAs: 'appControllerEnvironmentRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: AppControllerEnvironmentRemoteMethod } ],
 })
 export class AppControllerEnvironmentRemoteMethodTemplateDirective
-    extends RemoteMethodTemplateDirective<AppControllerEnvironmentResponse, OpenApiRemoteMethodParameter<void, void>> {
-  @Input('appControllerEnvironmentRemoteMethodParameters')
-  declare public parameters?: OpenApiRemoteMethodParameter<void, void>;
-  @Input('appControllerEnvironmentRemoteMethodError')
-  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
-
-  constructor(
-      @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-      @Inject(INJECTOR) injector: Injector,
-      @Inject(AppControllerEnvironmentRemoteMethod) remoteMethod: AppControllerEnvironmentRemoteMethod,
-      @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<AppControllerEnvironmentResponse>>,
-      @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
-      @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
-  ) {
-    super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-    this.withoutParameters = true;
-  }
+  extends RemoteMethodTemplateDirective<AppControllerEnvironmentResponse, OpenApiRemoteMethodParameter<void, void>> {
+  override readonly parameters = input<OpenApiRemoteMethodParameter<void, void>>(undefined, { alias: 'appControllerEnvironmentRemoteMethodParameters' });
+  override readonly withoutParameters = input(true, { alias: 'appControllerEnvironmentRemoteMethodWithoutParameters' });
+  override readonly errorTemplate = input<TemplateRef<RemoteMethodTemplateDirectiveErrorContext>>(undefined, { alias: 'appControllerEnvironmentRemoteMethodError' });
 }
 
 @Directive({
   selector: '[appControllerEnvironmentRemoteMethod]',
   exportAs: 'appControllerEnvironmentRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: AppControllerEnvironmentRemoteMethod } ],
 })
 export class AppControllerEnvironmentRemoteMethodDirective
-    extends RemoteMethodDirective<AppControllerEnvironmentResponse, OpenApiRemoteMethodParameter<void, void>> {
-  constructor(
-      @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-      @Inject(INJECTOR) injector: Injector,
-      @Inject(AppControllerEnvironmentRemoteMethod) remoteMethod: AppControllerEnvironmentRemoteMethod,
-  ) {
-    super(remoteMethodLoader, injector);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-  }
+  extends RemoteMethodDirective<AppControllerEnvironmentResponse, OpenApiRemoteMethodParameter<void, void>> {
 }

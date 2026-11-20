@@ -1,19 +1,9 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  INJECTOR,
-  Injector,
-  Input,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, input, TemplateRef } from '@angular/core';
 import { OpenApiRemoteMethodParameter } from '@rxap/open-api/remote-method';
-import { RemoteMethodLoader } from '@rxap/remote-method';
 import {
+  RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN,
   RemoteMethodDirective,
   RemoteMethodTemplateDirective,
-  RemoteMethodTemplateDirectiveContext,
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
 import { SettingsControllerUnshiftPropertyParameter } from '../parameters/settings-controller-unshift-property.parameter';
@@ -23,39 +13,19 @@ import { SettingsControllerUnshiftPropertyResponse } from '../responses/settings
 @Directive({
   selector: '[settingsControllerUnshiftPropertyRemoteMethod]',
   exportAs: 'settingsControllerUnshiftPropertyRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: SettingsControllerUnshiftPropertyRemoteMethod } ],
 })
 export class SettingsControllerUnshiftPropertyRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<SettingsControllerUnshiftPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerUnshiftPropertyParameter, void>> {
-  @Input('settingsControllerUnshiftPropertyRemoteMethodParameters')
-  declare public parameters?: OpenApiRemoteMethodParameter<SettingsControllerUnshiftPropertyParameter, void>;
-  @Input('settingsControllerUnshiftPropertyRemoteMethodError')
-  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
-
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
-    @Inject(SettingsControllerUnshiftPropertyRemoteMethod) remoteMethod: SettingsControllerUnshiftPropertyRemoteMethod,
-    @Inject(
-      TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerUnshiftPropertyResponse>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef, @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
-  ) {
-    super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-  }
+  override readonly parameters = input<OpenApiRemoteMethodParameter<SettingsControllerUnshiftPropertyParameter, void>>(undefined, { alias: 'settingsControllerUnshiftPropertyRemoteMethodParameters' });
+  override readonly errorTemplate = input<TemplateRef<RemoteMethodTemplateDirectiveErrorContext>>(undefined, { alias: 'settingsControllerUnshiftPropertyRemoteMethodError' });
 }
 
 @Directive({
   selector: '[settingsControllerUnshiftPropertyRemoteMethod]',
   exportAs: 'settingsControllerUnshiftPropertyRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: SettingsControllerUnshiftPropertyRemoteMethod } ],
 })
 export class SettingsControllerUnshiftPropertyRemoteMethodDirective
   extends RemoteMethodDirective<SettingsControllerUnshiftPropertyResponse, OpenApiRemoteMethodParameter<SettingsControllerUnshiftPropertyParameter, void>> {
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
-    @Inject(SettingsControllerUnshiftPropertyRemoteMethod) remoteMethod: SettingsControllerUnshiftPropertyRemoteMethod,
-  ) {
-    super(remoteMethodLoader, injector);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-  }
 }

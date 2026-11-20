@@ -1,19 +1,9 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  INJECTOR,
-  Injector,
-  Input,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, input, TemplateRef } from '@angular/core';
 import { OpenApiRemoteMethodParameter } from '@rxap/open-api/remote-method';
-import { RemoteMethodLoader } from '@rxap/remote-method';
 import {
+  RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN,
   RemoteMethodDirective,
   RemoteMethodTemplateDirective,
-  RemoteMethodTemplateDirectiveContext,
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
 import { ThemeControllerSetRemoteMethod } from '../remote-methods/theme-controller-set.remote-method';
@@ -22,39 +12,20 @@ import { ThemeControllerSetRequestBody } from '../request-bodies/theme-controlle
 @Directive({
   selector: '[themeControllerSetRemoteMethod]',
   exportAs: 'themeControllerSetRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: ThemeControllerSetRemoteMethod } ],
 })
 export class ThemeControllerSetRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<void, OpenApiRemoteMethodParameter<void, ThemeControllerSetRequestBody<TRequestBody>>> {
-  @Input('themeControllerSetRemoteMethodParameters')
-  declare public parameters?: OpenApiRemoteMethodParameter<void, ThemeControllerSetRequestBody<TRequestBody>>;
-  @Input('themeControllerSetRemoteMethodError')
-  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
-
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
-    @Inject(ThemeControllerSetRemoteMethod) remoteMethod: ThemeControllerSetRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<void>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef, @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
-  ) {
-    super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-    this.withoutParameters = true;
-  }
+  override readonly parameters = input<OpenApiRemoteMethodParameter<void, ThemeControllerSetRequestBody<TRequestBody>>>(undefined, { alias: 'themeControllerSetRemoteMethodParameters' });
+  override readonly withoutParameters = input(true, { alias: 'themeControllerSetRemoteMethodWithoutParameters' });
+  override readonly errorTemplate = input<TemplateRef<RemoteMethodTemplateDirectiveErrorContext>>(undefined, { alias: 'themeControllerSetRemoteMethodError' });
 }
 
 @Directive({
   selector: '[themeControllerSetRemoteMethod]',
   exportAs: 'themeControllerSetRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: ThemeControllerSetRemoteMethod } ],
 })
 export class ThemeControllerSetRemoteMethodDirective
   extends RemoteMethodDirective<void, OpenApiRemoteMethodParameter<void, ThemeControllerSetRequestBody<TRequestBody>>> {
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
-    @Inject(ThemeControllerSetRemoteMethod) remoteMethod: ThemeControllerSetRemoteMethod,
-  ) {
-    super(remoteMethodLoader, injector);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-  }
 }

@@ -1,19 +1,9 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  INJECTOR,
-  Injector,
-  Input,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, input, TemplateRef } from '@angular/core';
 import { OpenApiRemoteMethodParameter } from '@rxap/open-api/remote-method';
-import { RemoteMethodLoader } from '@rxap/remote-method';
 import {
+  RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN,
   RemoteMethodDirective,
   RemoteMethodTemplateDirective,
-  RemoteMethodTemplateDirectiveContext,
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
 import { SettingsControllerShiftPropertyParameter } from '../parameters/settings-controller-shift-property.parameter';
@@ -23,39 +13,19 @@ import { SettingsControllerShiftPropertyResponse } from '../responses/settings-c
 @Directive({
   selector: '[settingsControllerShiftPropertyRemoteMethod]',
   exportAs: 'settingsControllerShiftPropertyRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: SettingsControllerShiftPropertyRemoteMethod } ],
 })
 export class SettingsControllerShiftPropertyRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<SettingsControllerShiftPropertyResponse<TResponse>, OpenApiRemoteMethodParameter<SettingsControllerShiftPropertyParameter, void>> {
-  @Input('settingsControllerShiftPropertyRemoteMethodParameters')
-  declare public parameters?: OpenApiRemoteMethodParameter<SettingsControllerShiftPropertyParameter, void>;
-  @Input('settingsControllerShiftPropertyRemoteMethodError')
-  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
-
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
-    @Inject(SettingsControllerShiftPropertyRemoteMethod) remoteMethod: SettingsControllerShiftPropertyRemoteMethod,
-    @Inject(
-      TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<SettingsControllerShiftPropertyResponse<TResponse>>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef, @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
-  ) {
-    super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-  }
+  override readonly parameters = input<OpenApiRemoteMethodParameter<SettingsControllerShiftPropertyParameter, void>>(undefined, { alias: 'settingsControllerShiftPropertyRemoteMethodParameters' });
+  override readonly errorTemplate = input<TemplateRef<RemoteMethodTemplateDirectiveErrorContext>>(undefined, { alias: 'settingsControllerShiftPropertyRemoteMethodError' });
 }
 
 @Directive({
   selector: '[settingsControllerShiftPropertyRemoteMethod]',
   exportAs: 'settingsControllerShiftPropertyRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: SettingsControllerShiftPropertyRemoteMethod } ],
 })
 export class SettingsControllerShiftPropertyRemoteMethodDirective
   extends RemoteMethodDirective<SettingsControllerShiftPropertyResponse<TResponse>, OpenApiRemoteMethodParameter<SettingsControllerShiftPropertyParameter, void>> {
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
-    @Inject(SettingsControllerShiftPropertyRemoteMethod) remoteMethod: SettingsControllerShiftPropertyRemoteMethod,
-  ) {
-    super(remoteMethodLoader, injector);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-  }
 }

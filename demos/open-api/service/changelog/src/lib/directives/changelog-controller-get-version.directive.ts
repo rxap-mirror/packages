@@ -1,19 +1,9 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  INJECTOR,
-  Injector,
-  Input,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, input, TemplateRef } from '@angular/core';
 import { OpenApiRemoteMethodParameter } from '@rxap/open-api/remote-method';
-import { RemoteMethodLoader } from '@rxap/remote-method';
 import {
+  RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN,
   RemoteMethodDirective,
   RemoteMethodTemplateDirective,
-  RemoteMethodTemplateDirectiveContext,
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
 import { ChangelogControllerGetVersionParameter } from '../parameters/changelog-controller-get-version.parameter';
@@ -23,41 +13,19 @@ import { ChangelogControllerGetVersionResponse } from '../responses/changelog-co
 @Directive({
   selector: '[changelogControllerGetVersionRemoteMethod]',
   exportAs: 'changelogControllerGetVersionRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: ChangelogControllerGetVersionRemoteMethod } ],
 })
 export class ChangelogControllerGetVersionRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<ChangelogControllerGetVersionResponse, OpenApiRemoteMethodParameter<ChangelogControllerGetVersionParameter, void>> {
-  @Input('changelogControllerGetVersionRemoteMethodParameters')
-  declare public parameters?: OpenApiRemoteMethodParameter<ChangelogControllerGetVersionParameter, void>;
-  @Input('changelogControllerGetVersionRemoteMethodError')
-  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
-
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
-    @Inject(ChangelogControllerGetVersionRemoteMethod) remoteMethod: ChangelogControllerGetVersionRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<ChangelogControllerGetVersionResponse>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
-  ) {
-    super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-  }
+  override readonly parameters = input<OpenApiRemoteMethodParameter<ChangelogControllerGetVersionParameter, void>>(undefined, { alias: 'changelogControllerGetVersionRemoteMethodParameters' });
+  override readonly errorTemplate = input<TemplateRef<RemoteMethodTemplateDirectiveErrorContext>>(undefined, { alias: 'changelogControllerGetVersionRemoteMethodError' });
 }
 
 @Directive({
   selector: '[changelogControllerGetVersionRemoteMethod]',
   exportAs: 'changelogControllerGetVersionRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: ChangelogControllerGetVersionRemoteMethod } ],
 })
 export class ChangelogControllerGetVersionRemoteMethodDirective
   extends RemoteMethodDirective<ChangelogControllerGetVersionResponse, OpenApiRemoteMethodParameter<ChangelogControllerGetVersionParameter, void>> {
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
-    @Inject(ChangelogControllerGetVersionRemoteMethod) remoteMethod: ChangelogControllerGetVersionRemoteMethod,
-  ) {
-    super(remoteMethodLoader, injector);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-  }
 }

@@ -1,19 +1,9 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  INJECTOR,
-  Injector,
-  Input,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, input, TemplateRef } from '@angular/core';
 import { OpenApiRemoteMethodParameter } from '@rxap/open-api/remote-method';
-import { RemoteMethodLoader } from '@rxap/remote-method';
 import {
+  RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN,
   RemoteMethodDirective,
   RemoteMethodTemplateDirective,
-  RemoteMethodTemplateDirectiveContext,
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
 import { ThemeControllerSetTypographyRemoteMethod } from '../remote-methods/theme-controller-set-typography.remote-method';
@@ -22,39 +12,20 @@ import { ThemeControllerSetTypographyRequestBody } from '../request-bodies/theme
 @Directive({
   selector: '[themeControllerSetTypographyRemoteMethod]',
   exportAs: 'themeControllerSetTypographyRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: ThemeControllerSetTypographyRemoteMethod } ],
 })
 export class ThemeControllerSetTypographyRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<void, OpenApiRemoteMethodParameter<void, ThemeControllerSetTypographyRequestBody>> {
-  @Input('themeControllerSetTypographyRemoteMethodParameters')
-  declare public parameters?: OpenApiRemoteMethodParameter<void, ThemeControllerSetTypographyRequestBody>;
-  @Input('themeControllerSetTypographyRemoteMethodError')
-  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
-
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
-    @Inject(ThemeControllerSetTypographyRemoteMethod) remoteMethod: ThemeControllerSetTypographyRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<void>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef, @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
-  ) {
-    super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-    this.withoutParameters = true;
-  }
+  override readonly parameters = input<OpenApiRemoteMethodParameter<void, ThemeControllerSetTypographyRequestBody>>(undefined, { alias: 'themeControllerSetTypographyRemoteMethodParameters' });
+  override readonly withoutParameters = input(true, { alias: 'themeControllerSetTypographyRemoteMethodWithoutParameters' });
+  override readonly errorTemplate = input<TemplateRef<RemoteMethodTemplateDirectiveErrorContext>>(undefined, { alias: 'themeControllerSetTypographyRemoteMethodError' });
 }
 
 @Directive({
   selector: '[themeControllerSetTypographyRemoteMethod]',
   exportAs: 'themeControllerSetTypographyRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: ThemeControllerSetTypographyRemoteMethod } ],
 })
 export class ThemeControllerSetTypographyRemoteMethodDirective
   extends RemoteMethodDirective<void, OpenApiRemoteMethodParameter<void, ThemeControllerSetTypographyRequestBody>> {
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
-    @Inject(ThemeControllerSetTypographyRemoteMethod) remoteMethod: ThemeControllerSetTypographyRemoteMethod,
-  ) {
-    super(remoteMethodLoader, injector);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-  }
 }

@@ -1,63 +1,32 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  INJECTOR,
-  Injector,
-  Input,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, input, TemplateRef } from '@angular/core';
 import { OpenApiRemoteMethodParameter } from '@rxap/open-api/remote-method';
-import { RemoteMethodLoader } from '@rxap/remote-method';
-import {
-  RemoteMethodDirective,
-  RemoteMethodTemplateDirective,
-  RemoteMethodTemplateDirectiveContext,
-  RemoteMethodTemplateDirectiveErrorContext,
-} from '@rxap/remote-method/directive';
 import { MinimumTableControllerGetPageParameter } from '../parameters/minimum-table-controller-get-page.parameter';
 import { MinimumTableControllerGetPageRemoteMethod } from '../remote-methods/minimum-table-controller-get-page.remote-method';
 import { MinimumTableControllerGetPageResponse } from '../responses/minimum-table-controller-get-page.response';
 
+import {
+  RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN,
+  RemoteMethodDirective,
+  RemoteMethodTemplateDirective,
+  RemoteMethodTemplateDirectiveErrorContext,
+} from '@rxap/remote-method/directive';
+
 @Directive({
   selector: '[minimumTableControllerGetPageRemoteMethod]',
   exportAs: 'minimumTableControllerGetPageRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: MinimumTableControllerGetPageRemoteMethod } ],
 })
 export class MinimumTableControllerGetPageRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<MinimumTableControllerGetPageResponse, OpenApiRemoteMethodParameter<MinimumTableControllerGetPageParameter, void>> {
-  @Input('minimumTableControllerGetPageRemoteMethodParameters')
-  declare public parameters?: OpenApiRemoteMethodParameter<MinimumTableControllerGetPageParameter, void>;
-  @Input('minimumTableControllerGetPageRemoteMethodError')
-  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
-
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
-    @Inject(MinimumTableControllerGetPageRemoteMethod) remoteMethod: MinimumTableControllerGetPageRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<MinimumTableControllerGetPageResponse>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
-  ) {
-    super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-  }
+  override readonly parameters = input<OpenApiRemoteMethodParameter<MinimumTableControllerGetPageParameter, void>>(undefined, { alias: 'minimumTableControllerGetPageRemoteMethodParameters' });
+  override readonly errorTemplate = input<TemplateRef<RemoteMethodTemplateDirectiveErrorContext>>(undefined, { alias: 'minimumTableControllerGetPageRemoteMethodError' });
 }
 
 @Directive({
   selector: '[minimumTableControllerGetPageRemoteMethod]',
   exportAs: 'minimumTableControllerGetPageRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: MinimumTableControllerGetPageRemoteMethod } ],
 })
 export class MinimumTableControllerGetPageRemoteMethodDirective
   extends RemoteMethodDirective<MinimumTableControllerGetPageResponse, OpenApiRemoteMethodParameter<MinimumTableControllerGetPageParameter, void>> {
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
-    @Inject(MinimumTableControllerGetPageRemoteMethod) remoteMethod: MinimumTableControllerGetPageRemoteMethod,
-  ) {
-    super(remoteMethodLoader, injector);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-  }
 }

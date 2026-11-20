@@ -1,19 +1,9 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  INJECTOR,
-  Injector,
-  Input,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, input, TemplateRef } from '@angular/core';
 import { OpenApiRemoteMethodParameter } from '@rxap/open-api/remote-method';
-import { RemoteMethodLoader } from '@rxap/remote-method';
 import {
+  RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN,
   RemoteMethodDirective,
   RemoteMethodTemplateDirective,
-  RemoteMethodTemplateDirectiveContext,
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
 import { SettingsControllerRemoveAtPropertyParameter } from '../parameters/settings-controller-remove-at-property.parameter';
@@ -22,38 +12,19 @@ import { SettingsControllerRemoveAtPropertyRemoteMethod } from '../remote-method
 @Directive({
   selector: '[settingsControllerRemoveAtPropertyRemoteMethod]',
   exportAs: 'settingsControllerRemoveAtPropertyRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: SettingsControllerRemoveAtPropertyRemoteMethod } ],
 })
 export class SettingsControllerRemoveAtPropertyRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<void, OpenApiRemoteMethodParameter<SettingsControllerRemoveAtPropertyParameter, void>> {
-  @Input('settingsControllerRemoveAtPropertyRemoteMethodParameters')
-  declare public parameters?: OpenApiRemoteMethodParameter<SettingsControllerRemoveAtPropertyParameter, void>;
-  @Input('settingsControllerRemoveAtPropertyRemoteMethodError')
-  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
-
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector, @Inject(
-      SettingsControllerRemoveAtPropertyRemoteMethod) remoteMethod: SettingsControllerRemoveAtPropertyRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<void>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef, @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
-  ) {
-    super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-  }
+  override readonly parameters = input<OpenApiRemoteMethodParameter<SettingsControllerRemoveAtPropertyParameter, void>>(undefined, { alias: 'settingsControllerRemoveAtPropertyRemoteMethodParameters' });
+  override readonly errorTemplate = input<TemplateRef<RemoteMethodTemplateDirectiveErrorContext>>(undefined, { alias: 'settingsControllerRemoveAtPropertyRemoteMethodError' });
 }
 
 @Directive({
   selector: '[settingsControllerRemoveAtPropertyRemoteMethod]',
   exportAs: 'settingsControllerRemoveAtPropertyRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: SettingsControllerRemoveAtPropertyRemoteMethod } ],
 })
 export class SettingsControllerRemoveAtPropertyRemoteMethodDirective
   extends RemoteMethodDirective<void, OpenApiRemoteMethodParameter<SettingsControllerRemoveAtPropertyParameter, void>> {
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector,
-    @Inject(SettingsControllerRemoveAtPropertyRemoteMethod) remoteMethod: SettingsControllerRemoveAtPropertyRemoteMethod,
-  ) {
-    super(remoteMethodLoader, injector);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-  }
 }

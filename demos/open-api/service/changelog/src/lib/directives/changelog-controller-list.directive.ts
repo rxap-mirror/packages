@@ -1,24 +1,11 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  INJECTOR,
-  Injector,
-  Input,
-  IterableDiffers,
-  NgZone,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, input, TemplateRef } from '@angular/core';
 import { OpenApiRemoteMethodParameter } from '@rxap/open-api/remote-method';
-import { RemoteMethodLoader } from '@rxap/remote-method';
 import {
+  RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN,
   RemoteMethodDirective,
   RemoteMethodTemplateCollectionDirective,
-  RemoteMethodTemplateCollectionDirectiveContext,
   RemoteMethodTemplateCollectionDirectiveErrorContext,
   RemoteMethodTemplateDirective,
-  RemoteMethodTemplateDirectiveContext,
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
 import { ArrayElement } from '@rxap/utilities';
@@ -28,72 +15,33 @@ import { ChangelogControllerListResponse } from '../responses/changelog-controll
 @Directive({
   selector: '[changelogControllerListCollectionRemoteMethod]',
   exportAs: 'changelogControllerListCollectionRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: ChangelogControllerListRemoteMethod } ],
 })
 export class ChangelogControllerListRemoteMethodTemplateCollectionDirective
   extends RemoteMethodTemplateCollectionDirective<ArrayElement<ChangelogControllerListResponse>, OpenApiRemoteMethodParameter<void, void>> {
-  @Input('changelogControllerListCollectionRemoteMethodParameters')
-  declare public parameters?: OpenApiRemoteMethodParameter<void, void>;
-  @Input('changelogControllerListCollectionRemoteMethodError')
-  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateCollectionDirectiveErrorContext>;
-  @Input('changelogControllerListCollectionRemoteMethodEmpty')
-  declare public emptyTemplate?: TemplateRef<void>;
-
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
-    @Inject(ChangelogControllerListRemoteMethod) remoteMethod: ChangelogControllerListRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateCollectionDirectiveContext<ArrayElement<ChangelogControllerListResponse>>>,
-    @Inject(IterableDiffers) differs: IterableDiffers,
-    @Inject(NgZone) zone: NgZone,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
-  ) {
-    super(template, remoteMethodLoader, injector, viewContainerRef, cdr, differs, zone);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-    this.withoutParameters = true;
-  }
+  override readonly parameters = input<OpenApiRemoteMethodParameter<void, void>>(undefined, { alias: 'changelogControllerListCollectionRemoteMethodParameters' });
+  override readonly withoutParameters = input(true, { alias: 'changelogControllerListCollectionRemoteMethodWithoutParameters' });
+  override readonly errorTemplate = input<TemplateRef<RemoteMethodTemplateCollectionDirectiveErrorContext>>(undefined, { alias: 'changelogControllerListCollectionRemoteMethodError' });
+  override readonly emptyTemplate = input<TemplateRef<void>>(undefined, { alias: 'changelogControllerListCollectionRemoteMethodEmpty' });
 }
 
 @Directive({
   selector: '[changelogControllerListRemoteMethod]',
   exportAs: 'changelogControllerListRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: ChangelogControllerListRemoteMethod } ],
 })
 export class ChangelogControllerListRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<ChangelogControllerListResponse, OpenApiRemoteMethodParameter<void, void>> {
-  @Input('changelogControllerListRemoteMethodParameters')
-  declare public parameters?: OpenApiRemoteMethodParameter<void, void>;
-  @Input('changelogControllerListRemoteMethodError')
-  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
-
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
-    @Inject(ChangelogControllerListRemoteMethod) remoteMethod: ChangelogControllerListRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<ChangelogControllerListResponse>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef,
-    @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
-  ) {
-    super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-    this.withoutParameters = true;
-  }
+  override readonly parameters = input<OpenApiRemoteMethodParameter<void, void>>(undefined, { alias: 'changelogControllerListRemoteMethodParameters' });
+  override readonly withoutParameters = input(true, { alias: 'changelogControllerListRemoteMethodWithoutParameters' });
+  override readonly errorTemplate = input<TemplateRef<RemoteMethodTemplateDirectiveErrorContext>>(undefined, { alias: 'changelogControllerListRemoteMethodError' });
 }
 
 @Directive({
   selector: '[changelogControllerListRemoteMethod]',
   exportAs: 'changelogControllerListRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: ChangelogControllerListRemoteMethod } ],
 })
 export class ChangelogControllerListRemoteMethodDirective
   extends RemoteMethodDirective<ChangelogControllerListResponse, OpenApiRemoteMethodParameter<void, void>> {
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader,
-    @Inject(INJECTOR) injector: Injector,
-    @Inject(ChangelogControllerListRemoteMethod) remoteMethod: ChangelogControllerListRemoteMethod,
-  ) {
-    super(remoteMethodLoader, injector);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-  }
 }

@@ -1,19 +1,9 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Inject,
-  INJECTOR,
-  Injector,
-  Input,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, input, TemplateRef } from '@angular/core';
 import { OpenApiRemoteMethodParameter } from '@rxap/open-api/remote-method';
-import { RemoteMethodLoader } from '@rxap/remote-method';
 import {
+  RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN,
   RemoteMethodDirective,
   RemoteMethodTemplateDirective,
-  RemoteMethodTemplateDirectiveContext,
   RemoteMethodTemplateDirectiveErrorContext,
 } from '@rxap/remote-method/directive';
 import { SettingsControllerIncrementPropertyParameter } from '../parameters/settings-controller-increment-property.parameter';
@@ -22,37 +12,19 @@ import { SettingsControllerIncrementPropertyRemoteMethod } from '../remote-metho
 @Directive({
   selector: '[settingsControllerIncrementPropertyRemoteMethod]',
   exportAs: 'settingsControllerIncrementPropertyRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: SettingsControllerIncrementPropertyRemoteMethod } ],
 })
 export class SettingsControllerIncrementPropertyRemoteMethodTemplateDirective
   extends RemoteMethodTemplateDirective<void, OpenApiRemoteMethodParameter<SettingsControllerIncrementPropertyParameter, void>> {
-  @Input('settingsControllerIncrementPropertyRemoteMethodParameters')
-  declare public parameters?: OpenApiRemoteMethodParameter<SettingsControllerIncrementPropertyParameter, void>;
-  @Input('settingsControllerIncrementPropertyRemoteMethodError')
-  declare public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
-
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector, @Inject(
-      SettingsControllerIncrementPropertyRemoteMethod) remoteMethod: SettingsControllerIncrementPropertyRemoteMethod,
-    @Inject(TemplateRef) template: TemplateRef<RemoteMethodTemplateDirectiveContext<void>>,
-    @Inject(ViewContainerRef) viewContainerRef: ViewContainerRef, @Inject(ChangeDetectorRef) cdr: ChangeDetectorRef,
-  ) {
-    super(template, remoteMethodLoader, injector, viewContainerRef, cdr);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-  }
+  override readonly parameters = input<OpenApiRemoteMethodParameter<SettingsControllerIncrementPropertyParameter, void>>(undefined, { alias: 'settingsControllerIncrementPropertyRemoteMethodParameters' });
+  override readonly errorTemplate = input<TemplateRef<RemoteMethodTemplateDirectiveErrorContext>>(undefined, { alias: 'settingsControllerIncrementPropertyRemoteMethodError' });
 }
 
 @Directive({
   selector: '[settingsControllerIncrementPropertyRemoteMethod]',
   exportAs: 'settingsControllerIncrementPropertyRemoteMethod',
-  standalone: true,
+  providers: [ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: SettingsControllerIncrementPropertyRemoteMethod } ],
 })
 export class SettingsControllerIncrementPropertyRemoteMethodDirective
   extends RemoteMethodDirective<void, OpenApiRemoteMethodParameter<SettingsControllerIncrementPropertyParameter, void>> {
-  constructor(
-    @Inject(RemoteMethodLoader) remoteMethodLoader: RemoteMethodLoader, @Inject(INJECTOR) injector: Injector, @Inject(
-      SettingsControllerIncrementPropertyRemoteMethod) remoteMethod: SettingsControllerIncrementPropertyRemoteMethod) {
-    super(remoteMethodLoader, injector);
-    this.remoteMethodOrIdOrToken = remoteMethod;
-  }
 }
