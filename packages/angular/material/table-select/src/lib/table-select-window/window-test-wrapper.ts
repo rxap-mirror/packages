@@ -13,11 +13,10 @@ import {
   inject,
   Injector,
   INJECTOR,
-  QueryList,
-  ViewChildren,
   ViewContainerRef,
   ViewRef,
-  input
+  input,
+  viewChildren
 } from '@angular/core';
 import { RXAP_WINDOW_REF } from '@rxap/window-system';
 import {
@@ -93,11 +92,10 @@ export class WindowTestWrapperComponent implements AfterViewInit {
   injector         = inject(INJECTOR);
   viewContainerRef = this.injector.get(ViewContainerRef);
 
-  @ViewChildren(CdkPortalOutlet)
-  public portalOutlet!: QueryList<CdkPortalOutlet>;
+  public readonly portalOutlet = viewChildren(CdkPortalOutlet);
 
   ngAfterViewInit() {
-    this.portalOutlet.forEach((outlet) => {
+    this.portalOutlet().forEach((outlet) => {
       outlet.attached.pipe(
         tap(attachedRef => {
           if (attachedRef instanceof ComponentRef) {

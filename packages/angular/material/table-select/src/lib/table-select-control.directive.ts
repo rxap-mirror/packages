@@ -1,8 +1,6 @@
 import {
   AfterContentInit,
   AfterViewInit,
-  ContentChild,
-  ContentChildren,
   Directive,
   ElementRef,
   inject,
@@ -11,9 +9,10 @@ import {
   isDevMode,
   OnChanges,
   OnDestroy,
-  QueryList,
   SimpleChanges,
-  input
+  input,
+  contentChildren,
+  contentChild
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
@@ -68,14 +67,11 @@ export class TableSelectControlDirective<Data extends Record<string, any> = Reco
 
   public control!: RxapFormControl;
 
-  @ContentChildren(OpenTableSelectWindowDirective)
-  public openTableSelectWindow!: QueryList<OpenTableSelectWindowDirective<Data>>;
+  public readonly openTableSelectWindow = contentChildren(OpenTableSelectWindowDirective);
 
-  @ContentChild(TableSelectInputComponent)
-  public tableSelectInput!: TableSelectInputComponent;
+  public readonly tableSelectInput = contentChild.required(TableSelectInputComponent);
 
-  @ContentChild('mat-label')
-  public matLabel?: ElementRef;
+  public readonly matLabel = contentChild<ElementRef>('mat-label');
   public readonly toValue = input<(value: Data) => unknown | Promise<unknown>>();
   public readonly injector: Injector          = inject(INJECTOR);
   // required for the use mixin ExtractDatasourceMixin
@@ -93,7 +89,7 @@ export class TableSelectControlDirective<Data extends Record<string, any> = Reco
   public ngOnChanges(changes: SimpleChanges) {
     const columnsChange = changes['columns'];
     const dataChange    = changes['data'];
-    if (this.openTableSelectWindow) {
+    if (this.openTableSelectWindow()) {
       if (columnsChange || dataChange) {
         this.updateOpenTableSelectWindow();
       }
@@ -130,7 +126,7 @@ export class TableSelectControlDirective<Data extends Record<string, any> = Reco
 
   public ngAfterContentInit() {
     this.updateOpenTableSelectWindow();
-    for (const openTableSelectWindow of this.openTableSelectWindow) {
+    for (const openTableSelectWindow of this.openTableSelectWindow()) {
       this._subscription.add(openTableSelectWindow.selectedChange.pipe(
         tap($event => this.onSelected($event)),
       ).subscribe());
@@ -145,19 +141,19 @@ export class TableSelectControlDirective<Data extends Record<string, any> = Reco
   private updateTableSelectInput() {
     const toDisplay = this.toDisplay();
     if (toDisplay) {
-      this.tableSelectInput.toDisplay = toDisplay.bind(this);
+      this.tableSelectInput().toDisplay = toDisplay.bind(this);
     }
   }
 
   private updateOpenTableSelectWindowDisabledState() {
-    for (const openTableSelectWindow of this.openTableSelectWindow) {
+    for (const openTableSelectWindow of this.openTableSelectWindow()) {
       openTableSelectWindow.disabled = this.disabled;
       openTableSelectWindow.checkInputs();
     }
   }
 
   private updateOpenTableSelectWindow() {
-    for (const openTableSelectWindow of this.openTableSelectWindow) {
+    for (const openTableSelectWindow of this.openTableSelectWindow()) {
       openTableSelectWindow.disabled = this.disabled;
       const columns = this.columns();
       if (columns) {
@@ -176,8 +172,9 @@ export class TableSelectControlDirective<Data extends Record<string, any> = Reco
           return o1 === o2;
         });
       }
-      if (this.matLabel) {
-        openTableSelectWindow.label = this.matLabel?.nativeElement.innerText;
+      const matLabel = this.matLabel();
+      if (matLabel) {
+        openTableSelectWindow.label = matLabel?.nativeElement.innerText;
       }
       if (this.ngControl) {
         const control = this.ngControl.control;
@@ -191,9 +188,9 @@ export class TableSelectControlDirective<Data extends Record<string, any> = Reco
 
   private async onSelected($event: Data[]) {
     if ($event?.length) {
-      this.tableSelectInput.display = await this.toDisplay()($event[0]);
+      tableSelectInput.display = await this.toDisplay()($event[0]);
       this.value                    = $event[0];
-      this.tableSelectInput.setValue(this.value);
+      tableSelectInput.setValue(this.value);
     } else {
       this.value = null;
     }

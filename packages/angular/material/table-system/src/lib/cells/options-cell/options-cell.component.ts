@@ -1,17 +1,16 @@
 import type {
   OnChanges,
-  QueryList,
-  SimpleChanges,
+  SimpleChanges
 } from '@angular/core';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
-  ContentChildren,
   isDevMode,
   OnDestroy,
   Renderer2,
-  input
+  input,
+  contentChildren
 } from '@angular/core';
 import { MatOption } from '@angular/material/core';
 import { Subscription } from 'rxjs';
@@ -48,14 +47,13 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy, OnChan
     this.emptyViewValue = ''; // $localize`:@@rxap-material.table-system.options-cell.empty:empty`;
   }
 
-  @ContentChildren(MatOption, { descendants: true })
-  public options!: QueryList<MatOption>;
+  public readonly options = contentChildren(MatOption, { descendants: true });
 
   public ngAfterContentInit() {
     // Hide the mat-option elements
-    this._subscription.add(this.options.changes.pipe(
+    this._subscription.add(this.options().changes.pipe(
       startWith(null),
-      tap(() => this.options.forEach(option => this.renderer.setStyle(option._getHostElement(), 'display', 'none'))),
+      tap(() => this.options().forEach(option => this.renderer.setStyle(option._getHostElement(), 'display', 'none'))),
     ).subscribe());
     this.setViewValue();
     this._initialised = true;
@@ -66,8 +64,9 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy, OnChan
     if (value === undefined || value === null) {
       this.viewValue = this.emptyViewValue();
     } else {
-      if (this.options) {
-        this._subscription.add(this.options.changes
+      const options = this.options();
+      if (options) {
+        this._subscription.add(options.changes
                                    .pipe(
                                      startWith(null),
                                      tap(() => (this.viewValue = this.getViewValue())),
@@ -89,7 +88,7 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy, OnChan
 
   public getViewValue(): string {
     return (
-      this.options.find((option) => option.value === this.value())?.viewValue ??
+      this.options().find((option) => option.value === this.value())?.viewValue ??
       this.defaultViewValue()
     );
   }

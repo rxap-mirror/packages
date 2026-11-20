@@ -35,7 +35,7 @@ never shown. -->
             </tr>
             <tr [attr.data-name]="row.name() + '-header'">
               <ng-container
-              *ngTemplateOutlet="row.headerCell?.template ?? defaultHeaderCell; context: { $implicit: row.name() }"></ng-container>
+              *ngTemplateOutlet="row.headerCell()?.template ?? defaultHeaderCell; context: { $implicit: row.name() }"></ng-container>
             </tr>
             <tr [attr.data-name]="row.name() + '-value'">
               <ng-template [ngIfThen]="content" [ngIf]="row.name"></ng-template>
@@ -55,7 +55,7 @@ never shown. -->
             }
             <tr [attr.data-name]="row.name()" [ngClass]="{ 'sub-header text-2xl': row.isSubHeader }">
               <ng-container
-              *ngTemplateOutlet="row.headerCell?.template ?? defaultHeaderCell; context: { $implicit: row.name() }"></ng-container>
+              *ngTemplateOutlet="row.headerCell()?.template ?? defaultHeaderCell; context: { $implicit: row.name() }"></ng-container>
               <ng-template [ngIfThen]="content" [ngIf]="row.name"></ng-template>
             </tr>
           }
@@ -65,7 +65,7 @@ never shown. -->
         }
         <ng-template #content>
       <td [attr.colspan]="row.flip() ? 2 : 1" [ngClass]="{
-      'h-20': row.editCell?.template && (isEditMode || isFormMode) && false,
+      'h-20': row.editCell()?.template && (isEditMode || isFormMode) && false,
       }" class="pl-8 pr-4 w-full py-2">
             <ng-template [ngIfThen]="editMode" [ngIf]="row.editCell?.template && (isEditMode || isFormMode)"></ng-template>
             <ng-template [ngIfThen]="viewMode"
@@ -73,11 +73,11 @@ never shown. -->
           </td>
           <ng-template #viewMode>
             <ng-container
-            *ngTemplateOutlet="row.cell?.template ?? defaultCell;context: { $implicit: data$ | dataGridValue: row.name() | async, data: data$ | async }"></ng-container>
+            *ngTemplateOutlet="row.cell()?.template ?? defaultCell;context: { $implicit: data$ | dataGridValue: row.name() | async, data: data$ | async }"></ng-container>
           </ng-template>
           <ng-template #editMode>
             <ng-container
-            *ngTemplateOutlet="row.editCell?.template ?? row.cell?.template ?? defaultCell;context: { $implicit: data$ | dataGridValue: row.name() | async, data: data$ | async }"></ng-container>
+            *ngTemplateOutlet="row.editCell()?.template ?? row.cell()?.template ?? defaultCell;context: { $implicit: data$ | dataGridValue: row.name() | async, data: data$ | async }"></ng-container>
           </ng-template>
         </ng-template>
       }

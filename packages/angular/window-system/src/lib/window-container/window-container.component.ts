@@ -11,7 +11,6 @@ import {
 import {
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
   ElementRef,
   HostBinding,
   inject,
@@ -19,7 +18,8 @@ import {
   OnInit,
   runInInjectionContext,
   Signal,
-  ViewChild,
+  contentChild,
+  viewChild
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
@@ -58,10 +58,10 @@ import { WindowToolBarComponent } from '../window-tool-bar/window-tool-bar.compo
 })
 export class WindowContainerComponent implements OnInit {
 
-  @ContentChild('[footer]', { static: true }) public footerContent!: ElementRef;
+  public readonly footerContent = contentChild.required<ElementRef>('[footer]');
 
-  @ViewChild('container', { static: true }) public containerRef!: ElementRef;
-  @ViewChild(WindowResizerComponent, { static: true }) public windowContainerResizer!: WindowResizerComponent;
+  public readonly containerRef = viewChild.required<ElementRef>('container');
+  public readonly windowContainerResizer = viewChild.required(WindowResizerComponent);
 
   public width!: Signal<string>;
   public height!: Signal<string>;
@@ -80,7 +80,7 @@ export class WindowContainerComponent implements OnInit {
     runInInjectionContext(this.injector, () => {
       this.width = toSignal(
         merge(
-          this.windowContainerResizer.width$,
+          this.windowContainerResizer().width$,
           this.windowRef.width$,
         ).pipe(isDefined(), filter(value => !!value?.match(/^\d+/))),
         { initialValue: '100%' },
@@ -88,7 +88,7 @@ export class WindowContainerComponent implements OnInit {
 
       this.height = toSignal(
         merge(
-          this.windowContainerResizer.height$,
+          this.windowContainerResizer().height$,
           this.windowRef.height$,
         ).pipe(isDefined(), filter(value => !!value?.match(/^\d+/))),
         { initialValue: '100%' },

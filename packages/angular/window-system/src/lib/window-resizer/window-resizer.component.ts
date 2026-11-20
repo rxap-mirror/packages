@@ -5,9 +5,9 @@ import {
   Inject,
   OnDestroy,
   OnInit,
-  ViewChild,
   input,
-  output
+  output,
+  viewChild
 } from '@angular/core';
 import {
   fromEvent,
@@ -42,7 +42,7 @@ export class WindowResizerComponent implements OnInit, OnDestroy {
 
   public windowRef: WindowRef<any>;
 
-  @ViewChild('resizer', { static: true }) public resizerRef!: ElementRef<any>;
+  public readonly resizerRef = viewChild.required<ElementRef<any>>('resizer');
 
   // eslint-disable-next-line @angular-eslint/no-output-rename
   public readonly width$ = output<string>({ alias: 'width' });
@@ -71,7 +71,7 @@ export class WindowResizerComponent implements OnInit, OnDestroy {
     let originalHeight = 0;
 
     this._subscription.add(
-      fromEvent<MouseEvent>(this.resizerRef.nativeElement, 'mousedown').pipe(
+      fromEvent<MouseEvent>(this.resizerRef().nativeElement, 'mousedown').pipe(
         tap(event => {
           this.resizing$.emit(true);
           originalMouseX = event.pageX;

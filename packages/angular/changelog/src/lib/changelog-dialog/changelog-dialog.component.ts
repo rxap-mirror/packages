@@ -5,7 +5,7 @@ import {
   ElementRef,
   EventEmitter,
   Output,
-  ViewChild,
+  viewChild
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChangelogComponent } from '../changelog/changelog.component';
@@ -18,8 +18,7 @@ import { ChangelogComponent } from '../changelog/changelog.component';
 })
 export class ChangelogDialogComponent implements AfterViewInit {
 
-  @ViewChild('dialog', { static: true })
-  public dialog!: ElementRef<HTMLDialogElement>;
+  public readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
 
   @Output()
   public closeDialog = new EventEmitter<boolean>();
@@ -27,11 +26,11 @@ export class ChangelogDialogComponent implements AfterViewInit {
   public remember = true;
 
   ngAfterViewInit() {
-    this.dialog.nativeElement.showModal();
+    this.dialog().nativeElement.showModal();
   }
 
   close(remember: boolean = this.remember) {
-    this.dialog.nativeElement.close();
+    this.dialog().nativeElement.close();
     this.closeDialog.emit(remember);
   }
 

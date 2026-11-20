@@ -1,12 +1,12 @@
 import { NgClass } from '@angular/common';
-import type { QueryList } from '@angular/core';
+
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
-  ContentChildren,
   HostBinding,
   Input,
+  contentChildren
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -34,11 +34,10 @@ import { TableColumnOptionComponent } from './table-column-option/table-column-o
 export class TableColumnMenuComponent implements AfterContentInit {
 
   public get visibleColumns() {
-    return this.columns?.filter((option) => !option.hidden);
+    return this.columns()?.filter((option) => !option.hidden);
   }
 
-  @ContentChildren(TableColumnOptionComponent)
-  public columns?: QueryList<TableColumnOptionComponent>;
+  public readonly columns = contentChildren(TableColumnOptionComponent);
 
   public displayColumns: string[] = [];
 
@@ -75,25 +74,26 @@ export class TableColumnMenuComponent implements AfterContentInit {
   }
 
   public updateDisplayColumns() {
-    if (!this.columns) {
+    const columns = this.columns();
+    if (!columns) {
       throw new Error(
         'Could not query content children of TableColumnOptionComponent',
       );
     }
-    this.displayColumns = this.columns
+    this.displayColumns = columns
                               .filter((option) => option.active())
                               .map((option) => option.name());
   }
 
   public activate(columnName: string) {
-    this.columns
+    this.columns()
         ?.filter((option) => option.name() === columnName)
         .forEach((column) => column.activate());
     this.updateDisplayColumns();
   }
 
   public deactivate(columnName: string) {
-    this.columns
+    this.columns()
         ?.filter((option) => option.name() === columnName)
         .forEach((column) => column.deactivate());
     this.updateDisplayColumns();

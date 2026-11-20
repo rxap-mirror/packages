@@ -16,7 +16,7 @@ import {
   Output,
   signal,
   Signal,
-  ViewChild,
+  viewChild
 } from '@angular/core';
 import {
   RXAP_ERROR_DIALOG_COMPONENT,
@@ -40,8 +40,7 @@ export interface IErrorDialogComponent<Error = any> {
 })
 export class ErrorDialogComponent implements AfterViewInit {
 
-  @ViewChild('dialog', { static: true })
-  public dialog!: ElementRef<HTMLDialogElement>;
+  public readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
 
   public readonly data: Signal<any[]> = inject(RXAP_ERROR_DIALOG_DATA);
 
@@ -71,11 +70,11 @@ export class ErrorDialogComponent implements AfterViewInit {
   });
 
   ngAfterViewInit() {
-    this.dialog.nativeElement.showModal();
+    this.dialog().nativeElement.showModal();
   }
 
   close() {
-    this.dialog.nativeElement.close();
+    this.dialog().nativeElement.close();
     this.closeDialog.emit();
   }
 

@@ -1,13 +1,13 @@
 import {
   AfterContentInit,
   ChangeDetectorRef,
-  ContentChildren,
   Directive,
   ElementRef,
   inject,
   OnDestroy,
   QueryList,
-  input
+  input,
+  contentChildren
 } from '@angular/core';
 import {
   MatExpansionPanel,
@@ -27,8 +27,7 @@ export class PersistentAccordionDirective implements AfterContentInit, OnDestroy
 
   public readonly key = input.required<string>({ alias: "rxapPersistentAccordion" });
 
-  @ContentChildren(MatExpansionPanel, { emitDistinctChangesOnly: true })
-  private expansionPanel!: QueryList<MatExpansionPanel>;
+  private readonly expansionPanel = contentChildren(MatExpansionPanel);
 
   protected cdr = inject(ChangeDetectorRef);
 
@@ -42,8 +41,8 @@ export class PersistentAccordionDirective implements AfterContentInit, OnDestroy
   }
 
   public ngAfterContentInit() {
-    this._subscription = this.expansionPanel.changes.pipe(
-      startWith(this.expansionPanel.toArray()),
+    this._subscription = this.expansionPanel().changes.pipe(
+      startWith(this.expansionPanel),
       tap(panelList => {
         this._expandedChangeSubscription?.unsubscribe();
         this._expandedChangeSubscription = new Subscription();

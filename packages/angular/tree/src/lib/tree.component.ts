@@ -9,7 +9,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChild,
   ElementRef,
   HostListener,
   Inject,
@@ -18,10 +17,11 @@ import {
   Optional,
   Renderer2,
   signal,
-  ViewChild,
   ViewContainerRef,
   input,
-  output
+  output,
+  contentChild,
+  viewChild
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -89,15 +89,13 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   public readonly getStyle = input<NodeGetStyleFunction<any>>();
   public readonly multiple = input(false);
   public readonly hasDetails = input<NodeHasDetailsFunction<any>>();
-  @ContentChild(TreeContentDirective, {static: true})
-  public content?: TreeContentDirective;
+  public readonly content = contentChild(TreeContentDirective);
   public readonly hideLeafIcon = input(false);
   public readonly id = input<string>();
   public readonly details = output();
   public readonly dividerOffset = input('256px');
   public portal: TemplatePortal | null = null;
-  @ViewChild('treeContainer', {static: true})
-  public treeContainer!: ElementRef;
+  public readonly treeContainer = viewChild.required<ElementRef>('treeContainer');
 
   public readonly showTreeNavigation = signal(true);
 
@@ -182,9 +180,10 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
 
   @DebounceCall(100)
   public openDetails(node: Node<Data>): void {
-    if (this.content) {
+    const content = this.content();
+    if (content) {
       this.portal = new TemplatePortal<any>(
-        this.content.template,
+        content.template,
         this.viewContainerRef,
         {
           $implicit: node.item,
@@ -214,7 +213,7 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   onMousemove($event: MouseEvent) {
     if (this._moveDivider) {
       if (!this._treeContainerWidth) {
-        this._treeContainerWidth = this.treeContainer.nativeElement.clientWidth as number;
+        this._treeContainerWidth = this.treeContainer().nativeElement.clientWidth as number;
       }
       const rect               = this.elementRef.nativeElement.getBoundingClientRect();
       this._treeContainerWidth = Math.min(Math.max($event.clientX - (
@@ -231,9 +230,10 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
 
   private setDividerOffset(offset: string) {
     this.dividerOffset = offset;
-    this.renderer.setStyle(this.treeContainer.nativeElement, 'max-width', offset);
-    this.renderer.setStyle(this.treeContainer.nativeElement, 'min-width', offset);
-    this.renderer.setStyle(this.treeContainer.nativeElement, 'flex-basis', offset);
+    const treeContainer = this.treeContainer();
+    this.renderer.setStyle(treeContainer.nativeElement, 'max-width', offset);
+    this.renderer.setStyle(treeContainer.nativeElement, 'min-width', offset);
+    this.renderer.setStyle(treeContainer.nativeElement, 'flex-basis', offset);
     localStorage.setItem(this.cacheId, offset);
   }
 }

@@ -4,7 +4,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChildren,
   Input,
   isDevMode,
   OnDestroy,
@@ -12,7 +11,8 @@ import {
   Optional,
   QueryList,
   input,
-  output
+  output,
+  contentChildren
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -115,8 +115,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
 
   public readonly hideEmptyProperties = input(false);
 
-  @ContentChildren(DataGridRowDefDirective)
-  public rows!: QueryList<DataGridRowDefDirective<T>>;
+  public readonly rows = contentChildren(DataGridRowDefDirective);
   public readonly editModeChange = output<{
     mode: boolean;
     data?: T;
@@ -166,7 +165,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   }
 
   public get hasAnyEditCells() {
-    return this.rows?.some(row => !!row.editCell) ?? false;
+    return this.rows()?.some(row => !!row.editCell()) ?? false;
   }
 
   public get isEditMode() {
@@ -186,8 +185,8 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
 
   public ngAfterContentInit() {
     this.rows$ = merge(
-      of(this.rows),
-      this.rows.changes,
+      of(this.rows()),
+      this.rows().changes,
     );
   }
 

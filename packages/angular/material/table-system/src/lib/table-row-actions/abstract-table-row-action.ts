@@ -1,7 +1,6 @@
 import { Overlay } from '@angular/cdk/overlay';
 import {
   ChangeDetectorRef,
-  ContentChild,
   ElementRef,
   HostListener,
   Inject,
@@ -14,7 +13,8 @@ import {
   Optional,
   Renderer2,
   ViewContainerRef,
-  input
+  input,
+  contentChild
 } from '@angular/core';
 import { MatIconButton } from '@angular/material/button';
 import { ThemePalette } from '@angular/material/core';
@@ -58,8 +58,7 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
   public readonly isHeader: boolean = false;
 
   protected options: TableActionMethodOptions | null = null;
-  @ContentChild(TableRowActionExecutingDirective)
-  private readonly executingDirective?: TableRowActionExecutingDirective;
+  private readonly executingDirective = contentChild(TableRowActionExecutingDirective);
   private _currentStatus: TableRowActionStatus = TableRowActionStatus.DONE;
   private readonly actionMethodList: Array<TableRowActionMethod<Data>>;
   private _actionDisabled = false;
@@ -238,7 +237,7 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
     switch (status) {
       case TableRowActionStatus.EXECUTING:
         this.setButtonDisabled();
-        this.executingDirective?.show();
+        this.executingDirective()?.show();
         break;
       case TableRowActionStatus.SUCCESS:
         if (this.refresh()) {
@@ -257,7 +256,7 @@ export abstract class AbstractTableRowAction<Data extends Record<string, any>> e
         break;
       case TableRowActionStatus.DONE:
         this.setButtonEnabled();
-        this.executingDirective?.hide();
+        this.executingDirective()?.hide();
         break;
     }
     this.cdr.detectChanges();

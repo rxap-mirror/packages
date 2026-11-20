@@ -7,7 +7,7 @@ import {
   inject,
   InjectionToken,
   Output,
-  ViewChild,
+  viewChild
 } from '@angular/core';
 import { VersionEvent } from '@angular/service-worker';
 
@@ -21,8 +21,7 @@ export const UPDATE_AVAILABLE_EVENT = new InjectionToken<VersionEvent>('UPDATE_A
 })
 export class ServiceWorkerUpdateDialogComponent implements AfterViewInit {
 
-  @ViewChild('dialog', { static: true })
-  public dialog!: ElementRef<HTMLDialogElement>;
+  public readonly dialog = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
 
   @Output()
   public closeDialog = new EventEmitter<void>();
@@ -30,11 +29,11 @@ export class ServiceWorkerUpdateDialogComponent implements AfterViewInit {
   public readonly updateAvailableEvent = inject(UPDATE_AVAILABLE_EVENT);
 
   ngAfterViewInit() {
-    this.dialog.nativeElement.showModal();
+    this.dialog().nativeElement.showModal();
   }
 
   close() {
-    this.dialog.nativeElement.close();
+    this.dialog().nativeElement.close();
     this.closeDialog.emit();
   }
 

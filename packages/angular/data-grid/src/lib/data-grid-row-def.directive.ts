@@ -1,7 +1,7 @@
 import {
-  ContentChild,
   Directive,
-  input
+  input,
+  contentChild
 } from '@angular/core';
 import { DataGridCellDefDirective } from './data-grid-cell-def.directive';
 import { DataGridHeaderCellDefDirective } from './data-grid-header-cell-def.directive';
@@ -35,14 +35,11 @@ export class DataGridRowDefDirective<T extends Record<string, any>> {
    */
   public readonly flip = input(false);
 
-  @ContentChild(DataGridCellDefDirective)
-  public cell?: DataGridCellDefDirective<T>;
+  public readonly cell = contentChild(DataGridCellDefDirective);
 
-  @ContentChild(DataGridHeaderCellDefDirective)
-  public headerCell?: DataGridHeaderCellDefDirective;
+  public readonly headerCell = contentChild(DataGridHeaderCellDefDirective);
 
-  @ContentChild(DataGridEditCellDefDirective)
-  public editCell?: DataGridEditCellDefDirective<T>;
+  public readonly editCell = contentChild(DataGridEditCellDefDirective);
 
   public get isSubHeader() {
     return !this.name();

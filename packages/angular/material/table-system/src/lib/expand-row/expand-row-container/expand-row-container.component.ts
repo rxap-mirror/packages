@@ -2,11 +2,11 @@ import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
-  ContentChild,
   Inject,
   OnDestroy,
   ViewContainerRef,
-  input
+  input,
+  contentChild
 } from '@angular/core';
 import {
   ExpandCellContentDirectiveContext,
@@ -54,8 +54,7 @@ export class ExpandRowContainerComponent<Data extends Record<string, any>> imple
 
   public readonly element = input.required<Data>();
 
-  @ContentChild(ExpandRowContentDirective)
-  public expandCellContent?: ExpandRowContentDirective<Data>;
+  public readonly expandCellContent = contentChild(ExpandRowContentDirective);
 
   public portal: TemplatePortal<ExpandCellContentDirectiveContext<Data>> | null = null;
 
@@ -74,13 +73,13 @@ export class ExpandRowContainerComponent<Data extends Record<string, any>> imple
   }
 
   public ngAfterContentInit() {
-    if (this.expandCellContent) {
+    if (this.expandCellContent()) {
       this._subscription = this.expandCell.isExpanded$(this.element()).pipe(
         filter(Boolean),
         tap(() => {
           if (!this.portal) {
             this.portal =
-              new TemplatePortal(this.expandCellContent!.template, this.viewContainerRef, { $implicit: this.element() });
+              new TemplatePortal(this.expandCellContent()!.template, this.viewContainerRef, { $implicit: this.element() });
           }
         }),
       ).subscribe();

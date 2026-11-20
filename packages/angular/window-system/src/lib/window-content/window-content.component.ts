@@ -7,8 +7,8 @@ import {
   Injector,
   isDevMode,
   OnInit,
-  ViewChild,
   ViewContainerRef,
+  viewChild
 } from '@angular/core';
 import {
   RXAP_WINDOW_CONTAINER_CONTEXT,
@@ -53,8 +53,7 @@ export class WindowContentComponent implements AfterViewInit, OnInit {
 
   public portal: Portal<any> | null = null;
 
-  @ViewChild(CdkPortalOutlet)
-  public portalOutlet!: CdkPortalOutlet;
+  public readonly portalOutlet = viewChild.required(CdkPortalOutlet);
 
   constructor(
     @Inject(RXAP_WINDOW_CONTAINER_CONTEXT)
@@ -77,8 +76,8 @@ export class WindowContentComponent implements AfterViewInit, OnInit {
   }
 
   public ngAfterViewInit() {
-    this.portalOutlet.attached.pipe(
-      startWith(this.portalOutlet.attachedRef),
+    this.portalOutlet().attached.pipe(
+      startWith(this.portalOutlet().attachedRef),
       isDefined(),
       take(1),
       tap(attachedRef => this.windowRef.setAttachedRef(attachedRef)),
