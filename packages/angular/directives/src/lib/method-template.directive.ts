@@ -1,4 +1,5 @@
-import { ChangeDetectorRef, Directive, HostListener, isDevMode, OnInit, TemplateRef, ViewContainerRef, input, output, inject, linkedSignal, effect, untracked, outputFromObservable } from '@angular/core';
+import { ChangeDetectorRef, Directive, HostListener, isDevMode, OnInit, TemplateRef, ViewContainerRef, input, output, inject, linkedSignal, effect, untracked } from '@angular/core';
+import { outputFromObservable } from '@angular/core/rxjs-interop';
 import { ToggleSubject } from '@rxap/rxjs';
 import { Method } from '@rxap/pattern';
 

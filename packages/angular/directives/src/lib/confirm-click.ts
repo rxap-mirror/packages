@@ -1,7 +1,7 @@
 import {
   HostListener,
   Injectable,
-  Input,
+  input,
 } from '@angular/core';
 import { coerceBoolean } from '@rxap/utilities';
 
