@@ -1,6 +1,5 @@
 import {
   Directive,
-  Input,
   TemplateRef,
   TrackByFunction,
   input
@@ -42,19 +41,14 @@ export class TableDataSourceDirective<Data extends Record<any, any> = any, Param
 
   public readonly filter = input.required<FilterLike>({ alias: "rxapTableDataSourceFilter" });
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  public override readonly dataSourceOrIdOrToken = input.required<IdOrInstanceOrToken<AbstractTableDataSource<Data>>>({ alias: "rxapTableDataSourceFrom" });
+  public override readonly dataSourceOrIdOrToken = input.required<IdOrInstanceOrToken<BaseDataSource<Data[]>>>({ alias: "rxapTableDataSourceFrom" });
   public override readonly viewer = input<BaseDataSourceViewer>({ id: '[rxapTableDataSource]' }, { alias: "rxapTableDataSourceViewer" });
 
   public override readonly emptyTemplate = input<TemplateRef<void>>(undefined, { alias: "rxapTableDataSourceEmpty" });
 
   public override readonly errorTemplate = input<TemplateRef<DataSourceCollectionErrorTemplateContext>>(undefined, { alias: "rxapTableDataSourceErrorTemplate" });
 
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  set rxapTableDataSourceTrackBy(fn: TrackByFunction<Data>) {
-    this.rxapDataSourceCollectionTrackBy = fn;
-  }
+  public override readonly rxapDataSourceCollectionTrackBy = input<TrackByFunction<Data> | undefined>(undefined, { alias: "rxapTableDataSourceTrackBy" });
 
   public override loadDataSource(): AbstractPaginationDataSource<Data> | null {
     const dataSource = super.loadDataSource();

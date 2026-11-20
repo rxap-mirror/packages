@@ -8,7 +8,7 @@ import {
   RXAP_PAGINATION_DATA_SOURCE,
   RXAP_PAGINATION_DATA_SOURCE_PAGINATOR,
 } from './tokens';
-import { Injectable, inject } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import {
   Observable,
   TeardownLogic,
@@ -31,16 +31,12 @@ export type PaginationDataSourceMetadata = AbstractPaginationDataSourceMetadata
 
 @Injectable()
 export class PaginationDataSource<Data> extends AbstractPaginationDataSource<Data> {
-  readonly dataSource = inject<BaseDataSource<Data[]>>(RXAP_PAGINATION_DATA_SOURCE);
-
-
-  constructor() {
-    const paginator = inject<PaginatorLike | null>(RXAP_PAGINATION_DATA_SOURCE_PAGINATOR, { optional: true }) ?? null;
-    const metadata = inject<PaginationDataSourceMetadata>(RXAP_DATA_SOURCE_METADATA, { optional: true }) ?? dataSource.metadata;
-
+  constructor(
+    @Inject(RXAP_PAGINATION_DATA_SOURCE) public readonly dataSource: BaseDataSource<Data[]>,
+    @Optional() @Inject(RXAP_PAGINATION_DATA_SOURCE_PAGINATOR) paginator: PaginatorLike | null = null,
+    @Optional() @Inject(RXAP_DATA_SOURCE_METADATA) metadata: PaginationDataSourceMetadata = dataSource.metadata,
+  ) {
     super(paginator, metadata);
-  
-    const dataSource = this.dataSource;
   }
 
   public override refresh(): any {

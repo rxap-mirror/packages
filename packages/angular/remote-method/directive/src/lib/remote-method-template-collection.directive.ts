@@ -1,15 +1,10 @@
-import { ChangeDetectorRef, Directive, DoCheck, EmbeddedViewRef, Injector, INJECTOR, Input, isDevMode, IterableChangeRecord, IterableChanges, IterableDiffer, IterableDiffers, NgZone, OnInit, TemplateRef, TrackByFunction, ViewContainerRef, input, inject, computed, effect, untracked } from '@angular/core';
+import { ChangeDetectorRef, Directive, DoCheck, EmbeddedViewRef, Injector, INJECTOR, isDevMode, IterableChangeRecord, IterableChanges, IterableDiffer, IterableDiffers, OnInit, TemplateRef, TrackByFunction, ViewContainerRef, input, inject, computed, effect, untracked } from '@angular/core';
 import {
   BaseRemoteMethod,
   BaseRemoteMethodMetadata,
   RemoteMethodLoader,
 } from '@rxap/remote-method';
-import { Required } from '@rxap/utilities';
 import { IdOrInstanceOrToken } from '@rxap/definition';
-import {
-  take,
-  tap,
-} from 'rxjs/operators';
 import { RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN } from './tokens';
 
 export class RemoteMethodTemplateCollectionDirectiveContext<ReturnType = any> {
@@ -67,7 +62,6 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
   private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
   protected readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
   private readonly differs = inject<IterableDiffers>(IterableDiffers);
-  private readonly zone = inject<NgZone>(NgZone);
   private readonly remoteMethodToken = inject<any>(RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, { optional: true, self: true });
 
 
@@ -78,7 +72,6 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
   public readonly errorTemplate = input<TemplateRef<RemoteMethodTemplateCollectionDirectiveErrorContext>>(undefined, { alias: "rxapRemoteMethodCollectionError" });
   public readonly withoutParameters = input(false, { alias: "rxapRemoteMethodCollectionWithoutParameters" });
   private _differ: IterableDiffer<ReturnType> | null = null;
-  private _trackByFn!: TrackByFunction<ReturnType>;
   private _dirty = true;
   /**
    * Indicates that the remote method returned a empty collection
@@ -117,10 +110,6 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
    */
   private _errorTemplateViewRef: EmbeddedViewRef<RemoteMethodTemplateCollectionDirectiveErrorContext> | null = null;
 
-  get trackBy(): TrackByFunction<ReturnType> {
-    return this._trackByFn;
-  }
-
   /**
    * A function that defines how to track changes for items in the iterable.
    *
@@ -138,20 +127,20 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
    * The function receives two inputs,
    * the iteration index and the node object ID.
    */
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input('rxapRemoteMethodCollectionTrackBy')
-  set trackBy(fn: TrackByFunction<ReturnType>) {
-    if (isDevMode() && fn != null && typeof fn !== 'function') {
-      // TODO(vicb): use a log service once there is a public one available
-      if (<any>console && <any>console.warn) {
-        console.warn(
-          `trackBy must be a function, but received ${ JSON.stringify(fn) }. ` +
-          `See https://angular.io/api/common/NgForOf#change-propagation for more information.`);
-      }
-    }
-    this._trackByFn = fn;
-  }
+  public readonly trackBy = input<TrackByFunction<ReturnType>, TrackByFunction<ReturnType> | undefined>(
+    undefined as any,
+    {
+      alias: 'rxapRemoteMethodCollectionTrackBy',
+      transform: (fn) => {
+        if (isDevMode() && fn != null && typeof fn !== 'function') {
+          console.warn(
+            `trackBy must be a function, but received ${ JSON.stringify(fn) }. ` +
+            `See https://angular.io/api/common/NgForOf#change-propagation for more information.`);
+        }
+        return fn as TrackByFunction<ReturnType>;
+      },
+    },
+  );
 
   public readonly remoteMethodOrIdOrToken = input<IdOrInstanceOrToken<BaseRemoteMethod<ReturnType[], Parameters, Metadata>>>(undefined, { alias: 'rxapRemoteMethodCollectionCall' });
 
@@ -196,27 +185,20 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
   }
 
   public call(parameters?: Parameters): void {
-    this.zone.onStable.pipe(
-      take(1),
-      tap(() => {
-        this.zone.run(() => {
-          this.remoteMethodLoader
-              .call$(this._remoteMethodOrIdOrToken(), parameters, undefined, this.injector)
-              .then(response => {
-                // guard against non-array responses (null/undefined/scalar) to
-                // avoid reading .length off a non-iterable and crashing
-                const isArray = Array.isArray(response);
-                this._empty = !isArray || response.length === 0;
-                this._data = isArray ? response : [];
-                this.cdr.detectChanges();
-              })
-              .catch(error => {
-                this._error = error;
-                this.cdr.detectChanges();
-              });
+    this.remoteMethodLoader
+        .call$(this._remoteMethodOrIdOrToken(), parameters, undefined, this.injector)
+        .then(response => {
+          // guard against non-array responses (null/undefined/scalar) to
+          // avoid reading .length off a non-iterable and crashing
+          const isArray = Array.isArray(response);
+          this._empty = !isArray || response.length === 0;
+          this._data = isArray ? response : [];
+          this.cdr.detectChanges();
+        })
+        .catch(error => {
+          this._error = error;
+          this.cdr.detectChanges();
         });
-      }),
-    ).subscribe();
   }
 
   /**
@@ -270,7 +252,7 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
         const value = this._data;
         if (!this._differ && value) {
           try {
-            this._differ = this.differs.find(value).create(this.trackBy);
+            this._differ = this.differs.find(value).create(this.trackBy());
           } catch {
             throw new Error(`Cannot find a differ supporting object '${ value }' of type '${
               getTypeName(value) }'. NgFor only supports binding to Iterables such as Arrays.`);

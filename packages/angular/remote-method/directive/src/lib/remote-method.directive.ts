@@ -1,4 +1,4 @@
-import { Directive, HostListener, Injector, INJECTOR, Input, isDevMode, OnInit, input, output, inject, linkedSignal, computed } from '@angular/core';
+import { Directive, Injector, INJECTOR, isDevMode, OnInit, input, output, inject, linkedSignal, computed } from '@angular/core';
 import {
   BaseRemoteMethod,
   BaseRemoteMethodMetadata,
@@ -7,7 +7,6 @@ import {
 import {
   coerceBoolean,
   Deprecated,
-  Required,
 } from '@rxap/utilities';
 import { IdOrInstanceOrToken } from '@rxap/definition';
 import { RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN } from './tokens';
@@ -17,6 +16,10 @@ import { ToggleSubject } from '@rxap/rxjs';
   selector: '[rxapRemoteMethod]',
   exportAs: 'rxapRemoteMethod',
   standalone: true,
+  host: {
+    '(confirmed)': 'onConfirmed()',
+    '(click)': 'onClick()',
+  },
 })
 export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata extends BaseRemoteMethodMetadata = BaseRemoteMethodMetadata>
   implements OnInit {
@@ -52,12 +55,10 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
     }
   }
 
-  @HostListener('confirmed')
   public onConfirmed() {
     this.execute();
   }
 
-  @HostListener('click')
   public onClick() {
     if (!this.hasConfirmDirective()) {
       this.execute();

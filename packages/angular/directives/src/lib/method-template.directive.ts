@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Directive, HostListener, isDevMode, OnInit, TemplateRef, ViewContainerRef, input, output, inject, linkedSignal, effect, untracked } from '@angular/core';
+import { Directive, isDevMode, OnInit, TemplateRef, ViewContainerRef, input, output, inject, linkedSignal, effect, untracked } from '@angular/core';
 import { outputFromObservable } from '@angular/core/rxjs-interop';
 import { ToggleSubject } from '@rxap/rxjs';
 import { Method } from '@rxap/pattern';
@@ -16,11 +16,13 @@ export interface MethodTemplateDirectiveErrorContext {
   selector: '[rxapMethod]',
   exportAs: 'rxapMethod',
   standalone: true,
+  host: {
+    '(confirmed)': 'onConfirmed()',
+  },
 })
 export class MethodTemplateDirective<ReturnType = any, Parameters = any> implements OnInit {
   private readonly template = inject<TemplateRef<MethodTemplateDirectiveContext<ReturnType>>>(TemplateRef);
   private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
-  protected readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
 
 
   public readonly method = input.required<Method<ReturnType, Parameters>>({ alias: "rxapMethodCall" });
@@ -62,7 +64,6 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
     }
   }
 
-  @HostListener('confirmed')
   public onConfirmed() {
     return this.execute();
   }
@@ -125,7 +126,7 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
     this.viewContainerRef.clear();
 
     try {
-      this.viewContainerRef.createEmbeddedView(this.template, { $implicit: result });
+      this.viewContainerRef.createEmbeddedView(this.template, { $implicit: result }).markForCheck();
     } catch (error: any) {
       this.renderErrorTemplate(error);
       console.error(error.message);
@@ -133,8 +134,6 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
     }
 
     this.embedded.emit();
-
-    this.cdr.detectChanges();
 
   }
 

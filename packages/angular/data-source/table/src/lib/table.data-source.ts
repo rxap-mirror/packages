@@ -5,7 +5,11 @@ import {
   RxapAbstractTableDataSource,
   SortLike,
 } from './abstract-table.data-source';
-import { Injectable, inject } from '@angular/core';
+import {
+  Inject,
+  Injectable,
+  Optional,
+} from '@angular/core';
 import {
   RXAP_TABLE_DATA_SOURCE,
   RXAP_TABLE_DATA_SOURCE_FILTER,
@@ -40,18 +44,26 @@ export class TableDataSource<
   Data extends Record<any, any>,
   Parameters = any
 > extends AbstractTableDataSource<Data> {
-  private readonly dataSource = inject<BaseDataSource<Data[]>>(RXAP_TABLE_DATA_SOURCE);
-
-  constructor() {
-    const paginator = inject<PaginatorLike | null>(RXAP_TABLE_DATA_SOURCE_PAGINATOR, { optional: true }) ?? null;
-    const sort = inject<SortLike | null>(RXAP_TABLE_DATA_SOURCE_SORT, { optional: true }) ?? null;
-    const filter = inject<FilterLike | null>(RXAP_TABLE_DATA_SOURCE_FILTER, { optional: true }) ?? null;
-    const parameters = inject<Observable<Parameters> | null>(RXAP_TABLE_DATA_SOURCE_PARAMETERS, { optional: true }) ?? null;
-    const metadata = inject<TableDataSourceMetadata | null>(RXAP_DATA_SOURCE_METADATA, { optional: true }) ?? dataSource.metadata;
-
+  constructor(
+    @Inject(RXAP_TABLE_DATA_SOURCE)
+    private readonly dataSource: BaseDataSource<Data[]>,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_PAGINATOR)
+      paginator: PaginatorLike | null = null,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_SORT)
+      sort: SortLike | null = null,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_FILTER)
+      filter: FilterLike | null = null,
+    @Optional()
+    @Inject(RXAP_TABLE_DATA_SOURCE_PARAMETERS)
+      parameters: Observable<Parameters> | null = null,
+    @Optional()
+    @Inject(RXAP_DATA_SOURCE_METADATA)
+      metadata: TableDataSourceMetadata | null = dataSource.metadata,
+  ) {
     super(paginator, sort, filter, parameters, metadata);
-  
-    const dataSource = this.dataSource;
   }
 
   public override refresh(): any {

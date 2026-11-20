@@ -1,11 +1,11 @@
-import { Directive, ElementRef, Input, Renderer2, input, inject } from '@angular/core';
-import {
-  AvatarImageService,
-  ImageLoaderService,
-} from '@rxap/services';
+import { computed, Directive, inject, input } from '@angular/core';
+import { AvatarImageService } from '@rxap/services';
 import {
   BackgroundImageDirective,
+  BackgroundPosition,
+  BackgroundRepeat,
   BackgroundRepeatOptions,
+  BackgroundSize,
   BackgroundSizeOptions,
 } from './background-image.directive';
 
@@ -16,26 +16,26 @@ import {
 export class AvatarBackgroundImageDirective extends BackgroundImageDirective {
   private readonly avatarImage = inject<AvatarImageService>(AvatarImageService);
 
-  public override readonly imageUrl = input<string | null | undefined>(null, { alias: "rxapAvatarBackgroundImage" });
-  public override size = BackgroundSizeOptions.COVER;
-  public override repeat = BackgroundRepeatOptions.NO_REPEAT;
+  public override readonly imageUrl = input<string | null | undefined>(null, { alias: 'rxapAvatarBackgroundImage' });
 
-  constructor() {
-    const host = inject<ElementRef>(ElementRef);
-    const renderer = inject<Renderer2>(Renderer2);
-    const imageLoader = inject<ImageLoaderService>(ImageLoaderService);
+  public override readonly size = input<BackgroundSize | null | undefined>(BackgroundSizeOptions.COVER);
 
-    super(host, renderer, imageLoader);
-  }
+  public override readonly repeat = input<BackgroundRepeat | null | undefined>(BackgroundRepeatOptions.NO_REPEAT);
 
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  public set name(name: string) {
-    if (!this.placeholderImageUrl()) {
-      this.placeholderImageUrl = this.avatarImage.get({ name });
+  public override readonly position = input<BackgroundPosition | null | undefined>();
+
+  /**
+   * The name used to generate a placeholder avatar if no explicit
+   * placeholderImageUrl is provided.
+   */
+  public readonly name = input<string | null | undefined>();
+
+  protected override readonly placeholder = computed(() => {
+    const placeholderImageUrl = this.placeholderImageUrl();
+    if (placeholderImageUrl) {
+      return placeholderImageUrl;
     }
-  }
+    const name = this.name();
+    return name ? this.avatarImage.get({ name }) : undefined;
+  });
 }
-
-

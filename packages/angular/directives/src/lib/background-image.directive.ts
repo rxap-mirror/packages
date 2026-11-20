@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnChanges, OnInit, Renderer2, SimpleChanges, input, inject } from '@angular/core';
+import { computed, Directive, effect, ElementRef, inject, input, Renderer2, untracked } from '@angular/core';
 import { ImageLoaderService } from '@rxap/services';
 
 export enum GlobalStyleOptions {
@@ -43,77 +43,67 @@ export type BackgroundPosition =
   selector: '[rxapBackgroundImage]',
   standalone: true,
 })
-export class BackgroundImageDirective implements OnChanges, OnInit {
+export class BackgroundImageDirective {
   private readonly host = inject<ElementRef>(ElementRef);
   private readonly renderer = inject<Renderer2>(Renderer2);
   private readonly imageLoader = inject<ImageLoaderService>(ImageLoaderService);
 
   public readonly imageUrl = input<string | null | undefined>(null, { alias: "rxapBackgroundImage" });
 
-  public readonly placeholderImageUrl = input.required<string>();
+  public readonly placeholderImageUrl = input<string | null | undefined>();
 
-  public readonly size = input<BackgroundSize>();
+  public readonly size = input<BackgroundSize | null | undefined>();
 
-  public readonly repeat = input<BackgroundRepeat>();
+  public readonly repeat = input<BackgroundRepeat | null | undefined>();
 
-  public readonly position = input<BackgroundPosition>();
+  public readonly position = input<BackgroundPosition | null | undefined>();
 
-  public ngOnInit() {
-    const size = this.size();
-    if (size) {
-      this.sizeChange(size);
-    }
-    const position = this.position();
-    if (position) {
-      this.positionChange(position);
-    }
-    const repeat = this.repeat();
-    if (repeat) {
-      this.repeatChange(repeat);
-    }
+  /**
+   * The placeholder url that is used until the image is loaded. Derived
+   * directives can override this to provide a fallback.
+   */
+  protected readonly placeholder = computed(() => this.placeholderImageUrl());
+
+  constructor() {
+    effect(() => {
+      const size = this.size();
+      untracked(() => this.sizeChange(size));
+    });
+    effect(() => {
+      const position = this.position();
+      untracked(() => this.positionChange(position));
+    });
+    effect(() => {
+      const repeat = this.repeat();
+      untracked(() => this.repeatChange(repeat));
+    });
+    effect(() => {
+      const imageUrl = this.imageUrl();
+      // the placeholder is tracked too, so it is applied as soon as it changes
+      this.placeholder();
+      // call unconditionally so clearing the value (null/empty) is handled
+      untracked(() => this.imageUrlChange(imageUrl));
+    });
   }
 
-  public ngOnChanges(changes: SimpleChanges) {
-    for (const propertyKey of Object.keys(changes)) {
-      switch (propertyKey) {
-        case 'imageUrl':
-          // call unconditionally so clearing the value (null/empty) is handled
-          this.imageUrlChange(changes['imageUrl'].currentValue);
-          break;
-
-        case 'size':
-          this.sizeChange(changes['size'].currentValue);
-          break;
-
-        case 'repeat':
-          this.repeatChange(changes['repeat'].currentValue);
-          break;
-
-        case 'position':
-          this.positionChange(changes['position'].currentValue);
-          break;
-      }
+  private applyStyle(style: string, value: string | null | undefined): void {
+    if (value) {
+      this.renderer.setStyle(this.host.nativeElement, style, value);
+    } else {
+      this.renderer.removeStyle(this.host.nativeElement, style);
     }
   }
 
-  private repeatChange(repeat: string): void {
-    this.renderer.setStyle(
-      this.host.nativeElement,
-      'background-repeat',
-      repeat,
-    );
+  private repeatChange(repeat: string | null | undefined): void {
+    this.applyStyle('background-repeat', repeat);
   }
 
-  private positionChange(position: string): void {
-    this.renderer.setStyle(
-      this.host.nativeElement,
-      'background-position',
-      position,
-    );
+  private positionChange(position: string | null | undefined): void {
+    this.applyStyle('background-position', position);
   }
 
-  private sizeChange(size: string): void {
-    this.renderer.setStyle(this.host.nativeElement, 'background-size', size);
+  private sizeChange(size: string | null | undefined): void {
+    this.applyStyle('background-size', size);
   }
 
   private _latestImageUrl: string | null | undefined;
@@ -121,7 +111,7 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
   private async imageUrlChange(imageUrl: string | null | undefined): Promise<void> {
     // track the most recently requested url so out-of-order loads can be ignored
     this._latestImageUrl = imageUrl;
-    const placeholderImageUrl = this.placeholderImageUrl();
+    const placeholderImageUrl = this.placeholder();
     if (placeholderImageUrl) {
       this.renderer.setStyle(
         this.host.nativeElement,
@@ -146,5 +136,3 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
     }
   }
 }
-
-

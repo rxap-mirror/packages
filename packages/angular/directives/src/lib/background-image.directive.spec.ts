@@ -2,137 +2,91 @@ import {
   BackgroundImageDirective,
   BackgroundSizeOptions,
 } from './background-image.directive';
-import { ElementRef, Renderer2, RendererFactory2 } from '@angular/core';
-import { TestBed } from '@angular/core/testing';
+import { Component, input } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { ImageLoaderService } from '@rxap/services';
+
+@Component({
+  standalone: true,
+  imports: [ BackgroundImageDirective ],
+  template: `<div [rxapBackgroundImage]="imageUrl()" [size]="size()"></div>`,
+})
+class HostComponent {
+  public readonly imageUrl = input<string | null>(null);
+  public readonly size = input<string | null>(null);
+}
 
 describe('@rxap/directives', () => {
   describe('BackgroundImageDirective', () => {
+    let fixture: ComponentFixture<HostComponent>;
     let divElement: HTMLDivElement;
-    let renderer2: Renderer2;
-    let directive: BackgroundImageDirective;
     let imageLoaderService: ImageLoaderService;
-
-    let setStyleSpy: jest.SpyInstance;
     let loadSpy: jest.SpyInstance;
 
     beforeEach(() => {
-      divElement = document.createElement('div');
-      renderer2 = TestBed.inject(RendererFactory2).createRenderer(null, null);
       imageLoaderService = TestBed.inject(ImageLoaderService);
-      directive = new BackgroundImageDirective(
-        new ElementRef<any>(divElement),
-        renderer2,
-        imageLoaderService,
-      );
-      setStyleSpy = jest.spyOn(renderer2, 'setStyle');
       loadSpy = jest.spyOn(imageLoaderService, 'load').mockResolvedValue();
+      fixture = TestBed.createComponent(HostComponent);
+      divElement = fixture.nativeElement.querySelector('div');
     });
 
-    xit('should add background image to element', () => {
-      const imageUrl = 'http://rxap.dev/image.jng';
-
-      directive.ngOnChanges({
-        imageUrl: {
-          currentValue: imageUrl,
-        } as any,
-      });
-
-      expect(setStyleSpy).toHaveBeenCalledTimes(2);
-
-      expect(setStyleSpy).toHaveBeenCalled();
-      expect(setStyleSpy.mock.calls[1]).toEqual([
-        divElement,
-        'background-image',
-        `url("${imageUrl}")`,
-      ]);
-
-      expect(divElement.style.backgroundImage).toContain(imageUrl);
-    });
+    async function flush() {
+      fixture.detectChanges();
+      await fixture.whenStable();
+    }
 
     describe('should set background size', () => {
-      it('null', () => {
-        directive.ngOnChanges({
-          size: {
-            currentValue: null,
-          } as any,
-        });
-
-        expect(setStyleSpy).toHaveBeenCalled();
-        expect(setStyleSpy).toHaveBeenCalledWith(
-          divElement,
-          'background-size',
-          null,
-        );
-
-        expect(divElement.style.backgroundSize).toContain('');
+      it('value', async () => {
+        fixture.componentRef.setInput('size', BackgroundSizeOptions.CONTAIN);
+        await flush();
+        expect(divElement.style.backgroundSize).toContain(BackgroundSizeOptions.CONTAIN);
       });
 
-      it(BackgroundSizeOptions.AUTO, () => {
-        directive.ngOnChanges({
-          size: {
-            currentValue: BackgroundSizeOptions.AUTO,
-          } as any,
-        });
-
-        expect(setStyleSpy).toHaveBeenCalled();
-        expect(setStyleSpy).toHaveBeenCalledWith(
-          divElement,
-          'background-size',
-          BackgroundSizeOptions.AUTO,
-        );
-
-        expect(divElement.style.backgroundSize).toContain(
-          BackgroundSizeOptions.AUTO,
-        );
+      it('null removes the style', async () => {
+        fixture.componentRef.setInput('size', BackgroundSizeOptions.CONTAIN);
+        await flush();
+        fixture.componentRef.setInput('size', null);
+        await flush();
+        expect(divElement.style.backgroundSize).toBe('');
       });
-
-      // TODO : add test for all possible values
     });
 
     describe('imageUrl', () => {
+      it('should load the image and set it as background', async () => {
+        fixture.componentRef.setInput('imageUrl', 'http://rxap.dev/image.png');
+        await flush();
+        expect(loadSpy).toHaveBeenCalledWith('http://rxap.dev/image.png');
+        expect(divElement.style.backgroundImage).toContain('http://rxap.dev/image.png');
+      });
+
       it('should clear the background image when the url is set to null', async () => {
-        const removeStyleSpy = jest.spyOn(renderer2, 'removeStyle');
-
-        directive.ngOnChanges({ imageUrl: { currentValue: null } as any });
-        await Promise.resolve();
-
-        expect(removeStyleSpy).toHaveBeenCalledWith(
-          divElement,
-          'background-image',
-        );
+        fixture.componentRef.setInput('imageUrl', 'http://rxap.dev/image.png');
+        await flush();
+        fixture.componentRef.setInput('imageUrl', null);
+        await flush();
+        expect(divElement.style.backgroundImage).toBe('');
       });
 
       it('should ignore a stale image load when a newer url was requested', async () => {
         let resolveFirst!: () => void;
         loadSpy.mockReset();
         loadSpy
-          .mockImplementationOnce(
-            () =>
-              new Promise<void>((resolve) => {
-                resolveFirst = resolve;
-              }),
-          )
+          .mockImplementationOnce(() => new Promise<void>((resolve) => {
+            resolveFirst = resolve;
+          }))
           .mockImplementationOnce(() => Promise.resolve());
 
+        const directive = fixture.debugElement.query(By.directive(BackgroundImageDirective)).injector.get(BackgroundImageDirective);
         const slow = (directive as any).imageUrlChange('first.png');
         const fast = (directive as any).imageUrlChange('second.png');
         await fast;
         resolveFirst();
         await slow;
 
-        const bgCalls = setStyleSpy.mock.calls.filter(
-          (call) => call[1] === 'background-image',
-        );
-        expect(bgCalls.some((call) => call[2] === 'url("second.png")')).toBe(
-          true,
-        );
-        expect(bgCalls.some((call) => call[2] === 'url("first.png")')).toBe(
-          false,
-        );
+        expect(divElement.style.backgroundImage).toContain('second.png');
+        expect(divElement.style.backgroundImage).not.toContain('first.png');
       });
     });
-
-    // TODO : add tests for all possible inputs
   });
 });

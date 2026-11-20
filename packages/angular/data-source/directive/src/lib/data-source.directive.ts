@@ -1,5 +1,5 @@
 import type { Injector } from '@angular/core';
-import { AfterViewInit, ChangeDetectorRef, Directive, EmbeddedViewRef, INJECTOR, isDevMode, NgZone, OnChanges, OnDestroy, SimpleChanges, TemplateRef, ViewContainerRef, input, output, inject } from '@angular/core';
+import { afterNextRender, Directive, effect, EmbeddedViewRef, INJECTOR, isDevMode, OnDestroy, TemplateRef, untracked, ViewContainerRef, input, output, inject } from '@angular/core';
 import {
   BaseDataSource,
   BaseDataSourceViewer,
@@ -14,7 +14,6 @@ import {
 import {
   distinctUntilChanged,
   filter,
-  take,
   tap,
 } from 'rxjs/operators';
 
@@ -34,14 +33,11 @@ export interface DataSourceErrorTemplateContext {
   standalone: true,
 })
 export class DataSourceDirective<Data = any>
-  implements OnDestroy, OnChanges, AfterViewInit {
+  implements OnDestroy {
   private readonly dataSourceLoader = inject(DataSourceLoader);
   private readonly template = inject<TemplateRef<DataSourceTemplateContext<Data>>>(TemplateRef);
   private readonly viewContainerRef = inject(ViewContainerRef);
   private readonly injector = inject<Injector>(INJECTOR);
-  private readonly cdr = inject(ChangeDetectorRef);
-  private readonly zone = inject(NgZone);
-
 
   /**
    * Asserts the correct type of the context for the template that `NgForOf` will render.
@@ -58,12 +54,12 @@ export class DataSourceDirective<Data = any>
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
   public readonly dataSourceOrIdOrToken = input.required<IdOrInstanceOrToken<BaseDataSource<Data>>>({ alias: "rxapDataSourceFrom" });
-  public readonly viewer = input.required<BaseDataSourceViewer>({ alias: "rxapDataSourceViewer" });
+  public readonly viewer = input<BaseDataSourceViewer>(this, { alias: "rxapDataSourceViewer" });
   public readonly errorTemplate = input<TemplateRef<DataSourceErrorTemplateContext>>(undefined, { alias: "rxapDataSourceErrorTemplate" });
   public readonly embedded = output<Data>();
   public readonly loaded = output();
   // eslint-disable-next-line @angular-eslint/no-output-native
-public readonly error = output();
+  public readonly error = output<unknown>();
   public dataSource: BaseDataSource<Data> | null = null;
   public connection$!: Observable<Data>;
   public readonly trackBy = input<(data: Data) => any>(undefined, { alias: "rxapDataSourceTrackBy" });
@@ -78,28 +74,15 @@ public readonly error = output();
   private _dataSourceConnectionSubscription: Subscription | null = null;
 
   constructor() {
-    this.viewer = this;
-  }
-
-  public ngOnChanges(changes: SimpleChanges) {
-    const dataSourceOrIdOrTokenChange = changes['dataSourceOrIdOrToken'];
-    if (dataSourceOrIdOrTokenChange) {
-      this.dataSource = this.loadDataSource();
-      // Dont connect to the data source on the first change.
-      // Else the parent/sibling components are not initialized
-      // and the parameters from the parent/sibling components can not
-      // be used in the connect logic.
-      // Example: The PaginationDataSource required the pageSize, but the pageSize
-      // in the MatPaginator will be set after the ngOnChanges logic is called.
-      // So the initial pageSize is undefined.
-      if (!dataSourceOrIdOrTokenChange.firstChange) {
+    // The first connect is deferred until after the first render (see connect()), so that the
+    // parent/sibling components are initialized and their parameters can be used in the connect logic.
+    effect(() => {
+      this.dataSourceOrIdOrToken();
+      untracked(() => {
+        this.dataSource = this.loadDataSource();
         this.connect();
-      }
-    }
-  }
-
-  public ngAfterViewInit() {
-    this.connect();
+      });
+    });
   }
 
   public embedErrorTemplate(error: unknown | null) {
@@ -124,7 +107,7 @@ public readonly error = output();
       errorTemplate,
       context,
     );
-    this.cdr.detectChanges();
+    this.embeddedErrorViewRef.detectChanges();
   }
 
   public embedTemplate(response: any) {
@@ -144,7 +127,7 @@ public readonly error = output();
       );
     }
     this.embedded.emit(response);
-    this.cdr.detectChanges();
+    this.embeddedViewRef.detectChanges();
   }
 
   public ngOnDestroy(): void {
@@ -172,7 +155,7 @@ public readonly error = output();
     }
     this._dataSourceLoadingSubscription?.unsubscribe();
     this._dataSourceLoadingSubscription =
-      dataSource?.loading$.pipe(filter(Boolean)).subscribe(this.loaded) ?? null;
+      dataSource?.loading$.pipe(filter(Boolean)).subscribe(() => this.loaded.emit()) ?? null;
     return dataSource;
   }
 
@@ -190,33 +173,26 @@ public readonly error = output();
         }),
       ).subscribe();
       this.connection$ = this.dataSource.connect(this.viewer());
-      this.zone.onStable
-        .pipe(
-          take(1),
-          tap(() => {
-            this.zone.run(() => {
-              this._dataSourceConnectionSubscription?.unsubscribe();
-              this._dataSourceConnectionSubscription = this.connection$
-                .pipe(
-                  tap({
-                    next: (response) => {
-                      this.embedTemplate(response);
-                    },
-                    error: (error) => {
-                      this.error.emit(error);
-                      console.error(
-                        `Connection failure in ${ this.dataSource!.constructor.name }: ${ error.message }`,
-                        error,
-                      );
-                      this.embedErrorTemplate(error);
-                    },
-                  }),
-                )
-                .subscribe();
-            });
-          }),
-        )
-        .subscribe();
+      afterNextRender(() => {
+        this._dataSourceConnectionSubscription?.unsubscribe();
+        this._dataSourceConnectionSubscription = this.connection$
+          .pipe(
+            tap({
+              next: (response) => {
+                this.embedTemplate(response);
+              },
+              error: (error) => {
+                this.error.emit(error);
+                console.error(
+                  `Connection failure in ${ this.dataSource!.constructor.name }: ${ error.message }`,
+                  error,
+                );
+                this.embedErrorTemplate(error);
+              },
+            }),
+          )
+          .subscribe();
+      }, { injector: this.injector });
     }
   }
 

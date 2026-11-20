@@ -1,9 +1,8 @@
 import {
+  computed,
   Directive,
-  HostBinding,
-  HostListener,
-  Input,
-  output
+  input,
+  output,
 } from '@angular/core';
 import {
   coerceBoolean,
@@ -14,51 +13,38 @@ import { Method } from '@rxap/pattern';
 @Directive({
   selector: '[rxapContenteditable]',
   standalone: true,
+  host: {
+    '[attr.contenteditable]': 'contenteditable()',
+    '(click)': 'onClick($event)',
+    '(input)': 'onInput($event)',
+  },
 })
 export class ContenteditableDirective {
 
-  @HostBinding('attr.contenteditable')
-  public contenteditable = true;
   // eslint-disable-next-line @angular-eslint/no-output-native
-public readonly change = output<string | null>();
-
-  private _method?: Method<any, string | null>;
+  public readonly change = output<string | null>();
 
   // allow empty string
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input('rxapContenteditable')
-  public set method(value: Method<any, string | null> | '') {
-    if (value) {
-      this._method = value;
-    }
-  }
+  public readonly method = input<Method<any, string | null> | '' | undefined>(undefined, { alias: 'rxapContenteditable' });
 
-  private _disabled = false;
+  public readonly disabled = input(false, { transform: (value: boolean | '') => coerceBoolean(value) });
 
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  public set disabled(value: boolean | '') {
-    this._disabled = coerceBoolean(value);
-    this.contenteditable = !this._disabled;
-  }
+  public readonly contenteditable = computed(() => !this.disabled());
 
-  @HostListener('click', [ '$event' ])
   public onClick($event: Event) {
     $event.stopPropagation();
   }
 
-  @HostListener('input', [ '$event' ])
   @DebounceCall(1000)
   public onInput($event: any) {
     const value = ($event.target as HTMLElement).textContent;
-    if (!this._disabled) {
-      this._method?.call(value);
+    if (!this.disabled()) {
+      const method = this.method();
+      if (method) {
+        method.call(value);
+      }
       this.change.emit(value);
     }
   }
 
 }
-
-

@@ -1,4 +1,4 @@
-import { Directive, HostListener, Input, isDevMode, OnInit, input, output, linkedSignal } from '@angular/core';
+import { Directive, isDevMode, OnInit, input, output, linkedSignal } from '@angular/core';
 import { coerceBoolean } from '@rxap/utilities';
 import { ToggleSubject } from '@rxap/rxjs';
 import { Method } from '@rxap/pattern';
@@ -7,6 +7,10 @@ import { Method } from '@rxap/pattern';
   selector: '[rxapMethod]',
   exportAs: 'rxapMethod',
   standalone: true,
+  host: {
+    '(confirmed)': 'onConfirmed()',
+    '(click)': 'onClick()',
+  },
 })
 export class MethodDirective<ReturnType = any, Parameters = any> implements OnInit {
 
@@ -30,12 +34,10 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
     }
   }
 
-  @HostListener('confirmed')
   public onConfirmed() {
     return this.execute();
   }
 
-  @HostListener('click')
   public onClick() {
     if (!this.hasConfirmDirective()) {
       return this.execute();

@@ -10,6 +10,7 @@ import {
 } from '@rxap/data-source/pagination';
 import { Required } from '@rxap/utilities';
 import { IdOrInstanceOrToken } from '@rxap/definition';
+import { BaseDataSource } from '@rxap/data-source';
 
 @Directive({
   selector: '[rxapPaginationDataSource]',
@@ -20,7 +21,7 @@ export class PaginationDataSourceDirective<Data> extends DataSourceCollectionDir
   public readonly paginator = input.required<PaginatorLike>({ alias: "rxapPaginationDataSourcePaginator" });
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  public override readonly dataSourceOrIdOrToken = input.required<IdOrInstanceOrToken<AbstractPaginationDataSource<Data>>>({ alias: "rxapPaginationDataSourceFrom" });
+  public override readonly dataSourceOrIdOrToken = input.required<IdOrInstanceOrToken<BaseDataSource<Data[]>>>({ alias: "rxapPaginationDataSourceFrom" });
 
   public override loadDataSource(): AbstractPaginationDataSource<Data> | null {
     const dataSource = super.loadDataSource();

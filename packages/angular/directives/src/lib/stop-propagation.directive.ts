@@ -1,19 +1,14 @@
-import {
-  Directive,
-  HostListener,
-} from '@angular/core';
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[rxapStopPropagation]',
   standalone: true,
+  host: {
+    '(click)': 'onClick($event)',
+  },
 })
 export class StopPropagationDirective {
-
-  @HostListener('click', [ '$event' ])
   public onClick($event: Event): void {
     $event.stopPropagation();
   }
-
 }
-
-

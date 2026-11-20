@@ -1,5 +1,5 @@
 import type { Injector } from '@angular/core';
-import { AfterViewInit, ChangeDetectorRef, Directive, DoCheck, EmbeddedViewRef, INJECTOR, Input, isDevMode, IterableChangeRecord, IterableChanges, IterableDiffer, IterableDiffers, NgZone, OnChanges, OnDestroy, SimpleChanges, TemplateRef, TrackByFunction, ViewContainerRef, input, output, inject } from '@angular/core';
+import { afterNextRender, computed, Directive, effect, EmbeddedViewRef, INJECTOR, isDevMode, IterableChangeRecord, IterableChanges, IterableDiffer, IterableDiffers, OnDestroy, signal, TemplateRef, TrackByFunction, untracked, ViewContainerRef, input, output, inject } from '@angular/core';
 import {
   BaseDataSource,
   BaseDataSourceViewer,
@@ -12,7 +12,6 @@ import {
 } from 'rxjs';
 import {
   filter,
-  take,
   tap,
 } from 'rxjs/operators';
 
@@ -64,14 +63,12 @@ export interface DataSourceCollectionErrorTemplateContext {
   standalone: true,
 })
 export class DataSourceCollectionDirective<Data = any>
-  implements OnChanges, OnDestroy, AfterViewInit, DoCheck {
+  implements OnDestroy {
   private readonly dataSourceLoader = inject<DataSourceLoader>(DataSourceLoader);
   private readonly template = inject<TemplateRef<DataSourceCollectionTemplateContext<Data>>>(TemplateRef);
   private readonly viewContainerRef = inject<ViewContainerRef>(ViewContainerRef);
   private readonly injector = inject<Injector>(INJECTOR);
   private readonly differs = inject<IterableDiffers>(IterableDiffers);
-  private readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
-  private readonly zone = inject<NgZone>(NgZone);
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
   public readonly dataSourceOrIdOrToken = input.required<IdOrInstanceOrToken<BaseDataSource<Data[]>>>({ alias: "rxapDataSourceCollectionFrom" });
@@ -82,13 +79,11 @@ export class DataSourceCollectionDirective<Data = any>
   public readonly errorTemplate = input<TemplateRef<DataSourceCollectionErrorTemplateContext>>(undefined, { alias: "rxapDataSourceCollectionErrorTemplate" });
   public readonly loaded = output();
   // eslint-disable-next-line @angular-eslint/no-output-native
-public readonly error = output();
+  public readonly error = output<unknown>();
   public connection$: Observable<Data[]> | null = null;
   protected readonly subscription = new Subscription();
   protected embeddedErrorViewRef?: EmbeddedViewRef<DataSourceCollectionErrorTemplateContext>;
   private _differ: IterableDiffer<Data> | null = null;
-  private _trackByFn!: TrackByFunction<Data>;
-  private _dirty = true;
   /**
    * Idecates that the data source returned a empty collection
    *
@@ -98,7 +93,12 @@ public readonly error = output();
    *
    * @private
    */
-  private _empty: boolean | null = null;
+  private readonly _empty = signal<boolean | null>(null);
+  /**
+   * Holds the data that should be displayed
+   * @private
+   */
+  private readonly _data = signal<Data[] | null>(null, { equal: () => false });
   /**
    * Holds the empty template view ref.
    *
@@ -128,35 +128,21 @@ public readonly error = output();
    * The function receives two inputs,
    * the iteration index and the node object ID.
    */
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  set rxapDataSourceCollectionTrackBy(fn: TrackByFunction<Data>) {
+  public readonly rxapDataSourceCollectionTrackBy = input<TrackByFunction<Data> | undefined>(undefined);
+
+  protected readonly trackByFn = computed(() => {
+    const fn = this.rxapDataSourceCollectionTrackBy();
     if (isDevMode() && fn != null && typeof fn !== 'function') {
-      // TODO(vicb): use a log service once there is a public one available
-      if (<any>console && <any>console.warn) {
-        console.warn(
-          `trackBy must be a function, but received ${ JSON.stringify(fn) }. ` +
-          `See https://angular.io/api/common/NgForOf#change-propagation for more information.`,
-        );
-      }
+      console.warn(
+        `trackBy must be a function, but received ${ JSON.stringify(fn) }. ` +
+        `See https://angular.io/api/common/NgForOf#change-propagation for more information.`,
+      );
     }
-    this._trackByFn = fn;
-  }
+    return fn;
+  });
 
-  get ngForTrackBy(): TrackByFunction<Data> {
-    return this._trackByFn;
-  }
-
-  /**
-   * Holds the data that should be displayed
-   * @private
-   */
-  private _data: Data[] | null = null;
-
-  protected set data(data: Data[]) {
-    this._data = data;
-    this._dirty = true;
+  get ngForTrackBy(): TrackByFunction<Data> | undefined {
+    return this.trackByFn();
   }
 
   /**
@@ -172,53 +158,57 @@ public readonly error = output();
     return true;
   }
 
-  // TODO : handel that case: a new data source instance is provided and an open connection to the old data source exists.
-  public ngOnChanges(changes: SimpleChanges) {
-    const dataSourceOrIdOrTokenChange = changes['dataSourceOrIdOrToken'];
-    if (dataSourceOrIdOrTokenChange) {
-      this.dataSource = this.loadDataSource();
-      // Dont connect to the data source on the first change.
-      // Else the parent/sibling components are not initialized
-      // and the parameters from the parent/sibling components can not
-      // be used in the connect logic.
-      // Example: The PaginationDataSource required the pageSize, but the pageSize
-      // in the MatPaginator will be set after the ngOnChanges logic is called.
-      // So the initial pageSize is undefined.
-      if (!dataSourceOrIdOrTokenChange.firstChange) {
+  constructor() {
+    // TODO : handel that case: a new data source instance is provided and an open connection to the old data source exists.
+    effect(() => {
+      this.dataSourceOrIdOrToken();
+      untracked(() => {
+        this.dataSource = this.loadDataSource();
+        // The connection is deferred until after the first render (see connect()).
+        // Else the parent/sibling components are not initialized
+        // and the parameters from the parent/sibling components can not
+        // be used in the connect logic.
+        // Example: The PaginationDataSource required the pageSize, but the pageSize
+        // in the MatPaginator will be set after the first change detection.
         this.connect();
-      }
-    }
-  }
-
-  public ngAfterViewInit() {
-    this.connect();
+      });
+    });
+    // Applies the changes when needed.
+    effect(() => {
+      const empty = this._empty();
+      const data = this._data();
+      const emptyTemplate = this.emptyTemplate();
+      const trackBy = this.trackByFn();
+      untracked(() => this.render(empty, data, emptyTemplate, trackBy));
+    });
   }
 
   public ngOnDestroy(): void {
     this._differ = null;
-    this._empty = null;
+    this._empty.set(null);
     this.viewContainerRef.clear();
     this.dataSource?.disconnect(this.viewer());
     this.subscription.unsubscribe();
     this._dataSourceLoadingSubscription?.unsubscribe();
   }
 
-  /**
-   * Applies the changes when needed.
-   */
-  public ngDoCheck(): void {
-    if (this._empty === true) {
+  private render(
+    empty: boolean | null,
+    data: Data[] | null,
+    emptyTemplate: TemplateRef<void> | undefined,
+    trackBy: TrackByFunction<Data> | undefined,
+  ): void {
+    if (empty === true) {
       this.viewContainerRef.clear();
       this._differ = null;
 
       // attaches the empty template if the data source is empty
-      const emptyTemplate = this.emptyTemplate();
       if (emptyTemplate) {
         this._emptyTemplateViewRef = this.viewContainerRef.createEmbeddedView(
           emptyTemplate,
         );
       }
-    } else if (this._empty === false) {
+    } else if (empty === false) {
       // detach and destroy the empty template if the data source is not
       // empty any more
       if (this._emptyTemplateViewRef) {
@@ -227,24 +217,19 @@ public readonly error = output();
         this._emptyTemplateViewRef = null;
       }
 
-      if (this._data) {
-        this._dirty = false;
-        // React on ngForOf changes only once all inputs have been initialized
-        const value = this._data;
-        if (!this._differ && value) {
-          try {
-            this._differ = this.differs.find(value).create(this.ngForTrackBy);
-          } catch {
-            throw new Error(
-              `Cannot find a differ supporting object '${ value }' of type '${ getTypeName(
-                value,
-              ) }'. NgFor only supports binding to Iterables such as Arrays.`,
-            );
-          }
+      if (data && !this._differ) {
+        try {
+          this._differ = this.differs.find(data).create(trackBy);
+        } catch {
+          throw new Error(
+            `Cannot find a differ supporting object '${ data }' of type '${ getTypeName(
+              data,
+            ) }'. NgFor only supports binding to Iterables such as Arrays.`,
+          );
         }
       }
       if (this._differ) {
-        const changes = this._differ.diff(this._data);
+        const changes = this._differ.diff(data);
         if (changes) {
           this.applyChanges(changes);
         }
@@ -272,40 +257,32 @@ public readonly error = output();
       errorTemplate,
       context,
     );
-    this.cdr.detectChanges();
+    this.embeddedErrorViewRef.detectChanges();
   }
 
   protected connect() {
     if (this.dataSource) {
       this.connection$ = this.dataSource.connect(this.viewer());
-      this.zone.onStable
-          .pipe(
-            take(1),
-            tap(() => {
-              this.zone.run(() => {
-                this.subscription.add(
-                  this.connection$!.pipe(
-                    tap({
-                      next: (response) => {
-                        this._empty = response.length === 0;
-                        this._data = response;
-                        this.cdr.detectChanges();
-                      },
-                      error: (error) => {
-                        this.error.emit(error);
-                        console.error(
-                          `Connection failure in ${ this.dataSource!.constructor.name }: ${ error.message }`,
-                          error,
-                        );
-                        this.embedErrorTemplate(error);
-                      },
-                    }),
-                  ).subscribe(),
+      afterNextRender(() => {
+        this.subscription.add(
+          this.connection$!.pipe(
+            tap({
+              next: (response) => {
+                this._data.set(response);
+                this._empty.set(response.length === 0);
+              },
+              error: (error) => {
+                this.error.emit(error);
+                console.error(
+                  `Connection failure in ${ this.dataSource!.constructor.name }: ${ error.message }`,
+                  error,
                 );
-              });
+                this.embedErrorTemplate(error);
+              },
             }),
-          )
-          .subscribe();
+          ).subscribe(),
+        );
+      }, { injector: this.injector });
     } else {
       throw new Error(
         'Can not connect to the data source. The data source is not loaded!',
@@ -393,7 +370,7 @@ public readonly error = output();
     }
     this._dataSourceLoadingSubscription?.unsubscribe();
     this._dataSourceLoadingSubscription =
-      dataSource?.loading$.pipe(filter(Boolean)).subscribe(this.loaded) ?? null;
+      dataSource?.loading$.pipe(filter(Boolean)).subscribe(() => this.loaded.emit()) ?? null;
     return dataSource;
   }
 

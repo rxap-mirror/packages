@@ -1,8 +1,9 @@
 import {
   Directive,
+  effect,
   ElementRef,
   inject,
-  Input,
+  input,
 } from '@angular/core';
 import {
   coerceBoolean,
@@ -20,21 +21,15 @@ export class TimeagoDirective {
   private readonly elementRef = inject(ElementRef);
 
   /** The Date to display. An actual Date object or something that can be fed to new Date. */
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  set date(date: string | number | Date) {
-    this.setContent(this.elementRef.nativeElement, TimeagoFormatter(date));
-  }
-
-  private _live = true;
+  readonly date = input.required<string | number | Date>();
 
   /** If the directive should update itself over time */
-  // TODO: Skipped for migration because:
-  //  Accessor inputs cannot be migrated as they are too complex.
-  @Input()
-  set live(live: boolean) {
-    this._live = coerceBoolean(live);
+  readonly live = input(true, { transform: (live: boolean | '') => coerceBoolean(live) });
+
+  constructor() {
+    effect(() => {
+      this.setContent(this.elementRef.nativeElement, TimeagoFormatter(this.date()));
+    });
   }
 
   setContent(node: any, content: string) {

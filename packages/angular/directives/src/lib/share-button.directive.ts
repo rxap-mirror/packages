@@ -1,6 +1,5 @@
 import {
   Directive,
-  HostListener,
   inject,
   Injectable,
   input,
@@ -45,6 +44,9 @@ export class ShareService {
 @Directive({
   selector: '[rxapShareButton],[rxapShare]',
   standalone: true,
+  host: {
+    '(click)': 'share()',
+  },
 })
 export class ShareButtonDirective {
 
@@ -58,7 +60,6 @@ export class ShareButtonDirective {
 
   private readonly shareService = inject(ShareService);
 
-  @HostListener('click')
   async share() {
     try {
       await this.shareService.share({

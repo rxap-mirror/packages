@@ -1,4 +1,5 @@
 import { ApplicationRef, createComponent, Injectable, Injector, inject } from '@angular/core';
+import { outputToObservable } from '@angular/core/rxjs-interop';
 import {
   SwUpdate,
   VersionEvent,
@@ -60,7 +61,7 @@ export class DialogUpdateService {
     });
     this.applicationRef.attachView(componentRef.hostView);
 
-    return componentRef.instance.closeDialog.pipe(
+    return outputToObservable(componentRef.instance.closeDialog).pipe(
       tap(() => {
         componentRef.destroy();
         body.removeChild(div);

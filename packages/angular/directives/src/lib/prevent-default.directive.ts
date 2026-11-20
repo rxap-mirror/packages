@@ -1,19 +1,14 @@
-import {
-  Directive,
-  HostListener,
-} from '@angular/core';
+import { Directive } from '@angular/core';
 
 @Directive({
   selector: '[rxapPreventDefault]',
   standalone: true,
+  host: {
+    '(click)': 'onClick($event)',
+  },
 })
 export class PreventDefaultDirective {
-
-  @HostListener('click', [ '$event' ])
   public onClick($event: Event): void {
     $event.preventDefault();
   }
-
 }
-
-

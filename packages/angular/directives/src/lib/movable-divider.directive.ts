@@ -1,5 +1,4 @@
-import { Directive, HostBinding, HostListener, isDevMode, OnDestroy, OnInit, Renderer2, input, inject } from '@angular/core';
-import { Required } from '@rxap/utilities';
+import { Directive, effect, inject, input, isDevMode, Renderer2 } from '@angular/core';
 import {
   fromEvent,
   Subscription,
@@ -9,8 +8,12 @@ import { tap } from 'rxjs/operators';
 @Directive({
   selector: '[rxapMovableDivider]',
   standalone: true,
+  host: {
+    style: 'cursor: ew-resize',
+    '(mousedown)': 'onMousedown()',
+  },
 })
-export class MovableDividerDirective implements OnDestroy, OnInit {
+export class MovableDividerDirective {
   private readonly renderer = inject(Renderer2);
 
 
@@ -19,9 +22,7 @@ export class MovableDividerDirective implements OnDestroy, OnInit {
   public readonly fixedElement = input.required<HTMLDivElement>();
 
   public readonly origin = input<'right' | 'left'>('right');
-  @HostBinding('style.cursor')
-  public cursor = 'ew-resize';
-  private _subscription = new Subscription();
+
   /**
    * Indicates that the divider is moved with mouse down
    * @private
@@ -35,13 +36,17 @@ export class MovableDividerDirective implements OnDestroy, OnInit {
    */
   private _fixedElementWidth: number | null = null;
 
-  public ngOnDestroy() {
-    this._subscription?.unsubscribe();
+  constructor() {
+    effect((onCleanup) => {
+      const containerElement = this.containerElement();
+      const subscription = new Subscription();
+      onCleanup(() => subscription.unsubscribe());
+      this.listen(containerElement, subscription);
+    });
   }
 
-  public ngOnInit() {
-    const containerElement = this.containerElement();
-    this._subscription.add(fromEvent<MouseEvent>(containerElement, 'mousemove').pipe(
+  private listen(containerElement: HTMLDivElement, subscription: Subscription) {
+    subscription.add(fromEvent<MouseEvent>(containerElement, 'mousemove').pipe(
       tap(($event: MouseEvent) => {
         if (this._moveDivider) {
           if (!this._fixedElementWidth) {
@@ -72,12 +77,11 @@ export class MovableDividerDirective implements OnDestroy, OnInit {
         }
       }),
     ).subscribe());
-    this._subscription.add(fromEvent(containerElement, 'mouseup').pipe(
+    subscription.add(fromEvent(containerElement, 'mouseup').pipe(
       tap(() => this._moveDivider = false),
     ).subscribe());
   }
 
-  @HostListener('mousedown')
   public onMousedown() {
     this._moveDivider = true;
   }
