@@ -166,6 +166,8 @@ export class FormDirective<T = any>
     return this.loadingError$.value;
   }
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input('rxapForm')
   public set useFormDefinition(value: FormDefinition<T> | '') {
     if (value) {
@@ -186,23 +188,17 @@ export class FormDirective<T = any>
 
   protected _formDefinition!: FormDefinition<T>;
 
-  @Input()
-  public submitMethod: FormSubmitMethod<any> | null = null;
+  public readonly submitMethod = input<FormSubmitMethod<any> | null>(null);
 
-  @Input()
-  public loadMethod: FormLoadMethod | null = null;
+  public readonly loadMethod = input<FormLoadMethod | null>(null);
 
-  @Input()
-  public loadFailedMethod: FormLoadFailedMethod | null = null;
+  public readonly loadFailedMethod = input<FormLoadFailedMethod | null>(null);
 
-  @Input()
-  public loadSuccessfulMethod: FormLoadSuccessfulMethod | null = null;
+  public readonly loadSuccessfulMethod = input<FormLoadSuccessfulMethod | null>(null);
 
-  @Input()
-  public submitFailedMethod: FormSubmitFailedMethod | null = null;
+  public readonly submitFailedMethod = input<FormSubmitFailedMethod | null>(null);
 
-  @Input()
-  public submitSuccessfulMethod: FormSubmitSuccessfulMethod | null = null;
+  public readonly submitSuccessfulMethod = input<FormSubmitSuccessfulMethod | null>(null);
 
   private _autoSubmitSubscription = new Subscription();
 
@@ -257,12 +253,12 @@ export class FormDirective<T = any>
     initial: T | null = null,
   ) {
     super([], []);
-    this.submitMethod = submitMethod ?? this.submitMethod;
-    this.loadMethod = loadMethod ?? this.loadMethod;
-    this.loadFailedMethod = loadFailedMethod ?? this.loadFailedMethod;
-    this.loadSuccessfulMethod = loadSuccessfulMethod ?? this.loadSuccessfulMethod;
-    this.submitFailedMethod = submitFailedMethod ?? this.submitFailedMethod;
-    this.submitSuccessfulMethod = submitSuccessfulMethod ?? this.submitSuccessfulMethod;
+    this.submitMethod = submitMethod ?? this.submitMethod();
+    this.loadMethod = loadMethod ?? this.loadMethod();
+    this.loadFailedMethod = loadFailedMethod ?? this.loadFailedMethod();
+    this.loadSuccessfulMethod = loadSuccessfulMethod ?? this.loadSuccessfulMethod();
+    this.submitFailedMethod = submitFailedMethod ?? this.submitFailedMethod();
+    this.submitSuccessfulMethod = submitSuccessfulMethod ?? this.submitSuccessfulMethod();
     if (!formDefinition && formDefinitionBuilder) {
       formDefinition = formDefinitionBuilder.build<FormDefinition>();
     }
@@ -425,11 +421,12 @@ export class FormDirective<T = any>
       }
       form.patchValue(initial, { setInitialValue: true });
     } else {
-      if (this.loadMethod) {
+      const loadMethod = this.loadMethod();
+      if (loadMethod) {
         this.loading$.enable();
 
         try {
-          const resultOrPromise = this.loadMethod.call({ context: this.context(), initial: this.initial() });
+          const resultOrPromise = loadMethod.call({ context: this.context(), initial: this.initial() });
           if (isPromise(resultOrPromise)) {
             resultOrPromise
               .then((value) => {
@@ -469,8 +466,9 @@ export class FormDirective<T = any>
   }
 
   protected loadSuccessful(value: any) {
-    if (this.loadSuccessfulMethod) {
-      this.loadSuccessfulMethod.call(value);
+    const loadSuccessfulMethod = this.loadSuccessfulMethod();
+    if (loadSuccessfulMethod) {
+      loadSuccessfulMethod.call(value);
     } else if (isDevMode()) {
       console.warn(
         'The load successful is not defined for: ' + this.form.controlId,
@@ -481,8 +479,9 @@ export class FormDirective<T = any>
   protected loadFailed(error: Error) {
     console.debug('Load Error:', error);
     console.error('Load Error:', error.message);
-    if (this.loadFailedMethod) {
-      this.loadFailedMethod?.call(error);
+    const loadFailedMethod = this.loadFailedMethod();
+    if (loadFailedMethod) {
+      loadFailedMethod?.call(error);
     } else if (isDevMode()) {
       console.warn('The form loading failed for: ' + this.form.controlId);
     }
@@ -504,12 +503,13 @@ export class FormDirective<T = any>
 
   protected submit() {
     const value = this.getSubmitValue();
-    if (this.submitMethod) {
+    const submitMethod = this.submitMethod();
+    if (submitMethod) {
       Reflect.set(this, 'submitted', false);
       this.submitting$.enable();
       this.submitError$.next(null);
       try {
-        const resultOrPromise = this.submitMethod.call(value, this.context(), this.initial());
+        const resultOrPromise = submitMethod.call(value, this.context(), this.initial());
         if (isPromise(resultOrPromise)) {
           resultOrPromise
             .then((result) => {
@@ -551,8 +551,9 @@ export class FormDirective<T = any>
   protected submitFailed(error: Error) {
     console.debug('Submit Error:', error);
     console.error('Submit Error:', error.message);
-    if (this.submitFailedMethod) {
-      this.submitFailedMethod.call(error);
+    const submitFailedMethod = this.submitFailedMethod();
+    if (submitFailedMethod) {
+      submitFailedMethod.call(error);
     } else if (isDevMode()) {
       console.warn(
         'The form submit failed method is not defined for: ' +
@@ -563,8 +564,9 @@ export class FormDirective<T = any>
 
   protected submitSuccessful(value: any) {
     this.submitSuccessful$.next(value);
-    if (this.submitSuccessfulMethod) {
-      this.submitSuccessfulMethod.call(value);
+    const submitSuccessfulMethod = this.submitSuccessfulMethod();
+    if (submitSuccessfulMethod) {
+      submitSuccessfulMethod.call(value);
     } else if (isDevMode()) {
       console.warn(
         'The form submit successful method is not defined for: ' +

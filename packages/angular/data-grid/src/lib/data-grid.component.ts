@@ -13,6 +13,7 @@ import {
   Optional,
   Output,
   QueryList,
+  input
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -101,25 +102,19 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
 
   public isDevMode = isDevMode();
 
-  @Input()
-  public header = false;
+  public readonly header = input(false);
 
-  @Input()
-  public dataSource?: DataSource<T>;
+  public readonly dataSource = input<DataSource<T>>();
 
   public data$!: Observable<T>;
 
-  @Input()
-  public viewer: DataSourceViewer = this;
+  public readonly viewer = input<DataSourceViewer>(this);
 
-  @Input()
-  public data?: T;
+  public readonly data = input<T>();
 
-  @Input()
-  public displayProperties: string[] | null = null;
+  public readonly displayProperties = input<string[] | null>(null);
 
-  @Input()
-  public hideEmptyProperties = false;
+  public readonly hideEmptyProperties = input(false);
 
   @ContentChildren(DataGridRowDefDirective)
   public rows!: QueryList<DataGridRowDefDirective<T>>;
@@ -153,6 +148,8 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
     this.isPlainMode$ = this.mode$.pipe(map(mode => mode === DataGridMode.PLAIN));
   }
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set mode(value: DataGridMode | string) {
     if (IsDataGridMode(value)) {
@@ -208,18 +205,20 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
       tap(() => this.disableEditMode()),
     ).subscribe();
 
-    if (this.dataSource && this.data) {
+    const dataSource = this.dataSource();
+    const dataValue = this.data();
+    if (dataSource && dataValue) {
       throw new Error('You can not use both dataSource and data input');
     }
 
     let data$: Observable<T> = EMPTY;
 
-    if (this.dataSource) {
-      data$ = this.dataSource.connect(this.viewer);
+    if (dataSource) {
+      data$ = dataSource.connect(this.viewer());
     }
 
-    if (this.data) {
-      data$ = of(this.data);
+    if (dataValue) {
+      data$ = of(dataValue);
     }
 
     if (data$ === EMPTY && isDevMode()) {
@@ -242,9 +241,9 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
       }),
       shareReplay(1),
     );
-    if (this.dataSource) {
-      this.hasError$    = this.dataSource.hasError$ ?? this.hasError$;
-      this.dataLoading$ = this.dataSource.loading$ ?? this.dataLoading$;
+    if (dataSource) {
+      this.hasError$    = dataSource.hasError$ ?? this.hasError$;
+      this.dataLoading$ = dataSource.loading$ ?? this.dataLoading$;
     }
     if (this.formDirective && this.isFormMode) {
       this.formDirective.form.disabledWhile(combineLatest([
@@ -257,7 +256,7 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   }
 
   public ngOnDestroy() {
-    this.dataSource?.disconnect(this.viewer);
+    this.dataSource()?.disconnect(this.viewer());
     this._routerEventSubscription?.unsubscribe();
   }
 
@@ -275,8 +274,9 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
       return;
     }
     this.editMode = true;
-    if (!skipPatchValue && this.data) {
-      this.formDirective.form.patchValue(this.data, {
+    const data = this.data();
+    if (!skipPatchValue && data) {
+      this.formDirective.form.patchValue(data, {
         coerce: true,
         strict: true,
       });
@@ -347,8 +347,9 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   }
 
   public reset() {
-    if (this.formDirective && this.data && this.isFormModeOrHasAnyEditCells) {
-      this.formDirective.form.patchValue(this.data, {
+    const data = this.data();
+    if (this.formDirective && data && this.isFormModeOrHasAnyEditCells) {
+      this.formDirective.form.patchValue(data, {
         coerce: true,
         strict: true,
       });
@@ -356,8 +357,9 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
   }
 
   public refresh() {
-    if (this.dataSource) {
-      this.dataSource.refresh();
+    const dataSource = this.dataSource();
+    if (dataSource) {
+      dataSource.refresh();
     } else if (isDevMode()) {
       console.warn('can not refresh the data. data source is not defined');
     }

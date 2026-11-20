@@ -2,7 +2,7 @@ import {
   Directive,
   HostListener,
   Inject,
-  Input,
+  input
 } from '@angular/core';
 import { ExpandRowService } from './expand-row.service';
 import { Required } from '@rxap/utilities';
@@ -15,11 +15,10 @@ export class ExpandRowDirective<Data extends Record<string, any>> {
 
   @HostListener('expanded-row')
   public get isExpanded() {
-    return this.expandCell.isExpanded(this.element);
+    return this.expandCell.isExpanded(this.element());
   }
 
-  @Input({ required: true })
-  public element!: Data;
+  public readonly element = input.required<Data>();
 
   constructor(
     @Inject(ExpandRowService)
@@ -29,7 +28,7 @@ export class ExpandRowDirective<Data extends Record<string, any>> {
 
   @HostListener('click')
   public onClick() {
-    this.expandCell.toggleRow(this.element);
+    this.expandCell.toggleRow(this.element());
   }
 
 }

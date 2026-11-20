@@ -1,11 +1,11 @@
 import {
   ChangeDetectorRef,
   Directive,
-  Input,
   OnChanges,
   SimpleChanges,
   TemplateRef,
   ViewContainerRef,
+  input
 } from '@angular/core';
 import { Method } from '@rxap/pattern';
 
@@ -21,12 +21,9 @@ export interface IfTruthyDirectiveTemplateContext<Data> {
 })
 export class IfTruthyDirective<Data, Parameters = any> implements OnChanges {
 
-  @Input('rxapIfTruthy')
-  public method!: Method<Data, Parameters>;
-  @Input('rxapIfTruthyParameters')
-  public parameters!: Parameters;
-  @Input('rxapIfTruthyTrackBy')
-  public trackBy!: (data: Data) => any;
+  public readonly method = input.required<Method<Data, Parameters>>({ alias: "rxapIfTruthy" });
+  public readonly parameters = input.required<Parameters>({ alias: "rxapIfTruthyParameters" });
+  public readonly trackBy = input.required<(data: Data) => any>({ alias: "rxapIfTruthyTrackBy" });
   private _last?: Data;
 
   constructor(
@@ -51,7 +48,7 @@ export class IfTruthyDirective<Data, Parameters = any> implements OnChanges {
 
   public ngOnChanges(changes: SimpleChanges) {
 
-    if (this.method && this.parameters) {
+    if (this.method() && this.parameters()) {
       this.execute();
     }
 
@@ -59,7 +56,7 @@ export class IfTruthyDirective<Data, Parameters = any> implements OnChanges {
 
   protected async execute() {
 
-    const result = await this.method.call(this.parameters);
+    const result = await this.method().call(this.parameters());
 
     if (this.hasChanged(result)) {
 
@@ -80,8 +77,10 @@ export class IfTruthyDirective<Data, Parameters = any> implements OnChanges {
 
   protected hasChanged(current: Data) {
     if (this._last !== undefined) {
-      const currentTrackBy = this.trackBy ? this.trackBy(current) : current;
-      const lastTrackBy = this.trackBy ? this.trackBy(this._last) : this._last;
+      const trackBy = this.trackBy();
+      const currentTrackBy = trackBy ? trackBy(current) : current;
+      const trackByValue = this.trackBy();
+      const lastTrackBy = trackByValue ? trackByValue(this._last) : this._last;
       return currentTrackBy !== lastTrackBy;
     }
 

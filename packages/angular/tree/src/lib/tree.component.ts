@@ -14,7 +14,6 @@ import {
   EventEmitter,
   HostListener,
   Inject,
-  Input,
   isDevMode,
   OnInit,
   Optional,
@@ -23,6 +22,7 @@ import {
   signal,
   ViewChild,
   ViewContainerRef,
+  input
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -82,32 +82,21 @@ import { TreeDataSource } from './tree.data-source';
 export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   implements OnInit, AfterContentInit {
   public treeControl: FlatTreeControl<Node<Data>>;
-  @Input({required: true})
-  public dataSource!: TreeDataSource<Data>;
-  @Input()
-  public contentEditableMethod?: Method<any, string | null> | null;
-  @Input()
-  public toDisplay?: NodeToDisplayFunction<any>;
-  @Input()
-  public getIcon?: NodeGetIconFunction<any>;
-  @Input()
-  public getType?: NodeGetTypeFunction<any>;
-  @Input()
-  public getStyle?: NodeGetStyleFunction<any>;
-  @Input()
-  public multiple                      = false;
-  @Input()
-  public hasDetails?: NodeHasDetailsFunction<any>;
+  public readonly dataSource = input.required<TreeDataSource<Data>>();
+  public readonly contentEditableMethod = input<Method<any, string | null> | null>();
+  public readonly toDisplay = input<NodeToDisplayFunction<any>>();
+  public readonly getIcon = input<NodeGetIconFunction<any>>();
+  public readonly getType = input<NodeGetTypeFunction<any>>();
+  public readonly getStyle = input<NodeGetStyleFunction<any>>();
+  public readonly multiple = input(false);
+  public readonly hasDetails = input<NodeHasDetailsFunction<any>>();
   @ContentChild(TreeContentDirective, {static: true})
   public content?: TreeContentDirective;
-  @Input()
-  public hideLeafIcon                  = false;
-  @Input()
-  public id?: string;
+  public readonly hideLeafIcon = input(false);
+  public readonly id = input<string>();
   @Output()
   public details                       = new EventEmitter();
-  @Input()
-  public dividerOffset                 = '256px';
+  public readonly dividerOffset = input('256px');
   public portal: TemplatePortal | null = null;
   @ViewChild('treeContainer', {static: true})
   public treeContainer!: ElementRef;
@@ -146,11 +135,11 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   }
 
   public get nodeDisplayEditable(): boolean {
-    return !!this.contentEditableMethod;
+    return !!this.contentEditableMethod();
   }
 
   public get cacheId() {
-    return [ 'rxap', 'tree', this.id ].join('/');
+    return [ 'rxap', 'tree', this.id() ].join('/');
   }
 
   public getLevel = (node: Node<Data>) => node.depth;
@@ -160,17 +149,17 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   public hasChild = (_: number, nodeData: Node<Data>) => nodeData.hasChildren;
 
   public ngOnInit() {
-    this.dataSource.searchForm = this.searchForm;
-    this.dataSource.setTreeControl(this.treeControl);
-    this.dataSource.setToDisplay(this.toDisplay);
-    this.dataSource.setGetIcon(this.getIcon);
-    this.dataSource.setHasDetails(this.hasDetails);
-    this.dataSource.setGetStyle(this.getStyle);
-    this.dataSource.setGetType(this.getType);
-    this.multiple = this.dataSource.metadata.selectMultiple ?? this.multiple;
+    dataSource.searchForm = this.searchForm;
+    dataSource.setTreeControl(this.treeControl);
+    dataSource.setToDisplay(this.toDisplay());
+    dataSource.setGetIcon(this.getIcon());
+    dataSource.setHasDetails(this.hasDetails());
+    dataSource.setGetStyle(this.getStyle());
+    dataSource.setGetType(this.getType());
+    this.multiple = dataSource.metadata.selectMultiple ?? this.multiple();
 
-    if (this.dataSource.selected.hasValue()) {
-      this.dataSource.selected.selected.forEach((node) =>
+    if (dataSource.selected.hasValue()) {
+      dataSource.selected.selected.forEach((node) =>
         this.openDetails(node),
       );
     }
@@ -184,10 +173,10 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   }
 
   public ngAfterContentInit(): void {
-    this.dataSource.selected.changed
+    this.dataSource().selected.changed
     .pipe(
       map(($event) => $event.source.selected),
-      startWith(this.dataSource.selected.selected),
+      startWith(this.dataSource().selected.selected),
       tap((selected) => selected.forEach((node) => this.openDetails(node))),
     )
     .subscribe();
@@ -210,7 +199,7 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   }
 
   public onContentEditableChange(value: string | null, node: Node<Data>) {
-    return this.contentEditableMethod?.call(value, node.item, node);
+    return this.contentEditableMethod()?.call(value, node.item, node);
   }
 
 

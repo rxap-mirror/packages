@@ -5,12 +5,12 @@ import {
   Inject,
   Injector,
   INJECTOR,
-  Input,
   isDevMode,
   OnDestroy,
   Optional,
   TemplateRef,
   ViewContainerRef,
+  input
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import {
@@ -93,14 +93,11 @@ export interface InputSelectOptionsDirective extends OnDestroy, AfterViewInit,
 })
 export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
 
-  @Input('rxapInputSelectOptionsViewer')
-  public viewer: BaseDataSourceViewer = { id: '[rxapInputSelectOptions]' };
+  public readonly viewer = input<BaseDataSourceViewer>({ id: '[rxapInputSelectOptions]' }, { alias: "rxapInputSelectOptionsViewer" });
 
-  @Input('rxapInputSelectOptionsMetadata')
-  public metadata?: BaseDataSourceMetadata;
+  public readonly metadata = input<BaseDataSourceMetadata>(undefined, { alias: "rxapInputSelectOptionsMetadata" });
 
-  @Input('rxapInputSelectOptionsMatAutocomplete')
-  public matAutocomplete?: MatAutocomplete;
+  public readonly matAutocomplete = input<MatAutocomplete>(undefined, { alias: "rxapInputSelectOptionsMatAutocomplete" });
 
   protected readonly subscription = new Subscription();
 
@@ -159,8 +156,9 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
       ),
       control: this.control,
     };
-    if (this.matAutocomplete) {
-      this.matAutocomplete.displayWith = this.toDisplay.bind(this);
+    const matAutocomplete = this.matAutocomplete();
+    if (matAutocomplete) {
+      matAutocomplete.displayWith = this.toDisplay.bind(this);
       this.settings ??= {};
       this.settings.filteredOptions ??= true;
     }
@@ -180,7 +178,7 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
   }
 
   private loadOptions(dataSource: BaseDataSource<ControlOptions | Record<string, any>> = this.dataSource) {
-    this.subscription.add(dataSource.connect(this.viewer).pipe(
+    this.subscription.add(dataSource.connect(this.viewer()).pipe(
       switchMap(options => {
         if (this.settings?.filteredOptions) {
           return this.control.value$.pipe(
@@ -208,7 +206,7 @@ export class InputSelectOptionsDirective implements OnDestroy, AfterViewInit {
       }),
       tap(options => this.renderTemplate(this.options = options)),
       tap(() => {
-        if (this.matAutocomplete && !this.isAutocompleteToDisplayTriggered) {
+        if (this.matAutocomplete() && !this.isAutocompleteToDisplayTriggered) {
           this.isAutocompleteToDisplayTriggered = true;
           // trigger a change detection after the options are rendered
           // this is needed to trigger the mat-autocomplete options to display function

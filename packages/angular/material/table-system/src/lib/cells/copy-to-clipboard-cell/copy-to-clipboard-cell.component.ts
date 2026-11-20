@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input
 } from '@angular/core';
 import { CopyToClipboardComponent } from '@rxap/components';
 
@@ -16,7 +16,6 @@ import { CopyToClipboardComponent } from '@rxap/components';
 })
 export class CopyToClipboardCellComponent {
 
-  @Input('rxap-copy-to-clipboard-cell')
-  public value: any;
+  public readonly value = input<any>(undefined, { alias: "rxap-copy-to-clipboard-cell" });
 
 }

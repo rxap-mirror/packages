@@ -2,7 +2,7 @@ import {
   Directive,
   HostBinding,
   Inject,
-  Input,
+  input
 } from '@angular/core';
 import { ConfirmClick } from '@rxap/directives';
 import { FormDirective } from './form.directive';
@@ -18,8 +18,7 @@ import { FormDirective } from './form.directive';
 export class FormResetDirective extends ConfirmClick {
 
   @HostBinding('type')
-  @Input()
-  public type = 'button';
+public readonly type = input('button');
 
   constructor(
     @Inject(FormDirective) private readonly formDirective: FormDirective,

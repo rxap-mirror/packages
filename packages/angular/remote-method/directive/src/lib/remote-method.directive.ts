@@ -11,6 +11,7 @@ import {
   Optional,
   Output,
   Self,
+  input
 } from '@angular/core';
 import {
   BaseRemoteMethod,
@@ -34,10 +35,8 @@ import { ToggleSubject } from '@rxap/rxjs';
 export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata extends BaseRemoteMethodMetadata = BaseRemoteMethodMetadata>
   implements OnInit {
 
-  @Input()
-  public parameters?: Parameters;
-  @Input()
-  public metadata?: Metadata;
+  public readonly parameters = input<Parameters>();
+  public readonly metadata = input<Metadata>();
   // eslint-disable-next-line @angular-eslint/no-output-rename
   @Output('executed')
   public executed$ = new EventEmitter();
@@ -47,8 +46,7 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
   // eslint-disable-next-line @angular-eslint/no-output-rename
   @Output('successful')
   public successful$ = new EventEmitter<ReturnType>();
-  @Input()
-  public immediately = false;
+  public readonly immediately = input(false);
   /**
    * true - a remote method call is in progress
    */
@@ -71,6 +69,8 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
 
   protected _remoteMethodOrIdOrToken!: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType, Parameters, Metadata>>;
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input('rxapRemoteMethod')
   public set remoteMethodOrIdOrToken(value: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType, Parameters, Metadata>>) {
     if (value) {
@@ -81,13 +81,15 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
   private _hasConfirmDirective = false;
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input('rxapConfirm')
   public set hasConfirmDirective(value: any) {
     this._hasConfirmDirective = coerceBoolean(value);
   }
 
   public ngOnInit(): void {
-    if (this.immediately) {
+    if (this.immediately()) {
       this.execute();
     }
   }
@@ -111,8 +113,8 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
     try {
       const result = await this.remoteMethodLoader.call$(
         this._remoteMethodOrIdOrToken,
-        this.parameters,
-        this.metadata,
+        this.parameters(),
+        this.metadata(),
         this.injector,
       );
       this.executed(result);
@@ -132,7 +134,7 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
   }
 
   public updateParameters(parameters: Partial<Parameters>): void {
-    this.parameters = { ...(this.parameters ?? {}), ...parameters } as any;
+    this.parameters = { ...(this.parameters() ?? {}), ...parameters } as any;
   }
 
   protected executed(result: any) {
@@ -156,8 +158,8 @@ export class RemoteMethodDirective<ReturnType = any, Parameters = any, Metadata 
     this.executing$.enable();
     const result = await this.remoteMethodLoader.call$(
       this._remoteMethodOrIdOrToken,
-      this.parameters,
-      this.metadata,
+      this.parameters(),
+      this.metadata(),
       this.injector,
     );
     this.executing$.disable();

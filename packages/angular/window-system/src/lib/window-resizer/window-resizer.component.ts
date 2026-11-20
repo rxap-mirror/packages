@@ -4,11 +4,11 @@ import {
   ElementRef,
   EventEmitter,
   Inject,
-  Input,
   OnDestroy,
   OnInit,
   Output,
   ViewChild,
+  input
 } from '@angular/core';
 import {
   fromEvent,
@@ -39,7 +39,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class WindowResizerComponent implements OnInit, OnDestroy {
 
-  @Input({ required: true }) public containerRef!: ElementRef<any>;
+  public readonly containerRef = input.required<ElementRef<any>>();
 
   public windowRef: WindowRef<any>;
 
@@ -78,12 +78,12 @@ export class WindowResizerComponent implements OnInit, OnDestroy {
           originalMouseX = event.pageX;
           originalMouseY = event.pageY;
           originalWidth = parseFloat(
-            getComputedStyle(this.containerRef.nativeElement, null)
+            getComputedStyle(this.containerRef().nativeElement, null)
               .getPropertyValue('width')
               .replace('px', ''),
           );
           originalHeight = parseFloat(
-            getComputedStyle(this.containerRef.nativeElement, null)
+            getComputedStyle(this.containerRef().nativeElement, null)
               .getPropertyValue('height')
               .replace('px', ''),
           );

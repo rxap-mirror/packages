@@ -9,6 +9,7 @@ import {
   OnInit,
   Optional,
   Output,
+  input
 } from '@angular/core';
 import { FormDirective } from '@rxap/forms';
 import {
@@ -49,8 +50,7 @@ declare const $localize: any;
 export class FormControlsComponent<FormData> implements OnInit {
   public submitting$!: Observable<boolean>;
   public invalid = false;
-  @Input()
-  public navigateAfterSubmit?: string[];
+  public readonly navigateAfterSubmit = input<string[]>();
   @Output()
   // eslint-disable-next-line @angular-eslint/no-output-native
   public close = new EventEmitter<FormData | FormData[] | void>();
@@ -82,6 +82,8 @@ export class FormControlsComponent<FormData> implements OnInit {
     return this._allowResubmit;
   }
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set allowResubmit(value: boolean | '') {
     this._allowResubmit = coerceBoolean(value);
@@ -93,9 +95,10 @@ export class FormControlsComponent<FormData> implements OnInit {
         .pipe(
           take(1),
           tap(() => {
-            if (this.navigateAfterSubmit) {
+            const navigateAfterSubmit = this.navigateAfterSubmit();
+            if (navigateAfterSubmit) {
               if (this.router) {
-                return this.router.navigate(this.navigateAfterSubmit);
+                return this.router.navigate(navigateAfterSubmit);
               } else {
                 console.warn(
                   'The Router is not available. Ensure that tha RouterModule is imported',

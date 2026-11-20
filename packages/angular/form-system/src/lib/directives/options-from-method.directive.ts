@@ -5,13 +5,13 @@ import {
   inject,
   INJECTOR,
   Injector,
-  Input,
   OnChanges,
   OnDestroy,
   signal,
   SimpleChanges,
   TemplateRef,
   ViewContainerRef,
+  input
 } from '@angular/core';
 import {
   AbstractControlDirective,
@@ -67,16 +67,13 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
 
   readonly loading = signal<boolean>(true);
 
-  @Input('rxapOptionsFromMethodParameters')
-  public parameters?: Parameters;
+  public readonly parameters = input<Parameters>(undefined, { alias: "rxapOptionsFromMethodParameters" });
 
-  @Input('rxapOptionsFromMethodResetOnChange')
-  public resetOnChange?: Value;
+  public readonly resetOnChange = input<Value>(undefined, { alias: "rxapOptionsFromMethodResetOnChange" });
 
   public options: ControlOptions | null                                    = null;
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('rxapOptionsFromMethodCall')
-  public method!: OptionsMethod<ControlOptions<Value>, Parameters>;
+  public readonly method = input.required<OptionsMethod<ControlOptions<Value>, Parameters>>({ alias: "rxapOptionsFromMethodCall" });
   protected ngControl: NgControl | AbstractControlDirective | null         = null;
   protected matFormField: MatFormField | null                              = null;
   protected settings: OptionsFromMethodDirectiveSettings                   = {};
@@ -91,11 +88,11 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
     this.matFormField = this.injector.get(MatFormField, null);
     this.ngControl    = this.matFormField?._control.ngControl ?? this.injector.get(NgControl, null);
     this.control      = (this.ngControl?.control as RxapFormControl) ?? undefined;
-    this.method ??= this.extractOptionsMethod();
+    this.method() ??= this.extractOptionsMethod();
     // ensure that the options are loaded. It is possible that the ngOnChange is triggered before the ngAfterViewInit
     // then the options are not loaded.
     if (!this.options) {
-      await this.load(this.parameters);
+      await this.load(this.parameters());
     }
   }
 
@@ -106,7 +103,7 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
   public async ngOnChanges(changes: SimpleChanges) {
     // only try to load the options if the method is defined
     // else the initial load will be triggered in the ngAfterViewInit
-    if (!this.method) {
+    if (!this.method()) {
       console.debug('The method is not yet defined');
       return;
     }
@@ -117,7 +114,7 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
   }
 
   protected async loadOptions(parameters?: Parameters): Promise<Observable<ControlOptions | null> | ControlOptions | null> {
-    return this.method.call(parameters, this.control);
+    return this.method().call(parameters, this.control);
   }
 
   protected renderTemplate() {
@@ -132,8 +129,9 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
       this.viewContainerRef.createEmbeddedView(this.template, {$implicit: option});
     }
 
-    if (this.resetOnChange !== undefined) {
-      this.control?.reset(this.resetOnChange);
+    const resetOnChange = this.resetOnChange();
+    if (resetOnChange !== undefined) {
+      this.control?.reset(resetOnChange);
     }
 
     this.cdr.detectChanges();
@@ -150,7 +148,7 @@ export class OptionsFromMethodDirective<Value = any, Parameters = any> implement
     }
   }
 
-  public async load(parameters: Parameters | undefined = this.parameters) {
+  public async load(parameters: Parameters | undefined = this.parameters()) {
     this.loading.set(true);
     try {
       const result = await this.loadOptions(parameters);

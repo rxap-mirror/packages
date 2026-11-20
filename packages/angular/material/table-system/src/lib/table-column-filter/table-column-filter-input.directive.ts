@@ -2,8 +2,8 @@ import {
   AfterViewInit,
   Directive,
   Inject,
-  Input,
   OnDestroy,
+  input
 } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -21,8 +21,7 @@ import { TableColumnFilterService } from './table-column-filter.service';
 })
 export class TableColumnFilterInputDirective implements AfterViewInit, OnDestroy {
 
-  @Input({required: true})
-  public column!: string;
+  public readonly column = input.required<string>();
 
   private _subscription?: Subscription;
 
@@ -45,7 +44,7 @@ export class TableColumnFilterInputDirective implements AfterViewInit, OnDestroy
     this._subscription = this.ngModel.valueChanges.pipe(
       debounceTime(500),
       tap((value) => {
-          this.tableColumnFilterService.setFilter(this.column, value);
+          this.tableColumnFilterService.setFilter(this.column(), value);
         },
       ),
     )

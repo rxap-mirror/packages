@@ -28,6 +28,8 @@ import { ConfirmComponent } from './confirm.component';
 export class ConfirmDirective<T = any> implements OnDestroy {
   // use a set input to allow auto import detection if the eventValue
   // is not set
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input('rxapConfirm')
   public set eventValue(value: T | '') {
     if (value !== '') {

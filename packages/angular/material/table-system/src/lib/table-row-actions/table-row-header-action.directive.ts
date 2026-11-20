@@ -6,12 +6,12 @@ import {
   Inject,
   INJECTOR,
   Injector,
-  Input,
   OnDestroy,
   OnInit,
   Optional,
   Renderer2,
   ViewContainerRef,
+  input
 } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -115,9 +115,5 @@ export class TableRowHeaderActionDirective<Data extends Record<string, any>>
     return this.selectRowService?.selectedRows ?? [];
   }
 
-  @Input({
-    required: true,
-    alias: 'rxapTableRowHeaderAction',
-  })
-  public override type!: string;
+  public override readonly type = input.required<string>({ alias: "rxapTableRowHeaderAction" });
 }

@@ -1,9 +1,9 @@
 import {
   Directive,
   Inject,
-  Input,
   OnDestroy,
   OnInit,
+  input
 } from '@angular/core';
 import { MatTabGroup } from '@angular/material/tabs';
 import { LocalStorageService } from '@rxap/ngx-memory';
@@ -18,13 +18,8 @@ export class PersistentTabGroupDirective implements OnInit, OnDestroy {
 
   public static BASE_KEY = 'mat-expansion-panel';
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input({
-    required: true,
-    alias: 'rxapPersistentTabGroup',
-  })
-  public id!: string;
-  @Input()
-  public uuid?: string;
+  public readonly id = input.required<string>({ alias: "rxapPersistentTabGroup" });
+  public readonly uuid = input<string>();
   private subscription?: Subscription;
 
   constructor(
@@ -35,7 +30,7 @@ export class PersistentTabGroupDirective implements OnInit, OnDestroy {
   ) { }
 
   public get key(): string {
-    return [ PersistentTabGroupDirective.BASE_KEY, this.uuid, this.id, 'isExpanded' ].join('/');
+    return [ PersistentTabGroupDirective.BASE_KEY, this.uuid(), this.id(), 'isExpanded' ].join('/');
   }
 
   public get selectedIndex(): null | number {

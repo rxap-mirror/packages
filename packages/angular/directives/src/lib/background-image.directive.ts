@@ -2,11 +2,11 @@ import {
   Directive,
   ElementRef,
   Inject,
-  Input,
   OnChanges,
   OnInit,
   Renderer2,
   SimpleChanges,
+  input
 } from '@angular/core';
 import { ImageLoaderService } from '@rxap/services';
 
@@ -53,20 +53,15 @@ export type BackgroundPosition =
   standalone: true,
 })
 export class BackgroundImageDirective implements OnChanges, OnInit {
-  @Input('rxapBackgroundImage')
-  public imageUrl: string | null | undefined = null;
+  public readonly imageUrl = input<string | null | undefined>(null, { alias: "rxapBackgroundImage" });
 
-  @Input()
-  public placeholderImageUrl!: string;
+  public readonly placeholderImageUrl = input.required<string>();
 
-  @Input()
-  public size?: BackgroundSize;
+  public readonly size = input<BackgroundSize>();
 
-  @Input()
-  public repeat?: BackgroundRepeat;
+  public readonly repeat = input<BackgroundRepeat>();
 
-  @Input()
-  public position?: BackgroundPosition;
+  public readonly position = input<BackgroundPosition>();
 
   // TODO : add inputs for all 'background-*' styles
 
@@ -81,14 +76,17 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
   }
 
   public ngOnInit() {
-    if (this.size) {
-      this.sizeChange(this.size);
+    const size = this.size();
+    if (size) {
+      this.sizeChange(size);
     }
-    if (this.position) {
-      this.positionChange(this.position);
+    const position = this.position();
+    if (position) {
+      this.positionChange(position);
     }
-    if (this.repeat) {
-      this.repeatChange(this.repeat);
+    const repeat = this.repeat();
+    if (repeat) {
+      this.repeatChange(repeat);
     }
   }
 
@@ -140,11 +138,12 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
   private async imageUrlChange(imageUrl: string | null | undefined): Promise<void> {
     // track the most recently requested url so out-of-order loads can be ignored
     this._latestImageUrl = imageUrl;
-    if (this.placeholderImageUrl) {
+    const placeholderImageUrl = this.placeholderImageUrl();
+    if (placeholderImageUrl) {
       this.renderer.setStyle(
         this.host.nativeElement,
         'background-image',
-        `url("${ this.placeholderImageUrl }")`,
+        `url("${ placeholderImageUrl }")`,
       );
     }
     if (imageUrl) {
@@ -158,7 +157,7 @@ export class BackgroundImageDirective implements OnChanges, OnInit {
         'background-image',
         `url("${ imageUrl }")`,
       );
-    } else if (!this.placeholderImageUrl) {
+    } else if (!placeholderImageUrl) {
       // clearing the image and no placeholder to fall back to
       this.renderer.removeStyle(this.host.nativeElement, 'background-image');
     }

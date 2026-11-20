@@ -20,6 +20,8 @@ export class TimeagoDirective {
   private readonly elementRef = inject(ElementRef);
 
   /** The Date to display. An actual Date object or something that can be fed to new Date. */
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   set date(date: string | number | Date) {
     this.setContent(this.elementRef.nativeElement, TimeagoFormatter(date));
@@ -28,6 +30,8 @@ export class TimeagoDirective {
   private _live = true;
 
   /** If the directive should update itself over time */
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   set live(live: boolean) {
     this._live = coerceBoolean(live);

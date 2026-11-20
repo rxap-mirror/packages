@@ -2,8 +2,8 @@ import {
   ChangeDetectorRef,
   Directive,
   Inject,
-  Input,
   Optional,
+  input
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -19,8 +19,7 @@ import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
   standalone: true,
 })
 export class MatSlideToggleHasEnablePermissionDirective extends HasEnablePermission {
-  @Input('rxapHasEnablePermission')
-  public override identifier!: string;
+  public override readonly identifier = input.required<string>({ alias: "rxapHasEnablePermission" });
 
   constructor(
     @Inject(AuthorizationService)

@@ -39,6 +39,8 @@ export class FilterHeaderRowDirective
   extends FormDirective
   implements OnInit, OnDestroy {
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input('rxap-filter-header-row')
   public override set useFormDefinition(value: FormDefinition | '') {
     if (value) {

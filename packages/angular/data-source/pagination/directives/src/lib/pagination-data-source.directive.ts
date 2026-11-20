@@ -1,6 +1,6 @@
 import {
   Directive,
-  Input,
+  input
 } from '@angular/core';
 import { DataSourceCollectionDirective } from '@rxap/data-source/directive';
 import {
@@ -17,15 +17,10 @@ import { IdOrInstanceOrToken } from '@rxap/definition';
 })
 export class PaginationDataSourceDirective<Data> extends DataSourceCollectionDirective<Data> {
 
-  @Input('rxapPaginationDataSourcePaginator')
-  public paginator!: PaginatorLike;
+  public readonly paginator = input.required<PaginatorLike>({ alias: "rxapPaginationDataSourcePaginator" });
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input({
-    required: true,
-    alias: 'rxapPaginationDataSourceFrom',
-  })
-  public override dataSourceOrIdOrToken!: IdOrInstanceOrToken<AbstractPaginationDataSource<Data>>;
+  public override readonly dataSourceOrIdOrToken = input.required<IdOrInstanceOrToken<AbstractPaginationDataSource<Data>>>({ alias: "rxapPaginationDataSourceFrom" });
 
   public override loadDataSource(): AbstractPaginationDataSource<Data> | null {
     const dataSource = super.loadDataSource();
@@ -34,8 +29,9 @@ export class PaginationDataSourceDirective<Data> extends DataSourceCollectionDir
       if (!(dataSource instanceof AbstractPaginationDataSource)) {
         throw new RxapPaginationDataSourceError('The data source is not a AbstractPaginationDataSource', '');
       }
-      if (dataSource.paginator !== this.paginator) {
-        dataSource.paginator = this.paginator;
+      const paginator = this.paginator();
+      if (dataSource.paginator !== paginator) {
+        dataSource.paginator = paginator;
       }
     }
 

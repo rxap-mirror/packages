@@ -8,10 +8,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
-  Input,
   isDevMode,
   OnDestroy,
   Renderer2,
+  input
 } from '@angular/core';
 import { MatOption } from '@angular/material/core';
 import { Subscription } from 'rxjs';
@@ -29,16 +29,13 @@ import {
   standalone: true,
 })
 export class OptionsCellComponent implements AfterContentInit, OnDestroy, OnChanges {
-  @Input('rxap-options-cell')
-  public value: any;
+  public readonly value = input<any>(undefined, { alias: "rxap-options-cell" });
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('default')
-  public defaultViewValue!: string;
+  public readonly defaultViewValue = input.required<string>({ alias: "default" });
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('empty')
-  public emptyViewValue!: string;
+  public readonly emptyViewValue = input.required<string>({ alias: "empty" });
 
   public viewValue!: string;
 
@@ -65,8 +62,9 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy, OnChan
   }
 
   public setViewValue() {
-    if (this.value === undefined || this.value === null) {
-      this.viewValue = this.emptyViewValue;
+    const value = this.value();
+    if (value === undefined || value === null) {
+      this.viewValue = this.emptyViewValue();
     } else {
       if (this.options) {
         this._subscription.add(this.options.changes
@@ -91,8 +89,8 @@ export class OptionsCellComponent implements AfterContentInit, OnDestroy, OnChan
 
   public getViewValue(): string {
     return (
-      this.options.find((option) => option.value === this.value)?.viewValue ??
-      this.defaultViewValue
+      this.options.find((option) => option.value === this.value())?.viewValue ??
+      this.defaultViewValue()
     );
   }
 

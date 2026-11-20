@@ -1,9 +1,9 @@
 import {
   Directive,
   Inject,
-  Input,
   isDevMode,
   OnInit,
+  input
 } from '@angular/core';
 import { MatSelect } from '@angular/material/select';
 import {
@@ -16,8 +16,7 @@ import {
   standalone: true,
 })
 export class CompareWithDirective implements OnInit {
-  @Input('rxapCompareWith')
-  public objectPath!: string;
+  public readonly objectPath = input.required<string>({ alias: "rxapCompareWith" });
 
   constructor(
     @Inject(MatSelect)
@@ -30,7 +29,8 @@ export class CompareWithDirective implements OnInit {
   }
 
   private compareWith(o1: any, o2: any): boolean {
-    if (this.objectPath) {
+    const objectPath = this.objectPath();
+    if (objectPath) {
       if (typeof o1 !== 'object' || typeof o2 !== 'object') {
         if (isDevMode()) {
           console.warn(
@@ -47,8 +47,8 @@ export class CompareWithDirective implements OnInit {
         }
         return false;
       }
-      const o1Value = getFromObject(o1, this.objectPath);
-      const o2Value = getFromObject(o2, this.objectPath);
+      const o1Value = getFromObject(o1, objectPath);
+      const o2Value = getFromObject(o2, objectPath);
       if (o1Value === undefined || o2Value === undefined) {
         return false;
       }

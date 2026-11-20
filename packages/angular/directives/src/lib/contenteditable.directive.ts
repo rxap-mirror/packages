@@ -4,8 +4,8 @@ import {
   EventEmitter,
   HostBinding,
   HostListener,
-  Input,
   Output,
+  input
 } from '@angular/core';
 import { DebounceCall } from '@rxap/utilities';
 import { Method } from '@rxap/pattern';
@@ -27,18 +27,15 @@ export class ContenteditableDirective {
   @HostBinding('attr.spellcheck')
   public spellcheck = false;
 
-  @Input('rxapContenteditable')
-  public method?: Method<any, ContenteditableEvent>;
+  public readonly method = input<Method<any, ContenteditableEvent>>(undefined, { alias: "rxapContenteditable" });
 
   @Output('rxapContenteditable')
   // eslint-disable-next-line @angular-eslint/no-output-native
   public change = new EventEmitter<ContenteditableEvent>();
 
-  @Input()
-  public parameters?: any;
+  public readonly parameters = input<any>();
 
-  @Input()
-  public initial?: string;
+  public readonly initial = input<string>();
 
   constructor(private readonly elementRef: ElementRef) {
   }
@@ -55,11 +52,11 @@ export class ContenteditableDirective {
     if (value && value.length >= 2) {
       const event: ContenteditableEvent = {
         value,
-        parameters: this.parameters,
+        parameters: this.parameters(),
       };
       this.change.emit(event);
       try {
-        const result = await this.method?.call(event);
+        const result = await this.method()?.call(event);
         if (result && typeof result === 'string') {
           // the handler returned a canonical value - apply and remember it
           this.initial = this.elementRef.nativeElement.innerText = result;
@@ -70,8 +67,9 @@ export class ContenteditableDirective {
         }
       } catch {
         // the save failed - revert to the last known good value if available
-        if (this.initial) {
-          this.elementRef.nativeElement.innerText = this.initial;
+        const initial = this.initial();
+        if (initial) {
+          this.elementRef.nativeElement.innerText = initial;
         }
       }
     }

@@ -4,6 +4,7 @@ import {
   Inject,
   Input,
   Renderer2,
+  input
 } from '@angular/core';
 import {
   AvatarImageService,
@@ -20,8 +21,7 @@ import {
   standalone: true,
 })
 export class AvatarBackgroundImageDirective extends BackgroundImageDirective {
-  @Input('rxapAvatarBackgroundImage')
-  public override imageUrl: string | null | undefined = null;
+  public override readonly imageUrl = input<string | null | undefined>(null, { alias: "rxapAvatarBackgroundImage" });
   public override size = BackgroundSizeOptions.COVER;
   public override repeat = BackgroundRepeatOptions.NO_REPEAT;
 
@@ -38,9 +38,11 @@ export class AvatarBackgroundImageDirective extends BackgroundImageDirective {
     super(host, renderer, imageLoader);
   }
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set name(name: string) {
-    if (!this.placeholderImageUrl) {
+    if (!this.placeholderImageUrl()) {
       this.placeholderImageUrl = this.avatarImage.get({ name });
     }
   }

@@ -11,6 +11,7 @@ import {
   OnDestroy,
   Optional,
   Output,
+  input
 } from '@angular/core';
 import { ConfirmClick } from '@rxap/directives';
 import {
@@ -47,27 +48,18 @@ export class OpenFormDirective<Data, Result = Data>
   extends ConfirmClick
   implements OnDestroy {
   @HostBinding('attr.type')
-  @Input()
-  public type = 'button';
+public readonly type = input('button');
 
   @Output()
   public submitted = new EventEmitter<Result>();
-  @Input()
-  public initial?: Partial<Data>;
-  @Input()
-  public title?: string;
-  @Input()
-  public icon?: IconConfig;
-  @Input()
-  public width?: string;
-  @Input()
-  public height?: string;
-  @Input()
-  public resizeable?: boolean;
-  @Input()
-  public draggable?: boolean;
-  @Input()
-  public panelClass?: string;
+  public readonly initial = input<Partial<Data>>();
+  public readonly title = input<string>();
+  public readonly icon = input<IconConfig>();
+  public readonly width = input<string>();
+  public readonly height = input<string>();
+  public readonly resizeable = input<boolean>();
+  public readonly draggable = input<boolean>();
+  public readonly panelClass = input<string>();
   private _formWindowRef?: WindowRef;
 
   constructor(
@@ -87,6 +79,8 @@ export class OpenFormDirective<Data, Result = Data>
 
   private _formDefinitionConstructor!: Constructor<FormType<any>>;
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input('rxapOpenForm')
   public set formDefinitionConstructor(value: Constructor<FormType<any>> | '') {
     if (value) {
@@ -119,14 +113,14 @@ export class OpenFormDirective<Data, Result = Data>
         submitSuccessfulMethod: ToFormMethod(
           this.onSubmitSuccessful.bind(this),
         ),
-        initial: this.initial,
+        initial: this.initial(),
         injectorName: 'OpenFormDirective',
-        title: this.title,
-        icon: this.icon,
-        width: this.width,
-        resizeable: this.resizeable,
-        draggable: this.draggable,
-        panelClass: this.panelClass,
+        title: this.title(),
+        icon: this.icon(),
+        width: this.width(),
+        resizeable: this.resizeable(),
+        draggable: this.draggable(),
+        panelClass: this.panelClass(),
       },
     );
   }

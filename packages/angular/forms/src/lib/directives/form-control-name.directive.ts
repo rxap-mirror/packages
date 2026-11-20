@@ -2,10 +2,10 @@ import {
   Directive,
   forwardRef,
   Inject,
-  Input,
   Optional,
   Self,
   SkipSelf,
+  input
 } from '@angular/core';
 import {
   AsyncValidator,
@@ -43,8 +43,7 @@ export class FormControlNameDirective extends FormControlName {
 
   override readonly control!: RxapFormControl;
 
-  @Input('rxapFormControlName')
-  public override name!: string | number | null;
+  public override readonly name = input.required<string | number | null>({ alias: "rxapFormControlName" });
 
   constructor(
     @Optional() @SkipSelf() parent: ControlContainer,

@@ -8,12 +8,11 @@ import {
   INJECTOR,
   Injector,
   input,
-  Input,
   isDevMode,
   OnChanges,
   OnDestroy,
   OnInit,
-  Output,
+  Output
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
@@ -52,23 +51,16 @@ export interface OpenTableSelectWindowDirective<Data extends Record<string, any>
 })
 export class OpenTableSelectWindowDirective<Data extends Record<string, any> = Record<string, any>, Value = Data>
   implements OnChanges, OnInit, OnDestroy, AfterViewInit {
-  @Input()
-  public data?: Data[] | BaseDataSource<Data[]> | AbstractTableDataSource<Data>;
-  @Input()
-  public columns?: Map<string, TableSelectColumn> | Record<string, TableSelectColumn>;
-  @Input()
-  public selected: Data[]               = [];
-  @Input()
-  public parameters?: Observable<Record<string, unknown>>;
+  public readonly data = input<Data[] | BaseDataSource<Data[]> | AbstractTableDataSource<Data>>();
+  public readonly columns = input<Map<string, TableSelectColumn> | Record<string, TableSelectColumn>>();
+  public readonly selected = input<Data[]>([]);
+  public readonly parameters = input<Observable<Record<string, unknown>>>();
   @Output()
   public selectedChange                 = new EventEmitter<Data[]>();
-  @Input()
-  public label?: string;
-  @Input()
-  public id?: string;
+  public readonly label = input<string>();
+  public readonly id = input<string>();
   public _internalId                    = GenerateRandomString();
-  @Input()
-  public compareWith?: (o1: Data, o2: Data) => boolean;
+  public readonly compareWith = input<(o1: Data, o2: Data) => boolean>();
 
   public readonly multiple              = input(false);
 
@@ -95,8 +87,7 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
     this._disabled = value;
   }
 
-  @Input()
-  public toValue?: (value: Data) => Value | Promise<Value>;
+  public readonly toValue = input<(value: Data) => Value | Promise<Value>>();
 
   public ngOnChanges() {
     this.checkInputs();
@@ -119,7 +110,9 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
       console.debug('disabled or has open window', {disabled: this.disabled, hasOpenWindow: this._hasOpenWindow});
       return;
     }
-    if (!this.data || !this.columns) {
+    const data = this.data();
+    const columns = this.columns();
+    if (!data || !columns) {
       throw new Error('FATAL: The data or columns input is not set');
     }
     setTimeout(() => {
@@ -130,13 +123,13 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
         id: this._internalId,
       },
       injector: this.injector,
-      data: this.data,
-      columns: this.columns instanceof Map ? this.columns : new Map(Object.entries(this.columns)),
-      selected: this.selected?.slice() ?? [],
-      title: this.label ?? 'Select value',
-      compareWith: this.compareWith,
-      id: this.id ?? GenerateRandomString(10),
-      parameters: this.parameters,
+      data: data,
+      columns: columns instanceof Map ? columns : new Map(Object.entries(columns)),
+      selected: this.selected()?.slice() ?? [],
+      title: this.label() ?? 'Select value',
+      compareWith: this.compareWith(),
+      id: this.id() ?? GenerateRandomString(10),
+      parameters: this.parameters(),
       multiple: this.multiple(),
     });
     this.control?.enable();
@@ -145,10 +138,12 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
     }
     this.selected       = selected ?? [];
     this._hasOpenWindow = false;
-    this.selectedChange.emit(this.selected);
-    if (this.selected.length) {
-      if (this.toValue) {
-        this.control?.setValue(this.toValue(this.selected[0]));
+    const selectedValue = this.selected();
+    this.selectedChange.emit(selectedValue);
+    if (selectedValue.length) {
+      const toValue = this.toValue();
+      if (toValue) {
+        this.control?.setValue(toValue(selectedValue[0]));
       } else {
         throw new Error('The toValue method is not defined');
       }
@@ -164,9 +159,9 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
       this.matFormField = this.injector.get(MatFormField);
       this.ngControl    = this.matFormField._control.ngControl;
       this.control ??= this.ngControl?.control as RxapFormControl ?? null;
-      this.data ??= this.extractTableSelectDataSource();
-      this.columns ??= this.extractTableSelectColumnMap();
-      this.toValue ??= this.extractTableSelectToValue() ?? (value => value as any);
+      this.data() ??= this.extractTableSelectDataSource();
+      this.columns() ??= this.extractTableSelectColumnMap();
+      this.toValue() ??= this.extractTableSelectToValue() ?? (value => value as any);
       if (this.control) {
         this.disabled = this.control.disabled;
         this.control.registerOnDisabledChange(isDisabled => {
@@ -178,17 +173,19 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
   }
 
   public checkInputs() {
-    if (!this.columns || !this.data) {
+    const data = this.data();
+    const columns = this.columns();
+    if (!columns || !data) {
       console.warn('columns or data is not defined');
       this.invalidInputs = true;
       if (this.matButton) {
         this.matButton.disabled = this.disabled;
       }
     } else {
-      if (typeof this.columns !== 'object') {
+      if (typeof columns !== 'object') {
         throw new Error('Ensure that the input columns has a valid value');
       }
-      if (!Array.isArray(this.data) && !(this.data instanceof BaseDataSource)) {
+      if (!Array.isArray(data) && !(data instanceof BaseDataSource)) {
         throw new Error('Ensure that the input data has a valid value');
       }
       this.invalidInputs = false;

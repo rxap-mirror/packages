@@ -5,11 +5,11 @@ import {
   Inject,
   INJECTOR,
   Injector,
-  Input,
   isDevMode,
   OnDestroy,
   OnInit,
   ViewContainerRef,
+  input
 } from '@angular/core';
 import {
   MAT_FORM_FIELD,
@@ -123,8 +123,7 @@ export class OpenTableSelectDirective<Data extends Record<string, any>> implemen
   @HostBinding('type')
   public type = 'button';
 
-  @Input('rxapOpenTableSelect')
-  public openMethod!: Method<Data[], WindowTableSelectOptions<Data>>;
+  public readonly openMethod = input.required<Method<Data[], WindowTableSelectOptions<Data>>>({ alias: "rxapOpenTableSelect" });
 
   private tableSelectDataSource!: BaseDataSource<Data[]>;
 
@@ -168,7 +167,7 @@ export class OpenTableSelectDirective<Data extends Record<string, any>> implemen
 
   @HostListener('click')
   public async onClick() {
-    const selected$ = this.openMethod.call({
+    const selected$ = this.openMethod().call({
       data: this.tableSelectDataSource,
       selected: coerceArray(this.control?.value),
       multiple: this.isMultiple(),

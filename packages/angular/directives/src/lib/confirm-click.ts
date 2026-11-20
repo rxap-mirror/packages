@@ -10,6 +10,8 @@ export abstract class ConfirmClick {
 
   private _hasConfirmDirective = false;
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input('rxapConfirm')
   public set hasConfirmDirective(value: any) {
     this._hasConfirmDirective = coerceBoolean(value);

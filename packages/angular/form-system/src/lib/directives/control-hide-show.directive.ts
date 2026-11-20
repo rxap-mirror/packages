@@ -2,12 +2,12 @@ import {
   Directive,
   ElementRef,
   Inject,
-  Input,
   OnDestroy,
   OnInit,
   Optional,
   Renderer2,
   Self,
+  input
 } from '@angular/core';
 import {
   AbstractControl,
@@ -77,8 +77,7 @@ export interface ControlHideShowDirective extends ExtractControlFromParentMixin,
 })
 export class ControlHideShowDirective implements OnInit, OnDestroy {
 
-  @Input('rxapControlHideShow')
-  public controlId?: string;
+  public readonly controlId = input<string>(undefined, { alias: "rxapControlHideShow" });
 
   public control!: RxapFormControl;
 
@@ -105,11 +104,12 @@ export class ControlHideShowDirective implements OnInit, OnDestroy {
       throw new Error('Easier the ControlContainer or NgControl must be injectable');
     }
 
-    if (!this.ngControl && !this.controlId) {
+    const controlId = this.controlId();
+    if (!this.ngControl && !controlId) {
       throw new Error('If the NgControl is not injectable then the control id must be defined!');
     }
 
-    const control = this.ngControl?.control ?? this.extractControlFromParent(this.parent!, this.controlId!);
+    const control = this.ngControl?.control ?? this.extractControlFromParent(this.parent!, controlId!);
 
     if (!(control instanceof RxapFormControl)) {
       throw new Error('The control is not an instance of RxapFormControl');

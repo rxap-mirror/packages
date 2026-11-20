@@ -3,8 +3,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   Inject,
-  Input,
   Optional,
+  input
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import {
@@ -25,8 +25,7 @@ import { TableColumnMenuComponent } from '../table-column-menu.component';
 })
 export class TableShowArchivedSlideComponent implements AfterViewInit {
 
-  @Input()
-  public paginator?: MatPaginator;
+  public readonly paginator = input<MatPaginator>();
 
   constructor(
     @Optional()
@@ -40,7 +39,7 @@ export class TableShowArchivedSlideComponent implements AfterViewInit {
   }
 
   public onChange($event: MatSlideToggleChange) {
-    this.paginator?.firstPage();
+    this.paginator()?.firstPage();
     this.tableFilter?.set('__archived', $event.checked);
     this.selectRows?.clear();
     if ($event.checked) {

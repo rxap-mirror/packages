@@ -10,8 +10,8 @@ import {
   Inject,
   INJECTOR,
   Injector,
-  Input,
   isDevMode,
+  input
 } from '@angular/core';
 import {
   BaseDataSourceViewer,
@@ -39,8 +39,7 @@ export interface IsSelectableValueDirective extends ExtractOptionsDataSourceMixi
 })
 export class IsSelectableValueDirective implements Validator {
 
-  @Input()
-  public viewer: BaseDataSourceViewer = { id: '[rxapIsSelectableValue]' };
+  public readonly viewer = input<BaseDataSourceViewer>({ id: '[rxapIsSelectableValue]' });
 
   constructor(
     @Inject(DataSourceLoader)

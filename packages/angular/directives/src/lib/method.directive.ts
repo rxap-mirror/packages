@@ -6,6 +6,7 @@ import {
   isDevMode,
   OnInit,
   Output,
+  input
 } from '@angular/core';
 import { coerceBoolean } from '@rxap/utilities';
 import { ToggleSubject } from '@rxap/rxjs';
@@ -18,12 +19,9 @@ import { Method } from '@rxap/pattern';
 })
 export class MethodDirective<ReturnType = any, Parameters = any> implements OnInit {
 
-  @Input('rxapMethod')
-  public method!: Method<ReturnType, Parameters>;
-  @Input()
-  public parameters?: Parameters;
-  @Input()
-  public immediately = false;
+  public readonly method = input.required<Method<ReturnType, Parameters>>({ alias: "rxapMethod" });
+  public readonly parameters = input<Parameters>();
+  public readonly immediately = input(false);
   @Output('executed')
   public executed$ = new EventEmitter();
   @Output('failure')
@@ -37,13 +35,15 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
 
   private _hasConfirmDirective = false;
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input('rxapConfirm')
   public set hasConfirmDirective(value: any) {
     this._hasConfirmDirective = coerceBoolean(value);
   }
 
   public ngOnInit() {
-    if (this.immediately) {
+    if (this.immediately()) {
       this.execute();
     }
   }
@@ -68,7 +68,7 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
   public async execute(): Promise<void> {
     this.executing$.enable();
     try {
-      const result = await this.method.call(this.parameters);
+      const result = await this.method().call(this.parameters());
       this.executed(result);
       this.successful(result);
     } catch (error: any) {
@@ -86,7 +86,7 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
   }
 
   public updateParameters(parameters: Partial<Parameters>): void {
-    this.parameters = { ...(this.parameters ?? {}), ...parameters } as any;
+    this.parameters = { ...(this.parameters() ?? {}), ...parameters } as any;
   }
 
   protected executed(result: any) {

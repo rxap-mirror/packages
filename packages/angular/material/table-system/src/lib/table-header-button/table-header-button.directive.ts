@@ -9,6 +9,7 @@ import {
   isDevMode,
   OnInit,
   Optional,
+  input
 } from '@angular/core';
 import { MatMiniFabButton } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -31,21 +32,14 @@ import { TABLE_HEADER_BUTTON_METHOD } from './tokens';
 export class TableHeaderButtonDirective<Data extends Record<string, any>> extends ConfirmDirective
   implements OnInit {
 
-  @Input({
-    required: true,
-    alias: 'rxapTableHeaderButton',
-  })
-  public tableDataSourceDirective!: TableDataSourceDirective<Data>;
+  public readonly tableDataSourceDirective = input.required<TableDataSourceDirective<Data>>({ alias: "rxapTableHeaderButton" });
 
-  @Input()
-  public errorMessage?: string;
-  @Input()
-  public successMessage?: string;
+  public readonly errorMessage = input<string>();
+  public readonly successMessage = input<string>();
   /**
    * true - after the action is executed the table datasource is refreshed
    */
-  @Input()
-  public refresh?: boolean;
+  public readonly refresh = input<boolean>();
 
   protected options: TableHeaderButtonMethodOptions | null = null;
   private _actionDisabled = false;
@@ -75,6 +69,8 @@ export class TableHeaderButtonDirective<Data extends Record<string, any>> extend
   private _hasConfirmDirective = false;
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input('rxapConfirm')
   public set hasConfirmDirective(value: any) {
     this._hasConfirmDirective = coerceBoolean(value);
@@ -117,9 +113,9 @@ export class TableHeaderButtonDirective<Data extends Record<string, any>> extend
   ngOnInit() {
     this.options = this.getTableHeaderButtonOptions();
     if (this.options) {
-      this.refresh ??= this.options.refresh ?? false;
-      this.errorMessage ??= this.options.errorMessage ?? undefined;
-      this.successMessage ??= this.options.successMessage ?? undefined;
+      this.refresh() ??= this.options.refresh ?? false;
+      this.errorMessage() ??= this.options.errorMessage ?? undefined;
+      this.successMessage() ??= this.options.successMessage ?? undefined;
       if (this.matTooltip && this.options.tooltip) {
         this.matTooltip.message = this.options.tooltip;
       }
@@ -154,23 +150,25 @@ export class TableHeaderButtonDirective<Data extends Record<string, any>> extend
       return;
     }
     this._currentStatus = status;
+    const errorMessage = this.errorMessage();
+    const successMessage = this.successMessage();
     switch (status) {
       case TableHeaderButtonActionStatus.EXECUTING:
         this.setButtonDisabled();
         break;
       case TableHeaderButtonActionStatus.SUCCESS:
-        if (this.refresh) {
-          this.tableDataSourceDirective.refresh();
+        if (this.refresh()) {
+          this.tableDataSourceDirective().refresh();
         }
-        if (this.successMessage) {
-          this.snackBar.open(this.successMessage, 'ok', { duration: 2560 });
+        if (successMessage) {
+          this.snackBar.open(successMessage, 'ok', { duration: 2560 });
         }
         this.setStatus(TableHeaderButtonActionStatus.DONE);
         break;
       case TableHeaderButtonActionStatus.ERROR:
         this.setStatus(TableHeaderButtonActionStatus.DONE);
-        if (this.errorMessage) {
-          this.snackBar.open(this.errorMessage, 'ok', { duration: 5120 });
+        if (errorMessage) {
+          this.snackBar.open(errorMessage, 'ok', { duration: 5120 });
         }
         break;
       case TableHeaderButtonActionStatus.DONE:

@@ -4,6 +4,7 @@ import {
   Inject,
   Input,
   OnInit,
+  input
 } from '@angular/core';
 import { Router } from '@angular/router';
 import {
@@ -18,11 +19,9 @@ import {
   standalone: true,
 })
 export class TableColumnOptionComponent implements OnInit {
-  @Input({ required: true })
-  public name!: string;
+  public readonly name = input.required<string>();
 
-  @Input()
-  public active = true;
+  public readonly active = input(true);
 
   /**
    * The displayed value of the option. It is necessary to show the selected option in the
@@ -32,11 +31,15 @@ export class TableColumnOptionComponent implements OnInit {
     return (this._element.nativeElement.textContent || '').trim();
   }
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set inactive(value: boolean | '') {
     this.active = !coerceBoolean(value);
   }
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set hidden(value: boolean | '') {
     this._hidden = coerceBoolean(value);
@@ -48,13 +51,15 @@ export class TableColumnOptionComponent implements OnInit {
 
   private _hidden = false;
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set show(value: boolean) {
     this._hidden = !value;
   }
 
   private get cacheId(): string {
-    return this.router.url + '--' + this.name;
+    return this.router.url + '--' + this.name();
   }
 
   constructor(
@@ -75,8 +80,8 @@ export class TableColumnOptionComponent implements OnInit {
   }
 
   public toggle(): void {
-    this.active = !this.active;
-    localStorage.setItem(this.cacheId, this.active ? 'true' : 'false');
+    this.active = !this.active();
+    localStorage.setItem(this.cacheId, this.active() ? 'true' : 'false');
   }
 
   public activate() {

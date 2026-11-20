@@ -1,7 +1,7 @@
 import {
   ContentChild,
   Directive,
-  Input,
+  input
 } from '@angular/core';
 import { DataGridCellDefDirective } from './data-grid-cell-def.directive';
 import { DataGridHeaderCellDefDirective } from './data-grid-header-cell-def.directive';
@@ -13,11 +13,9 @@ import { DataGridEditCellDefDirective } from './data-grid-edit-cell-def.directiv
 })
 export class DataGridRowDefDirective<T extends Record<string, any>> {
 
-  @Input()
-  public data: any | null = null;
+  public readonly data = input<any | null>(null);
 
-  @Input('rxapDataGridRowDef')
-  public name?: string;
+  public readonly name = input<string>(undefined, { alias: "rxapDataGridRowDef" });
 
   /**
    * true - the header and content cell are "rotated" by 90°. The header is above the content cell and both have a
@@ -35,8 +33,7 @@ export class DataGridRowDefDirective<T extends Record<string, any>> {
    * Content (colspan 2)
    *
    */
-  @Input()
-  public flip = false;
+  public readonly flip = input(false);
 
   @ContentChild(DataGridCellDefDirective)
   public cell?: DataGridCellDefDirective<T>;
@@ -48,7 +45,7 @@ export class DataGridRowDefDirective<T extends Record<string, any>> {
   public editCell?: DataGridEditCellDefDirective<T>;
 
   public get isSubHeader() {
-    return !this.name;
+    return !this.name();
   }
 
 }

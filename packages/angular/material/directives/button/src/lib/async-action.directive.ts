@@ -2,12 +2,12 @@ import {
   ChangeDetectorRef,
   Directive,
   HostListener,
-  Input,
   OnDestroy,
   OnInit,
   Optional,
   TemplateRef,
   ViewContainerRef,
+  input
 } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { ToggleSubject } from '@rxap/rxjs';
@@ -27,10 +27,7 @@ export class AsyncActionDirective {
 
   public readonly hasError$ = new ToggleSubject();
 
-  @Input({
-    alias: 'rxapAsyncAction',
-    required: true,
-  }) method!: () => Promise<any> | void;
+  readonly method = input.required<() => Promise<any> | void>({ alias: "rxapAsyncAction" });
 
   constructor(
     private readonly cdr: ChangeDetectorRef,
@@ -40,10 +37,11 @@ export class AsyncActionDirective {
 
   @HostListener('click')
   public onClick() {
-    if (!(typeof this.method === 'function')) {
+    const method = this.method();
+    if (!(typeof method === 'function')) {
       throw new Error('The method must be a function!');
     }
-    const result = this.method();
+    const result = method();
     if (isPromise(result)) {
       this.loading$.enable();
       this.hasError$.disable();

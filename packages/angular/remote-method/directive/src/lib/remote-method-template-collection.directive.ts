@@ -21,6 +21,7 @@ import {
   TemplateRef,
   TrackByFunction,
   ViewContainerRef,
+  input
 } from '@angular/core';
 import {
   BaseRemoteMethod,
@@ -85,16 +86,12 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
   Metadata extends BaseRemoteMethodMetadata = BaseRemoteMethodMetadata>
   implements OnChanges, DoCheck, OnInit {
 
-  @Input('rxapRemoteMethodCollectionParameters')
-  public parameters?: Parameters;
+  public readonly parameters = input<Parameters>(undefined, { alias: "rxapRemoteMethodCollectionParameters" });
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('rxapRemoteMethodCollectionEmpty')
-  public emptyTemplate?: TemplateRef<void>;
+  public readonly emptyTemplate = input<TemplateRef<void>>(undefined, { alias: "rxapRemoteMethodCollectionEmpty" });
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('rxapRemoteMethodCollectionError')
-  public errorTemplate?: TemplateRef<RemoteMethodTemplateCollectionDirectiveErrorContext>;
-  @Input('rxapRemoteMethodCollectionWithoutParameters')
-  public withoutParameters = false;
+  public readonly errorTemplate = input<TemplateRef<RemoteMethodTemplateCollectionDirectiveErrorContext>>(undefined, { alias: "rxapRemoteMethodCollectionError" });
+  public readonly withoutParameters = input(false, { alias: "rxapRemoteMethodCollectionWithoutParameters" });
   private _differ: IterableDiffer<ReturnType> | null = null;
   private _trackByFn!: TrackByFunction<ReturnType>;
   private _dirty = true;
@@ -181,6 +178,8 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
    * The function receives two inputs,
    * the iteration index and the node object ID.
    */
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input('rxapRemoteMethodCollectionTrackBy')
   set trackBy(fn: TrackByFunction<ReturnType>) {
     if (isDevMode() && fn != null && typeof fn !== 'function') {
@@ -197,6 +196,8 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
   protected _remoteMethodOrIdOrToken!: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType[], Parameters, Metadata>>;
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input('rxapRemoteMethodCollectionCall')
   public set remoteMethodOrIdOrToken(value: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType[], Parameters, Metadata>>) {
     if (value) {
@@ -234,7 +235,7 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
   }
 
   public ngOnInit() {
-    if (this.withoutParameters) {
+    if (this.withoutParameters()) {
       this.call();
     }
   }
@@ -272,8 +273,9 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
       this.viewContainerRef.clear();
       this._differ = null;
 
-      if (this.errorTemplate) {
-        this._errorTemplateViewRef = this.viewContainerRef.createEmbeddedView(this.errorTemplate, {
+      const errorTemplate = this.errorTemplate();
+      if (errorTemplate) {
+        this._errorTemplateViewRef = this.viewContainerRef.createEmbeddedView(errorTemplate, {
           $implicit: this._error,
           message: this._error.message,
           name: this._error.name,
@@ -286,8 +288,9 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
       this._differ = null;
 
       // attaches the empty template if the data source is empty
-      if (this.emptyTemplate) {
-        this._emptyTemplateViewRef = this.viewContainerRef.createEmbeddedView(this.emptyTemplate);
+      const emptyTemplate = this.emptyTemplate();
+      if (emptyTemplate) {
+        this._emptyTemplateViewRef = this.viewContainerRef.createEmbeddedView(emptyTemplate);
       }
 
     } else if (this._empty === false) {

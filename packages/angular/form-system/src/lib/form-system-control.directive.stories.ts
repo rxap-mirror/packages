@@ -9,7 +9,7 @@ import {
   Injectable,
   Injector,
   INJECTOR,
-  Input,
+  input
 } from '@angular/core';
 import {
   BaseDataSource,
@@ -33,7 +33,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
     template: `
-    <label>{{ label }}</label>
+    <label>{{ label() }}</label>
     <select [ngModel]="value" (ngModelChange)="onChange($event)">
       <option
         *rxapDataSourceCollection="let option; from: optionsDataSource"
@@ -49,8 +49,7 @@ class SelectControlComponent
   extends ControlValueAccessor
   implements ControlWithDataSource
 {
-  @Input({ required: true })
-  public label!: string;
+  public readonly label = input.required<string>();
 
   public optionsDataSource!: BaseDataSource;
 

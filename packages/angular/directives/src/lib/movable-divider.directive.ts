@@ -2,11 +2,11 @@ import {
   Directive,
   HostBinding,
   HostListener,
-  Input,
   isDevMode,
   OnDestroy,
   OnInit,
   Renderer2,
+  input
 } from '@angular/core';
 import { Required } from '@rxap/utilities';
 import {
@@ -21,14 +21,11 @@ import { tap } from 'rxjs/operators';
 })
 export class MovableDividerDirective implements OnDestroy, OnInit {
 
-  @Input({ required: true })
-  public containerElement!: HTMLDivElement;
+  public readonly containerElement = input.required<HTMLDivElement>();
 
-  @Input({ required: true })
-  public fixedElement!: HTMLDivElement;
+  public readonly fixedElement = input.required<HTMLDivElement>();
 
-  @Input()
-  public origin: 'right' | 'left' = 'right';
+  public readonly origin = input<'right' | 'left'>('right');
   @HostBinding('style.cursor')
   public cursor = 'ew-resize';
   private _subscription = new Subscription();
@@ -53,35 +50,39 @@ export class MovableDividerDirective implements OnDestroy, OnInit {
   }
 
   public ngOnInit() {
-    this._subscription.add(fromEvent<MouseEvent>(this.containerElement, 'mousemove').pipe(
+    const containerElement = this.containerElement();
+    this._subscription.add(fromEvent<MouseEvent>(containerElement, 'mousemove').pipe(
       tap(($event: MouseEvent) => {
         if (this._moveDivider) {
           if (!this._fixedElementWidth) {
-            this._fixedElementWidth = this.fixedElement.clientWidth as number;
+            this._fixedElementWidth = this.fixedElement().clientWidth as number;
           }
-          if (this.origin === 'right') {
-            this._fixedElementWidth = $event.clientX - this.containerElement.getBoundingClientRect().left;
-          } else if (this.origin === 'left') {
+          const origin = this.origin();
+          if (origin === 'right') {
+            this._fixedElementWidth = $event.clientX - this.containerElement().getBoundingClientRect().left;
+          } else if (origin === 'left') {
+            const containerElementValue = this.containerElement();
             if (isDevMode()) {
               console.log({
-                clientWidth: this.containerElement.clientWidth,
+                clientWidth: containerElementValue.clientWidth,
                 clientX: $event.clientX,
-                clientLeft: this.containerElement.getBoundingClientRect().left,
+                clientLeft: containerElementValue.getBoundingClientRect().left,
               });
             }
             this._fixedElementWidth =
-              this.containerElement.clientWidth - $event.clientX + this.containerElement.getBoundingClientRect().left;
+              containerElementValue.clientWidth - $event.clientX + containerElementValue.getBoundingClientRect().left;
           } else {
-            throw new Error(`The origin '${ this.origin }' is not supported.`);
+            throw new Error(`The origin '${ origin }' is not supported.`);
           }
           const width = this._fixedElementWidth + 'px';
-          this.renderer.setStyle(this.fixedElement, 'max-width', width);
-          this.renderer.setStyle(this.fixedElement, 'min-width', width);
-          this.renderer.setStyle(this.fixedElement, 'flex-basis', width);
+          const fixedElement = this.fixedElement();
+          this.renderer.setStyle(fixedElement, 'max-width', width);
+          this.renderer.setStyle(fixedElement, 'min-width', width);
+          this.renderer.setStyle(fixedElement, 'flex-basis', width);
         }
       }),
     ).subscribe());
-    this._subscription.add(fromEvent(this.containerElement, 'mouseup').pipe(
+    this._subscription.add(fromEvent(containerElement, 'mouseup').pipe(
       tap(() => this._moveDivider = false),
     ).subscribe());
   }

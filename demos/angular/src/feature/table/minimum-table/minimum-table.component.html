@@ -58,7 +58,7 @@
       <mat-card-content>
         @if (tableDataSourceDirective.hasError$ | async) {
           <rxap-data-source-error
-            [error]="tableDataSourceDirective.dataSource?.error$"
+            [error]="tableDataSourceDirective.dataSource()?.error$"
             [loading]="tableDataSourceDirective.loading$"
             [refresh]="tableDataSourceDirective.retry">
           </rxap-data-source-error>

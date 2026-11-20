@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input
 } from '@angular/core';
 import { WindowRef } from '../../window-ref';
 import { StopPropagationDirective } from '@rxap/directives';
@@ -26,14 +26,14 @@ import { AsyncPipe, NgClass } from '@angular/common';
 })
 export class WindowTaskComponent {
 
-  @Input({ required: true }) public window!: WindowRef<any>;
+  public readonly window = input.required<WindowRef<any>>();
 
   public close() {
-    this.window.complete();
+    this.window().complete();
   }
 
   public reopen() {
-    this.window.reopen();
+    this.window().reopen();
   }
 
 }

@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input
 } from '@angular/core';
 import { IconConfig } from '@rxap/utilities';
 import { IconDirective } from '@rxap/material-directives/icon';
@@ -18,7 +18,6 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class IconCellComponent {
 
-  @Input('rxap-icon-cell')
-  public icon!: IconConfig | null;
+  public readonly icon = input.required<IconConfig | null>({ alias: "rxap-icon-cell" });
 
 }

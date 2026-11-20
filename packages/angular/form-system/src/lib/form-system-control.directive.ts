@@ -5,9 +5,9 @@ import {
   Inject,
   INJECTOR,
   Injector,
-  Input,
   OnInit,
   ViewContainerRef,
+  input
 } from '@angular/core';
 import {
   Constructor,
@@ -46,8 +46,7 @@ export class FormSystemControlDirective<T> implements ControlValueAccessor, OnIn
   /**
    * Defines the form control id
    */
-  @Input({ required: true })
-  public controlId!: string;
+  public readonly controlId = input.required<string>();
 
   protected control!: RxapFormControl;
 
@@ -109,7 +108,7 @@ export class FormSystemControlDirective<T> implements ControlValueAccessor, OnIn
       );
     }
 
-    const useDataSourceValueMap = this.extractDataSources(formDefinition, this.controlId);
+    const useDataSourceValueMap = this.extractDataSources(formDefinition, this.controlId());
 
     for (const [ name, useDataSourceValue ] of useDataSourceValueMap.entries()) {
 
@@ -147,7 +146,7 @@ export class FormSystemControlDirective<T> implements ControlValueAccessor, OnIn
       throw new RxapFormSystemError('The control property of ControlContainer is not defined', '');
     }
 
-    const control = this.parent.control.get(this.controlId);
+    const control = this.parent.control.get(this.controlId());
 
     if (!control) {
       throw new RxapFormSystemError('Could not find the control instance', '');
@@ -180,11 +179,12 @@ export class FormSystemControlDirective<T> implements ControlValueAccessor, OnIn
       throw new RxapFormSystemError('Could not extract the use component map from the form definition instance', '');
     }
 
-    if (!map.has(this.controlId)) {
+    const controlId = this.controlId();
+    if (!map.has(controlId)) {
       throw new RxapFormSystemError('A use component definition does not exists in the form definition metadata', '');
     }
 
-    return map.get(this.controlId)!;
+    return map.get(controlId)!;
   }
 
   private extractComponentProperties(formDefinition: FormDefinition): Record<string, any> {
@@ -200,11 +200,12 @@ export class FormSystemControlDirective<T> implements ControlValueAccessor, OnIn
       );
     }
 
-    if (!map.has(this.controlId)) {
+    const controlId = this.controlId();
+    if (!map.has(controlId)) {
       throw new RxapFormSystemError('A use component definition does not exists in the form definition metadata', '');
     }
 
-    return map.get(this.controlId)!;
+    return map.get(controlId)!;
   }
 
 }

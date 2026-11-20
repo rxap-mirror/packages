@@ -2,10 +2,10 @@ import {
   Directive,
   forwardRef,
   Inject,
-  Input,
   Optional,
   Self,
   SkipSelf,
+  input
 } from '@angular/core';
 import {
   ControlContainer,
@@ -34,8 +34,7 @@ import { RxapFormGroup } from '../form-group';
 })
 export class FormGroupNameDirective extends FormGroupName {
 
-  @Input('rxapFormGroupName')
-  public override name!: string | number | null;
+  public override readonly name = input.required<string | number | null>({ alias: "rxapFormGroupName" });
 
   public override get control(): RxapFormGroup {
     // TODO : add type check

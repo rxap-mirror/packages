@@ -66,6 +66,8 @@ export class TableSelectInputComponent<Data extends Record<string, any> = Record
     return this.focused || !this.empty;
   }
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   get required() {
     return this._required;
@@ -75,6 +77,8 @@ export class TableSelectInputComponent<Data extends Record<string, any> = Record
     this.stateChanges.next();
   }
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   get disabled(): boolean { return this._disabled; }
 
@@ -98,6 +102,8 @@ export class TableSelectInputComponent<Data extends Record<string, any> = Record
 
   private _placeholder = '';
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   get placeholder() {
     return this._placeholder;

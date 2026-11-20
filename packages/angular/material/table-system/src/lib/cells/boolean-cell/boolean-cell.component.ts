@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -18,7 +18,6 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class BooleanCellComponent {
 
-  @Input('rxap-boolean-cell')
-  public value: any | null = null;
+  public readonly value = input<any | null>(null, { alias: "rxap-boolean-cell" });
 
 }

@@ -4,12 +4,12 @@ import {
   Inject,
   INJECTOR,
   Injector,
-  Input,
   OnChanges,
   OnInit,
   SimpleChanges,
   TemplateRef,
   ViewContainerRef,
+  input
 } from '@angular/core';
 import {
   Constructor,
@@ -96,14 +96,11 @@ export interface OptionsFromRemoteMethodDirective<Value, Parameters> extends OnI
 })
 export class OptionsFromRemoteMethodDirective<Value, Parameters> implements OnChanges {
 
-  @Input('rxapOptionsFromRemoteMethodParameters')
-  public parameters?: Parameters;
+  public readonly parameters = input<Parameters>(undefined, { alias: "rxapOptionsFromRemoteMethodParameters" });
 
-  @Input('rxapOptionsFromRemoteMethodResetOnChange')
-  public resetOnChange?: Value;
+  public readonly resetOnChange = input<Value>(undefined, { alias: "rxapOptionsFromRemoteMethodResetOnChange" });
 
-  @Input('rxapOptionsFromRemoteMethodWithoutParameters')
-  public withoutParameters = false;
+  public readonly withoutParameters = input(false, { alias: "rxapOptionsFromRemoteMethodWithoutParameters" });
 
   private remoteMethodToken!: IdOrInstanceOrToken<BaseRemoteMethod>;
 
@@ -167,8 +164,9 @@ export class OptionsFromRemoteMethodDirective<Value, Parameters> implements OnCh
       this.viewContainerRef.createEmbeddedView(this.template, { $implicit: option });
     }
 
-    if (this.resetOnChange !== undefined) {
-      this.ngControl.reset(this.resetOnChange);
+    const resetOnChange = this.resetOnChange();
+    if (resetOnChange !== undefined) {
+      this.ngControl.reset(resetOnChange);
     }
 
     this.cdr.detectChanges();

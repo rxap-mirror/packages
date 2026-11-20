@@ -2,12 +2,12 @@ import {
   ChangeDetectorRef,
   Directive,
   Inject,
-  Input,
   OnDestroy,
   OnInit,
   Optional,
   TemplateRef,
   ViewContainerRef,
+  input
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {
@@ -23,11 +23,9 @@ import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 })
 export class IfHasPermissionDirective implements OnInit, OnDestroy {
 
-  @Input({ required: true, alias: 'rxapIfHasPermission' })
-  public identifier!: string;
+  public readonly identifier = input.required<string>({ alias: "rxapIfHasPermission" });
 
-  @Input({ alias: 'rxapIfHasPermissionElse' })
-  public else?: TemplateRef<any>;
+  public readonly else = input<TemplateRef<any>>(undefined, { alias: "rxapIfHasPermissionElse" });
 
   private _subscription?: Subscription;
 
@@ -48,15 +46,16 @@ export class IfHasPermissionDirective implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this._subscription = this.authorization
-                             .hasPermission$(this.identifier, this.scope || null)
+                             .hasPermission$(this.identifier(), this.scope || null)
                              .pipe(
                                distinctUntilChanged(),
                                tap((hasPermission) => {
                                  this.viewContainerRef.clear();
+                                 const else = this.else();
                                  if (hasPermission) {
                                    this.viewContainerRef.createEmbeddedView(this.template);
-                                 } else if (this.else) {
-                                   this.viewContainerRef.createEmbeddedView(this.else);
+                                 } else if (else) {
+                                   this.viewContainerRef.createEmbeddedView(else);
                                  }
                                  this.cdr.markForCheck();
                                }),

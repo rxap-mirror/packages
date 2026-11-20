@@ -3,6 +3,7 @@ import {
   Input,
   TemplateRef,
   TrackByFunction,
+  input
 } from '@angular/core';
 import {
   AbstractPaginationDataSource,
@@ -33,32 +34,23 @@ import { Observable } from 'rxjs';
 export class TableDataSourceDirective<Data extends Record<any, any> = any, Parameters = any>
   extends DataSourceCollectionDirective<Data> {
 
-  @Input('rxapTableDataSourcePaginator')
-  public paginator!: PaginatorLike;
+  public readonly paginator = input.required<PaginatorLike>({ alias: "rxapTableDataSourcePaginator" });
 
-  @Input('rxapTableDataSourceSort')
-  public sort!: SortLike;
+  public readonly sort = input.required<SortLike>({ alias: "rxapTableDataSourceSort" });
 
-  @Input('rxapTableDataSourceParameters')
-  public parameters!: Observable<Record<string, any>>;
+  public readonly parameters = input.required<Observable<Record<string, any>>>({ alias: "rxapTableDataSourceParameters" });
 
-  @Input('rxapTableDataSourceFilter')
-  public filter!: FilterLike;
+  public readonly filter = input.required<FilterLike>({ alias: "rxapTableDataSourceFilter" });
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input({
-    required: true,
-    alias: 'rxapTableDataSourceFrom',
-  })
-  public override dataSourceOrIdOrToken!: IdOrInstanceOrToken<AbstractTableDataSource<Data>>;
-  @Input('rxapTableDataSourceViewer')
-  public override viewer: BaseDataSourceViewer = { id: '[rxapTableDataSource]' };
+  public override readonly dataSourceOrIdOrToken = input.required<IdOrInstanceOrToken<AbstractTableDataSource<Data>>>({ alias: "rxapTableDataSourceFrom" });
+  public override readonly viewer = input<BaseDataSourceViewer>({ id: '[rxapTableDataSource]' }, { alias: "rxapTableDataSourceViewer" });
 
-  @Input('rxapTableDataSourceEmpty')
-  public override emptyTemplate?: TemplateRef<void>;
+  public override readonly emptyTemplate = input<TemplateRef<void>>(undefined, { alias: "rxapTableDataSourceEmpty" });
 
-  @Input('rxapTableDataSourceErrorTemplate')
-  public override errorTemplate?: TemplateRef<DataSourceCollectionErrorTemplateContext>;
+  public override readonly errorTemplate = input<TemplateRef<DataSourceCollectionErrorTemplateContext>>(undefined, { alias: "rxapTableDataSourceErrorTemplate" });
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   set rxapTableDataSourceTrackBy(fn: TrackByFunction<Data>) {
     this.rxapDataSourceCollectionTrackBy = fn;
@@ -71,23 +63,28 @@ export class TableDataSourceDirective<Data extends Record<any, any> = any, Param
       if (!(dataSource instanceof AbstractTableDataSource)) {
         throw new RxapTableDataSourceError('The data source is not a AbstractTableDataSource', '');
       }
-      if (this.viewer.id && dataSource instanceof DynamicTableDataSource) {
-        dataSource.setPaginator(this.paginator, this.viewer.id);
-        dataSource.setSort(this.sort, this.viewer.id);
-        dataSource.setFilter(this.filter, this.viewer.id);
-        dataSource.setParameters(this.parameters, this.viewer.id);
+      const viewer = this.viewer();
+      if (viewer.id && dataSource instanceof DynamicTableDataSource) {
+        dataSource.setPaginator(this.paginator(), viewer.id);
+        dataSource.setSort(this.sort(), viewer.id);
+        dataSource.setFilter(this.filter(), viewer.id);
+        dataSource.setParameters(this.parameters(), viewer.id);
       } else {
-        if (dataSource.paginator !== this.paginator) {
-          dataSource.paginator = this.paginator;
+        const paginator = this.paginator();
+        if (dataSource.paginator !== paginator) {
+          dataSource.paginator = paginator;
         }
-        if (dataSource.sort !== this.sort) {
-          dataSource.sort = this.sort;
+        const sort = this.sort();
+        if (dataSource.sort !== sort) {
+          dataSource.sort = sort;
         }
-        if (dataSource.filter !== this.filter) {
-          dataSource.filter = this.filter;
+        const filter = this.filter();
+        if (dataSource.filter !== filter) {
+          dataSource.filter = filter;
         }
-        if (dataSource.parameters !== this.parameters) {
-          dataSource.parameters = this.parameters;
+        const parameters = this.parameters();
+        if (dataSource.parameters !== parameters) {
+          dataSource.parameters = parameters;
         }
       }
     }

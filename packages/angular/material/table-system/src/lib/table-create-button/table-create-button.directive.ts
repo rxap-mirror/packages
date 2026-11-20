@@ -3,10 +3,10 @@ import {
   ElementRef,
   HostListener,
   Inject,
-  Input,
   OnDestroy,
   OnInit,
   Renderer2,
+  input
 } from '@angular/core';
 import { Method } from '@rxap/pattern';
 import {
@@ -23,11 +23,7 @@ import { TABLE_CREATE_REMOTE_METHOD } from './tokens';
 })
 export class TableCreateButtonDirective<Data extends Record<string, any>>
   implements OnInit, OnDestroy {
-  @Input({
-    required: true,
-    alias: 'rxapTableCreate',
-  })
-  public dataSource!: TableDataSourceDirective<Data>;
+  public readonly dataSource = input.required<TableDataSourceDirective<Data>>({ alias: "rxapTableCreate" });
 
   private _createObservable?: Observable<any>;
 
@@ -61,7 +57,7 @@ export class TableCreateButtonDirective<Data extends Record<string, any>>
     if (isObservable(result)) {
       await result.toPromise();
     }
-    this.dataSource.refresh();
+    this.dataSource().refresh();
   }
 }
 

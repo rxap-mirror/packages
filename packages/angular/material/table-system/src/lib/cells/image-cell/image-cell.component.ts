@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input
 } from '@angular/core';
 import {
   BackgroundImageDirective,
@@ -24,19 +24,14 @@ import { NgClass } from '@angular/common';
 })
 export class ImageCellComponent {
 
-  @Input()
-  public preset?: string;
+  public readonly preset = input<string>();
 
-  @Input()
-  public size: BackgroundSize = BackgroundSizeOptions.COVER;
+  public readonly size = input<BackgroundSize>(BackgroundSizeOptions.COVER);
 
-  @Input()
-  public repeat: BackgroundRepeat = BackgroundRepeatOptions.NO_REPEAT;
+  public readonly repeat = input<BackgroundRepeat>(BackgroundRepeatOptions.NO_REPEAT);
 
-  @Input()
-  public position: BackgroundPosition = BackgroundPositionOptions.CENTER_CENTER;
+  public readonly position = input<BackgroundPosition>(BackgroundPositionOptions.CENTER_CENTER);
 
-  @Input('rxap-image-cell')
-  public value: string | null = null;
+  public readonly value = input<string | null>(null, { alias: "rxap-image-cell" });
 
 }

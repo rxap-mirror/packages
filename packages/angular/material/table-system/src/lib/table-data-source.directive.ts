@@ -9,6 +9,7 @@ import {
   OnDestroy,
   OnInit,
   Optional,
+  input
 } from '@angular/core';
 import type { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -65,6 +66,8 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
    * @deprecated use dataSource instead
    */
   // eslint-disable-next-line @angular-eslint/no-input-rename
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input('rxapTableDataSource')
   public set setDataSource(dataSource: AbstractTableDataSource<Data> | '') {
     if (typeof dataSource !== 'string') {
@@ -72,17 +75,13 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
     }
   }
 
-  @Input()
-  public paginator?: MatPaginator;
+  public readonly paginator = input<MatPaginator>();
 
   public readonly loading$ = new ToggleSubject(true);
 
-  @Input({ required: true })
-  public id!: string;
-  @Input()
-  public parameters?: Observable<Record<string, any>>;
-  @Input()
-  public dataSource?: AbstractTableDataSource<Data>;
+  public readonly id = input.required<string>();
+  public readonly parameters = input<Observable<Record<string, any>>>();
+  public readonly dataSource = input<AbstractTableDataSource<Data>>();
 
   public method?: Method<Data[], TableEvent>;
 
@@ -91,7 +90,7 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
   public readonly error$ = new Subject<unknown>();
 
   public get lastRefreshed(): Date | null {
-    return this.dataSource?.lastRefreshed ?? null;
+    return this.dataSource()?.lastRefreshed ?? null;
   }
 
   /**
@@ -153,58 +152,60 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
 
   public ngOnInit() {
     const tableFilter = this._tableFilter ?? this.tableFilter ?? undefined;
-    if (!this.dataSource) {
+    const dataSource = this.dataSource();
+    if (!dataSource) {
       if (this.sourceDataSource) {
         this.dataSource = this.sourceDataSource;
       } else if (this.sourceMethod) {
         if (this.adapterFactory) {
           this.method = this.adapterFactory(
             this.sourceMethod,
-            this.paginator,
+            this.paginator(),
             this.matSort,
             tableFilter,
-            this.parameters,
+            this.parameters(),
           );
         } else {
           this.method = this.sourceMethod;
         }
         this.dataSource = new DynamicTableDataSource<Data>(
           this.method,
-          this.paginator,
+          this.paginator(),
           this.matSort,
           tableFilter,
-          this.parameters,
-          this.method.metadata ?? { id: this.id },
+          this.parameters(),
+          this.method.metadata ?? { id: this.id() },
         );
       }
-      if (!this.dataSource) {
+      if (!dataSource) {
         throw new Error(
           'The TABLE_DATA_SOURCE and RXAP_TABLE_METHOD token are not defined!',
         );
       }
     }
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.matSort ?? undefined;
-    this.dataSource.filter = tableFilter;
-    this.dataSource.parameters = this.parameters;
-    if (this.dataSource instanceof DynamicTableDataSource) {
-      this.dataSource.setPaginator(this.paginator, this.id);
-      this.dataSource.setSort(this.matSort, this.id);
-      this.dataSource.setFilter(tableFilter, this.id);
-      this.dataSource.setParameters(this.parameters, this.id);
+    dataSource.paginator = this.paginator();
+    dataSource.sort = this.matSort ?? undefined;
+    dataSource.filter = tableFilter;
+    dataSource.parameters = this.parameters();
+    const id = this.id();
+    if (dataSource instanceof DynamicTableDataSource) {
+      dataSource.setPaginator(this.paginator(), id);
+      dataSource.setSort(this.matSort, id);
+      dataSource.setFilter(tableFilter, id);
+      dataSource.setParameters(this.parameters(), id);
     }
     this._subscription.add(
-      this.dataSource.loading$.pipe(
+      dataSource.loading$.pipe(
         tap(loading => this.loading$.next(!!loading)),
       ).subscribe(),
     );
     this._subscription.add(
-      this.dataSource.hasError$.pipe(
+      dataSource.hasError$.pipe(
         tap(hasError => this.hasError$.next(!!hasError)),
       ).subscribe(),
     );
     this._subscription.add(
-      this.dataSource.error$.pipe(
+      dataSource.error$.pipe(
         tap(error => this.error$.next(error)),
       ).subscribe(),
     );
@@ -214,8 +215,8 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
     // instance for multiple table component simultaneously
     // on connect the data source can then use the correct paginator/matSort/tableFilter/parameters instance
     // to create the TableEvent objects
-    Reflect.set(this.matTable, 'id', this.id);
-    this.matTable.dataSource = pipeDataSource(this.dataSource, tap(rowList => {
+    Reflect.set(this.matTable, 'id', id);
+    this.matTable.dataSource = pipeDataSource(dataSource, tap(rowList => {
       if (rowList.some((element: any) => !element.__metadata__)) {
         if (isDevMode()) {
           console.debug('Ensure to use the NormalizeTableRow function to normalize the table row!');
@@ -233,18 +234,18 @@ export class TableDataSourceDirective<Data extends Record<string, any> = any>
   }
 
   public refresh() {
-    this.dataSource?.refresh();
+    this.dataSource()?.refresh();
   }
 
   public retry() {
-    this.dataSource?.retry();
+    this.dataSource()?.retry();
   }
 
   public reset() {
     if (this.tableFilter) {
       this.tableFilter.reset();
     } else {
-      this.dataSource?.reset();
+      this.dataSource()?.reset();
     }
   }
 

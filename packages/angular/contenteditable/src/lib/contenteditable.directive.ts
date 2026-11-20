@@ -27,6 +27,8 @@ export class ContenteditableDirective {
   private _method?: Method<any, string | null>;
 
   // allow empty string
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input('rxapContenteditable')
   public set method(value: Method<any, string | null> | '') {
     if (value) {
@@ -36,6 +38,8 @@ export class ContenteditableDirective {
 
   private _disabled = false;
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set disabled(value: boolean | '') {
     this._disabled = coerceBoolean(value);

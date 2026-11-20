@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -17,20 +17,18 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 })
 export class LinkCellComponent {
 
-  @Input('rxap-link-cell')
-  public value: any;
+  public readonly value = input<any>(undefined, { alias: "rxap-link-cell" });
 
   public get href(): string {
-    if (this.protocol) {
-      return [ this.protocol, this.value ].join(':');
+    const protocol = this.protocol();
+    if (protocol) {
+      return [ protocol, this.value() ].join(':');
     }
-    return this.value;
+    return this.value();
   }
 
-  @Input()
-  public protocol?: 'tel' | 'mailto';
+  public readonly protocol = input<'tel' | 'mailto'>();
 
-  @Input()
-  public short = true;
+  public readonly short = input(true);
 
 }

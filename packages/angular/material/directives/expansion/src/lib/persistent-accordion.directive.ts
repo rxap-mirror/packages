@@ -5,9 +5,9 @@ import {
   Directive,
   ElementRef,
   inject,
-  Input,
   OnDestroy,
   QueryList,
+  input
 } from '@angular/core';
 import {
   MatExpansionPanel,
@@ -25,11 +25,7 @@ import { tap } from 'rxjs/operators';
 })
 export class PersistentAccordionDirective implements AfterContentInit, OnDestroy {
 
-  @Input({
-    required: true,
-    alias: 'rxapPersistentAccordion',
-  })
-  public key!: string;
+  public readonly key = input.required<string>({ alias: "rxapPersistentAccordion" });
 
   @ContentChildren(MatExpansionPanel, { emitDistinctChangesOnly: true })
   private expansionPanel!: QueryList<MatExpansionPanel>;
@@ -95,7 +91,7 @@ export class PersistentAccordionDirective implements AfterContentInit, OnDestroy
   }
 
   protected buildKey(identifier: string): string {
-    return [ 'rxapPersistentAccordion', this.key, identifier ].join('_');
+    return [ 'rxapPersistentAccordion', this.key(), identifier ].join('_');
   }
 
   protected trackExpandState(panel: MatExpansionPanel) {

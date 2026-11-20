@@ -3,7 +3,7 @@ import {
   HostBinding,
   HostListener,
   Inject,
-  Input,
+  input
 } from '@angular/core';
 import {
   DebounceCall,
@@ -19,17 +19,11 @@ export class ContenteditableDirective {
   @HostBinding('attr.contenteditable')
   public contenteditable = true;
 
-  @Input({
-    required: true,
-    alias: 'rxapContenteditable',
-  })
-  public remoteMethodId!: string;
+  public readonly remoteMethodId = input.required<string>({ alias: "rxapContenteditable" });
 
-  @Input({ required: true })
-  public property!: string;
+  public readonly property = input.required<string>();
 
-  @Input({ required: true })
-  public uuid!: string;
+  public readonly uuid = input.required<string>();
 
   constructor(
     @Inject(HttpRemoteMethodLoader)
@@ -47,9 +41,9 @@ export class ContenteditableDirective {
   public onInput($event: any) {
     const value = ($event.target as HTMLElement).textContent;
     if (value && value.length > 3) {
-      return this.httpRemoteMethodLoader.request$(this.remoteMethodId, {
-        pathParams: { uuid: this.uuid },
-        body: { [this.property]: value },
+      return this.httpRemoteMethodLoader.request$(this.remoteMethodId(), {
+        pathParams: { uuid: this.uuid() },
+        body: { [this.property()]: value },
       });
     }
     return Promise.resolve();

@@ -9,6 +9,7 @@ import {
   OnInit,
   signal,
   SimpleChanges,
+  input
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -45,29 +46,26 @@ export interface DataSourceLikeForErrorHandling {
 })
 export class DataSourceErrorComponent implements OnChanges, OnInit, OnDestroy {
 
-  @Input()
-  public error?: unknown | null | Observable<unknown>;
+  public readonly error = input<unknown | null | Observable<unknown>>();
 
-  @Input()
-  public refresh?: () => void;
+  public readonly refresh = input<() => void>();
 
-  @Input()
-  public retry?: () => void;
+  public readonly retry = input<() => void>();
 
-  @Input()
-  public reset?: () => void;
+  public readonly reset = input<() => void>();
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set dataSourceLike(value: DataSourceLikeForErrorHandling) {
-    this.refresh ??= value.refresh;
-    this.retry ??= value.retry;
-    this.reset ??= value.reset;
-    this.loading ??= value.loading ?? value.loading$;
-    this.error ??= value.error ?? value.error$;
+    this.refresh() ??= value.refresh;
+    this.retry() ??= value.retry;
+    this.reset() ??= value.reset;
+    this.loading() ??= value.loading ?? value.loading$;
+    this.error() ??= value.error ?? value.error$;
   }
 
-  @Input()
-  public loading?: Observable<boolean> | boolean;
+  public readonly loading = input<Observable<boolean> | boolean>();
 
   public isNotRelease = false;
 
@@ -104,8 +102,9 @@ export class DataSourceErrorComponent implements OnChanges, OnInit, OnDestroy {
 
   ngOnInit() {
     this._subscription = new Subscription();
-    if (this.loading instanceof Observable) {
-      this._subscription.add(this.loading.subscribe((loading) => {
+    const loadingValue = this.loading();
+    if (loadingValue instanceof Observable) {
+      this._subscription.add(loadingValue.subscribe((loading) => {
         if (!loading) {
           if (this.retryInProgress()) {
             this.retryInProgress.set(false);
@@ -116,8 +115,9 @@ export class DataSourceErrorComponent implements OnChanges, OnInit, OnDestroy {
         }
       }));
     }
-    if (this.error instanceof Observable) {
-      this._subscription.add(this.error.subscribe((error) => {
+    const errorValue = this.error();
+    if (errorValue instanceof Observable) {
+      this._subscription.add(errorValue.subscribe((error) => {
         if (error) {
           this.errorMessage.set(error.message);
         }
@@ -126,19 +126,22 @@ export class DataSourceErrorComponent implements OnChanges, OnInit, OnDestroy {
   }
 
   triggerRetry() {
-    if (this.retry) {
+    const refresh = this.refresh();
+    const retry = this.retry();
+    if (retry) {
       this.retryInProgress.set(true);
-      this.retry();
-    } else if (this.refresh) {
+      retry();
+    } else if (refresh) {
       this.retryInProgress.set(true);
-      this.refresh();
+      refresh();
     }
   }
 
   triggerReset() {
-    if (this.reset) {
+    const reset = this.reset();
+    if (reset) {
       this.resetInProgress.set(true);
-      this.reset();
+      reset();
     }
   }
 

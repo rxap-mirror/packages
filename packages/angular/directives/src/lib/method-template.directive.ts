@@ -4,7 +4,6 @@ import {
   EventEmitter,
   HostListener,
   Inject,
-  Input,
   isDevMode,
   OnChanges,
   OnInit,
@@ -12,6 +11,7 @@ import {
   SimpleChanges,
   TemplateRef,
   ViewContainerRef,
+  input
 } from '@angular/core';
 import { ToggleSubject } from '@rxap/rxjs';
 import { Method } from '@rxap/pattern';
@@ -32,18 +32,12 @@ export interface MethodTemplateDirectiveErrorContext {
 })
 export class MethodTemplateDirective<ReturnType = any, Parameters = any> implements OnInit, OnChanges {
 
-  @Input('rxapMethodCall')
-  public method!: Method<ReturnType, Parameters>;
-  @Input('rxapMethodParameters')
-  public parameters?: Parameters;
-  @Input('rxapMethodError')
-  public errorTemplate?: TemplateRef<MethodTemplateDirectiveErrorContext>;
-  @Input('rxapMethodLoading')
-  public loadingTemplate?: TemplateRef<void>;
-  @Input('rxapMethodWithoutParameters')
-  public withoutParameters = false;
-  @Input()
-  public immediately = false;
+  public readonly method = input.required<Method<ReturnType, Parameters>>({ alias: "rxapMethodCall" });
+  public readonly parameters = input<Parameters>(undefined, { alias: "rxapMethodParameters" });
+  public readonly errorTemplate = input<TemplateRef<MethodTemplateDirectiveErrorContext>>(undefined, { alias: "rxapMethodError" });
+  public readonly loadingTemplate = input<TemplateRef<void>>(undefined, { alias: "rxapMethodLoading" });
+  public readonly withoutParameters = input(false, { alias: "rxapMethodWithoutParameters" });
+  public readonly immediately = input(false);
   @Output('executed')
   public executed$ = new EventEmitter();
   @Output('failure')
@@ -82,7 +76,7 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
 
   public ngOnInit() {
     this.renderLoadingTemplate();
-    if (this.withoutParameters) {
+    if (this.withoutParameters()) {
       this.execute();
     }
   }
@@ -92,10 +86,10 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
     return this.execute();
   }
 
-  public async execute(parameters: Parameters | undefined = this.parameters): Promise<void> {
+  public async execute(parameters: Parameters | undefined = this.parameters()): Promise<void> {
     this.executing$.enable();
     try {
-      const result = await this.method.call(parameters);
+      const result = await this.method().call(parameters);
       this.executed(result);
       this.renderTemplate(result);
       this.successful(result);
@@ -115,7 +109,7 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
   }
 
   public updateParameters(parameters: Partial<Parameters>): void {
-    this.parameters = { ...(this.parameters ?? {}), ...parameters } as any;
+    this.parameters = { ...(this.parameters() ?? {}), ...parameters } as any;
   }
 
   protected executed(result: any) {
@@ -131,10 +125,11 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
   }
 
   protected renderErrorTemplate(error: Error) {
-    if (this.errorTemplate) {
+    const errorTemplate = this.errorTemplate();
+    if (errorTemplate) {
       this.viewContainerRef.clear();
-      if (this.errorTemplate) {
-        this.viewContainerRef.createEmbeddedView(this.errorTemplate,
+      if (errorTemplate) {
+        this.viewContainerRef.createEmbeddedView(errorTemplate,
           {
             $implicit: error,
             message: error.message,
@@ -163,9 +158,10 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
   }
 
   private renderLoadingTemplate() {
-    if (this.loadingTemplate) {
+    const loadingTemplate = this.loadingTemplate();
+    if (loadingTemplate) {
       this.viewContainerRef.clear();
-      this.viewContainerRef.createEmbeddedView(this.loadingTemplate);
+      this.viewContainerRef.createEmbeddedView(loadingTemplate);
     }
   }
 

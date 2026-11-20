@@ -15,6 +15,7 @@ import {
   SimpleChanges,
   TemplateRef,
   ViewContainerRef,
+  input
 } from '@angular/core';
 import {
   BaseRemoteMethod,
@@ -60,22 +61,17 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
   // eslint-disable-next-line @angular-eslint/no-output-rename
   @Output('successful')
   public successful$ = new EventEmitter<ReturnType>();
-  @Input('rxapRemoteMethodMetadata')
-  public metadata?: Metadata;
+  public readonly metadata = input<Metadata>(undefined, { alias: "rxapRemoteMethodMetadata" });
   /**
    * true - a remote method call is in progress
    */
   public executing$ = new ToggleSubject();
-  @Input('rxapRemoteMethodParameters')
-  public parameters?: Parameters;
+  public readonly parameters = input<Parameters>(undefined, { alias: "rxapRemoteMethodParameters" });
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('rxapRemoteMethodError')
-  public errorTemplate?: TemplateRef<RemoteMethodTemplateDirectiveErrorContext>;
+  public readonly errorTemplate = input<TemplateRef<RemoteMethodTemplateDirectiveErrorContext>>(undefined, { alias: "rxapRemoteMethodError" });
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('rxapRemoteMethodLoading')
-  public loadingTemplate?: TemplateRef<void>;
-  @Input('rxapRemoteMethodWithoutParameters')
-  public withoutParameters = false;
+  public readonly loadingTemplate = input<TemplateRef<void>>(undefined, { alias: "rxapRemoteMethodLoading" });
+  public readonly withoutParameters = input(false, { alias: "rxapRemoteMethodWithoutParameters" });
   @Output()
   public embedded = new EventEmitter();
 
@@ -103,6 +99,8 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
   protected _remoteMethodOrIdOrToken!: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType, Parameters, Metadata>>;
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input('rxapRemoteMethodCall')
   public set remoteMethodOrIdOrToken(value: IdOrInstanceOrToken<BaseRemoteMethod<ReturnType, Parameters, Metadata>>) {
     if (value) {
@@ -125,19 +123,19 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
 
   public ngOnInit() {
     this.renderLoadingTemplate();
-    if (this.withoutParameters) {
+    if (this.withoutParameters()) {
       this.execute();
     }
   }
 
-  public async execute(parameters: Parameters | undefined = this.parameters): Promise<void> {
+  public async execute(parameters: Parameters | undefined = this.parameters()): Promise<void> {
     this.executing$.enable();
     this.renderLoadingTemplate();
     try {
       const result = await this.remoteMethodLoader.call$(
         this._remoteMethodOrIdOrToken,
         parameters,
-        this.metadata,
+        this.metadata(),
         this.injector,
       );
       this.executed(result);
@@ -168,7 +166,7 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
   }
 
   public updateParameters(parameters: Partial<Parameters>): void {
-    this.parameters = { ...(this.parameters ?? {}), ...parameters } as any;
+    this.parameters = { ...(this.parameters() ?? {}), ...parameters } as any;
   }
 
   protected executed(result: any) {
@@ -190,9 +188,10 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
     try {
       this.viewContainerRef.createEmbeddedView(this.template, { $implicit: result });
     } catch (error: any) {
-      if (this.errorTemplate) {
+      const errorTemplate = this.errorTemplate();
+      if (errorTemplate) {
         this.viewContainerRef.createEmbeddedView(
-          this.errorTemplate,
+          errorTemplate,
           {
             $implicit: error,
             message: error.message,
@@ -209,9 +208,10 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
   }
 
   private renderLoadingTemplate() {
-    if (this.loadingTemplate) {
+    const loadingTemplate = this.loadingTemplate();
+    if (loadingTemplate) {
       this.viewContainerRef.clear();
-      this.viewContainerRef.createEmbeddedView(this.loadingTemplate);
+      this.viewContainerRef.createEmbeddedView(loadingTemplate);
     }
   }
 

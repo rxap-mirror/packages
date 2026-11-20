@@ -10,6 +10,7 @@ import {
   Optional,
   Output,
   StaticProvider,
+  input
 } from '@angular/core';
 import { coerceBoolean } from '@rxap/utilities';
 import { WindowRef } from '@rxap/window-system';
@@ -26,11 +27,9 @@ export class OpenFormWindowMethodDirective<
   Initial extends Partial<Record<string, any>> = Partial<Record<string, any>>>
   implements OnDestroy {
 
-  @Input('rxapOpenFormWindowMethod')
-  public method!: Method<WindowRef<FormDefinition, FormData>, Initial>;
+  public readonly method = input.required<Method<WindowRef<FormDefinition, FormData>, Initial>>({ alias: "rxapOpenFormWindowMethod" });
 
-  @Input()
-  public initial?: Initial;
+  public readonly initial = input<Initial>();
 
   // eslint-disable-next-line @angular-eslint/no-output-rename
   @Output('failure')
@@ -47,8 +46,7 @@ export class OpenFormWindowMethodDirective<
    * true - a remote method call is in progress
    */
   public executing$ = new CounterSubject(0);
-  @Input()
-  public providers?: StaticProvider[];
+  public readonly providers = input<StaticProvider[]>();
   /**
    * Set of all active window ref instances.
    *
@@ -68,6 +66,8 @@ export class OpenFormWindowMethodDirective<
   private _hasConfirmDirective = false;
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input('rxapConfirm')
   public set hasConfirmDirective(value: any) {
     this._hasConfirmDirective = coerceBoolean(value);
@@ -94,8 +94,8 @@ export class OpenFormWindowMethodDirective<
   public execute(): void {
     this.executing$.increase();
 
-    const windowRef = this.method.call(this.initial, {
-      providers: this.providers,
+    const windowRef = this.method().call(this.initial(), {
+      providers: this.providers(),
       injector: this.injector,
     }) as WindowRef<FormDefinition, FormData>;
 

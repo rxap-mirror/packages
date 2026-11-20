@@ -13,24 +13,24 @@
   </button>
   <div class="flex flex-row grow w-full">
     <div #treeContainer [ngClass]="{ 'hidden': !showTreeNavigation() }"
-      [ngStyle]="{ maxWidth: dividerOffset, minWidth: dividerOffset, flexBasis: dividerOffset }"
+      [ngStyle]="{ maxWidth: dividerOffset(), minWidth: dividerOffset(), flexBasis: dividerOffset() }"
       class="w-fit grow-0 overflow-y-auto">
-      @if (!dataSource || (dataSource.loading$ | async)) {
+      @if (!dataSource() || (dataSource().loading$ | async)) {
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
       }
       <ng-content select="[searchHeader]"></ng-content>
-      @if (dataSource) {
-        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+      @if (dataSource()) {
+        <mat-tree [dataSource]="dataSource()" [treeControl]="treeControl">
           <!-- Node without children -->
           <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
             <div class="flex flex-row justify-start items-center gap-2">
-              <mat-icon [ngClass]="{ 'hidden': hideLeafIcon }">subdirectory_arrow_right</mat-icon>
+              <mat-icon [ngClass]="{ 'hidden': hideLeafIcon() }">subdirectory_arrow_right</mat-icon>
               @if (node.icon?.length) {
                 @for (icon of node.icon; track icon) {
                   <mat-icon [rxapIcon]="$any(icon)"></mat-icon>
                 }
               }
-              @if (multiple) {
+              @if (multiple()) {
                 <mat-checkbox
                   (change)="node.toggleSelect()"
                   [checked]="node.selected"
@@ -40,7 +40,7 @@
                   {{ node.display }}
                 </mat-checkbox>
               }
-              @if (!multiple) {
+              @if (!multiple()) {
                 <button
                   (click)="node.select()"
                   [color]="node.selected ? 'primary' : undefined"

@@ -89,14 +89,12 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
   touched = false;
 
   // region MatFormFieldControl
-  @Input()
-  public disabled = false;
+  public readonly disabled = input(false);
   autofilled?: boolean | undefined;
   controlType?: string | undefined = 'rxap-upload-button';
   errorState = false;
   focused = false;
-  @Input()
-  public required = false;
+  public readonly required = input(false);
   shouldLabelFloat = true;
   public stateChanges = new Subject<void>();
   userAriaDescribedBy?: string | undefined;
@@ -109,6 +107,8 @@ export class UploadButtonComponent implements ControlValueAccessor, MatFormField
   get placeholder() {
     return this._placeholder;
   }
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   set placeholder(plh) {
     this._placeholder = plh;

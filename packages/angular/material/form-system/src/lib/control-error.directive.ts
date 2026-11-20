@@ -3,10 +3,10 @@ import {
   ChangeDetectorRef,
   Directive,
   Inject,
-  Input,
   OnDestroy,
   TemplateRef,
   ViewContainerRef,
+  input
 } from '@angular/core';
 import {
   AbstractControl,
@@ -31,11 +31,7 @@ export interface ControlErrorDirectiveContext {
   standalone: true,
 })
 export class ControlErrorDirective implements AfterContentInit, OnDestroy {
-  @Input({
-    required: true,
-    alias: 'rxapControlErrorKey',
-  })
-  public key!: string;
+  public readonly key = input.required<string>({ alias: "rxapControlErrorKey" });
   private _subscription?: Subscription;
   private _control?: AbstractControl;
 
@@ -78,7 +74,7 @@ export class ControlErrorDirective implements AfterContentInit, OnDestroy {
     this.viewContainerRef.clear();
     if (errors) {
       const errorKeys = Object.keys(errors);
-      const matchingKey = errorKeys.find((key) => key.toLowerCase() === this.key.toLowerCase());
+      const matchingKey = errorKeys.find((key) => key.toLowerCase() === this.key().toLowerCase());
       if (matchingKey) {
         const error = errors[matchingKey];
         if (!this._control) {

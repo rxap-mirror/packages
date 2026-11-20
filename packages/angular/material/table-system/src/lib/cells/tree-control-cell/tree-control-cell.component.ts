@@ -2,8 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   DoCheck,
-  Input,
   OnInit,
+  input
 } from '@angular/core';
 import { IconConfig } from '@rxap/utilities';
 import { IconDirective } from '@rxap/material-directives/icon';
@@ -30,11 +30,10 @@ export class TreeControlCellComponent implements OnInit, DoCheck {
 
   public expandIcon!: string;
 
-  @Input('rxap-tree-control-cell')
-  public element: RowDataWithNode<any>;
+  public readonly element = input<RowDataWithNode<any>>(undefined, { alias: "rxap-tree-control-cell" });
 
   public ngOnInit() {
-    this.offset = (this.element.__node.depth * 24) + 'px';
+    this.offset = (this.element().__node.depth * 24) + 'px';
     this.updateIcon();
   }
 
@@ -43,13 +42,14 @@ export class TreeControlCellComponent implements OnInit, DoCheck {
   }
 
   public toggleExpand() {
-    return this.element.__node.toggleExpand();
+    return this.element().__node.toggleExpand();
   }
 
   private updateIcon(): void {
-    this.icon = this.element.icon;
-    if (this.element.__node.hasChildren) {
-      if (this.element.__node.expanded) {
+    this.icon = this.element().icon;
+    const element = this.element();
+    if (element.__node.hasChildren) {
+      if (element.__node.expanded) {
         this.expandIcon = 'expand_more';
       } else {
         this.expandIcon = 'expand_less';

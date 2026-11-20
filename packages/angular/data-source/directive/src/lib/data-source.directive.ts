@@ -7,7 +7,6 @@ import {
   EventEmitter,
   Inject,
   INJECTOR,
-  Input,
   isDevMode,
   NgZone,
   OnChanges,
@@ -16,6 +15,7 @@ import {
   SimpleChanges,
   TemplateRef,
   ViewContainerRef,
+  input
 } from '@angular/core';
 import {
   BaseDataSource,
@@ -67,15 +67,9 @@ export class DataSourceDirective<Data = any>
   }
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input({
-    required: true,
-    alias: 'rxapDataSourceFrom',
-  })
-  public dataSourceOrIdOrToken!: IdOrInstanceOrToken<BaseDataSource<Data>>;
-  @Input('rxapDataSourceViewer')
-  public viewer!: BaseDataSourceViewer;
-  @Input('rxapDataSourceErrorTemplate')
-  public errorTemplate?: TemplateRef<DataSourceErrorTemplateContext>;
+  public readonly dataSourceOrIdOrToken = input.required<IdOrInstanceOrToken<BaseDataSource<Data>>>({ alias: "rxapDataSourceFrom" });
+  public readonly viewer = input.required<BaseDataSourceViewer>({ alias: "rxapDataSourceViewer" });
+  public readonly errorTemplate = input<TemplateRef<DataSourceErrorTemplateContext>>(undefined, { alias: "rxapDataSourceErrorTemplate" });
   @Output()
   public embedded = new EventEmitter<Data>();
   @Output()
@@ -85,8 +79,7 @@ export class DataSourceDirective<Data = any>
   public error = new EventEmitter();
   public dataSource: BaseDataSource<Data> | null = null;
   public connection$!: Observable<Data>;
-  @Input('rxapDataSourceTrackBy')
-  public trackBy?: (data: Data) => any;
+  public readonly trackBy = input<(data: Data) => any>(undefined, { alias: "rxapDataSourceTrackBy" });
   /**
    * @deprecated removed
    * @protected
@@ -131,7 +124,8 @@ export class DataSourceDirective<Data = any>
   }
 
   public embedErrorTemplate(error: unknown | null) {
-    if (!this.errorTemplate) {
+    const errorTemplate = this.errorTemplate();
+    if (!errorTemplate) {
       if (isDevMode()) {
         console.log('Skip error template embedding. ErrorTemplate is not defined');
       }
@@ -148,7 +142,7 @@ export class DataSourceDirective<Data = any>
 
     this.embeddedErrorViewRef?.destroy();
     this.embeddedErrorViewRef = this.viewContainerRef.createEmbeddedView(
-      this.errorTemplate,
+      errorTemplate,
       context,
     );
     this.cdr.detectChanges();
@@ -175,7 +169,7 @@ export class DataSourceDirective<Data = any>
   }
 
   public ngOnDestroy(): void {
-    this.dataSource?.disconnect(this.viewer);
+    this.dataSource?.disconnect(this.viewer());
     this.subscription.unsubscribe();
     this._dataSourceConnectionSubscription?.unsubscribe();
     this._dataSourceLoadingSubscription?.unsubscribe();
@@ -183,17 +177,18 @@ export class DataSourceDirective<Data = any>
 
   protected loadDataSource(): BaseDataSource<Data> | null {
     let dataSource: BaseDataSource | null = null;
-    if (typeof this.dataSourceOrIdOrToken === 'string') {
+    const dataSourceOrIdOrToken = this.dataSourceOrIdOrToken();
+    if (typeof dataSourceOrIdOrToken === 'string') {
       dataSource = this.dataSourceLoader.load<BaseDataSource<Data>>(
-        this.dataSourceOrIdOrToken,
+        dataSourceOrIdOrToken,
         undefined,
         this.injector,
       );
-    } else if (this.dataSourceOrIdOrToken instanceof BaseDataSource) {
-      dataSource = this.dataSourceOrIdOrToken;
-    } else if (this.dataSourceOrIdOrToken !== null) {
+    } else if (dataSourceOrIdOrToken instanceof BaseDataSource) {
+      dataSource = dataSourceOrIdOrToken;
+    } else if (dataSourceOrIdOrToken !== null) {
       dataSource = this.injector.get<BaseDataSource<Data>>(
-        this.dataSourceOrIdOrToken,
+        dataSourceOrIdOrToken,
       );
     }
     this._dataSourceLoadingSubscription?.unsubscribe();
@@ -215,7 +210,7 @@ export class DataSourceDirective<Data = any>
           }
         }),
       ).subscribe();
-      this.connection$ = this.dataSource.connect(this.viewer);
+      this.connection$ = this.dataSource.connect(this.viewer());
       this.zone.onStable
         .pipe(
           take(1),
@@ -247,8 +242,10 @@ export class DataSourceDirective<Data = any>
   }
 
   private hasChanged(last: Data, current: Data): boolean {
-    const lastKey = this.trackBy ? this.trackBy(last) : last;
-    const currentKey = this.trackBy ? this.trackBy(current) : current;
+    const trackBy = this.trackBy();
+    const lastKey = trackBy ? trackBy(last) : last;
+    const trackByValue = this.trackBy();
+    const currentKey = trackByValue ? trackByValue(current) : current;
     return lastKey !== currentKey;
   }
 }

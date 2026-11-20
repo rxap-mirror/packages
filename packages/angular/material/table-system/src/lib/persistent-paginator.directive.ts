@@ -1,8 +1,8 @@
 import {
   Directive,
-  Input,
   OnDestroy,
   OnInit,
+  input
 } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { Subscription } from 'rxjs';
@@ -14,8 +14,7 @@ import { tap } from 'rxjs/operators';
 })
 export class PersistentPaginatorDirective implements OnInit, OnDestroy {
 
-  @Input()
-  public id?: string;
+  public readonly id = input<string>();
 
   private _subscription?: Subscription;
 
@@ -39,7 +38,7 @@ export class PersistentPaginatorDirective implements OnInit, OnDestroy {
   }
 
   public getKey() {
-    return 'rxap_mat-paginator-persistent' + this.id;
+    return 'rxap_mat-paginator-persistent' + this.id();
   }
 
   public storeConfig() {

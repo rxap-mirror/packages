@@ -2,8 +2,8 @@ import {
   ChangeDetectorRef,
   Directive,
   Inject,
-  Input,
   Optional,
+  input
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -21,8 +21,7 @@ import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
 export class FormControlHasEnablePermissionDirective extends HasEnablePermission {
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('rxapHasEnablePermission')
-  public override identifier!: string;
+  public override readonly identifier = input.required<string>({ alias: "rxapHasEnablePermission" });
 
   constructor(
     @Inject(AuthorizationService)

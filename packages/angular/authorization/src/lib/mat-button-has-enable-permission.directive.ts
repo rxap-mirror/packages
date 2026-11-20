@@ -4,9 +4,9 @@ import {
   Inject,
   Injector,
   INJECTOR,
-  Input,
   OnInit,
   Optional,
+  input
 } from '@angular/core';
 import {
   MatButton,
@@ -27,8 +27,7 @@ interface CanDisable {
   standalone: true,
 })
 export class MatButtonHasEnablePermissionDirective extends HasEnablePermission implements OnInit {
-  @Input('rxapHasEnablePermission')
-  public override identifier!: string;
+  public override readonly identifier = input.required<string>({ alias: "rxapHasEnablePermission" });
 
   private _button!: CanDisable;
 

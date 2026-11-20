@@ -1,7 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
+  input
 } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
@@ -15,10 +15,8 @@ import { DatePipe } from '@angular/common';
 })
 export class DateCellComponent {
 
-  @Input('rxap-date-cell')
-  public date: Date | number | string | null = null;
+  public readonly date = input<Date | number | string | null>(null, { alias: "rxap-date-cell" });
 
-  @Input()
-  public format = 'dd.MM.yyyy HH:mm';
+  public readonly format = input('dd.MM.yyyy HH:mm');
 
 }

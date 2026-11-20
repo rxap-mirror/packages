@@ -5,11 +5,10 @@ import {
   HostBinding,
   Inject,
   input,
-  Input,
   OnChanges,
   OnDestroy,
   OnInit,
-  SimpleChanges,
+  SimpleChanges
 } from '@angular/core';
 import {
   MatProgressBar,
@@ -42,8 +41,7 @@ export class CardProgressBarDirective implements OnInit, OnDestroy, OnChanges {
   @HostBinding('style.display')
   public display: string | null = null;
 
-  @Input()
-  public loading$: Observable<boolean> | null = null;
+  public readonly loading$ = input<Observable<boolean> | null>(null);
 
   public readonly mode = input<ProgressBarMode>('indeterminate');
 
@@ -81,8 +79,9 @@ export class CardProgressBarDirective implements OnInit, OnDestroy, OnChanges {
 
   private subscribeLoading(): void {
     this.subscription?.unsubscribe();
-    if (this.loading$) {
-      this.subscription = this.loading$.pipe(
+    const loading$ = this.loading$();
+    if (loading$) {
+      this.subscription = loading$.pipe(
         tap(loading => {
           if (loading) {
             this.display = null;

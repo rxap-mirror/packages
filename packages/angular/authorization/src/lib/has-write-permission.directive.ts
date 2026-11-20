@@ -3,10 +3,10 @@ import {
   Directive,
   HostBinding,
   Inject,
-  Input,
   OnDestroy,
   OnInit,
   Optional,
+  input
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -18,11 +18,7 @@ import { RXAP_AUTHORIZATION_SCOPE } from './tokens';
   standalone: true,
 })
 export class HasWritePermissionDirective implements OnInit, OnDestroy {
-  @Input({
-    alias: 'rxapHasWritePermission',
-    required: true,
-  })
-  public identifier!: string;
+  public readonly identifier = input.required<string>({ alias: "rxapHasWritePermission" });
   @HostBinding('readonly')
   public readonly = false;
   private _subscription?: Subscription;
@@ -40,7 +36,7 @@ export class HasWritePermissionDirective implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this._subscription = this.authorization
-                             .hasPermission$(this.identifier, this.scope || null)
+                             .hasPermission$(this.identifier(), this.scope || null)
                              .pipe(
                                tap((hasPermission) => {
                                  this.readonly = !hasPermission;

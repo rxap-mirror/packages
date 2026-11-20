@@ -24,6 +24,8 @@ import { Required } from '@rxap/utilities';
 })
 export class IsEqualToDirective implements Validator {
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input({
     required: true,
     alias: 'rxapIsEqualTo',

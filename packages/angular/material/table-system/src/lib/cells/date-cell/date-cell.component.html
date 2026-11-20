@@ -1,4 +1,4 @@
-@if (date) {
-  {{date | date:format}}
+@if (date()) {
+  {{date() | date:format()}}
 }
 <ng-content></ng-content>

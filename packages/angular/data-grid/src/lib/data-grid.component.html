@@ -15,7 +15,7 @@ never shown. -->
 <!-- eslint-disable-next-line @angular-eslint/template/no-negated-async -->
 @if (!(hasError$ | async) && !(dataLoading$ | async)) {
   <table class="w-full table-auto">
-    @if (header) {
+    @if (header()) {
       <thead>
         <tr>
           <th class="py-2" i18n>Label</th>
@@ -25,19 +25,19 @@ never shown. -->
     }
     <tbody>
       @for (row of rows$ | async; track row; let first = $first) {
-        @if ((!displayProperties || row.isSubHeader || (row.name && displayProperties.includes(row.name))) && (!hideEmptyProperties || false === (data$ | isEmpty: row.name | async))) {
+        @if ((!displayProperties() || row.isSubHeader || (row.name() && displayProperties().includes(row.name()))) && (!hideEmptyProperties() || false === (data$ | isEmpty: row.name() | async))) {
           <!-- region horizontal view -->
-          @if (row.flip) {
+          @if (row.flip()) {
             <tr>
               <td class="py-2" colspan="2">
                 <mat-divider></mat-divider>
               </td>
             </tr>
-            <tr [attr.data-name]="row.name + '-header'">
+            <tr [attr.data-name]="row.name() + '-header'">
               <ng-container
-              *ngTemplateOutlet="row.headerCell?.template ?? defaultHeaderCell; context: { $implicit: row.name }"></ng-container>
+              *ngTemplateOutlet="row.headerCell?.template ?? defaultHeaderCell; context: { $implicit: row.name() }"></ng-container>
             </tr>
-            <tr [attr.data-name]="row.name + '-value'">
+            <tr [attr.data-name]="row.name() + '-value'">
               <ng-template [ngIfThen]="content" [ngIf]="row.name"></ng-template>
             </tr>
             <tr>
@@ -53,9 +53,9 @@ never shown. -->
                 </td>
               </tr>
             }
-            <tr [attr.data-name]="row.name" [ngClass]="{ 'sub-header text-2xl': row.isSubHeader }">
+            <tr [attr.data-name]="row.name()" [ngClass]="{ 'sub-header text-2xl': row.isSubHeader }">
               <ng-container
-              *ngTemplateOutlet="row.headerCell?.template ?? defaultHeaderCell; context: { $implicit: row.name }"></ng-container>
+              *ngTemplateOutlet="row.headerCell?.template ?? defaultHeaderCell; context: { $implicit: row.name() }"></ng-container>
               <ng-template [ngIfThen]="content" [ngIf]="row.name"></ng-template>
             </tr>
           }
@@ -64,7 +64,7 @@ never shown. -->
           <!-- endregion -->
         }
         <ng-template #content>
-      <td [attr.colspan]="row.flip ? 2 : 1" [ngClass]="{
+      <td [attr.colspan]="row.flip() ? 2 : 1" [ngClass]="{
       'h-20': row.editCell?.template && (isEditMode || isFormMode) && false,
       }" class="pl-8 pr-4 w-full py-2">
             <ng-template [ngIfThen]="editMode" [ngIf]="row.editCell?.template && (isEditMode || isFormMode)"></ng-template>
@@ -73,11 +73,11 @@ never shown. -->
           </td>
           <ng-template #viewMode>
             <ng-container
-            *ngTemplateOutlet="row.cell?.template ?? defaultCell;context: { $implicit: data$ | dataGridValue: row.name | async, data: data$ | async }"></ng-container>
+            *ngTemplateOutlet="row.cell?.template ?? defaultCell;context: { $implicit: data$ | dataGridValue: row.name() | async, data: data$ | async }"></ng-container>
           </ng-template>
           <ng-template #editMode>
             <ng-container
-            *ngTemplateOutlet="row.editCell?.template ?? row.cell?.template ?? defaultCell;context: { $implicit: data$ | dataGridValue: row.name | async, data: data$ | async }"></ng-container>
+            *ngTemplateOutlet="row.editCell?.template ?? row.cell?.template ?? defaultCell;context: { $implicit: data$ | dataGridValue: row.name() | async, data: data$ | async }"></ng-container>
           </ng-template>
         </ng-template>
       }

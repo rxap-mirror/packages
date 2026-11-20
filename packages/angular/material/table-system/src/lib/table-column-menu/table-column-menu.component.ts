@@ -53,11 +53,15 @@ export class TableColumnMenuComponent implements AfterContentInit {
    * true - the menu is displayed inline and not absolute
    * @param value
    */
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set inline(value: boolean | '') {
     this._inline = coerceBoolean(value);
   }
 
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   public set matCard(value: boolean | '') {
     this._matCardMode = coerceBoolean(value);
@@ -77,20 +81,20 @@ export class TableColumnMenuComponent implements AfterContentInit {
       );
     }
     this.displayColumns = this.columns
-                              .filter((option) => option.active)
-                              .map((option) => option.name);
+                              .filter((option) => option.active())
+                              .map((option) => option.name());
   }
 
   public activate(columnName: string) {
     this.columns
-        ?.filter((option) => option.name === columnName)
+        ?.filter((option) => option.name() === columnName)
         .forEach((column) => column.activate());
     this.updateDisplayColumns();
   }
 
   public deactivate(columnName: string) {
     this.columns
-        ?.filter((option) => option.name === columnName)
+        ?.filter((option) => option.name() === columnName)
         .forEach((column) => column.deactivate());
     this.updateDisplayColumns();
   }

@@ -8,12 +8,12 @@ import {
   inject,
   INJECTOR,
   Injector,
-  Input,
   isDevMode,
   OnChanges,
   OnDestroy,
   QueryList,
   SimpleChanges,
+  input
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
@@ -54,17 +54,13 @@ export interface TableSelectControlDirective<Data extends Record<string, any>>
 export class TableSelectControlDirective<Data extends Record<string, any> = Record<string, any>>
   implements AfterViewInit, AfterContentInit, OnChanges, OnDestroy {
 
-  @Input()
-  public multiple?: boolean;
+  public readonly multiple = input<boolean>();
 
-  @Input()
-  public openMethod!: Method<Data[], WindowTableSelectOptions<Data>>;
+  public readonly openMethod = input.required<Method<Data[], WindowTableSelectOptions<Data>>>();
 
-  @Input()
-  public data?: Data[] | BaseDataSource<Data[]> | AbstractTableDataSource<Data>;
+  public readonly data = input<Data[] | BaseDataSource<Data[]> | AbstractTableDataSource<Data>>();
 
-  @Input()
-  public columns?: Map<string, TableSelectColumn> | Record<string, TableSelectColumn>;
+  public readonly columns = input<Map<string, TableSelectColumn> | Record<string, TableSelectColumn>>();
 
   public ngControl: NgControl | null = null;
 
@@ -80,8 +76,7 @@ export class TableSelectControlDirective<Data extends Record<string, any> = Reco
 
   @ContentChild('mat-label')
   public matLabel?: ElementRef;
-  @Input()
-  public toValue?: (value: Data) => unknown | Promise<unknown>;
+  public readonly toValue = input<(value: Data) => unknown | Promise<unknown>>();
   public readonly injector: Injector          = inject(INJECTOR);
   // required for the use mixin ExtractDatasourceMixin
   public readonly dataSourceLoader            = inject(DataSourceLoader);
@@ -93,8 +88,7 @@ export class TableSelectControlDirective<Data extends Record<string, any> = Reco
     return this.value !== null ? [ this.value ] : [];
   }
 
-  @Input()
-  public toDisplay: (value: Data) => string | Promise<string> = value => value as any;
+  public readonly toDisplay = input<(value: Data) => string | Promise<string>>(value => value as any);
 
   public ngOnChanges(changes: SimpleChanges) {
     const columnsChange = changes['columns'];
@@ -115,8 +109,8 @@ export class TableSelectControlDirective<Data extends Record<string, any> = Reco
     if (this.ngControl) {
       if (this.ngControl.control instanceof RxapFormControl) {
         this.data      = this.extractTableSelectDataSource();
-        this.toDisplay = this.extractTableSelectToDisplay() ?? this.toDisplay;
-        this.toValue   = this.extractTableSelectToValue() ?? this.toValue;
+        this.toDisplay = this.extractTableSelectToDisplay() ?? this.toDisplay();
+        this.toValue   = this.extractTableSelectToValue() ?? this.toValue();
         this.columns   = this.extractTableSelectColumnMap();
       }
       this.updateOpenTableSelectWindow();
@@ -149,8 +143,9 @@ export class TableSelectControlDirective<Data extends Record<string, any> = Reco
   }
 
   private updateTableSelectInput() {
-    if (this.toDisplay) {
-      this.tableSelectInput.toDisplay = this.toDisplay.bind(this);
+    const toDisplay = this.toDisplay();
+    if (toDisplay) {
+      this.tableSelectInput.toDisplay = toDisplay.bind(this);
     }
   }
 
@@ -164,16 +159,19 @@ export class TableSelectControlDirective<Data extends Record<string, any> = Reco
   private updateOpenTableSelectWindow() {
     for (const openTableSelectWindow of this.openTableSelectWindow) {
       openTableSelectWindow.disabled = this.disabled;
-      if (this.columns) {
-        openTableSelectWindow.columns = this.columns;
+      const columns = this.columns();
+      if (columns) {
+        openTableSelectWindow.columns = columns;
       }
-      if (this.data) {
-        openTableSelectWindow.data = this.data;
+      const data = this.data();
+      if (data) {
+        openTableSelectWindow.data = data;
       }
-      if (this.toValue) {
+      if (this.toValue()) {
         openTableSelectWindow.compareWith = ((o1: Data, o2: Data) => {
-          if (this.toValue) {
-            return this.toValue(o1) === this.toValue(o2);
+          const toValue = this.toValue();
+          if (toValue) {
+            return toValue(o1) === toValue(o2);
           }
           return o1 === o2;
         });
@@ -193,7 +191,7 @@ export class TableSelectControlDirective<Data extends Record<string, any> = Reco
 
   private async onSelected($event: Data[]) {
     if ($event?.length) {
-      this.tableSelectInput.display = await this.toDisplay($event[0]);
+      this.tableSelectInput.display = await this.toDisplay()($event[0]);
       this.value                    = $event[0];
       this.tableSelectInput.setValue(this.value);
     } else {

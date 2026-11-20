@@ -1,6 +1,6 @@
 import {
   Directive,
-  Input,
+  input
 } from '@angular/core';
 import { AbstractTableRowAction } from './abstract-table-row-action';
 
@@ -13,18 +13,13 @@ import { AbstractTableRowAction } from './abstract-table-row-action';
 export class TableRowActionDirective<Data extends Record<string, any>> extends AbstractTableRowAction<Data> {
 
 
-  @Input({
-    required: true,
-    alias: 'rxapTableRowAction',
-  })
-  public type!: string;
+  public readonly type = input.required<string>({ alias: "rxapTableRowAction" });
 
-  @Input({ required: true })
-  public element!: Data;
+  public readonly element = input.required<Data>();
 
 
   protected getElementList(): Data[] {
-    return [ this.element ];
+    return [ this.element() ];
   }
 
 }

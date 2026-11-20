@@ -1,5 +1,5 @@
 <button type="button" mat-icon-button>
-  @if (expandCell.isExpanded$(element) | async) {
+  @if (expandCell.isExpanded$(element()) | async) {
     <mat-icon>expand_more</mat-icon>
   } @else {
     <mat-icon>keyboard_arrow_right</mat-icon>

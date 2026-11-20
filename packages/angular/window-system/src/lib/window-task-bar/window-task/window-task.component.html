@@ -1,6 +1,6 @@
-<div (click)="reopen()" [ngClass]="{ minimized: window.isMinimized }"
+<div (click)="reopen()" [ngClass]="{ minimized: window().isMinimized }"
   class="rxap-container mat-elevation-z2 flex flex-row justify-start items-center gap-2">
-  @if (window.settings$ | async; as settings) {
+  @if (window().settings$ | async; as settings) {
     @if (settings.icon) {
       <mat-icon [rxapIcon]="settings.icon"></mat-icon>
     }

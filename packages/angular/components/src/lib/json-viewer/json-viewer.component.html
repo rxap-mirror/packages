@@ -21,7 +21,7 @@
       </section>
       @if (segment.expanded && isExpandable(segment)) {
         <section class="children">
-          <rxap-json-viewer [expanded]="expanded" [json]="segment.value"></rxap-json-viewer>
+          <rxap-json-viewer [expanded]="expanded()" [json]="segment.value"></rxap-json-viewer>
         </section>
       }
     </section>

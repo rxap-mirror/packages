@@ -22,6 +22,7 @@ import {
   TemplateRef,
   TrackByFunction,
   ViewContainerRef,
+  input
 } from '@angular/core';
 import {
   BaseDataSource,
@@ -89,19 +90,12 @@ export interface DataSourceCollectionErrorTemplateContext {
 export class DataSourceCollectionDirective<Data = any>
   implements OnChanges, OnDestroy, AfterViewInit, DoCheck {
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input({
-    required: true,
-    alias: 'rxapDataSourceCollectionFrom',
-  })
-  public dataSourceOrIdOrToken!: IdOrInstanceOrToken<BaseDataSource<Data[]>>;
-  @Input('rxapDataSourceCollectionViewer')
-  public viewer: BaseDataSourceViewer = { id: '[rxapDataSourceCollection]' };
+  public readonly dataSourceOrIdOrToken = input.required<IdOrInstanceOrToken<BaseDataSource<Data[]>>>({ alias: "rxapDataSourceCollectionFrom" });
+  public readonly viewer = input<BaseDataSourceViewer>({ id: '[rxapDataSourceCollection]' }, { alias: "rxapDataSourceCollectionViewer" });
   public dataSource: BaseDataSource<Data[]> | null = null;
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('rxapDataSourceCollectionEmpty')
-  public emptyTemplate?: TemplateRef<void>;
-  @Input('rxapDataSourceCollectionErrorTemplate')
-  public errorTemplate?: TemplateRef<DataSourceCollectionErrorTemplateContext>;
+  public readonly emptyTemplate = input<TemplateRef<void>>(undefined, { alias: "rxapDataSourceCollectionEmpty" });
+  public readonly errorTemplate = input<TemplateRef<DataSourceCollectionErrorTemplateContext>>(undefined, { alias: "rxapDataSourceCollectionErrorTemplate" });
   @Output()
   public loaded = new EventEmitter();
   @Output()
@@ -172,6 +166,8 @@ export class DataSourceCollectionDirective<Data = any>
    * The function receives two inputs,
    * the iteration index and the node object ID.
    */
+  // TODO: Skipped for migration because:
+  //  Accessor inputs cannot be migrated as they are too complex.
   @Input()
   set rxapDataSourceCollectionTrackBy(fn: TrackByFunction<Data>) {
     if (isDevMode() && fn != null && typeof fn !== 'function') {
@@ -240,7 +236,7 @@ export class DataSourceCollectionDirective<Data = any>
     this._differ = null;
     this._empty = null;
     this.viewContainerRef.clear();
-    this.dataSource?.disconnect(this.viewer);
+    this.dataSource?.disconnect(this.viewer());
     this.subscription.unsubscribe();
     this._dataSourceLoadingSubscription?.unsubscribe();
   }
@@ -254,9 +250,10 @@ export class DataSourceCollectionDirective<Data = any>
       this._differ = null;
 
       // attaches the empty template if the data source is empty
-      if (this.emptyTemplate) {
+      const emptyTemplate = this.emptyTemplate();
+      if (emptyTemplate) {
         this._emptyTemplateViewRef = this.viewContainerRef.createEmbeddedView(
-          this.emptyTemplate,
+          emptyTemplate,
         );
       }
     } else if (this._empty === false) {
@@ -294,7 +291,8 @@ export class DataSourceCollectionDirective<Data = any>
   }
 
   public embedErrorTemplate(error: unknown | null) {
-    if (!this.errorTemplate) {
+    const errorTemplate = this.errorTemplate();
+    if (!errorTemplate) {
       if (isDevMode()) {
         console.log('Skip error template embedding. ErrorTemplate is not defined');
       }
@@ -309,7 +307,7 @@ export class DataSourceCollectionDirective<Data = any>
     this.embeddedErrorViewRef?.destroy();
     this.viewContainerRef.clear();
     this.embeddedErrorViewRef = this.viewContainerRef.createEmbeddedView(
-      this.errorTemplate,
+      errorTemplate,
       context,
     );
     this.cdr.detectChanges();
@@ -317,7 +315,7 @@ export class DataSourceCollectionDirective<Data = any>
 
   protected connect() {
     if (this.dataSource) {
-      this.connection$ = this.dataSource.connect(this.viewer);
+      this.connection$ = this.dataSource.connect(this.viewer());
       this.zone.onStable
           .pipe(
             take(1),
@@ -417,17 +415,18 @@ export class DataSourceCollectionDirective<Data = any>
 
   protected loadDataSource(): BaseDataSource<Data[]> | null {
     let dataSource: BaseDataSource | null = null;
-    if (typeof this.dataSourceOrIdOrToken === 'string') {
+    const dataSourceOrIdOrToken = this.dataSourceOrIdOrToken();
+    if (typeof dataSourceOrIdOrToken === 'string') {
       dataSource = this.dataSourceLoader.load<BaseDataSource<Data[]>>(
-        this.dataSourceOrIdOrToken,
+        dataSourceOrIdOrToken,
         undefined,
         this.injector,
       );
-    } else if (this.dataSourceOrIdOrToken instanceof BaseDataSource) {
-      dataSource = this.dataSourceOrIdOrToken;
-    } else if (this.dataSourceOrIdOrToken !== null) {
+    } else if (dataSourceOrIdOrToken instanceof BaseDataSource) {
+      dataSource = dataSourceOrIdOrToken;
+    } else if (dataSourceOrIdOrToken !== null) {
       dataSource = this.injector.get<BaseDataSource<Data[]>>(
-        this.dataSourceOrIdOrToken,
+        dataSourceOrIdOrToken,
       );
     }
     this._dataSourceLoadingSubscription?.unsubscribe();

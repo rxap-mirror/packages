@@ -13,11 +13,11 @@ import {
   inject,
   Injector,
   INJECTOR,
-  Input,
   QueryList,
   ViewChildren,
   ViewContainerRef,
   ViewRef,
+  input
 } from '@angular/core';
 import { RXAP_WINDOW_REF } from '@rxap/window-system';
 import {
@@ -85,8 +85,7 @@ export class MockWindowRef<O = any, R = any> extends Subject<R> {
 })
 export class WindowTestWrapperComponent implements AfterViewInit {
 
-  @Input({required: true})
-  component!: ComponentType<unknown>;
+  readonly component = input.required<ComponentType<unknown>>();
 
   content: Portal<unknown> | null = null;
   footer: Portal<unknown> | null = null;
@@ -123,7 +122,7 @@ export class WindowTestWrapperComponent implements AfterViewInit {
     windowRef.footerPortal$.pipe(
       tap((portal) => this.footer = portal),
     ).subscribe();
-    this.content = new ComponentPortal(this.component, this.viewContainerRef, injector);
+    this.content = new ComponentPortal(this.component(), this.viewContainerRef, injector);
   }
 
 }

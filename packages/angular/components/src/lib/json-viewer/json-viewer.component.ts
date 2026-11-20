@@ -5,11 +5,11 @@ import {
   Component,
   forwardRef,
   Inject,
-  Input,
   isDevMode,
   OnChanges,
   OnInit,
   SimpleChanges,
+  input
 } from '@angular/core';
 import { isTeardownLogic } from '@rxap/rxjs';
 import {
@@ -41,8 +41,8 @@ export interface Segment {
 export class JsonViewerComponent implements OnInit, OnChanges {
 
   // TODO : add object input. The json input will not be cleaned
-  @Input() public json: object | Record<string | number | symbol, unknown> = {};
-  @Input() public expanded = false;
+  public readonly json = input<object | Record<string | number | symbol, unknown>>({});
+  public readonly expanded = input(false);
 
   public inspectValue: any;
 
@@ -73,7 +73,7 @@ export class JsonViewerComponent implements OnInit, OnChanges {
   }
 
   public ngOnInit() {
-    this.setInspectValue(this.json);
+    this.setInspectValue(this.json());
   }
 
   public ngOnChanges(changes: SimpleChanges): void {
@@ -162,7 +162,7 @@ export class JsonViewerComponent implements OnInit, OnChanges {
       value: value,
       type: undefined,
       description: '' + value,
-      expanded: this.expanded,
+      expanded: this.expanded(),
     };
 
     switch (typeof segment.value) {

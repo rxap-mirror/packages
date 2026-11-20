@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   Inject,
-  Input,
+  input
 } from '@angular/core';
 import { ExpandRowService } from '../expand-row.service';
 import { Required } from '@rxap/utilities';
@@ -20,11 +20,7 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class ExpandControlsCellComponent<Data extends Record<string, any>> {
 
-  @Input({
-    required: true,
-    alias: 'rxap-expand-controls-cell',
-  })
-  public element!: Data;
+  public readonly element = input.required<Data>({ alias: "rxap-expand-controls-cell" });
 
   constructor(
     @Inject(ExpandRowService)
