@@ -1,3 +1,17 @@
+## 1.3.13-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** lint for angular21/nx22 (prefer-inject/prefer-control-flow off, config.js boundary, rxap resolve)
+
+### 🧱 Updated Dependencies
+
+- Updated utilities to 16.5.2-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 1.3.12 (2026-11-20)
 
 ### 🧱 Updated Dependencies

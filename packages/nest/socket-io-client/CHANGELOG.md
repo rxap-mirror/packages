@@ -1,3 +1,13 @@
+## 11.0.2-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 11.0.1 (2026-11-20)
 
 This was a version bump only for nest-socket-io-client to align it with other projects, there were no code changes.

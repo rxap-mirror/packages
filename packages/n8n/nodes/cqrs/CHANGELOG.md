@@ -1,3 +1,18 @@
+## 0.0.8-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+
+### 🧱 Updated Dependencies
+
+- Updated n8n-utilities to 1.2.4-dev.0
+- Updated utilities to 16.5.2-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 0.0.7 (2026-11-20)
 
 ### 🧱 Updated Dependencies

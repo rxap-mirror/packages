@@ -1,5 +1,5 @@
 {
-  "version": "21.0.0",
+  "version": "21.0.1-dev.0",
   "name": "@rxap/ngx-memory",
   "description": "This package provides Angular services and decorators for interacting with web storage (localStorage and sessionStorage) and in-memory storage. It offers a simple way to manage data persistence with expiration options and provides decorators for binding class properties directly to storage values. The package includes services for local storage, session storage, and ephemeral (in-memory) storage.\n",
   "license": "GPL-3.0-or-later",
@@ -32,8 +32,12 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@angular/compiler",
+        "version": "21.2.9"
+      },
+      {
         "package": "@angular/core",
-        "version": "19.2.16"
+        "version": "21.2.9"
       }
     ]
   },

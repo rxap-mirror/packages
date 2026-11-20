@@ -1,3 +1,10 @@
+## 11.0.2-dev.0 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated nest-rabbitmq to 11.0.2-dev.0
+- Updated nest-vault to 11.0.2-dev.0
+
 ## 11.0.1 (2026-11-20)
 
 This was a version bump only for nest-rabbitmq-vault to align it with other projects, there were no code changes.

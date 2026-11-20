@@ -1,3 +1,20 @@
+## 11.0.3-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 22.0.1-dev.0
+- Updated nest-utilities to 11.0.2-dev.0
+- Updated nest-logger to 11.0.3-dev.0
+- Updated ts-morph to 1.7.1-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 11.0.2 (2026-11-20)
 
 ### 🧱 Updated Dependencies

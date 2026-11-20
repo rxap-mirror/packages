@@ -1,3 +1,7 @@
+## 22.0.1-dev.0 (2026-11-20)
+
+This was a version bump only for workspace-cypress to align it with other projects, there were no code changes.
+
 ## 19.0.5 (2026-11-20)
 
 This was a version bump only for workspace-cypress to align it with other projects, there were no code changes.

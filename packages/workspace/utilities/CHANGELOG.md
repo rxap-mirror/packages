@@ -1,3 +1,19 @@
+## 22.0.1-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** nx22 angular library schema + TargetConfiguration inputs type
+- **upgrade:** nx22 CoerceTarget type + angular21 typeCheckHostBindings
+
+### 🧱 Updated Dependencies
+
+- Updated node-utilities to 1.3.13-dev.0
+- Updated utilities to 16.5.2-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 19.9.1 (2026-11-20)
 
 ### 🧱 Updated Dependencies

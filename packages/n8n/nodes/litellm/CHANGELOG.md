@@ -1,3 +1,13 @@
+## 0.0.6-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** angular 20 / ts 5.9 code fixes across libraries
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 0.0.5 (2026-11-20)
 
 This was a version bump only for n8n-nodes-litellm to align it with other projects, there were no code changes.

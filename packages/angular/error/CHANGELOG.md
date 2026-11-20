@@ -1,3 +1,22 @@
+## 21.0.1-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+
+### 🧱 Updated Dependencies
+
+- Updated angular-environment to 21.0.1-dev.0
+- Updated angular-components to 21.0.1-dev.0
+- Updated angular-data-grid to 21.0.1-dev.0
+- Updated angular-open-api to 21.0.1-dev.0
+- Updated angular-config to 21.0.1-dev.0
+- Updated utilities to 16.5.2-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 19.3.0 (2026-11-20)
 
 This was a version bump only for angular-error to align it with other projects, there were no code changes.

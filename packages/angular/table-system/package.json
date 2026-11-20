@@ -1,5 +1,5 @@
 {
-  "version": "21.0.0",
+  "version": "21.0.1-dev.0",
   "name": "@rxap/table-system",
   "description": "This package provides a set of Angular directives, components, and services to enhance data tables with features like row expansion, full-text search, and row selection with checkboxes. It includes modules for easy integration of these features into existing Angular Material tables. The package offers components for controlling row expansion, displaying checkbox-based row selection, and filtering table data using full-text search.\n",
   "license": "GPL-3.0-or-later",
@@ -14,9 +14,9 @@
     "@angular/core": "^21.2.9",
     "@angular/forms": "^21.2.9",
     "@angular/material": "^21.2.9",
-    "@rxap/data-source": "^21.0.0",
-    "@rxap/material-table-system": "^21.0.0",
-    "@rxap/utilities": "^16.5.1",
+    "@rxap/data-source": "^21.0.1-dev.0",
+    "@rxap/material-table-system": "^21.0.1-dev.0",
+    "@rxap/utilities": "^16.5.2-dev.0",
     "rxjs": "^7.8.2"
   },
   "author": {
@@ -42,107 +42,107 @@
     "packageGroup": [
       {
         "package": "@angular/animations",
-        "version": "19.2.16"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/cdk",
-        "version": "19.2.19"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/common",
-        "version": "19.2.16"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/core",
-        "version": "19.2.16"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/forms",
-        "version": "19.2.16"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/material",
-        "version": "19.2.19"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "19.2.16"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/router",
-        "version": "19.2.16"
+        "version": "21.2.9"
       },
       {
         "package": "@rxap/browser-utilities",
-        "version": "1.1.14"
+        "version": "1.1.15-dev.0"
       },
       {
         "package": "@rxap/components",
-        "version": "19.2.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.2.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.18"
+        "version": "1.1.19-dev.0"
       },
       {
         "package": "@rxap/definition",
-        "version": "19.0.5"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "19.2.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.2.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "19.2.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "19.2.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "19.1.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "19.1.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.15"
+        "version": "1.1.16-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.17"
+        "version": "1.0.18-dev.0"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.17"
+        "version": "1.1.18-dev.0"
       },
       {
         "package": "@rxap/services",
-        "version": "19.1.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.1"
+        "version": "16.5.2-dev.0"
       },
       {
         "package": "@rxap/validator",
-        "version": "3.0.14"
+        "version": "3.0.15-dev.0"
       },
       {
         "package": "@rxap/window-system",
-        "version": "19.0.5"
+        "version": "21.0.1-dev.0"
       }
     ]
   },

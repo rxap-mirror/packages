@@ -1,5 +1,5 @@
 {
-  "version": "21.0.0",
+  "version": "21.0.1-dev.0",
   "name": "@rxap/form-system",
   "description": "This package provides a set of directives, decorators, mixins, and validators to simplify the creation of dynamic forms in Angular applications. It offers features such as automatic control creation, data source integration, component customization, and hide/show logic based on form state. The library aims to streamline form development by providing reusable components and abstractions for common form-related tasks.\n",
   "license": "GPL-3.0-or-later",
@@ -12,17 +12,17 @@
     "@angular/forms": "^21.2.9",
     "@angular/material": "^21.2.9",
     "@angular/router": "^21.2.9",
-    "@rxap/data-source": "^21.0.0",
-    "@rxap/definition": "^21.0.0",
-    "@rxap/forms": "^21.0.0",
-    "@rxap/mixin": "^16.0.16",
-    "@rxap/open-api": "^21.0.0",
-    "@rxap/pattern": "^1.1.15",
-    "@rxap/reflect-metadata": "^1.0.17",
-    "@rxap/remote-method": "^21.0.0",
-    "@rxap/rxjs": "^1.1.17",
-    "@rxap/utilities": "^16.5.1",
-    "@rxap/validator": "^3.0.14",
+    "@rxap/data-source": "^21.0.1-dev.0",
+    "@rxap/definition": "^21.0.1-dev.0",
+    "@rxap/forms": "^21.0.1-dev.0",
+    "@rxap/mixin": "^16.0.17-dev.0",
+    "@rxap/open-api": "^21.0.1-dev.0",
+    "@rxap/pattern": "^1.1.16-dev.0",
+    "@rxap/reflect-metadata": "^1.0.18-dev.0",
+    "@rxap/remote-method": "^21.0.1-dev.0",
+    "@rxap/rxjs": "^1.1.18-dev.0",
+    "@rxap/utilities": "^16.5.2-dev.0",
+    "@rxap/validator": "^3.0.15-dev.0",
     "rxjs": "^7.8.2"
   },
   "author": {
@@ -48,95 +48,99 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "19.2.19"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/common",
-        "version": "19.2.16"
+        "version": "21.2.9"
+      },
+      {
+        "package": "@angular/compiler",
+        "version": "21.2.9"
       },
       {
         "package": "@angular/core",
-        "version": "19.2.16"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/forms",
-        "version": "19.2.16"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/material",
-        "version": "19.2.19"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "19.2.16"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/router",
-        "version": "19.2.16"
+        "version": "21.2.9"
       },
       {
         "package": "@rxap/config",
-        "version": "19.3.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "19.2.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.18"
+        "version": "1.1.19-dev.0"
       },
       {
         "package": "@rxap/definition",
-        "version": "19.0.5"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "19.2.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "19.2.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "19.2.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.16"
+        "version": "16.0.17-dev.0"
       },
       {
         "package": "@rxap/open-api",
-        "version": "19.3.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.15"
+        "version": "1.1.16-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.17"
+        "version": "1.0.18-dev.0"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "19.2.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.17"
+        "version": "1.1.18-dev.0"
       },
       {
         "package": "@rxap/services",
-        "version": "19.1.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.1"
+        "version": "16.5.2-dev.0"
       },
       {
         "package": "@rxap/validator",
-        "version": "3.0.14"
+        "version": "3.0.15-dev.0"
       }
     ]
   },

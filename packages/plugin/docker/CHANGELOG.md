@@ -1,3 +1,12 @@
+## 22.0.1-dev.0 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 22.0.1-dev.0
+- Updated plugin-gitlab-ci to 22.0.1-dev.0
+- Updated plugin-utilities to 22.0.1-dev.0
+- Updated node-utilities to 1.3.13-dev.0
+
 ## 20.1.3 (2026-11-20)
 
 ### 🧱 Updated Dependencies

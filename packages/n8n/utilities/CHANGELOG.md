@@ -1,3 +1,9 @@
+## 1.2.4-dev.0 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated utilities to 16.5.2-dev.0
+
 ## 1.2.3 (2026-11-20)
 
 ### 🧱 Updated Dependencies

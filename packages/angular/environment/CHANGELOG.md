@@ -1,3 +1,7 @@
+## 21.0.1-dev.0 (2026-11-20)
+
+This was a version bump only for angular-environment to align it with other projects, there were no code changes.
+
 ## 19.2.0 (2026-11-20)
 
 This was a version bump only for angular-environment to align it with other projects, there were no code changes.

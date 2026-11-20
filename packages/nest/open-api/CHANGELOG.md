@@ -1,3 +1,21 @@
+## 11.0.2-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+- **upgrade:** angular 20 / ts 5.9 code fixes across libraries
+
+### 🧱 Updated Dependencies
+
+- Updated nest-utilities to 11.0.2-dev.0
+- Updated node-utilities to 1.3.13-dev.0
+- Updated nest-testing to 11.0.2-dev.0
+- Updated utilities to 16.5.2-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 11.0.1 (2026-11-20)
 
 This was a version bump only for nest-open-api to align it with other projects, there were no code changes.

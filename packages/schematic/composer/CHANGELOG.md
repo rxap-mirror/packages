@@ -1,3 +1,20 @@
+## 21.0.1-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** dedupe @angular-devkit to 21.2.16 (single instance for test type identity)
+
+### 🧱 Updated Dependencies
+
+- Updated schematic-utilities to 21.0.1-dev.0
+- Updated workspace-utilities to 22.0.1-dev.0
+- Updated schematic-ts-morph to 21.0.1-dev.0
+- Updated utilities to 16.5.2-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 19.1.3 (2026-11-20)
 
 ### 🧱 Updated Dependencies

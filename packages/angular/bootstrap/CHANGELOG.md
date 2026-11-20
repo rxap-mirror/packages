@@ -1,3 +1,10 @@
+## 21.0.1-dev.0 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-environment to 21.0.1-dev.0
+- Updated angular-config to 21.0.1-dev.0
+
 ## 19.1.0 (2026-11-20)
 
 This was a version bump only for angular-bootstrap to align it with other projects, there were no code changes.

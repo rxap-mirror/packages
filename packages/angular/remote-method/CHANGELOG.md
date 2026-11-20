@@ -1,3 +1,20 @@
+## 21.0.1-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+- **upgrade:** production-build strict errors for angular 20 / ts 5.9
+
+### 🧱 Updated Dependencies
+
+- Updated angular-definition to 21.0.1-dev.0
+- Updated utilities to 16.5.2-dev.0
+- Updated rxjs to 1.1.18-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 19.2.0 (2026-11-20)
 
 This was a version bump only for angular-remote-method to align it with other projects, there were no code changes.

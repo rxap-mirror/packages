@@ -1,5 +1,5 @@
 {
-  "version": "21.0.0",
+  "version": "21.0.1-dev.0",
   "name": "@rxap/window-system",
   "description": "A module for creating and managing windows within an Angular application. It provides components for window containers, toolbars, resizers, action bars, and task bars, along with services for managing window instances and configurations. This library allows developers to create a desktop-like experience within their web applications.\n",
   "license": "GPL-3.0-or-later",
@@ -12,11 +12,11 @@
     "@angular/common": "^21.2.9",
     "@angular/core": "^21.2.9",
     "@angular/material": "^21.2.9",
-    "@rxap/directives": "^21.0.0",
-    "@rxap/material-directives": "^21.0.0",
-    "@rxap/rxjs": "^1.1.17",
-    "@rxap/services": "^21.0.0",
-    "@rxap/utilities": "^16.5.1",
+    "@rxap/directives": "^21.0.1-dev.0",
+    "@rxap/material-directives": "^21.0.1-dev.0",
+    "@rxap/rxjs": "^1.1.18-dev.0",
+    "@rxap/services": "^21.0.1-dev.0",
+    "@rxap/utilities": "^16.5.2-dev.0",
     "rxjs": "^7.8.2"
   },
   "author": {
@@ -42,59 +42,59 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "19.2.19"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/common",
-        "version": "19.2.16"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/core",
-        "version": "19.2.16"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/forms",
-        "version": "19.2.16"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/material",
-        "version": "19.2.19"
+        "version": "21.2.9"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "19.2.16"
+        "version": "21.2.9"
       },
       {
         "package": "@rxap/browser-utilities",
-        "version": "1.1.14"
+        "version": "1.1.15-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "19.2.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "19.2.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "19.1.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.15"
+        "version": "1.1.16-dev.0"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.17"
+        "version": "1.1.18-dev.0"
       },
       {
         "package": "@rxap/services",
-        "version": "19.1.0"
+        "version": "21.0.1-dev.0"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.1"
+        "version": "16.5.2-dev.0"
       }
     ]
   },

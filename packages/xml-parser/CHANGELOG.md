@@ -1,3 +1,20 @@
+## 16.3.2-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** jest30 env + ora ESM stub + TextEncoder polyfill casts (test infra)
+- **upgrade:** angular 20 / ts 5.9 code fixes across libraries
+
+### 🧱 Updated Dependencies
+
+- Updated reflect-metadata to 1.0.18-dev.0
+- Updated utilities to 16.5.2-dev.0
+- Updated mixin to 16.0.17-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 16.3.1 (2026-11-20)
 
 ### 🧱 Updated Dependencies

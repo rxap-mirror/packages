@@ -1,3 +1,26 @@
+## 21.0.1-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** form-builder detects angular21 NG0201 no-provider error for constructor fallback
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+- **upgrade:** production-build strict errors for angular 20 / ts 5.9
+
+### 🧱 Updated Dependencies
+
+- Updated angular-definition to 21.0.1-dev.0
+- Updated angular-directives to 21.0.1-dev.0
+- Updated angular-services to 21.0.1-dev.0
+- Updated reflect-metadata to 1.0.18-dev.0
+- Updated utilities to 16.5.2-dev.0
+- Updated validator to 3.0.15-dev.0
+- Updated pattern to 1.1.16-dev.0
+- Updated rxjs to 1.1.18-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 19.2.0 (2026-11-20)
 
 This was a version bump only for angular-forms to align it with other projects, there were no code changes.

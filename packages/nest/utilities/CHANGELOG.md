@@ -1,3 +1,17 @@
+## 11.0.2-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+
+### 🧱 Updated Dependencies
+
+- Updated utilities to 16.5.2-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 11.0.1 (2026-11-20)
 
 This was a version bump only for nest-utilities to align it with other projects, there were no code changes.

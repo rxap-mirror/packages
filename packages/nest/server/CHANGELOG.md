@@ -1,3 +1,10 @@
+## 11.0.2-dev.0 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated nest-utilities to 11.0.2-dev.0
+- Updated utilities to 16.5.2-dev.0
+
 ## 11.0.1 (2026-11-20)
 
 This was a version bump only for nest-server to align it with other projects, there were no code changes.

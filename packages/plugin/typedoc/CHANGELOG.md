@@ -1,3 +1,11 @@
+## 22.0.1-dev.0 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 22.0.1-dev.0
+- Updated plugin-utilities to 22.0.1-dev.0
+- Updated utilities to 16.5.2-dev.0
+
 ## 20.4.2 (2026-11-20)
 
 ### 🧱 Updated Dependencies

@@ -1,3 +1,13 @@
+## 21.0.1-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 19.1.0 (2026-11-20)
 
 This was a version bump only for angular-pub-sub to align it with other projects, there were no code changes.

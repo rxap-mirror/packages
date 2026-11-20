@@ -1,3 +1,11 @@
+## 22.0.1-dev.0 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated json-schema-to-typescript to 16.1.5-dev.0
+- Updated workspace-utilities to 22.0.1-dev.0
+- Updated utilities to 16.5.2-dev.0
+
 ## 19.2.1 (2026-11-20)
 
 ### 🧱 Updated Dependencies

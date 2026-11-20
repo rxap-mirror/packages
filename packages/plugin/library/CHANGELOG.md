@@ -1,3 +1,28 @@
+## 22.0.1-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** unify handlebars version specifier to a single instance
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+- **plugin-library:** remove stray brace in expose-as-schematic glob (nx22 strict glob parsing)
+- **plugin-library:** tolerate collection entries without a schema in json-schema codegen
+
+### 🧱 Updated Dependencies
+
+- Updated json-schema-to-typescript to 16.1.5-dev.0
+- Updated workspace-utilities to 22.0.1-dev.0
+- Updated workspace-ts-morph to 22.0.1-dev.0
+- Updated plugin-utilities to 22.0.1-dev.0
+- Updated node-utilities to 1.3.13-dev.0
+- Updated utilities to 16.5.2-dev.0
+- Updated ts-morph to 1.7.1-dev.0
+
+### ❤️ Thank You
+
+- Claude Opus 4.8
+- Claude Sonnet 5
+- Merzough Münker
+
 ## 20.3.3 (2026-11-20)
 
 ### 🧱 Updated Dependencies

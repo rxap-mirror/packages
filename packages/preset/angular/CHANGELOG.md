@@ -1,3 +1,19 @@
+## 21.0.1-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+- **upgrade:** jest30 env + ora ESM stub + TextEncoder polyfill casts (test infra)
+
+### 🧱 Updated Dependencies
+
+- Updated plugin-workspace to 22.0.1-dev.0
+- Updated plugin-angular to 22.0.1-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 20.0.7 (2026-11-20)
 
 ### 🧱 Updated Dependencies

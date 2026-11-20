@@ -1,3 +1,18 @@
+## 16.0.17-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+
+### 🧱 Updated Dependencies
+
+- Updated reflect-metadata to 1.0.18-dev.0
+- Updated utilities to 16.5.2-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 16.0.16 (2026-11-20)
 
 ### 🧱 Updated Dependencies

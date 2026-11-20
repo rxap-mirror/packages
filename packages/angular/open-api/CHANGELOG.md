@@ -1,3 +1,24 @@
+## 21.0.1-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+
+### 🧱 Updated Dependencies
+
+- Updated angular-remote-method to 21.0.1-dev.0
+- Updated angular-data-source to 21.0.1-dev.0
+- Updated angular-environment to 21.0.1-dev.0
+- Updated angular-config to 21.0.1-dev.0
+- Updated utilities to 16.5.2-dev.0
+- Updated pattern to 1.1.16-dev.0
+- Updated mixin to 16.0.17-dev.0
+- Updated rxjs to 1.1.18-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 19.3.0 (2026-11-20)
 
 This was a version bump only for angular-open-api to align it with other projects, there were no code changes.

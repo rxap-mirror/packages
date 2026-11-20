@@ -1,3 +1,19 @@
+## 22.0.1-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+- **upgrade:** angular 20 / ts 5.9 code fixes across libraries
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 22.0.1-dev.0
+- Updated workspace-ts-morph to 22.0.1-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 20.1.2 (2026-11-20)
 
 ### 🧱 Updated Dependencies

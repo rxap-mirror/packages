@@ -1,3 +1,26 @@
+## 21.0.1-dev.0 (2026-11-20)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+
+### 🧱 Updated Dependencies
+
+- Updated angular-material-directives to 21.0.1-dev.0
+- Updated angular-window-system to 21.0.1-dev.0
+- Updated angular-data-source to 21.0.1-dev.0
+- Updated angular-components to 21.0.1-dev.0
+- Updated angular-directives to 21.0.1-dev.0
+- Updated reflect-metadata to 1.0.18-dev.0
+- Updated angular-forms to 21.0.1-dev.0
+- Updated utilities to 16.5.2-dev.0
+- Updated pattern to 1.1.16-dev.0
+- Updated rxjs to 1.1.18-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 19.1.0 (2026-11-20)
 
 This was a version bump only for angular-material-table-system to align it with other projects, there were no code changes.

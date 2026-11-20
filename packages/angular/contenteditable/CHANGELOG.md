@@ -1,3 +1,10 @@
+## 21.0.1-dev.0 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated utilities to 16.5.2-dev.0
+- Updated pattern to 1.1.16-dev.0
+
 ## 19.0.5 (2026-11-20)
 
 This was a version bump only for angular-contenteditable to align it with other projects, there were no code changes.

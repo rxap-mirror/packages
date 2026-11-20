@@ -1,3 +1,7 @@
+## 11.0.2-dev.0 (2026-11-20)
+
+This was a version bump only for nest-firebase to align it with other projects, there were no code changes.
+
 ## 11.0.1 (2026-11-20)
 
 This was a version bump only for nest-firebase to align it with other projects, there were no code changes.

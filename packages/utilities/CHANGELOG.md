@@ -1,3 +1,7 @@
+## 16.5.2-dev.0 (2026-11-20)
+
+This was a version bump only for utilities to align it with other projects, there were no code changes.
+
 ## 16.5.1 (2026-11-20)
 
 This was a version bump only for utilities to align it with other projects, there were no code changes.

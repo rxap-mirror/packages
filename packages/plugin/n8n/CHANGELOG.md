@@ -1,3 +1,13 @@
+## 22.0.1-dev.0 (2026-11-20)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 22.0.1-dev.0
+- Updated workspace-ts-morph to 22.0.1-dev.0
+- Updated plugin-library to 22.0.1-dev.0
+- Updated utilities to 16.5.2-dev.0
+- Updated ts-morph to 1.7.1-dev.0
+
 ## 20.2.2 (2026-11-20)
 
 ### 🧱 Updated Dependencies
