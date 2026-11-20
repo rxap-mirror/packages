@@ -10735,7 +10735,7 @@ __metadata:
     "@nestjs/common": ^11.1.27
     "@nestjs/config": ^4.0.4
     "@nestjs/core": ^11.1.27
-    "@rxap/nest-logger": ^11.0.1-dev.2
+    "@rxap/nest-logger": ^11.0.2-dev.0
     "@rxap/nest-utilities": ^11.0.1-dev.0
     "@sentry/core": ^10.10.0
     "@sentry/nestjs": ^10.10.0
@@ -10880,6 +10880,9 @@ __metadata:
     "@rxap/config": ^21.0.0
     "@rxap/environment": ^21.0.0
     ngx-logger: ^5.0.12
+  peerDependenciesMeta:
+    "@angular/platform-browser-dynamic":
+      optional: true
   languageName: unknown
   linkType: soft
 
