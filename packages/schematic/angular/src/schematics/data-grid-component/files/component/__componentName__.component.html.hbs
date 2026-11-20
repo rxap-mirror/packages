@@ -14,7 +14,7 @@
       {{#if isForm}}
       <form #form="rxapForm" rxapForm>
       {{/if}}
-        <rxap-data-grid {{#if collection}}[data]="data"{{else}}[dataSource]="dataGridDataSource"{{/if}} mode="{{mode}}">
+        <rxap-data-grid {{#if collection}}[data]="data()"{{else}}[dataSource]="dataGridDataSource"{{/if}} mode="{{mode}}">
         {{#each itemList}}
           <ng-container rxapDataGridRowDef="{{this.name}}">
             {{#if this.hasHeaderCellDef}}

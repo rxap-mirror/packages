@@ -16,12 +16,10 @@
     {{> cssClass cssClass=column.cssClass}}
     {{/if}}
   >
-    <mat-spinner
-      *ngIf="element.__metadata__?.loading$ | async; else noSpinner"
-      diameter="15"
-    ></mat-spinner>
-    <ng-template #noSpinner>
-      <div class="w-[15px] h-[15px]"></div>
-    </ng-template>
+    @if (element.__metadata__?.loading$ | async) {
+    <mat-spinner diameter="15"></mat-spinner>
+    } @else {
+    <div class="w-[15px] h-[15px]"></div>
+    }
   </td>
 {{/matColumnDef}}

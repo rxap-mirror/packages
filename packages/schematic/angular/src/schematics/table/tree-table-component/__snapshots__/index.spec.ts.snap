@@ -64,17 +64,18 @@ exports[`tree-table-component minimal: generated 1`] = `
        </mat-card-header>
 
       <mat-card-content>
+        @if (tableDataSourceDirective.hasError$ | async) {
         <rxap-data-source-error
-          *ngIf="tableDataSourceDirective.hasError$ | async"
           [dataSourceLike]="tableDataSourceDirective">
         </rxap-data-source-error>
+        }
         <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
         <table
-          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          [class.hidden]="tableDataSourceDirective.hasError$ | async"
           mat-table
           #tableDataSourceDirective="rxapTableDataSource"
           rxapTableDataSource
-          [parameters]="parameters"
+          [parameters]="parameters()"
           id="test-tree-table"
         >
           <!-- region columns -->
@@ -99,13 +100,11 @@ exports[`tree-table-component minimal: generated 1`] = `
                 mat-cell
                 class="w-[15px] min-w-[15px]"
               >
-                <mat-spinner
-                  *ngIf="element.__metadata__?.loading$ | async; else noSpinner"
-                  diameter="15"
-                ></mat-spinner>
-                <ng-template #noSpinner>
-                  <div class="w-[15px] h-[15px]"></div>
-                </ng-template>
+                @if (element.__metadata__?.loading$ | async) {
+                <mat-spinner diameter="15"></mat-spinner>
+                } @else {
+                <div class="w-[15px] h-[15px]"></div>
+                }
               </td>
           </ng-container>
           
@@ -116,7 +115,7 @@ exports[`tree-table-component minimal: generated 1`] = `
 
           <tr
             mat-header-row
-            *matHeaderRowDef="rxapTableColumns.displayColumns"
+            *matHeaderRowDef="rxapTableColumns.displayColumns()"
           ></tr>
 
           <tr
@@ -126,7 +125,7 @@ exports[`tree-table-component minimal: generated 1`] = `
             class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
             *matRowDef="
               let element;
-              columns: rxapTableColumns.displayColumns;
+              columns: rxapTableColumns.displayColumns();
               let odd = odd;
               let even = even
             "
@@ -139,7 +138,7 @@ exports[`tree-table-component minimal: generated 1`] = `
 </div>
 ",
   "/ui/lib/src/lib/test-tree-table/test-tree-table.component.scss": "",
-  "/ui/lib/src/lib/test-tree-table/test-tree-table.component.ts": "import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+  "/ui/lib/src/lib/test-tree-table/test-tree-table.component.ts": "import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import { RowAnimation, TableColumnMenuModule, PersistentPaginatorDirective, TableDataSourceDirective, TreeControlCellComponent, TABLE_DATA_SOURCE } from '@rxap/material-table-system';
 import { Observable } from 'rxjs';
 import { DataSourceErrorComponent } from '@rxap/data-source';
@@ -166,8 +165,7 @@ import { TreeTableDataSource } from '@rxap/data-source/table/tree';
     }],
 })
 export class TestTreeTableComponent {
-  @Input()
-  public parameters?: Observable<Record<string, unknown>>;
+  public readonly parameters = input<Observable<Record<string, unknown>>>();
 }
 ",
   "/ui/lib/src/lib/test-tree-table/test-tree-table.ts": "import { IconConfig } from '@rxap/utilities';

@@ -65,19 +65,18 @@ export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodCla
       ],
       ctors: [
         {
-          parameters: [
-            {
-              name: 'method',
-              type: proxyMethod,
-              decorators: [
-                {
-                  name: 'Inject',
-                  arguments: [ proxyMethod ],
-                },
-              ],
+          parameters: [],
+          statements: [
+            w => {
+              w.write('super(inject(');
+              if (typeof proxyMethod === 'string') {
+                w.write(proxyMethod);
+              } else {
+                proxyMethod(w);
+              }
+              w.write('));');
             },
           ],
-          statements: [ 'super(method);' ],
         },
       ],
     });
@@ -103,7 +102,7 @@ export function CoerceProxyRemoteMethodClass(options: CoerceProxyRemoteMethodCla
     });
     CoerceImports(sourceFile, {
       moduleSpecifier: '@angular/core',
-      namedImports: [ 'Injectable', 'Inject' ],
+      namedImports: [ 'Injectable', 'inject' ],
     });
     CoerceImports(sourceFile, {
       moduleSpecifier: '@rxap/remote-method',

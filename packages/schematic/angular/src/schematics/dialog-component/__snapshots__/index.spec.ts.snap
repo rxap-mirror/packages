@@ -40,7 +40,9 @@ exports[`dialog-component minimal: generated 1`] = `
 
   <div class="flex flex-col">
 
-    <mat-progress-bar *ngIf="loading$ | async" class="progress-bar" mode="indeterminate"></mat-progress-bar>
+    @if (loading$ | async) {
+      <mat-progress-bar class="progress-bar" mode="indeterminate"></mat-progress-bar>
+    }
 
   </div>
 
@@ -50,11 +52,11 @@ exports[`dialog-component minimal: generated 1`] = `
 </mat-dialog-actions>
 ",
   "/ui/lib/src/lib/test-dialog/test-dialog.component.scss": "",
-  "/ui/lib/src/lib/test-dialog/test-dialog.component.ts": "import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
+  "/ui/lib/src/lib/test-dialog/test-dialog.component.ts": "import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { ToggleSubject } from '@rxap/rxjs';
 
 @Component({
@@ -63,14 +65,13 @@ import { ToggleSubject } from '@rxap/rxjs';
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './test-dialog.component.html',
     styleUrls: ['./test-dialog.component.scss'],
-  imports: [MatDialogModule, MatButtonModule, MatProgressBarModule, CommonModule],
+  imports: [MatDialogModule, MatButtonModule, MatProgressBarModule, AsyncPipe],
 })
 export class TestDialogComponent {
+  readonly data: any = inject(MAT_DIALOG_DATA);
+  readonly matDialogRef: MatDialogRef<any> = inject(MatDialogRef);
   readonly invalid$ = new ToggleSubject(true);
   readonly loading$ = new ToggleSubject(true);
-
-  constructor(readonly matDialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) readonly data: any) {
-  }
 
   async submit() {
     this.matDialogRef.close(true);
@@ -86,7 +87,9 @@ exports[`dialog-component minimal: test-dialog.component.html 1`] = `
 
   <div class="flex flex-col">
 
-    <mat-progress-bar *ngIf="loading$ | async" class="progress-bar" mode="indeterminate"></mat-progress-bar>
+    @if (loading$ | async) {
+      <mat-progress-bar class="progress-bar" mode="indeterminate"></mat-progress-bar>
+    }
 
   </div>
 
@@ -100,11 +103,11 @@ exports[`dialog-component minimal: test-dialog.component.html 1`] = `
 exports[`dialog-component minimal: test-dialog.component.scss 1`] = `""`;
 
 exports[`dialog-component minimal: test-dialog.component.ts 1`] = `
-"import { Component, ChangeDetectionStrategy, Inject } from '@angular/core';
+"import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { ToggleSubject } from '@rxap/rxjs';
 
 @Component({
@@ -113,14 +116,13 @@ import { ToggleSubject } from '@rxap/rxjs';
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './test-dialog.component.html',
     styleUrls: ['./test-dialog.component.scss'],
-  imports: [MatDialogModule, MatButtonModule, MatProgressBarModule, CommonModule],
+  imports: [MatDialogModule, MatButtonModule, MatProgressBarModule, AsyncPipe],
 })
 export class TestDialogComponent {
+  readonly data: any = inject(MAT_DIALOG_DATA);
+  readonly matDialogRef: MatDialogRef<any> = inject(MatDialogRef);
   readonly invalid$ = new ToggleSubject(true);
   readonly loading$ = new ToggleSubject(true);
-
-  constructor(readonly matDialogRef: MatDialogRef<any>, @Inject(MAT_DIALOG_DATA) readonly data: any) {
-  }
 
   async submit() {
     this.matDialogRef.close(true);

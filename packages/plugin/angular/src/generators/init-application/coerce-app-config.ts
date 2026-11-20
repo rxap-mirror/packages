@@ -12,6 +12,7 @@ export function coerceAppConfig(tree: Tree, projectName: string, options: InitAp
     project: projectName,
   }, (_, [ sourceFile ]) => {
     const providers: Array<string | ProviderObject> = [
+      'provideZonelessChangeDetection()',
       'provideRouter(appRoutes, withEnabledBlockingInitialNavigation())',
       'provideAnimations()',
       'ProvideErrorHandler()',
@@ -22,6 +23,10 @@ export function coerceAppConfig(tree: Tree, projectName: string, options: InitAp
     ];
     const importProvidersFrom: string[] = [];
     CoerceImports(sourceFile, [
+      {
+        moduleSpecifier: '@angular/core',
+        namedImports: [ 'provideZonelessChangeDetection' ],
+      },
       {
         moduleSpecifier: '@angular/platform-browser/animations',
         namedImports: [ 'provideAnimations' ],

@@ -10,14 +10,12 @@ export function coerceTestSetup(tree: Tree, projectName: string) {
   const projectSourceRoot = GetProjectSourceRoot(tree, projectName);
 
   const testSetupPath = `${projectSourceRoot}/test-setup.ts`;
-  CoerceFile(tree, testSetupPath, `// @ts-expect-error https://thymikee.github.io/jest-preset-angular/docs/getting-started/test-environment
-globalThis.ngJest = {
-  testEnvironmentOptions: {
-    errorOnUnknownElements: true,
-    errorOnUnknownProperties: true,
-  },
-};
-import 'jest-preset-angular/setup-jest';
+  CoerceFile(tree, testSetupPath, `import { setupZonelessTestEnv } from 'jest-preset-angular/setup-env/zoneless';
+
+setupZonelessTestEnv({
+  errorOnUnknownElements: true,
+  errorOnUnknownProperties: true,
+});
 `);
 
   return TsMorphAngularProjectTransform(tree, { project: projectName, basePath: projectSourceRoot }, (_, [ sourceFile ]) => {

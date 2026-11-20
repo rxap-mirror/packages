@@ -2,10 +2,10 @@ import {
   AddComponentAnimations,
   CoerceComponentOptions,
   CoerceComponentRule,
+  CoerceComponentSignalInput,
 } from '@rxap/schematics-ts-morph';
 import {
   CoerceComponentImport,
-  CoerceComponentInput,
   CoerceDefaultClassExport,
   CoerceImports,
 } from '@rxap/ts-morph';
@@ -53,13 +53,13 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
       ]);
 
       // region inputs
-      CoerceComponentInput(classDeclaration, 'parameters', 'Observable<Record<string, unknown>>');
+      CoerceComponentSignalInput(classDeclaration, 'parameters', 'Observable<Record<string, unknown>>');
       CoerceImports(sourceFile, {
         moduleSpecifier: 'rxjs',
         namedImports: ['Observable'],
       });
       if (options.table.backend?.kind === BackendTypes.DATA_SOURCE) {
-        CoerceComponentInput(classDeclaration, 'dataSource', 'AbstractTableDataSource');
+        CoerceComponentSignalInput(classDeclaration, 'dataSource', 'AbstractTableDataSource');
         CoerceImports(sourceFile, {
           moduleSpecifier: '@rxap/data-source/table',
           namedImports: ['AbstractTableDataSource'],

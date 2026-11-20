@@ -10,8 +10,6 @@ import {
   Project,
   SourceFile,
 } from 'ts-morph';
-import { CoerceDecorator } from '../ts-morph/coerce-decorator';
-import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import {
   CoerceDataSourceClass,
   CoerceDataSourceClassOptions,
@@ -50,22 +48,14 @@ export function CoerceTableDataSourceRule(options: Readonly<CoerceTableDataSourc
 
       constructorDeclaration.set({
         statements: [
-          'super(new GetPageAdapterRemoteMethod(getByFilter as any));',
+          `super(new GetPageAdapterRemoteMethod(inject(${ OperationIdToRemoteMethodClassName(operationId) }) as any));`,
         ],
-      });
-
-      const propertyDeclaration = CoerceParameterDeclaration(constructorDeclaration, 'getByFilter').set({
-        type: OperationIdToRemoteMethodClassName(operationId),
-      });
-
-      CoerceDecorator(propertyDeclaration, 'Inject').set({
-        arguments: [ OperationIdToRemoteMethodClassName(operationId) ],
       });
 
       CoerceImports(sourceFile, [
         {
           moduleSpecifier: '@angular/core',
-          namedImports: [ 'Inject' ],
+          namedImports: [ 'inject' ],
         },
         {
           moduleSpecifier: OperationIdToClassRemoteMethodImportPath(operationId, scope),

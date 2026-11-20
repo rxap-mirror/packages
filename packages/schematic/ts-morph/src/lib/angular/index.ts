@@ -1,6 +1,7 @@
 export * from './build-angular-base-path';
 export * from './coerce-accordion-component';
 export * from './coerce-component-class';
+export * from './coerce-component-signal-input';
 export * from './coerce-component';
 export * from './coerce-data-source-class';
 export * from './coerce-form-builder-provider';

@@ -3,9 +3,11 @@ import {
   noop,
   Rule,
 } from '@angular-devkit/schematics';
-import { CoerceComponentRule } from '@rxap/schematics-ts-morph';
+import {
+  CoerceComponentRule,
+  CoerceComponentSignalInput,
+} from '@rxap/schematics-ts-morph';
 import { CoerceSuffix } from '@rxap/schematics-utilities';
-import { CoerceComponentInput } from '@rxap/ts-morph';
 import {
   classify,
   dasherize,
@@ -46,11 +48,11 @@ export function cellComponentRule(normalizedOptions: NormalizedMinimumTableCompo
             directory,
             overwrite: overwrite || column.modifiers.includes(TableColumnModifier.OVERWRITE),
             tsMorphTransform: (project, [ sourceFile ], [ classDeclaration ]) => {
-              CoerceComponentInput(classDeclaration, 'element', {
+              CoerceComponentSignalInput(classDeclaration, 'element', {
                 name: `I${ classify(componentName) }`,
                 moduleSpecifier: `../${ dasherize(componentName) }`,
               }, { isRequired: true });
-              CoerceComponentInput(classDeclaration, 'value', column.type, { isRequired: true });
+              CoerceComponentSignalInput(classDeclaration, 'value', column.type, { isRequired: true });
             },
           }),
         ),

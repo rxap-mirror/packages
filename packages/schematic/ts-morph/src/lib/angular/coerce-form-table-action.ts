@@ -70,7 +70,7 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
 
       CoerceImports(sourceFile, {
         moduleSpecifier: '@angular/core',
-        namedImports: [ 'ChangeDetectorRef', 'Inject', 'INJECTOR', 'Injector' ],
+        namedImports: [ 'INJECTOR', 'Injector' ],
       });
       const openFormWindowMethod = `Open${ classify(formComponent) }WindowMethod`;
       CoerceImports(sourceFile, {
@@ -104,12 +104,6 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
         injectionToken: 'INJECTOR',
         parameterName: 'injector',
         type: 'Injector',
-        scope: Scope.Private,
-        module: Module.ANGULAR,
-      });
-      CoerceDependencyInjection(sourceFile, {
-        injectionToken: 'ChangeDetectorRef',
-        parameterName: 'cdr',
         scope: Scope.Private,
         module: Module.ANGULAR,
       });
@@ -171,7 +165,6 @@ export function CoerceFormTableActionRule(options: CoerceFormTableActionOptions)
           statements.push(`const initial = {};`);
         }
       }
-      statements.push(`this.cdr.markForCheck();`);
       if (typeof formInitial === 'object') {
         CoerceMappingClassMethod(sourceFile, classDeclaration, {
           name: 'toInitial',

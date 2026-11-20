@@ -1,29 +1,39 @@
-import { Inject, Injectable, Injector, INJECTOR, Optional } from '@angular/core';
+import { inject, Injectable, Injector, INJECTOR } from '@angular/core';
+import { FormDefinition } from '@rxap/forms';
 import {
   FormWindowOptions,
   FormWindowService,
-  OpenFormWindowMethod,
   RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFAULT_OPTIONS,
 } from '@rxap/form-window-system';
+import { Method } from '@rxap/pattern';
+import { WindowRef } from '@rxap/window-system';
 import { <%= classify(name) %>FormComponent } from './<%= name %>-form.component';
 import { <%= classify(name) %>Form, I<%= classify(name) %>Form } from './<%= name %>.form';
 
 @Injectable()
-export class Open<%= classify(name) %>FormWindowMethod extends OpenFormWindowMethod<I<%= classify(name) %>Form> {
-  constructor(
-    @Inject(FormWindowService) formWindowService: FormWindowService,
-    @Inject(INJECTOR)
-      injector: Injector,
-    @Optional()
-    @Inject(RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFAULT_OPTIONS)
-      defaultOptions: FormWindowOptions<I<%= classify(name) %>Form> | null = null,
-  ) {
-    super(
-      formWindowService,
+export class Open<%= classify(name) %>FormWindowMethod
+  implements Method<WindowRef<FormDefinition, I<%= classify(name) %>Form>, Partial<I<%= classify(name) %>Form>> {
+
+  private readonly formWindowService = inject(FormWindowService);
+  private readonly injector = inject<Injector>(INJECTOR);
+  private readonly defaultOptions = inject<FormWindowOptions<I<%= classify(name) %>Form> | null>(
+    RXAP_FORM_WINDOW_SYSTEM_OPEN_FORM_DEFAULT_OPTIONS,
+    { optional: true },
+  );
+
+  public call(
+    initial?: Partial<I<%= classify(name) %>Form>,
+    options?: Partial<FormWindowOptions<I<%= classify(name) %>Form>>,
+  ): WindowRef<FormDefinition, I<%= classify(name) %>Form> {
+    return this.formWindowService.open<I<%= classify(name) %>Form>(
       <%= classify(name) %>Form,
-      injector,
-      <%= classify(name) %>FormComponent,
-      defaultOptions,
+      {
+        ...(this.defaultOptions ?? {}),
+        injector: this.injector,
+        ...(options ?? {}),
+        initial: initial ?? this.defaultOptions?.initial,
+        component: this.defaultOptions?.component ?? <%= classify(name) %>FormComponent,
+      },
     );
   }
 }

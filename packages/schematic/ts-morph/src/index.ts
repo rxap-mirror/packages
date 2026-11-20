@@ -66,6 +66,7 @@ export * from './lib/angular/add-component-animations';
 export * from './lib/angular/add-component-fake-provider';
 export * from './lib/angular/add-component-import';
 export * from './lib/angular/add-component-input';
+export * from './lib/angular/coerce-component-signal-input';
 export * from './lib/angular/add-component-provider';
 export * from './lib/angular/add-control-validator';
 export * from './lib/angular/add-dependency-injection';

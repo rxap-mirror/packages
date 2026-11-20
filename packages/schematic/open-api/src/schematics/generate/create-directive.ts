@@ -5,10 +5,8 @@ import {
   ImportDeclarationStructure,
   ImportSpecifierStructure,
   OptionalKind,
-  ParameterDeclarationStructure,
   PropertyDeclarationStructure,
   Scope,
-  SetAccessorDeclarationStructure,
   Writers,
 } from 'ts-morph';
 import { CreateDirectiveOptions } from './options';
@@ -70,241 +68,89 @@ export function CreateDirective({
   const selector = camelize(selectorFragments.join('-'));
   // endregion
 
-  const ctorsParameters: OptionalKind<ParameterDeclarationStructure>[] = [
-    {
-      name: 'remoteMethodLoader',
-      type: 'RemoteMethodLoader',
-      decorators: [
-        {
-          name: 'Inject',
-          arguments: [ 'RemoteMethodLoader' ],
-        },
-      ],
-    }, {
-      name: 'injector',
-      type: 'Injector',
-      decorators: [
-        {
-          name: 'Inject',
-          arguments: [ 'INJECTOR' ],
-        },
-      ],
-    }, {
-      name: 'remoteMethod',
-      type: remoteMethodName,
-      decorators: [
-        {
-          name: 'Inject',
-          arguments: [ remoteMethodName ],
-        },
-      ],
-    },
-  ];
-
-  let ctorsSupperCallParameters = [ 'remoteMethodLoader', 'injector' ].join(', ');
   let directiveClassExtends: string;
 
   const remoteMethodDirectiveImportStructure: OptionalKind<ImportDeclarationStructure> = {
-    namedImports: [],
+    namedImports: [ { name: 'RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN' } ],
     moduleSpecifier: '@rxap/remote-method/directive',
   };
 
-  const remoteMethodImportStructure: OptionalKind<ImportDeclarationStructure> = {
-    namedImports: [ { name: 'RemoteMethodLoader' } ],
-    moduleSpecifier: '@rxap/remote-method',
-  };
-
   const angularCoreImportStructure: OptionalKind<ImportDeclarationStructure> = {
-    namedImports: [
-      { name: 'Inject' }, { name: 'Directive' }, { name: 'INJECTOR' }, { name: 'Injector' },
-    ],
+    namedImports: [ { name: 'Directive' } ],
     moduleSpecifier: '@angular/core',
   };
 
   const directiveClassProperties: OptionalKind<PropertyDeclarationStructure>[] = [];
 
-  const directiveClassSetAccessors: OptionalKind<SetAccessorDeclarationStructure>[] = [];
-
-  const ctorsStatements: string[] = [];
-
   const importStructure: Array<OptionalKind<ImportDeclarationStructure>> = [
-    angularCoreImportStructure, remoteMethodImportStructure, remoteMethodDirectiveImportStructure,
+    angularCoreImportStructure, remoteMethodDirectiveImportStructure,
   ];
 
   AssertImportSpecifierStructureArray(angularCoreImportStructure.namedImports);
-  AssertImportSpecifierStructureArray(remoteMethodImportStructure.namedImports);
   AssertImportSpecifierStructureArray(remoteMethodDirectiveImportStructure.namedImports);
 
+  const signalInput = (
+    propertyName: string,
+    type: string,
+    alias: string,
+  ): OptionalKind<PropertyDeclarationStructure> => ({
+    name: propertyName,
+    scope: Scope.Public,
+    isReadonly: true,
+    hasOverrideKeyword: true,
+    initializer: `input<${ type }>(undefined, { alias: '${ alias }' })`,
+  });
+
   if (template) {
+
+    angularCoreImportStructure.namedImports.push({ name: 'TemplateRef' }, { name: 'input' });
+
+    directiveClassProperties.push(
+      signalInput('parameters', parametersType, camelize([ selector, 'Parameters' ].join('-'))),
+    );
+
     if (parametersType === 'void' || withoutParameters) {
-      ctorsStatements.push('this.withoutParameters = true;');
+      directiveClassProperties.push({
+        name: 'withoutParameters',
+        scope: Scope.Public,
+        isReadonly: true,
+        hasOverrideKeyword: true,
+        initializer: `input(true, { alias: '${ camelize([ selector, 'WithoutParameters' ].join('-')) }' })`,
+      });
     }
 
-    angularCoreImportStructure.namedImports.push({ name: 'TemplateRef' });
-
-    ctorsSupperCallParameters = [
-      'template', 'remoteMethodLoader', 'injector', 'viewContainerRef', 'cdr',
-    ].join(', ');
-
-    directiveClassProperties.push({
-      name: 'parameters',
-      hasQuestionToken: true,
-      scope: Scope.Public,
-      type: parametersType,
-      // leadingTrivia: '// eslint-disable-next-line @angular-eslint/no-input-rename',
-      hasDeclareKeyword: true,
-      decorators: [
-        {
-          name: 'Input',
-          arguments: [
-            (writer) => writer.quote(camelize([ selector, 'Parameters' ].join('-'))),
-          ],
-        },
-      ],
-    });
-
     if (collection) {
-      ctorsSupperCallParameters = [
-        ctorsSupperCallParameters, 'differs', 'zone',
-      ].join(', ');
-
       directiveClassExtends = `RemoteMethodTemplateCollectionDirective<${ returnType }, ${ parametersType }>`;
       remoteMethodDirectiveImportStructure.namedImports.push({
         name: 'RemoteMethodTemplateCollectionDirective',
+      }, {
+        name: 'RemoteMethodTemplateCollectionDirectiveErrorContext',
       });
 
-      ctorsParameters.push({
-        name: 'template',
-        type: `TemplateRef<RemoteMethodTemplateCollectionDirectiveContext<${ returnType }>>`,
-        decorators: [
-          {
-            name: 'Inject',
-            arguments: [ 'TemplateRef' ],
-          },
-        ],
-      }, {
-        name: 'differs',
-        type: 'IterableDiffers',
-        decorators: [
-          {
-            name: 'Inject',
-            arguments: [ 'IterableDiffers' ],
-          },
-        ],
-      }, {
-        name: 'zone',
-        type: 'NgZone',
-        decorators: [
-          {
-            name: 'Inject',
-            arguments: [ 'NgZone' ],
-          },
-        ],
-      });
-
-      remoteMethodDirectiveImportStructure.namedImports.push(
-        { name: 'RemoteMethodTemplateCollectionDirectiveContext' },
-        { name: 'RemoteMethodTemplateCollectionDirectiveErrorContext' },
+      directiveClassProperties.push(
+        signalInput(
+          'errorTemplate',
+          'TemplateRef<RemoteMethodTemplateCollectionDirectiveErrorContext>',
+          camelize([ selector, 'Error' ].join('-')),
+        ),
+        signalInput('emptyTemplate', 'TemplateRef<void>', camelize([ selector, 'Empty' ].join('-'))),
       );
-
-      directiveClassProperties.push({
-        name: 'errorTemplate',
-        hasQuestionToken: true,
-        hasDeclareKeyword: true,
-        // leadingTrivia: '// eslint-disable-next-line @angular-eslint/no-input-rename',
-        scope: Scope.Public,
-        type: `TemplateRef<RemoteMethodTemplateCollectionDirectiveErrorContext>`,
-        decorators: [
-          {
-            name: 'Input',
-            arguments: [
-              (writer) => writer.quote(camelize([ selector, 'Error' ].join('-'))),
-            ],
-          },
-        ],
-      }, {
-        name: 'emptyTemplate',
-        hasDeclareKeyword: true,
-        // leadingTrivia: '// eslint-disable-next-line @angular-eslint/no-input-rename',
-        hasQuestionToken: true,
-        scope: Scope.Public,
-        type: 'TemplateRef<void>',
-        decorators: [
-          {
-            name: 'Input',
-            arguments: [
-              (writer) => writer.quote(camelize([ selector, 'Empty' ].join('-'))),
-            ],
-          },
-        ],
-      });
-
-      angularCoreImportStructure.namedImports.push({ name: 'IterableDiffers' }, { name: 'NgZone' });
     } else {
       directiveClassExtends = `RemoteMethodTemplateDirective<${ returnType }, ${ parametersType }>`;
       remoteMethodDirectiveImportStructure.namedImports.push({
         name: 'RemoteMethodTemplateDirective',
+      }, {
+        name: 'RemoteMethodTemplateDirectiveErrorContext',
       });
 
-      ctorsParameters.push({
-        name: 'template',
-        type: `TemplateRef<RemoteMethodTemplateDirectiveContext<${ returnType }>>`,
-        decorators: [
-          {
-            name: 'Inject',
-            arguments: [ 'TemplateRef' ],
-          },
-        ],
-      });
-
-      remoteMethodDirectiveImportStructure.namedImports.push(
-        { name: 'RemoteMethodTemplateDirectiveContext' },
-        { name: 'RemoteMethodTemplateDirectiveErrorContext' },
+      directiveClassProperties.push(
+        signalInput(
+          'errorTemplate',
+          'TemplateRef<RemoteMethodTemplateDirectiveErrorContext>',
+          camelize([ selector, 'Error' ].join('-')),
+        ),
       );
-
-      directiveClassProperties.push({
-        name: 'errorTemplate',
-        hasQuestionToken: true,
-        hasDeclareKeyword: true,
-        type: `TemplateRef<RemoteMethodTemplateDirectiveErrorContext>`,
-        // leadingTrivia: '// eslint-disable-next-line @angular-eslint/no-input-rename',
-        scope: Scope.Public,
-        decorators: [
-          {
-            name: 'Input',
-            arguments: [
-              (writer) => writer.quote(camelize([ selector, 'Error' ].join('-'))),
-            ],
-          },
-        ],
-      });
     }
-
-    ctorsParameters.push({
-      name: 'viewContainerRef',
-      type: 'ViewContainerRef',
-      decorators: [
-        {
-          name: 'Inject',
-          arguments: [ 'ViewContainerRef' ],
-        },
-      ],
-    }, {
-      name: 'cdr',
-      type: 'ChangeDetectorRef',
-      decorators: [
-        {
-          name: 'Inject',
-          arguments: [ 'ChangeDetectorRef' ],
-        },
-      ],
-    });
-
-    angularCoreImportStructure.namedImports.push(
-      { name: 'ChangeDetectorRef' },
-      { name: 'ViewContainerRef' },
-      { name: 'Input' },
-    );
   } else {
     directiveClassExtends = `RemoteMethodDirective<${ returnType }, ${ parametersType }>`;
     remoteMethodDirectiveImportStructure.namedImports.push({
@@ -320,20 +166,12 @@ export function CreateDirective({
         arguments: Writers.object({
           selector: (writer) => writer.quote(`[${ selector }]`),
           exportAs: (writer) => writer.quote(selector),
-          standalone: 'true',
+          // the remote method is resolved by the base directive through the token
+          providers: `[ { provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useExisting: ${ remoteMethodName } } ]`,
         }),
       },
     ],
     extends: directiveClassExtends,
-    ctors: [
-      {
-        parameters: ctorsParameters,
-        statements: [
-          `super(${ ctorsSupperCallParameters });`, 'this.remoteMethodOrIdOrToken = remoteMethod;', ...ctorsStatements,
-        ],
-      },
-    ],
-    setAccessors: directiveClassSetAccessors,
     properties: directiveClassProperties,
     isExported: true,
   };

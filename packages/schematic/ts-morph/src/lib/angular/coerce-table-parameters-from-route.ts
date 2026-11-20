@@ -37,15 +37,10 @@ export function CoerceTableParametersFromRouteRule(options: CoerceTableParameter
       moduleSpecifier: '@angular/router',
     });
     CoercePropertyDeclaration(classDeclaration, 'parameters').set({
-      type: 'Observable<Record<string, string>>',
-      initializer: `this.route.params.map(params => ({${ parameterList.map(parameter => `${ parameter }: params.${ parameter }`)
-                                                                      .join(', ') }}))`,
-      decorators: [
-        {
-          name: 'Input',
-          arguments: [],
-        },
-      ],
+      scope: Scope.Public,
+      isReadonly: true,
+      initializer: `input<Observable<Record<string, string>>>(this.route.params.pipe(map(params => ({${ parameterList.map(parameter => `${ parameter }: params.${ parameter }`)
+                                                                      .join(', ') }}))))`,
     });
     CoerceImports(sourceFile, {
       namedImports: [ 'Observable' ],
@@ -56,7 +51,7 @@ export function CoerceTableParametersFromRouteRule(options: CoerceTableParameter
       moduleSpecifier: 'rxjs/operators',
     });
     CoerceImports(sourceFile, {
-      namedImports: [ 'Input' ],
+      namedImports: [ 'input' ],
       moduleSpecifier: '@angular/core',
     });
   });

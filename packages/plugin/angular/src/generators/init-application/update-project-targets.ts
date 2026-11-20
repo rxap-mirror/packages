@@ -153,7 +153,7 @@ export function updateProjectTargets(
   project.targets['build'].options.polyfills ??= [];
   if (!Array.isArray(project.targets['build'].options.polyfills)) {
     // ensure the property is an array
-    project.targets['build'].options.polyfills = [ 'zone.js' ];
+    project.targets['build'].options.polyfills = [];
   }
   // always add the localize init polyfill as some rxap components use the i18n directive
   CoerceAssets(project.targets['build'].options.polyfills, [ '@angular/localize/init' ]);

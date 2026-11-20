@@ -8,11 +8,11 @@ import {
 import {
   AddComponentProvider,
   CoerceComponentRule,
+  CoerceComponentSignalInput,
 } from '@rxap/schematics-ts-morph';
 import { classify } from '@rxap/schematics-utilities';
 import {
   CoerceComponentImport,
-  CoerceComponentInput,
   CoerceImports,
   CoercePropertyDeclaration,
 } from '@rxap/ts-morph';
@@ -86,7 +86,7 @@ export function componentRule(normalizedOptions: NormalizedDataGridComponentOpti
             moduleSpecifier: '@angular/core',
           });
         } else {
-          CoerceComponentInput(classDeclaration, 'data', 'any', { isRequired: true });
+          CoerceComponentSignalInput(classDeclaration, 'data', 'any', { isRequired: true });
         }
 
         if (isForm) {

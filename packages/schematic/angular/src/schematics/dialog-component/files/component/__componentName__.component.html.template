@@ -3,7 +3,9 @@
 
   <div class="flex flex-col">
 
-    <mat-progress-bar *ngIf="loading$ | async" class="progress-bar" mode="indeterminate"></mat-progress-bar>
+    @if (loading$ | async) {
+      <mat-progress-bar class="progress-bar" mode="indeterminate"></mat-progress-bar>
+    }
 
   </div>
 

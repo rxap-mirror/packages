@@ -1,4 +1,6 @@
-<mat-progress-bar class="py-2" *ngIf="loading()" mode="indeterminate"></mat-progress-bar>
+@if (loading()) {
+  <mat-progress-bar class="py-2" mode="indeterminate"></mat-progress-bar>
+}
 <ng-template #errorTemplate let-error let-refresh="refresh">
   <<%= prefix %>-data-source-error [error]="error" [refresh]="refresh"></<%= prefix %>-data-source-error>
 </ng-template>

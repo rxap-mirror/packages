@@ -7,11 +7,9 @@ import {
   Project,
   SourceFile,
 } from 'ts-morph';
-import { CoerceClassConstructor } from '../coerce-class-constructor';
 import { CoerceClassMethod } from '../coerce-class-method';
 import { CoerceClassProperty } from '../ts-morph/coerce-class-property';
 import { CoerceImports } from '../ts-morph/coerce-imports';
-import { CoerceParameterDeclaration } from '../ts-morph/coerce-parameter-declaration';
 import { AddComponentImport } from './add-component-import';
 import {
   CoerceComponentOptions,
@@ -71,7 +69,7 @@ export function CoerceDialogComponentRule(options: CoerceDialogComponentOptions)
         AddComponentImport(componentSourceFile, 'MatDialogModule', '@angular/material/dialog');
         AddComponentImport(componentSourceFile, 'MatButtonModule', '@angular/material/button');
         AddComponentImport(componentSourceFile, 'MatProgressBarModule', '@angular/material/progress-bar');
-        AddComponentImport(componentSourceFile, 'CommonModule', '@angular/common');
+        AddComponentImport(componentSourceFile, 'AsyncPipe', '@angular/common');
 
         CoerceClassProperty(componentClass, 'loading$', {
           initializer: `new ToggleSubject(true)`,
@@ -91,24 +89,19 @@ export function CoerceDialogComponentRule(options: CoerceDialogComponentOptions)
             moduleSpecifier: '@angular/material/dialog',
           },
           {
-            namedImports: [ 'Inject' ],
+            namedImports: [ 'inject' ],
             moduleSpecifier: '@angular/core',
           },
         ]);
-        const [ constructorDeclaration ] = CoerceClassConstructor(componentClass);
-        CoerceParameterDeclaration(constructorDeclaration, 'matDialogRef', {
+        CoerceClassProperty(componentClass, 'matDialogRef', {
           isReadonly: true,
           type: 'MatDialogRef<any>',
+          initializer: 'inject(MatDialogRef)',
         });
-        CoerceParameterDeclaration(constructorDeclaration, 'data', {
+        CoerceClassProperty(componentClass, 'data', {
           isReadonly: true,
           type: 'any',
-          decorators: [
-            {
-              name: 'Inject',
-              arguments: [ 'MAT_DIALOG_DATA' ],
-            },
-          ],
+          initializer: 'inject(MAT_DIALOG_DATA)',
         });
         tsMorphTransform!(_, [ componentSourceFile ], [ componentClass ], options);
         coerceSubmitMethod!(componentClass, options);

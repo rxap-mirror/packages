@@ -81,20 +81,21 @@
        </mat-card-header>
 
       <mat-card-content>
+        @if (tableDataSourceDirective.hasError$ | async) {
         <rxap-data-source-error
-          *ngIf="tableDataSourceDirective.hasError$ | async"
           [dataSourceLike]="tableDataSourceDirective">
         </rxap-data-source-error>
+        }
         <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
         <table
-          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          [class.hidden]="tableDataSourceDirective.hasError$ | async"
           mat-table
           #tableDataSourceDirective="rxapTableDataSource"
           {{#ifeq backend "data-source"}}
-          [dataSource]="dataSource"
+          [dataSource]="dataSource()"
           {{/ifeq}}
           rxapTableDataSource
-          [parameters]="parameters"
+          [parameters]="parameters()"
           id="{{name}}"
           {{#if cssClass}}
           {{> cssClass cssClass=cssClass}}
@@ -144,6 +145,7 @@
               <div class="flex flex-row" *rxapSelectedRows="let selected">
               {{#each actionList}}
               {{#if this.inHeader}}
+                @if (selected | rxapRowActionCheck:'{{this.type}}') {
                 <button
                   rxapTableRowHeaderAction="{{this.type}}"
                   mat-icon-button
@@ -153,7 +155,6 @@
                   {{#if this.cssClass}}
                   {{> cssClass cssClass=this.cssClass}}
                   {{/if}}
-                  *ngIf="selected | rxapRowActionCheck:'{{this.type}}'"
                   {{#if this.permission}}
                   rxapHasEnablePermission="{{this.permission}}"
                   {{/if}}
@@ -171,6 +172,7 @@
                     mode="indeterminate"
                   ></mat-progress-bar>
                 </button>
+                }
               {{/if}}
               {{/each}}
               </div>
@@ -182,6 +184,7 @@
             <td class="drop-shadow-2xl" mat-cell *matCellDef="let element">
               <div class="flex flex-row">
                 {{#each actionList}}
+                @if (element | rxapRowActionCheck:'{{this.type}}') {
                 <button
                   rxapTableRowAction="{{this.type}}"
                   [element]="element"
@@ -192,7 +195,6 @@
                   {{> cssClass cssClass=this.cssClass}}
                   {{/if}}
                   mat-icon-button
-                  *ngIf="element | rxapRowActionCheck:'{{this.type}}'"
                   {{#if this.permission}}
                   rxapHasEnablePermission="{{this.permission}}"
                   {{/if}}
@@ -210,6 +212,7 @@
                     mode="indeterminate"
                   ></mat-progress-bar>
                 </button>
+                }
                 {{/each}}
               </div>
             </td>
@@ -224,7 +227,7 @@
           <!-- endregion -->
           {{#if hasCustomFilter}}
           <ng-container matColumnDef="custom_filter">
-            <th *matHeaderCellDef [colSpan]="rxapTableColumns.displayColumns.length" mat-header-cell>
+            <th *matHeaderCellDef [colSpan]="rxapTableColumns.displayColumns().length" mat-header-cell>
               <div class="flex flex-row gap-6">
               {{#each filterList}}
                 {{ indent (compile this.handlebars control=this prefix=../prefix) 16 }}
@@ -271,14 +274,14 @@
           <tr
             class="rxap-filter-header"
             mat-header-row
-            *matHeaderRowDef="rxapTableColumns.displayColumns | toFilterColumnNames"
+            *matHeaderRowDef="rxapTableColumns.displayColumns() | toFilterColumnNames"
           ></tr>
           {{/if}}
 
           {{#if withHeader}}
           <tr
             mat-header-row
-            *matHeaderRowDef="rxapTableColumns.displayColumns"
+            *matHeaderRowDef="rxapTableColumns.displayColumns()"
           ></tr>
           {{/if}}
 
@@ -289,7 +292,7 @@
             class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
             *matRowDef="
               let element;
-              columns: rxapTableColumns.displayColumns;
+              columns: rxapTableColumns.displayColumns();
               let odd = odd;
               let even = even
             "
@@ -300,7 +303,7 @@
       {{#if hasPaginator}}
       <mat-card-footer>
         <mat-paginator
-          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          [class.hidden]="tableDataSourceDirective.hasError$ | async"
           rxapPersistent
           [pageSizeOptions]="[5,10,25,50,100]"
           [pageSize]="10"

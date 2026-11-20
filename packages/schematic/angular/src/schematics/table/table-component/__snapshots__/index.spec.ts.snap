@@ -75,17 +75,18 @@ exports[`table-component minimal: generated 1`] = `
        </mat-card-header>
 
       <mat-card-content>
+        @if (tableDataSourceDirective.hasError$ | async) {
         <rxap-data-source-error
-          *ngIf="tableDataSourceDirective.hasError$ | async"
           [dataSourceLike]="tableDataSourceDirective">
         </rxap-data-source-error>
+        }
         <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
         <table
-          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          [class.hidden]="tableDataSourceDirective.hasError$ | async"
           mat-table
           #tableDataSourceDirective="rxapTableDataSource"
           rxapTableDataSource
-          [parameters]="parameters"
+          [parameters]="parameters()"
           id="test-table"
           [paginator]="paginator"
         >
@@ -103,7 +104,7 @@ exports[`table-component minimal: generated 1`] = `
             class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
             *matRowDef="
               let element;
-              columns: rxapTableColumns.displayColumns;
+              columns: rxapTableColumns.displayColumns();
               let odd = odd;
               let even = even
             "
@@ -113,7 +114,7 @@ exports[`table-component minimal: generated 1`] = `
       </mat-card-content>
       <mat-card-footer>
         <mat-paginator
-          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          [class.hidden]="tableDataSourceDirective.hasError$ | async"
           class="m-4"
           rxapPersistent
           [pageSizeOptions]="[5,10,25,50,100]"
@@ -126,7 +127,7 @@ exports[`table-component minimal: generated 1`] = `
 </div>
 ",
   "/ui/lib/src/lib/test-table/test-table.component.scss": "",
-  "/ui/lib/src/lib/test-table/test-table.component.ts": "import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+  "/ui/lib/src/lib/test-table/test-table.component.ts": "import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import { RowAnimation, TableColumnMenuModule, PersistentPaginatorDirective, TableDataSourceDirective } from '@rxap/material-table-system';
 import { Observable } from 'rxjs';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -148,8 +149,7 @@ import { AsyncPipe, NgIf, NgClass } from '@angular/common';
   imports: [TableColumnMenuModule, MatPaginatorModule, PersistentPaginatorDirective, DataSourceErrorComponent, MatDividerModule, TableDataSourceDirective, MatTableModule, CardProgressBarDirective, MatProgressBarModule, MatCardModule, AsyncPipe, NgIf, NgClass],
 })
 export class TestTableComponent {
-  @Input()
-  public parameters?: Observable<Record<string, unknown>>;
+  public readonly parameters = input<Observable<Record<string, unknown>>>();
 }
 ",
   "/ui/lib/src/lib/test-table/test-table.ts": "import { TableRowMetadata } from '@rxap/material-table-system';
@@ -375,17 +375,18 @@ type RawRowData = any;
        </mat-card-header>
 
       <mat-card-content>
+        @if (tableDataSourceDirective.hasError$ | async) {
         <rxap-data-source-error
-          *ngIf="tableDataSourceDirective.hasError$ | async"
           [dataSourceLike]="tableDataSourceDirective">
         </rxap-data-source-error>
+        }
         <div class="table-scroll-container mt-4 overflow-x-auto overscroll-auto">
         <table
-          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          [class.hidden]="tableDataSourceDirective.hasError$ | async"
           mat-table
           #tableDataSourceDirective="rxapTableDataSource"
           rxapTableDataSource
-          [parameters]="parameters"
+          [parameters]="parameters()"
           id="test-table"
           [paginator]="paginator"
         >
@@ -410,7 +411,7 @@ type RawRowData = any;
 
           <tr
             mat-header-row
-            *matHeaderRowDef="rxapTableColumns.displayColumns"
+            *matHeaderRowDef="rxapTableColumns.displayColumns()"
           ></tr>
 
           <tr
@@ -420,7 +421,7 @@ type RawRowData = any;
             class="hover:!bg-neutral-400 dark:hover:!bg-neutral-800"
             *matRowDef="
               let element;
-              columns: rxapTableColumns.displayColumns;
+              columns: rxapTableColumns.displayColumns();
               let odd = odd;
               let even = even
             "
@@ -430,7 +431,7 @@ type RawRowData = any;
       </mat-card-content>
       <mat-card-footer>
         <mat-paginator
-          [ngClass]="{ 'hidden': tableDataSourceDirective.hasError$ | async }"
+          [class.hidden]="tableDataSourceDirective.hasError$ | async"
           class="m-4"
           rxapPersistent
           [pageSizeOptions]="[5,10,25,50,100]"
@@ -443,7 +444,7 @@ type RawRowData = any;
 </div>
 ",
   "/ui/lib/src/lib/test-table/test-table.component.scss": "",
-  "/ui/lib/src/lib/test-table/test-table.component.ts": "import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+  "/ui/lib/src/lib/test-table/test-table.component.ts": "import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import { RowAnimation, TableColumnMenuModule, PersistentPaginatorDirective, TableDataSourceDirective, TABLE_REMOTE_METHOD_ADAPTER_FACTORY, RXAP_TABLE_METHOD } from '@rxap/material-table-system';
 import { Observable } from 'rxjs';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -476,8 +477,7 @@ import { TestTableControllerGetPageRemoteMethod } from 'open-api-api-lib/src/lib
   ],
 })
 export class TestTableComponent {
-  @Input()
-  public parameters?: Observable<Record<string, unknown>>;
+  public readonly parameters = input<Observable<Record<string, unknown>>>();
 }
 ",
   "/ui/lib/src/lib/test-table/test-table.ts": "import { TableRowMetadata } from '@rxap/material-table-system';
