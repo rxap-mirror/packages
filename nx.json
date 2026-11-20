@@ -378,6 +378,7 @@
       "versionPrefix": "^",
       "updateDependents": "auto",
       "preserveLocalDependencyProtocols": false,
+    "preserveMatchingDependencyRanges": false,
       "versionActionsOptions": {
         "skipLockFileUpdate": true
       }
