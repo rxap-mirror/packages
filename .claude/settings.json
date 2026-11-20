@@ -5,11 +5,16 @@
         "source": "url",
         "url": "https://gitlab.com/enduradocs/claude-plugins.git"
       }
+    },
+    "ng-prism": {
+      "source": { "source": "github", "repo": "ng-prism/ng-prism" }
     }
   },
   "enabledPlugins": {
     "gitlab-workflow@enduradocs": true,
-    "git-workflow@enduradocs": true
+    "git-workflow@enduradocs": true,
+    "figcraft-design@enduradocs": true,
+    "ng-prism@ng-prism": true
   },
   "permissions": {
     "allow": [
