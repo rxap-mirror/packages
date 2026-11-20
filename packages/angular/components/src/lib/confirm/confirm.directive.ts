@@ -7,12 +7,11 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import {
   Directive,
   ElementRef,
-  EventEmitter,
   HostListener,
   Inject,
   Input,
   OnDestroy,
-  Output,
+  output
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {
@@ -37,11 +36,9 @@ export class ConfirmDirective<T = any> implements OnDestroy {
     }
   }
 
-  @Output()
-  public confirmed = new EventEmitter<T | undefined>();
+  public readonly confirmed = output<T | undefined>();
 
-  @Output()
-  public unconfirmed = new EventEmitter<T | undefined>();
+  public readonly unconfirmed = output<T | undefined>();
 
   private subscription: Subscription | null = null;
 

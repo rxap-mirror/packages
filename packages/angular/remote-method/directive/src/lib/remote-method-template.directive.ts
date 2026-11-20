@@ -1,7 +1,6 @@
 import {
   ChangeDetectorRef,
   Directive,
-  EventEmitter,
   Inject,
   Injector,
   INJECTOR,
@@ -10,12 +9,12 @@ import {
   OnChanges,
   OnInit,
   Optional,
-  Output,
   Self,
   SimpleChanges,
   TemplateRef,
   ViewContainerRef,
-  input
+  input,
+  output
 } from '@angular/core';
 import {
   BaseRemoteMethod,
@@ -53,14 +52,11 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
   // For each child directive that should have a template context guard
   // the template context guard must be defined
   // eslint-disable-next-line @angular-eslint/no-output-rename
-  @Output('executed')
-  public executed$ = new EventEmitter();
+  public readonly executed$ = output({ alias: 'executed' });
   // eslint-disable-next-line @angular-eslint/no-output-rename
-  @Output('failure')
-  public failure$ = new EventEmitter<Error>();
+  public readonly failure$ = output<Error>({ alias: 'failure' });
   // eslint-disable-next-line @angular-eslint/no-output-rename
-  @Output('successful')
-  public successful$ = new EventEmitter<ReturnType>();
+  public readonly successful$ = output<ReturnType>({ alias: 'successful' });
   public readonly metadata = input<Metadata>(undefined, { alias: "rxapRemoteMethodMetadata" });
   /**
    * true - a remote method call is in progress
@@ -72,8 +68,7 @@ export class RemoteMethodTemplateDirective<ReturnType = any, Parameters = any, M
   // eslint-disable-next-line @angular-eslint/no-input-rename
   public readonly loadingTemplate = input<TemplateRef<void>>(undefined, { alias: "rxapRemoteMethodLoading" });
   public readonly withoutParameters = input(false, { alias: "rxapRemoteMethodWithoutParameters" });
-  @Output()
-  public embedded = new EventEmitter();
+  public readonly embedded = output();
 
   constructor(
     @Inject(TemplateRef)

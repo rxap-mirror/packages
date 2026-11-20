@@ -5,15 +5,14 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChildren,
-  EventEmitter,
   Input,
   isDevMode,
   OnDestroy,
   OnInit,
   Optional,
-  Output,
   QueryList,
-  input
+  input,
+  output
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
@@ -118,12 +117,11 @@ export class DataGridComponent<T extends Record<string, any>> implements OnInit,
 
   @ContentChildren(DataGridRowDefDirective)
   public rows!: QueryList<DataGridRowDefDirective<T>>;
-  @Output()
-  public editModeChange                                           = new EventEmitter<{
-    mode: boolean,
-    data?: T,
-    done: () => void
-  }>();
+  public readonly editModeChange = output<{
+    mode: boolean;
+    data?: T;
+    done: () => void;
+}>();
   public rows$: Observable<QueryList<DataGridRowDefDirective<T>>> = EMPTY;
   public hasError$: Observable<boolean>                           = of(false);
   public dataLoading$: Observable<boolean>                        = of(false);

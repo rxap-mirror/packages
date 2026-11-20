@@ -1,17 +1,16 @@
 import {
   ChangeDetectorRef,
   Directive,
-  EventEmitter,
   HostListener,
   Inject,
   isDevMode,
   OnChanges,
   OnInit,
-  Output,
   SimpleChanges,
   TemplateRef,
   ViewContainerRef,
-  input
+  input,
+  output
 } from '@angular/core';
 import { ToggleSubject } from '@rxap/rxjs';
 import { Method } from '@rxap/pattern';
@@ -38,19 +37,15 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
   public readonly loadingTemplate = input<TemplateRef<void>>(undefined, { alias: "rxapMethodLoading" });
   public readonly withoutParameters = input(false, { alias: "rxapMethodWithoutParameters" });
   public readonly immediately = input(false);
-  @Output('executed')
-  public executed$ = new EventEmitter();
-  @Output('failure')
-  public failure$ = new EventEmitter<Error>();
-  @Output('successful')
-  public successful$ = new EventEmitter<ReturnType>();
+  public readonly executed$ = output({ alias: 'executed' });
+  public readonly failure$ = output<Error>({ alias: 'failure' });
+  public readonly successful$ = output<ReturnType>({ alias: 'successful' });
   /**
    * true - a remote method call is in progress
    */
   @Output('executing')
   public executing$ = new ToggleSubject();
-  @Output()
-  public embedded = new EventEmitter();
+  public readonly embedded = output();
 
   constructor(
     @Inject(TemplateRef)

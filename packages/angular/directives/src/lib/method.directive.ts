@@ -1,12 +1,11 @@
 import {
   Directive,
-  EventEmitter,
   HostListener,
   Input,
   isDevMode,
   OnInit,
-  Output,
-  input
+  input,
+  output
 } from '@angular/core';
 import { coerceBoolean } from '@rxap/utilities';
 import { ToggleSubject } from '@rxap/rxjs';
@@ -22,12 +21,9 @@ export class MethodDirective<ReturnType = any, Parameters = any> implements OnIn
   public readonly method = input.required<Method<ReturnType, Parameters>>({ alias: "rxapMethod" });
   public readonly parameters = input<Parameters>();
   public readonly immediately = input(false);
-  @Output('executed')
-  public executed$ = new EventEmitter();
-  @Output('failure')
-  public failure$ = new EventEmitter<Error>();
-  @Output('successful')
-  public successful$ = new EventEmitter<ReturnType>();
+  public readonly executed$ = output({ alias: 'executed' });
+  public readonly failure$ = output<Error>({ alias: 'failure' });
+  public readonly successful$ = output<ReturnType>({ alias: 'successful' });
   /**
    * true - a remote method call is in progress
    */

@@ -9,7 +9,8 @@ import {
   OnInit,
   Optional,
   Output,
-  input
+  input,
+  output
 } from '@angular/core';
 import { FormDirective } from '@rxap/forms';
 import {
@@ -54,8 +55,7 @@ export class FormControlsComponent<FormData> implements OnInit {
   @Output()
   // eslint-disable-next-line @angular-eslint/no-output-native
   public close = new EventEmitter<FormData | FormData[] | void>();
-  @Output()
-  public submitted = new EventEmitter<FormData>();
+  public readonly submitted = output<FormData>();
   public isDevMode = isDevMode();
   /**
    * Collection of successful submitted values

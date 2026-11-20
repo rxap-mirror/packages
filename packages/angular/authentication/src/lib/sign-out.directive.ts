@@ -1,8 +1,7 @@
 import {
   Directive,
-  EventEmitter,
   HostListener,
-  Output,
+  output
 } from '@angular/core';
 import { RxapAuthenticationService } from './authentication.service';
 
@@ -12,11 +11,9 @@ import { RxapAuthenticationService } from './authentication.service';
 })
 export class SignOutDirective {
 
-  @Output()
-  public successful = new EventEmitter<void>();
+  public readonly successful = output<void>();
 
-  @Output()
-  public failure = new EventEmitter<Error>();
+  public readonly failure = output<Error>();
 
   constructor(private readonly auth: RxapAuthenticationService) {
   }
@@ -25,6 +22,7 @@ export class SignOutDirective {
   public async onClick() {
     try {
       await this.auth.signOut();
+      // TODO: The 'emit' function requires a mandatory void argument
       this.successful.emit();
     } catch (e: any) {
       this.failure.emit(e);

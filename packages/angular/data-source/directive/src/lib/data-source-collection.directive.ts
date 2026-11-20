@@ -5,7 +5,6 @@ import {
   Directive,
   DoCheck,
   EmbeddedViewRef,
-  EventEmitter,
   Inject,
   INJECTOR,
   Input,
@@ -17,12 +16,12 @@ import {
   NgZone,
   OnChanges,
   OnDestroy,
-  Output,
   SimpleChanges,
   TemplateRef,
   TrackByFunction,
   ViewContainerRef,
-  input
+  input,
+  output
 } from '@angular/core';
 import {
   BaseDataSource,
@@ -96,11 +95,9 @@ export class DataSourceCollectionDirective<Data = any>
   // eslint-disable-next-line @angular-eslint/no-input-rename
   public readonly emptyTemplate = input<TemplateRef<void>>(undefined, { alias: "rxapDataSourceCollectionEmpty" });
   public readonly errorTemplate = input<TemplateRef<DataSourceCollectionErrorTemplateContext>>(undefined, { alias: "rxapDataSourceCollectionErrorTemplate" });
-  @Output()
-  public loaded = new EventEmitter();
-  @Output()
+  public readonly loaded = output();
   // eslint-disable-next-line @angular-eslint/no-output-native
-  public error = new EventEmitter();
+public readonly error = output();
   public connection$: Observable<Data[]> | null = null;
   protected readonly subscription = new Subscription();
   protected embeddedErrorViewRef?: EmbeddedViewRef<DataSourceCollectionErrorTemplateContext>;

@@ -1,6 +1,5 @@
 import {
   Directive,
-  EventEmitter,
   HostBinding,
   Inject,
   InjectionToken,
@@ -10,8 +9,8 @@ import {
   isDevMode,
   OnDestroy,
   Optional,
-  Output,
-  input
+  input,
+  output
 } from '@angular/core';
 import { ConfirmClick } from '@rxap/directives';
 import {
@@ -50,8 +49,7 @@ export class OpenFormDirective<Data, Result = Data>
   @HostBinding('attr.type')
 public readonly type = input('button');
 
-  @Output()
-  public submitted = new EventEmitter<Result>();
+  public readonly submitted = output<Result>();
   public readonly initial = input<Partial<Data>>();
   public readonly title = input<string>();
   public readonly icon = input<IconConfig>();

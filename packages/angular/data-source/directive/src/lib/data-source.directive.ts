@@ -4,18 +4,17 @@ import {
   ChangeDetectorRef,
   Directive,
   EmbeddedViewRef,
-  EventEmitter,
   Inject,
   INJECTOR,
   isDevMode,
   NgZone,
   OnChanges,
   OnDestroy,
-  Output,
   SimpleChanges,
   TemplateRef,
   ViewContainerRef,
-  input
+  input,
+  output
 } from '@angular/core';
 import {
   BaseDataSource,
@@ -70,13 +69,10 @@ export class DataSourceDirective<Data = any>
   public readonly dataSourceOrIdOrToken = input.required<IdOrInstanceOrToken<BaseDataSource<Data>>>({ alias: "rxapDataSourceFrom" });
   public readonly viewer = input.required<BaseDataSourceViewer>({ alias: "rxapDataSourceViewer" });
   public readonly errorTemplate = input<TemplateRef<DataSourceErrorTemplateContext>>(undefined, { alias: "rxapDataSourceErrorTemplate" });
-  @Output()
-  public embedded = new EventEmitter<Data>();
-  @Output()
-  public loaded = new EventEmitter();
-  @Output()
+  public readonly embedded = output<Data>();
+  public readonly loaded = output();
   // eslint-disable-next-line @angular-eslint/no-output-native
-  public error = new EventEmitter();
+public readonly error = output();
   public dataSource: BaseDataSource<Data> | null = null;
   public connection$!: Observable<Data>;
   public readonly trackBy = input<(data: Data) => any>(undefined, { alias: "rxapDataSourceTrackBy" });

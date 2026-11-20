@@ -1,11 +1,10 @@
 import {
   Directive,
   ElementRef,
-  EventEmitter,
   HostBinding,
   HostListener,
-  Output,
-  input
+  input,
+  output
 } from '@angular/core';
 import { DebounceCall } from '@rxap/utilities';
 import { Method } from '@rxap/pattern';
@@ -29,9 +28,8 @@ export class ContenteditableDirective {
 
   public readonly method = input<Method<any, ContenteditableEvent>>(undefined, { alias: "rxapContenteditable" });
 
-  @Output('rxapContenteditable')
   // eslint-disable-next-line @angular-eslint/no-output-native
-  public change = new EventEmitter<ContenteditableEvent>();
+public readonly change = output<ContenteditableEvent>({ alias: 'rxapContenteditable' });
 
   public readonly parameters = input<any>();
 

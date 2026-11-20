@@ -11,18 +11,17 @@ import {
   Component,
   ContentChild,
   ElementRef,
-  EventEmitter,
   HostListener,
   Inject,
   isDevMode,
   OnInit,
   Optional,
-  Output,
   Renderer2,
   signal,
   ViewChild,
   ViewContainerRef,
-  input
+  input,
+  output
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -94,8 +93,7 @@ export class TreeComponent<Data extends WithIdentifier & WithChildren = any>
   public content?: TreeContentDirective;
   public readonly hideLeafIcon = input(false);
   public readonly id = input<string>();
-  @Output()
-  public details                       = new EventEmitter();
+  public readonly details = output();
   public readonly dividerOffset = input('256px');
   public portal: TemplatePortal | null = null;
   @ViewChild('treeContainer', {static: true})

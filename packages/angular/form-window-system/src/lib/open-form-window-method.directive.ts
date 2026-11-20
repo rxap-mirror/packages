@@ -1,6 +1,5 @@
 import {
   Directive,
-  EventEmitter,
   HostListener,
   Inject,
   Injector,
@@ -8,9 +7,9 @@ import {
   Input,
   OnDestroy,
   Optional,
-  Output,
   StaticProvider,
-  input
+  input,
+  output
 } from '@angular/core';
 import { coerceBoolean } from '@rxap/utilities';
 import { WindowRef } from '@rxap/window-system';
@@ -32,16 +31,13 @@ export class OpenFormWindowMethodDirective<
   public readonly initial = input<Initial>();
 
   // eslint-disable-next-line @angular-eslint/no-output-rename
-  @Output('failure')
-  public failure$ = new EventEmitter<Error>();
+  public readonly failure$ = output<Error>({ alias: 'failure' });
 
   // eslint-disable-next-line @angular-eslint/no-output-rename
-  @Output('completed')
-  public completed$ = new EventEmitter();
+  public readonly completed$ = output({ alias: 'completed' });
 
   // eslint-disable-next-line @angular-eslint/no-output-rename
-  @Output('submitted')
-  public submitted$ = new EventEmitter<FormData>();
+  public readonly submitted$ = output<FormData>({ alias: 'submitted' });
   /**
    * true - a remote method call is in progress
    */

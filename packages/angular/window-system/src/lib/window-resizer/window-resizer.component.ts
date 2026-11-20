@@ -2,13 +2,12 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
-  EventEmitter,
   Inject,
   OnDestroy,
   OnInit,
-  Output,
   ViewChild,
-  input
+  input,
+  output
 } from '@angular/core';
 import {
   fromEvent,
@@ -46,11 +45,11 @@ export class WindowResizerComponent implements OnInit, OnDestroy {
   @ViewChild('resizer', { static: true }) public resizerRef!: ElementRef<any>;
 
   // eslint-disable-next-line @angular-eslint/no-output-rename
-  @Output('width') public width$ = new EventEmitter<string>();
+  public readonly width$ = output<string>({ alias: 'width' });
   // eslint-disable-next-line @angular-eslint/no-output-rename
-  @Output('height') public height$ = new EventEmitter<string>();
+  public readonly height$ = output<string>({ alias: 'height' });
   // eslint-disable-next-line @angular-eslint/no-output-rename
-  @Output('resizing') public resizing$ = new EventEmitter<boolean>();
+  public readonly resizing$ = output<boolean>({ alias: 'resizing' });
 
   private _subscription = new Subscription();
 

@@ -1,10 +1,9 @@
 import {
   Directive,
-  EventEmitter,
   HostBinding,
   HostListener,
   Input,
-  Output,
+  output
 } from '@angular/core';
 import {
   coerceBoolean,
@@ -20,9 +19,8 @@ export class ContenteditableDirective {
 
   @HostBinding('attr.contenteditable')
   public contenteditable = true;
-  @Output()
   // eslint-disable-next-line @angular-eslint/no-output-native
-  public change = new EventEmitter<string | null>();
+public readonly change = output<string | null>();
 
   private _method?: Method<any, string | null>;
 
