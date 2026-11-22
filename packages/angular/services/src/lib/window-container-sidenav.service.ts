@@ -24,7 +24,7 @@ export class WindowContainerSidenavService {
 
   public add(component: ContainerComponent): void {
     if (this.components.has(component.id)) {
-      this.remove$.next(component);
+      this.remove$.next(this.components.get(component.id)!);
     }
     this.components.set(component.id, component);
     this.add$.next(component);

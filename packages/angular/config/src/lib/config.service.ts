@@ -516,7 +516,7 @@ export class ConfigService<Config extends Record<string, any> = Record<string, a
 
     const configFromParams = {};
 
-    for (const configParam of urlParams.getAll('config')) {
+    for (const configParam of urlParams.getAll(param)) {
 
       try {
         const split = configParam.split(';');

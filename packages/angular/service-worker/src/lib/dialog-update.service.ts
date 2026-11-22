@@ -6,7 +6,9 @@ import {
 } from '@angular/service-worker';
 import {
   filter,
+  finalize,
   Observable,
+  take,
 } from 'rxjs';
 import {
   concatMap,
@@ -61,8 +63,12 @@ export class DialogUpdateService {
     });
     this.applicationRef.attachView(componentRef.hostView);
 
+    // The cleanup must run after the close event has been forwarded. Destroying the component
+    // inside a tap completes the output observable before the value reaches the subscriber,
+    // so the update would never be activated.
     return outputToObservable(componentRef.instance.closeDialog).pipe(
-      tap(() => {
+      take(1),
+      finalize(() => {
         componentRef.destroy();
         body.removeChild(div);
         div.remove();

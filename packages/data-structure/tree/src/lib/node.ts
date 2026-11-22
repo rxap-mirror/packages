@@ -219,12 +219,12 @@ export class Node<T extends WithIdentifier & WithChildren, CustomParameters = an
         .filter((child, index, nodes) => nodes.findIndex(node => node.id === child.id) === index)
       // .sort((a, b) => a.hasChildren === b.hasChildren ? 0 : a.hasChildren ? -1 : 1),
     );
-    this.hasChildren = this._children.length !== 0 || this.item.hasChildren;
+    this.hasChildren = this._children.length !== 0 || !!this.item.hasChildren;
   }
 
   public clearChildren(): void {
     this._children = Object.freeze([]);
-    this.hasChildren = this.item.hasChildren;
+    this.hasChildren = !!this.item.hasChildren;
   }
 
   public isNode(id: string): boolean {
