@@ -60,6 +60,7 @@
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/demos/angular",
         "index": "demos/angular/src/index.html",
@@ -118,8 +119,7 @@
           "sourceMap": true,
           "namedChunks": true
         }
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "component-test": {
       "options": {
@@ -146,6 +146,8 @@
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
+      "defaultConfiguration": "development",
+      "continuous": true,
       "options": {
         "proxyConfig": "shared/angular/proxy.conf.json"
       },
@@ -157,8 +159,9 @@
           "buildTarget": "angular:build:development"
         }
       },
-      "defaultConfiguration": "development",
-      "continuous": true
+      "readyWhen": {
+        "signal": true
+      }
     },
     "localazy-download": {
       "options": {

@@ -8,6 +8,7 @@
     "build": {
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{workspaceRoot}/dist/prism-host"],
+      "defaultConfiguration": "production",
       "options": {
         "outputPath": {
           "base": "dist/prism-host",
@@ -33,8 +34,7 @@
           "optimization": false,
           "sourceMap": true
         }
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
@@ -43,6 +43,9 @@
         "port": 4400,
         "hmr": true,
         "liveReload": true
+      },
+      "readyWhen": {
+        "signal": true
       }
     }
   }
