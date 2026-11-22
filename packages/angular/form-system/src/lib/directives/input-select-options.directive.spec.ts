@@ -68,7 +68,7 @@ describe('InputSelectOptionsDirective', () => {
   function host(control: keyof IForm, extra = '') {
     @Component({
       imports: [ReactiveFormsModule, InputSelectOptionsDirective],
-      template: `<select [formControl]="form.${control}"><option *rxapInputSelectOptions="let o${extra}" [value]="o.value">{{ o.display }}</option></select>`,
+      template: '<select [formControl]="form.' + control + '"><option *rxapInputSelectOptions="let o' + extra + '" [value]="o.value">{{ o.display }}</option></select>',
     })
     class Host {
       form = new RxapFormBuilder<IForm>(TestForm).build();

@@ -90,11 +90,9 @@ export function UpdateYamlDocument<Contents extends Node = ParsedNode, Strict ex
   filePath: string,
   options?: UpdateYamlDocumentOptions,
 ): void | Promise<void> {
-  let promise: Promise<void> | void | undefined;
-
   const yamlDocument = GetYamlDocument<Contents, Strict>(tree, filePath, options?.coerce, options?.options);
 
-  promise = updater(yamlDocument);
+  const promise: Promise<void> | void | undefined = updater(yamlDocument);
 
   const currentYamlDocument = GetYamlDocument<Contents, Strict>(tree, filePath, options?.coerce, options?.options);
 

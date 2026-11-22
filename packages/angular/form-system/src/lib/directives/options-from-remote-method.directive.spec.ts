@@ -43,7 +43,7 @@ describe('OptionsFromRemoteMethodDirective', () => {
   function create(control: keyof IForm, attrs: string) {
     @Component({
       imports: [ReactiveFormsModule, OptionsFromRemoteMethodDirective],
-      template: `<select [formControl]="form.${control}"><option *rxapOptionsFromRemoteMethod="let o${attrs}" [value]="o.value">{{ o.display }}</option></select>`,
+      template: '<select [formControl]="form.' + control + '"><option *rxapOptionsFromRemoteMethod="let o' + attrs + '" [value]="o.value">{{ o.display }}</option></select>',
     })
     class Host {
       form = new RxapFormBuilder<IForm>(TestForm).build({ withMethod: 'a' });

@@ -26,6 +26,7 @@ import { RxapFormGroup } from '../form-group';
     },
   ],
   // the base class declares the `name` input (alias formGroupName); re-alias it to rxapFormGroupName
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: [ { name: 'name', alias: 'rxapFormGroupName' } ],
   exportAs: 'rxapFormGroup',
   standalone: true,

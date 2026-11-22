@@ -35,6 +35,7 @@ class HostComponent {
 
 @Directive({
   standalone: true,
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[withToken]',
   providers: [{ provide: RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN, useValue: 'from-token' }],
 })

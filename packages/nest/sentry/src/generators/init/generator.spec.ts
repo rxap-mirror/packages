@@ -142,6 +142,7 @@ describe('init generator (peer dependency coercion)', () => {
       files[`${ peerDir }/src/generators/init/generator.js`] = '';
       const options = { skipFormat: true } as any;
       await initGenerator(tree, options);
+      // eslint-disable-next-line @nx/enforce-module-boundaries
       const peerGenerator = require('/virtual/node_modules/@peer/with-init/src/generators/init/generator').default;
       expect(peerGenerator).toHaveBeenCalledWith(tree, options);
     });

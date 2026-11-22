@@ -29,6 +29,7 @@ import { RxapFormControl } from '../form-control';
     },
   ],
   // the base class declares the `name` input (alias formControlName); re-alias it to rxapFormControlName
+  // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
   inputs: [ { name: 'name', alias: 'rxapFormControlName' } ],
   exportAs: 'rxapFormControl',
   standalone: true,

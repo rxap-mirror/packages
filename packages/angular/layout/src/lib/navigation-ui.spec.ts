@@ -1,3 +1,4 @@
+import { RXAP_ENVIRONMENT } from '@rxap/environment';
 import { Component, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
@@ -284,7 +285,6 @@ describe('LayoutComponent', () => {
   it('renders header, sidenav, logo and footer', async () => {
     const { LayoutComponent } = await import('./layout/layout.component');
     const { LogoService } = await import('./logo.service');
-    const { RXAP_ENVIRONMENT } = await import('@rxap/environment');
     const layout = fakeLayout();
     TestBed.configureTestingModule({
       imports: [LayoutComponent, MatIconTestingModule, NoopAnimationsModule],
