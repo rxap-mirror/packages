@@ -33,6 +33,37 @@
           "packages/angular/material/table-select/**/*.html"
         ]
       }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/material/table-select",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-material-table-select",
+        "libraryImportPath": "@rxap/ngx-material-table-select",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-material-table-select"],
+      "options": {
+        "entryPoint": "packages/angular/material/table-select",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-material-table-select",
+        "libraryImportPath": "@rxap/ngx-material-table-select",
+        "outputPath": "dist/prism/angular-material-table-select"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/material/table-select",
+        "cwd": "{workspaceRoot}"
+      }
     }
   }
 }

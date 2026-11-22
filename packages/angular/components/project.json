@@ -83,6 +83,37 @@
           "buildTarget": "angular-components:build-storybook:ci"
         }
       }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/components",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-components",
+        "libraryImportPath": "@rxap/components",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-components"],
+      "options": {
+        "entryPoint": "packages/angular/components",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-components",
+        "libraryImportPath": "@rxap/components",
+        "outputPath": "dist/prism/angular-components"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/components",
+        "cwd": "{workspaceRoot}"
+      }
     }
   }
 }

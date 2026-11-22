@@ -33,6 +33,37 @@
           "packages/angular/table-system/**/*.html"
         ]
       }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/table-system",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-table-system",
+        "libraryImportPath": "@rxap/table-system",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-table-system"],
+      "options": {
+        "entryPoint": "packages/angular/table-system",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-table-system",
+        "libraryImportPath": "@rxap/table-system",
+        "outputPath": "dist/prism/angular-table-system"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/table-system",
+        "cwd": "{workspaceRoot}"
+      }
     }
   }
 }

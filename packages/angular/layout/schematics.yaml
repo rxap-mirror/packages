@@ -21,3 +21,8 @@
 - package: "@rxap/plugin-library"
   name: init
   options: {}
+- package: "@rxap/plugin-ng-prism"
+  name: init-library
+  options:
+    prismProject: prism-host
+    port: 4400

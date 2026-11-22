@@ -53,6 +53,37 @@
           "packages/angular/data-source/accordion/**/*.html"
         ]
       }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/data-source",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-data-source",
+        "libraryImportPath": "@rxap/data-source",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-data-source"],
+      "options": {
+        "entryPoint": "packages/angular/data-source",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-data-source",
+        "libraryImportPath": "@rxap/data-source",
+        "outputPath": "dist/prism/angular-data-source"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/data-source",
+        "cwd": "{workspaceRoot}"
+      }
     }
   }
 }

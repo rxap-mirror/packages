@@ -1,0 +1,47 @@
+{
+  "name": "prism-host",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "applications/prism-host/src",
+  "projectType": "application",
+  "tags": ["prism"],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:application",
+      "options": {
+        "outputPath": {
+          "base": "dist/prism-host",
+          "browser": ""
+        },
+        "index": "applications/prism-host/src/index.html",
+        "browser": "applications/prism-host/src/main.ts",
+        "tsConfig": "applications/prism-host/tsconfig.app.json",
+        "styles": [
+          "node_modules/highlight.js/styles/base16/solarized-dark.min.css"
+        ],
+        "polyfills": ["zone.js", "@angular/localize/init"],
+        "allowedCommonJsDependencies": ["highlight.js", "axe-core"],
+        "preserveSymlinks": true
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "all"
+        },
+        "development": {
+          "outputHashing": "none",
+          "optimization": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "options": {
+        "buildTarget": "prism-host:build:development",
+        "port": 4400,
+        "hmr": true,
+        "liveReload": true
+      }
+    }
+  }
+}

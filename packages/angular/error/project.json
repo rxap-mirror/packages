@@ -38,6 +38,37 @@
       "configurations": {
         "open": {}
       }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/error",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-error",
+        "libraryImportPath": "@rxap/ngx-error",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-error"],
+      "options": {
+        "entryPoint": "packages/angular/error",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-error",
+        "libraryImportPath": "@rxap/ngx-error",
+        "outputPath": "dist/prism/angular-error"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/error",
+        "cwd": "{workspaceRoot}"
+      }
     }
   }
 }

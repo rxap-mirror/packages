@@ -33,6 +33,37 @@
           "packages/angular/environment/**/*.html"
         ]
       }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/environment",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-environment",
+        "libraryImportPath": "@rxap/environment",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-environment"],
+      "options": {
+        "entryPoint": "packages/angular/environment",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-environment",
+        "libraryImportPath": "@rxap/environment",
+        "outputPath": "dist/prism/angular-environment"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/environment",
+        "cwd": "{workspaceRoot}"
+      }
     }
   }
 }

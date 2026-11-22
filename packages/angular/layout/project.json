@@ -85,6 +85,37 @@
           "buildTarget": "angular:build:development"
         }
       }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/layout",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-layout",
+        "libraryImportPath": "@rxap/layout",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-layout"],
+      "options": {
+        "entryPoint": "packages/angular/layout",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-layout",
+        "libraryImportPath": "@rxap/layout",
+        "outputPath": "dist/prism/angular-layout"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/layout",
+        "cwd": "{workspaceRoot}"
+      }
     }
   }
 }

@@ -44,6 +44,37 @@
           "watch": true
         }
       }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/changelog",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-changelog",
+        "libraryImportPath": "@rxap/ngx-changelog",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-changelog"],
+      "options": {
+        "entryPoint": "packages/angular/changelog",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-changelog",
+        "libraryImportPath": "@rxap/ngx-changelog",
+        "outputPath": "dist/prism/angular-changelog"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/changelog",
+        "cwd": "{workspaceRoot}"
+      }
     }
   }
 }

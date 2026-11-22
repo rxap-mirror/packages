@@ -20,6 +20,37 @@
         "development": {}
       },
       "defaultConfiguration": "production"
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/material/localize",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-material-localize",
+        "libraryImportPath": "@rxap/ngx-material-localize",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-material-localize"],
+      "options": {
+        "entryPoint": "packages/angular/material/localize",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-material-localize",
+        "libraryImportPath": "@rxap/ngx-material-localize",
+        "outputPath": "dist/prism/angular-material-localize"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/material/localize",
+        "cwd": "{workspaceRoot}"
+      }
     }
   }
 }

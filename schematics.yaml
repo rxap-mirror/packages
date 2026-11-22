@@ -24,3 +24,7 @@
 - package: "@rxap/plugin-typedoc"
   name: init-library
   options: {}
+- package: "@rxap/plugin-ng-prism"
+  name: init
+  options:
+    prismProject: prism-host

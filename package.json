@@ -290,5 +290,9 @@
     "packages/node/*",
     "packages/nest/*",
     "packages/workspace/*"
-  ]
+  ],
+  "resolutions": {
+    "@ng-prism/core@22.8.0": "patch:@ng-prism/core@npm%3A22.8.0#./.yarn/patches/@ng-prism-core-npm-22.8.0-77bfae62e0.patch",
+    "@ng-prism/plugin-jsdoc@22.8.0": "patch:@ng-prism/plugin-jsdoc@npm%3A22.8.0#./.yarn/patches/@ng-prism-plugin-jsdoc-npm-22.8.0-21cc845a68.patch"
+  }
 }

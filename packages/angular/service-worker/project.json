@@ -33,6 +33,37 @@
           "packages/angular/service-worker/**/*.html"
         ]
       }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/service-worker",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-service-worker",
+        "libraryImportPath": "@rxap/service-worker",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-service-worker"],
+      "options": {
+        "entryPoint": "packages/angular/service-worker",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-service-worker",
+        "libraryImportPath": "@rxap/service-worker",
+        "outputPath": "dist/prism/angular-service-worker"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/service-worker",
+        "cwd": "{workspaceRoot}"
+      }
     }
   }
 }

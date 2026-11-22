@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../../dist/out-tsc/prism-host",
+    "rootDir": "../..",
+    "target": "es2022",
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "lib": ["dom", "es2022"],
+    "useDefineForClassFields": false,
+    "types": ["@angular/localize"]
+  },
+  "files": ["src/main.ts"],
+  "include": ["src/**/*.d.ts", "../../ng-prism-cache/prism-host/**/*.ts"]
+}

@@ -33,6 +33,37 @@
           "packages/angular/data-grid/**/*.html"
         ]
       }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/data-grid",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-data-grid",
+        "libraryImportPath": "@rxap/data-grid",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-data-grid"],
+      "options": {
+        "entryPoint": "packages/angular/data-grid",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-data-grid",
+        "libraryImportPath": "@rxap/data-grid",
+        "outputPath": "dist/prism/angular-data-grid"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/data-grid",
+        "cwd": "{workspaceRoot}"
+      }
     }
   }
 }

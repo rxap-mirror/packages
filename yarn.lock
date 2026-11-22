@@ -7392,6 +7392,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ng-prism/core@patch:@ng-prism/core@npm%3A22.8.0#./.yarn/patches/@ng-prism-core-npm-22.8.0-77bfae62e0.patch::locator=%40rxap%2Fsource%40workspace%3A.":
+  version: 22.8.0
+  resolution: "@ng-prism/core@patch:@ng-prism/core@npm%3A22.8.0#./.yarn/patches/@ng-prism-core-npm-22.8.0-77bfae62e0.patch::version=22.8.0&hash=bc28ad&locator=%40rxap%2Fsource%40workspace%3A."
+  dependencies:
+    axe-core: ^4.11.1
+    chokidar: ^5.0.0
+    jsonc-parser: ^3.3.1
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular-devkit/architect": ">=0.2000.0"
+    "@angular-devkit/core": ">=20.0.0"
+    "@angular-devkit/schematics": ">=20.0.0"
+    "@angular/common": ">=20.0.0"
+    "@angular/compiler": ">=20.0.0"
+    "@angular/core": ">=20.0.0"
+    highlight.js: ">=11.0.0"
+    ngx-highlightjs: ">=14.0.0"
+    typescript: ">=5.5.0"
+  peerDependenciesMeta:
+    "@angular-devkit/architect":
+      optional: false
+    "@angular-devkit/schematics":
+      optional: false
+  bin:
+    ng-prism-strip: dist/transformer/cli.js
+  checksum: 3f658cd3e3b4ded5a8fa4401edd74b84f8f531490c24d0e18db7c00dc2c7c9eb5d5fc6e83a87beaa6b9548c57bfe6519000b438ce8ab8cfb103f657d678937dd
+  languageName: node
+  linkType: hard
+
 "@ng-prism/plugin-jsdoc@npm:22.8.0":
   version: 22.8.0
   resolution: "@ng-prism/plugin-jsdoc@npm:22.8.0"
@@ -7408,6 +7437,25 @@ __metadata:
     ngx-highlightjs: ">=14.0.0"
     typescript: ">=5.5.0"
   checksum: 21cfc9ce7620846312ed9b7dc3380a360bb7b091120a2be4b6baef0ed7e48440bd39b3dddc9054fc33caf462d76441715516a526107088931ce9d577b2802ac1
+  languageName: node
+  linkType: hard
+
+"@ng-prism/plugin-jsdoc@patch:@ng-prism/plugin-jsdoc@npm%3A22.8.0#./.yarn/patches/@ng-prism-plugin-jsdoc-npm-22.8.0-21cc845a68.patch::locator=%40rxap%2Fsource%40workspace%3A.":
+  version: 22.8.0
+  resolution: "@ng-prism/plugin-jsdoc@patch:@ng-prism/plugin-jsdoc@npm%3A22.8.0#./.yarn/patches/@ng-prism-plugin-jsdoc-npm-22.8.0-21cc845a68.patch::version=22.8.0&hash=4a9422&locator=%40rxap%2Fsource%40workspace%3A."
+  dependencies:
+    marked: ^15.0.12
+    tslib: ^2.3.0
+  peerDependencies:
+    "@angular-devkit/schematics": ">=20.0.0"
+    "@angular/common": ">=20.0.0"
+    "@angular/core": ">=20.0.0"
+    "@angular/platform-browser": ">=20.0.0"
+    "@ng-prism/core": ^22.8.0-0
+    highlight.js: ">=11.0.0"
+    ngx-highlightjs: ">=14.0.0"
+    typescript: ">=5.5.0"
+  checksum: da1d6930137695e56db7985bb47ae60cb1bf41ed954f006dc785a996ee44a85f9fe28d5eef828c66607b2b4e2a7544b97963db0de5fd7a4f3a38a5daea646754
   languageName: node
   linkType: hard
 

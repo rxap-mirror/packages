@@ -87,3 +87,7 @@ swagger/**/*.*
 .claude/worktrees
 # AI package review output (tools/scripts/review.sh)
 /review-reports/
+
+ng-prism-cache
+# yarn patches of dependencies (e.g. @ng-prism for Angular 21, see .yarn/patches)
+!.yarn/patches/*.patch

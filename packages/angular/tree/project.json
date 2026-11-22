@@ -33,6 +33,37 @@
           "packages/angular/tree/**/*.html"
         ]
       }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/tree",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-tree",
+        "libraryImportPath": "@rxap/tree",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-tree"],
+      "options": {
+        "entryPoint": "packages/angular/tree",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-tree",
+        "libraryImportPath": "@rxap/tree",
+        "outputPath": "dist/prism/angular-tree"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/tree",
+        "cwd": "{workspaceRoot}"
+      }
     }
   }
 }
