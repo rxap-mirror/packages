@@ -57,4 +57,39 @@ describe('init-library generator', () => {
     expect(readProjectConfiguration(tree, 'ui').targets?.['prism']?.options.port).toBe(4500);
   });
 
+  it('should collect the prism providers of all libraries in the host application', async () => {
+    tree.write('libs/ui/prism/providers.ts', 'export const PRISM_PROVIDERS = [];');
+
+    await initLibraryGenerator(tree, { project: 'ui', skipFormat: true });
+
+    const libraryProviders = tree.read('apps/prism-host/src/library-providers.ts', 'utf-8');
+    expect(libraryProviders).toContain(`import { PRISM_PROVIDERS as UI_PROVIDERS } from '../../../libs/ui/prism/providers';`);
+    expect(libraryProviders).toContain('...UI_PROVIDERS,');
+    expect(tree.read('apps/prism-host/src/providers.ts', 'utf-8')).toContain('...PRISM_LIBRARY_PROVIDERS');
+  });
+
+  it('should create an empty library providers file without prism providers', async () => {
+    await initLibraryGenerator(tree, { project: 'ui', skipFormat: true });
+
+    expect(tree.read('apps/prism-host/src/library-providers.ts', 'utf-8'))
+      .toContain('export const PRISM_LIBRARY_PROVIDERS: Array<Provider | EnvironmentProviders> = [];');
+  });
+
+  it('should skip libraries without components', async () => {
+    tree.write('libs/utils/package.json', JSON.stringify({ name: '@acme/utils' }));
+    tree.write('libs/utils/src/index.ts', 'export const a = 1;');
+    addProjectConfiguration(tree, 'utils', {
+      root: 'libs/utils',
+      sourceRoot: 'libs/utils/src',
+      projectType: 'library',
+      tags: [ 'angular' ],
+      targets: {},
+    });
+
+    await initLibraryGenerator(tree, { skipFormat: true });
+
+    expect(readProjectConfiguration(tree, 'utils').targets?.['prism']).toBeUndefined();
+    expect(readProjectConfiguration(tree, 'ui').targets?.['prism']).toBeDefined();
+  });
+
 });
