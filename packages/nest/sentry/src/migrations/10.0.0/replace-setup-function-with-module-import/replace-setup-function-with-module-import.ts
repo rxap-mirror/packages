@@ -9,11 +9,17 @@ import { VisitTree } from '@rxap/workspace-utilities';
 
 export default function update(tree: Tree) {
 
-  for (const { isFile, path } of VisitTree(tree, '/')) {
+  // the flag must be shared between files, because the setup call is removed from the main.ts file
+  // while the module import has to be added to the app.module.ts file
+  let hasSetupSentryLoggerFunction = false;
+
+  // visit the main.ts files first, so the flag is set before the app.module.ts files are processed
+  const entries = [ ...VisitTree(tree, '/') ].sort((a, b) =>
+    Number(b.path.endsWith('main.ts')) - Number(a.path.endsWith('main.ts')));
+
+  for (const { isFile, path } of entries) {
 
     if (isFile) {
-
-      let hasSetupSentryLoggerFunction = false;
 
       if (path.endsWith('main.ts')) {
         let content = tree.read(path, 'utf-8')!;

@@ -38,7 +38,12 @@ function generateSchematicInputSchema(tree: Tree, options: IndexJsonSchemaGenera
     } else {
       schemaRefPath = schema;
     }
-    const content = JSON.parse(tree.read(join(projectRoot, schemaRefPath))!.toString());
+    const schemaFileContent = tree.read(join(projectRoot, schemaRefPath));
+    if (schemaFileContent === null) {
+      // the generator has neither a template.schema.json nor a schema.json. See GenerateSchematicDefinitionsMap
+      continue;
+    }
+    const content = JSON.parse(schemaFileContent.toString());
     schemaRefPath = schemaRefPath.replace(/^\.\/[^/]+\//, './');
     schemaList.push({
       type: 'object',
