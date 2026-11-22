@@ -4,14 +4,14 @@
  *
  * Drives `nx release` (Nx 20.5.0) via its programmatic API and interleaves the custom
  * pre-steps that have no native equivalent. Run via `yarn release` (which wraps this in
- * `env-cmd` so `.env` provides GL_TOKEN / GITLAB_HOST).
+ * `env-cmd` so `.env` is loaded).
  *
  * Phase order (the only correct order on Nx 20.5.0 — there is no `manifestRootsToUpdate`,
  * so the production build is what stamps the bumped version into dist/{projectRoot}; every
  * source-package.json mutation MUST finish before the build):
  *
  *   1. compute release mode from the git branch (prerelease / preid / dist-tag)
- *   2. preflight gate          (allowBranch, fetch, behind, dirty, GL_TOKEN, confirm)
+ *   2. preflight gate          (allowBranch, fetch, behind, dirty, glab, confirm)
  *   3. validate                (build/test/lint)
  *   4. version (source)        (releaseVersion — bumps source package.json + pins ^deps)
  *   5. source mutations        (update-package-group, readme, lockfile)
@@ -20,7 +20,7 @@
  *   7. production build → dist (docs + build; dist inherits version + packageGroup + CHANGELOG)
  *   8. dist transforms         (theme export, strip the `workspace` marker dep)
  *   9. publish                 (releasePublish — from dist/{projectRoot}, with dist-tag)
- *  10. GitLab releases         (custom — Nx 20.5.0 cannot create GitLab releases natively)
+ *  10. GitLab releases         (opt-in via --gitlab-release; uses the `glab` CLI)
  *  11. rxap umbrella pass      (update-package-group → version → build → publish, group "rxap")
  *  12. push                    (git push --follow-tags)
  *  13. report                  (per-project failures of steps 6-12)
@@ -45,20 +45,20 @@
  *   --skip-build      skip the production build (use existing dist; pair with --publish-only)
  *   --publish-only    jump straight to publish (retry a failed publish without re-versioning)
  *   --skip-umbrella   skip the rxap umbrella pass
+ *   --gitlab-release  also create a GitLab release per released project (via the `glab` CLI,
+ *                     which must be installed and authenticated: `glab auth login`). Off by default.
  *   --gitlab-releases-only
- *                     only (re)create the GitLab releases of the latest release run from the
+ *                     implies --gitlab-release. Only (re)create the GitLab releases of the latest release run from the
  *                     existing tags + CHANGELOG.md files (existing releases are skipped); use it
  *                     after a failed gitlab-release step. `--commit=<sha>[,<sha>]` selects the
  *                     release commit(s) explicitly instead of the latest `chore(release): version*`
  * Env:
  *   YES=true          skip the interactive confirmation
- *   GL_TOKEN          GitLab token (required) — used for GitLab release creation
- *   GITLAB_HOST       GitLab base url (default https://gitlab.com)
  *   PUBLISH_REGISTRY  npm registry (default https://registry.npmjs.org)
  *   GIT_BRANCH        override the detected branch (also reads CI_COMMIT_REF_NAME)
  */
 
-import { execSync } from 'node:child_process';
+import { execSync, spawnSync } from 'node:child_process';
 import { createInterface } from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 import { createRequire } from 'node:module';
@@ -84,6 +84,7 @@ const SKIP_BUILD = has('--skip-build') || has('--publish-only');
 const PUBLISH_ONLY = has('--publish-only');
 const SKIP_UMBRELLA = has('--skip-umbrella');
 const GITLAB_ONLY = has('--gitlab-releases-only');
+const GITLAB_RELEASE = has('--gitlab-release') || GITLAB_ONLY;
 const FORCED_SPECIFIER = valueOf('specifier');
 
 const C = {
@@ -250,10 +251,15 @@ async function preflight(mode) {
     die('Working tree has uncommitted changes. Commit or stash before releasing.');
   }
 
-  if (!process.env.GL_TOKEN) {
-    die('GL_TOKEN is not set (required for GitLab release creation).');
+  if (GITLAB_RELEASE) {
+    const auth = spawnSync('glab', ['auth', 'status'], { encoding: 'utf-8' });
+    if (auth.error?.code === 'ENOENT') {
+      die('--gitlab-release requires the `glab` CLI, which was not found in PATH.');
+    }
+    if (auth.status !== 0) {
+      die('`glab auth status` failed — run `glab auth login` (required by --gitlab-release).');
+    }
   }
-  // Nx GitHub integration reads GITHUB_TOKEN; our custom GitLab step reads GL_TOKEN directly.
 
   console.log(
     [
@@ -265,6 +271,7 @@ async function preflight(mode) {
       `  specifier       = ${FORCED_SPECIFIER || '(conventional-commits)'}`,
       `  dry-run         = ${DRY_RUN}`,
       `  first-release   = ${FIRST_RELEASE}`,
+      `  gitlab-release  = ${GITLAB_RELEASE}`,
     ].join('\n'),
   );
 
@@ -280,44 +287,34 @@ async function preflight(mode) {
 }
 
 // ---------------------------------------------------------------------------
-// GitLab release creation (custom — Nx 20.5.0 only supports GitHub natively)
+// GitLab release creation (custom — Nx 20.5.0 only supports GitHub natively; opt-in, uses glab)
 // ---------------------------------------------------------------------------
-function gitlabProjectPath() {
-  const remote = capture('git remote get-url origin');
-  // git@gitlab.com:rxap/packages.git  |  https://gitlab.com/rxap/packages.git
-  const m = remote.match(/[:/]([^/]+\/[^/]+?)(?:\.git)?$/);
-  if (!m) die(`Could not parse GitLab project path from remote "${remote}"`);
-  return m[1];
-}
-
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-// POST one GitLab release. Retries rate limits (429), 5xx and network errors with exponential
-// backoff (honours Retry-After); an already existing release (409) counts as success.
-async function postGitLabRelease(url, tagName, description) {
+// Create one GitLab release through the `glab` CLI (`glab api` resolves the host, project and
+// credentials from the git remote and `glab auth login`; arguments are passed without a shell).
+// Retries rate limits (429), 5xx and network errors with exponential backoff; an already
+// existing release (409) counts as success.
+async function postGitLabRelease(tagName, description) {
   const MAX_ATTEMPTS = 6;
   let lastError = '';
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
-    let wait = Math.min(2000 * 2 ** (attempt - 1), 60000);
-    try {
-      const res = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'PRIVATE-TOKEN': process.env.GL_TOKEN,
-        },
-        body: JSON.stringify({ tag_name: tagName, name: tagName, description }),
-      });
-      if (res.ok) return { ok: true };
-      const body = await res.text();
-      if (res.status === 409) return { ok: true, existed: true };
-      lastError = `${res.status} ${body}`;
-      if (res.status !== 429 && res.status < 500) break; // not retryable
-      const retryAfter = Number(res.headers.get('retry-after'));
-      if (retryAfter > 0) wait = Math.max(wait, retryAfter * 1000);
-    } catch (e) {
-      lastError = e?.message ?? String(e);
-    }
+    const wait = Math.min(2000 * 2 ** (attempt - 1), 60000);
+    const res = spawnSync(
+      'glab',
+      [
+        'api', '--method', 'POST', 'projects/:id/releases',
+        '-f', `tag_name=${tagName}`,
+        '-f', `name=${tagName}`,
+        '-f', `description=${description}`,
+      ],
+      { encoding: 'utf-8', maxBuffer: 16 * 1024 * 1024 },
+    );
+    if (res.status === 0) return { ok: true };
+    lastError = (res.error?.message ?? `${res.stderr}${res.stdout}`).trim();
+    const status = Number(lastError.match(/\(HTTP (\d{3})\)/)?.[1]);
+    if (status === 409) return { ok: true, existed: true };
+    if (status && status !== 429 && status < 500) break; // not retryable
     if (attempt < MAX_ATTEMPTS) {
       warn(`GitLab release ${tagName}: ${lastError.slice(0, 120)} — retry ${attempt}/${MAX_ATTEMPTS - 1} in ${Math.round(wait / 1000)}s`);
       await sleep(wait);
@@ -326,19 +323,15 @@ async function postGitLabRelease(url, tagName, description) {
   return { ok: false, error: lastError };
 }
 
-function gitlabReleasesUrl() {
-  const base = (process.env.CI_API_V4_URL || `${process.env.GITLAB_HOST || 'https://gitlab.com'}/api/v4`).replace(/\/$/, '');
-  const projectId = process.env.CI_PROJECT_ID || encodeURIComponent(gitlabProjectPath());
-  return `${base}/projects/${projectId}/releases`;
-}
-
 async function createGitLabReleases(projectChangelogs) {
+  if (!GITLAB_RELEASE) {
+    console.log('  GitLab releases are skipped (pass --gitlab-release to create them).');
+    return;
+  }
   if (!projectChangelogs || Object.keys(projectChangelogs).length === 0) {
     warn('No project changelogs returned; skipping GitLab release creation.');
     return;
   }
-  const url = gitlabReleasesUrl();
-
   for (const [project, { releaseVersion, contents }] of Object.entries(projectChangelogs)) {
     const tagName = releaseVersion?.gitTag;
     if (!tagName) {
@@ -349,7 +342,7 @@ async function createGitLabReleases(projectChangelogs) {
       console.log(`  [dry-run] would create GitLab release ${tagName}`);
       continue;
     }
-    const result = await postGitLabRelease(url, tagName, contents || `Release ${tagName}`);
+    const result = await postGitLabRelease(tagName, contents || `Release ${tagName}`);
     if (result.ok) {
       ok(`GitLab release ${result.existed ? 'already exists' : 'created'}: ${tagName}`);
     } else {
@@ -390,7 +383,6 @@ async function gitlabReleasesOnly() {
   if (commits.length === 0) die('No `chore(release): version` commit found in the last 50 commits.');
   console.log(`  release commit(s): ${commits.map((c) => c.slice(0, 9)).join(', ')}`);
 
-  const url = gitlabReleasesUrl();
   let created = 0;
   for (const commit of commits) {
     const changelogs = capture(`git show --name-only --format= ${commit}`)
@@ -419,7 +411,7 @@ async function gitlabReleasesOnly() {
         console.log(`  [dry-run] would create GitLab release ${tagName}`);
         continue;
       }
-      const result = await postGitLabRelease(url, tagName, body);
+      const result = await postGitLabRelease(tagName, body);
       if (result.ok) {
         created++;
         ok(`GitLab release ${result.existed ? 'already exists' : 'created'}: ${tagName}`);
@@ -454,7 +446,6 @@ async function main() {
 
   const mode = computeReleaseMode();
   await preflight(mode);
-  process.env.GITLAB_TOKEN = process.env.GITLAB_TOKEN || process.env.GL_TOKEN;
 
   if (GITLAB_ONLY) {
     return gitlabReleasesOnly();

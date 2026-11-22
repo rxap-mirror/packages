@@ -6,8 +6,8 @@ bash-hook pipeline; the orchestrator preserves every pre-step that pipeline perf
 
 ## Prerequisites
 
-- `.env` must exist with `GL_TOKEN=<your-gitlab-token>` set (used to create GitLab releases).
-  Optionally set `GITLAB_HOST` (defaults to `https://gitlab.com`).
+- Only for `--gitlab-release`: the [`glab`](https://gitlab.com/gitlab-org/cli) CLI must be installed
+  and authenticated (`glab auth login`). No token in `.env` is needed.
 - You must be on a release branch: `development`, `latest`, `next`, `next-major`, `beta`,
   `alpha`, `master`, or a maintenance branch `N.x[.x]` / `N.M.x` (optionally `-dev`).
 - The working tree must be clean and up-to-date with the remote.
@@ -48,7 +48,9 @@ with a temporary `currentVersionResolver: disk` / `specifierSource: prompt` conf
 - `--dry-run` – thread dry-run through nx; skip all git/publish/GitLab side effects.
 - `--first-release` – required for the very first migrated run (no prior matching tag to diff).
 - `--specifier=<x>` – force the version bump for the `packages` group (graduation).
-- `--gitlab-releases-only` – (re)create the GitLab releases of the latest release run from the
+- `--gitlab-release` – also create a GitLab release per released project via `glab`. **Off by
+  default**; without the flag the GitLab step is skipped.
+- `--gitlab-releases-only` – implies `--gitlab-release`; (re)create the GitLab releases of the latest release run from the
   existing tags and `CHANGELOG.md` files (existing releases are skipped; `--commit=<sha>` selects
   the release commit explicitly). GitLab release creation retries 429/5xx with backoff.
 - `--publish-only` – retry just the publish from the existing `dist/` (e.g. after a partial
@@ -59,7 +61,7 @@ with a temporary `currentVersionResolver: disk` / `specifierSource: prompt` conf
 ## What the orchestrator does (phase order)
 
 1. **Compute release mode** from the branch (prerelease / preid / dist-tag).
-2. **Preflight** – allowBranch guard, `git fetch`, behind/dirty checks, `GL_TOKEN`, confirm.
+2. **Preflight** – allowBranch guard, `git fetch`, behind/dirty checks, `glab auth status` (only with `--gitlab-release`), confirm.
 3. **Validate** – `nx run-many -t build,test,lint --exclude=angular`.
 4. **Version (source)** – `releaseVersion` bumps each changed `package.json` and pins internal
    `@rxap/*` dependencies to `^<newVersion>` (native `updateDependents` + `versionPrefix`).
