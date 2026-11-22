@@ -522,7 +522,12 @@ async function releaseVersionStamped(releaseVersion, groupName, mode, baseOption
   for (const { specifier, projects } of calls) {
     log(`Version ${projects.length} project(s) at ${specifier ?? '(conventional-commits)'}`);
     const result = await releaseVersion({ ...baseOptions, projects, specifier });
-    Object.assign(merged.projectsVersionData, result.projectsVersionData ?? {});
+    const got = Object.entries(result.projectsVersionData ?? {});
+    console.log(`  -> ${got.filter(([, d]) => d?.newVersion).length}/${projects.length} projects versioned (${got.length} entries)`);
+    for (const [name, d] of got) {
+      // a later call must never erase a version an earlier call assigned (dependents are patch-bumped by updateDependents)
+      if (d?.newVersion || !merged.projectsVersionData[name]?.newVersion) merged.projectsVersionData[name] = d;
+    }
     merged.workspaceVersion ??= result.workspaceVersion;
   }
   return merged;
