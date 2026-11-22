@@ -1,6 +1,7 @@
 import {
   readProjectConfiguration,
   Tree,
+  updateProjectConfiguration,
 } from '@nx/devkit';
 import {
   CoerceArrayItems,
@@ -59,6 +60,7 @@ export async function convertToBuildableLibraryGenerator(
     },
     defaultConfiguration: 'production',
   });
+  updateProjectConfiguration(tree, options.project, project);
 
   UpdateNgPackageJson(tree, ngPackage => {
     ngPackage.$schema = join(toRoot, 'node_modules/ng-packagr/ng-package.schema.json');

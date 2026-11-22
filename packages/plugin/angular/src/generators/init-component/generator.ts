@@ -103,7 +103,8 @@ export async function initComponentGenerator(
   if (!tree.exists(join(directory, componentFileName + '.ts'))) {
     await componentGenerator(tree, {
       ...componentOptions,
-      path: directory,
+      // @nx/angular >= 21 treats path as the file path (the last segment is replaced by the component name)
+      path: join(directory, dasherize(options.name)),
     });
   }
 

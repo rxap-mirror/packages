@@ -55,7 +55,7 @@ export default async function runExecutor(
         SetToObject(config, key, content);
       } else {
         console.log('Merge config'.grey);
-        deepMerge(config, content);
+        config = deepMerge(config, content);
       }
     } catch (e: any) {
       console.error(e.message);

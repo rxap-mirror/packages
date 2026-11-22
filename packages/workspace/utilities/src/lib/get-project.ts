@@ -127,7 +127,11 @@ export function FindProjectByPath<Tree extends TreeLike>(tree: Tree, projectPath
           return project;
         }
       }
-      currentPath = join(currentPath, '..');
+      const parentPath = dirname(currentPath);
+      if (parentPath === currentPath) {
+        break;
+      }
+      currentPath = parentPath;
     } while (currentPath && recursive);
   }
   if (PROJECT_LOCATION_TO_PROJECT_NAME_CACHE.size === 0) {
@@ -138,7 +142,11 @@ export function FindProjectByPath<Tree extends TreeLike>(tree: Tree, projectPath
   let projectName: string | null = null;
   do {
     projectName = PROJECT_LOCATION_TO_PROJECT_NAME_CACHE.get(join(currentPath, 'project.json')) ?? null;
-    currentPath = join(currentPath, '..');
+    const parentPath = dirname(currentPath);
+    if (parentPath === currentPath) {
+      break;
+    }
+    currentPath = parentPath;
   } while (currentPath && !projectName && recursive);
   if (projectName) {
     return FindProject(tree, projectName);

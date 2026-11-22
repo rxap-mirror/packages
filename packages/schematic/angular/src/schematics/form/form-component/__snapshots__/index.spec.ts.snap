@@ -41,6 +41,7 @@ exports[`form-component minimal: generated 1`] = `
 import { TestForm, ITestForm } from './test-form.form';
 import { RxapFormBuilder, RXAP_FORM_DEFINITION_BUILDER, RXAP_FORM_DEFINITION, RXAP_FORM_INITIAL_STATE } from '@rxap/forms';
 
+// rxap-no-index-export
 export const FormProviders: Provider[] = [TestForm];
 export const FormComponentProviders: Provider[] = [{
     provide: RXAP_FORM_DEFINITION,
