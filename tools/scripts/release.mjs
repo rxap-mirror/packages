@@ -44,6 +44,13 @@
  *   --graduate[=<preid>]
  *                     promote the current prerelease line (preid default `dev`) to a stable release
  *                     on a stable branch (`latest`/`master`); implies `--specifier=patch`
+ *   --stamped         first release after a framework upgrade: every project whose on-disk version has a
+ *                     HIGHER MAJOR than its newest git tag (e.g. angular 21.0.1 -> stamped 22.0.0, nest
+ *                     11.0.2 -> 12.0.0, plugins 22.0.1 -> 24.0.0) is released at exactly the stamped
+ *                     version (`<disk>-<preid>.0` on a prerelease branch, `<disk>` on a stable one).
+ *                     Needed because `currentVersionResolver: git-tag` ignores the stamp and Nx would
+ *                     otherwise bump from the old tag (or find no feat/fix commit and release nothing).
+ *                     All other projects keep the conventional-commits bump. Dry-run it first.
  *   --skip-validate   skip the build/test/lint gate
  *   --skip-build      skip the production build (use existing dist; pair with --publish-only)
  *   --publish-only    jump straight to publish (retry a failed publish without re-versioning)
@@ -96,6 +103,7 @@ const GITLAB_RELEASE = has('--gitlab-release') || GITLAB_ONLY;
 // --graduate[=<preid>]: promote the latest prerelease line (default preid `dev`) to a stable release.
 // Nx resolves the current version from the newest *stable* tag unless it is told the preid, which
 // would restart the stable line at the old version (e.g. 19.1.2 -> 19.1.3 instead of 21.0.1-dev.1 -> 21.0.1).
+const STAMPED = has('--stamped');
 const GRADUATE = valueOf('graduate') ?? (has('--graduate') ? 'dev' : undefined);
 // graduating means dropping the prerelease suffix: `patch` on `x.y.z-dev.n` yields `x.y.z`
 const FORCED_SPECIFIER = valueOf('specifier') ?? (GRADUATE ? 'patch' : undefined);
@@ -285,6 +293,7 @@ async function preflight(mode) {
       `  dry-run         = ${DRY_RUN}`,
       `  first-release   = ${FIRST_RELEASE}`,
       `  graduate        = ${GRADUATE ?? false}`,
+      `  stamped         = ${STAMPED}`,
       `  gitlab-release  = ${GITLAB_RELEASE}`,
     ].join('\n'),
   );
@@ -451,6 +460,73 @@ function loadNxRelease() {
   return api;
 }
 
+
+// ---------------------------------------------------------------------------
+// --stamped: release projects at the major their package.json was stamped to
+// ---------------------------------------------------------------------------
+function listReleaseProjects(groupName) {
+  const semver = require('semver');
+  const fs = require('node:fs');
+  const path = require('node:path');
+  const tags = capture('git tag -l').split('\n').filter(Boolean);
+  const skip = new Set(['node_modules', 'dist', '.git', '.nx', '.yarn', 'tmp', 'demos']);
+  const found = [];
+  const walk = (dir) => {
+    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (!e.isDirectory() || skip.has(e.name)) continue;
+      const p = path.join(dir, e.name);
+      const pj = path.join(p, 'project.json');
+      const pk = path.join(p, 'package.json');
+      if (fs.existsSync(pj) && fs.existsSync(pk)) {
+        const project = JSON.parse(fs.readFileSync(pj, 'utf-8'));
+        const pkg = JSON.parse(fs.readFileSync(pk, 'utf-8'));
+        const inGroup = groupName === 'rxap' ? project.name === 'rxap' : (project.tags ?? []).includes('packages') && project.name !== 'rxap';
+        if (inGroup && !pkg.private) found.push({ name: project.name, disk: pkg.version });
+      }
+      walk(p);
+    }
+  };
+  walk('.');
+  return found.map(({ name, disk }) => {
+    const prefix = name === 'rxap' ? 'rxap@' : `@rxap/${name}@`;
+    const versions = tags.filter((t) => t.startsWith(prefix)).map((t) => t.slice(prefix.length)).filter((v) => semver.valid(v)).sort(semver.compare);
+    return { name, disk, latestTag: versions.at(-1) };
+  });
+}
+
+// returns { bySpecifier: Map<specifier, projects[]>, rest: projects[] }
+function stampedPlan(groupName, mode) {
+  const semver = require('semver');
+  const bySpecifier = new Map();
+  const rest = [];
+  for (const p of listReleaseProjects(groupName)) {
+    if (p.latestTag && semver.valid(p.disk) && semver.major(p.disk) > semver.major(p.latestTag)) {
+      const target = semver.prerelease(p.disk) || !mode.isPrerelease ? p.disk : `${p.disk}-${mode.preid}.0`;
+      if (!bySpecifier.has(target)) bySpecifier.set(target, []);
+      bySpecifier.get(target).push(p.name);
+      console.log(`  stamped: ${p.name.padEnd(38)} ${p.latestTag} -> ${target}`);
+    } else {
+      rest.push(p.name);
+    }
+  }
+  return { bySpecifier, rest };
+}
+
+// one releaseVersion call per distinct stamped specifier (+ one for the remaining projects)
+async function releaseVersionStamped(releaseVersion, groupName, mode, baseOptions) {
+  const { bySpecifier, rest } = stampedPlan(groupName, mode);
+  const merged = { projectsVersionData: {}, workspaceVersion: undefined };
+  const calls = [...[...bySpecifier].map(([specifier, projects]) => ({ specifier, projects }))];
+  if (rest.length > 0) calls.push({ specifier: FORCED_SPECIFIER, projects: rest });
+  for (const { specifier, projects } of calls) {
+    log(`Version ${projects.length} project(s) at ${specifier ?? '(conventional-commits)'}`);
+    const result = await releaseVersion({ ...baseOptions, projects, specifier });
+    Object.assign(merged.projectsVersionData, result.projectsVersionData ?? {});
+    merged.workspaceVersion ??= result.workspaceVersion;
+  }
+  return merged;
+}
+
 // ---------------------------------------------------------------------------
 // main
 // ---------------------------------------------------------------------------
@@ -494,9 +570,7 @@ async function main() {
 
   // ---- 4. version the `packages` group (source package.json) ----
   log('Version (packages group)');
-  const versionResult = await releaseVersion({
-    groups: ['packages'],
-    specifier: FORCED_SPECIFIER,
+  const packagesVersionOptions = {
     preid: mode.isPrerelease ? mode.preid : GRADUATE,
     stageChanges: false,
     gitCommit: false,
@@ -504,7 +578,10 @@ async function main() {
     dryRun: DRY_RUN,
     verbose: VERBOSE,
     firstRelease: FIRST_RELEASE,
-  });
+  };
+  const versionResult = STAMPED
+    ? await releaseVersionStamped(releaseVersion, 'packages', mode, packagesVersionOptions)
+    : await releaseVersion({ ...packagesVersionOptions, groups: ['packages'], specifier: FORCED_SPECIFIER });
   const versionData = versionResult.projectsVersionData ?? {};
   const changed = Object.entries(versionData)
     .filter(([, d]) => d?.newVersion)
@@ -695,17 +772,18 @@ async function releaseRxapUmbrella({ releaseVersion, releaseChangelog, releasePu
     run('git commit -m "fix(rxap): update package group" --no-verify', { allowFailure: true });
   }
 
-  const versionResult = await releaseVersion({
-    groups: ['rxap'],
+  const umbrellaVersionOptions = {
     preid: mode.isPrerelease ? mode.preid : GRADUATE,
-    specifier: FORCED_SPECIFIER,
     stageChanges: false,
     gitCommit: false,
     gitTag: false,
     dryRun: DRY_RUN,
     verbose: VERBOSE,
     firstRelease: FIRST_RELEASE,
-  });
+  };
+  const versionResult = STAMPED
+    ? await releaseVersionStamped(releaseVersion, 'rxap', mode, umbrellaVersionOptions)
+    : await releaseVersion({ ...umbrellaVersionOptions, groups: ['rxap'], specifier: FORCED_SPECIFIER });
   const versionData = versionResult.projectsVersionData ?? {};
   if (!Object.values(versionData).some((d) => d?.newVersion)) {
     return warn('rxap umbrella has no version change; skipping umbrella publish.');
