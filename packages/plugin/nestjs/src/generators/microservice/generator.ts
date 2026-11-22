@@ -29,7 +29,7 @@ export async function microserviceGenerator(
   directory ??= join('service', name.replace(/(^service-)/, ''));
 
   presetOptions.tags ??= '';
-  const tags = (presetOptions.tags as string).split(',').map(tag => tag.trim());
+  const tags = (presetOptions.tags as string).split(',').map(tag => tag.trim()).filter(tag => !!tag);
   CoerceArrayItems(tags, ['nest', 'service']);
   presetOptions.tags = tags.join(',');
 
