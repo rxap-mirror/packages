@@ -117,6 +117,7 @@
       ],
       "inputs": [
         "test",
+        "^production",
         "{workspaceRoot}/jest.preset.js",
         "{workspaceRoot}/jest.preset.ts",
         "{projectRoot}/jest.config.ts",
@@ -408,7 +409,8 @@
     {
       "plugin": "@nx/jest/plugin",
       "options": {
-        "targetName": "test"
+        "targetName": "test",
+        "disableJestRuntime": true
       },
       "exclude": ["demos/**"]
     },

@@ -2,7 +2,6 @@ import { ExecutorContext } from '@nx/devkit';
 import bundleJsonSchema from './bundle-json-schema/executor';
 import exposeAsSchematic from './expose-as-schematic/executor';
 import fixDependencies from './fix-dependencies/executor';
-import indexExport from './index-export/executor';
 import indexJsonSchema from './index-json-schema/executor';
 import { runExecutor as runGenerator } from './run-generator/executor';
 
@@ -32,13 +31,6 @@ describe('library generator wrapper executors', () => {
   ])('%s should run its generator', async (name, executor) => {
     expect(await (executor as any)({}, context)).toEqual({ success: true });
     expect(runMock).toHaveBeenCalledWith({ generator: `@rxap/plugin-library:${ name }`, options: {} }, context);
-  });
-
-  it('index-export should pass generateRootExport', async () => {
-    await indexExport({ generateRootExport: true } as any, context);
-    expect(runMock).toHaveBeenCalledWith({ generator: '@rxap/plugin-library:index-export', options: { generateRootExport: true } }, context);
-    await indexExport({} as any, context);
-    expect(runMock.mock.calls[1][0].options).toEqual({});
   });
 
   describe('fix-dependencies', () => {
