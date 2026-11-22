@@ -13,11 +13,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { HasPermissionModule } from '@rxap/authorization';
 
-import { ConfirmModule } from '@rxap/components';
 import { DataSourceErrorComponent } from '@rxap/data-source';
-import { RxapFormsModule } from '@rxap/forms';
 import { CardProgressBarDirective } from '@rxap/material-directives/card';
 import { InputClearButtonDirective } from '@rxap/material-form-system';
 import {
@@ -29,11 +26,10 @@ import {
   PersistentPaginatorDirective,
   RowAnimation,
   RXAP_TABLE_METHOD,
-  TableColumnMenuModule,
+  TableColumnMenuComponent,
+  TableColumnOptionComponent,
   TableDataSourceDirective,
-  TableFilterModule,
   TableHeaderButtonDirective,
-  TableRowActionsModule,
   TableShowArchivedSlideComponent,
 } from '@rxap/material-table-system';
 import { GetFromObjectPipe } from '@rxap/pipes';
@@ -54,14 +50,13 @@ import { DummyTableMethod } from '../dummy-table.method';
     CardProgressBarDirective,
     MatTableModule,
     TableDataSourceDirective,
-    TableFilterModule,
-    RxapFormsModule,
     MatCheckboxModule,
     ReactiveFormsModule,
     RouterModule,
     MatDividerModule,
 
-    TableColumnMenuModule,
+    TableColumnMenuComponent,
+    TableColumnOptionComponent,
     DateCellComponent,
 
     MatPaginatorModule,
@@ -73,9 +68,6 @@ import { DummyTableMethod } from '../dummy-table.method';
     TableHeaderButtonDirective,
     TableShowArchivedSlideComponent,
     PersistentPaginatorDirective,
-    ConfirmModule,
-    HasPermissionModule,
-    TableRowActionsModule,
     GetFromObjectPipe,
     CopyToClipboardCellComponent,
     LinkCellComponent,

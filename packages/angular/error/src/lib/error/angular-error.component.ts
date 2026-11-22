@@ -4,7 +4,7 @@ import {
   Component,
   inject,
 } from '@angular/core';
-import { DataGridModule } from '@rxap/data-grid';
+import { DataGridComponent, DataGridRowDefDirective, DataGridHeaderCellDefDirective, DataGridCellDefDirective } from '@rxap/data-grid';
 import { IErrorDialogComponent } from '../error-dialog/error-dialog.component';
 import { RXAP_ERROR_DIALOG_ERROR } from '../tokens';
 import { AngularErrorDialogData } from './angular-error-dialog-data';
@@ -12,7 +12,7 @@ import { AngularErrorDialogData } from './angular-error-dialog-data';
 @Component({
     selector: 'rxap-angular-error',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [DataGridModule, KeyValuePipe],
+    imports: [DataGridComponent, DataGridRowDefDirective, DataGridHeaderCellDefDirective, DataGridCellDefDirective, KeyValuePipe],
     templateUrl: './angular-error.component.html',
     styleUrls: ['./angular-error.component.scss']
 })

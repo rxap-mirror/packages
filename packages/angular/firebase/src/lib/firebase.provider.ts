@@ -182,6 +182,7 @@ export const FIREBASE_APP_PROVIDERS: Provider[] = [
     useFactory: ɵfirebaseAppFactory,
     deps: [
       FIREBASE_OPTIONS,
+      // NgZone is required by the signature of the @angular/fire compat factory (ɵfirebaseAppFactory)
       NgZone,
       [ new Optional(), FIREBASE_APP_NAME ],
     ],

@@ -45,7 +45,6 @@ describe('@rxap/data-source/directive', () => {
           </ng-template>
 
       `,
-    standalone: false
 })
     class TestComponent {
       readonly dataSource = inject(TestDataSource);
@@ -55,8 +54,7 @@ describe('@rxap/data-source/directive', () => {
     xit('with filled list', async () => {
 
       await TestBed.configureTestingModule({
-        imports: [ DataSourceCollectionDirective ],
-        declarations: [ TestComponent ],
+        imports: [ DataSourceCollectionDirective, TestComponent ],
         providers: [ TestDataSource ],
       }).compileComponents();
 
@@ -73,8 +71,7 @@ describe('@rxap/data-source/directive', () => {
     xit('with empty list', async () => {
 
       await TestBed.configureTestingModule({
-        imports: [ DataSourceCollectionDirective ],
-        declarations: [ TestComponent ],
+        imports: [ DataSourceCollectionDirective, TestComponent ],
         providers: [
           {
             provide: TestDataSource,

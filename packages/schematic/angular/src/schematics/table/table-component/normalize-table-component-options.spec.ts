@@ -601,7 +601,7 @@ describe('NormalizeTableComponentOptions', () => {
                     "isTypeOnly": false,
                     "moduleSpecifier": "@rxap/ngx-material-table-select",
                     "name": "rxapTableSelectControl",
-                    "namedImport": "TableSelectControlModule",
+                    "namedImport": "TableSelectControlDirective",
                     "namespaceImport": null
                   }
                 ],
@@ -665,7 +665,23 @@ describe('NormalizeTableComponentOptions', () => {
                   "defaultImport": null,
                   "isTypeOnly": false,
                   "moduleSpecifier": "@rxap/ngx-material-table-select",
-                  "name": "TableSelectControlModule",
+                  "name": "TableSelectControlDirective",
+                  "namedImport": null,
+                  "namespaceImport": null
+                },
+                {
+                  "defaultImport": null,
+                  "isTypeOnly": false,
+                  "moduleSpecifier": "@rxap/ngx-material-table-select",
+                  "name": "TableSelectInputComponent",
+                  "namedImport": null,
+                  "namespaceImport": null
+                },
+                {
+                  "defaultImport": null,
+                  "isTypeOnly": false,
+                  "moduleSpecifier": "@rxap/ngx-material-table-select",
+                  "name": "OpenTableSelectWindowDirective",
                   "namedImport": null,
                   "namespaceImport": null
                 },

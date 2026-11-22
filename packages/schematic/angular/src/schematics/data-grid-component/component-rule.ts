@@ -58,10 +58,18 @@ export function componentRule(normalizedOptions: NormalizedDataGridComponentOpti
       },
       tsMorphTransform: (project, [ sourceFile ], [ classDeclaration ]) => {
 
-        CoerceComponentImport(classDeclaration, {
-          name: 'DataGridModule',
-          moduleSpecifier: '@rxap/data-grid',
-        });
+        for (const name of [
+          'DataGridComponent',
+          'DataGridRowDefDirective',
+          'DataGridHeaderCellDefDirective',
+          'DataGridCellDefDirective',
+          ...(isForm ? [ 'DataGridEditCellDefDirective' ] : []),
+        ]) {
+          CoerceComponentImport(classDeclaration, {
+            name,
+            moduleSpecifier: '@rxap/data-grid',
+          });
+        }
         if (inCard) {
           CoerceComponentImport(classDeclaration, {
             name: 'MatCardModule',
@@ -91,7 +99,7 @@ export function componentRule(normalizedOptions: NormalizedDataGridComponentOpti
 
         if (isForm) {
           CoerceComponentImport(classDeclaration, {
-            name: 'RxapFormsModule',
+            name: 'FormDirective',
             moduleSpecifier: '@rxap/forms',
           });
           CoerceComponentImport(classDeclaration, {

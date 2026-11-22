@@ -1,3 +1,4 @@
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule, AsyncPipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -13,12 +14,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { HasPermissionModule } from '@rxap/authorization';
 
-import { ConfirmModule } from '@rxap/components';
 import { DataSourceErrorComponent } from '@rxap/data-source';
 import { TreeTableDataSource } from '@rxap/data-source/table/tree';
-import { RxapFormsModule } from '@rxap/forms';
 import { CardProgressBarDirective } from '@rxap/material-directives/card';
 import { InputClearButtonDirective } from '@rxap/material-form-system';
 import {
@@ -31,11 +29,13 @@ import {
   RowAnimation,
   TABLE_CREATE_REMOTE_METHOD,
   TABLE_DATA_SOURCE,
-  TableColumnMenuModule,
+  TableColumnMenuComponent,
+  TableColumnOptionComponent,
   TableCreateButtonDirective,
   TableDataSourceDirective,
-  TableFilterModule,
-  TableRowActionsModule,
+  TableRowActionDirective,
+  TableRowActionExecutingDirective,
+  RowActionCheckPipe,
   TableShowArchivedSlideComponent,
   TreeControlCellComponent,
   TableHeaderButtonDirective,
@@ -62,13 +62,12 @@ import { OpenMaximumTreeFormWindowMethod } from './maximum-tree-form/open-maximu
     CardProgressBarDirective,
     MatTableModule,
     TableDataSourceDirective,
-    TableFilterModule,
-    RxapFormsModule,
     MatCheckboxModule,
     ReactiveFormsModule,
     RouterModule,
     MatDividerModule,
-    TableColumnMenuModule,
+    TableColumnMenuComponent,
+    TableColumnOptionComponent,
     DateCellComponent,
     MatPaginatorModule,
     MatSortModule,
@@ -79,9 +78,10 @@ import { OpenMaximumTreeFormWindowMethod } from './maximum-tree-form/open-maximu
     TableCreateButtonDirective,
     TableShowArchivedSlideComponent,
     PersistentPaginatorDirective,
-    ConfirmModule,
-    HasPermissionModule,
-    TableRowActionsModule,
+    TableRowActionDirective,
+    TableRowActionExecutingDirective,
+    RowActionCheckPipe,
+    MatTooltipModule,
     GetFromObjectPipe,
     CopyToClipboardCellComponent,
     LinkCellComponent,

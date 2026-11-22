@@ -10,7 +10,6 @@ export * from './lib/table-row-actions/table-row-action-executing.directive';
 export * from './lib/table-row-actions/table-row-action-status';
 export * from './lib/table-row-actions/table-row-action.directive';
 export * from './lib/table-row-actions/table-row-action.method';
-export * from './lib/table-row-actions/table-row-actions.module';
 export * from './lib/table-row-actions/table-row-header-action.directive';
 export * from './lib/table-row-actions/tokens';
 export * from './lib/table-row-actions/types';
@@ -25,7 +24,6 @@ export * from './lib/table-header-button/tokens';
 
 // region table-filter
 export * from './lib/table-filter/filter-header-row.directive';
-export * from './lib/table-filter/table-filter.module';
 export * from './lib/table-filter/table-filter.service';
 export * from './lib/table-filter/to-filter-column-names.pipe';
 export * from './lib/table-filter/tokens';
@@ -46,7 +44,6 @@ export * from './lib/table-column-menu/table-column-option/table-column-option.c
 
 // region table-column-menu
 export * from './lib/table-column-menu/table-column-menu.component';
-export * from './lib/table-column-menu/table-column-menu.module';
 // endregion
 
 // region table-column-filter
@@ -63,7 +60,6 @@ export * from './lib/select-row/checkbox-cell/checkbox-cell.component';
 // endregion
 
 // region select-row
-export * from './lib/select-row/select-row.module';
 export * from './lib/select-row/select-row.options';
 export * from './lib/select-row/select-row.service';
 export * from './lib/select-row/selected-rows.directive';
@@ -82,7 +78,6 @@ export * from './lib/expand-row/expand-controls-cell/expand-controls-cell.compon
 
 // region expand-row
 export * from './lib/expand-row/expand-row.directive';
-export * from './lib/expand-row/expand-row.module';
 export * from './lib/expand-row/expand-row.service';
 // endregion
 

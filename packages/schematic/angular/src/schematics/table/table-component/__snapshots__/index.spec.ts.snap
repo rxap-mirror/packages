@@ -128,7 +128,7 @@ exports[`table-component minimal: generated 1`] = `
 ",
   "/ui/lib/src/lib/test-table/test-table.component.scss": "",
   "/ui/lib/src/lib/test-table/test-table.component.ts": "import { Component, ChangeDetectionStrategy, input } from '@angular/core';
-import { RowAnimation, TableColumnMenuModule, PersistentPaginatorDirective, TableDataSourceDirective } from '@rxap/material-table-system';
+import { RowAnimation, TableColumnMenuComponent, TableColumnOptionComponent, PersistentPaginatorDirective, TableDataSourceDirective } from '@rxap/material-table-system';
 import { Observable } from 'rxjs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DataSourceErrorComponent } from '@rxap/data-source';
@@ -146,7 +146,7 @@ import { AsyncPipe, NgIf, NgClass } from '@angular/common';
     templateUrl: './test-table.component.html',
     styleUrls: ['./test-table.component.scss'],
   animations: [RowAnimation],
-  imports: [TableColumnMenuModule, MatPaginatorModule, PersistentPaginatorDirective, DataSourceErrorComponent, MatDividerModule, TableDataSourceDirective, MatTableModule, CardProgressBarDirective, MatProgressBarModule, MatCardModule, AsyncPipe, NgIf, NgClass],
+  imports: [TableColumnMenuComponent, TableColumnOptionComponent, MatPaginatorModule, PersistentPaginatorDirective, DataSourceErrorComponent, MatDividerModule, TableDataSourceDirective, MatTableModule, CardProgressBarDirective, MatProgressBarModule, MatCardModule, AsyncPipe, NgIf, NgClass],
 })
 export class TestTableComponent {
   public readonly parameters = input<Observable<Record<string, unknown>>>();
@@ -445,7 +445,7 @@ type RawRowData = any;
 ",
   "/ui/lib/src/lib/test-table/test-table.component.scss": "",
   "/ui/lib/src/lib/test-table/test-table.component.ts": "import { Component, ChangeDetectionStrategy, input } from '@angular/core';
-import { RowAnimation, TableColumnMenuModule, PersistentPaginatorDirective, TableDataSourceDirective, TABLE_REMOTE_METHOD_ADAPTER_FACTORY, RXAP_TABLE_METHOD } from '@rxap/material-table-system';
+import { RowAnimation, TableColumnMenuComponent, TableColumnOptionComponent, PersistentPaginatorDirective, TableDataSourceDirective, TABLE_REMOTE_METHOD_ADAPTER_FACTORY, RXAP_TABLE_METHOD } from '@rxap/material-table-system';
 import { Observable } from 'rxjs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DataSourceErrorComponent } from '@rxap/data-source';
@@ -465,7 +465,7 @@ import { TestTableControllerGetPageRemoteMethod } from 'open-api-api-lib/src/lib
     templateUrl: './test-table.component.html',
     styleUrls: ['./test-table.component.scss'],
   animations: [RowAnimation],
-  imports: [TableColumnMenuModule, MatPaginatorModule, PersistentPaginatorDirective, DataSourceErrorComponent, MatDividerModule, TableDataSourceDirective, MatTableModule, CardProgressBarDirective, MatProgressBarModule, MatCardModule, AsyncPipe, NgIf, NgClass],
+  imports: [TableColumnMenuComponent, TableColumnOptionComponent, MatPaginatorModule, PersistentPaginatorDirective, DataSourceErrorComponent, MatDividerModule, TableDataSourceDirective, MatTableModule, CardProgressBarDirective, MatProgressBarModule, MatCardModule, AsyncPipe, NgIf, NgClass],
   providers: [{
       provide: TABLE_REMOTE_METHOD_ADAPTER_FACTORY,
       useValue: GetPageAdapterFactory

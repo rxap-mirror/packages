@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { IconModule } from '@rxap/icon';
+import { ProvideIconAssetPath } from '@rxap/icon';
 import { UploadButtonComponent } from './upload-button.component';
 
 describe(UploadButtonComponent.name, () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ IconModule ],
+      providers: [ ProvideIconAssetPath() ],
     });
   });
 

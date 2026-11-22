@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormControlsComponent } from '@rxap/material-form-system';
-import { RxapFormsModule } from '@rxap/forms';
+import { FormDirective } from '@rxap/forms';
 import { FormWindowFooterDirective } from '@rxap/form-window-system';
 import { RXAP_WINDOW_SETTINGS } from '@rxap/window-system';
 import { FormProviders, FormComponentProviders } from './form.providers';
@@ -14,7 +14,7 @@ import { FormProviders, FormComponentProviders } from './form.providers';
     imports: [
         ReactiveFormsModule,
         FormControlsComponent,
-        RxapFormsModule,
+        FormDirective,
         FormWindowFooterDirective,
     ],
     providers: [

@@ -1,4 +1,4 @@
-import { NgModule, Pipe, PipeTransform, inject } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, Pipe, PipeTransform, inject } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 
 @Pipe({
@@ -6,7 +6,7 @@ import { CurrencyPipe } from '@angular/common';
   standalone: true,
 })
 export class RxapCurrencyPipe implements PipeTransform {
-  private readonly currency = inject(CurrencyPipe);
+  private readonly currency = new CurrencyPipe(inject(LOCALE_ID), inject(DEFAULT_CURRENCY_CODE, { optional: true }) ?? undefined);
 
 
   /**
@@ -52,12 +52,4 @@ export class RxapCurrencyPipe implements PipeTransform {
     return this.currency.transform(value / 100, currencyCode, display, digitsInfo, locale);
   }
 
-}
-
-@NgModule({
-  imports: [ RxapCurrencyPipe ],
-  exports: [ RxapCurrencyPipe ],
-  providers: [ CurrencyPipe ],
-})
-export class CurrencyPipeModule {
 }

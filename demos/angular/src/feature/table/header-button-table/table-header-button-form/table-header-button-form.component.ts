@@ -7,11 +7,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 
 import { FormWindowFooterDirective } from '@rxap/form-window-system';
-import { RxapFormsModule } from '@rxap/forms';
-import {
-  FormControlsComponent,
-  MaterialFormSystemModule,
-} from '@rxap/material-form-system';
+import { FormDirective } from '@rxap/forms';
+import { FormControlsComponent } from '@rxap/material-form-system';
 
 import { RXAP_WINDOW_SETTINGS } from '@rxap/window-system';
 
@@ -28,9 +25,8 @@ import {
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
     ReactiveFormsModule,
-    MaterialFormSystemModule,
     FormControlsComponent,
-    RxapFormsModule,
+    FormDirective,
     FormWindowFooterDirective
 ],
     providers: [

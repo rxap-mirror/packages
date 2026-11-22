@@ -4,7 +4,7 @@ import {
 
 import { DataGridDemoDataGridDataSource } from './data-grid-demo-data-grid.data-source';
 
-import { DataGridModule } from '@rxap/data-grid';
+import { DataGridComponent, DataGridRowDefDirective } from '@rxap/data-grid';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
@@ -13,7 +13,7 @@ import { MatCardModule } from '@angular/material/card';
     styleUrls: ['./data-grid-demo-data-grid.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-        DataGridModule,
+        DataGridComponent, DataGridRowDefDirective,
         MatCardModule,
     ],
     providers: [

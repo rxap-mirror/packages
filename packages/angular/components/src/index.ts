@@ -22,5 +22,4 @@ export * from './lib/copy-to-clipboard/copy-to-clipboard.component';
 // region confirm
 export * from './lib/confirm/confirm.component';
 export * from './lib/confirm/confirm.directive';
-export * from './lib/confirm/confirm.module';
 // endregion

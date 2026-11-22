@@ -8,7 +8,7 @@ import {
   CopyToClipboardComponent,
   JsonViewerComponent,
 } from '@rxap/components';
-import { DataGridModule } from '@rxap/data-grid';
+import { DataGridComponent, DataGridRowDefDirective, DataGridCellDefDirective } from '@rxap/data-grid';
 import { RXAP_ENVIRONMENT } from '@rxap/environment';
 import { IErrorDialogComponent } from '../error-dialog/error-dialog.component';
 import { RXAP_ERROR_DIALOG_ERROR } from '../tokens';
@@ -20,7 +20,7 @@ import { AnyHttpErrorDialogData } from './any-http-error-dialog-data';
     styleUrls: ['./any-http-error.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
-    DataGridModule,
+    DataGridComponent, DataGridRowDefDirective, DataGridCellDefDirective,
     DatePipe,
     KeyValuePipe,
     CopyToClipboardComponent,

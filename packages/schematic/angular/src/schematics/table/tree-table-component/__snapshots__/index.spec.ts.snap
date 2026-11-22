@@ -139,7 +139,7 @@ exports[`tree-table-component minimal: generated 1`] = `
 ",
   "/ui/lib/src/lib/test-tree-table/test-tree-table.component.scss": "",
   "/ui/lib/src/lib/test-tree-table/test-tree-table.component.ts": "import { Component, ChangeDetectionStrategy, input } from '@angular/core';
-import { RowAnimation, TableColumnMenuModule, PersistentPaginatorDirective, TableDataSourceDirective, TreeControlCellComponent, TABLE_DATA_SOURCE } from '@rxap/material-table-system';
+import { RowAnimation, TableColumnMenuComponent, TableColumnOptionComponent, PersistentPaginatorDirective, TableDataSourceDirective, TreeControlCellComponent, TABLE_DATA_SOURCE } from '@rxap/material-table-system';
 import { Observable } from 'rxjs';
 import { DataSourceErrorComponent } from '@rxap/data-source';
 import { MatDividerModule } from '@angular/material/divider';
@@ -158,7 +158,7 @@ import { TreeTableDataSource } from '@rxap/data-source/table/tree';
     templateUrl: './test-tree-table.component.html',
     styleUrls: ['./test-tree-table.component.scss'],
   animations: [RowAnimation],
-  imports: [TableColumnMenuModule, PersistentPaginatorDirective, DataSourceErrorComponent, MatDividerModule, TableDataSourceDirective, MatTableModule, CardProgressBarDirective, MatProgressBarModule, MatCardModule, AsyncPipe, NgIf, NgClass, TreeControlCellComponent, MatProgressSpinnerModule],
+  imports: [TableColumnMenuComponent, TableColumnOptionComponent, PersistentPaginatorDirective, DataSourceErrorComponent, MatDividerModule, TableDataSourceDirective, MatTableModule, CardProgressBarDirective, MatProgressBarModule, MatCardModule, AsyncPipe, NgIf, NgClass, TreeControlCellComponent, MatProgressSpinnerModule],
   providers: [{
       provide: TABLE_DATA_SOURCE,
       useClass: TreeTableDataSource

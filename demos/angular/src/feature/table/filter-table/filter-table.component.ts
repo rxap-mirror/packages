@@ -18,11 +18,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { HasPermissionModule } from '@rxap/authorization';
 
-import { ConfirmModule } from '@rxap/components';
 import { DataSourceErrorComponent } from '@rxap/data-source';
-import { RxapFormsModule, ParentControlContainerDirective } from '@rxap/forms';
+import { ParentControlContainerDirective } from '@rxap/forms';
 import { CardProgressBarDirective } from '@rxap/material-directives/card';
 import { InputClearButtonDirective } from '@rxap/material-form-system';
 import {
@@ -35,12 +33,13 @@ import {
   RowAnimation,
   RXAP_TABLE_FILTER_FORM_DEFINITION,
   RXAP_TABLE_METHOD,
-  TableColumnMenuModule,
+  TableColumnMenuComponent,
+  TableColumnOptionComponent,
   TableCreateButtonDirective,
   TableDataSourceDirective,
-  TableFilterModule,
+  FilterHeaderRowDirective,
+  ToFilterColumnNamesPipe,
   TableFilterService,
-  TableRowActionsModule,
   TableShowArchivedSlideComponent,
 } from '@rxap/material-table-system';
 import { GetFromObjectPipe } from '@rxap/pipes';
@@ -63,13 +62,14 @@ import { InputSelectOptionsDirective } from '@rxap/form-system';
     CardProgressBarDirective,
     MatTableModule,
     TableDataSourceDirective,
-    TableFilterModule,
-    RxapFormsModule,
+    FilterHeaderRowDirective,
+    ToFilterColumnNamesPipe,
     MatCheckboxModule,
     ReactiveFormsModule,
     RouterModule,
     MatDividerModule,
-    TableColumnMenuModule,
+    TableColumnMenuComponent,
+    TableColumnOptionComponent,
     DateCellComponent,
     MatPaginatorModule,
     MatSortModule,
@@ -80,9 +80,6 @@ import { InputSelectOptionsDirective } from '@rxap/form-system';
     TableCreateButtonDirective,
     TableShowArchivedSlideComponent,
     PersistentPaginatorDirective,
-    ConfirmModule,
-    HasPermissionModule,
-    TableRowActionsModule,
     GetFromObjectPipe,
     CopyToClipboardCellComponent,
     LinkCellComponent,

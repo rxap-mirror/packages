@@ -5,15 +5,7 @@ import {
   Injector,
   INJECTOR,
 } from '@angular/core';
-import {
-  FormType,
-  RXAP_FORM_DEFINITION,
-  RxapForm,
-  RxapFormBuilder,
-  RxapFormControl,
-  RxapFormsModule,
-  UseFormControl,
-} from '@rxap/forms';
+import { FormType, RXAP_FORM_DEFINITION, RxapForm, RxapFormBuilder, RxapFormControl, FormDirective, UseFormControl } from '@rxap/forms';
 
 describe(FormControlsComponent.name, () => {
 
@@ -56,7 +48,7 @@ describe(FormControlsComponent.name, () => {
       template: '<form rxapForm><rxap-form-controls></rxap-form-controls></form>',
       standalone: true,
       imports: [
-        RxapFormsModule,
+        FormDirective,
         FormControlsComponent,
       ],
       providers: [

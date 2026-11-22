@@ -34,7 +34,6 @@ export * from './lib/directives/array/form-array-removable.directive';
 // region directives
 export * from './lib/directives/autocomplete-options-from-method.directive';
 export * from './lib/directives/control-hide-show.directive';
-export * from './lib/directives/form-directives.module';
 export * from './lib/directives/input-select-options.directive';
 export * from './lib/directives/options-from-method.directive';
 export * from './lib/directives/options-from-remote-method.directive';

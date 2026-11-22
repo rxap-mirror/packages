@@ -12,7 +12,6 @@ export * from './lib/window-task-bar/window-task/window-task.component';
 
 // region window-task-bar
 export * from './lib/window-task-bar/window-task-bar.component';
-export * from './lib/window-task-bar/window-task-bar.module';
 // endregion
 
 // region window-resizer
@@ -43,7 +42,6 @@ export * from './lib/window-context';
 export * from './lib/window-footer.directive';
 export * from './lib/window-instance.service';
 export * from './lib/window-ref';
-export * from './lib/window-system.module';
 export * from './lib/window-title.directive';
 export * from './lib/window.service';
 // endregion

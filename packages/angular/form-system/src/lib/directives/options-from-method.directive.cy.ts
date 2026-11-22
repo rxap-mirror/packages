@@ -9,15 +9,7 @@ import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  FormType,
-  RXAP_FORM_DEFINITION,
-  RxapForm,
-  RxapFormBuilder,
-  RxapFormControl,
-  RxapFormsModule,
-  UseFormControl,
-} from '@rxap/forms';
+import { FormDirective, FormType, RXAP_FORM_DEFINITION, RxapForm, RxapFormBuilder, RxapFormControl, UseFormControl } from '@rxap/forms';
 import { Method } from '@rxap/pattern';
 import { ControlOptions } from '@rxap/utilities';
 import { UseOptionsMethod } from '../mixins/extract-options-method.mixin';
@@ -48,7 +40,7 @@ describe(OptionsFromMethodDirective.name, () => {
   @Component({
     imports: [
         ReactiveFormsModule,
-        RxapFormsModule,
+        FormDirective,
         MatSelectModule,
         OptionsFromMethodDirective,
     ],

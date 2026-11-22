@@ -5,22 +5,17 @@ import {
   Injector,
   INJECTOR,
 } from '@angular/core';
-import { DataGridModule } from './data-grid.module';
+import { DataGridRowDefDirective } from './data-grid-row-def.directive';
+import { DataGridHeaderCellDefDirective } from './data-grid-header-cell-def.directive';
+import { DataGridCellDefDirective } from './data-grid-cell-def.directive';
+import { DataGridEditCellDefDirective } from './data-grid-edit-cell-def.directive';
 import { MatInputModule } from '@angular/material/input';
 import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { ControlErrorDirective } from '@rxap/material-form-system';
-import {
-  FormType,
-  RXAP_FORM_DEFINITION,
-  RxapForm,
-  RxapFormBuilder,
-  RxapFormControl,
-  RxapFormsModule,
-  UseFormControl,
-} from '@rxap/forms';
+import { FormType, RXAP_FORM_DEFINITION, RxapForm, RxapFormBuilder, RxapFormControl, FormDirective, UseFormControl } from '@rxap/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { JsonPipe } from '@angular/common';
 import {
@@ -121,7 +116,7 @@ describe(DataGridComponent.name, () => {
           <ng-container rxapDataGridRowDef="email"></ng-container>
           <ng-container rxapDataGridRowDef="age"></ng-container>
         </rxap-data-grid>`,
-      imports: [ DataGridModule ],
+      imports: [ DataGridRowDefDirective, DataGridHeaderCellDefDirective, DataGridCellDefDirective, DataGridEditCellDefDirective ],
     })
     class TestComponent {
 
@@ -159,7 +154,7 @@ describe(DataGridComponent.name, () => {
             <ng-template rxapDataGridCellDef let-value>{{ value * 10 }}</ng-template>
           </ng-container>
         </rxap-data-grid>`,
-      imports: [ DataGridModule ],
+      imports: [ DataGridRowDefDirective, DataGridHeaderCellDefDirective, DataGridCellDefDirective, DataGridEditCellDefDirective ],
     })
     class TestComponent {
 
@@ -240,11 +235,11 @@ describe(DataGridComponent.name, () => {
         </form>`,
       imports: [
         JsonPipe,
-        DataGridModule,
+        DataGridComponent, DataGridRowDefDirective, DataGridHeaderCellDefDirective, DataGridCellDefDirective, DataGridEditCellDefDirective,
         MatInputModule,
         ReactiveFormsModule,
         ControlErrorDirective,
-        RxapFormsModule,
+        FormDirective,
       ],
       providers: [
         FormProviders,
@@ -367,7 +362,7 @@ describe(DataGridComponent.name, () => {
           <ng-container rxapDataGridRowDef="email"></ng-container>
           <ng-container rxapDataGridRowDef="age"></ng-container>
         </rxap-data-grid>`,
-      imports: [ DataGridModule ],
+      imports: [ DataGridRowDefDirective, DataGridHeaderCellDefDirective, DataGridCellDefDirective, DataGridEditCellDefDirective ],
     })
     class TestComponent {
 
@@ -396,7 +391,7 @@ describe(DataGridComponent.name, () => {
           <ng-container rxapDataGridRowDef="email"></ng-container>
           <ng-container rxapDataGridRowDef="age"></ng-container>
         </rxap-data-grid>`,
-      imports: [ DataGridModule ],
+      imports: [ DataGridRowDefDirective, DataGridHeaderCellDefDirective, DataGridCellDefDirective, DataGridEditCellDefDirective ],
     })
     class TestComponent {
 
@@ -448,7 +443,7 @@ describe(DataGridComponent.name, () => {
           <ng-container rxapDataGridRowDef="email"></ng-container>
           <ng-container rxapDataGridRowDef="age"></ng-container>
         </rxap-data-grid>`,
-      imports: [ DataGridModule ],
+      imports: [ DataGridRowDefDirective, DataGridHeaderCellDefDirective, DataGridCellDefDirective, DataGridEditCellDefDirective ],
     })
     class TestComponent {
 

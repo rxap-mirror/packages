@@ -17,5 +17,4 @@ export * from './lib/extract-table-select-to-value.mixin';
 export * from './lib/open-table-select-window.directive';
 export * from './lib/open-table-select-window.method';
 export * from './lib/table-select-control.directive';
-export * from './lib/table-select-control.module';
 // endregion

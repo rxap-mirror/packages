@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RxapForm } from './decorators/form';
 import { UseFormControl } from './decorators/use-form-control';
-import { RxapFormsModule } from './directives/forms.module';
+import { FormDirective } from './directives/form.directive';
 import { RXAP_FORM_DEFINITION } from './directives/tokens';
 import { RxapFormBuilder } from './form-builder';
 import { RxapFormControl } from './form-control';
@@ -32,7 +32,7 @@ describe('FormControl', () => {
       template: `
         <form rxapForm><input formControlName="username"></form>`,
       standalone: true,
-      imports: [ RxapFormsModule, ReactiveFormsModule ],
+      imports: [ FormDirective, ReactiveFormsModule ],
       providers: [
         {
           provide: RXAP_FORM_DEFINITION,

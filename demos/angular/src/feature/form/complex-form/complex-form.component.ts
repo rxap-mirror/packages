@@ -16,7 +16,7 @@ import {
   FormArrayRemovableDirective,
   InputSelectOptionsDirective,
 } from '@rxap/form-system';
-import { RxapFormsModule } from '@rxap/forms';
+import { FormDirective } from '@rxap/forms';
 import {
   FormControlsComponent,
   InputClearButtonDirective,
@@ -31,7 +31,7 @@ import {
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './complex-form.component.html',
     styleUrls: ['./complex-form.component.scss'],
-    imports: [ReactiveFormsModule, FormControlsComponent, RxapFormsModule, MatInputModule, MatIconModule, MatButtonModule, InputClearButtonDirective, ForFormArrayItemsDirective, FormArrayRemovableDirective, FormArrayItemRemoveButtonDirective, FormArrayItemRestoreButtonDirective, FormArrayAddItemButtonDirective, MatCheckboxModule, MatSelectModule, InputSelectOptionsDirective],
+    imports: [ReactiveFormsModule, FormControlsComponent, FormDirective, MatInputModule, MatIconModule, MatButtonModule, InputClearButtonDirective, ForFormArrayItemsDirective, FormArrayRemovableDirective, FormArrayItemRemoveButtonDirective, FormArrayItemRestoreButtonDirective, FormArrayAddItemButtonDirective, MatCheckboxModule, MatSelectModule, InputSelectOptionsDirective],
     providers: [FormProviders, FormComponentProviders]
 })
 export class ComplexFormComponent {

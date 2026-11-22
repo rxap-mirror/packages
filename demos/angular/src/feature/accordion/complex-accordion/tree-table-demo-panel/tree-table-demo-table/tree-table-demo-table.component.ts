@@ -17,16 +17,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { HasPermissionModule } from '@rxap/authorization';
 
-import { ConfirmModule } from '@rxap/components';
 import { DataSourceErrorComponent } from '@rxap/data-source';
 import {
   RXAP_TREE_TABLE_DATA_SOURCE_CHILDREN_METHOD,
   RXAP_TREE_TABLE_DATA_SOURCE_ROOT_METHOD,
   TreeTableDataSource,
 } from '@rxap/data-source/table/tree';
-import { RxapFormsModule } from '@rxap/forms';
 import { CardProgressBarDirective } from '@rxap/material-directives/card';
 import { InputClearButtonDirective } from '@rxap/material-form-system';
 import {
@@ -38,11 +35,10 @@ import {
   PersistentPaginatorDirective,
   RowAnimation,
   TABLE_DATA_SOURCE,
-  TableColumnMenuModule,
+  TableColumnMenuComponent,
+  TableColumnOptionComponent,
   TableCreateButtonDirective,
   TableDataSourceDirective,
-  TableFilterModule,
-  TableRowActionsModule,
   TableShowArchivedSlideComponent,
   TreeControlCellComponent,
 } from '@rxap/material-table-system';
@@ -64,13 +60,12 @@ import { TreeTableDemoRootTableMethod } from './tree-table-demo-root-table.metho
         CardProgressBarDirective,
         MatTableModule,
         TableDataSourceDirective,
-        TableFilterModule,
-        RxapFormsModule,
         MatCheckboxModule,
         ReactiveFormsModule,
         RouterModule,
         MatDividerModule,
-        TableColumnMenuModule,
+        TableColumnMenuComponent,
+        TableColumnOptionComponent,
         DateCellComponent,
         MatPaginatorModule,
         MatSortModule,
@@ -81,9 +76,6 @@ import { TreeTableDemoRootTableMethod } from './tree-table-demo-root-table.metho
         TableCreateButtonDirective,
         TableShowArchivedSlideComponent,
         PersistentPaginatorDirective,
-        ConfirmModule,
-        HasPermissionModule,
-        TableRowActionsModule,
         GetFromObjectPipe,
         CopyToClipboardCellComponent,
         LinkCellComponent,

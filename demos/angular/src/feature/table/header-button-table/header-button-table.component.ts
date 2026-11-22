@@ -13,11 +13,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { HasPermissionModule } from '@rxap/authorization';
 
-import { ConfirmModule } from '@rxap/components';
 import { DataSourceErrorComponent } from '@rxap/data-source';
-import { RxapFormsModule } from '@rxap/forms';
 import { CardProgressBarDirective } from '@rxap/material-directives/card';
 import { InputClearButtonDirective } from '@rxap/material-form-system';
 import {
@@ -30,11 +27,10 @@ import {
   RowAnimation,
   RXAP_TABLE_METHOD,
   TABLE_HEADER_BUTTON_METHOD,
-  TableColumnMenuModule,
+  TableColumnMenuComponent,
+  TableColumnOptionComponent,
   TableDataSourceDirective,
-  TableFilterModule,
   TableHeaderButtonDirective,
-  TableRowActionsModule,
   TableShowArchivedSlideComponent,
 } from '@rxap/material-table-system';
 import { GetFromObjectPipe } from '@rxap/pipes';
@@ -58,13 +54,12 @@ import { OpenHeaderButtonFormWindowMethod } from './header-button-form/open-head
     CardProgressBarDirective,
     MatTableModule,
     TableDataSourceDirective,
-    TableFilterModule,
-    RxapFormsModule,
     MatCheckboxModule,
     ReactiveFormsModule,
     RouterModule,
     MatDividerModule,
-    TableColumnMenuModule,
+    TableColumnMenuComponent,
+    TableColumnOptionComponent,
     DateCellComponent,
     MatPaginatorModule,
     MatSortModule,
@@ -75,9 +70,6 @@ import { OpenHeaderButtonFormWindowMethod } from './header-button-form/open-head
     TableHeaderButtonDirective,
     TableShowArchivedSlideComponent,
     PersistentPaginatorDirective,
-    ConfirmModule,
-    HasPermissionModule,
-    TableRowActionsModule,
     GetFromObjectPipe,
     CopyToClipboardCellComponent,
     LinkCellComponent,

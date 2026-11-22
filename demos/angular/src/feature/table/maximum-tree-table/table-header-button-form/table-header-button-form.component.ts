@@ -8,12 +8,9 @@ import {
   FormComponentProviders,
   FormProviders,
 } from './form.providers';
-import {
-  FormControlsComponent,
-  MaterialFormSystemModule,
-} from '@rxap/material-form-system';
+import { FormControlsComponent } from '@rxap/material-form-system';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RxapFormsModule } from '@rxap/forms';
+import { FormDirective } from '@rxap/forms';
 
 
 
@@ -24,9 +21,8 @@ import { RxapFormsModule } from '@rxap/forms';
     changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
     ReactiveFormsModule,
-    MaterialFormSystemModule,
     FormControlsComponent,
-    RxapFormsModule
+    FormDirective
 ],
     providers: [
         FormProviders,

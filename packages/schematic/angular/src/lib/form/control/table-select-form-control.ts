@@ -154,10 +154,10 @@ export function NormalizeTableSelectFormControl(
 ): NormalizedTableSelectFormControl {
   const importList = control.importList ?? [];
   CoerceArrayItems(importList, [
-    {
-      name: 'TableSelectControlModule',
+    ...[ 'TableSelectControlDirective', 'TableSelectInputComponent', 'OpenTableSelectWindowDirective' ].map(name => ({
+      name,
       moduleSpecifier: '@rxap/ngx-material-table-select',
-    }
+    })),
   ], (a, b) => a.name === b.name);
   if (!control.columnList?.length) {
     throw new Error('The column list must not be empty');
@@ -187,7 +187,7 @@ export function NormalizeTableSelectFormControl(
       directiveList: [
         {
           name: 'rxapTableSelectControl',
-          namedImport: 'TableSelectControlModule',
+          namedImport: 'TableSelectControlDirective',
           moduleSpecifier: '@rxap/ngx-material-table-select',
         },
       ],

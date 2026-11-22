@@ -8,7 +8,6 @@ export * from './lib/select-row/checkbox-cell/checkbox-cell.component';
 
 // region select-row
 export * from './lib/select-row/all-rows-selected.directive';
-export * from './lib/select-row/select-row.module';
 export * from './lib/select-row/select-row.service';
 // endregion
 
@@ -28,6 +27,5 @@ export * from './lib/expand-row/expand-controls-cell/expand-controls-cell.compon
 
 // region expand-row
 export * from './lib/expand-row/expand-row.directive';
-export * from './lib/expand-row/expand-row.module';
 export * from './lib/expand-row/expand-row.service';
 // endregion

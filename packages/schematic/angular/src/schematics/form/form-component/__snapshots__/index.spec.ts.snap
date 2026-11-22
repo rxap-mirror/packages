@@ -69,7 +69,7 @@ function FormBuilderFactory(injector: Injector): RxapFormBuilder<ITestForm> {
   "/ui/lib/src/lib/test-form/test-form.component.ts": "import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormControlsComponent } from '@rxap/material-form-system';
-import { RxapFormsModule } from '@rxap/forms';
+import { FormDirective } from '@rxap/forms';
 import { FormProviders, FormComponentProviders } from './form.providers';
 
 @Component({
@@ -78,7 +78,7 @@ import { FormProviders, FormComponentProviders } from './form.providers';
     changeDetection: ChangeDetectionStrategy.OnPush,
     templateUrl: './test-form.component.html',
     styleUrls: ['./test-form.component.scss'],
-  imports: [ReactiveFormsModule, FormControlsComponent, RxapFormsModule],
+  imports: [ReactiveFormsModule, FormControlsComponent, FormDirective],
   providers: [FormProviders, FormComponentProviders],
 })
 export class TestFormComponent {

@@ -64,7 +64,7 @@ export function CoerceFormComponentRule(options: CoerceFormComponentOptions) {
         });
       CoerceComponentImport(
         classDeclaration, {
-          name: 'RxapFormsModule',
+          name: 'FormDirective',
           moduleSpecifier: '@rxap/forms',
         });
       if (window) {

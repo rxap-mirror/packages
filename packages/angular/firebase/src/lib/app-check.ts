@@ -1,4 +1,4 @@
-import { Injectable, isDevMode, NgModule, NgZone, inject } from '@angular/core';
+import { Injectable, isDevMode, NgZone, inject, makeEnvironmentProviders, provideAppInitializer, EnvironmentProviders } from '@angular/core';
 import { ConfigService } from '@rxap/config';
 import {
   EMPTY,
@@ -36,6 +36,7 @@ export class AppCheckService {
   constructor() {
     const options = inject<FirebaseOptions>(FIREBASE_OPTIONS);
     const nameOrConfig = inject(FIREBASE_APP_NAME, { optional: true });
+    // NgZone is only injected because the @angular/fire compat factory (ɵfirebaseAppFactory) requires it
     const zone = inject<NgZone>(NgZone);
     const siteKey = inject(APP_CHECK_SITE_KEY, { optional: true });
     const isTokenAutoRefreshEnabled = inject(APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED, { optional: true });
@@ -86,10 +87,15 @@ export class AppCheckService {
 
 }
 
-@NgModule({
-  providers: [ AppCheckService ],
-})
-export class RxapAngularFireAppCheckModule {
-  readonly appCheck = inject<AppCheckService>(AppCheckService);
-
+/**
+ * Registers the AppCheckService and eagerly instantiates it on app initialization
+ * (replaces the former RxapAngularFireAppCheckModule).
+ */
+export function provideAngularFireAppCheck(): EnvironmentProviders {
+  return makeEnvironmentProviders([
+    AppCheckService,
+    provideAppInitializer(() => {
+      inject(AppCheckService);
+    }),
+  ]);
 }

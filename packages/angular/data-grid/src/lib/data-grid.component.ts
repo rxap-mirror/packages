@@ -10,10 +10,7 @@ import {
   ActivationEnd,
   Router,
 } from '@angular/router';
-import {
-  FormDirective,
-  RxapFormsModule,
-} from '@rxap/forms';
+import { FormDirective, FormSubmitFailedDirective, FormSubmitSuccessfulDirective, FormSubmitInvalidDirective } from '@rxap/forms';
 import {
   DataSource,
   DataSourceViewer,
@@ -79,7 +76,7 @@ function coerceDataGridMode(value: DataGridMode | string): DataGridMode {
     GetFromObjectPipe,
     ReplacePipe,
     EscapeQuotationMarkPipe,
-    RxapFormsModule,
+    FormSubmitFailedDirective, FormSubmitSuccessfulDirective, FormSubmitInvalidDirective,
     DataGridValuePipe,
     MatProgressSpinnerModule,
     MatDividerModule,

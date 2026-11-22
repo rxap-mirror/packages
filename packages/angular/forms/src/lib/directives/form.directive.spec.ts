@@ -21,7 +21,6 @@ import { RxapFormControl } from '../form-control';
 import { RxapFormGroup } from '../form-group';
 import { FormDefinition, FormType } from '../model';
 import { FormDirective } from './form.directive';
-import { RxapFormsModule } from './forms.module';
 import {
   RXAP_FORM_DEFINITION,
   RXAP_FORM_DEFINITION_BUILDER,
@@ -476,7 +475,7 @@ describe('@rxap/forms', () => {
 
         beforeEach(async () => {
           await TestBed.configureTestingModule({
-            imports: [RxapFormsModule],
+            imports: [FormDirective],
             providers: [TestFormProviders],
           });
 

@@ -4,15 +4,7 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { MockRender } from 'ng-mocks';
-import {
-  FormDirective,
-  FormType,
-  RXAP_FORM_DEFINITION,
-  RxapForm,
-  RxapFormBuilder,
-  RxapFormGroup,
-  RxapFormsModule,
-} from '@rxap/forms';
+import { FormDirective, FormType, RXAP_FORM_DEFINITION, RxapForm, RxapFormBuilder, RxapFormGroup } from '@rxap/forms';
 import { Injectable, Injector, INJECTOR } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
@@ -37,7 +29,7 @@ describe('@rxap/material-form-system', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [FormControlsComponent, RxapFormsModule],
+        imports: [FormControlsComponent, FormDirective],
         providers: [
           {
             provide: RXAP_FORM_DEFINITION,

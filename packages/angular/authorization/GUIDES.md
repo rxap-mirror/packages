@@ -4,21 +4,21 @@ The `@rxap/authorization` package provides a robust and flexible way to manage u
 
 ## Installation
 
-1.  **Directives**: Import the `HasPermissionModule` in your application or feature module to use the directives in your templates:
+1.  **Directives**: Import the standalone directives you need in your component to use them in your templates:
 
     ```typescript
-    import { HasPermissionModule } from '@rxap/authorization';
+    import { IfHasPermissionDirective, MatButtonHasEnablePermissionDirective } from '@rxap/authorization';
 
-    @NgModule({
+    @Component({
       imports: [
-        HasPermissionModule,
+        IfHasPermissionDirective,
+        MatButtonHasEnablePermissionDirective,
         // ...
       ],
     })
-    export class AppModule {}
+    export class ExampleComponent {}
     ```
 
-    Alternatively, you can import individual standalone directives as needed (e.g., `IfHasPermissionDirective`, `MatButtonHasEnablePermissionDirective`).
 
 2.  **Providers**: Use the `provideAuthorization()` utility to configure the service and its dependencies (like disabling authorization via config).
 

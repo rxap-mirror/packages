@@ -1,3 +1,4 @@
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { CommonModule, AsyncPipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -13,11 +14,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { HasPermissionModule } from '@rxap/authorization';
 
-import { ConfirmModule } from '@rxap/components';
 import { DataSourceErrorComponent } from '@rxap/data-source';
-import { RxapFormsModule } from '@rxap/forms';
 import { CardProgressBarDirective } from '@rxap/material-directives/card';
 import { InputClearButtonDirective } from '@rxap/material-form-system';
 import {
@@ -30,13 +28,18 @@ import {
   RowAnimation,
   RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS,
   RXAP_TABLE_METHOD,
-  SelectRowModule,
+  CheckboxCellComponent,
+  CheckboxHeaderCellComponent,
+  SelectedRowsDirective,
   SelectRowService,
-  TableColumnMenuModule,
+  TableColumnMenuComponent,
+  TableColumnOptionComponent,
   TableCreateButtonDirective,
   TableDataSourceDirective,
-  TableFilterModule,
-  TableRowActionsModule,
+  TableRowActionDirective,
+  TableRowHeaderActionDirective,
+  TableRowActionExecutingDirective,
+  RowActionCheckPipe,
   TableShowArchivedSlideComponent,
 } from '@rxap/material-table-system';
 import { GetFromObjectPipe } from '@rxap/pipes';
@@ -57,13 +60,12 @@ import { TABLE_ROW_ACTION_METHODS } from './methods/action';
     CardProgressBarDirective,
     MatTableModule,
     TableDataSourceDirective,
-    TableFilterModule,
-    RxapFormsModule,
     MatCheckboxModule,
     ReactiveFormsModule,
     RouterModule,
     MatDividerModule,
-    TableColumnMenuModule,
+    TableColumnMenuComponent,
+    TableColumnOptionComponent,
     DateCellComponent,
     MatPaginatorModule,
     MatSortModule,
@@ -74,9 +76,11 @@ import { TABLE_ROW_ACTION_METHODS } from './methods/action';
     TableCreateButtonDirective,
     TableShowArchivedSlideComponent,
     PersistentPaginatorDirective,
-    ConfirmModule,
-    HasPermissionModule,
-    TableRowActionsModule,
+    TableRowActionDirective,
+    TableRowHeaderActionDirective,
+    TableRowActionExecutingDirective,
+    RowActionCheckPipe,
+    MatTooltipModule,
     GetFromObjectPipe,
     CopyToClipboardCellComponent,
     LinkCellComponent,
@@ -84,7 +88,9 @@ import { TABLE_ROW_ACTION_METHODS } from './methods/action';
     BooleanCellComponent,
     DataSourceErrorComponent,
     MatSnackBarModule,
-    SelectRowModule,
+    CheckboxCellComponent,
+    CheckboxHeaderCellComponent,
+    SelectedRowsDirective,
     AsyncPipe,
     NgClass
 ],

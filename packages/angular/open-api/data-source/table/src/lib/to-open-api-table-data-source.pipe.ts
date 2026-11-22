@@ -1,5 +1,4 @@
 import {
-  NgModule,
   Pipe,
   PipeTransform,
 } from '@angular/core';
@@ -17,7 +16,7 @@ import {
 
 @Pipe({
     name: 'toOpenApiTableDataSource',
-    standalone: false
+    standalone: true,
 })
 export class ToOpenApiTableDataSourcePipe implements PipeTransform {
 
@@ -32,9 +31,3 @@ export class ToOpenApiTableDataSourcePipe implements PipeTransform {
   }
 
 }
-
-@NgModule({
-  exports: [ ToOpenApiTableDataSourcePipe ],
-  declarations: [ ToOpenApiTableDataSourcePipe ],
-})
-export class ToOpenApiTableDataSourcePipeModule {}

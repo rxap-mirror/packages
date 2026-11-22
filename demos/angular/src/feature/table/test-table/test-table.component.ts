@@ -1,7 +1,8 @@
 import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import {
   RowAnimation,
-  TableColumnMenuModule,
+  TableColumnMenuComponent,
+  TableColumnOptionComponent,
   PersistentPaginatorDirective,
   TableDataSourceDirective,
   TABLE_REMOTE_METHOD_ADAPTER_FACTORY,
@@ -27,7 +28,8 @@ import { TestTableControllerGetPageRemoteMethod } from 'open-api-service-nest/sr
   styleUrls: ['./test-table.component.scss'],
   animations: [RowAnimation],
   imports: [
-    TableColumnMenuModule,
+    TableColumnMenuComponent,
+    TableColumnOptionComponent,
     MatPaginatorModule,
     PersistentPaginatorDirective,
     DataSourceErrorComponent,

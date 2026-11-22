@@ -13,11 +13,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { HasPermissionModule } from '@rxap/authorization';
 
-import { ConfirmModule } from '@rxap/components';
 import { DataSourceErrorComponent } from '@rxap/data-source';
-import { RxapFormsModule } from '@rxap/forms';
 import { CardProgressBarDirective } from '@rxap/material-directives/card';
 import { InputClearButtonDirective } from '@rxap/material-form-system';
 import {
@@ -30,11 +27,10 @@ import {
   RowAnimation,
   RXAP_TABLE_METHOD,
   TABLE_REMOTE_METHOD_ADAPTER_FACTORY,
-  TableColumnMenuModule,
+  TableColumnMenuComponent,
+  TableColumnOptionComponent,
   TableCreateButtonDirective,
   TableDataSourceDirective,
-  TableFilterModule,
-  TableRowActionsModule,
   TableShowArchivedSlideComponent,
 } from '@rxap/material-table-system';
 import { GetPageAdapterFactory } from '@rxap/open-api/remote-method';
@@ -57,14 +53,13 @@ import { GetPageAdapterFactory } from '@rxap/table-system';
     CardProgressBarDirective,
     MatTableModule,
     TableDataSourceDirective,
-    TableFilterModule,
-    RxapFormsModule,
     MatCheckboxModule,
     ReactiveFormsModule,
     RouterModule,
     MatDividerModule,
 
-    TableColumnMenuModule,
+    TableColumnMenuComponent,
+    TableColumnOptionComponent,
     DateCellComponent,
 
     MatPaginatorModule,
@@ -76,9 +71,6 @@ import { GetPageAdapterFactory } from '@rxap/table-system';
     TableCreateButtonDirective,
     TableShowArchivedSlideComponent,
     PersistentPaginatorDirective,
-    ConfirmModule,
-    HasPermissionModule,
-    TableRowActionsModule,
     GetFromObjectPipe,
     CopyToClipboardCellComponent,
     LinkCellComponent,

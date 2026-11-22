@@ -68,7 +68,8 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
       // endregion
 
       // region angular component imports
-      CoerceComponentImport(classDeclaration, { name: 'TableColumnMenuModule', moduleSpecifier: '@rxap/material-table-system' });
+      CoerceComponentImport(classDeclaration, { name: 'TableColumnMenuComponent', moduleSpecifier: '@rxap/material-table-system' });
+      CoerceComponentImport(classDeclaration, { name: 'TableColumnOptionComponent', moduleSpecifier: '@rxap/material-table-system' });
       if (hasPaginator) {
         CoerceComponentImport(classDeclaration, {
           name: 'MatPaginatorModule',
@@ -109,7 +110,8 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
         }
       }
       if (filterList.length || columnList.some(column => column.hasFilter)) {
-        CoerceComponentImport(classDeclaration, { name: 'TableFilterModule', moduleSpecifier: '@rxap/material-table-system' });
+        CoerceComponentImport(classDeclaration, { name: 'FilterHeaderRowDirective', moduleSpecifier: '@rxap/material-table-system' });
+        CoerceComponentImport(classDeclaration, { name: 'ToFilterColumnNamesPipe', moduleSpecifier: '@rxap/material-table-system' });
       }
       if (columnList.some(column => column.source?.includes('.'))) {
         CoerceComponentImport(classDeclaration, { name: 'GetFromObjectPipe', moduleSpecifier: '@rxap/pipes' });
@@ -119,16 +121,19 @@ export function CoerceMinimumTableComponentRule(options: Readonly<CoerceMinimumT
       if (actionList && actionList.length) {
         CoerceComponentImport(classDeclaration, { name: 'MatButtonModule', moduleSpecifier: '@angular/material/button' });
         CoerceComponentImport(classDeclaration, { name: 'MatIconModule', moduleSpecifier: '@angular/material/icon' });
-        CoerceComponentImport(classDeclaration, { name: 'TableRowActionsModule', moduleSpecifier: '@rxap/material-table-system' });
+        CoerceComponentImport(classDeclaration, { name: 'MatTooltipModule', moduleSpecifier: '@angular/material/tooltip' });
+        for (const name of [ 'TableRowActionDirective', 'TableRowHeaderActionDirective', 'TableRowActionExecutingDirective', 'RowActionCheckPipe' ]) {
+          CoerceComponentImport(classDeclaration, { name, moduleSpecifier: '@rxap/material-table-system' });
+        }
         if (actionList.some(action => action.confirm)) {
           CoerceComponentImport(classDeclaration, {
-            name: 'ConfirmModule',
+            name: 'ConfirmDirective',
             moduleSpecifier: '@rxap/components'
           });
         }
         if (actionList.some(action => action.permission)) {
           CoerceComponentImport(classDeclaration, {
-            name: 'HasPermissionModule',
+            name: 'MatButtonHasEnablePermissionDirective',
             moduleSpecifier: '@rxap/authorization'
           });
         }

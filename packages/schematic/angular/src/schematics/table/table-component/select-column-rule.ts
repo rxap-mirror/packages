@@ -65,7 +65,9 @@ export function selectColumnRule(normalizedOptions: NormalizedTableComponentOpti
               },
             ],
           );
-          AddComponentImport(sourceFile, 'SelectRowModule', '@rxap/material-table-system');
+          for (const name of [ 'CheckboxCellComponent', 'CheckboxHeaderCellComponent', 'SelectedRowsDirective' ]) {
+            AddComponentImport(sourceFile, name, '@rxap/material-table-system');
+          }
         },
       }),
     ]);
