@@ -514,7 +514,13 @@ function stampedPlan(groupName, mode) {
 }
 
 // one releaseVersion call per distinct stamped specifier (+ one for the remaining projects)
-async function releaseVersionStamped(releaseVersion, groupName, mode, baseOptions) {
+async function releaseVersionStamped(_releaseVersion, groupName, mode, baseOptions) {
+  // updateDependents 'never': with 'auto' every filtered call drags in (and patch-bumps from the OLD git
+  // tag) all dependents of its projects, clobbering the version a previous call stamped on them.
+  // The dependents of a stamped project are stamped themselves; the ^ranges between released
+  // projects are still rewritten by Nx and by the update-dependencies target.
+  const { ReleaseClient } = require('nx/release');
+  const releaseVersion = new ReleaseClient({ version: { updateDependents: 'never' } }).releaseVersion;
   const { bySpecifier, rest } = stampedPlan(groupName, mode);
   const merged = { projectsVersionData: {}, workspaceVersion: undefined };
   const calls = [...[...bySpecifier].map(([specifier, projects]) => ({ specifier, projects }))];
