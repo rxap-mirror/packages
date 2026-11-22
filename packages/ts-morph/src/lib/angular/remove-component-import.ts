@@ -2,7 +2,6 @@ import {
   GetArrayLiteralFromObjectLiteral,
   GetComponentClass,
   GetComponentDecoratorObject,
-  IsTypeImport,
   TypeImport,
 } from '@rxap/ts-morph';
 import {
@@ -28,10 +27,25 @@ export function RemoveComponentImport(
 
   const importName = typeof componentImport === 'string' ? componentImport : componentImport.namedImport ?? componentImport.name;
 
-  sourceFile.getImportDeclaration(importDeclaration => importDeclaration.getNamedImports().some(namedImport => namedImport.getName() === importName))?.remove();
+  for (const importDeclaration of sourceFile.getImportDeclarations()) {
+    const namedImport = importDeclaration.getNamedImports().find(n => n.getName() === importName);
+    if (!namedImport) {
+      continue;
+    }
+    // only remove the whole declaration if no other binding shares it
+    if (importDeclaration.getNamedImports().length === 1 && !importDeclaration.getDefaultImport() && !importDeclaration.getNamespaceImport()) {
+      importDeclaration.remove();
+    } else {
+      namedImport.remove();
+    }
+  }
 
-  if (IsTypeImport(componentImport) && componentImport.moduleSpecifier) {
-    sourceFile.getImportDeclaration(componentImport.moduleSpecifier)?.remove();
+  if (typeof componentImport !== 'string' && componentImport.moduleSpecifier) {
+    const declaration = sourceFile.getImportDeclaration(componentImport.moduleSpecifier);
+    // a default/namespace import of the module specifier; keep it if named imports remain
+    if (declaration && declaration.getNamedImports().length === 0) {
+      declaration.remove();
+    }
   }
 
   const componentDecoratorObject = GetComponentDecoratorObject(classDeclaration);

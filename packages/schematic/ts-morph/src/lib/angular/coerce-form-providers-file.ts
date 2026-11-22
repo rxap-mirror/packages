@@ -28,7 +28,7 @@ export function CoerceFormProvidersFile(options: Readonly<CoerceFormProvidersFil
 
     const sourceFile = CoerceSourceFile(project, '/form.providers.ts');
 
-    if (sourceFile.getStatements().some(statement => statement.getText().includes(`// rxap-no-index-export`))) {
+    if (!sourceFile.getFullText().includes('// rxap-no-index-export')) {
       sourceFile.addStatements('// rxap-no-index-export');
     }
 

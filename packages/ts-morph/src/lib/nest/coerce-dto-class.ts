@@ -256,11 +256,7 @@ function addClassValidatorDecoratorForNestedDto(
         type: propertyType,
         isArray: false,
       }, sourceFile),
-      w => {
-        if (isArray) {
-          Writers.object({ each: 'true' })(w);
-        }
-      },
+      ...(isArray ? [ Writers.object({ each: 'true' }) ] : []),
     ],
   });
   CoerceImports(sourceFile, {
