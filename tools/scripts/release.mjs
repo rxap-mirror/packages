@@ -68,6 +68,11 @@ import { createRequire } from 'node:module';
 
 const require = createRequire(import.meta.url);
 
+// The release must run unattended (CI, piped output): the Nx TUI takes over the terminal and stays
+// open after the tasks finish. Every nx child process inherits process.env, so this covers them all.
+// Export NX_TUI=true to opt back in locally.
+process.env.NX_TUI ??= 'false';
+
 // ---------------------------------------------------------------------------
 // flags / colors
 // ---------------------------------------------------------------------------
