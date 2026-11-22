@@ -7,6 +7,7 @@ import { RemoteMethodLoader } from '@rxap/remote-method';
 describe('@rxap/remote-method/directive/button', () => {
   describe('HttpRemoteMethodDirective', () => {
     @Component({
+      imports: [ HttpRemoteMethodDirective ],
       template: '<button rxapHttpRemoteMethod="test"></button>',
     })
     class TestComponent {}
@@ -17,7 +18,7 @@ describe('@rxap/remote-method/directive/button', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [ HttpRemoteMethodDirective, TestComponent ],
+        imports: [ TestComponent ],
         providers: [
           {
             provide: RemoteMethodLoader,
