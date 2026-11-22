@@ -41,6 +41,9 @@
  *                     version) for the packages group — needed to graduate a prerelease line
  *                     to a stable release on `latest`/`master` (Nx keeps incrementing the
  *                     prerelease otherwise)
+ *   --graduate[=<preid>]
+ *                     promote the current prerelease line (preid default `dev`) to a stable release
+ *                     on a stable branch (`latest`/`master`); implies `--specifier=patch`
  *   --skip-validate   skip the build/test/lint gate
  *   --skip-build      skip the production build (use existing dist; pair with --publish-only)
  *   --publish-only    jump straight to publish (retry a failed publish without re-versioning)
@@ -85,7 +88,12 @@ const PUBLISH_ONLY = has('--publish-only');
 const SKIP_UMBRELLA = has('--skip-umbrella');
 const GITLAB_ONLY = has('--gitlab-releases-only');
 const GITLAB_RELEASE = has('--gitlab-release') || GITLAB_ONLY;
-const FORCED_SPECIFIER = valueOf('specifier');
+// --graduate[=<preid>]: promote the latest prerelease line (default preid `dev`) to a stable release.
+// Nx resolves the current version from the newest *stable* tag unless it is told the preid, which
+// would restart the stable line at the old version (e.g. 19.1.2 -> 19.1.3 instead of 21.0.1-dev.1 -> 21.0.1).
+const GRADUATE = valueOf('graduate') ?? (has('--graduate') ? 'dev' : undefined);
+// graduating means dropping the prerelease suffix: `patch` on `x.y.z-dev.n` yields `x.y.z`
+const FORCED_SPECIFIER = valueOf('specifier') ?? (GRADUATE ? 'patch' : undefined);
 
 const C = {
   red: (s) => `\x1b[0;31m${s}\x1b[0m`,
@@ -271,6 +279,7 @@ async function preflight(mode) {
       `  specifier       = ${FORCED_SPECIFIER || '(conventional-commits)'}`,
       `  dry-run         = ${DRY_RUN}`,
       `  first-release   = ${FIRST_RELEASE}`,
+      `  graduate        = ${GRADUATE ?? false}`,
       `  gitlab-release  = ${GITLAB_RELEASE}`,
     ].join('\n'),
   );
@@ -483,7 +492,7 @@ async function main() {
   const versionResult = await releaseVersion({
     groups: ['packages'],
     specifier: FORCED_SPECIFIER,
-    preid: mode.isPrerelease ? mode.preid : undefined,
+    preid: mode.isPrerelease ? mode.preid : GRADUATE,
     stageChanges: false,
     gitCommit: false,
     gitTag: false,
@@ -683,7 +692,7 @@ async function releaseRxapUmbrella({ releaseVersion, releaseChangelog, releasePu
 
   const versionResult = await releaseVersion({
     groups: ['rxap'],
-    preid: mode.isPrerelease ? mode.preid : undefined,
+    preid: mode.isPrerelease ? mode.preid : GRADUATE,
     specifier: FORCED_SPECIFIER,
     stageChanges: false,
     gitCommit: false,
