@@ -1,0 +1,101 @@
+# MarkupSafe CI pipeline. Uses uv + tox-uv: tox installs the requested
+# Python interpreter via uv, so a single base image covers the full matrix.
+
+default:
+  image: ghcr.io/astral-sh/uv:python3.13-bookworm
+  interruptible: true
+  cache:
+    key:
+      files: [uv.lock]
+    paths:
+      - .cache/uv/
+      - .tox/
+  before_script:
+    - export UV_CACHE_DIR="$CI_PROJECT_DIR/.cache/uv"
+
+# Run MR pipelines when an MR is open, branch pipelines otherwise. Prevents
+# duplicate pipelines on push-to-branch-with-open-MR.
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: $CI_COMMIT_BRANCH
+    - if: $CI_COMMIT_TAG
+
+stages:
+  - build
+  - test
+  - deploy
+
+# Shared base for tox jobs.
+.tox:
+  stage: test
+  needs: []
+  script:
+    - uvx --with tox-uv tox -e $TOX_ENV
+
+# pre-commit hooks (ruff, etc.)
+style:
+  stage: build
+  needs: []
+  script:
+    - uvx --with tox-uv tox -e style
+
+# Strict mypy check.
+typing:
+  stage: build
+  needs: []
+  script:
+    - uvx --with tox-uv tox -e typing
+
+# CPython matrix, including free-threaded builds.
+test:cpython:
+  extends: .tox
+  parallel:
+    matrix:
+      - TOX_ENV:
+          - py3.9
+          - py3.10
+          - py3.11
+          - py3.12
+          - py3.13
+          - py3.13t
+          - py3.14
+          - py3.14t
+
+# Free-threading stress test.
+test:parallel:
+  extends: .tox
+  variables:
+    TOX_ENV: parallel
+
+# PyPy compatibility.
+test:pypy:
+  extends: .tox
+  variables:
+    TOX_ENV: pypy3.11
+
+# Sphinx docs build with -W (warnings as errors).
+docs:
+  stage: test
+  needs: []
+  script:
+    - uvx --with tox-uv tox -e docs
+  artifacts:
+    paths: [docs/_build/dirhtml]
+    expire_in: 1 week
+
+# Build sdist + wheel. PyPI publishing not wired up; add a trusted-publisher
+# or twine job when ready (see docs.gitlab.com/ci/secrets/ for OIDC options).
+build:dist:
+  stage: deploy
+  needs: ["test:cpython", "test:pypy", "style", "typing"]
+  script:
+    - uv build
+  artifacts:
+    paths: [dist/]
+    expire_in: 1 month
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

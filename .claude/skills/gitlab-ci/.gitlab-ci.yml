@@ -1,0 +1,113 @@
+# Validate the skill against the agent-skills.io specification.
+# Uses skills-ref from https://github.com/agentskills/agentskills
+# Pinned to a specific SHA — bump AGENTSKILLS_SHA to pick up upstream changes.
+# skills-ref is labeled "demonstration purposes only" by Anthropic and is not
+# published to PyPI; cloning and installing from source is the supported path.
+
+variables:
+  AGENTSKILLS_SHA: "2d3e01f590f68bee2cb76a3200823e93b2cc9eaa"
+
+stages:
+  - validate
+
+test-verify-auto:
+  stage: validate
+  image: bash:5.2
+  interruptible: true
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - bash tests/verify-auto.sh
+
+validate-skill:
+  stage: validate
+  image: python:3.12-slim
+  interruptible: true
+  retry:
+    max: 1
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq --no-install-recommends git
+    - |
+      git init /tmp/agentskills
+      git -C /tmp/agentskills fetch --depth=1 \
+        https://github.com/agentskills/agentskills.git \
+        "$AGENTSKILLS_SHA"
+      git -C /tmp/agentskills checkout FETCH_HEAD
+    - pip install --quiet -e /tmp/agentskills/skills-ref
+  script:
+    - |
+      if ! skills-ref validate "$CI_PROJECT_DIR" 2>&1 | tee validation-report.txt; then
+        exit 1
+      fi
+  artifacts:
+    when: always
+    paths:
+      - validation-report.txt
+    expire_in: 30 days
+
+# Lint every examples/*/.gitlab-ci.yml via glci lint.
+# Proves the skill's generated outputs are syntactically valid GitLab CI.
+lint-examples:
+  stage: validate
+  image: debian:stable-slim
+  interruptible: true
+  retry:
+    max: 1
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq --no-install-recommends curl ca-certificates
+    - curl -fsSL https://gitlab.com/gitlab-org/ci-cd/runner-tools/glci/-/raw/main/install.sh | bash
+  script:
+    - |
+      failed=0
+      files=$(find examples -name '.gitlab-ci*.yml' -type f 2>/dev/null || true)
+      if [ -z "$files" ]; then
+        echo "no example .gitlab-ci*.yml files found; nothing to lint"
+        exit 0
+      fi
+      for f in $files; do
+        echo "linting $f"
+        if ! glci lint --quiet -f "$f"; then
+          echo "FAIL: $f"
+          failed=1
+        fi
+      done
+      exit $failed
+
+# Enforce that examples/<dir>/ contains only .gitlab-ci*.yml and README.md.
+# No vendored upstream source, no synthetic boilerplate, no nested subdirs.
+# Keeps the skill install footprint small and the supply-chain surface zero.
+verify-examples-shape:
+  stage: validate
+  image: alpine:3.20
+  interruptible: true
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - |
+      failed=0
+      for f in $(find examples -mindepth 2 -type f 2>/dev/null); do
+        base=$(basename "$f")
+        case "$base" in
+          .gitlab-ci.yml|.gitlab-ci.*.yml|README.md) ;;
+          *) echo "FAIL: unexpected file $f. Only .gitlab-ci*.yml and README.md are allowed under examples/<dir>/."; failed=1 ;;
+        esac
+      done
+      for d in $(find examples -mindepth 2 -type d 2>/dev/null); do
+        echo "FAIL: examples/ has nested subdirectory $d. Each stack lives in a single flat dir."
+        failed=1
+      done
+      exit $failed

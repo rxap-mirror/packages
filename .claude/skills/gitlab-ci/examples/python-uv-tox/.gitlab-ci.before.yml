@@ -1,0 +1,34 @@
+default:
+  image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+  interruptible: true
+  cache:
+    key:
+      files: [uv.lock]
+    paths: [.cache/uv/]
+  before_script:
+    - export UV_CACHE_DIR=.cache/uv
+
+stages:
+  - build
+  - test
+
+# Build sdist + wheel (includes the C speedups extension)
+build:
+  stage: build
+  script:
+    - uv build
+  artifacts:
+    paths: [dist/]
+    expire_in: 1 week
+
+# Run pytest against the source tree
+test:
+  stage: test
+  script:
+    - uv sync --group tests
+    - uv run pytest --junitxml=report.xml
+  artifacts:
+    reports:
+      junit: report.xml
+    when: always
+  needs: []

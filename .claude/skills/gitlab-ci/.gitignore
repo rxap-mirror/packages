@@ -1,0 +1,28 @@
+# OS / editor
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Build / test
+*.log
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Local-only
+.env
+.env.local
+/tmp/
+*.local.yml
+
+# glci local config (auto-created on first `glci` invocation)
+.glciconfig.toml
+
+# Local-only agent instructions (Claude Code reads this; not for distribution)
+CLAUDE.local.md
+AGENTS.local.md
+.claude/
+

@@ -1,0 +1,59 @@
+# Workflow 2 demo: two skill invocations applied in sequence over .gitlab-ci.before.yml.
+#
+# Invocation 1: "Please add Secret Detection from the GitLab Catalog."
+#   Added: include of components/secret-detection at version 2.3.0.
+#
+# Invocation 2: "Could you also please improve the testing approach in this ci setup?"
+#   Rewrote the test job: parallel matrix on Python 3.9-3.13, venv-based install,
+#   pytest-cov with cobertura coverage report and JUnit results.
+#
+# Compare against .gitlab-ci.before.yml to see what each Workflow 2 invocation added.
+
+default:
+  image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+  interruptible: true
+  cache:
+    key:
+      files: [uv.lock]
+    paths: [.cache/uv/]
+  before_script:
+    - export UV_CACHE_DIR=.cache/uv
+
+include:
+  - component: gitlab.com/components/secret-detection/secret-detection@2.3.0
+
+stages:
+  - build
+  - test
+
+# Build sdist + wheel (includes the C speedups extension)
+build:
+  stage: build
+  script:
+    - uv build
+  artifacts:
+    paths: [dist/]
+    expire_in: 1 week
+
+# Install the wheel into a clean venv, run pytest with coverage on every supported Python
+test:
+  stage: test
+  parallel:
+    matrix:
+      - PY: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+  image: ghcr.io/astral-sh/uv:python${PY}-bookworm-slim
+  needs: []
+  script:
+    - uv venv
+    - source .venv/bin/activate
+    - uv pip install --no-deps .
+    - uv pip install pytest pytest-cov
+    - pytest --junitxml=report.xml --cov=markupsafe --cov-report=term --cov-report=xml:coverage.xml tests/
+  coverage: '/TOTAL.*?(\d+\.?\d*)%/'
+  artifacts:
+    reports:
+      junit: report.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+    when: always

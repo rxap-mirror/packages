@@ -1,0 +1,49 @@
+# Workflow 3 demo fixture: lint passes, but the pipeline fails at runtime.
+#
+# Intentional break: the image tag is misspelled (sllim instead of slim).
+# - glci lint passes (lint does not validate image existence).
+# - glci show passes (show does not pull images).
+# - glci run --simulate fails at image pull.
+# - glci run fails at image pull with the same error.
+#
+# Real GitLab logs would show:
+#   Error response from daemon: manifest for ghcr.io/astral-sh/uv:python3.13-bookworm-sllim not found
+#
+# The skill should diagnose this from the log alone, propose the one-character
+# fix (sllim -> slim), verify with show, and offer to confirm with `glci run
+# build --confirm-docker` if the user has Docker.
+
+default:
+  image: ghcr.io/astral-sh/uv:python3.13-bookworm-sllim
+  interruptible: true
+  cache:
+    key:
+      files: [uv.lock]
+    paths: [.cache/uv/]
+  before_script:
+    - export UV_CACHE_DIR=.cache/uv
+
+stages:
+  - build
+  - test
+
+# Build sdist + wheel (includes the C speedups extension)
+build:
+  stage: build
+  script:
+    - uv build
+  artifacts:
+    paths: [dist/]
+    expire_in: 1 week
+
+# Run pytest against the source tree
+test:
+  stage: test
+  script:
+    - uv sync --group tests
+    - uv run pytest --junitxml=report.xml
+  artifacts:
+    reports:
+      junit: report.xml
+    when: always
+  needs: []

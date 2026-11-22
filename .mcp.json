@@ -7,39 +7,6 @@
         "chrome-devtools-mcp@latest"
       ]
     },
-    "memory": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-memory"
-      ]
-    },
-    "playwright": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@executeautomation/playwright-mcp-server"
-      ]
-    },
-    "playwright-wizard": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "playwright-wizard-mcp"
-      ]
-    },
-    "node-code-sandbox": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "node-code-sandbox-mcp"
-      ],
-      "env": {
-        "FILES_DIR": "~/.tmp/node-sandbox",
-        "SANDBOX_MEMORY_LIMIT": "2g",
-        "SANDBOX_CPU_LIMIT": "0.75"
-      }
-    },
     "nx": {
       "command": "npx",
       "args": [
@@ -47,25 +14,21 @@
         "nx-mcp@latest"
       ]
     },
-    "DeepWiki": {
-      "type": "sse",
-      "url": "https://mcp.deepwiki.com/sse"
+    "angular-cli": {
+      "command": "npx",
+      "args": ["-y", "@angular/cli", "mcp"]
     },
-    "context7": {
+    "figcraft-headless": {
+      "command": "figcraft-cli",
+      "args": [
+        "mcp"
+      ]
+    },
+    "playwright": {
       "command": "npx",
       "args": [
-        "-y",
-        "@upstash/context7-mcp",
-        "--api-key",
-        "${CONTEXT7_API_KEY}"
-      ],
-      "env": {
-        "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
-      }
-    },
-    "figma": {
-      "type": "http",
-      "url": "https://mcp.figma.com/mcp"
+        "@playwright/mcp@latest"
+      ]
     }
   }
 }

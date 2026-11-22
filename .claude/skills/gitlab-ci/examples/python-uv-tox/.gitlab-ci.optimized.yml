@@ -1,0 +1,65 @@
+# Workflow 4 demo: optimization of .gitlab-ci.after-layered.yml. One round, three changes.
+#
+# 1. Dropped Python 3.9 from the matrix.
+#    pyproject.toml declares requires-python = ">=3.10", so the 3.9 entry was
+#    either failing fast or building a stale resolution. One fewer job, no false
+#    signal.
+# 2. Added cache:key:prefix: "py${PY}" so each matrix entry gets its own cache
+#    slot. Previous shape had 5 jobs racing to write the same lockfile-keyed
+#    cache; last-writer-wins meant cross-version contention and cold caches.
+# 3. Moved `export UV_CACHE_DIR=.cache/uv` from before_script: into a top-level
+#    variables: block. variables: is visible to GitLab's cache: key resolver and
+#    cleans up before_script:; idiomatic GitLab pattern, no behavior change.
+#
+# Compare against .gitlab-ci.after-layered.yml to see the round 1 diff.
+
+default:
+  image: ghcr.io/astral-sh/uv:python3.13-bookworm-slim
+  interruptible: true
+  cache:
+    key:
+      prefix: "py${PY}"
+      files: [uv.lock]
+    paths: [.cache/uv/]
+
+variables:
+  UV_CACHE_DIR: .cache/uv
+
+include:
+  - component: gitlab.com/components/secret-detection/secret-detection@2.3.0
+
+stages:
+  - build
+  - test
+
+# Build sdist + wheel (includes the C speedups extension)
+build:
+  stage: build
+  script:
+    - uv build
+  artifacts:
+    paths: [dist/]
+    expire_in: 1 week
+
+# Install the wheel into a clean venv, run pytest with coverage on every supported Python
+test:
+  stage: test
+  parallel:
+    matrix:
+      - PY: ["3.10", "3.11", "3.12", "3.13"]
+  image: ghcr.io/astral-sh/uv:python${PY}-bookworm-slim
+  needs: []
+  script:
+    - uv venv
+    - source .venv/bin/activate
+    - uv pip install --no-deps .
+    - uv pip install pytest pytest-cov
+    - pytest --junitxml=report.xml --cov=markupsafe --cov-report=term --cov-report=xml:coverage.xml tests/
+  coverage: '/TOTAL.*?(\d+\.?\d*)%/'
+  artifacts:
+    reports:
+      junit: report.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+    when: always
