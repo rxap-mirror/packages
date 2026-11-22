@@ -1,3 +1,10 @@
+## 12.0.0-dev.0 (2026-11-22)
+
+### 🧱 Updated Dependencies
+
+- Updated nest-utilities to 12.0.0-dev.0
+- Updated nest-testing to 12.0.0-dev.0
+
 ## 11.0.2 (2026-11-22)
 
 ### 🩹 Fixes

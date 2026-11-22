@@ -1,5 +1,5 @@
 {
-  "version": "12.0.0",
+  "version": "12.0.0-dev.0",
   "name": "@rxap/nest-typeorm",
   "license": "GPL-3.0-or-later",
   "dependencies": {
@@ -9,7 +9,7 @@
     "@nestjs/common": "^12.6.0",
     "@nestjs/config": "^12.1.1",
     "@nestjs/typeorm": "^12.0.3",
-    "@rxap/nest-utilities": "^12.0.0",
+    "@rxap/nest-utilities": "^12.0.0-dev.0",
     "joi": "^18.3.2",
     "typeorm": "^0.3.26"
   },

@@ -1,14 +1,14 @@
 {
-  "version": "24.0.0",
+  "version": "24.0.0-dev.0",
   "name": "@rxap/plugin-workspace",
   "description": "This package provides a collection of Nx plugins and generators for workspace management. It includes tools for initializing workspaces, managing Docker Compose configurations, fixing implicit internal dependencies, and generating CI information. The plugins and generators aim to streamline common workspace tasks and enforce consistent configurations.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "24.0.6",
     "@nx/js": "24.0.6",
-    "@rxap/plugin-utilities": "^24.0.0",
+    "@rxap/plugin-utilities": "^24.0.0-dev.0",
     "@rxap/utilities": "^16.5.2",
-    "@rxap/workspace-utilities": "^24.0.0",
+    "@rxap/workspace-utilities": "^24.0.0-dev.0",
     "colors": "1.4.0",
     "tslib": "2.6.2",
     "yaml": "2.3.1"

@@ -1,5 +1,5 @@
 {
-  "version": "22.0.0",
+  "version": "22.0.0-dev.0",
   "name": "@rxap/ngx-oauth2-proxy",
   "description": "Provides an Angular guard and utilities for integrating with an OAuth2 Proxy. It includes a guard to protect routes, a method to fetch user profile information, and a data source for managing the user profile. Also provides an app initializer to subscribe to logout events.\n",
   "license": "GPL-3.0-or-later",
@@ -11,9 +11,9 @@
     "@angular/common": "^22.3.0",
     "@angular/core": "^22.3.0",
     "@angular/router": "^22.3.0",
-    "@rxap/config": "^22.0.0",
-    "@rxap/data-source": "^22.0.0",
-    "@rxap/ngx-pub-sub": "^22.0.0",
+    "@rxap/config": "^22.0.0-dev.0",
+    "@rxap/data-source": "^22.0.0-dev.0",
+    "@rxap/ngx-pub-sub": "^22.0.0-dev.0",
     "@rxap/pattern": "^1.1.16",
     "rxjs": "^7.8.2"
   },
@@ -67,11 +67,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -79,15 +79,15 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/pattern",

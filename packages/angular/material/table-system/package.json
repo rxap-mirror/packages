@@ -1,5 +1,5 @@
 {
-  "version": "22.0.0",
+  "version": "22.0.0-dev.0",
   "name": "@rxap/material-table-system",
   "description": "This package provides a set of Angular directives, components, and services to enhance and customize Angular Material tables. It includes features such as row selection, column filtering, expandable rows, table actions, and more. The goal is to simplify common table-related tasks and provide a more flexible and feature-rich table experience.\n",
   "license": "GPL-3.0-or-later",
@@ -15,16 +15,16 @@
     "@angular/forms": "^22.3.0",
     "@angular/material": "^22.3.0",
     "@angular/router": "^22.3.0",
-    "@rxap/components": "^22.0.0",
-    "@rxap/data-source": "^22.0.0",
-    "@rxap/directives": "^22.0.0",
-    "@rxap/forms": "^22.0.0",
-    "@rxap/material-directives": "^22.0.0",
+    "@rxap/components": "^22.0.0-dev.0",
+    "@rxap/data-source": "^22.0.0-dev.0",
+    "@rxap/directives": "^22.0.0-dev.0",
+    "@rxap/forms": "^22.0.0-dev.0",
+    "@rxap/material-directives": "^22.0.0-dev.0",
     "@rxap/pattern": "^1.1.16",
     "@rxap/reflect-metadata": "^1.0.18",
     "@rxap/rxjs": "^1.1.18",
     "@rxap/utilities": "^16.5.2",
-    "@rxap/window-system": "^22.0.0",
+    "@rxap/window-system": "^22.0.0-dev.0",
     "rxjs": "^7.8.2"
   },
   "author": {
@@ -87,11 +87,11 @@
       },
       {
         "package": "@rxap/components",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -99,27 +99,27 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/pattern",
@@ -135,7 +135,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/utilities",
@@ -147,7 +147,7 @@
       },
       {
         "package": "@rxap/window-system",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       }
     ]
   },

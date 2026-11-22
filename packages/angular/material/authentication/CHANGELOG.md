@@ -1,3 +1,12 @@
+## 22.0.0-dev.0 (2026-11-22)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-material-form-system to 22.0.0-dev.0
+- Updated angular-authentication to 22.0.0-dev.0
+- Updated angular-config to 22.0.0-dev.0
+- Updated angular-forms to 22.0.0-dev.0
+
 ## 21.0.1 (2026-11-22)
 
 ### 🚀 Features

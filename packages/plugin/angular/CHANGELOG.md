@@ -1,3 +1,13 @@
+## 24.0.0-dev.0 (2026-11-22)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 24.0.0-dev.0
+- Updated plugin-application to 24.0.0-dev.0
+- Updated workspace-ts-morph to 24.0.0-dev.0
+- Updated plugin-utilities to 24.0.0-dev.0
+- Updated plugin-library to 24.0.0-dev.0
+
 ## 22.0.1 (2026-11-22)
 
 ### 🩹 Fixes

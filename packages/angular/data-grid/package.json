@@ -1,5 +1,5 @@
 {
-  "version": "22.0.0",
+  "version": "22.0.0-dev.0",
   "name": "@rxap/data-grid",
   "description": "Provides a data grid component for Angular applications. It supports plain and form modes, custom header and cell templates, and integration with Rxap Forms and Data Sources. The component allows for displaying and editing data in a tabular format with features like edit mode, validation, and data refresh.\n",
   "license": "GPL-3.0-or-later",
@@ -12,9 +12,9 @@
     "@angular/core": "^22.3.0",
     "@angular/material": "^22.3.0",
     "@angular/router": "^22.3.0",
-    "@rxap/forms": "^22.0.0",
+    "@rxap/forms": "^22.0.0-dev.0",
     "@rxap/pattern": "^1.1.16",
-    "@rxap/pipes": "^22.0.0",
+    "@rxap/pipes": "^22.0.0-dev.0",
     "@rxap/rxjs": "^1.1.18",
     "@rxap/utilities": "^16.5.2",
     "rxjs": "^7.8.2"
@@ -70,15 +70,15 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/pattern",
@@ -86,7 +86,7 @@
       },
       {
         "package": "@rxap/pipes",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -98,7 +98,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/utilities",

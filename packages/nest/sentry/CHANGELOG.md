@@ -1,3 +1,11 @@
+## 12.0.0-dev.0 (2026-11-22)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 24.0.0-dev.0
+- Updated nest-utilities to 12.0.0-dev.0
+- Updated nest-logger to 12.0.0-dev.0
+
 ## 11.0.3 (2026-11-22)
 
 ### 🩹 Fixes

@@ -1,5 +1,5 @@
 {
-  "version": "22.0.0",
+  "version": "22.0.0-dev.0",
   "name": "@rxap/material-table-window-system",
   "description": "Provides a directive and service to open a table select component in a window. This package allows users to select rows from a table within a window and return the selected data. It integrates with `@rxap/material-table-system` and `@rxap/window-system` for displaying and managing the table selection in a window.\n",
   "license": "GPL-3.0-or-later",
@@ -11,14 +11,14 @@
     "@angular/cdk": "^22.3.0",
     "@angular/core": "^22.3.0",
     "@angular/material": "^22.3.0",
-    "@rxap/data-source": "^22.0.0",
-    "@rxap/form-system": "^22.0.0",
-    "@rxap/forms": "^22.0.0",
-    "@rxap/material-table-system": "^22.0.0",
+    "@rxap/data-source": "^22.0.0-dev.0",
+    "@rxap/form-system": "^22.0.0-dev.0",
+    "@rxap/forms": "^22.0.0-dev.0",
+    "@rxap/material-table-system": "^22.0.0-dev.0",
     "@rxap/mixin": "^16.0.17",
     "@rxap/pattern": "^1.1.16",
     "@rxap/utilities": "^16.5.2",
-    "@rxap/window-system": "^22.0.0",
+    "@rxap/window-system": "^22.0.0-dev.0",
     "rxjs": "^7.8.2"
   },
   "author": {
@@ -81,15 +81,15 @@
       },
       {
         "package": "@rxap/components",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/config",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -97,31 +97,31 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/form-system",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/mixin",
@@ -129,11 +129,11 @@
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/open-api",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/pattern",
@@ -145,7 +145,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -153,7 +153,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/utilities",
@@ -165,7 +165,7 @@
       },
       {
         "package": "@rxap/window-system",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       }
     ]
   },

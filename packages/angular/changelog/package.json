@@ -1,5 +1,5 @@
 {
-  "version": "22.0.0",
+  "version": "22.0.0-dev.0",
   "name": "@rxap/ngx-changelog",
   "description": "This package provides Angular components and services to display changelogs within an application. It fetches changelog data from a remote source and presents it in a user-friendly dialog or component, allowing users to view updates and changes. The package also includes features to remember the last viewed version and disable the changelog display.\n",
   "license": "GPL-3.0-or-later",
@@ -11,9 +11,9 @@
     "@angular/common": "^22.3.0",
     "@angular/core": "^22.3.0",
     "@angular/forms": "^22.3.0",
-    "@rxap/directives": "^22.0.0",
-    "@rxap/environment": "^22.0.0",
-    "@rxap/open-api": "^22.0.0",
+    "@rxap/directives": "^22.0.0-dev.0",
+    "@rxap/environment": "^22.0.0-dev.0",
+    "@rxap/open-api": "^22.0.0-dev.0",
     "ngx-markdown": "^19.1.0",
     "rxjs": "^7.8.2"
   },
@@ -63,11 +63,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -75,15 +75,15 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/mixin",
@@ -91,7 +91,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/pattern",
@@ -103,7 +103,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -111,7 +111,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/utilities",

@@ -1,13 +1,13 @@
 {
-  "version": "22.0.0",
+  "version": "22.0.0-dev.0",
   "name": "@rxap/layout",
   "description": "This library provides a set of Angular components and services for creating consistent and configurable application layouts, including headers, footers, side navigation, and content areas. It offers features such as dynamic navigation, external application integration, and customizable themes. The library also includes directives for extending header and footer areas with custom content.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "24.0.6",
     "@rxap/ts-morph": "^1.7.1",
-    "@rxap/workspace-ts-morph": "^24.0.0",
-    "@rxap/workspace-utilities": "^24.0.0",
+    "@rxap/workspace-ts-morph": "^24.0.0-dev.0",
+    "@rxap/workspace-utilities": "^24.0.0-dev.0",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
@@ -18,12 +18,12 @@
     "@angular/material": "^22.3.0",
     "@angular/router": "^22.3.0",
     "@rxap/browser-utilities": "^1.1.15",
-    "@rxap/config": "^22.0.0",
-    "@rxap/data-source": "^22.0.0",
-    "@rxap/environment": "^22.0.0",
-    "@rxap/material-directives": "^22.0.0",
-    "@rxap/ngx-pub-sub": "^22.0.0",
-    "@rxap/ngx-theme": "^22.0.0",
+    "@rxap/config": "^22.0.0-dev.0",
+    "@rxap/data-source": "^22.0.0-dev.0",
+    "@rxap/environment": "^22.0.0-dev.0",
+    "@rxap/material-directives": "^22.0.0-dev.0",
+    "@rxap/ngx-pub-sub": "^22.0.0-dev.0",
+    "@rxap/ngx-theme": "^22.0.0-dev.0",
     "@rxap/pattern": "^1.1.16",
     "@rxap/utilities": "^16.5.2",
     "rxjs": "^7.8.2"
@@ -90,11 +90,11 @@
       },
       {
         "package": "@rxap/config",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -102,27 +102,27 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/ngx-theme",
-        "version": "22.0.0"
+        "version": "22.0.0-dev.0"
       },
       {
         "package": "@rxap/pattern",

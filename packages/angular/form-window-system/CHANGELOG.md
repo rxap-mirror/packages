@@ -1,3 +1,12 @@
+## 22.0.0-dev.0 (2026-11-22)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-window-system to 22.0.0-dev.0
+- Updated angular-form-system to 22.0.0-dev.0
+- Updated angular-directives to 22.0.0-dev.0
+- Updated angular-forms to 22.0.0-dev.0
+
 ## 21.0.1 (2026-11-22)
 
 ### 🩹 Fixes
