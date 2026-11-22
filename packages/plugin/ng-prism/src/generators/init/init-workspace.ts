@@ -250,7 +250,7 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
               'node_modules/highlight.js/styles/base16/solarized-dark.min.css',
               joinPathFragments(appRoot, 'src/styles.scss'),
             ],
-            polyfills: [ 'zone.js', '@angular/localize/init' ],
+            polyfills: [ '@angular/localize/init' ],
             allowedCommonJsDependencies: [ 'highlight.js', 'axe-core' ],
             preserveSymlinks: true,
           },
