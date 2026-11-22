@@ -33,7 +33,7 @@ export function DefinitionMetadata(
   };
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 export function GetDefinitionMetadata<MetaData extends BaseDefinitionMetadata>(definition: Constructor<BaseDefinition> | BaseDefinition | Function): MetaData | null {
   if (typeof definition === 'function') {
     return getMetadata<MetaData>(DefinitionMetadataKeys.META_DATA, definition);
@@ -42,7 +42,7 @@ export function GetDefinitionMetadata<MetaData extends BaseDefinitionMetadata>(d
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 export function GetDefinitionClassName(definition: Constructor<BaseDefinition> | BaseDefinition | Function): string | null {
   if (typeof definition === 'function') {
     return getMetadata<string>(DefinitionMetadataKeys.CLASS_NAME, definition);
@@ -51,7 +51,7 @@ export function GetDefinitionClassName(definition: Constructor<BaseDefinition> |
   }
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 export function GetDefinitionPackageName(definition: Constructor<BaseDefinition> | BaseDefinition | Function): string | null {
   if (typeof definition === 'function') {
     return getMetadata<string>(DefinitionMetadataKeys.PACKAGE_NAME, definition);

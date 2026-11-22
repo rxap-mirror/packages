@@ -2,7 +2,7 @@
 
 exports[`init should init default workspace 1`] = `
 [
-  ".prettierrc",
+  ".oxfmtrc.json",
   "package.json",
   "nx.json",
   "tsconfig.base.json",
@@ -19,8 +19,7 @@ exports[`init should init default workspace 1`] = `
   ".gitignore",
   ".prettierignore",
   "project.json",
-  ".eslintrc.json",
-  ".eslintignore",
+  ".prettierrc",
   "jest.preset.js",
   "jest.config.ts",
   "schematic.yaml",
@@ -43,30 +42,22 @@ exports[`init should init default workspace 2`] = `
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
-    "@nx/eslint": "22.7.5",
-    "@nx/eslint-plugin": "22.7.5",
-    "@nx/jest": "22.7.5",
-    "@nx/js": "22.7.5",
+    "@nx/jest": "23.3.3",
+    "@nx/js": "23.3.3",
     "@rxap/cli": "latest",
     "@rxap/schematic-composer": "latest",
-    "@swc-node/register": "~1.11.1",
-    "@swc/core": "~1.15.5",
     "@swc/helpers": "~0.5.18",
     "@types/jest": "~30.0.0",
-    "@types/node": "20.19.9",
-    "@typescript-eslint/eslint-plugin": "^7.16.0",
-    "@typescript-eslint/parser": "^7.16.0",
-    "eslint": "~8.57.0",
-    "eslint-config-prettier": "^10.0.0",
+    "@types/node": "^22.0.0",
     "jest": "~30.3.0",
     "jest-environment-node": "~30.3.0",
     "jest-util": "~30.3.0",
     "nx-cloud": "latest",
-    "prettier": "~3.6.2",
+    "oxfmt": "^0.60.0",
     "rxap": "latest",
-    "ts-jest": "^29.4.0",
+    "ts-jest": "^29.4.7",
     "ts-node": "10.9.1",
-    "typescript": "~5.9.2"
+    "typescript": "~6.0.3"
   },
   "engines": {
     "node": ">=18 <21",
@@ -95,17 +86,6 @@ exports[`init should init default workspace 3`] = `
     },
     "lint": {
       "cache": true
-    },
-    "@nx/eslint:lint": {
-      "cache": true,
-      "inputs": [
-        "default",
-        "^default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.mjs",
-        "{workspaceRoot}/tools/eslint-rules/**/*"
-      ]
     },
     "@nx/jest:jest": {
       "cache": true,
@@ -150,8 +130,6 @@ exports[`init should init default workspace 3`] = `
       "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
       "!{projectRoot}/.storybook/**/*",
       "!{projectRoot}/tsconfig.storybook.json",
-      "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/eslint.config.mjs",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
@@ -973,82 +951,9 @@ exports[`init should init default workspace 12`] = `
 "
 `;
 
-exports[`init should init default workspace 13`] = `
-"{
-  "root": true,
-  "ignorePatterns": [
-    "**/*"
-  ],
-  "plugins": [
-    "@nx"
-  ],
-  "overrides": [
-    {
-      "files": [
-        "*.ts",
-        "*.tsx",
-        "*.js",
-        "*.jsx"
-      ],
-      "rules": {
-        "@nx/enforce-module-boundaries": [
-          "error",
-          {
-            "enforceBuildableLibDependency": true,
-            "allow": [],
-            "depConstraints": [
-              {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": [
-                  "*"
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
-      "extends": [
-        "plugin:@nx/typescript"
-      ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
-      "extends": [
-        "plugin:@nx/javascript"
-      ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.spec.ts",
-        "*.spec.tsx",
-        "*.spec.js",
-        "*.spec.jsx"
-      ],
-      "env": {
-        "jest": true
-      },
-      "rules": {}
-    }
-  ]
-}
-"
-`;
+exports[`init should init default workspace 13`] = `null`;
 
-exports[`init should init default workspace 14`] = `
-"node_modules
-"
-`;
+exports[`init should init default workspace 14`] = `null`;
 
 exports[`init should init default workspace 15`] = `
 "const nxPreset = require('@nx/jest/preset').default;
@@ -1122,77 +1027,6 @@ RUN corepack enable && corepack prepare yarn@3.6.0 --activate
   },
   "remoteUser": "root"
 }",
-  ".eslintignore": "node_modules
-",
-  ".eslintrc.json": "{
-  "root": true,
-  "ignorePatterns": [
-    "**/*"
-  ],
-  "plugins": [
-    "@nx"
-  ],
-  "overrides": [
-    {
-      "files": [
-        "*.ts",
-        "*.tsx",
-        "*.js",
-        "*.jsx"
-      ],
-      "rules": {
-        "@nx/enforce-module-boundaries": [
-          "error",
-          {
-            "enforceBuildableLibDependency": true,
-            "allow": [],
-            "depConstraints": [
-              {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": [
-                  "*"
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
-      "extends": [
-        "plugin:@nx/typescript"
-      ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
-      "extends": [
-        "plugin:@nx/javascript"
-      ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.spec.ts",
-        "*.spec.tsx",
-        "*.spec.js",
-        "*.spec.jsx"
-      ],
-      "env": {
-        "jest": true
-      },
-      "rules": {}
-    }
-  ]
-}
-",
   ".gitignore": "
 /migrations.json
 ~
@@ -1254,6 +1088,7 @@ gitlab-ci-setup.sh
 .idea/dataSources/*/storage_v2
 .firebase
 ",
+  ".oxfmtrc.json": "{"singleQuote":true}",
   ".prettierignore": "
 dist
 coverage
@@ -1945,17 +1780,6 @@ module.exports = { ...nxPreset };",
     "lint": {
       "cache": true
     },
-    "@nx/eslint:lint": {
-      "cache": true,
-      "inputs": [
-        "default",
-        "^default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.mjs",
-        "{workspaceRoot}/tools/eslint-rules/**/*"
-      ]
-    },
     "@nx/jest:jest": {
       "cache": true,
       "inputs": [
@@ -1999,8 +1823,6 @@ module.exports = { ...nxPreset };",
       "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
       "!{projectRoot}/.storybook/**/*",
       "!{projectRoot}/tsconfig.storybook.json",
-      "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/eslint.config.mjs",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
@@ -2067,30 +1889,22 @@ module.exports = { ...nxPreset };",
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
-    "@nx/eslint": "22.7.5",
-    "@nx/eslint-plugin": "22.7.5",
-    "@nx/jest": "22.7.5",
-    "@nx/js": "22.7.5",
+    "@nx/jest": "23.3.3",
+    "@nx/js": "23.3.3",
     "@rxap/cli": "latest",
     "@rxap/schematic-composer": "latest",
-    "@swc-node/register": "~1.11.1",
-    "@swc/core": "~1.15.5",
     "@swc/helpers": "~0.5.18",
     "@types/jest": "~30.0.0",
-    "@types/node": "20.19.9",
-    "@typescript-eslint/eslint-plugin": "^7.16.0",
-    "@typescript-eslint/parser": "^7.16.0",
-    "eslint": "~8.57.0",
-    "eslint-config-prettier": "^10.0.0",
+    "@types/node": "^22.0.0",
     "jest": "~30.3.0",
     "jest-environment-node": "~30.3.0",
     "jest-util": "~30.3.0",
     "nx-cloud": "latest",
-    "prettier": "~3.6.2",
+    "oxfmt": "^0.60.0",
     "rxap": "latest",
-    "ts-jest": "^29.4.0",
+    "ts-jest": "^29.4.7",
     "ts-node": "10.9.1",
-    "typescript": "~5.9.2"
+    "typescript": "~6.0.3"
   },
   "engines": {
     "node": ">=18 <21",
@@ -2120,40 +1934,6 @@ options:
   license: gpl
   repositoryUrl: https://gitlab.com/rxap/packages/testing
 ",
-  "tools/.eslintrc.json": "{
-  "extends": [
-    "../.eslintrc.json"
-  ],
-  "ignorePatterns": [
-    "!**/*"
-  ],
-  "overrides": [
-    {
-      "files": [
-        "*.ts",
-        "*.tsx",
-        "*.js",
-        "*.jsx"
-      ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
-      "rules": {}
-    }
-  ]
-}
-",
   "tools/jest.config.cts": "module.exports = {
   displayName: 'workspace-tools',
   preset: '../jest.preset.js',
@@ -2174,9 +1954,6 @@ options:
     "internal"
   ],
   "targets": {
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": [
@@ -2701,7 +2478,7 @@ fi
   "compilerOptions": {
     "outDir": "../dist/out-tsc",
     "module": "commonjs",
-    "moduleResolution": "node10","types": ["jest", "node"]
+    "moduleResolution": "bundler","types": ["jest", "node"]
   },
   "include": [
     "jest.config.ts",

@@ -1,5 +1,4 @@
 import {
-  ComponentFactoryResolver,
   Injectable,
   Injector,
   ViewContainerRef,
@@ -12,7 +11,6 @@ export interface ContainerComponent {
   component: Constructor;
   viewContainerRef?: ViewContainerRef | null;
   injector?: Injector | null;
-  componentFactoryResolver?: ComponentFactoryResolver | null;
 }
 
 @Injectable({ providedIn: 'root' })

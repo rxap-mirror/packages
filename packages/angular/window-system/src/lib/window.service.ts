@@ -3,7 +3,7 @@ import {
   OverlayConfig,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { ComponentFactoryResolver, Injectable, Injector, ViewContainerRef, inject } from '@angular/core';
+import { Injectable, Injector, ViewContainerRef, inject } from '@angular/core';
 import { LoadingIndicatorService } from '@rxap/services';
 import { GenerateRandomString } from '@rxap/utilities';
 import { Subject } from 'rxjs';
@@ -36,7 +36,6 @@ import { WindowRef } from './window-ref';
 export class WindowService {
   private readonly injector = inject<Injector>(Injector);
   private readonly overlay = inject<Overlay>(Overlay);
-  private readonly componentFactoryResolver = inject<ComponentFactoryResolver>(ComponentFactoryResolver);
   private readonly defaultWindowSettings = inject<WindowSettings>(RXAP_WINDOW_DEFAULT_SETTINGS, { optional: true });
 
   public readonly activeCount$ = new Subject<number>();

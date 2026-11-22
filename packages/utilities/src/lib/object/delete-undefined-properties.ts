@@ -13,7 +13,7 @@
  * const obj = { a: 1, b: undefined, c: { d: 4, e: undefined } };
  * DeleteUndefinedProperties(obj, true); // returns { a: 1, c: { d: 4 } }
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export function DeleteUndefinedProperties<T extends {}>(obj: T, recursive?: boolean): Exclude<T, undefined> {
   if (!obj || typeof obj !== 'object') {
     return obj as any;

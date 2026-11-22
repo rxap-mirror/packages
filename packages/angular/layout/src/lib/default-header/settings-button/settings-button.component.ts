@@ -11,6 +11,7 @@ import {
   runInInjectionContext,
   Signal,
   signal,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIconButton } from '@angular/material/button';
@@ -41,6 +42,7 @@ import { SettingsMenuItem } from '../../types';
     selector: 'rxap-settings-button',
     templateUrl: './settings-button.component.html',
     styleUrls: ['./settings-button.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
     MatIconButton,
     MatIcon,

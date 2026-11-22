@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type, @typescript-eslint/no-empty-object-type, @typescript-eslint/no-wrapper-object-types
 
 /**
  * This function deletes null properties from an object and returns a new object with no null properties.
@@ -29,7 +29,7 @@
  * DeleteNullProperties(inputObj, true);
  * // Returns { a: 1, c: { d: 3 } }
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export function DeleteNullProperties<T extends {}>(obj: T, recursive?: boolean): Exclude<T, null> {
   if (!obj || typeof obj !== 'object') {
     return obj as any;

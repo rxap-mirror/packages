@@ -46,6 +46,8 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
   CoerceNxJsonGenerators(nxJson, '@nx/angular:component', {
     'style': 'scss',
     'standalone': true,
+    // keep the `.component` file suffix (the nx generators follow the angular style guide v20+ without suffix)
+    'type': 'component',
   });
   CoerceNxJsonGenerators(nxJson, '@nx/angular:library', {
     'linter': 'eslint',
@@ -63,6 +65,7 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
   CoerceNxJsonGenerators(nxJson, '@nx/angular:directive', {
     'standalone': true,
     'skipTests': true,
+    'type': 'directive',
   });
   CoerceNxJsonGenerators(nxJson, '@nx/angular:library-secondary-entry-point', {
     'skipModule': true,

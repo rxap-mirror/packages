@@ -1,9 +1,10 @@
 import { equals } from '@rxap/utilities';
+import { CoerceTargetDefaultsEntry } from './coerce-target-defaults-entry';
 
 export type NxJsonTargetDependsOn = string | { target: string, projects?: string | string[] };
 
 export interface NxJsonWithTargetDefaults {
-  targetDefaults?: Record<string, { dependsOn?: Array<NxJsonTargetDependsOn> }>;
+  targetDefaults?: Record<string, any>;
 }
 
 /**
@@ -26,9 +27,9 @@ export function CoerceTargetDefaultsDependency(
   ...dependsOnList: NxJsonTargetDependsOn[]
 ) {
   nxJson.targetDefaults ??= {};
-  nxJson.targetDefaults[target] ??= {};
-  nxJson.targetDefaults[target].dependsOn ??= [];
-  const targetDependsOn = nxJson.targetDefaults[target].dependsOn as Array<NxJsonTargetDependsOn>;
+  const entry = CoerceTargetDefaultsEntry(nxJson.targetDefaults, target);
+  entry['dependsOn'] ??= [];
+  const targetDependsOn = entry['dependsOn'] as Array<NxJsonTargetDependsOn>;
   for (const dependsOn of dependsOnList) {
     if (typeof dependsOn === 'string') {
       if (!targetDependsOn.includes(dependsOn)) {

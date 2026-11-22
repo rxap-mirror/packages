@@ -36,7 +36,7 @@ describe('init', () => {
     expect(tree.read('LICENSE', 'utf-8')).toMatchSnapshot();
     expect(tree.read('.prettierignore', 'utf-8')).toMatchSnapshot();
     expect(tree.read('project.json', 'utf-8')).toMatchSnapshot();
-    expect(tree.read('.eslintrc.json', 'utf-8')).toMatchSnapshot();
+    expect(tree.read('eslint.config.mjs', 'utf-8')).toMatchSnapshot();
     expect(tree.read('.eslintignore', 'utf-8')).toMatchSnapshot();
     expect(tree.read('jest.preset.js', 'utf-8')).toMatchSnapshot();
     expect(tree.read('jest.config.ts', 'utf-8')).toMatchSnapshot();

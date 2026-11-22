@@ -9,7 +9,8 @@ import {
   Injectable,
   Injector,
   INJECTOR,
-  input
+  input,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import {
   BaseDataSource,
@@ -43,6 +44,7 @@ import { FormsModule } from '@angular/forms';
       </option>
     </select>
   `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [FormsModule, DataSourceCollectionDirective]
 })
 class SelectControlComponent

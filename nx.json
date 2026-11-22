@@ -29,7 +29,8 @@
       "!{projectRoot}/cypress.config.[jt]s",
       "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
       "!{projectRoot}/.storybook/**/*",
-      "!{projectRoot}/tsconfig.storybook.json"
+      "!{projectRoot}/tsconfig.storybook.json",
+      "!{projectRoot}/eslint.config.mjs"
     ],
     "build": [
       "production",
@@ -136,9 +137,8 @@
       "outputs": ["{options.outputFile}"],
       "inputs": [
         "default",
-        "{projectRoot}/.eslintrc.json",
-        "{projectRoot}/.eslintignore",
-        "{workspaceRoot}/.eslintrc.json"
+        "{projectRoot}/eslint.config.mjs",
+        "{workspaceRoot}/eslint.config.mjs"
       ],
       "options": {
         "quiet": true
@@ -404,7 +404,7 @@
       "options": {
         "targetName": "lint"
       },
-      "exclude": ["demos/**"]
+      "exclude": ["demos/**", "applications/**"]
     },
     {
       "plugin": "@nx/jest/plugin",

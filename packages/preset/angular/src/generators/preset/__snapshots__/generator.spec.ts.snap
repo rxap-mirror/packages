@@ -2,7 +2,7 @@
 
 exports[`preset should use angular preset 1`] = `
 [
-  ".prettierrc",
+  ".oxfmtrc.json",
   "package.json",
   "nx.json",
   "tsconfig.base.json",
@@ -17,8 +17,7 @@ exports[`preset should use angular preset 1`] = `
   ".gitignore",
   ".prettierignore",
   "project.json",
-  ".eslintrc.json",
-  ".eslintignore",
+  ".prettierrc",
   "jest.preset.js",
   "jest.config.ts",
   "schematics.yaml",
@@ -42,30 +41,22 @@ exports[`preset should use angular preset 2`] = `
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
     "@nx/angular": "latest",
-    "@nx/eslint": "22.7.5",
-    "@nx/eslint-plugin": "22.7.5",
-    "@nx/jest": "22.7.5",
-    "@nx/js": "22.7.5",
+    "@nx/jest": "23.3.3",
+    "@nx/js": "23.3.3",
     "@rxap/cli": "latest",
     "@rxap/schematic-composer": "latest",
-    "@swc-node/register": "~1.11.1",
-    "@swc/core": "~1.15.5",
     "@swc/helpers": "~0.5.18",
     "@types/jest": "~30.0.0",
-    "@types/node": "20.19.9",
-    "@typescript-eslint/eslint-plugin": "^7.16.0",
-    "@typescript-eslint/parser": "^7.16.0",
-    "eslint": "~8.57.0",
-    "eslint-config-prettier": "^10.0.0",
+    "@types/node": "^22.0.0",
     "jest": "~30.3.0",
     "jest-environment-node": "~30.3.0",
     "jest-util": "~30.3.0",
     "nx-cloud": "latest",
-    "prettier": "~3.6.2",
+    "oxfmt": "^0.60.0",
     "rxap": "latest",
-    "ts-jest": "^29.4.0",
+    "ts-jest": "^29.4.7",
     "ts-node": "10.9.1",
-    "typescript": "~5.9.2"
+    "typescript": "~6.0.3"
   },
   "engines": {
     "node": ">=18 <21",
@@ -94,17 +85,6 @@ exports[`preset should use angular preset 3`] = `
     },
     "lint": {
       "cache": true
-    },
-    "@nx/eslint:lint": {
-      "cache": true,
-      "inputs": [
-        "default",
-        "^default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.mjs",
-        "{workspaceRoot}/tools/eslint-rules/**/*"
-      ]
     },
     "@nx/jest:jest": {
       "cache": true,
@@ -149,8 +129,6 @@ exports[`preset should use angular preset 3`] = `
       "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
       "!{projectRoot}/.storybook/**/*",
       "!{projectRoot}/tsconfig.storybook.json",
-      "!{projectRoot}/.eslintrc.json",
-      "!{projectRoot}/eslint.config.mjs",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/jest.config.[jt]s",
       "!{projectRoot}/test-setup.[jt]s"
@@ -229,7 +207,8 @@ exports[`preset should use angular preset 3`] = `
     },
     "@nx/angular:component": {
       "style": "scss",
-      "standalone": true
+      "standalone": true,
+      "type": "component"
     },
     "@nx/angular:library": {
       "linter": "eslint",
@@ -246,7 +225,8 @@ exports[`preset should use angular preset 3`] = `
     },
     "@nx/angular:directive": {
       "standalone": true,
-      "skipTests": true
+      "skipTests": true,
+      "type": "directive"
     },
     "@nx/angular:library-secondary-entry-point": {
       "skipModule": true
@@ -1032,82 +1012,9 @@ exports[`preset should use angular preset 12`] = `
 "
 `;
 
-exports[`preset should use angular preset 13`] = `
-"{
-  "root": true,
-  "ignorePatterns": [
-    "**/*"
-  ],
-  "plugins": [
-    "@nx"
-  ],
-  "overrides": [
-    {
-      "files": [
-        "*.ts",
-        "*.tsx",
-        "*.js",
-        "*.jsx"
-      ],
-      "rules": {
-        "@nx/enforce-module-boundaries": [
-          "error",
-          {
-            "enforceBuildableLibDependency": true,
-            "allow": [],
-            "depConstraints": [
-              {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": [
-                  "*"
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
-      "extends": [
-        "plugin:@nx/typescript"
-      ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
-      "extends": [
-        "plugin:@nx/javascript"
-      ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.spec.ts",
-        "*.spec.tsx",
-        "*.spec.js",
-        "*.spec.jsx"
-      ],
-      "env": {
-        "jest": true
-      },
-      "rules": {}
-    }
-  ]
-}
-"
-`;
+exports[`preset should use angular preset 13`] = `null`;
 
-exports[`preset should use angular preset 14`] = `
-"node_modules
-"
-`;
+exports[`preset should use angular preset 14`] = `null`;
 
 exports[`preset should use angular preset 15`] = `
 "const nxPreset = require('@nx/jest/preset').default;

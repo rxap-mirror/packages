@@ -4,11 +4,11 @@
   "description": "This package provides an Angular service to integrate with marker.io, a visual feedback and bug reporting tool. It allows you to easily load the marker.io widget, set custom data, and manage reporter information within your Angular application. The package also includes an init generator for setting up peer dependencies.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "22.7.5",
+    "@nx/devkit": "23.3.3",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^21.2.9",
+    "@angular/core": "^22.1.8",
     "@marker.io/browser": "^0.20.2",
     "@rxap/config": "^21.0.1",
     "@rxap/environment": "^21.0.1",

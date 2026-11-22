@@ -8,6 +8,7 @@ import {
 import { CoerceArrayItems } from '@rxap/utilities';
 import {
   GetProjectByPackageName,
+  GetTargetDefaultsEntry,
   SkipNonApplicationProject,
 } from '@rxap/workspace-utilities';
 import { FixImplicitInternalDependenciesGeneratorSchema } from './schema';
@@ -48,7 +49,7 @@ export async function fixImplicitInternalDependenciesGenerator(
     console.log(`fix implicit internal dependencies for project: ${ projectName }`);
 
     for (const [ target, config ] of Object.entries(project.targets ?? {})) {
-      const executor = config.executor ?? nxJson?.targetDefaults?.[target]?.executor;
+      const executor = config.executor ?? GetTargetDefaultsEntry(nxJson?.targetDefaults, target)?.executor;
       if (!executor) {
         console.warn(`No executor found for project '${projectName}' and target: ${ target }`);
         continue;

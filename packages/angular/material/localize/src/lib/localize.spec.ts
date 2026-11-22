@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatDatepickerIntl } from '@angular/material/datepicker';
 import { MatPaginatorIntl } from '@angular/material/paginator';
@@ -111,6 +111,8 @@ describe('LanguageSelectorComponent', () => {
   };
 
   @Component({
+    // Angular 22 components are OnPush by default; the spec mutates the host state directly
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `<rxap-language-selector [autoReload]="auto"></rxap-language-selector>`,
     imports: [LanguageSelectorComponent],
   })

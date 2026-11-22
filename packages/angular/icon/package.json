@@ -4,14 +4,14 @@
   "description": "This package provides an Angular module to load SVG icons from specified asset paths using the Angular Material Icon Registry. It simplifies the process of registering and using custom icons in Angular applications. The module allows configuring the icon asset paths and automatically loads the icon sets during initialization.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "22.7.5",
+    "@nx/devkit": "23.3.3",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^21.2.9",
-    "@angular/core": "^21.2.9",
-    "@angular/material": "^21.2.9",
-    "@angular/platform-browser": "^21.2.9",
+    "@angular/common": "^22.1.8",
+    "@angular/core": "^22.1.8",
+    "@angular/material": "^22.1.8",
+    "@angular/platform-browser": "^22.1.8",
     "@rxap/utilities": "^16.5.2"
   },
   "author": {

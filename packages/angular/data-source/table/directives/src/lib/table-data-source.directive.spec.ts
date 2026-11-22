@@ -1,4 +1,4 @@
-import { Component, Injectable, signal } from '@angular/core';
+import { Component, Injectable, signal, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { staticDataSource } from '@rxap/data-source';
 import { PaginatorFake } from '@rxap/data-source/testing';
@@ -8,6 +8,7 @@ import { TableDataSourceDirective } from './table-data-source.directive';
 
 @Component({
   imports: [TableDataSourceDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <ng-template
       rxapTableDataSource

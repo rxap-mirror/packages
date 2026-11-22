@@ -4,12 +4,12 @@
   "description": "Provides an Angular pipe that compiles Handlebars templates.  The pipe takes a template string and a context object as input. It then uses Handlebars to compile the template with the provided context, returning the rendered string.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "22.7.5",
+    "@nx/devkit": "23.3.3",
     "handlebars": "^4.7.8",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^21.2.9"
+    "@angular/core": "^22.1.8"
   },
   "author": {
     "name": "Merzough Münker",

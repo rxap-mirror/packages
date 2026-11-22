@@ -1,6 +1,6 @@
 import {
-  CreateNodesContextV2,
-  CreateNodesV2,
+  CreateNodesContext,
+  CreateNodes,
   getProjects,
   ProjectConfiguration,
   TargetConfiguration,
@@ -33,7 +33,7 @@ export function normalizeOptions(
   return options ?? {};
 }
 
-export const createNodesV2: CreateNodesV2<PluginOptions> = [
+export const createNodesV2: CreateNodes<PluginOptions> = [
   '**/tsconfig.typedoc.json',
   async (configFilePaths, options, context) => {
     const normalizedOptions = normalizeOptions(options);
@@ -57,22 +57,22 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
 
     const results = await Promise.all(
       includedConfigFilePaths.map(async (configFilePath) => {
-        const [ projectPath, projectConfiguration ] =
+        const [projectPath, projectConfiguration] =
           await createProjectConfiguration(
             configFilePath,
             normalizedOptions,
             context,
           );
-        return [ configFilePath, projectPath, projectConfiguration ] as [
+        return [configFilePath, projectPath, projectConfiguration] as [
           string,
           string,
-          Optional<ProjectConfiguration, 'root'>
+          Optional<ProjectConfiguration, 'root'>,
         ];
       }),
     );
 
     return results.map(
-      ([ configFilePath, projectPath, projectConfiguration ]) => [
+      ([configFilePath, projectPath, projectConfiguration]) => [
         configFilePath,
         {
           projects: {
@@ -87,7 +87,7 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
 async function shouldHaveProjectConfiguration(
   configFilePath: string,
   options: PluginOptions,
-  context: CreateNodesContextV2,
+  context: CreateNodesContext,
 ): Promise<boolean> {
   const projectPath = dirname(configFilePath);
   const tree = new FsTree(context.workspaceRoot, false);
@@ -102,21 +102,22 @@ async function shouldHaveProjectConfiguration(
 async function createProjectConfiguration(
   configFilePath: string,
   options: PluginOptions,
-  context: CreateNodesContextV2,
-): Promise<[ string, Optional<ProjectConfiguration, 'root'> ]> {
+  context: CreateNodesContext,
+): Promise<[string, Optional<ProjectConfiguration, 'root'>]> {
   const projectPath = dirname(configFilePath);
   const targets: Record<string, TargetConfiguration> = {};
   const tree = new FsTree(context.workspaceRoot, false);
   const projectConfiguration = FindProjectByPath(tree, projectPath);
 
   if (!projectConfiguration) {
-    throw new Error(`Could not find project in '${ projectPath }'`);
+    throw new Error(`Could not find project in '${projectPath}'`);
   }
 
   targets['typedoc'] = createTypedocTarget(tree, projectConfiguration);
 
   return [
-    projectPath, {
+    projectPath,
+    {
       targets,
     },
   ];
@@ -132,21 +133,31 @@ function findTsConfigOption(tree: FsTree, { root }: ProjectJson): string {
   if (tree.exists(join(root, 'tsconfig.json'))) {
     return join(root, 'tsconfig.json');
   }
-  throw new Error(`Could not find a tsconfig.*.json or tsconfig.json in the project root: '${root}'`);
+  throw new Error(
+    `Could not find a tsconfig.*.json or tsconfig.json in the project root: '${root}'`,
+  );
 }
 
-function findEntryPoints(tree: FsTree, projectConfiguration: ProjectJson): string[] {
+function findEntryPoints(
+  tree: FsTree,
+  projectConfiguration: ProjectJson,
+): string[] {
   const { root } = projectConfiguration;
   if (IsStandaloneWorkspace(tree)) {
-    return [ join(root, 'src/index.ts') ];
+    return [join(root, 'src/index.ts')];
   }
   if (!tree.exists(join(root, 'src/index.ts'))) {
-    throw new Error(`The project ${projectConfiguration.name} has a tsconfig.typedoc.json but not a 'src/index.ts' (${projectConfiguration.root})`);
+    throw new Error(
+      `The project ${projectConfiguration.name} has a tsconfig.typedoc.json but not a 'src/index.ts' (${projectConfiguration.root})`,
+    );
   }
-  return [ join(root, 'src/index.ts') ];
+  return [join(root, 'src/index.ts')];
 }
 
-function createTypedocTarget(tree: FsTree, projectConfiguration: ProjectJson): TargetConfiguration {
+function createTypedocTarget(
+  tree: FsTree,
+  projectConfiguration: ProjectJson,
+): TargetConfiguration {
   const options: Record<string, any> = {};
 
   if (!IsWorkspaceProject(projectConfiguration)) {
@@ -154,20 +165,26 @@ function createTypedocTarget(tree: FsTree, projectConfiguration: ProjectJson): T
     options['entryPoints'] = findEntryPoints(tree, projectConfiguration);
     options['includeVersion'] = true;
     options['entryPointStrategy'] = 'expand';
-    options['name'] = GetProjectPackageJson(tree, projectConfiguration.name).name;
+    options['name'] = GetProjectPackageJson(
+      tree,
+      projectConfiguration.name,
+    ).name;
   }
   options['json'] = true;
   options['html'] = true;
   const packageJson = GetRootPackageJson(tree);
-  options['markdown'] = 'typedoc-plugin-markdown' in packageJson.devDependencies;
-  options['wiki'] = 'typedoc-plugin-markdown' in packageJson.devDependencies && 'typedoc-github-wiki-theme' in packageJson.devDependencies;
+  options['markdown'] =
+    'typedoc-plugin-markdown' in packageJson.devDependencies;
+  options['wiki'] =
+    'typedoc-plugin-markdown' in packageJson.devDependencies &&
+    'typedoc-github-wiki-theme' in packageJson.devDependencies;
   options['skipErrorChecking'] = true;
 
   return {
     executor: '@rxap/plugin-typedoc:build',
-    inputs: [ "production", "^production" ],
-    outputs: [ '{projectRoot}/docs' ],
+    inputs: ['production', '^production'],
+    outputs: ['{projectRoot}/docs'],
     cache: true,
-    options
+    options,
   };
 }

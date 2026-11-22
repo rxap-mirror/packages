@@ -26,15 +26,15 @@ import schematicGenerator from './schematic/generator';
 function baseTree(): Tree {
   const tree = createTreeWithEmptyWorkspace();
   const pkg = readJson(tree, 'package.json');
-  pkg.dependencies = { ...(pkg.dependencies ?? {}), '@angular/core': '19.2.16' };
-  pkg.devDependencies = { ...(pkg.devDependencies ?? {}), '@angular/cli': '19.2.0' };
+  pkg.dependencies = { ...(pkg.dependencies ?? {}), '@angular/core': '22.1.8' };
+  pkg.devDependencies = { ...(pkg.devDependencies ?? {}), '@angular/cli': '22.1.9' };
   writeJson(tree, 'package.json', pkg);
   return tree;
 }
 
 async function withLibrary(name = 'feat', extra: any = {}): Promise<Tree> {
   const tree = baseTree();
-  await libraryGenerator(tree, { name, directory: name, skipFormat: true, ...extra } as any);
+  await libraryGenerator(tree, { name, directory: name, skipFormat: true, unitTestRunner: 'jest', ...extra } as any);
   return tree;
 }
 

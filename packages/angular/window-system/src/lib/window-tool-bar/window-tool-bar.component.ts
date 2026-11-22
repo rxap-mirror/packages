@@ -12,7 +12,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     selector: 'rxap-window-tool-bar',
     templateUrl: './window-tool-bar.component.html',
     styleUrls: ['./window-tool-bar.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Default,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
     MatToolbarModule,
     PortalModule,

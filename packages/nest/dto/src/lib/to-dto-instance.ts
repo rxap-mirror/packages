@@ -11,7 +11,7 @@ import { classTransformOptions } from './class-transformer-options';
 import { validatorOptions } from './class-validator-options';
 
 type OptionalMethods<T> = {
-  // eslint-disable-next-line @typescript-eslint/ban-types
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
   [P in keyof T]?: T[P] extends Function ? never : T[P]
 };
 

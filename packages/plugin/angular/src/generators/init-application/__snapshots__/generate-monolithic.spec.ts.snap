@@ -67,7 +67,7 @@ export const APP_NAVIGATION: () => NavigationWithInserts = () => [];
 
 exports[`generateMonolithic() should generate a monolithic application configuration: generated-tree 1`] = `
 {
-  ".prettierrc": "{"singleQuote":true}",
+  ".oxfmtrc.json": "{"singleQuote":true}",
   "app/project.json": "{
   "name": "app",
   "$schema": "../node_modules/nx/schemas/project-schema.json",

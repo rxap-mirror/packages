@@ -4,7 +4,7 @@
   "description": "This package provides a Sentry integration for NestJS applications. It includes a logger, interceptor, and module to simplify error tracking and performance monitoring with Sentry. It offers configurable options for setting up Sentry in your NestJS application.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "22.7.5",
+    "@nx/devkit": "23.3.3",
     "@rxap/ts-morph": "^1.7.1",
     "@rxap/workspace-utilities": "^22.0.1",
     "tslib": "2.6.2"

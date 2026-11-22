@@ -4,15 +4,10 @@ import {
   updateProjectConfiguration,
 } from '@nx/devkit';
 import {
-  CoerceArrayItems,
-  equals,
-} from '@rxap/utilities';
-import {
   AddPackageJsonDevDependency,
   CoerceTarget,
   GetProjectRoot,
   HasProject,
-  UpdateJsonFile,
   UpdateNgPackageJson,
   UpdateProjectPackageJson,
   UpdateProjectTsConfigJson,
@@ -23,6 +18,39 @@ import {
 } from 'path';
 import initLibraryGenerator from '../init-library/generator';
 import { ConvertToBuildableLibraryGeneratorSchema } from './schema';
+
+function addDependencyChecksToEslintConfig(tree: Tree, projectRoot: string) {
+  const eslintConfigPath = join(projectRoot, 'eslint.config.mjs');
+  if (!tree.exists(eslintConfigPath)) {
+    return;
+  }
+  let content = tree.read(eslintConfigPath)!.toString('utf-8');
+  if (content.includes('@nx/dependency-checks')) {
+    return;
+  }
+  if (!content.includes('jsonc-eslint-parser')) {
+    content = `import jsoncEslintParser from 'jsonc-eslint-parser';\n${ content }`;
+  }
+  const block = `  {
+    files: ['**/*.json'],
+    rules: {
+      '@nx/dependency-checks': [
+        'error',
+        { ignoredFiles: ['{projectRoot}/eslint.config.{js,cjs,mjs}'] },
+      ],
+    },
+    languageOptions: {
+      parser: jsoncEslintParser,
+    },
+  },
+`;
+  const end = content.lastIndexOf('];');
+  if (end === -1) {
+    return;
+  }
+  content = content.slice(0, end) + block + content.slice(end);
+  tree.write(eslintConfigPath, content);
+}
 
 export async function convertToBuildableLibraryGenerator(
   tree: Tree,
@@ -82,19 +110,7 @@ export async function convertToBuildableLibraryGenerator(
     create: true,
   });
 
-  UpdateJsonFile(tree, eslintrc => {
-    CoerceArrayItems(eslintrc.overrides, [
-      {
-        files: [
-          '*.json',
-        ],
-        parser: 'jsonc-eslint-parser',
-        rules: {
-          '@nx/dependency-checks': 'error',
-        },
-      },
-    ], (a, b) => a.parser === b.parser && equals(a.files, b.files));
-  }, join(projectRoot, '.eslintrc.json'));
+  addDependencyChecksToEslintConfig(tree, projectRoot);
 
   UpdateProjectTsConfigJson(tree, (tsConfig) => {
     tsConfig.extends = './tsconfig.lib.json';

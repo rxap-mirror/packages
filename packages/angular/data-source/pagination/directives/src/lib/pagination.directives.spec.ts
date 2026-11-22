@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { observableDataSource, staticDataSource } from '@rxap/data-source';
 import { PaginationDataSource } from '@rxap/data-source/pagination';
@@ -31,6 +31,7 @@ describe('ToPaginationPipe', () => {
 
 @Component({
   imports: [PaginationDataSourceDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <ng-template rxapPaginationDataSource let-item [rxapPaginationDataSourceFrom]="source()" [rxapPaginationDataSourcePaginator]="paginator">
       <li class="item">{{ item }}</li>

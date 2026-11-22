@@ -1,8 +1,5 @@
-import {
-  ExecutorContext,
-  runExecutor as RunExecutor,
-} from '@nx/devkit';
-import nodeExecutor from '@nx/js/src/executors/node/node.impl';
+import { ExecutorContext, runExecutor as RunExecutor } from '@nx/devkit';
+import nodeExecutor from './node-executor';
 import {
   GetDependentProjectsForProject,
   GetProjectRoot,
@@ -15,7 +12,12 @@ import { SwaggerGenerateExecutorSchema } from './schema';
 import run from 'nx/src/executors/run-commands/run-commands.impl';
 
 function checkIfOpenApiFileExists(context: ExecutorContext): boolean {
-  const outputPath = GuessOutputPathFromContext(context, undefined, undefined, 'swagger-build');
+  const outputPath = GuessOutputPathFromContext(
+    context,
+    undefined,
+    undefined,
+    'swagger-build',
+  );
   const openApiPath = join(outputPath, 'openapi.json');
   const fullPath = join(context.root, openApiPath);
   console.log('Checking if OpenAPI file exists at', fullPath);
@@ -24,8 +26,11 @@ function checkIfOpenApiFileExists(context: ExecutorContext): boolean {
 
 async function linkLibrariesToDistNodeModules(context: ExecutorContext) {
   const dependentProjects = GetDependentProjectsForProject(context)
-    .filter(project => context.projectsConfigurations?.projects[project]?.targets?.['linking'])
-    .map(name => ({ project: name, target: 'linking' }));
+    .filter(
+      (project) =>
+        context.projectsConfigurations?.projects[project]?.targets?.['linking'],
+    )
+    .map((name) => ({ project: name, target: 'linking' }));
 
   console.log('Dependent projects', dependentProjects);
 
@@ -37,7 +42,7 @@ async function linkLibrariesToDistNodeModules(context: ExecutorContext) {
 
 export default async function runExecutor(
   options: SwaggerGenerateExecutorSchema,
-  context: ExecutorContext
+  context: ExecutorContext,
 ) {
   console.log('Executor ran for SwaggerGenerate', options);
 
@@ -50,17 +55,20 @@ export default async function runExecutor(
   const port = Math.floor(Math.random() * 1000) + 9000;
 
   if (isLegacyConfiguration(context)) {
-    const nodeProc = nodeExecutor({
-      watch: false,
-      buildTarget: options.buildTarget ?? `${ projectName }:swagger-build`,
-      inspect: false,
-      runtimeArgs: [],
-      args: [],
-      waitUntilTargets: [],
-      buildTargetOptions: {},
-      host: 'localhost',
-      port: port
-    }, context);
+    const nodeProc = nodeExecutor(
+      {
+        watch: false,
+        buildTarget: options.buildTarget ?? `${projectName}:swagger-build`,
+        inspect: false,
+        runtimeArgs: [],
+        args: [],
+        waitUntilTargets: [],
+        buildTargetOptions: {},
+        host: 'localhost',
+        port: port,
+      },
+      context,
+    );
 
     for await (const event of nodeProc) {
       console.log('Node executor event', event);
@@ -80,21 +88,21 @@ export default async function runExecutor(
     } else {
       console.log('OpenAPI file does not exist');
     }
-
   } else {
     const isStandalone = ['', '.', '/'].includes(projectRoot);
     const outputDir = join('swagger', isStandalone ? projectName : projectRoot);
-    const result = await run({
-      cwd: context.root,
-      command: 'node',
-      env: {
-        PORT: port.toFixed(0),
+    const result = await run(
+      {
+        cwd: context.root,
+        command: 'node',
+        env: {
+          PORT: port.toFixed(0),
+        },
+        args: [join(outputDir, 'main.js')],
+        __unparsed__: [],
       },
-      args: [
-        join(outputDir, 'main.js'),
-      ],
-      __unparsed__: [],
-    }, context);
+      context,
+    );
 
     if (!result.success) {
       console.log('Failed to run the swagger node application');

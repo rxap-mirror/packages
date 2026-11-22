@@ -1,13 +1,10 @@
 import {
-  CreateNodesContextV2,
-  CreateNodesV2,
+  CreateNodesContext,
+  CreateNodes,
   ProjectConfiguration,
   TargetConfiguration,
 } from '@nx/devkit';
-import {
-  FindProjectByPath,
-  FsTree,
-} from '@rxap/workspace-utilities';
+import { FindProjectByPath, FsTree } from '@rxap/workspace-utilities';
 import { Optional } from 'nx/src/project-graph/plugins';
 import { dirname } from 'path';
 import 'colors';
@@ -21,7 +18,7 @@ export function normalizeOptions(
   return options ?? {};
 }
 
-export const createNodesV2: CreateNodesV2<PluginOptions> = [
+export const createNodesV2: CreateNodes<PluginOptions> = [
   '**/tsconfig.app.json',
   async (configFilePaths, options, context) => {
     const normalizedOptions = normalizeOptions(options);
@@ -45,22 +42,22 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
 
     const results = await Promise.all(
       includedConfigFilePaths.map(async (configFilePath) => {
-        const [ projectPath, projectConfiguration ] =
+        const [projectPath, projectConfiguration] =
           await createProjectConfiguration(
             configFilePath,
             normalizedOptions,
             context,
           );
-        return [ configFilePath, projectPath, projectConfiguration ] as [
+        return [configFilePath, projectPath, projectConfiguration] as [
           string,
           string,
-          Optional<ProjectConfiguration, 'root'>
+          Optional<ProjectConfiguration, 'root'>,
         ];
       }),
     );
 
     return results.map(
-      ([ configFilePath, projectPath, projectConfiguration ]) => [
+      ([configFilePath, projectPath, projectConfiguration]) => [
         configFilePath,
         {
           projects: {
@@ -75,7 +72,7 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
 async function shouldHaveProjectConfiguration(
   configFilePath: string,
   options: PluginOptions,
-  context: CreateNodesContextV2,
+  context: CreateNodesContext,
 ): Promise<boolean> {
   const projectPath = dirname(configFilePath);
   const tree = new FsTree(context.workspaceRoot);
@@ -84,7 +81,11 @@ async function shouldHaveProjectConfiguration(
     // console.log(`The folder of the file '${ configFilePath }' is not the root of a project. Skipping`.yellow);
     return false;
   }
-  if (['web3Storage', 'web3storage', 'web3-storage'].some(tag => projectConfiguration.tags.includes(tag))) {
+  if (
+    ['web3Storage', 'web3storage', 'web3-storage'].some((tag) =>
+      projectConfiguration.tags.includes(tag),
+    )
+  ) {
     return false;
   }
   return true;
@@ -93,21 +94,22 @@ async function shouldHaveProjectConfiguration(
 async function createProjectConfiguration(
   configFilePath: string,
   options: PluginOptions,
-  context: CreateNodesContextV2,
-): Promise<[ string, Optional<ProjectConfiguration, 'root'> ]> {
+  context: CreateNodesContext,
+): Promise<[string, Optional<ProjectConfiguration, 'root'>]> {
   const projectPath = dirname(configFilePath);
   const targets: Record<string, TargetConfiguration> = {};
   const tree = new FsTree(context.workspaceRoot);
   const projectConfiguration = FindProjectByPath(tree, projectPath);
 
   if (!projectConfiguration) {
-    throw new Error(`Could not find project in '${ projectPath }'`);
+    throw new Error(`Could not find project in '${projectPath}'`);
   }
 
   targets['deploy'] = createDeployTarget();
 
   return [
-    projectPath, {
+    projectPath,
+    {
       targets,
     },
   ];
@@ -116,7 +118,7 @@ async function createProjectConfiguration(
 function createDeployTarget(): TargetConfiguration {
   return {
     executor: '@rxap/plugin-web3-storage:deploy',
-    outputs: [ '{workspaceRoot}/dist/{projectRoot}/ipfs-cid.txt' ],
-    dependsOn: [ 'build', 'i18n-index-html' ],
+    outputs: ['{workspaceRoot}/dist/{projectRoot}/ipfs-cid.txt'],
+    dependsOn: ['build', 'i18n-index-html'],
   };
 }

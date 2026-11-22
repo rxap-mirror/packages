@@ -1,6 +1,6 @@
 import {
-  CreateNodesContextV2,
-  CreateNodesV2,
+  CreateNodesContext,
+  CreateNodes,
   ProjectConfiguration,
   TargetConfiguration,
 } from '@nx/devkit';
@@ -20,22 +20,19 @@ import {
 import { existsSync } from 'fs';
 import { globSync } from 'glob';
 import { Optional } from 'nx/src/project-graph/plugins';
-import {
-  dirname,
-  join,
-} from 'path';
+import { dirname, join } from 'path';
 import 'colors';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface PluginOptions {}
 
 export function normalizeOptions(
-  options: PluginOptions | undefined
+  options: PluginOptions | undefined,
 ): PluginOptions {
   return options ?? {};
 }
 
-export const createNodesV2: CreateNodesV2<PluginOptions> = [
+export const createNodesV2: CreateNodes<PluginOptions> = [
   '**/Kraftfile',
   async (configFilePaths, options, context) => {
     const normalizedOptions = normalizeOptions(options);
@@ -46,15 +43,15 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
           await shouldHaveProjectConfiguration(
             configFilePath,
             normalizedOptions,
-            context
+            context,
           )
         ) {
           return configFilePath;
         }
         return undefined;
-      })
+      }),
     ).then((configFilePathOrUndefinedList) =>
-      configFilePathOrUndefinedList.filter((value) => value !== undefined)
+      configFilePathOrUndefinedList.filter((value) => value !== undefined),
     );
 
     const results = await Promise.all(
@@ -63,14 +60,14 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
           await createProjectConfiguration(
             configFilePath,
             normalizedOptions,
-            context
+            context,
           );
         return [configFilePath, projectPath, projectConfiguration] as [
           string,
           string,
-          Optional<ProjectConfiguration, 'root'>
+          Optional<ProjectConfiguration, 'root'>,
         ];
-      })
+      }),
     );
 
     return results.map(
@@ -81,7 +78,7 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
             [projectPath]: projectConfiguration,
           },
         },
-      ]
+      ],
     );
   },
 ];
@@ -89,7 +86,7 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
 async function shouldHaveProjectConfiguration(
   configFilePath: string,
   options: PluginOptions,
-  context: CreateNodesContextV2
+  context: CreateNodesContext,
 ): Promise<boolean> {
   const projectPath = dirname(configFilePath);
   const tree = new FsTree(context.workspaceRoot);
@@ -103,23 +100,28 @@ async function shouldHaveProjectConfiguration(
 async function createProjectConfiguration(
   configFilePath: string,
   options: PluginOptions,
-  context: CreateNodesContextV2
+  context: CreateNodesContext,
 ): Promise<[string, Optional<ProjectConfiguration, 'root'>]> {
   const projectPath = dirname(configFilePath);
   const targets: Record<string, TargetConfiguration> = {};
   targets['kraft-cloud-deploy'] = createKraftCloudDeployTarget();
   targets['kraft-cloud-img-remove'] = createKraftCloudImgRemoveTarget();
-  targets['kraft-cloud-instance-create'] = createKraftCloudInstanceCreateTarget();
+  targets['kraft-cloud-instance-create'] =
+    createKraftCloudInstanceCreateTarget();
   targets['kraft-cloud-instance-get'] = createKraftCloudInstanceGetTarget();
   targets['kraft-cloud-instance-logs'] = createKraftCloudInstanceLogsTarget();
-  targets['kraft-cloud-instance-remove'] = createKraftCloudInstanceRemoveTarget();
+  targets['kraft-cloud-instance-remove'] =
+    createKraftCloudInstanceRemoveTarget();
   targets['kraft-cloud-instance-start'] = createKraftCloudInstanceStartTarget();
   targets['kraft-cloud-instance-stop'] = createKraftCloudInstanceStopTarget();
   targets['kraft-cloud-tunnel'] = createKraftCloudTunnelTarget();
 
-  return [projectPath, {
-    targets
-  }];
+  return [
+    projectPath,
+    {
+      targets,
+    },
+  ];
 }
 
 function createKraftCloudDeployTarget(): TargetConfiguration {
@@ -127,9 +129,9 @@ function createKraftCloudDeployTarget(): TargetConfiguration {
     executor: '@rxap/plugin-kraft:cloud-deploy',
     configurations: {
       development: {
-        'scale-to-zero': 'off'
-      }
-    }
+        'scale-to-zero': 'off',
+      },
+    },
   };
 }
 
@@ -143,31 +145,31 @@ function createKraftCloudInstanceCreateTarget(): TargetConfiguration {
   return {
     executor: '@rxap/plugin-kraft:cloud-instance-create',
     options: {
-      start: true
+      start: true,
     },
     configurations: {
       development: {
-        'scale-to-zero': 'off'
-      }
-    }
+        'scale-to-zero': 'off',
+      },
+    },
   };
 }
 
 function createKraftCloudInstanceStartTarget(): TargetConfiguration {
   return {
-    executor: '@rxap/plugin-kraft:cloud-instance-start'
+    executor: '@rxap/plugin-kraft:cloud-instance-start',
   };
 }
 
 function createKraftCloudInstanceStopTarget(): TargetConfiguration {
   return {
-    executor: '@rxap/plugin-kraft:cloud-instance-stop'
+    executor: '@rxap/plugin-kraft:cloud-instance-stop',
   };
 }
 
 function createKraftCloudInstanceGetTarget(): TargetConfiguration {
   return {
-    executor: '@rxap/plugin-kraft:cloud-instance-get'
+    executor: '@rxap/plugin-kraft:cloud-instance-get',
   };
 }
 
@@ -176,8 +178,8 @@ function createKraftCloudInstanceLogsTarget(): TargetConfiguration {
     executor: '@rxap/plugin-kraft:cloud-instance-logs',
     options: {
       follow: true,
-      tail: 100
-    }
+      tail: 100,
+    },
   };
 }
 
@@ -185,8 +187,8 @@ function createKraftCloudTunnelTarget(): TargetConfiguration {
   return {
     executor: '@rxap/plugin-kraft:cloud-tunnel',
     options: {
-      'tunnel-image': 'official/utils/tunnel:1.0'
-    }
+      'tunnel-image': 'official/utils/tunnel:1.0',
+    },
   };
 }
 

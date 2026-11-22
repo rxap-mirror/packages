@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,6 +12,7 @@ jest.mock('@rxap/browser-utilities', () => ({
 
 @Component({
   imports: [MatFormFieldModule, MatInputModule, AutoFormFieldHeightBottomContainerDirective, FormFieldNoPaddingDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `<mat-form-field id="ff" rxapAutoHeightBottomContainer rxapNoPadding><input matInput /></mat-form-field>`,
 })
 class HostComponent {}

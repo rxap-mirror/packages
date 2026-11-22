@@ -58,7 +58,7 @@
       <mat-card-content>
         @if (tableDataSourceDirective.hasError$ | async) {
           <rxap-data-source-error
-            [error]="tableDataSourceDirective.dataSource()?.error$"
+            [error]="$safeNavigationMigration(tableDataSourceDirective.dataSource()?.error$)"
             [loading]="tableDataSourceDirective.loading$"
             [refresh]="tableDataSourceDirective.retry">
           </rxap-data-source-error>
@@ -120,7 +120,7 @@
                 <ng-container i18n>Is Active</ng-container>
               </th>
 
-              <td *matCellDef="let element" mat-cell [rxap-boolean-cell]="element?.isActive"></td>
+              <td *matCellDef="let element" mat-cell [rxap-boolean-cell]="$safeNavigationMigration(element?.isActive)"></td>
             </ng-container>
 
 

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Subject } from 'rxjs';
@@ -7,6 +7,7 @@ import { CardProgressBarDirective } from './card-progress-bar.directive';
 
 @Component({
   imports: [MatProgressBarModule, CardProgressBarDirective, CardActionDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div id="action" rxapCardAction></div>
     <mat-progress-bar id="bar" rxapCardProgressBar [loading$]="loading()" [mode]="mode()"></mat-progress-bar>

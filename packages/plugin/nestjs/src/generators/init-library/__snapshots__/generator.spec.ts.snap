@@ -2,121 +2,11 @@
 
 exports[`plugin-nestjs:init-library (golden master) should produce a stable init-library tree: init-library-tree 1`] = `
 {
-  ".eslintignore": "node_modules
-",
-  ".eslintrc.json": "{
-  "root": true,
-  "ignorePatterns": [
-    "**/*"
-  ],
-  "plugins": [
-    "@nx"
-  ],
-  "overrides": [
-    {
-      "files": [
-        "*.ts",
-        "*.tsx",
-        "*.js",
-        "*.jsx"
-      ],
-      "rules": {
-        "@nx/enforce-module-boundaries": [
-          "error",
-          {
-            "enforceBuildableLibDependency": true,
-            "allow": [],
-            "depConstraints": [
-              {
-                "sourceTag": "*",
-                "onlyDependOnLibsWithTags": [
-                  "*"
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    },
-    {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
-      "extends": [
-        "plugin:@nx/typescript"
-      ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
-      "extends": [
-        "plugin:@nx/javascript"
-      ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.spec.ts",
-        "*.spec.tsx",
-        "*.spec.js",
-        "*.spec.jsx"
-      ],
-      "env": {
-        "jest": true
-      },
-      "rules": {}
-    }
-  ]
-}
-",
-  ".prettierignore": "# Add files here to ignore them from prettier formatting
-/dist
-/coverage
-/.nx/cache
-/.nx/workspace-data",
-  ".prettierrc": "{"singleQuote":true}",
+  ".oxfmtrc.json": "{"singleQuote":true}",
   "feat/.eslintignore": "
 dist
 coverage
 node_modules
-",
-  "feat/.eslintrc.json": "{
-  "extends": [
-    "../.eslintrc.json"
-  ],
-  "ignorePatterns": [
-    "!**/*"
-  ],
-  "overrides": [
-    {
-      "files": [
-        "*.ts",
-        "*.tsx",
-        "*.js",
-        "*.jsx"
-      ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
-      "rules": {}
-    },
-    {
-      "files": [
-        "*.js",
-        "*.jsx"
-      ],
-      "rules": {}
-    }
-  ]
-}
 ",
   "feat/README.md": "# feat
 
@@ -144,9 +34,6 @@ Run \`nx test feat\` to execute the unit tests via [Jest](https://jestjs.io).
   "projectType": "library",
   "tags": [],
   "targets": {
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": [
@@ -232,7 +119,7 @@ export class FeatModule {}
   "compilerOptions": {
     "outDir": "../dist/out-tsc",
     "module": "commonjs",
-    "moduleResolution": "node10","types": ["jest", "node"]
+    "moduleResolution": "bundler","types": ["jest", "node"]
   },
   "include": [
     "jest.config.ts",
@@ -271,17 +158,6 @@ module.exports = { ...nxPreset };",
     "lint": {
       "cache": true
     },
-    "@nx/eslint:lint": {
-      "cache": true,
-      "inputs": [
-        "default",
-        "^default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.mjs",
-        "{workspaceRoot}/tools/eslint-rules/**/*"
-      ]
-    },
     "@nx/jest:jest": {
       "cache": true,
       "inputs": [
@@ -318,34 +194,26 @@ module.exports = { ...nxPreset };",
     "@nestjs/common": "^11.0.0",
     "@nestjs/core": "11.1.1",
     "@nestjs/platform-express": "^11.0.0",
-    "reflect-metadata": "^0.1.13",
+    "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.0",
-    "@nx/eslint": "22.7.5",
-    "@nx/eslint-plugin": "22.7.5",
-    "@nx/jest": "22.7.5",
-    "@nx/js": "22.7.5",
-    "@nx/nest": "22.7.5",
-    "@swc-node/register": "~1.11.1",
-    "@swc/core": "~1.15.5",
+    "@nx/jest": "23.3.3",
+    "@nx/js": "23.3.3",
+    "@nx/nest": "23.3.3",
     "@swc/helpers": "~0.5.18",
     "@types/jest": "~30.0.0",
-    "@types/node": "20.19.9",
-    "@typescript-eslint/eslint-plugin": "^7.16.0",
-    "@typescript-eslint/parser": "^7.16.0",
-    "eslint": "~8.57.0",
-    "eslint-config-prettier": "^10.0.0",
+    "@types/node": "^22.0.0",
     "jest": "~30.3.0",
     "jest-environment-node": "~30.3.0",
     "jest-util": "~30.3.0",
-    "prettier": "~3.6.2",
-    "ts-jest": "^29.4.0",
+    "oxfmt": "^0.60.0",
+    "ts-jest": "^29.4.7",
     "ts-node": "10.9.1",
-    "typescript": "~5.9.2"
+    "typescript": "~6.0.3"
   }
 }
 ",

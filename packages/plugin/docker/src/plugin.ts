@@ -1,6 +1,6 @@
 import {
-  CreateNodesContextV2,
-  CreateNodesV2,
+  CreateNodesContext,
+  CreateNodes,
   ProjectConfiguration,
   TargetConfiguration,
 } from '@nx/devkit';
@@ -15,10 +15,7 @@ import { FsTree } from 'nx/src/generators/tree';
 import { Optional } from 'nx/src/project-graph/plugins';
 import { combineGlobPatterns } from 'nx/src/utils/globs';
 import 'colors';
-import {
-  dirname,
-  join,
-} from 'path';
+import { dirname, join } from 'path';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface PluginOptions {}
@@ -29,11 +26,8 @@ export function normalizeOptions(
   return options ?? {};
 }
 
-export const createNodesV2: CreateNodesV2<PluginOptions> = [
-  combineGlobPatterns([
-    '**/tsconfig.app.json',
-    '**/Dockerfile'
-  ]),
+export const createNodesV2: CreateNodes<PluginOptions> = [
+  combineGlobPatterns(['**/tsconfig.app.json', '**/Dockerfile']),
   async (configFilePaths, options, context) => {
     const normalizedOptions = normalizeOptions(options);
 
@@ -56,22 +50,22 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
 
     const results = await Promise.all(
       includedConfigFilePaths.map(async (configFilePath) => {
-        const [ projectPath, projectConfiguration ] =
+        const [projectPath, projectConfiguration] =
           await createProjectConfiguration(
             configFilePath,
             normalizedOptions,
             context,
           );
-        return [ configFilePath, projectPath, projectConfiguration ] as [
+        return [configFilePath, projectPath, projectConfiguration] as [
           string,
           string,
-          Optional<ProjectConfiguration, 'root'>
+          Optional<ProjectConfiguration, 'root'>,
         ];
       }),
     );
 
     return results.map(
-      ([ configFilePath, projectPath, projectConfiguration ]) => [
+      ([configFilePath, projectPath, projectConfiguration]) => [
         configFilePath,
         {
           projects: {
@@ -86,7 +80,7 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
 async function shouldHaveProjectConfiguration(
   configFilePath: string,
   options: PluginOptions,
-  context: CreateNodesContextV2,
+  context: CreateNodesContext,
 ): Promise<boolean> {
   const projectPath = dirname(configFilePath);
   const tree = new FsTree(context.workspaceRoot, false);
@@ -108,8 +102,8 @@ async function shouldHaveProjectConfiguration(
       tree.exists(join(projectPath, 'Dockerfile')) ||
       tree.exists(join(projectPath, 'src', 'Dockerfile'))
     ) ||
-    IsLibraryProject(projectConfiguration)
-    || !tree.exists(join(projectPath, 'project.json'))
+    IsLibraryProject(projectConfiguration) ||
+    !tree.exists(join(projectPath, 'project.json'))
   ) {
     return false;
   }
@@ -119,8 +113,8 @@ async function shouldHaveProjectConfiguration(
 async function createProjectConfiguration(
   configFilePath: string,
   options: PluginOptions,
-  context: CreateNodesContextV2,
-): Promise<[ string, Optional<ProjectConfiguration, 'root'> ]> {
+  context: CreateNodesContext,
+): Promise<[string, Optional<ProjectConfiguration, 'root'>]> {
   const projectPath = dirname(configFilePath);
   const targets: Record<string, TargetConfiguration> = {};
   const tree = new FsTree(context.workspaceRoot, false);
@@ -129,16 +123,20 @@ async function createProjectConfiguration(
   targets['docker-save'] = createDockerSaveTarget();
 
   return [
-    projectPath, {
+    projectPath,
+    {
       targets,
     },
   ];
 }
 
-function createDockerBuildTarget(tree: FsTree, projectPath: string): TargetConfiguration {
+function createDockerBuildTarget(
+  tree: FsTree,
+  projectPath: string,
+): TargetConfiguration {
   const target: TargetConfiguration = {
     executor: '@rxap/plugin-docker:build',
-    dependsOn: [ 'build' ],
+    dependsOn: ['build'],
   };
 
   if (tree.exists(join(projectPath, 'Dockerfile'))) {
@@ -155,6 +153,6 @@ function createDockerBuildTarget(tree: FsTree, projectPath: string): TargetConfi
 function createDockerSaveTarget(): TargetConfiguration {
   return {
     executor: '@rxap/plugin-docker:save',
-    dependsOn: [ 'docker' ],
+    dependsOn: ['docker'],
   };
 }

@@ -13,3 +13,7 @@ if (
 ) {
   globalThis.performance = performance;
 }
+
+// Nx 23 formats generated files with oxfmt (ESM-only, not loadable by the CommonJS jest runtime) when the tree
+// contains an `.oxfmtrc.json`. Generator specs only care about the unformatted content.
+process.env.NX_SKIP_FORMAT = 'true';

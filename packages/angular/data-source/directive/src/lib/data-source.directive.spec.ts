@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { ObservableDataSource } from '@rxap/data-source';
@@ -7,6 +7,7 @@ import { DataSourceDirective } from './data-source.directive';
 
 @Component({
   imports: [DataSourceDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <ng-template #errorTpl let-error let-refresh="refresh">
       <span id="error">{{ error?.message ?? 'flag' }}</span><button id="refresh" (click)="refresh()">r</button>

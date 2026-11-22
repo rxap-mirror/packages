@@ -4,11 +4,11 @@
   "description": "This package provides a set of Angular directives to simplify common tasks such as setting background images, confirming clicks, making elements contenteditable, and more. It includes directives for handling UI interactions, applying styles, and managing asynchronous operations. These directives aim to reduce boilerplate code and improve the reusability of components in Angular applications.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "22.7.5",
+    "@nx/devkit": "23.3.3",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^21.2.9",
+    "@angular/core": "^22.1.8",
     "@rxap/pattern": "^1.1.16",
     "@rxap/rxjs": "^1.1.18",
     "@rxap/services": "^21.0.1",

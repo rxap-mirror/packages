@@ -2,7 +2,7 @@
 
 exports[`plugin-angular:init (golden master) should produce a stable workspace-init tree: init-tree 1`] = `
 {
-  ".prettierrc": "{"singleQuote":true}",
+  ".oxfmtrc.json": "{"singleQuote":true}",
   "apps/.gitignore": "",
   "libs/.gitignore": "",
   "nx.json": "{
@@ -58,7 +58,8 @@ exports[`plugin-angular:init (golden master) should produce a stable workspace-i
     },
     "@nx/angular:component": {
       "style": "scss",
-      "standalone": true
+      "standalone": true,
+      "type": "component"
     },
     "@nx/angular:library": {
       "linter": "eslint",
@@ -75,7 +76,8 @@ exports[`plugin-angular:init (golden master) should produce a stable workspace-i
     },
     "@nx/angular:directive": {
       "standalone": true,
-      "skipTests": true
+      "skipTests": true,
+      "type": "directive"
     },
     "@nx/angular:library-secondary-entry-point": {
       "skipModule": true

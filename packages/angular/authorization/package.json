@@ -4,13 +4,13 @@
   "description": "Provides an Angular module and directives to manage authorization and permissions in your application. It allows you to control the visibility and enabled state of UI elements based on user permissions. The package includes an `AuthorizationService` to check permissions and directives to easily integrate permission checks into your templates and components.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "22.7.5",
+    "@nx/devkit": "23.3.3",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^21.2.9",
-    "@angular/forms": "^21.2.9",
-    "@angular/material": "^21.2.9",
+    "@angular/core": "^22.1.8",
+    "@angular/forms": "^22.1.8",
+    "@angular/material": "^22.1.8",
     "@rxap/utilities": "^16.5.2",
     "rxjs": "^7.8.2"
   },

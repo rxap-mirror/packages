@@ -2,7 +2,7 @@
 
 exports[`expose-as-schematic (golden master) serializes each nx generator as an angular schematic wrapper: exposed-tree 1`] = `
 {
-  ".prettierrc": "{"singleQuote":true}",
+  ".oxfmtrc.json": "{"singleQuote":true}",
   "my-plugin/generators.json": "{
   "generators": {
     "my-gen": {

@@ -8,6 +8,7 @@ import {
   HttpHeaders,
   provideHttpClient,
   withInterceptorsFromDi,
+  withXhr
 } from '@angular/common/http';
 import { HttpDataSource } from './http.data-source';
 import { Subject } from 'rxjs';
@@ -23,7 +24,7 @@ describe('@rxap/data-source', () => {
       TestBed.configureTestingModule({
         imports: [],
         providers: [
-          provideHttpClient(withInterceptorsFromDi()),
+          provideHttpClient(withXhr(), withInterceptorsFromDi()),
           provideHttpClientTesting(),
         ],
       });

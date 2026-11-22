@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatTabGroup, MatTabsModule } from '@angular/material/tabs';
 import { By } from '@angular/platform-browser';
@@ -7,6 +7,7 @@ import { ScrollToTabOnFocusDirective } from './scroll-to-tab-on-focus.directive'
 
 @Component({
   imports: [MatTabsModule, ScrollToTabOnFocusDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `<mat-tab-group rxapScrollToTabOnFocus><mat-tab label="a"></mat-tab><mat-tab label="b"></mat-tab></mat-tab-group>`,
 })
 class HostComponent {}

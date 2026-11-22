@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export function DeleteUndefinedProperties<T extends {}>(obj: T): Exclude<T, undefined> {
   const keys = Object.keys(obj);
   const cloneObj: any = {};
@@ -12,7 +12,7 @@ export function DeleteUndefinedProperties<T extends {}>(obj: T): Exclude<T, unde
   return cloneObj;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export function DeleteNullProperties<T extends {}>(obj: T): Exclude<T, null> {
   const keys = Object.keys(obj);
   const cloneObj: any = {};
@@ -26,7 +26,7 @@ export function DeleteNullProperties<T extends {}>(obj: T): Exclude<T, null> {
   return cloneObj;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export function DeleteEmptyProperties<T extends {}>(obj: T): Exclude<Exclude<T, null>, undefined> {
   return DeleteUndefinedProperties(DeleteNullProperties(obj));
 }

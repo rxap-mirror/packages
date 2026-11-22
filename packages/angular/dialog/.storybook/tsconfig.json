@@ -4,9 +4,8 @@
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "types": [
-      "@angular/localize"
-    ]
+    "types": ["@angular/localize"],
+    "ignoreDeprecations": "6.0"
   },
   "exclude": ["../**/*.spec.ts"],
   "include": [

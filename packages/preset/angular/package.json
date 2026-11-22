@@ -4,7 +4,7 @@
   "description": "This package provides generators for initializing Angular projects with pre-configured settings. It leverages other `@rxap` plugins to set up workspace and Angular-specific configurations, including options for package management, standalone components, license, and repository URL. It aims to streamline the setup process for new Angular projects.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "22.7.5",
+    "@nx/devkit": "23.3.3",
     "@rxap/plugin-angular": "^22.0.1",
     "@rxap/plugin-workspace": "^22.0.1",
     "tslib": "2.6.2"

@@ -1,6 +1,6 @@
 import {
-  CreateNodesContextV2,
-  CreateNodesV2,
+  CreateNodesContext,
+  CreateNodes,
   ProjectConfiguration,
   TargetConfiguration,
 } from '@nx/devkit';
@@ -11,10 +11,7 @@ import {
 } from '@rxap/workspace-utilities';
 import { existsSync } from 'fs';
 import { Optional } from 'nx/src/project-graph/plugins';
-import {
-  dirname,
-  join,
-} from 'path';
+import { dirname, join } from 'path';
 import 'colors';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -26,7 +23,7 @@ export function normalizeOptions(
   return options ?? {};
 }
 
-export const createNodesV2: CreateNodesV2<PluginOptions> = [
+export const createNodesV2: CreateNodes<PluginOptions> = [
   '**/tsconfig.lib.json',
   async (configFilePaths, options, context) => {
     const normalizedOptions = normalizeOptions(options);
@@ -50,22 +47,22 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
 
     const results = await Promise.all(
       includedConfigFilePaths.map(async (configFilePath) => {
-        const [ projectPath, projectConfiguration ] =
+        const [projectPath, projectConfiguration] =
           await createProjectConfiguration(
             configFilePath,
             normalizedOptions,
             context,
           );
-        return [ configFilePath, projectPath, projectConfiguration ] as [
+        return [configFilePath, projectPath, projectConfiguration] as [
           string,
           string,
-          Optional<ProjectConfiguration, 'root'>
+          Optional<ProjectConfiguration, 'root'>,
         ];
       }),
     );
 
     return results.map(
-      ([ configFilePath, projectPath, projectConfiguration ]) => [
+      ([configFilePath, projectPath, projectConfiguration]) => [
         configFilePath,
         {
           projects: {
@@ -80,7 +77,7 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
 async function shouldHaveProjectConfiguration(
   configFilePath: string,
   options: PluginOptions,
-  context: CreateNodesContextV2,
+  context: CreateNodesContext,
 ): Promise<boolean> {
   const projectPath = dirname(configFilePath);
   const tree = new FsTree(context.workspaceRoot);
@@ -89,7 +86,11 @@ async function shouldHaveProjectConfiguration(
     // console.log(`The folder of the file '${ configFilePath }' is not the root of a project. Skipping`.yellow);
     return false;
   }
-  if (![ 'openapi', 'open-api' ].some((tag) => projectConfiguration.tags?.includes(tag))) {
+  if (
+    !['openapi', 'open-api'].some((tag) =>
+      projectConfiguration.tags?.includes(tag),
+    )
+  ) {
     return false;
   }
   const projectName = projectConfiguration.name;
@@ -102,8 +103,8 @@ async function shouldHaveProjectConfiguration(
 async function createProjectConfiguration(
   configFilePath: string,
   options: PluginOptions,
-  context: CreateNodesContextV2,
-): Promise<[ string, Optional<ProjectConfiguration, 'root'> ]> {
+  context: CreateNodesContext,
+): Promise<[string, Optional<ProjectConfiguration, 'root'>]> {
   const projectPath = dirname(configFilePath);
   const targets: Record<string, TargetConfiguration> = {};
   const tree = new FsTree(context.workspaceRoot);
@@ -114,14 +115,21 @@ async function createProjectConfiguration(
 
   if (serviceProjectConfiguration) {
     const serviceProjectRoot = serviceProjectConfiguration.root;
-    targets['generate-open-api'] = createGenerateOpenApiTarget(serviceProjectName, serviceProjectRoot);
+    targets['generate-open-api'] = createGenerateOpenApiTarget(
+      serviceProjectName,
+      serviceProjectRoot,
+    );
     targets['build'] = createBuildTarget(projectPath);
   } else {
-    targets['generate-open-api'] = createStaticGenerateOpenApiTarget(projectName, projectPath);
+    targets['generate-open-api'] = createStaticGenerateOpenApiTarget(
+      projectName,
+      projectPath,
+    );
   }
 
   return [
-    projectPath, {
+    projectPath,
+    {
       targets,
     },
   ];
@@ -130,9 +138,7 @@ async function createProjectConfiguration(
 function createBuildTarget(projectPath: string): TargetConfiguration {
   return {
     executor: '@nx/js:tsc',
-    outputs: [
-      '{options.outputPath}',
-    ],
+    outputs: ['{options.outputPath}'],
     options: {
       outputPath: `dist/${projectPath}`,
       main: `${projectPath}/src/index.ts`,
@@ -148,13 +154,14 @@ function createBuildTarget(projectPath: string): TargetConfiguration {
         `${projectPath}/src/lib/responses/index.ts`,
       ],
     },
-    dependsOn: [
-      'generate-open-api',
-    ],
+    dependsOn: ['generate-open-api'],
   };
 }
 
-function createGenerateOpenApiTarget(serviceProjectName: string, serviceProjectRoot: string): TargetConfiguration {
+function createGenerateOpenApiTarget(
+  serviceProjectName: string,
+  serviceProjectRoot: string,
+): TargetConfiguration {
   return {
     dependsOn: [
       {
@@ -163,24 +170,27 @@ function createGenerateOpenApiTarget(serviceProjectName: string, serviceProjectR
       },
     ],
     executor: '@rxap/plugin-open-api:generate',
-    outputs: [ '{projectRoot}/src' ],
+    outputs: ['{projectRoot}/src'],
     cache: true,
-    inputs: [ `{workspaceRoot}/swagger/${ serviceProjectRoot }/openapi.json` ],
+    inputs: [`{workspaceRoot}/swagger/${serviceProjectRoot}/openapi.json`],
     options: {
-      path: `swagger/${ serviceProjectRoot }/openapi.json`,
+      path: `swagger/${serviceProjectRoot}/openapi.json`,
       serverId: serviceProjectName,
     },
   };
 }
 
-function createStaticGenerateOpenApiTarget(projectName: string, projectRoot: string): TargetConfiguration {
+function createStaticGenerateOpenApiTarget(
+  projectName: string,
+  projectRoot: string,
+): TargetConfiguration {
   return {
     executor: '@rxap/plugin-open-api:generate',
-    outputs: [ '{projectRoot}/src' ],
+    outputs: ['{projectRoot}/src'],
     cache: true,
-    inputs: [ `{projectRoot}/src/openapi.json` ],
+    inputs: [`{projectRoot}/src/openapi.json`],
     options: {
-      path: `${ projectRoot }/src/openapi.json`,
+      path: `${projectRoot}/src/openapi.json`,
       serverId: projectName.replace('open-api-', ''),
     },
   };

@@ -20,5 +20,16 @@
     "**/*.cy.tsx",
     "**/*.cy.jsx"
   ],
-  "include": ["src/**/*.ts", "single-sign-on/**/*.ts"]
+  "include": [
+    "src/**/*.ts",
+    "single-sign-on/**/*.ts"
+  ],
+  "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
+    }
+  }
 }

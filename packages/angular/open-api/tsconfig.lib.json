@@ -19,5 +19,13 @@
     "data-source/**/*.ts",
     "data-source/table/**/*.ts",
     "remote-method/**/*.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
+    }
+  }
 }

@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/no-unsafe-function-type, @typescript-eslint/no-empty-object-type, @typescript-eslint/no-wrapper-object-types */
 import { DeleteUndefinedProperties } from './delete-undefined-properties';
 import { DeleteNullProperties } from './delete-null-properties';
 

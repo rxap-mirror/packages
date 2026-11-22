@@ -1,4 +1,4 @@
-import { Component, Directive, signal } from '@angular/core';
+import { Component, Directive, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RemoteMethodLoader } from '@rxap/remote-method';
 import { RemoteMethodDirective } from './remote-method.directive';
@@ -7,6 +7,7 @@ import { RXAP_REMOTE_METHOD_DIRECTIVE_TOKEN } from './tokens';
 @Component({
   standalone: true,
   imports: [RemoteMethodDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button
       id="btn"
@@ -44,6 +45,7 @@ class TokenProviderDirective {}
 @Component({
   standalone: true,
   imports: [RemoteMethodDirective, TokenProviderDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `<button withToken rxapRemoteMethod></button>`,
 })
 class TokenHostComponent {}

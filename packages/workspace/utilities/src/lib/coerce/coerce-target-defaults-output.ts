@@ -1,5 +1,7 @@
+import { CoerceTargetDefaultsEntry } from './coerce-target-defaults-entry';
+
 export interface NxJsonWithOutputDefaults {
-  targetDefaults?: Record<string, { outputs?: string[] }>;
+  targetDefaults?: Record<string, any>;
 }
 
 /**
@@ -17,9 +19,9 @@ export function CoerceTargetDefaultsOutput(
   ...outputs: string[]
 ) {
   nxJson.targetDefaults ??= {};
-  nxJson.targetDefaults[target] ??= {};
-  nxJson.targetDefaults[target].outputs ??= [];
-  const targetOutputs = nxJson.targetDefaults[target].outputs as string[];
+  const entry = CoerceTargetDefaultsEntry(nxJson.targetDefaults, target);
+  entry['outputs'] ??= [];
+  const targetOutputs = entry['outputs'] as string[];
   for (const output of outputs) {
     if (!targetOutputs.includes(output)) {
       targetOutputs.push(output);

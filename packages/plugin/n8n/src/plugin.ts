@@ -1,13 +1,10 @@
 import {
-  CreateNodesContextV2,
-  CreateNodesV2,
+  CreateNodesContext,
+  CreateNodes,
   ProjectConfiguration,
   TargetConfiguration,
 } from '@nx/devkit';
-import {
-  FindProjectByPath,
-  SearchFile,
-} from '@rxap/workspace-utilities';
+import { FindProjectByPath, SearchFile } from '@rxap/workspace-utilities';
 import { FsTree } from 'nx/src/generators/tree';
 import { Optional } from 'nx/src/project-graph/plugins';
 import { combineGlobPatterns } from 'nx/src/utils/globs';
@@ -23,10 +20,8 @@ export function normalizeOptions(
   return options ?? {};
 }
 
-export const createNodesV2: CreateNodesV2<PluginOptions> = [
-  combineGlobPatterns([
-    '**/tsconfig.lib.json'
-  ]),
+export const createNodesV2: CreateNodes<PluginOptions> = [
+  combineGlobPatterns(['**/tsconfig.lib.json']),
   async (configFilePaths, options, context) => {
     const normalizedOptions = normalizeOptions(options);
 
@@ -49,22 +44,22 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
 
     const results = await Promise.all(
       includedConfigFilePaths.map(async (configFilePath) => {
-        const [ projectPath, projectConfiguration ] =
+        const [projectPath, projectConfiguration] =
           await createProjectConfiguration(
             configFilePath,
             normalizedOptions,
             context,
           );
-        return [ configFilePath, projectPath, projectConfiguration ] as [
+        return [configFilePath, projectPath, projectConfiguration] as [
           string,
           string,
-          Optional<ProjectConfiguration, 'root'>
+          Optional<ProjectConfiguration, 'root'>,
         ];
       }),
     );
 
     return results.map(
-      ([ configFilePath, projectPath, projectConfiguration ]) => [
+      ([configFilePath, projectPath, projectConfiguration]) => [
         configFilePath,
         {
           projects: {
@@ -79,7 +74,7 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
 async function shouldHaveProjectConfiguration(
   configFilePath: string,
   options: PluginOptions,
-  context: CreateNodesContextV2,
+  context: CreateNodesContext,
 ): Promise<boolean> {
   const projectPath = dirname(configFilePath);
   const tree = new FsTree(context.workspaceRoot, false);
@@ -92,7 +87,9 @@ async function shouldHaveProjectConfiguration(
     // console.log(`The project ${projectConfiguration.name} does not have the tag 'n8n'`);
     return false;
   }
-  for (const _ of SearchFile(tree, projectPath, path => path.endsWith('.node.json'))) {
+  for (const _ of SearchFile(tree, projectPath, (path) =>
+    path.endsWith('.node.json'),
+  )) {
     return true;
   }
   // console.log(`The project ${projectConfiguration.name} does not contain a *.node.json file`);
@@ -102,27 +99,27 @@ async function shouldHaveProjectConfiguration(
 async function createProjectConfiguration(
   configFilePath: string,
   options: PluginOptions,
-  context: CreateNodesContextV2,
-): Promise<[ string, Optional<ProjectConfiguration, 'root'> ]> {
+  context: CreateNodesContext,
+): Promise<[string, Optional<ProjectConfiguration, 'root'>]> {
   const projectPath = dirname(configFilePath);
   const targets: Record<string, TargetConfiguration> = {};
   targets['fix-dependencies'] = createFixDependenciesTarget();
   return [
-    projectPath, {
+    projectPath,
+    {
       targets,
     },
   ];
 }
 
-
 function createFixDependenciesTarget(): TargetConfiguration {
   return {
     executor: '@rxap/plugin-library:fix-dependencies',
-    inputs: [ "production", "^production" ],
-    outputs: [ '{projectRoot}/package.json' ],
+    inputs: ['production', '^production'],
+    outputs: ['{projectRoot}/package.json'],
     options: {
       onlyDependencies: true,
-      peerDependencies: ['n8n-workflow']
-    }
+      peerDependencies: ['n8n-workflow'],
+    },
   };
 }

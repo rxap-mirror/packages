@@ -1,13 +1,10 @@
 import {
-  CreateNodesContextV2,
-  CreateNodesV2,
+  CreateNodesContext,
+  CreateNodes,
   ProjectConfiguration,
   TargetConfiguration,
 } from '@nx/devkit';
-import {
-  FindProjectByPath,
-  FsTree,
-} from '@rxap/workspace-utilities';
+import { FindProjectByPath, FsTree } from '@rxap/workspace-utilities';
 import { Optional } from 'nx/src/project-graph/plugins';
 import { combineGlobPatterns } from 'nx/src/utils/globs';
 import { dirname } from 'path';
@@ -22,14 +19,14 @@ export function normalizeOptions(
   return options ?? {};
 }
 
-export const createNodesV2: CreateNodesV2<PluginOptions> = [
+export const createNodesV2: CreateNodes<PluginOptions> = [
   combineGlobPatterns([
     '**/tsconfig.app.json',
     '**/src/main.ts',
     '**/src/app/app.module.ts',
     '**/src/app/app.component.ts',
     '**/src/index.html',
-    '**/src/i18n.index.html.hbs'
+    '**/src/i18n.index.html.hbs',
   ]),
   async (configFilePaths, options, context) => {
     const normalizedOptions = normalizeOptions(options);
@@ -53,22 +50,22 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
 
     const results = await Promise.all(
       includedConfigFilePaths.map(async (configFilePath) => {
-        const [ projectPath, projectConfiguration ] =
+        const [projectPath, projectConfiguration] =
           await createProjectConfiguration(
             configFilePath,
             normalizedOptions,
             context,
           );
-        return [ configFilePath, projectPath, projectConfiguration ] as [
+        return [configFilePath, projectPath, projectConfiguration] as [
           string,
           string,
-          Optional<ProjectConfiguration, 'root'>
+          Optional<ProjectConfiguration, 'root'>,
         ];
       }),
     );
 
     return results.map(
-      ([ configFilePath, projectPath, projectConfiguration ]) => [
+      ([configFilePath, projectPath, projectConfiguration]) => [
         configFilePath,
         {
           projects: {
@@ -83,7 +80,7 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
 async function shouldHaveProjectConfiguration(
   configFilePath: string,
   options: PluginOptions,
-  context: CreateNodesContextV2,
+  context: CreateNodesContext,
 ): Promise<boolean> {
   const projectPath = dirname(configFilePath);
   const tree = new FsTree(context.workspaceRoot);
@@ -97,21 +94,22 @@ async function shouldHaveProjectConfiguration(
 async function createProjectConfiguration(
   configFilePath: string,
   options: PluginOptions,
-  context: CreateNodesContextV2,
-): Promise<[ string, Optional<ProjectConfiguration, 'root'> ]> {
+  context: CreateNodesContext,
+): Promise<[string, Optional<ProjectConfiguration, 'root'>]> {
   const projectPath = dirname(configFilePath);
   const targets: Record<string, TargetConfiguration> = {};
   const tree = new FsTree(context.workspaceRoot);
   const projectConfiguration = FindProjectByPath(tree, projectPath);
 
   if (!projectConfiguration) {
-    throw new Error(`Could not find project in '${ projectPath }'`);
+    throw new Error(`Could not find project in '${projectPath}'`);
   }
 
   targets['i18n-index-html'] = createI18nIndexHtmlTarget();
 
   return [
-    projectPath, {
+    projectPath,
+    {
       targets,
     },
   ];
@@ -119,12 +117,10 @@ async function createProjectConfiguration(
 
 function createI18nIndexHtmlTarget(): TargetConfiguration {
   return {
-    dependsOn: [ "build"],
-    executor: "@rxap/plugin-application:i18n",
-    outputs: [ "{workspaceRoot}/dist/{projectRoot}/index.html"],
-    inputs: [
-      "{projectRoot}/i18n.index.html.hbs"
-    ],
-    cache: true
+    dependsOn: ['build'],
+    executor: '@rxap/plugin-application:i18n',
+    outputs: ['{workspaceRoot}/dist/{projectRoot}/index.html'],
+    inputs: ['{projectRoot}/i18n.index.html.hbs'],
+    cache: true,
   };
 }

@@ -9,6 +9,10 @@ export function updateTsConfig(tree: Tree, projectName: string) {
 
   const projectRoot = GetProjectRoot(tree, projectName);
   for (const tsConfigName of [ 'app', 'editor', 'spec' ]) {
+    // not every nx version generates all tsconfig variants (e.g. tsconfig.editor.json was dropped with nx 23)
+    if (!tree.exists(`${ projectRoot }/tsconfig.${ tsConfigName }.json`)) {
+      continue;
+    }
     UpdateTsConfigJson(tree, tsConfig => {
       tsConfig.compilerOptions ??= {};
       tsConfig.compilerOptions.types ??= [];

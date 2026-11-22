@@ -8,8 +8,12 @@
     "moduleResolution": "bundler",
     "lib": ["dom", "es2022"],
     "useDefineForClassFields": false,
-    "types": ["@angular/localize"]
+    "types": ["@angular/localize"],
+    "ignoreDeprecations": "6.0"
   },
   "files": ["src/main.ts"],
-  "include": ["src/**/*.d.ts", "../../ng-prism-cache/prism-host/**/*.ts"]
+  "include": ["src/**/*.d.ts", "../../ng-prism-cache/prism-host/**/*.ts"],
+  "angularCompilerOptions": {
+    "strictTemplates": false
+  }
 }

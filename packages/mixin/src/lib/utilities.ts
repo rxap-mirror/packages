@@ -1,5 +1,5 @@
 // rxap-no-index-export
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type, @typescript-eslint/no-empty-object-type, @typescript-eslint/no-wrapper-object-types
 /**
  * A generic interface that represents a constructor function type.
  *
@@ -28,7 +28,7 @@
  * ```
  */
 export interface Constructor<T>
-  // eslint-disable-next-line @typescript-eslint/ban-types
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
   extends Function {
   new(...args: any[]): T;
 }

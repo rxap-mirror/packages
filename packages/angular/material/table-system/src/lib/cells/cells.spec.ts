@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatOption } from '@angular/material/core';
 import { By } from '@angular/platform-browser';
@@ -13,6 +13,8 @@ import { TreeControlCellComponent } from './tree-control-cell/tree-control-cell.
 
 @Component({
   standalone: true,
+  // Angular 22 components are OnPush by default; the specs mutate the host state directly
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [
     BooleanCellComponent,
     CopyToClipboardCellComponent,
@@ -137,6 +139,7 @@ describe('table cells', () => {
 
 @Component({
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [OptionsCellComponent, MatOption],
   template: `
     <table>

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { By } from '@angular/platform-browser';
@@ -6,6 +6,7 @@ import { IconDirective } from './icon.directive';
 
 @Component({
   imports: [MatIconModule, IconDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `<mat-icon [rxapIcon]="icon()"></mat-icon>`,
 })
 class HostComponent {

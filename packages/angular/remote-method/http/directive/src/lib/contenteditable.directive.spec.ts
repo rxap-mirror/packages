@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { HttpRemoteMethodLoader } from '@rxap/remote-method/http';
 import { ContenteditableDirective } from './contenteditable.directive';
@@ -6,6 +6,7 @@ import { ContenteditableDirective } from './contenteditable.directive';
 @Component({
   standalone: true,
   imports: [ContenteditableDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `<div id="e" rxapContenteditable="update-item" property="title" uuid="u-1"></div>`,
 })
 class HostComponent {}

@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { AsyncActionAnimationDirective, AsyncActionDirective } from './async-action.directive';
 
 @Component({
   imports: [MatButtonModule, AsyncActionDirective, AsyncActionAnimationDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <button id="b" mat-button [rxapAsyncAction]="action"><span *rxapAsyncActionAnimation id="spin">x</span></button>
   `,

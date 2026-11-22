@@ -4,12 +4,12 @@
   "description": "Provides directives and services to simplify opening forms in windows within an Angular application. It includes features for submitting forms, managing window footers, and opening forms using methods. This package integrates with @rxap/forms and @rxap/window-system to streamline form-based workflows in a windowed environment.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "22.7.5",
+    "@nx/devkit": "23.3.3",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^21.2.9",
-    "@angular/core": "^21.2.9",
+    "@angular/cdk": "^22.1.8",
+    "@angular/core": "^22.1.8",
     "@rxap/directives": "^21.0.1",
     "@rxap/form-system": "^21.0.1",
     "@rxap/forms": "^21.0.1",

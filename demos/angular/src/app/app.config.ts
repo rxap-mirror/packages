@@ -1,4 +1,4 @@
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withInterceptors, withXhr } from '@angular/common/http';
 import {
   ApplicationConfig,
   importProvidersFrom,
@@ -42,7 +42,7 @@ import { provideMarkdown } from 'ngx-markdown';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZonelessChangeDetection(),
-    provideHttpClient(withInterceptors([
+    provideHttpClient(withXhr(), withInterceptors([
       HttpErrorInterceptor,
       LanguageInterceptor,
       BearerTokenInterceptor,

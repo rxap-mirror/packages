@@ -105,7 +105,7 @@
                 <ng-container i18n>Is Active</ng-container>
               </th>
 
-              <td *matCellDef="let element" [rxap-boolean-cell]="element?.isActive"></td>
+              <td *matCellDef="let element" [rxap-boolean-cell]="$safeNavigationMigration(element?.isActive)"></td>
             </ng-container>
 
 

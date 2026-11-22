@@ -1,4 +1,4 @@
-import { Component, Injectable, inject, signal } from '@angular/core';
+import { Component, Injectable, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BaseDataSource, ObservableDataSource, RxapDataSource, StaticDataSource } from '@rxap/data-source';
@@ -18,6 +18,7 @@ class TestEmptyDataSource extends StaticDataSource<string[]> {}
 
 @Component({
   imports: [DataSourceCollectionDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <div *rxapDataSourceCollection="let item from dataSource; empty: empty">{{ item }}</div>
     <ng-template #empty><span id="empty">empty</span></ng-template>
@@ -29,6 +30,7 @@ class StarHostComponent {
 
 @Component({
   imports: [DataSourceCollectionDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <ng-template #emptyTpl><span id="empty">empty</span></ng-template>
     <ng-template #errorTpl let-error let-refresh="refresh">

@@ -4,13 +4,13 @@
   "description": "This package provides a comprehensive error handling solution for Angular applications, including interceptors, services, and UI components to display different types of errors in a user-friendly dialog. It supports handling of generic errors, HTTP errors with messages or codes, and OpenAPI HTTP response errors, with customizable options for logging, displaying dialogs, and integrating with Sentry. The package aims to simplify error management and improve the user experience by providing clear and informative error messages.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "22.7.5",
+    "@nx/devkit": "23.3.3",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^21.2.9",
-    "@angular/common": "^21.2.9",
-    "@angular/core": "^21.2.9",
+    "@angular/cdk": "^22.1.8",
+    "@angular/common": "^22.1.8",
+    "@angular/core": "^22.1.8",
     "@rxap/components": "^21.0.1",
     "@rxap/config": "^21.0.1",
     "@rxap/data-grid": "^21.0.1",

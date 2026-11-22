@@ -4,12 +4,9 @@
     "allowJs": true,
     "outDir": "../../../dist/out-tsc",
     "module": "commonjs",
-    "types": [
-      "cypress",
-      "cypress-file-upload",
-      "node"
-    ],
-    "sourceMap": false
+    "types": ["cypress", "cypress-file-upload", "node"],
+    "sourceMap": false,
+    "ignoreDeprecations": "6.0"
   },
   "include": [
     "**/*.ts",

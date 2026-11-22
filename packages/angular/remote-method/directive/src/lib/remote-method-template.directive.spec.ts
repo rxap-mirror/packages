@@ -1,4 +1,4 @@
-import { Component, signal, TemplateRef, viewChild } from '@angular/core';
+import { Component, signal, TemplateRef, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RemoteMethodLoader } from '@rxap/remote-method';
@@ -7,6 +7,7 @@ import { RemoteMethodTemplateDirective } from './remote-method-template.directiv
 @Component({
   standalone: true,
   imports: [RemoteMethodTemplateDirective],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <ng-template #loadingTpl><span id="loading">loading</span></ng-template>
     <ng-template #errorTpl let-message="message"><span id="error">{{ message }}</span></ng-template>

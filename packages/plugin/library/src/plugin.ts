@@ -1,6 +1,6 @@
 import {
-  CreateNodesContextV2,
-  CreateNodesV2,
+  CreateNodesContext,
+  CreateNodes,
   ProjectConfiguration,
   TargetConfiguration,
 } from '@nx/devkit';
@@ -20,22 +20,19 @@ import {
 import { existsSync } from 'fs';
 import { globSync } from 'glob';
 import { Optional } from 'nx/src/project-graph/plugins';
-import {
-  dirname,
-  join,
-} from 'path';
+import { dirname, join } from 'path';
 import 'colors';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface PluginOptions {}
 
 export function normalizeOptions(
-  options: PluginOptions | undefined
+  options: PluginOptions | undefined,
 ): PluginOptions {
   return options ?? {};
 }
 
-export const createNodesV2: CreateNodesV2<PluginOptions> = [
+export const createNodesV2: CreateNodes<PluginOptions> = [
   '**/tsconfig.lib.json',
   async (configFilePaths, options, context) => {
     const normalizedOptions = normalizeOptions(options);
@@ -46,15 +43,15 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
           await shouldHaveProjectConfiguration(
             configFilePath,
             normalizedOptions,
-            context
+            context,
           )
         ) {
           return configFilePath;
         }
         return undefined;
-      })
+      }),
     ).then((configFilePathOrUndefinedList) =>
-      configFilePathOrUndefinedList.filter((value) => value !== undefined)
+      configFilePathOrUndefinedList.filter((value) => value !== undefined),
     );
 
     const results = await Promise.all(
@@ -63,14 +60,14 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
           await createProjectConfiguration(
             configFilePath,
             normalizedOptions,
-            context
+            context,
           );
         return [configFilePath, projectPath, projectConfiguration] as [
           string,
           string,
-          Optional<ProjectConfiguration, 'root'>
+          Optional<ProjectConfiguration, 'root'>,
         ];
-      })
+      }),
     );
 
     return results.map(
@@ -81,7 +78,7 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
             [projectPath]: projectConfiguration,
           },
         },
-      ]
+      ],
     );
   },
 ];
@@ -89,7 +86,7 @@ export const createNodesV2: CreateNodesV2<PluginOptions> = [
 async function shouldHaveProjectConfiguration(
   configFilePath: string,
   options: PluginOptions,
-  context: CreateNodesContextV2
+  context: CreateNodesContext,
 ): Promise<boolean> {
   const projectPath = dirname(configFilePath);
   const tree = new FsTree(context.workspaceRoot);
@@ -107,7 +104,7 @@ async function shouldHaveProjectConfiguration(
 async function createProjectConfiguration(
   configFilePath: string,
   options: PluginOptions,
-  context: CreateNodesContextV2
+  context: CreateNodesContext,
 ): Promise<[string, Optional<ProjectConfiguration, 'root'>]> {
   const projectPath = dirname(configFilePath);
   const targets: Record<string, TargetConfiguration> = {};
@@ -115,14 +112,18 @@ async function createProjectConfiguration(
   const projectConfiguration = FindProjectByPath(tree, projectPath);
 
   if (!projectConfiguration) {
-    throw new Error(`Could not find project in '${ projectPath }'`);
+    throw new Error(`Could not find project in '${projectPath}'`);
   }
   if (IsPublishable(tree, projectConfiguration)) {
     targets['readme'] = createReadmeTarget(projectPath);
   }
 
   if (IsLibraryProject(projectConfiguration)) {
-    if (!IsPluginProject(projectConfiguration) && !IsN8NNodesProject(projectConfiguration) && projectConfiguration.name !== 'workspace-tools') {
+    if (
+      !IsPluginProject(projectConfiguration) &&
+      !IsN8NNodesProject(projectConfiguration) &&
+      projectConfiguration.name !== 'workspace-tools'
+    ) {
       targets['index-export'] = createIndexExportTarget();
     }
 
@@ -136,7 +137,10 @@ async function createProjectConfiguration(
       }
     }
 
-    if (IsAngularProject(projectConfiguration) && IsPublishable(tree, projectConfiguration)) {
+    if (
+      IsAngularProject(projectConfiguration) &&
+      IsPublishable(tree, projectConfiguration)
+    ) {
       targets['check-version'] = createCheckVersionTarget('@angular/core');
     }
     if (IsPluginProject(projectConfiguration)) {
@@ -147,7 +151,9 @@ async function createProjectConfiguration(
       targets['check-version'] = createCheckVersionTarget('@nestjs/core');
     }
     if (IsSchematicProject(projectConfiguration)) {
-      targets['check-version'] = createCheckVersionTarget('@angular-devkit/schematics');
+      targets['check-version'] = createCheckVersionTarget(
+        '@angular-devkit/schematics',
+      );
     }
     if (existsSync(join(projectPath, 'generators.json'))) {
       targets['expose-as-schematic'] = createExposeAsSchematicTarget();
@@ -156,12 +162,14 @@ async function createProjectConfiguration(
       targets['index-json-schema'] = createIndexJsonSchemaTarget();
       targets['bundle-json-schema'] = createBundleJsonSchemaTarget();
     }
-
   }
 
-  return [projectPath, {
-    targets
-  }];
+  return [
+    projectPath,
+    {
+      targets,
+    },
+  ];
 }
 
 function createIndexJsonSchemaTarget(): TargetConfiguration {
@@ -217,7 +225,7 @@ function createUpdatePackageGroupTarget(): TargetConfiguration {
     executor: '@rxap/plugin-library:update-package-group',
     inputs: ['production', '{projectRoot}/package.json'],
     outputs: ['{projectRoot}/package.json'],
-    dependsOn: ['update-dependencies', '^update-dependencies']
+    dependsOn: ['update-dependencies', '^update-dependencies'],
   };
 }
 
@@ -231,10 +239,18 @@ function createUpdateDependenciesTarget(): TargetConfiguration {
 
 function createReadmeTarget(projectPath: string): TargetConfiguration {
   const inputs: string[] = [];
-  const potentialInputFiles = ['GETSTARTED.md', 'GUIDES.md', 'package.json', 'collection.json', 'generators.json', 'executors.json', 'builders.json'];
+  const potentialInputFiles = [
+    'GETSTARTED.md',
+    'GUIDES.md',
+    'package.json',
+    'collection.json',
+    'generators.json',
+    'executors.json',
+    'builders.json',
+  ];
   for (const potentialInputFile of potentialInputFiles) {
     if (existsSync(join(projectPath, potentialInputFile))) {
-      inputs.push(`{projectRoot}/${ potentialInputFile }`);
+      inputs.push(`{projectRoot}/${potentialInputFile}`);
     }
   }
   if (existsSync(join(projectPath, 'README.md.handlebars'))) {
@@ -244,7 +260,7 @@ function createReadmeTarget(projectPath: string): TargetConfiguration {
     executor: '@rxap/plugin-library:readme',
     outputs: ['{projectRoot}/README.md'],
     cache: false,
-    inputs
+    inputs,
   };
 }
 
@@ -256,8 +272,8 @@ function createIndexExportTarget(): TargetConfiguration {
     inputs: [
       `{projectRoot}/src/lib/**/*.ts`,
       '!{projectRoot}/src/lib/**/*.{spec,stories,cy}.ts',
-      '!{projectRoot}/src/index.ts'
-    ]
+      '!{projectRoot}/src/index.ts',
+    ],
   };
 }
 

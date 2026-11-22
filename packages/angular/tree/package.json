@@ -4,14 +4,14 @@
   "description": "This package provides a tree component and data source for Angular applications. It includes features such as searching, filtering, and displaying hierarchical data. The package also offers directives for customizing the content of tree nodes.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "22.7.5",
+    "@nx/devkit": "23.3.3",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^21.2.9",
-    "@angular/common": "^21.2.9",
-    "@angular/core": "^21.2.9",
-    "@angular/material": "^21.2.9",
+    "@angular/cdk": "^22.1.8",
+    "@angular/common": "^22.1.8",
+    "@angular/core": "^22.1.8",
+    "@angular/material": "^22.1.8",
     "@rxap/contenteditable": "^21.0.1",
     "@rxap/data-source": "^21.0.1",
     "@rxap/data-structure-tree": "^1.1.19",

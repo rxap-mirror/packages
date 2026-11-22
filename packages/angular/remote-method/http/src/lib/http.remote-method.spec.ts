@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams, provideHttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, provideHttpClient, withXhr } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { Injectable, Injector } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
@@ -25,7 +25,7 @@ describe('HttpRemoteMethod', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [provideHttpClient(), provideHttpClientTesting(), GetItem, WithFn],
+      providers: [provideHttpClient(withXhr()), provideHttpClientTesting(), GetItem, WithFn],
     });
     ctrl = TestBed.inject(HttpTestingController);
   });
@@ -86,7 +86,7 @@ describe('HttpRemoteMethod', () => {
 describe('HttpRemoteMethod events', () => {
   it('dispatches all event types to the hooks', async () => {
     TestBed.configureTestingModule({
-      providers: [provideHttpClient(), provideHttpClientTesting(), GetItem],
+      providers: [provideHttpClient(withXhr()), provideHttpClientTesting(), GetItem],
     });
     const ctrl = TestBed.inject(HttpTestingController);
     const m = TestBed.inject(GetItem);
@@ -127,7 +127,7 @@ describe('BaseHttpRemoteMethod', () => {
   }
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting(), Impl] });
+    TestBed.configureTestingModule({ providers: [provideHttpClient(withXhr()), provideHttpClientTesting(), Impl] });
   });
 
   it('initialises the request from the metadata', async () => {
@@ -181,7 +181,7 @@ describe('BaseHttpRemoteMethod', () => {
 
 describe('HttpRemoteMethodLoader', () => {
   it('calls an HttpRemoteMethod', async () => {
-    TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting(), GetItem] });
+    TestBed.configureTestingModule({ providers: [provideHttpClient(withXhr()), provideHttpClientTesting(), GetItem] });
     const loader = TestBed.inject(HttpRemoteMethodLoader);
     const ctrl = TestBed.inject(HttpTestingController);
     const p = loader.request$(GetItem, { pathParams: { id: 5 } });
@@ -190,7 +190,7 @@ describe('HttpRemoteMethodLoader', () => {
   });
 
   it('rejects other remote methods', () => {
-    TestBed.configureTestingModule({ providers: [provideHttpClient(), provideHttpClientTesting()] });
+    TestBed.configureTestingModule({ providers: [provideHttpClient(withXhr()), provideHttpClientTesting()] });
     const other = { call: jest.fn() };
     jest.spyOn(TestBed.inject(RemoteMethodLoader), 'load').mockReturnValue(other as any);
     expect(() => TestBed.inject(HttpRemoteMethodLoader).request$('x' as any, {})).toThrow(/not a HttpRemoteMethod/);

@@ -1,16 +1,20 @@
 jest.mock('prettier', () => ({ format: async (text: string) => text, resolveConfig: async () => null }));
 
 import { applicationGenerator } from '@nx/angular/generators';
-import { readJson, readProjectConfiguration, Tree, writeJson } from '@nx/devkit';
+import { readJson, readNxJson, readProjectConfiguration, Tree, updateNxJson, writeJson } from '@nx/devkit';
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import initApplicationGenerator from './generator';
 
 async function setup(names: string[] = [ 'app' ]): Promise<Tree> {
   const tree = createTreeWithEmptyWorkspace();
   const pkg = readJson(tree, 'package.json');
-  pkg.dependencies = { ...(pkg.dependencies ?? {}), '@angular/core': '19.2.16' };
-  pkg.devDependencies = { ...(pkg.devDependencies ?? {}), '@angular/cli': '19.2.0' };
+  pkg.dependencies = { ...(pkg.dependencies ?? {}), '@angular/core': '22.1.8' };
+  pkg.devDependencies = { ...(pkg.devDependencies ?? {}), '@angular/cli': '22.1.9' };
   writeJson(tree, 'package.json', pkg);
+  // the `init` generator configures the `.component` file suffix
+  const nxJson = readNxJson(tree) ?? {};
+  nxJson.generators = { ...(nxJson.generators ?? {}), '@nx/angular:component': { type: 'component' } };
+  updateNxJson(tree, nxJson);
   for (const name of names) {
     await applicationGenerator(tree, { name, directory: name, skipFormat: true, e2eTestRunner: 'none', unitTestRunner: 'none' } as any);
     tree.write(`${ name }/tsconfig.spec.json`, JSON.stringify({ extends: './tsconfig.json', compilerOptions: { outDir: '../dist/out-tsc', types: [ 'jest', 'node' ] }, include: [ 'src/**/*.spec.ts', 'src/**/*.d.ts' ] }));

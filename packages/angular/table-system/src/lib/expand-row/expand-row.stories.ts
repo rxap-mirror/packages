@@ -1,5 +1,5 @@
 import { addDecorator, moduleMetadata } from '@storybook/angular';
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -80,6 +80,7 @@ import { ExpandRowModule } from './expand-row.module';
       ></tr>
     </table>
   `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class DemoTableComponent {

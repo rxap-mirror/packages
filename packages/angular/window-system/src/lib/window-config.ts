@@ -1,6 +1,5 @@
 import { ComponentType } from '@angular/cdk/portal';
 import {
-  ComponentFactoryResolver,
   Injector,
   TemplateRef,
   ViewContainerRef,
@@ -37,7 +36,6 @@ export interface WindowConfig<D = any, T = any> extends WindowSettings<D> {
   template?: TemplateRef<T>;
   injector?: Injector | null;
   injectorName?: string;
-  componentFactoryResolver?: ComponentFactoryResolver | null;
   viewContainerRef?: ViewContainerRef | null;
 }
 
@@ -45,7 +43,6 @@ export const DEFAULT_WINDOW_CONFIG: WindowConfig<any, any> = {
   resizeable: true,
   draggable: true,
   injector: null,
-  componentFactoryResolver: null,
   minWidth: '384px',
   minHeight: '192px',
   maxWidth: '100vw',

@@ -2,9 +2,11 @@ import {
   getProjects,
   ProjectConfiguration,
   readNxJson,
+  TargetConfiguration,
   Tree,
   updateProjectConfiguration,
 } from '@nx/devkit';
+import { GetTargetDefaultsEntry } from '@rxap/workspace-utilities';
 import { ProjectTargetGeneratorSchema } from './schema';
 
 function skipProject(
@@ -46,7 +48,7 @@ export async function projectTargetGenerator(
     if (options.simplify) {
       for (const [ name, target ] of Object.entries(project.targets)) {
         if (targetDefaults[name]) {
-          const defaults = targetDefaults[name];
+          const defaults = GetTargetDefaultsEntry<Partial<TargetConfiguration>>(targetDefaults, name) ?? {};
           if (defaults.executor === target.executor) {
             delete target.executor;
           }

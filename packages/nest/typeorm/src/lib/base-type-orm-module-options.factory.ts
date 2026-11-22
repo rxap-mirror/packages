@@ -147,6 +147,6 @@ export abstract class BaseTypeOrmModuleOptionsFactory implements TypeOrmOptionsF
     return config;
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-types
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type, @typescript-eslint/no-empty-object-type, @typescript-eslint/no-wrapper-object-types
   protected abstract getEntities(): BaseDataSourceOptions['entities'];
 }

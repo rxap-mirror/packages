@@ -23,11 +23,11 @@ describe('plugin-angular:init-library (golden master)', () => {
     const rootPackageJson = readJson(tree, 'package.json');
     rootPackageJson.dependencies = {
       ...(rootPackageJson.dependencies ?? {}),
-      '@angular/core': '19.2.16',
+      '@angular/core': '22.1.8',
     };
     rootPackageJson.devDependencies = {
       ...(rootPackageJson.devDependencies ?? {}),
-      '@angular/cli': '19.2.0',
+      '@angular/cli': '22.1.9',
     };
     writeJson(tree, 'package.json', rootPackageJson);
 
@@ -35,6 +35,7 @@ describe('plugin-angular:init-library (golden master)', () => {
       name: 'feat',
       directory: 'feat',
       skipFormat: true,
+      unitTestRunner: 'jest',
     } as any);
   });
 

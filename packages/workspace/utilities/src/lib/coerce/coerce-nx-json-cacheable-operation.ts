@@ -1,3 +1,5 @@
+import { CoerceTargetDefaultsEntry } from './coerce-target-defaults-entry';
+
 /**
  * Modifies the `nxJson` object to ensure caching is enabled for specified targets.
  *
@@ -15,13 +17,12 @@
  */
 export function CoerceNxJsonCacheableOperation(
   nxJson: {
-    targetDefaults?: Record<string, { cache?: boolean }>
+    targetDefaults?: Record<string, any>
   },
   ...nameList: string[]
 ) {
   nxJson.targetDefaults ??= {};
   for (const target of nameList) {
-    nxJson.targetDefaults[target] ??= {};
-    nxJson.targetDefaults[target].cache = true;
+    CoerceTargetDefaultsEntry(nxJson.targetDefaults, target)['cache'] = true;
   }
 }

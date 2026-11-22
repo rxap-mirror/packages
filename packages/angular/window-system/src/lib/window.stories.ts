@@ -1,4 +1,4 @@
-import { Component, TemplateRef, inject } from '@angular/core';
+import { Component, TemplateRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { Story } from '@storybook/angular';
 import { WindowService } from './window.service';
 
@@ -21,6 +21,7 @@ import { WindowService } from './window.service';
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 class WindowSystemPlaygroundComponent {

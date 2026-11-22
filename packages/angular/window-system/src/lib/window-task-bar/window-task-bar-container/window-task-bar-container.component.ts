@@ -1,4 +1,4 @@
-import { Component, InjectionToken, inject } from '@angular/core';
+import { Component, InjectionToken, inject, ChangeDetectionStrategy } from '@angular/core';
 import { WindowService } from '../../window.service';
 import { WindowTaskBarComponent } from '../window-task-bar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -17,6 +17,7 @@ export const RXAP_WINDOW_TASK_BAR_CONTAINER_SETTINGS = new InjectionToken('rxap/
     selector: 'rxap-window-task-bar-container',
     templateUrl: './window-task-bar-container.component.html',
     styleUrls: ['./window-task-bar-container.component.scss'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
     MatButtonModule,
     MatBadgeModule,

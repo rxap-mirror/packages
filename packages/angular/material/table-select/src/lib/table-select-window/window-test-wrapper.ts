@@ -16,7 +16,8 @@ import {
   ViewContainerRef,
   ViewRef,
   input,
-  viewChildren
+  viewChildren,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { RXAP_WINDOW_REF } from '@rxap/window-system';
 import {
@@ -78,6 +79,7 @@ export class MockWindowRef<O = any, R = any> extends Subject<R> {
       </div>
     </div>
   `,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
     PortalModule
 ]

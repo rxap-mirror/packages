@@ -1,4 +1,4 @@
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withXhr } from '@angular/common/http';
 import {
   EnvironmentProviders,
   inject,
@@ -24,7 +24,7 @@ const PLACEHOLDER_ICON =
  * must not be added with appProviders in the config.
  */
 export const PRISM_HOST_PROVIDERS: Array<Provider | EnvironmentProviders> = [
-  provideHttpClient(),
+  provideHttpClient(withXhr()),
   // many components use @angular/animations triggers
   provideAnimationsAsync(),
   // the libraries use svg icons that are registered by the consuming application.
