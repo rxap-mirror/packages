@@ -23,10 +23,11 @@ export function isInt(str: unknown, options?: IsIntOptions) {
   );
 
   // Check min/max/lt/gt
-  const minCheckPassed = (options.min === undefined || str.length >= options.min);
-  const maxCheckPassed = (options.max === undefined || str.length <= options.max);
-  const ltCheckPassed = (options.lt === undefined || str.length < options.lt);
-  const gtCheckPassed = (options.gt === undefined || str.length > options.gt);
+  const value = parseInt(str, 10);
+  const minCheckPassed = (options.min === undefined || value >= options.min);
+  const maxCheckPassed = (options.max === undefined || value <= options.max);
+  const ltCheckPassed = (options.lt === undefined || value < options.lt);
+  const gtCheckPassed = (options.gt === undefined || value > options.gt);
 
   return regex.test(str) && minCheckPassed && maxCheckPassed && ltCheckPassed && gtCheckPassed;
 }

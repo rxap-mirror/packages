@@ -14,7 +14,7 @@ export function isByteLength(str: unknown, options?: IsByteLengthOptions) {
     min = options.min || 0;
     max = options.max;
   } else { // backwards compatibility: isByteLength(str, min [, max])
-    min = arguments[1];
+    min = arguments[1] || 0;
     max = arguments[2];
   }
   const len = encodeURI(str).split(/%..|./).length - 1;

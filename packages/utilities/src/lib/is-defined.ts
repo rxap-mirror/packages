@@ -161,7 +161,7 @@ export function AssertDefinedAndNotNull<T>(
   code: string,
   className?: string,
 ): asserts value is T {
-  if (!IsDefined(value)) {
+  if (!IsDefinedAndNotNull(value)) {
     throw new RxapUtilitiesError('Value is not defined or not null', code, className);
   }
 }

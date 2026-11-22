@@ -1,5 +1,4 @@
 import { merge } from './util/merge';
-import { isNumeric } from './isNumeric';
 
 const default_date_options = {
   format: 'YYYY/MM/DD',
@@ -60,7 +59,7 @@ export function isDate(input: unknown, options: string | IsDateOptions = {}) {
   }
 
   if (!options.strictMode) {
-    return Object.prototype.toString.call(input) === '[object Date]' && isNumeric(input) && isFinite(input);
+    return Object.prototype.toString.call(input) === '[object Date]' && isFinite(input as any);
   }
 
   return false;

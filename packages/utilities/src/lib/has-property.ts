@@ -45,13 +45,13 @@ export function hasProperty<T>(obj: T, propertyKey: PropertyKey, value?: any): p
 
       const fragments = propertyKey.split('.');
 
-      const pk = fragments.pop()!;
+      const pk = fragments.shift()!;
 
       // eslint-disable-next-line no-prototype-builtins
-      if (obj.hasOwnProperty(pk)) {
+      if (obj !== null && obj !== undefined && typeof obj === 'object' && Object.prototype.hasOwnProperty.call(obj, pk)) {
         const _obj = obj[pk];
         if (fragments.length) {
-          return hasPropertyDeep(_obj, fragments.join('.'));
+          return hasPropertyDeep(_obj, fragments.join('.'), value);
         } else {
           return value === undefined || _obj === value;
         }
@@ -65,5 +65,5 @@ export function hasProperty<T>(obj: T, propertyKey: PropertyKey, value?: any): p
     }
   }
 
-  return obj !== null && obj !== undefined && typeof obj === 'object' && hasPropertyDeep(obj, propertyKey);
+  return obj !== null && obj !== undefined && typeof obj === 'object' && hasPropertyDeep(obj, propertyKey, value);
 }

@@ -13,6 +13,10 @@ export class RxapError extends Error {
     if ((Error as any)['captureStackTrace']) {
       (Error as any)['captureStackTrace'](this, RxapError);
     }
+    if (stack) {
+      // captureStackTrace overwrites the stack provided via the constructor
+      (this as any).stack = stack;
+    }
     this.name = 'RxapError';
   }
 

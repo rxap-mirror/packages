@@ -33,7 +33,7 @@ export function isFQDN(str: unknown, options: FQDNOptions = {}) {
       return false;
     }
 
-    if (!/^([a-z\u00a1-\uffff]{2,}|xn[a-z0-9-]{2,})$/i.test(tld)) {
+    if (!options.allow_numeric_tld && !/^([a-z\u00a1-\uffff]{2,}|xn[a-z0-9-]{2,})$/i.test(tld)) {
       return false;
     }
 

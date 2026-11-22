@@ -5,7 +5,7 @@ export interface IsInOptions {
   indexOf?: (str: string) => number;
 }
 
-export function isIn(str: unknown, options?: IsInOptions | IsInOptions[]) {
+export function isIn(str: unknown, options?: IsInOptions | IsInOptions[] | string) {
   assertString(str);
   let i;
   if (Array.isArray(options)) {
@@ -20,6 +20,8 @@ export function isIn(str: unknown, options?: IsInOptions | IsInOptions[]) {
     return array.indexOf(str) >= 0;
   } else if (typeof options === 'object') {
     return options.hasOwnProperty(str);
+  } else if (options && typeof options.indexOf === 'function') {
+    return options.indexOf(str) >= 0;
   }
   return false;
 }

@@ -10,5 +10,5 @@ const uuid: Record<string, RegExp> = {
 export function isUUID(str: unknown, version = 'all') {
   assertString(str);
   const pattern = uuid[version];
-  return pattern && pattern.test(str);
+  return !!pattern && pattern.test(str);
 }
