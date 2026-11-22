@@ -5,12 +5,22 @@ import {
   MatDialogModule,
 } from '@angular/material/dialog';
 import { SantizationPipe } from '@rxap/pipes/santization';
+import { Showcase } from '@ng-prism/core';
 
 export interface ConfirmDialogData {
   message: string;
   action?: string;
 }
 
+@Showcase({
+  title: 'Confirm Dialog',
+  category: 'Dialog',
+  description: 'Dialog that asks the user to confirm an action. The message is read from `MAT_DIALOG_DATA`, which the styleguide host provides with demo data.',
+  status: 'stable',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     selector: 'rxap-confirm-dialog',
     templateUrl: './confirm-dialog.component.html',

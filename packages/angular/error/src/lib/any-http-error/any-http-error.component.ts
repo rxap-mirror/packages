@@ -13,7 +13,17 @@ import { RXAP_ENVIRONMENT } from '@rxap/environment';
 import { IErrorDialogComponent } from '../error-dialog/error-dialog.component';
 import { RXAP_ERROR_DIALOG_ERROR } from '../tokens';
 import { AnyHttpErrorDialogData } from './any-http-error-dialog-data';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Any Http Error',
+  category: 'Error',
+  description: 'Content of the error dialog for a failed http request. The error is read from the `RXAP_ERROR_DIALOG_ERROR` token, which the styleguide host provides with demo data.',
+  status: 'stable',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     selector: 'rxap-any-http-error',
     templateUrl: './any-http-error.component.html',

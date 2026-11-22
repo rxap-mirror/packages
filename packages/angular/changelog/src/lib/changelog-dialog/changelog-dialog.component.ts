@@ -9,7 +9,17 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ChangelogComponent } from '../changelog/changelog.component';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Changelog Dialog',
+  category: 'Changelog',
+  description: 'Modal dialog that shows the changelog of the latest release.',
+  status: 'stable',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     selector: 'rxap-changelog-dialog',
     imports: [ChangelogComponent, FormsModule],

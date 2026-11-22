@@ -10,6 +10,7 @@ import {
   JSON_VIEW_IGNORED_PROPERTIES,
   JSON_VIEW_IGNORED_TYPES,
 } from './json-viewer.tokens';
+import { Showcase } from '@ng-prism/core';
 
 export interface Segment {
   key: string;
@@ -19,6 +20,16 @@ export interface Segment {
   expanded: boolean;
 }
 
+@Showcase<JsonViewerComponent>({
+  title: 'JSON Viewer',
+  category: 'Components',
+  description: 'Renders an object as an expandable tree of key value pairs.',
+  status: 'stable',
+  variants: [
+    { name: 'Collapsed', inputs: { json: { name: 'rxap', version: '22.0.0', tags: [ 'angular', 'nest' ], author: { name: 'RxAP' } } } },
+    { name: 'Expanded', inputs: { expanded: true, json: { name: 'rxap', version: '22.0.0', tags: [ 'angular', 'nest' ], author: { name: 'RxAP' } } } },
+  ],
+})
 @Component({
     selector: 'rxap-json-viewer',
     templateUrl: './json-viewer.component.html',

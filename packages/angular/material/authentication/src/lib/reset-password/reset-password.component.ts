@@ -23,7 +23,17 @@ import {
 import { ControlErrorDirective } from '@rxap/material-form-system';
 import { fadeAnimation } from '../fade-animation';
 import { ResetPasswordFormProviders } from './reset-password.form';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Reset Password',
+  category: 'Authentication',
+  description: 'Form to set a new password after a password reset request.',
+  status: 'stable',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     selector: 'rxap-reset-password',
     templateUrl: './reset-password.component.html',

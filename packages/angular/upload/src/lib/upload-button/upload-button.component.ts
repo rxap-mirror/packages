@@ -36,7 +36,18 @@ import { MethodDirective } from '@rxap/directives';
 import { coerceBoolean } from '@rxap/utilities';
 import { Subject } from 'rxjs';
 import { ReadAsDataURLPipe } from './read-as-data-url.pipe';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<UploadButtonComponent>({
+  title: 'Upload Button',
+  category: 'Forms',
+  description: 'A button that opens the file picker. Can be used as a `MatFormFieldControl` inside a form field.',
+  status: 'stable',
+  variants: [
+    { name: 'Default', content: 'Select file' },
+    { name: 'Images only', inputs: { accept: 'image/*' }, content: 'Select image' },
+  ],
+})
 @Component({
     selector: 'rxap-upload-button',
     templateUrl: './upload-button.component.html',

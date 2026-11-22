@@ -18,7 +18,17 @@ import {
 } from '@angular/material/select';
 import { StopPropagationDirective } from '@rxap/directives';
 import { LanguageSelectorService } from '@rxap/ngx-localize';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Language Selector',
+  category: 'Localize',
+  description: 'Select field to switch the language of the application. It is only shown if the application has more than one language.',
+  status: 'stable',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     selector: 'rxap-language-selector',
     templateUrl: './language-selector.component.html',

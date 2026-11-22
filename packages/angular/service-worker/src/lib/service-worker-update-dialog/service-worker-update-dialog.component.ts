@@ -10,9 +10,19 @@ import {
   viewChild
 } from '@angular/core';
 import { VersionEvent } from '@angular/service-worker';
+import { Showcase } from '@ng-prism/core';
 
 export const UPDATE_AVAILABLE_EVENT = new InjectionToken<VersionEvent>('UPDATE_AVAILABLE_EVENT');
 
+@Showcase({
+  title: 'Service Worker Update Dialog',
+  category: 'Service Worker',
+  description: 'Modal dialog that informs the user about an available app update. The `UPDATE_AVAILABLE_EVENT` is provided by the styleguide host.',
+  status: 'stable',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     selector: 'rxap-service-worker-update-dialog',
     imports: [],

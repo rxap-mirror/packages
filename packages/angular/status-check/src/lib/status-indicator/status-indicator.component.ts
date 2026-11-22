@@ -28,9 +28,19 @@ import {
 } from 'rxjs/operators';
 import { StatusCheckService } from '../status-check.service';
 import { STATUS_INDICATOR_INTERVAL } from '../tokens';
+import { Showcase } from '@ng-prism/core';
 
 declare const $localize: any;
 
+@Showcase({
+  title: 'Status Indicator',
+  category: 'Status Check',
+  description: 'Shows the health of the backend services and counts down to the next check. The styleguide has no backend, so it shows the failed state.',
+  status: 'stable',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'rxap-status-indicator',

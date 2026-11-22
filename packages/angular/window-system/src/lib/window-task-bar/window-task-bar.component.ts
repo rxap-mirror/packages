@@ -2,8 +2,18 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { WindowService } from '../window.service';
 import { WindowTaskComponent } from './window-task/window-task.component';
+import { Showcase } from '@ng-prism/core';
 
 
+@Showcase({
+  title: 'Window Task Bar',
+  category: 'Window System',
+  description: 'Task bar that lists all minimized windows of the `WindowService`. Without open windows it is empty.',
+  status: 'stable',
+  variants: [
+    { name: 'Empty' },
+  ],
+})
 @Component({
     selector: 'rxap-window-task-bar',
     templateUrl: './window-task-bar.component.html',

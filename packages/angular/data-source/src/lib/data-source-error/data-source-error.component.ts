@@ -8,6 +8,7 @@ import {
   RXAP_ENVIRONMENT,
 } from '@rxap/environment';
 import { Observable } from 'rxjs';
+import { Showcase } from '@ng-prism/core';
 
 export interface DataSourceLikeForErrorHandling {
   refresh?: () => void;
@@ -19,6 +20,15 @@ export interface DataSourceLikeForErrorHandling {
   error?: Observable<unknown> | unknown | null;
 }
 
+@Showcase<DataSourceErrorComponent>({
+  title: 'Data Source Error',
+  category: 'Data Source',
+  description: 'Error state of a data source. The retry and reset actions are functions and can not be set from a showcase variant, so only the buttonless state is shown. Provide the `RXAP_ENVIRONMENT` to show the error message in non release versions.',
+  status: 'stable',
+  variants: [
+    { name: 'Default', inputs: { loading: false, error: { message: 'The server is not reachable' } } },
+  ],
+})
 @Component({
     selector: 'rxap-data-source-error',
     templateUrl: './data-source-error.component.html',
