@@ -98,8 +98,10 @@ export class Node<T extends WithIdentifier & WithChildren, CustomParameters = an
   }
 
   public get isHidden(): boolean {
+    // a lazy node (hasChildren set by the item, children not loaded yet) has no
+    // children that could be hidden and must stay visible to be expandable
     return this.hidden || (
-      this.hasChildren && !this.hasVisibleChildren
+      this.hasChildren && this._children.length > 0 && !this.hasVisibleChildren
     );
   }
 

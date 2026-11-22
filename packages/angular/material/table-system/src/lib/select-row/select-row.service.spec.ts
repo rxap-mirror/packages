@@ -13,6 +13,13 @@ describe('SelectRowService', () => {
     return TestBed.inject(SelectRowService<any>);
   }
 
+  it('is not multiple when the options omit multiple', () => {
+    const service = create({ selected: [] });
+    service.selectionModel.select({ a: 1 });
+    service.selectionModel.select({ a: 2 });
+    expect(service.selectedRows).toEqual([{ a: 2 }]);
+  });
+
   it('is not multiple by default', () => {
     const service = create();
     service.selectionModel.select({ a: 1 });

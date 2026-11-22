@@ -32,6 +32,9 @@ Callers may notice these.
 - `config`: `fetchContentViaHttp` errors (and so completes in the race) on fetch failure and aborts on unsubscribe; `ConfigLoaderService.load$` fills its cache.
 - `data-source`: `DataSourceDirective` unsubscribes `hasError$` on reconnect and destroy.
 - `theme`: `restoreDensity` uses the configured storage key. `authorization`: scope and permission regexes escape every dot and expand every wildcard.
+- `open-api`: `validateResponse` now validates JSON-like responses (it skipped them) and skips other content types; mismatches only warn unless `strict` / `SchemaValidationMixin.STRICT`.
+- `data-structure-tree`: lazy nodes (`hasChildren` without loaded children) are visible, so they can be expanded. `SelectRowService` without options is explicitly single-selection.
+- `table-select`: `OpenTableSelectWindowDirective` disables the control synchronously and re-enables it in `finally` (no stuck-disabled control); the open-window guard now works.
 - `error`: `HttpErrorInterceptor` passes the `HttpErrorResponse` to the code extractor.
 - `material/table-select`: `TABLE_SELECT_METHOD` metadata key no longer collides with `TABLE_SELECT_TO_VALUE`.
 - `async-action.directive`: rejection stops loading and enables `hasError$`.
@@ -43,10 +46,8 @@ Callers may notice these.
 
 ## Known open items
 
-- `open-api` `schema-validation.mixin` `validateResponse` skips JSON responses (comment says the opposite); fixing it enables response validation for every consumer.
-- `data-structure-tree` `Node.isVisible` hides lazy nodes without loaded children; `Node.addChild`/`addChildren` have an inverted `end` flag (`end = true` prepends). Left as is because flipping it changes the API.
-- `SelectRowService` defaults to single selection without options.
-- table-select: control holds the whole row after selection; `OpenTableSelectWindowDirective` can leave the control disabled if the window resolves immediately.
+- `data-structure-tree` `Node.addChild`/`addChildren` have an inverted `end` flag (`end = true` prepends). Left as is because flipping it changes the API.
+- table-select: without `@UseTableSelectToValue` the control holds the whole selected row (identity fallback) and only `selected[0]` is written.
 - `validator` is a partial validator.js port (`isVAT` GB/IT only, missing `isURL`/`isEmail` options).
 - `nest-open-api` build fails (`@rxap/nest-utilities` not resolvable); unrelated to this branch.
 - `schematic-ts-morph` form-definition, table-action and operation rule files have low unit coverage; `schematic-angular` table-action schematics were not testable via the schematic runner.

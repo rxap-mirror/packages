@@ -182,6 +182,16 @@ describe('Node (extended)', () => {
       expect(() => root.show({ parent: true })).not.toThrow();
     });
 
+    it('a lazy node without loaded children stays visible', () => {
+      const lazy = new Node<any>(null, { id: 'lazy', hasChildren: true } as any, [], 0, jest.fn(), jest.fn());
+      expect(lazy.hasChildren).toBe(true);
+      expect(lazy.children).toHaveLength(0);
+      expect(lazy.isHidden).toBe(false);
+      expect(lazy.isVisible).toBe(true);
+      lazy.hide({ onlySelf: true });
+      expect(lazy.isVisible).toBe(false);
+    });
+
     it('isHidden accounts for children visibility', () => {
       const { root } = build();
       const a = root.getNode('a')!;

@@ -111,10 +111,23 @@ describe('SchemaValidationMixin', () => {
     it('rejects reference responses', () => {
       expect(() => mixin.validateResponse(op({ responses: { 200: { $ref: 'x' } } }), { headers: headers(), status: 200 })).toThrow('reference');
     });
-    // NOTE: current behaviour - json content types skip validation entirely
-    it('returns early for json content types', () => {
-      mixin.validateResponse(operation, { headers: headers('application/json'), status: 200, body: 1 });
+    it('validates json content types', () => {
+      mixin.validateResponse(operation, { headers: headers('application/json'), status: 200, body: 'ok' });
+      expect(warn).not.toHaveBeenCalled();
+      mixin.validateResponse(operation, { headers: headers('application/json; charset=utf-8'), status: 200, body: 1 });
+      expect(warn).toHaveBeenCalledWith('The response is not valid ageist the operation schema!');
+    });
+    it('validates json like (+json) content types', () => {
+      mixin.validateResponse(operation, { headers: headers('application/problem+json'), status: 200, body: 1 });
+      expect(warn).toHaveBeenCalledWith('The response is not valid ageist the operation schema!');
+    });
+    it('skips validation for non json content types', () => {
+      mixin.validateResponse(operation, { headers: headers('text/plain'), status: 200, body: 1 });
       expect(warn).toHaveBeenCalledWith('Response validation is only supported for content types that are json like.');
+      expect(warn).not.toHaveBeenCalledWith('The response is not valid ageist the operation schema!');
+    });
+    it('throws for invalid json responses in strict mode', () => {
+      expect(() => mixin.validateResponse(operation, { headers: headers('application/json'), status: 200, body: 1 }, true)).toThrow();
     });
   });
 

@@ -13,7 +13,7 @@ import { RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS } from './tokens';
 export class SelectRowService<Data = unknown> {
   public selectedRows$: Observable<Data[]>;
 
-  public readonly selectionModel = new SelectionModel<Data>(true);
+  public readonly selectionModel: SelectionModel<Data>;
 
   public get selectedRows(): Data[] {
     return this.selectionModel.selected;
@@ -23,7 +23,7 @@ export class SelectRowService<Data = unknown> {
     const options = inject<SelectRowOptions<Data> | null>(RXAP_MATERIAL_TABLE_SYSTEM_SELECT_ROW_OPTIONS, { optional: true }) ?? null;
 
     this.selectionModel = new SelectionModel<Data>(
-      options?.multiple,
+      options?.multiple ?? false,
       options?.selected,
       options?.emitChanges,
       options?.compareWith ?? this.compareWith,

@@ -122,10 +122,11 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
     if (!data || !columns) {
       throw new Error('FATAL: The data or columns input is not set');
     }
-    setTimeout(() => {
-      this.control?.disable();
-    });
-    const selected = await this.openMethod.call({
+    this._hasOpenWindow = true;
+    this.control?.disable();
+    let selected: Data[] | undefined;
+    try {
+      selected = await this.openMethod.call({
       windowConfig: {
         id: this._internalId,
       },
@@ -138,13 +139,15 @@ export class OpenTableSelectWindowDirective<Data extends Record<string, any> = R
       id: this.id() ?? GenerateRandomString(10),
       parameters: this.parameters(),
       multiple: this.multiple(),
-    });
-    this.control?.enable();
+      });
+    } finally {
+      this._hasOpenWindow = false;
+      this.control?.enable();
+    }
     if (isDevMode()) {
       console.debug('selected', selected);
     }
     this.selected.set(selected ?? []);
-    this._hasOpenWindow = false;
     const selectedValue = this.selected();
     this.selectedChange.emit(selectedValue);
     if (selectedValue.length) {

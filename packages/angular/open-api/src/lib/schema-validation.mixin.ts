@@ -131,7 +131,7 @@ export class SchemaValidationMixin<Response = any, Parameters extends Record<str
 
     const contentType = response.headers.get('Content-Type');
 
-    if (contentType && contentType.match(/^application\/(.+\+)?json/)) {
+    if (contentType && !contentType.match(/^application\/(.+\+)?json/)) {
       if (isDevMode()) {
         console.warn('Response validation is only supported for content types that are json like.');
       }

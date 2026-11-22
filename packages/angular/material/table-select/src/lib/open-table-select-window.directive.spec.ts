@@ -324,6 +324,45 @@ describe('OpenTableSelectWindowDirective inside a mat-form-field', () => {
     expect(fixture.componentInstance.control.value).toBeNull();
   });
 
+  it('keeps the control disabled while the window is open and enables it afterwards', async () => {
+    const { fixture, directive } = create(FormFieldHostComponent);
+    const control = fixture.componentInstance.control;
+    let resolve!: (rows: any[]) => void;
+    call.mockReturnValueOnce(new Promise(r => (resolve = r)));
+    const pending = directive.onClick(new MouseEvent('click'));
+    expect(control.disabled).toBe(true);
+    resolve([]);
+    await pending;
+    expect(control.enabled).toBe(true);
+  });
+
+  it('enables the control when the window resolves immediately', async () => {
+    const { fixture, directive } = create(FormFieldHostComponent);
+    await directive.onClick(new MouseEvent('click'));
+    await new Promise(r => setTimeout(r));
+    expect(fixture.componentInstance.control.enabled).toBe(true);
+  });
+
+  it('enables the control and allows another click when the window rejects', async () => {
+    const { fixture, directive } = create(FormFieldHostComponent);
+    call.mockRejectedValueOnce(new Error('closed'));
+    await expect(directive.onClick(new MouseEvent('click'))).rejects.toThrow('closed');
+    expect(fixture.componentInstance.control.enabled).toBe(true);
+    await directive.onClick(new MouseEvent('click'));
+    expect(call).toHaveBeenCalledTimes(2);
+  });
+
+  it('ignores clicks while a window is open', async () => {
+    const { directive } = create(FormFieldHostComponent);
+    let resolve!: (rows: any[]) => void;
+    call.mockReturnValueOnce(new Promise(r => (resolve = r)));
+    const first = directive.onClick(new MouseEvent('click'));
+    await directive.onClick(new MouseEvent('click'));
+    expect(call).toHaveBeenCalledTimes(1);
+    resolve([]);
+    await first;
+  });
+
   it('syncs the disabled state of the control', () => {
     const { fixture, directive } = create(FormFieldHostComponent);
     fixture.componentInstance.control.disable();

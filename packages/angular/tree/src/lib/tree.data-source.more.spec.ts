@@ -81,7 +81,7 @@ describe('flatTree and helpers', () => {
 
     it('shows everything without filter', async () => {
       const result = await method.call({ tree: roots, filter: filter({}) });
-      expect(result.map((n) => n.id)).toEqual(['a', 'c']);
+      expect(result.map((n) => n.id)).toEqual(['a', 'b', 'c']);
     });
 
     it('filters by search term and shows parents', async () => {
@@ -325,7 +325,7 @@ describe('TreeDataSource', () => {
       setup();
       ds.ngOnInit();
       const nodes = await firstValueFrom(ds.connect({ id: 'v' }));
-      expect(nodes.map((n) => n.id)).toEqual(['a', 'c']);
+      expect(nodes.map((n) => n.id)).toEqual(['a', 'b', 'c']);
     });
 
     it('applies the match filter and refreshMatchFilter re-emits', async () => {
@@ -336,7 +336,7 @@ describe('TreeDataSource', () => {
       await new Promise((r) => setTimeout(r));
       ds.setMatchFilter((n) => n.id !== 'a');
       ds.refreshMatchFilter();
-      expect(seen[seen.length - 1]).toEqual(['c']);
+      expect(seen[seen.length - 1]).toEqual(['b', 'c']);
       sub.unsubscribe();
     });
 
