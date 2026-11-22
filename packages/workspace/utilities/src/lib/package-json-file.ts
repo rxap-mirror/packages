@@ -577,7 +577,8 @@ export function GetRootPackageJson(tree?: TreeLike): PackageJson {
       // at the root of the FsTree the root path "/" must be used
       root = '/';
     } else if(IsFsTreeLike(tree)) {
-      root = tree.root;
+      // FsTree resolves all paths relative to its own root
+      root = '';
     } else {
       throw new Error('The tree is not a valid schematic or generator tree');
     }

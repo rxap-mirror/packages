@@ -229,11 +229,11 @@ export class FakeDirEntry implements DirEntryLike {
   }
 
   public get subdirs(): string[] {
-    return this.tree.children(this.path).filter(child => !this.tree.isFile(child));
+    return this.tree.children(this.path).filter(child => !this.tree.isFile(join(this.path, child)));
   }
 
   public get subfiles(): string[] {
-    return this.tree.children(this.path).filter(child => this.tree.isFile(child));
+    return this.tree.children(this.path).filter(child => this.tree.isFile(join(this.path, child)));
   }
 
   dir(name: string): FakeDirEntry {

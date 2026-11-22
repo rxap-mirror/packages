@@ -94,7 +94,7 @@ export function UpdateYamlDocument<Contents extends Node = ParsedNode, Strict ex
 
   const yamlDocument = GetYamlDocument<Contents, Strict>(tree, filePath, options?.coerce, options?.options);
 
-  updater(yamlDocument);
+  promise = updater(yamlDocument);
 
   const currentYamlDocument = GetYamlDocument<Contents, Strict>(tree, filePath, options?.coerce, options?.options);
 

@@ -40,7 +40,7 @@ export function CreateConfigurationMapMatchingWithTarget(
   projectConfiguration: ProjectConfiguration,
   targetName: string,
 ): Record<string, Record<string, unknown>> {
-  return GetTargetConfigurationNameList(projectConfiguration, 'build')
+  return GetTargetConfigurationNameList(projectConfiguration, targetName)
     .reduce((acc, configurationName) => ({
       ...acc,
       [configurationName]: {},
