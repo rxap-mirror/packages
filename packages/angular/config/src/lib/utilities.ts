@@ -87,7 +87,7 @@ export function fetchContentViaHttp(url: string): Observable<Blob | null> {
   return new Observable<Blob>((subscriber) => {
     let controller: AbortController | null = new AbortController(); // For cancellation
 
-    fetch(url)
+    fetch(url, { signal: controller.signal })
       .then(response => {
         if (!response.ok) {
           // Don't complete here, let catchError handle it
@@ -104,6 +104,7 @@ export function fetchContentViaHttp(url: string): Observable<Blob | null> {
       .catch(error => {
         if (error.name !== 'AbortError' && !subscriber.closed) {
           console.warn(`Fetch error for ${url}:`, error);
+          subscriber.error(error);
         }
       });
 

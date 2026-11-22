@@ -292,6 +292,15 @@ describe('ThemeService', () => {
       expect(localStorage.getItem('n')).toBe('y');
     });
 
+    it('restoreDensity reads the custom density storage key', () => {
+      (window as any).__rxap__ = { ngx: { theme: { density: { key: 'd' } } } };
+      localStorage.setItem('d', '-2');
+      localStorage.setItem('rxap-theme-density', '-1');
+      const s = create();
+      expect(s.restoreDensity()).toBe(-2);
+      expect(s.density()).toBe(-2);
+    });
+
     it('provideTheme restores on app initialisation', async () => {
       TestBed.resetTestingModule();
       localStorage.setItem('rxap-theme-typography', 'mono');

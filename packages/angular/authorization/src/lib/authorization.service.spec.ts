@@ -15,6 +15,24 @@ describe('@rxap/authorization', () => {
       authorization = TestBed.inject(AuthorizationService);
     });
 
+    describe('regex escaping', () => {
+      it('treats every dot in a permission literally', () => {
+        expect(authorization.checkPermission('table.machine.edit', ['table.machine.edit'])).toBe(true);
+        expect(authorization.checkPermission('table.machineXedit', ['table.machine.edit'])).toBe(false);
+      });
+
+      it('treats every dot in the scope literally', () => {
+        const permissions = ['feature.machine.x/table.a'];
+        expect(authorization.checkPermission('table.a', permissions, 'feature.machine.x')).toBe(true);
+        expect(authorization.checkPermission('table.a', permissions, 'feature.machineXx')).toBe(false);
+      });
+
+      it('expands every wildcard in a permission', () => {
+        expect(authorization.checkPermission('a.x.b.y', ['a.*.b.*'])).toBe(true);
+        expect(authorization.checkPermission('a.x.c.y', ['a.*.b.*'])).toBe(false);
+      });
+    });
+
     describe('checkPermissions', () => {
 
       const identifiers: string[] = [

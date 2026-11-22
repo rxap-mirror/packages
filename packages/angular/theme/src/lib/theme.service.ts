@@ -140,7 +140,7 @@ export class ThemeService {
   }
 
   public restoreDensity() {
-    const density = localStorage.getItem('rxap-theme-density');
+    const density = localStorage.getItem(this.densityLocalStorageKey);
     if (density) {
       const value = Number(density) as ThemeDensity;
       if (value <= 0 && value >= -3) {

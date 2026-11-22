@@ -109,6 +109,35 @@ describe('config utilities', () => {
       expect(next).not.toHaveBeenCalled();
       expect(console.warn).toHaveBeenCalled();
     });
+
+    it('completes without a value when the request fails', async () => {
+      fetchMock.mockResolvedValue(response({ ok: false, status: 500, statusText: 'ERR' }));
+      const next = jest.fn();
+      const complete = jest.fn();
+      const error = jest.fn();
+      fetchContentViaHttp('u').subscribe({ next, complete, error });
+      await new Promise(r => setTimeout(r));
+      expect(next).not.toHaveBeenCalled();
+      expect(error).not.toHaveBeenCalled();
+      expect(complete).toHaveBeenCalled();
+    });
+
+    it('completes without a value when fetch rejects', async () => {
+      fetchMock.mockRejectedValue(new Error('network'));
+      const complete = jest.fn();
+      fetchContentViaHttp('u').subscribe({ complete });
+      await new Promise(r => setTimeout(r));
+      expect(complete).toHaveBeenCalled();
+    });
+
+    it('passes an abort signal to fetch', () => {
+      fetchMock.mockReturnValue(new Promise(() => undefined));
+      const sub = fetchContentViaHttp('u').subscribe();
+      const signal = fetchMock.mock.calls.at(-1)?.[1]?.signal as AbortSignal;
+      expect(signal).toBeInstanceOf(AbortSignal);
+      sub.unsubscribe();
+      expect(signal.aborted).toBe(true);
+    });
   });
 
   describe('fetchCidContentViaHttp', () => {

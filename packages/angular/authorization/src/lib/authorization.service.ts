@@ -58,10 +58,10 @@ export class AuthorizationService {
         .filter(
           (permission) =>
             !permission.match(/\//) ||
-            permission.match(new RegExp(`^${ scope.replace('.', '\\.') }/`)),
+            permission.match(new RegExp(`^${ scope.replace(/\./g, '\\.') }/`)),
         ).map((permission) =>
           permission.replace(
-            new RegExp(`^${ scope.replace('.', '\\.') }/`),
+            new RegExp(`^${ scope.replace(/\./g, '\\.') }/`),
             '',
           ),
         ).sort((a, b) => a.length - b.length);
@@ -74,8 +74,8 @@ export class AuthorizationService {
     const permissionRegexList = permissionSubset.map((permission) => {
 
       const permissionRegex = permission
-        .replace('.', '\\.')
-        .replace('*', '.+');
+        .replace(/\./g, '\\.')
+        .replace(/\*/g, '.+');
 
       if (permission[0] === '*' && permission[permission.length - 1] === '*') {
         return new RegExp(permissionRegex);

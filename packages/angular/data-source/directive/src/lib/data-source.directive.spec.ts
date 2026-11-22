@@ -122,6 +122,14 @@ describe('DataSourceDirective', () => {
     expect(() => directive().embedErrorTemplate(null)).not.toThrow();
   });
 
+  it('stops listening to hasError$ after destroy', async () => {
+    await settle();
+    const embedError = jest.spyOn(directive(), 'embedErrorTemplate');
+    fixture.destroy();
+    ds.hasError$.enable();
+    expect(embedError).not.toHaveBeenCalled();
+  });
+
   it('disconnects on destroy and exposes the context guard', async () => {
     await settle();
     const disconnect = jest.spyOn(ds, 'disconnect');

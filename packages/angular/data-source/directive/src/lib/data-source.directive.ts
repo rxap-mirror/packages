@@ -72,6 +72,7 @@ export class DataSourceDirective<Data = any>
   protected embeddedErrorViewRef: EmbeddedViewRef<DataSourceErrorTemplateContext> | null = null;
   private _dataSourceLoadingSubscription: Subscription | null = null;
   private _dataSourceConnectionSubscription: Subscription | null = null;
+  private _hasErrorSubscription: Subscription | null = null;
 
   constructor() {
     // The first connect is deferred until after the first render (see connect()), so that the
@@ -135,6 +136,7 @@ export class DataSourceDirective<Data = any>
     this.subscription.unsubscribe();
     this._dataSourceConnectionSubscription?.unsubscribe();
     this._dataSourceLoadingSubscription?.unsubscribe();
+    this._hasErrorSubscription?.unsubscribe();
   }
 
   protected loadDataSource(): BaseDataSource<Data> | null {
@@ -161,7 +163,8 @@ export class DataSourceDirective<Data = any>
 
   protected connect() {
     if (this.dataSource) {
-      this.dataSource.hasError$.pipe(
+      this._hasErrorSubscription?.unsubscribe();
+      this._hasErrorSubscription = this.dataSource.hasError$.pipe(
         distinctUntilChanged(),
         tap(hasError => {
           if (hasError) {

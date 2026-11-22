@@ -29,6 +29,9 @@ Callers may notice these.
 - `config`: `LoadConfigDefaultFromUrlParam` reads the configured param name.
 - `workspace/utilities`: `CreateConfigurationMapMatchingWithTarget` honours `targetName`; `FindProjectByPath(recursive)` terminates at the root; `GetRootPackageJson` works with `FsTree`; `UpdateYamlDocument` awaits async updaters.
 - `forms`: `IsInt` validator no longer inverted; `FormControlErrorDirective` hides the error template when the control becomes valid.
+- `config`: `fetchContentViaHttp` errors (and so completes in the race) on fetch failure and aborts on unsubscribe; `ConfigLoaderService.load$` fills its cache.
+- `data-source`: `DataSourceDirective` unsubscribes `hasError$` on reconnect and destroy.
+- `theme`: `restoreDensity` uses the configured storage key. `authorization`: scope and permission regexes escape every dot and expand every wildcard.
 - `error`: `HttpErrorInterceptor` passes the `HttpErrorResponse` to the code extractor.
 - `material/table-select`: `TABLE_SELECT_METHOD` metadata key no longer collides with `TABLE_SELECT_TO_VALUE`.
 - `async-action.directive`: rejection stops loading and enables `hasError$`.
@@ -41,9 +44,7 @@ Callers may notice these.
 ## Known open items
 
 - `open-api` `schema-validation.mixin` `validateResponse` skips JSON responses (comment says the opposite); fixing it enables response validation for every consumer.
-- `data-structure-tree` `Node.isVisible` hides lazy nodes without loaded children; `Node.addChild(child, end = true)` inserts at the front.
-- `fetchContentViaHttp` never errors/completes on fetch failure; `ConfigLoaderService.load$` never fills its cache.
-- `DataSourceDirective.connect()` never unsubscribes `hasError$`; `ThemeService.restoreDensity` uses a hardcoded key; `authorization.service` escapes only the first dot.
+- `data-structure-tree` `Node.isVisible` hides lazy nodes without loaded children; `Node.addChild`/`addChildren` have an inverted `end` flag (`end = true` prepends). Left as is because flipping it changes the API.
 - `SelectRowService` defaults to single selection without options.
 - table-select: control holds the whole row after selection; `OpenTableSelectWindowDirective` can leave the control disabled if the window resolves immediately.
 - `validator` is a partial validator.js port (`isVAT` GB/IT only, missing `isURL`/`isEmail` options).

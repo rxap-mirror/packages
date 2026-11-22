@@ -385,6 +385,17 @@ describe('ConfigLoaderService', () => {
     http.verify();
   });
 
+  it('caches a loaded config and does not request it again', async () => {
+    const service = TestBed.inject(ConfigLoaderService);
+    const http = TestBed.inject(HttpTestingController);
+    const first = service.load$('/d');
+    http.expectOne('/d').flush({ v: 2 });
+    await expect(first).resolves.toEqual({ v: 2 });
+    expect(service.configs.get('/d')).toEqual({ v: 2 });
+    await expect(service.load$('/d')).resolves.toEqual({ v: 2 });
+    http.verify();
+  });
+
   it('returns cached configs', async () => {
     const service = TestBed.inject(ConfigLoaderService);
     service.configs.set('/c', { cached: true });

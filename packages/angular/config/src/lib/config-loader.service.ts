@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import {
   finalize,
   share,
+  tap,
 } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
@@ -23,10 +24,11 @@ export class ConfigLoaderService {
     }
 
     if (this.configLoading.has(url)) {
-      return this.configLoading.get(url)!.toPromise();
+      return firstValueFrom(this.configLoading.get(url)!);
     }
 
     const loading$ = this.http.get<T>(url).pipe(
+      tap(config => this.configs.set(url, config)),
       finalize(() => this.configLoading.delete(url)),
       share(),
     );
