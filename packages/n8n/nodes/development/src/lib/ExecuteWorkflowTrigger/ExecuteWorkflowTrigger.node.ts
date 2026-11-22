@@ -54,7 +54,7 @@ export class ExecuteWorkflowTrigger implements INodeType {
 
 	async trigger(this: ITriggerFunctions): Promise<ITriggerResponse> {
 		const manualTriggerFunction = async () => {
-			this.emit([this.helpers.returnJsonArray([JSON.parse(this.getNodeParameter('input') as string)])]);
+			this.emit([this.helpers.returnJsonArray([JSON.parse((this.getNodeParameter('input') as string) || '{}')])]);
 		};
 
 		return {
@@ -64,7 +64,7 @@ export class ExecuteWorkflowTrigger implements INodeType {
 
 	async execute(this: IExecuteFunctions) {
 		if (this.getMode() === 'manual') {
-			return [[{ json: JSON.parse(this.getNodeParameter('input', 0) as string) }]]
+			return [[{ json: JSON.parse((this.getNodeParameter('input', 0) as string) || '{}') }]]
 		}
 		return [this.getInputData()];
 	}

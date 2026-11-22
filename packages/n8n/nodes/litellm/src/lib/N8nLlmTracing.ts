@@ -97,7 +97,11 @@ export class N8nLlmTracing extends BaseCallbackHandler {
   override async handleLLMEnd(output: LLMResult, runId: string) {
     // The fallback should never happen since handleLLMStart should always set the run details
     // but just in case, we set the index to the length of the runsMap
-    const runDetails = this.runsMap[runId] ?? { index: Object.keys(this.runsMap).length };
+    const runDetails: RunDetail = this.runsMap[runId] ?? {
+      index: Object.keys(this.runsMap).length,
+      messages: [],
+      options: {},
+    };
 
     output.generations = output.generations.map((gen) =>
       gen.map((g) => pick(g, ['text', 'generationInfo'])),

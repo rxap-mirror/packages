@@ -36,7 +36,7 @@ export class ManualTrigger implements INodeType {
 
   async trigger(this: ITriggerFunctions): Promise<ITriggerResponse> {
     const manualTriggerFunction = async () => {
-      this.emit([this.helpers.returnJsonArray([JSON.parse(this.getNodeParameter('input') as string)])]);
+      this.emit([this.helpers.returnJsonArray([JSON.parse((this.getNodeParameter('input') as string) || '{}')])]);
     };
 
     return {

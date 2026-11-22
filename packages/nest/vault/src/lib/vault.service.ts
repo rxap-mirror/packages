@@ -122,13 +122,15 @@ export class VaultService {
       this.logger.verbose('Vault is disabled', 'VaultService');
       this.initialized = Promise.resolve();
     } else {
-      this.initialized = new Promise<void>(resolve => {
+      this.initialized = new Promise<void>((resolve, reject) => {
         this.getToken().then(token => {
           this.client.token = token;
           this.logger.log('Initialized vault client', 'VaultService');
           resolve();
-        });
+        }, reject);
       });
+      // avoid an unhandled rejection if no operation is awaiting the initialization
+      this.initialized.catch(() => undefined);
     }
   }
 

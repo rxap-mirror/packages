@@ -130,6 +130,7 @@ export async function execute(this: IExecuteFunctions, items: INodeExecutionData
           },
           pairedItem,
         });
+        return returnData;
       }
       throw new NodeOperationError(this.getNode(), error);
     }

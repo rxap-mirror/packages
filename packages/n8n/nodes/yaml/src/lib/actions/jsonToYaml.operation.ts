@@ -59,14 +59,14 @@ export async function execute(this: IExecuteFunctions, items: INodeExecutionData
 
     } catch (error: any) {
       if (this.continueOnFail()) {
-        items[itemIndex] = {
+        returnData.push({
           json: {
             error: error.message,
           },
           pairedItem: {
             item: itemIndex,
           },
-        };
+        });
         continue;
       }
       throw error;
