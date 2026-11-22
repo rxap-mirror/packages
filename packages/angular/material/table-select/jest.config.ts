@@ -5,6 +5,8 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory:
     '../../../../coverage/packages/angular/material/table-select',
+  // storybook stories and cypress component tests are not unit tests
+  coveragePathIgnorePatterns: ['/node_modules/', '\\.stories\\.ts$', '\\.cy\\.ts$'],
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

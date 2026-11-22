@@ -4,6 +4,8 @@ module.exports = {
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory: '../../../coverage/packages/angular/dialog',
+  // storybook stories and cypress component tests are not unit tests
+  coveragePathIgnorePatterns: ['/node_modules/', '\\.stories\\.ts$', '\\.cy\\.ts$'],
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

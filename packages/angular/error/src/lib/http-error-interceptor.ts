@@ -63,7 +63,7 @@ export function HttpErrorInterceptor(req: HttpRequest<unknown>, next: HttpHandle
           };
 
           if (error && typeof error === 'object') {
-            const errorCode = options.extractErrorCode!(error);
+            const errorCode = options.extractErrorCode!(event);
             if (errorCode) {
               Sentry.captureMessage(`Error Code ${ errorCode }`, {
                 level: 'warning',
@@ -75,7 +75,7 @@ export function HttpErrorInterceptor(req: HttpRequest<unknown>, next: HttpHandle
                 ...data,
                 errorCode,
               });
-            } else if (event.error.message) {
+            } else if (error.message) {
               messageHttpErrorService.push(data);
             } else {
               anyHttpErrorService.push(data);
