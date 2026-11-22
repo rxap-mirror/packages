@@ -358,7 +358,8 @@ export class TypescriptInterfaceGenerator {
             (schema.enum as string[]).map(
               (item) => (writer) => {
                 if (!isNaN(Number(item))) {
-                  writer.write(item);
+                  // the enum can contain non string values (mixed enum), the writer only accepts strings
+                  writer.write(String(item));
                 } else if (['true', 'false'].includes(item)) {
                   writer.write(item);
                 } else {

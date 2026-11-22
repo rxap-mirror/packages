@@ -49,7 +49,7 @@ export function CoerceHealthController(sourceFile: SourceFile): SourceFile {
 
   const methodDeclaration = CoerceNestOperation(sourceFile, {
     method: 'get',
-    returnType: 'Promise<HealthCheckResult>',
+    returnType: 'HealthCheckResult',
     statements: [ 'return this.health.check([]);' ],
     operationName: 'healthCheck',
   });

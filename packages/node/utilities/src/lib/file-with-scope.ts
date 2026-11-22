@@ -72,12 +72,13 @@ export function ReadFileWithScope(path: string, scope?: string, production?: boo
   scope = scope ? dasherize(scope) : scope;
   let filePath = InjectScopeInFilePath(path, scope);
   if (!existsSync(filePath)) {
-    if (production) {
-      filePath = InjectScopeInFilePath(path, 'production');
+    const productionFilePath = production ? InjectScopeInFilePath(path, 'production') : null;
+    if (productionFilePath && existsSync(productionFilePath)) {
+      filePath = productionFilePath;
     } else {
       filePath = path;
     }
-    if (!existsSync(path)) {
+    if (!existsSync(filePath)) {
       throw new Error(`The file "${ path }" does not exists!`);
     }
   }

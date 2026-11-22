@@ -1,6 +1,7 @@
 import {
   CoerceImports,
   CoerceVariableDeclaration,
+  RequiresTypeImport,
   TypeImport,
   TypeImportToImportStructure,
 } from '@rxap/ts-morph';
@@ -56,7 +57,8 @@ export function CoerceTokenExport(sourceFile: SourceFile, options: CoerceTokenEx
     namedImports: [ 'InjectionToken' ],
     moduleSpecifier: '@angular/core',
   });
-  if (type) {
+  // types without a module specifier (e.g. built in types) do not require an import
+  if (type && RequiresTypeImport(type)) {
     CoerceImports(sourceFile, TypeImportToImportStructure(type));
   }
   return variableDeclaration;

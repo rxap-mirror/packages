@@ -111,6 +111,11 @@ export class ClientRMQExchange extends ClientProxy {
       next: data => {
         this.connection$.next(data.connection);
       },
+      error: err => {
+        // propagate connection errors, otherwise the promise returned by
+        // connect() never settles and the error is thrown as unhandled
+        this.connection$.error(err);
+      },
     });
 
     return this.convertConnectionToPromise();

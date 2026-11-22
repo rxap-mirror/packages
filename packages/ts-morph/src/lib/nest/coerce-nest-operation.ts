@@ -617,7 +617,9 @@ export function CoerceApiQueryDecorators(queryList: OperationParameter[], method
 }
 
 export function CoerceOperationParamList(paramList: OperationParameter[], classDeclaration: ClassDeclaration) {
-  const currentControllerPath = classDeclaration.getDecoratorOrThrow('Controller').getArguments()[0]?.getText() ?? '';
+  // the argument text includes the quotes of the string literal, remove them to not get a parameter name like "id'"
+  const currentControllerPath = (classDeclaration.getDecoratorOrThrow('Controller').getArguments()[0]?.getText() ?? '')
+    .replace(/^['"`]|['"`]$/g, '');
   const fragments = currentControllerPath.split('/');
   const parameters = fragments.filter(fragment => fragment.startsWith(':'));
   for (const parameter of parameters) {

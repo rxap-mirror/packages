@@ -55,21 +55,17 @@ class ThrowIfEmptySubscriber<T> extends Subscriber<T> {
   // the try catch block below is left specifically for
   // optimization and perf reasons. a tryCatcher is not necessary here.
   protected override _next(value: T) {
-    let result: any;
     try {
       if (value === null || value === undefined || (value as any) === '') {
         throw new Error(this.message);
-      } else {
-        result = value;
       }
     } catch (err) {
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       this.destination.error!(err);
       return;
     }
-    if (result) {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      this.destination.next!(value);
-    }
+    // forward all non empty values, including falsy ones like 0 and false
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    this.destination.next!(value);
   }
 }

@@ -81,18 +81,22 @@ export function BuildRouteObject(route: AngularRoute) {
   if (route.data) {
     obj['data'] = Writers.object(Object.entries(route.data)
       .reduce((acc, [ key, value ]) => {
+        // every branch has to return, otherwise the final quote fallback overwrites the value
         if (['true', 'false'].includes(value) || typeof value === 'boolean') {
           if (typeof value === 'string') {
             acc[key] = w => w.quote(value);
           } else {
             acc[key] = value ? 'true' : 'false';
           }
+          return acc;
         }
         if (typeof value === 'number') {
           acc[key] = value.toString();
+          return acc;
         }
-        if (!isNaN(Number(value))) {
+        if (typeof value === 'string' && value !== '' && !isNaN(Number(value))) {
           acc[key] = value;
+          return acc;
         }
         acc[key] = w => w.quote(value);
         return acc;

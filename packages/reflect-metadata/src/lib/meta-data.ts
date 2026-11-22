@@ -133,7 +133,8 @@ export function setMetadataMapSet<V = any, K = string>(
   if (!map) {
     const parentMap: Map<K, Set<V>> | null = getMetadata(metadataKey, target, propertyKey);
     if (parentMap) {
-      map = new Map(parentMap.entries());
+      // clone the inner sets so that the parent class metadata is not mutated
+      map = new Map(Array.from(parentMap.entries(), ([ k, v ]) => [ k, new Set(v) ] as [ K, Set<V> ]));
     } else {
       map = new Map<K, Set<V>>();
     }
@@ -165,7 +166,8 @@ export function setMetadataMapMap<V = any, K = string, K2 = string>(
   if (!map) {
     const parentMap: Map<K, Map<K2, V>> | null = getMetadata(metadataKey, target, propertyKey);
     if (parentMap) {
-      map = new Map(parentMap.entries());
+      // clone the inner maps so that the parent class metadata is not mutated
+      map = new Map(Array.from(parentMap.entries(), ([ k, v ]) => [ k, new Map(v) ] as [ K, Map<K2, V> ]));
     } else {
       map = new Map<K, Map<K2, V>>();
     }

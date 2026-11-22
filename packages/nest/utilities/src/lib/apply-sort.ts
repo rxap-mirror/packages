@@ -16,7 +16,7 @@ export function ApplySort<T>(rows: T[], sortDirection?: string, sortBy?: string)
         return sortDirection === 'asc' ? 1 : -1;
       }
       if (valueB === undefined) {
-        return sortDirection === 'asc' ? 1 : -1;
+        return sortDirection === 'asc' ? -1 : 1;
       }
       return String(valueA).localeCompare(String(valueB)) * (sortDirection === 'asc' ? 1 : -1);
     });
