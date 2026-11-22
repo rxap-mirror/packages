@@ -379,7 +379,7 @@
       "versionPrefix": "^",
       "updateDependents": "auto",
       "preserveLocalDependencyProtocols": false,
-    "preserveMatchingDependencyRanges": false,
+      "preserveMatchingDependencyRanges": false,
       "versionActionsOptions": {
         "skipLockFileUpdate": true
       }
@@ -427,5 +427,6 @@
     "./packages/plugin/workspace/src/plugin.ts",
     "./packages/plugin/n8n/src/plugin.ts",
     "./packages/plugin/open-api/src/plugin.ts"
-  ]
+  ],
+  "analytics": false
 }
