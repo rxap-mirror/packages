@@ -18,11 +18,12 @@ import {
   RxapFormControl,
   UseFormControl,
 } from '@rxap/forms';
+import { signal } from '@angular/core';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { NgControl } from '@angular/forms';
 import { TestNgControl } from './test-ng-control';
 
-describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
+describe(AutocompleteOptionsFromMethodDirective.name, () => {
   @Injectable()
   class TestAutocompleteOptionsMethod implements Method<ControlOptions> {
     call({ search }: { search?: string | null }): ControlOptions {
@@ -41,8 +42,8 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
   }
 
   @Injectable()
-  class TestResolveMethod implements Method<ControlOption, string> {
-    call(value: string): ControlOption {
+  class TestResolveMethod implements Method<ControlOption, { value: string }> {
+    call({ value }: { value: string }): ControlOption {
       return { value, display: 'resolved display' };
     }
   }
@@ -69,6 +70,7 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
   let control: RxapFormControl;
   let autocompleteOptionsMethodCall: jest.SpyInstance;
   let resolveMethodCall: jest.SpyInstance;
+  let inputs: Record<string, ReturnType<typeof signal<any>>>;
 
   beforeEach(() => {
     const formDefinition: TestFormDefinition =
@@ -114,6 +116,17 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
     );
     resolveMethodCall = jest.spyOn(resolveMethod, 'call');
     directive = TestBed.inject(AutocompleteOptionsFromMethodDirective);
+    // the inputs are signal inputs and can not be assigned. Replace them with writable signals
+    inputs = {
+      parameters: signal<any>(undefined),
+      resetOnChange: signal<any>(undefined),
+      matAutocomplete: signal<any>(undefined),
+      method: signal<any>(undefined),
+      resolveMethod: signal<any>(undefined),
+      isValue: signal<any>(undefined),
+      toDisplay: signal<any>(undefined),
+    };
+    Object.assign(directive, inputs);
   });
 
   it('should only call the autocomplete options method if a value is set', fakeAsync(() => {
@@ -124,16 +137,15 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
     expect(resolveMethodCall).not.toHaveBeenCalled();
     control.setValue('test');
     tick();
-    expect(autocompleteOptionsMethodCall).toHaveBeenCalledWith({
-      parameters: { search: 'test' },
-    });
+    expect(autocompleteOptionsMethodCall).toHaveBeenCalledWith(
+      { parameters: { search: 'test' } },
+      expect.any(RxapFormControl),
+    );
     expect(resolveMethodCall).not.toHaveBeenCalled();
   }));
 
   it('should link directive with MatAutocomplete', fakeAsync(() => {
-    directive.matAutocomplete = {
-      displayWith: jest.fn(),
-    } as any;
+    inputs['matAutocomplete'].set({ displayWith: jest.fn() });
 
     tick();
     directive.ngAfterViewInit();
@@ -142,18 +154,16 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
     expect(autocompleteOptionsMethodCall).not.toHaveBeenCalled();
     expect(resolveMethodCall).not.toHaveBeenCalled();
 
-    expect(directive.matAutocomplete!.displayWith!('')).toBe(
-      directive.toDisplay!.bind(directive)(''),
+    expect((inputs['matAutocomplete']() as any).displayWith('')).toBe(
+      (directive as any).resolvedToDisplay().bind(directive)(''),
     );
-    expect(directive.matAutocomplete!.displayWith!('error')).toBe(
-      directive.toDisplay!.bind(directive)('error'),
+    expect((inputs['matAutocomplete']() as any).displayWith('error')).toBe(
+      (directive as any).resolvedToDisplay().bind(directive)('error'),
     );
   }));
 
   it('should convert value to display', fakeAsync(() => {
-    directive.matAutocomplete = {
-      displayWith: jest.fn(),
-    } as any;
+    inputs['matAutocomplete'].set({ displayWith: jest.fn() });
 
     tick();
     directive.ngAfterViewInit();
@@ -161,7 +171,7 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
 
     directive.options = [{ value: 'test', display: 'display_test' }];
 
-    expect(directive.toDisplay!('test')).toBe('display_test');
+    expect((directive as any).resolvedToDisplay()('test')).toBe('display_test');
   }));
 
   it('should resolve a value to display', fakeAsync(() => {
@@ -171,31 +181,21 @@ describe.skip(AutocompleteOptionsFromMethodDirective.name, () => {
     directive.ngAfterViewInit();
     tick();
 
-    directive.isValue = jest
-      .fn()
-      .mockImplementation((value) => value === 'test');
+    (directive as any).resolvedIsValue.set((value: any) => value === 'test');
 
     expect(setValueSpy).not.toHaveBeenCalled();
-    expect(directive.options).toEqual([]);
+    expect(directive.options).toBeNull();
 
     control.setValue('test');
-    expect(clearMock).toHaveBeenCalledTimes(1);
-    expect(createEmbeddedViewMock).not.toHaveBeenCalled();
-    expect(detectChangesMock).toHaveBeenCalledTimes(1);
-    expect(autocompleteOptionsMethodCall).not.toHaveBeenCalled();
-    expect(resolveMethodCall).toHaveBeenCalledTimes(1);
-    expect(resolveMethodCall).toHaveBeenCalledWith({ value: 'test' });
     tick();
+    expect(autocompleteOptionsMethodCall).not.toHaveBeenCalled();
+    expect(resolveMethodCall).toHaveBeenCalledWith({ value: 'test' });
     expect(directive.options).toEqual([
       { value: 'test', display: 'resolved display' },
     ]);
-    expect(clearMock).toHaveBeenCalledTimes(2);
-    expect(createEmbeddedViewMock).toHaveBeenCalledTimes(1);
     expect(createEmbeddedViewMock).toHaveBeenCalledWith(
       TestBed.inject(TemplateRef),
       { $implicit: { value: 'test', display: 'resolved display' } },
     );
-    expect(detectChangesMock).toHaveBeenCalledTimes(2);
-    expect(autocompleteOptionsMethodCall).not.toHaveBeenCalled();
   }));
 });

@@ -35,7 +35,7 @@ export class ChangelogService {
       take(1),
       tap(remember => {
         componentRef.destroy();
-        body.removeChild(div);
+        // destroy() already detaches the host element; remove() is a no-op then
         div.remove();
         if (remember && this.version) {
           this.lastVersion = this.version;

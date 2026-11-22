@@ -1,77 +1,59 @@
-import {
-  InjectionToken,
-  ProviderToken,
-} from '@angular/core';
-import {
-  FormDefinition,
-  RxapFormGroup,
-} from '@rxap/forms';
+import { InjectionToken } from '@angular/core';
+import { FormDefinition, RxapFormGroup } from '@rxap/forms';
 import { Mixin } from '@rxap/mixin';
-import { Method } from '@rxap/pattern';
-import * as rxapReflectMetadata from '@rxap/reflect-metadata';
-import { ExtractMethodsMixin } from './extract-methods.mixin';
+import { ExtractMethodsMixin, UseMethod } from './extract-methods.mixin';
 
-describe.skip('ExtractMethodsMixin', () => {
-
+describe('ExtractMethodsMixin', () => {
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
-  interface Test extends ExtractMethodsMixin {
-  }
+  interface Test extends ExtractMethodsMixin {}
 
   @Mixin(ExtractMethodsMixin)
   class Test {
-
     constructor(
       private readonly formDefinition: FormDefinition,
       private readonly controlId: string,
-    ) {
-    }
+    ) {}
 
     public extract() {
       return this.extractMethods(this.formDefinition, this.controlId);
     }
-
   }
 
-  let testClass: Test;
-  let mockFormDefinition: FormDefinition;
-  let mockControlId: string;
-  let mockMethodTokenMap: Map<string, Map<string, ProviderToken<Method>>>;
+  const token = new InjectionToken<any>('mockToken');
 
-  beforeEach(() => {
-    mockControlId      = 'mockId';
-    mockFormDefinition = {
-      rxapFormGroup: new RxapFormGroup({}, {controlId: 'form'}),
-      rxapMetadata: {id: 'form'},
-    };
-    testClass          = new Test(mockFormDefinition, mockControlId);
-    mockMethodTokenMap = new Map([
-      [
-        mockControlId,
-        new Map([
-          [ 'mockKey', new InjectionToken('mockToken') ],
-        ]),
-      ],
-    ]);
+  class DefinitionWithMethod {
+    @UseMethod(token, 'mockKey')
+    mockId!: unknown;
+  }
+
+  class DefinitionWithoutMethod {}
+
+  const withPrototype = (proto: object) =>
+    Object.assign(Object.create(proto), {
+      rxapFormGroup: new RxapFormGroup({}, { controlId: 'form' }),
+      rxapMetadata: { id: 'form' },
+    }) as FormDefinition;
+
+  beforeEach(() => jest.spyOn(console, 'log').mockImplementation(() => undefined));
+  afterEach(() => jest.restoreAllMocks());
+
+  it('should throw error if no method map is found', () => {
+    const test = new Test(withPrototype(DefinitionWithoutMethod.prototype), 'mockId');
+    expect(() => test.extract()).toThrow(
+      new Error('Could not extract the use remote method map from the form definition instance'),
+    );
   });
 
-  describe('extractMethods', () => {
-    it('should throw error if no method map is found', () => {
-      jest.spyOn(rxapReflectMetadata, 'getMetadata').mockReturnValue(null);
+  it('should throw error if no method definition exists in metadata', () => {
+    const test = new Test(withPrototype(DefinitionWithMethod.prototype), 'other');
+    expect(() => test.extract()).toThrow(
+      new Error('A use remote method definition does not exists in the form definition metadata'),
+    );
+  });
 
-      expect(() => testClass.extract())
-      .toThrow(new Error('Could not extract the use remote method map from the form definition instance'));
-    });
-
-    it('should throw error if no method definition exists in metadata', () => {
-      jest.spyOn(rxapReflectMetadata, 'getMetadata').mockReturnValue(new Map());
-      expect(() => testClass.extract())
-      .toThrow(new Error('A use remote method definition does not exists in the form definition metadata'));
-    });
-
-    it('should return mapped control Id on success', () => {
-      jest.spyOn(rxapReflectMetadata, 'getMetadata').mockReturnValue(mockMethodTokenMap);
-      expect(testClass.extract())
-      .toEqual(mockMethodTokenMap.get(mockControlId));
-    });
+  it('should return the method definitions of the control on success', () => {
+    const test = new Test(withPrototype(DefinitionWithMethod.prototype), 'mockId');
+    const result = test.extract();
+    expect(result.get('mockKey')).toEqual({ method: token, config: undefined });
   });
 });

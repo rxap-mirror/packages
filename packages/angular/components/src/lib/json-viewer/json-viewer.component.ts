@@ -73,7 +73,7 @@ export class JsonViewerComponent {
   private initialized = false;
 
   public cleanObject(obj: any, stack: any[] = []): any {
-    if (typeof obj === 'string') {
+    if (typeof obj !== 'object' || obj === null) {
       return obj;
     }
     if (stack.some(item => item === obj)) {

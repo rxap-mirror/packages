@@ -46,18 +46,22 @@ export class ConfirmDirective<T = any> implements OnDestroy {
   protected isOverlyOpen = false;
 
   constructor() {
-    this.positionStrategy = this.overlay
-                                .position()
-                                .flexibleConnectedTo(this.elementRef.nativeElement)
-                                .withPositions([
-                                  {
-                                    originX: 'start',
-                                    originY: 'bottom',
-                                    overlayX: 'start',
-                                    overlayY: 'top',
-                                  },
-                                ])
-                                .withDefaultOffsetY(10);
+    this.positionStrategy = this.createPositionStrategy();
+  }
+
+  protected createPositionStrategy(): PositionStrategy {
+    return this.overlay
+               .position()
+               .flexibleConnectedTo(this.elementRef.nativeElement)
+               .withPositions([
+                 {
+                   originX: 'start',
+                   originY: 'bottom',
+                   overlayX: 'start',
+                   overlayY: 'top',
+                 },
+               ])
+               .withDefaultOffsetY(10);
   }
 
   public onClick($event?: Event) {
@@ -74,6 +78,10 @@ export class ConfirmDirective<T = any> implements OnDestroy {
       return;
     }
     this.isOverlyOpen = true;
+    if (this.overlayRef) {
+      // a position strategy can only be attached to a single overlay; the previous one is disposed
+      this.positionStrategy = this.createPositionStrategy();
+    }
     this.overlayRef = this.overlay.create({
       scrollStrategy: this.overlay.scrollStrategies.close(),
       positionStrategy: this.positionStrategy,

@@ -101,7 +101,8 @@ export class ExtractOptionsDataSourceMixin {
 
     } catch (e: any) {
 
-      if (e.name && e.name === 'NullInjectorError') {
+      // Angular >= 19 throws a RuntimeError (NG0201) instead of a NullInjectorError
+      if (e?.name === 'NullInjectorError' || /NG0201/.test(e?.message ?? '')) {
         if (isDevMode()) {
           console.error('Cloud not inject the options data source', this.useDataSourceValue);
         }
