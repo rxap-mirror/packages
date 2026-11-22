@@ -481,36 +481,60 @@ function listReleaseProjects(groupName) {
         const project = JSON.parse(fs.readFileSync(pj, 'utf-8'));
         const pkg = JSON.parse(fs.readFileSync(pk, 'utf-8'));
         const inGroup = groupName === 'rxap' ? project.name === 'rxap' : (project.tags ?? []).includes('packages') && project.name !== 'rxap';
-        if (inGroup && !pkg.private) found.push({ name: project.name, disk: pkg.version });
+        if (inGroup && !pkg.private) {
+          found.push({ name: project.name, pkgName: pkg.name, disk: pkg.version, deps: Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies, ...pkg.optionalDependencies, ...pkg.devDependencies }) });
+        }
       }
       walk(p);
     }
   };
   walk('.');
   const seen = new Set();
-  return found.filter(({ name }) => !seen.has(name) && seen.add(name)).map(({ name, disk }) => {
+  return found.filter(({ name }) => !seen.has(name) && seen.add(name)).map(({ name, pkgName, disk, deps }) => {
     const prefix = name === 'rxap' ? 'rxap@' : `@rxap/${name}@`;
     const versions = tags.filter((t) => t.startsWith(prefix)).map((t) => t.slice(prefix.length)).filter((v) => semver.valid(v)).sort(semver.compare);
-    return { name, disk, latestTag: versions.at(-1) };
+    return { name, pkgName, deps, disk, latestTag: versions.at(-1) };
   });
 }
 
 // returns { bySpecifier: Map<specifier, projects[]>, rest: projects[] }
+// Projects that are not stamped but (transitively) depend on a project that is being released get a
+// `prepatch` bump: their ^range on the new `-dev.N` version would otherwise not be rewritten and a
+// `^24.0.0` range does not match `24.0.0-dev.0` — exactly what updateDependents does in a normal run.
 function stampedPlan(groupName, mode) {
   const semver = require('semver');
   const bySpecifier = new Map();
-  const rest = [];
-  for (const p of listReleaseProjects(groupName)) {
+  const add = (specifier, name) => {
+    if (!bySpecifier.has(specifier)) bySpecifier.set(specifier, []);
+    bySpecifier.get(specifier).push(name);
+  };
+  const projects = listReleaseProjects(groupName);
+  const released = new Set(); // npm names of the projects that get a new version
+  let rest = [];
+  for (const p of projects) {
     if (p.latestTag && semver.valid(p.disk) && semver.major(p.disk) > semver.major(p.latestTag)) {
       const target = semver.prerelease(p.disk) || !mode.isPrerelease ? p.disk : `${p.disk}-${mode.preid}.0`;
-      if (!bySpecifier.has(target)) bySpecifier.set(target, []);
-      bySpecifier.get(target).push(p.name);
+      add(target, p.name);
+      released.add(p.pkgName);
       console.log(`  stamped: ${p.name.padEnd(38)} ${p.latestTag} -> ${target}`);
     } else {
-      rest.push(p.name);
+      rest.push(p);
     }
   }
-  return { bySpecifier, rest };
+  // transitive closure over the remaining projects
+  for (let changed = true; changed; ) {
+    changed = false;
+    rest = rest.filter((p) => {
+      if (!p.deps.some((d) => released.has(d))) return true;
+      const specifier = mode.isPrerelease ? 'prepatch' : 'patch';
+      add(specifier, p.name);
+      released.add(p.pkgName);
+      changed = true;
+      console.log(`  dependent: ${p.name.padEnd(36)} ${p.latestTag} -> ${specifier}`);
+      return false;
+    });
+  }
+  return { bySpecifier, rest: rest.map((p) => p.name) };
 }
 
 // one releaseVersion call per distinct stamped specifier (+ one for the remaining projects)
