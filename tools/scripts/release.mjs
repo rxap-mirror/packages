@@ -473,7 +473,7 @@ function listReleaseProjects(groupName) {
   const found = [];
   const walk = (dir) => {
     for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-      if (!e.isDirectory() || skip.has(e.name)) continue;
+      if (!e.isDirectory() || e.name.startsWith('.') || skip.has(e.name)) continue;
       const p = path.join(dir, e.name);
       const pj = path.join(p, 'project.json');
       const pk = path.join(p, 'package.json');
@@ -487,7 +487,8 @@ function listReleaseProjects(groupName) {
     }
   };
   walk('.');
-  return found.map(({ name, disk }) => {
+  const seen = new Set();
+  return found.filter(({ name }) => !seen.has(name) && seen.add(name)).map(({ name, disk }) => {
     const prefix = name === 'rxap' ? 'rxap@' : `@rxap/${name}@`;
     const versions = tags.filter((t) => t.startsWith(prefix)).map((t) => t.slice(prefix.length)).filter((v) => semver.valid(v)).sort(semver.compare);
     return { name, disk, latestTag: versions.at(-1) };
