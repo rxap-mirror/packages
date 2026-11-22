@@ -346,7 +346,7 @@
   "cli": {
     "packageManager": "yarn"
   },
-  "parallel": 6,
+  "parallel": 12,
   "useInferencePlugins": false,
   "defaultBase": "development",
   "release": {
