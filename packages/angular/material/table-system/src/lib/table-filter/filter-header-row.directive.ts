@@ -1,4 +1,4 @@
-import { Directive, forwardRef, inject, input, OnDestroy, OnInit } from '@angular/core';
+import { Directive, forwardRef, inject, input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import {
   FormDefinition,
@@ -28,7 +28,7 @@ import { RXAP_TABLE_FILTER_FORM_DEFINITION } from './tokens';
 })
 export class FilterHeaderRowDirective
   extends FormDirective
-  implements OnInit, OnDestroy {
+  implements OnInit, OnChanges, OnDestroy {
   private readonly tableFilter = inject(TableFilterService);
 
   /**
@@ -47,12 +47,22 @@ export class FilterHeaderRowDirective
     }
   }
 
-  public override ngOnInit() {
+  private applyFilterFormDefinition() {
     const formDefinition = this.filterFormDefinition();
     if (formDefinition) {
       this._formDefinition = formDefinition as any;
       this.form = formDefinition.rxapFormGroup as any;
     }
+  }
+
+  public override ngOnChanges(changes: SimpleChanges) {
+    // the form must be set before the FormGroupDirective validates its presence
+    this.applyFilterFormDefinition();
+    super.ngOnChanges(changes);
+  }
+
+  public override ngOnInit() {
+    this.applyFilterFormDefinition();
     super.ngOnInit();
     this._subscription = new Subscription();
     this._subscription.add(this.tableFilter.reset$.subscribe(() => this.form.reset()));

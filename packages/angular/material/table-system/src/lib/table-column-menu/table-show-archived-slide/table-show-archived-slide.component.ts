@@ -19,7 +19,7 @@ import { TableColumnMenuComponent } from '../table-column-menu.component';
 export class TableShowArchivedSlideComponent {
   private readonly tableFilter = inject<TableFilterService | null>(TableFilterService, { optional: true });
   private readonly tableColumnMenu = inject<TableColumnMenuComponent>(TableColumnMenuComponent);
-  private readonly selectRows = inject<SelectRowService | null>(SelectRowService);
+  private readonly selectRows = inject<SelectRowService | null>(SelectRowService, { optional: true });
 
 
   public readonly paginator = input<MatPaginator>();
