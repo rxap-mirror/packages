@@ -1,6 +1,7 @@
 import { outputToObservable } from '@angular/core/rxjs-interop';
 import {
   ChangeDetectorRef,
+  Component,
   DebugElement,
   Injector,
   INJECTOR,
@@ -13,7 +14,6 @@ import {
   tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { MockedComponent, MockRender } from 'ng-mocks';
 import { RxapForm } from '../decorators/form';
 import { UseFormControl } from '../decorators/use-form-control';
 import { RxapFormBuilder } from '../form-builder';
@@ -28,9 +28,16 @@ import {
   RXAP_FORM_SUBMIT_METHOD,
 } from './tokens';
 
+@Component({
+  standalone: true,
+  imports: [FormDirective],
+  template: `<form rxapForm><button type="submit">Button</button></form>`,
+})
+class HostComponent {}
+
 describe('@rxap/forms', () => {
   describe('directives', () => {
-    xdescribe('FormDirective', () => {
+    describe('FormDirective', () => {
       interface ITestForm {
         username: string;
         password: string;
@@ -68,12 +75,20 @@ describe('@rxap/forms', () => {
         },
       ];
 
+      // The directive injects the method tokens with skipSelf. Create it in a
+      // child injector so the tokens provided by the TestBed are visible.
+      const createDirective = (): FormDirective =>
+        Injector.create({
+          parent: TestBed.inject(Injector),
+          providers: [FormDirective],
+        }).get(FormDirective);
+
       it('should create a form definition instance', () => {
         TestBed.configureTestingModule({
-          providers: [TestFormProviders, FormDirective],
+          providers: [TestFormProviders],
         });
 
-        const formDirective = TestBed.inject(FormDirective);
+        const formDirective = createDirective();
         const formDefinition: FormDefinition =
           TestBed.inject(RXAP_FORM_DEFINITION);
 
@@ -87,9 +102,9 @@ describe('@rxap/forms', () => {
 
       it('should set loaded to true if no load method is defined', () => {
         TestBed.configureTestingModule({
-          providers: [TestFormProviders, FormDirective],
+          providers: [TestFormProviders],
         });
-        const formDirective = TestBed.inject(FormDirective);
+        const formDirective = createDirective();
         expect(formDirective.loaded()).toBeFalsy();
         expect(formDirective.loading()).toBeFalsy();
         formDirective.ngOnInit();
@@ -116,7 +131,7 @@ describe('@rxap/forms', () => {
           ],
         });
 
-        const formDirective = TestBed.inject(FormDirective);
+        const formDirective = createDirective();
         expect(formDirective.loaded()).toBeFalsy();
         expect(formDirective.loading()).toBeFalsy();
         expect(formDirective.value).toEqual({
@@ -150,7 +165,7 @@ describe('@rxap/forms', () => {
           ],
         });
 
-        const formDirective = TestBed.inject(FormDirective);
+        const formDirective = createDirective();
         expect(formDirective.loaded()).toBeFalsy();
         expect(formDirective.loading()).toBeFalsy();
         expect(formDirective.value).toEqual({
@@ -187,7 +202,7 @@ describe('@rxap/forms', () => {
           ],
         });
 
-        const formDirective = TestBed.inject(FormDirective);
+        const formDirective = createDirective();
         expect(formDirective.loaded()).toBeFalsy();
         expect(formDirective.loading()).toBeFalsy();
         expect(formDirective.value).toEqual({
@@ -226,7 +241,7 @@ describe('@rxap/forms', () => {
           ],
         });
 
-        const formDirective = TestBed.inject(FormDirective);
+        const formDirective = createDirective();
         expect(formDirective.loaded()).toBeFalsy();
         expect(formDirective.loading()).toBeFalsy();
         expect(formDirective.value).toEqual({
@@ -265,7 +280,7 @@ describe('@rxap/forms', () => {
           ],
         });
 
-        const formDirective = TestBed.inject(FormDirective);
+        const formDirective = createDirective();
         formDirective.form.setValue({
           username: 'rxap',
           password: 'paxr',
@@ -303,7 +318,7 @@ describe('@rxap/forms', () => {
           ],
         });
 
-        const formDirective = TestBed.inject(FormDirective);
+        const formDirective = createDirective();
         formDirective.form.setValue({
           username: 'rxap',
           password: 'paxr',
@@ -337,7 +352,7 @@ describe('@rxap/forms', () => {
           ],
         });
 
-        const formDirective = TestBed.inject(FormDirective);
+        const formDirective = createDirective();
         formDirective.form.setValue({
           username: 'rxap',
           password: 'paxr',
@@ -379,7 +394,7 @@ describe('@rxap/forms', () => {
           ],
         });
 
-        const formDirective = TestBed.inject(FormDirective);
+        const formDirective = createDirective();
         formDirective.form.setValue({
           username: 'rxap',
           password: 'paxr',
@@ -441,11 +456,10 @@ describe('@rxap/forms', () => {
                 detectChanges: () => {},
               },
             },
-            FormDirective,
           ],
         });
 
-        const formDirective = TestBed.inject(FormDirective);
+        const formDirective = createDirective();
         formDirective.ngOnInit();
 
         const submitSpy = jest.spyOn(formDirective, 'submit' as any);
@@ -469,21 +483,18 @@ describe('@rxap/forms', () => {
       }));
 
       describe('With Component', () => {
-        let fixture: ComponentFixture<MockedComponent<any>>;
+        let fixture: ComponentFixture<HostComponent>;
         let submitButton: DebugElement;
         let formDirective: FormDirective;
 
         beforeEach(async () => {
           await TestBed.configureTestingModule({
-            imports: [FormDirective],
+            imports: [HostComponent],
             providers: [TestFormProviders],
           });
 
-          fixture = MockRender(`
-          <form rxapForm>
-          <button type="submit">Button</button>
-          </form>
-          `);
+          fixture = TestBed.createComponent(HostComponent);
+          fixture.detectChanges();
 
           submitButton = fixture.debugElement.query(By.css('button'));
           formDirective = fixture.debugElement

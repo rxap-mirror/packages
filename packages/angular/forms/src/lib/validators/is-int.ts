@@ -15,7 +15,7 @@ export function IsInt({
     if (control.value === null) {
       return null;
     }
-    if (!isNumber(control.value, options) || Number.isInteger(control.value)) {
+    if (!isNumber(control.value, options) || !Number.isInteger(control.value)) {
       return {
         isInt: {
           expected: 'A int value',

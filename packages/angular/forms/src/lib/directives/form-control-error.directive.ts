@@ -1,7 +1,6 @@
 import { Directive, effect, inject, input, TemplateRef, untracked, ViewContainerRef } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import {
-  filter,
   startWith,
   tap,
 } from 'rxjs/operators';
@@ -41,7 +40,6 @@ export class FormControlErrorDirective {
 
         const subscription = control.statusChanges.pipe(
           startWith(control.status),
-          filter(status => status === 'INVALID'),
           tap(() => {
             this.viewContainerRef.clear();
             if (control.hasError(errorKey)) {
