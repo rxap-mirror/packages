@@ -9,14 +9,15 @@ import {
   take,
 } from 'rxjs/operators';
 import { Injectable, inject } from '@angular/core';
+import { FIREBASE_AUTH } from '@rxap/firebase';
 import {
   Auth,
   AuthProvider,
-  authState,
   confirmPasswordReset,
   FacebookAuthProvider,
   GithubAuthProvider,
   GoogleAuthProvider,
+  onAuthStateChanged,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
@@ -24,12 +25,23 @@ import {
   signOut,
   TwitterAuthProvider,
   User,
-} from '@angular/fire/auth';
-import { traceUntilFirst } from '@angular/fire/performance';
+} from 'firebase/auth';
+
+/**
+ * Emits the current user (or null) on subscription and on every sign in or sign out.
+ */
+export function authState(auth: Auth): Observable<User | null> {
+  return new Observable<User | null>(subscriber => onAuthStateChanged(
+    auth,
+    user => subscriber.next(user),
+    error => subscriber.error(error),
+    () => subscriber.complete(),
+  ));
+}
 
 @Injectable()
 export class IdentityPlatformService {
-  readonly auth = inject(Auth);
+  readonly auth: Auth = inject(FIREBASE_AUTH);
 
   isAuthenticated$: BehaviorSubject<boolean | null> = new BehaviorSubject<boolean | null>(null);
 
@@ -80,7 +92,6 @@ export class IdentityPlatformService {
 
   public isAuthenticated(): Promise<boolean> {
     return firstValueFrom(authState(this.auth).pipe(
-      traceUntilFirst('auth'),
       take(1),
       map(Boolean),
     ));

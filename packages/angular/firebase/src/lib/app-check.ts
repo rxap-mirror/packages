@@ -1,97 +1,55 @@
-import { Injectable, isDevMode, NgZone, inject, makeEnvironmentProviders, provideAppInitializer, EnvironmentProviders } from '@angular/core';
-import { ConfigService } from '@rxap/config';
+import {
+  EnvironmentProviders,
+  inject,
+  Injectable,
+  makeEnvironmentProviders,
+  provideAppInitializer,
+} from '@angular/core';
+import {
+  AppCheckTokenResult,
+  getToken,
+  onTokenChanged,
+  setTokenAutoRefreshEnabled,
+} from 'firebase/app-check';
 import {
   EMPTY,
   Observable,
 } from 'rxjs';
 import { shareReplay } from 'rxjs/operators';
-import {
-  FIREBASE_APP_NAME,
-  FIREBASE_OPTIONS,
-  ɵfirebaseAppFactory,
-} from '@angular/fire/compat';
-import { FirebaseOptions } from 'firebase/app';
-import {
-  AppCheck,
-  AppCheckTokenResult,
-  getToken,
-  onTokenChanged,
-  setTokenAutoRefreshEnabled,
-} from '@angular/fire/app-check';
-import {
-  APP_CHECK_ENABLED,
-  APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED,
-  APP_CHECK_SITE_KEY,
-} from './tokens';
+import { FIREBASE_APP_CHECK } from './tokens';
 
 @Injectable()
 export class AppCheckService {
-  private readonly config = inject(ConfigService);
-  private readonly enabled = inject(APP_CHECK_ENABLED, { optional: true });
+  private readonly appCheck = inject(FIREBASE_APP_CHECK, { optional: true }) ?? null;
 
-
-  public readonly onTokenChanged$: Observable<AppCheckTokenResult> = EMPTY;
-  private readonly _appCheck: AppCheck | null = null;
-
-  constructor() {
-    const options = inject<FirebaseOptions>(FIREBASE_OPTIONS);
-    const nameOrConfig = inject(FIREBASE_APP_NAME, { optional: true });
-    // NgZone is only injected because the @angular/fire compat factory (ɵfirebaseAppFactory) requires it
-    const zone = inject<NgZone>(NgZone);
-    const siteKey = inject(APP_CHECK_SITE_KEY, { optional: true });
-    const isTokenAutoRefreshEnabled = inject(APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED, { optional: true });
-
-    if (this.enabled) {
-      if (siteKey) {
-        const app: any = ɵfirebaseAppFactory(options, zone, nameOrConfig);
-        const appCheck = this._appCheck = app.appCheck();
-        appCheck.activate(
-          siteKey,
-          isTokenAutoRefreshEnabled ?? undefined,
-        );
-        this.onTokenChanged$ = (new Observable<AppCheckTokenResult>(subscriber => {
-          onTokenChanged(
-            appCheck,
-            tokenResult => subscriber.next(tokenResult),
-            error => subscriber.error(error),
-            () => subscriber.complete(),
-          );
-        })).pipe(
-          shareReplay(1),
-        );
-      } else {
-        if (isDevMode()) {
-          console.error('The app check site key is not provided');
-        }
-      }
-    } else {
-      if (isDevMode()) {
-        console.warn('App check is disabled');
-      }
-    }
-  }
+  public readonly onTokenChanged$: Observable<AppCheckTokenResult> = this.appCheck ?
+    new Observable<AppCheckTokenResult>(subscriber => onTokenChanged(
+      this.appCheck!,
+      tokenResult => subscriber.next(tokenResult),
+      error => subscriber.error(error),
+      () => subscriber.complete(),
+    )).pipe(shareReplay({ bufferSize: 1, refCount: true })) :
+    EMPTY;
 
   public getToken(forceRefresh?: boolean): Promise<string> {
-    if (this._appCheck) {
-      return getToken(this._appCheck, forceRefresh).then(result => result.token) ??
-        Promise.reject(new Error('firebase app check is not initialized'));
+    if (this.appCheck) {
+      return getToken(this.appCheck, forceRefresh).then(result => result.token);
     }
     return Promise.reject(new Error('firebase app check is not initialized'));
   }
 
   public setTokenAutoRefreshEnabled(isTokenAutoRefreshEnabled: boolean): void {
-    if (this._appCheck) {
-      setTokenAutoRefreshEnabled(this._appCheck, isTokenAutoRefreshEnabled);
+    if (this.appCheck) {
+      setTokenAutoRefreshEnabled(this.appCheck, isTokenAutoRefreshEnabled);
     }
   }
 
 }
 
 /**
- * Registers the AppCheckService and eagerly instantiates it on app initialization
- * (replaces the former RxapAngularFireAppCheckModule).
+ * Registers the AppCheckService and eagerly instantiates it on app initialization.
  */
-export function provideAngularFireAppCheck(): EnvironmentProviders {
+export function provideFirebaseAppCheck(): EnvironmentProviders {
   return makeEnvironmentProviders([
     AppCheckService,
     provideAppInitializer(() => {
@@ -99,3 +57,8 @@ export function provideAngularFireAppCheck(): EnvironmentProviders {
     }),
   ]);
 }
+
+/**
+ * @deprecated use provideFirebaseAppCheck
+ */
+export const provideAngularFireAppCheck = provideFirebaseAppCheck;

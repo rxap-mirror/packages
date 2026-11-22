@@ -1,16 +1,14 @@
 import { HttpClient, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { AppCheck } from '@angular/fire/app-check';
 import {
   FIREBASE_APP_CHECK_HTTP_INTERCEPTOR,
   FirebaseAppCheckHttpInterceptor,
 } from './firebase-app-check.http-interceptor';
-import { APP_CHECK_ENABLED, FIREBASE_APP_CHECK_HTTP_INTERCEPTOR_URL_PATTERN } from './tokens';
+import { APP_CHECK_ENABLED, FIREBASE_APP_CHECK, FIREBASE_APP_CHECK_HTTP_INTERCEPTOR_URL_PATTERN } from './tokens';
 
 const getTokenFn = jest.fn();
-jest.mock('@angular/fire/app-check', () => ({
-  AppCheck: class {},
+jest.mock('firebase/app-check', () => ({
   getToken: (...a: unknown[]) => getTokenFn(...a),
 }));
 
@@ -18,13 +16,13 @@ describe('FirebaseAppCheckHttpInterceptor', () => {
   let http: HttpClient;
   let ctrl: HttpTestingController;
 
-  function setup(enabled: boolean | null, pattern: RegExp | RegExp[]) {
+  function setup(enabled: boolean | null, pattern: RegExp | RegExp[], appCheck: unknown = { id: 'ac' }) {
     TestBed.configureTestingModule({
       providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting(),
         FIREBASE_APP_CHECK_HTTP_INTERCEPTOR,
-        { provide: AppCheck, useValue: { id: 'ac' } },
+        { provide: FIREBASE_APP_CHECK, useValue: appCheck },
         { provide: FIREBASE_APP_CHECK_HTTP_INTERCEPTOR_URL_PATTERN, useValue: pattern },
         ...(enabled === null ? [] : [{ provide: APP_CHECK_ENABLED, useValue: enabled }]),
       ],
@@ -61,6 +59,15 @@ describe('FirebaseAppCheckHttpInterceptor', () => {
     http.get('/api/x').subscribe();
     const req = ctrl.expectOne('/api/x');
     expect(req.request.headers.has('X-Firebase-AppCheck')).toBe(false);
+    req.flush({});
+  });
+
+  it('passes through when no app check instance is available', () => {
+    setup(true, /.*/, null);
+    http.get('/api/x').subscribe();
+    const req = ctrl.expectOne('/api/x');
+    expect(req.request.headers.has('X-Firebase-AppCheck')).toBe(false);
+    expect(getTokenFn).not.toHaveBeenCalled();
     req.flush({});
   });
 

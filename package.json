@@ -27,7 +27,6 @@
     "@angular/common": "22.3.0",
     "@angular/compiler": "22.3.0",
     "@angular/core": "22.3.0",
-    "@angular/fire": "7.5.0",
     "@angular/forms": "22.3.0",
     "@angular/localize": "22.3.0",
     "@angular/material": "22.3.0",

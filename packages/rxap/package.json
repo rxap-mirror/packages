@@ -50,10 +50,6 @@
         "version": "19.0.3"
       },
       {
-        "package": "@angular/fire",
-        "version": "7.5.0"
-      },
-      {
         "package": "@angular/forms",
         "version": "19.0.3"
       },

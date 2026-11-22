@@ -1,11 +1,17 @@
-import { Injectable, inject } from '@angular/core';
+import {
+  inject,
+  Injectable,
+} from '@angular/core';
+import {
+  getToken,
+  onMessage,
+} from 'firebase/messaging';
 import { ReplaySubject } from 'rxjs';
 import {
-  mergeMapTo,
-  tap,
-} from 'rxjs/operators';
-import { RXAP_REQUEST_CLOUD_MESSAGING_TOKEN } from './tokens';
-import { AngularFireMessaging } from '@angular/fire/compat/messaging';
+  FIREBASE_MESSAGING,
+  FIREBASE_MESSAGING_VAPID_KEY,
+  RXAP_REQUEST_CLOUD_MESSAGING_TOKEN,
+} from './tokens';
 
 export interface Message {
   collapse_key: string;
@@ -19,38 +25,48 @@ export interface Message {
 
 @Injectable({ providedIn: 'root' })
 export class RxapFirebaseMessagingService {
-  readonly messaging = inject<AngularFireMessaging>(AngularFireMessaging);
+  readonly messaging = inject(FIREBASE_MESSAGING, { optional: true }) ?? null;
+  readonly vapidKey = inject(FIREBASE_MESSAGING_VAPID_KEY, { optional: true }) ?? null;
   readonly requestPermissionImminently = inject(RXAP_REQUEST_CLOUD_MESSAGING_TOKEN, { optional: true }) ?? false;
 
   public token$ = new ReplaySubject<string | null>(1);
 
   constructor() {
-    this.messaging.messages
-        .pipe(
-          tap((message: any) =>
-            this.showNotification(
-              message.notification.title,
-              message.notification.body,
-            ),
-          ),
-        )
-        .subscribe();
+    if (this.messaging) {
+      onMessage(this.messaging, message => {
+        if (message.notification?.title) {
+          this.showNotification(message.notification.title, message.notification.body ?? '');
+        }
+      });
+    }
     if (this.requestPermissionImminently) {
-      this.requestPermission();
+      void this.requestPermission();
     }
   }
 
-  public requestPermission() {
+  public async requestPermission(): Promise<void> {
+    if (!this.messaging) {
+      console.warn('firebase cloud messaging is not supported in this environment');
+      return;
+    }
     console.log('request notification permission');
-    this.messaging.requestPermission
-        .pipe(mergeMapTo(this.messaging.tokenChanges))
-        .subscribe(
-          (token) => {
-            console.info('cloud messaging permission is granted');
-            this.token$.next(token);
-          },
-          () => console.error('cloud messaging permission is denied'),
-        );
+    try {
+      const permission = await Notification.requestPermission();
+      if (permission !== 'granted') {
+        throw new Error('notification permission is not granted');
+      }
+      const serviceWorkerRegistration = typeof navigator !== 'undefined' && navigator.serviceWorker ?
+        await navigator.serviceWorker.getRegistration() :
+        undefined;
+      const token = await getToken(this.messaging, {
+        vapidKey: this.vapidKey ?? undefined,
+        serviceWorkerRegistration,
+      });
+      console.info('cloud messaging permission is granted');
+      this.token$.next(token);
+    } catch (error) {
+      console.error('cloud messaging permission is denied', error);
+    }
   }
 
   public showNotification(title: string, body: string): void {

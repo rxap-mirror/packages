@@ -1,89 +1,60 @@
 import { ApplicationInitStatus } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { FIREBASE_APP_NAME, FIREBASE_OPTIONS } from '@angular/fire/compat';
-import { ConfigService } from '@rxap/config';
-import { AppCheckService, provideAngularFireAppCheck } from './app-check';
-import { APP_CHECK_ENABLED, APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED, APP_CHECK_SITE_KEY } from './tokens';
+import {
+  AppCheckService,
+  provideFirebaseAppCheck,
+} from './app-check';
+import { FIREBASE_APP_CHECK } from './tokens';
 
-const appCheckInstance = { activate: jest.fn() };
-const factory = jest.fn();
+const appCheckInstance = { appCheck: true };
 const getTokenFn = jest.fn();
 const onTokenChangedFn = jest.fn();
 const setAutoRefresh = jest.fn();
 
-jest.mock('@angular/fire/compat', () => ({
-  ...jest.requireActual('@angular/fire/compat'),
-  ɵfirebaseAppFactory: (...a: unknown[]) => factory(...a),
-}));
-jest.mock('@angular/fire/app-check', () => ({
-  AppCheck: class {},
+jest.mock('firebase/app-check', () => ({
   getToken: (...a: unknown[]) => getTokenFn(...a),
   onTokenChanged: (...a: unknown[]) => onTokenChangedFn(...a),
   setTokenAutoRefreshEnabled: (...a: unknown[]) => setAutoRefresh(...a),
 }));
 
 describe('AppCheckService', () => {
-  function setup(extra: any[] = []) {
+  function setup(appCheck: unknown | null = null) {
     TestBed.configureTestingModule({
       providers: [
         AppCheckService,
-        { provide: ConfigService, useValue: {} },
-        { provide: FIREBASE_OPTIONS, useValue: { apiKey: 'k' } },
-        { provide: FIREBASE_APP_NAME, useValue: 'app' },
-        ...extra,
+        ...(appCheck === null ? [] : [{ provide: FIREBASE_APP_CHECK, useValue: appCheck }]),
       ],
     });
     return TestBed.inject(AppCheckService);
   }
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-    factory.mockReturnValue({ appCheck: () => appCheckInstance });
-    jest.spyOn(console, 'warn').mockImplementation();
-    jest.spyOn(console, 'error').mockImplementation();
-  });
-  afterEach(() => jest.restoreAllMocks());
+  beforeEach(() => jest.clearAllMocks());
 
-  it('warns and rejects when disabled', async () => {
-    const s = setup();
-    expect(console.warn).toHaveBeenCalledWith('App check is disabled');
-    await expect(s.getToken()).rejects.toThrow('not initialized');
-    s.setTokenAutoRefreshEnabled(true);
-    expect(setAutoRefresh).not.toHaveBeenCalled();
-    expect(factory).not.toHaveBeenCalled();
-  });
+  describe('without an app check instance (disabled or not configured)', () => {
+    it('rejects the token request and ignores the auto refresh flag', async () => {
+      const s = setup();
+      await expect(s.getToken()).rejects.toThrow('not initialized');
+      s.setTokenAutoRefreshEnabled(true);
+      expect(setAutoRefresh).not.toHaveBeenCalled();
+    });
 
-  it('errors when enabled without site key', async () => {
-    const s = setup([{ provide: APP_CHECK_ENABLED, useValue: true }]);
-    expect(console.error).toHaveBeenCalledWith('The app check site key is not provided');
-    await expect(s.getToken()).rejects.toThrow();
-  });
+    it('exposes an empty token changes stream', () => {
+      let completed = false;
+      setup().onTokenChanged$.subscribe({ complete: () => (completed = true) });
+      expect(completed).toBe(true);
+      expect(onTokenChangedFn).not.toHaveBeenCalled();
+    });
 
-  it('activates app check with the site key and auto refresh', () => {
-    setup([
-      { provide: APP_CHECK_ENABLED, useValue: true },
-      { provide: APP_CHECK_SITE_KEY, useValue: 'site' },
-      { provide: APP_CHECK_IS_TOKEN_AUTO_REFRESH_ENABLED, useValue: true },
-    ]);
-    expect(factory).toHaveBeenCalledWith({ apiKey: 'k' }, expect.anything(), 'app');
-    expect(appCheckInstance.activate).toHaveBeenCalledWith('site', true);
+    it('also works when the token is provided as null', async () => {
+      TestBed.configureTestingModule({ providers: [ AppCheckService, { provide: FIREBASE_APP_CHECK, useValue: null } ] });
+      await expect(TestBed.inject(AppCheckService).getToken()).rejects.toThrow('not initialized');
+    });
   });
 
-  it('activates with undefined auto refresh when not provided', () => {
-    setup([
-      { provide: APP_CHECK_ENABLED, useValue: true },
-      { provide: APP_CHECK_SITE_KEY, useValue: 'site' },
-    ]);
-    expect(appCheckInstance.activate).toHaveBeenCalledWith('site', undefined);
-  });
-
-  describe('when active', () => {
+  describe('with an app check instance', () => {
     let s: AppCheckService;
     beforeEach(() => {
-      s = setup([
-        { provide: APP_CHECK_ENABLED, useValue: true },
-        { provide: APP_CHECK_SITE_KEY, useValue: 'site' },
-      ]);
+      s = setup(appCheckInstance);
     });
 
     it('getToken returns the token string', async () => {
@@ -104,24 +75,26 @@ describe('AppCheckService', () => {
       s.onTokenChanged$.subscribe({ next: (v) => values.push(v), error: (e) => (error = e), complete: () => (completed = true) });
       s.onTokenChanged$.subscribe();
       expect(onTokenChangedFn).toHaveBeenCalledTimes(1);
-      const [, next, err] = onTokenChangedFn.mock.calls[0];
+      const [ instance, next, err ] = onTokenChangedFn.mock.calls[0];
+      expect(instance).toBe(appCheckInstance);
       next({ token: 't' });
-      expect(values).toEqual([{ token: 't' }]);
+      expect(values).toEqual([ { token: 't' } ]);
       err('bad');
       expect(error).toBe('bad');
       expect(completed).toBe(false);
     });
   });
 
-  it('provideAngularFireAppCheck eagerly creates the service', async () => {
+  it('provideFirebaseAppCheck eagerly creates the service', async () => {
     TestBed.configureTestingModule({
       providers: [
-        provideAngularFireAppCheck(),
-        { provide: ConfigService, useValue: {} },
-        { provide: FIREBASE_OPTIONS, useValue: {} },
+        provideFirebaseAppCheck(),
+        { provide: FIREBASE_APP_CHECK, useValue: appCheckInstance },
       ],
     });
     await TestBed.inject(ApplicationInitStatus).donePromise;
-    expect(console.warn).toHaveBeenCalledWith('App check is disabled');
+    // the service subscribes lazily, so nothing is requested from firebase by the eager instantiation
+    expect(getTokenFn).not.toHaveBeenCalled();
+    expect(TestBed.inject(AppCheckService)).toBeInstanceOf(AppCheckService);
   });
 });

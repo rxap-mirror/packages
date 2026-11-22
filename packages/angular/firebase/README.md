@@ -19,7 +19,7 @@ yarn add @rxap/firebase
 ```
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @angular/fire @rxap/config @rxap/rxjs @rxap/utilities firebase rxjs 
+yarn add @angular/common @angular/core @rxap/config @rxap/rxjs @rxap/utilities firebase rxjs 
 ```
 **Execute the init generator:**
 ```bash

@@ -1,9 +1,53 @@
-import { NgZone } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { FIREBASE_APP_NAME, FIREBASE_OPTIONS } from '@angular/fire/compat';
-import { FirebaseApp } from '@angular/fire/app';
 import { ConfigService } from '@rxap/config';
+import { getAnalytics, setAnalyticsCollectionEnabled } from 'firebase/analytics';
+import { getApps, initializeApp } from 'firebase/app';
+import { initializeAppCheck } from 'firebase/app-check';
+import {
+  browserLocalPersistence,
+  browserSessionPersistence,
+  connectAuthEmulator,
+  getAuth,
+  inMemoryPersistence,
+  setPersistence,
+} from 'firebase/auth';
+import {
+  connectFirestoreEmulator,
+  enableIndexedDbPersistence,
+  getFirestore,
+  initializeFirestore,
+} from 'firebase/firestore';
+import { connectFunctionsEmulator, getFunctions } from 'firebase/functions';
+import { getMessaging } from 'firebase/messaging';
+import { getPerformance } from 'firebase/performance';
+import { getStorage } from 'firebase/storage';
 import * as p from './firebase.provider';
+import { FIREBASE_APP, FIREBASE_APP_NAME, FIREBASE_OPTIONS } from './tokens';
+
+jest.mock('firebase/app', () => ({ getApps: jest.fn(() => []), initializeApp: jest.fn((options, name) => ({ name, options })) }));
+jest.mock('firebase/app-check', () => ({
+  initializeAppCheck: jest.fn(() => ({ appCheck: true })),
+  ReCaptchaV3Provider: class { constructor(public siteKey: string) {} },
+}));
+jest.mock('firebase/analytics', () => ({ getAnalytics: jest.fn(() => ({ analytics: true })), setAnalyticsCollectionEnabled: jest.fn() }));
+jest.mock('firebase/auth', () => ({
+  browserLocalPersistence: { type: 'LOCAL' },
+  browserSessionPersistence: { type: 'SESSION' },
+  inMemoryPersistence: { type: 'NONE' },
+  connectAuthEmulator: jest.fn(),
+  getAuth: jest.fn(),
+  setPersistence: jest.fn(() => Promise.resolve()),
+}));
+jest.mock('firebase/firestore', () => ({
+  connectFirestoreEmulator: jest.fn(),
+  enableIndexedDbPersistence: jest.fn(() => Promise.resolve()),
+  getFirestore: jest.fn(() => ({ default: true })),
+  initializeFirestore: jest.fn(() => ({ custom: true })),
+}));
+jest.mock('firebase/functions', () => ({ connectFunctionsEmulator: jest.fn(), getFunctions: jest.fn(() => ({ functions: true })) }));
+jest.mock('firebase/messaging', () => ({ getMessaging: jest.fn(() => ({ messaging: true })) }));
+jest.mock('firebase/performance', () => ({ getPerformance: jest.fn() }));
+jest.mock('firebase/storage', () => ({ getStorage: jest.fn() }));
 
 function config(values: Record<string, unknown>) {
   return {
@@ -94,20 +138,249 @@ describe('firebase provider factories', () => {
       }
     }
   });
+});
 
-  it('FirebaseApp provider works with the NgZone of the zoneless test environment', () => {
+describe('firebase instance factories', () => {
+  const app: any = { name: '[DEFAULT]', options: {} };
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    jest.spyOn(console, 'warn').mockImplementation();
+    jest.spyOn(console, 'error').mockImplementation();
+  });
+  afterEach(() => jest.restoreAllMocks());
+
+  describe('FirebaseAppFactory', () => {
+    it('initializes the default app', () => {
+      const result = p.FirebaseAppFactory({ apiKey: 'k', projectId: 'p' });
+      expect(initializeApp).toHaveBeenCalledWith({ apiKey: 'k', projectId: 'p' }, '[DEFAULT]');
+      expect(result.name).toBe('[DEFAULT]');
+    });
+
+    it('initializes a named app', () => {
+      p.FirebaseAppFactory({ apiKey: 'k', projectId: 'p' }, 'named');
+      expect(initializeApp).toHaveBeenCalledWith({ apiKey: 'k', projectId: 'p' }, 'named');
+    });
+
+    it('reuses an app that is already initialized', () => {
+      const existing = { name: 'named' };
+      (getApps as jest.Mock).mockReturnValueOnce([ existing ]);
+      expect(p.FirebaseAppFactory({ apiKey: 'k', projectId: 'p' }, 'named')).toBe(existing);
+      expect(initializeApp).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('FirebaseAuthFactory', () => {
+    let auth: any;
+    beforeEach(() => {
+      auth = { settings: {}, useDeviceLanguage: jest.fn() };
+      (getAuth as jest.Mock).mockReturnValue(auth);
+    });
+
+    it('returns the plain auth instance without configuration', () => {
+      expect(p.FirebaseAuthFactory(app, config({}))).toBe(auth);
+      expect(connectAuthEmulator).not.toHaveBeenCalled();
+      expect(setPersistence).not.toHaveBeenCalled();
+    });
+
+    it('applies the configuration', () => {
+      p.FirebaseAuthFactory(app, config({
+        'firebase.emulator.auth': [ 'localhost', 9099 ],
+        'firebase.auth.tenantId': 'tenant',
+        'firebase.auth.languageCode': 'de',
+        'firebase.auth.useDeviceLanguage': true,
+        'firebase.auth.settings': { appVerificationDisabledForTesting: true },
+      }));
+      expect(connectAuthEmulator).toHaveBeenCalledWith(auth, 'http://localhost:9099');
+      expect(auth.tenantId).toBe('tenant');
+      expect(auth.languageCode).toBe('de');
+      expect(auth.useDeviceLanguage).toHaveBeenCalled();
+      expect(auth.settings).toEqual({ appVerificationDisabledForTesting: true });
+    });
+
+    it.each([
+      [ 'local', browserLocalPersistence ],
+      [ 'session', browserSessionPersistence ],
+      [ 'none', inMemoryPersistence ],
+      [ true, browserLocalPersistence ],
+    ])('maps the persistence %s', (value, expected) => {
+      p.FirebaseAuthFactory(app, config({ 'firebase.auth.persistence': value }));
+      expect(setPersistence).toHaveBeenCalledWith(auth, expected);
+    });
+
+    it('warns about an unknown persistence', () => {
+      p.FirebaseAuthFactory(app, config({ 'firebase.auth.persistence': 'bogus' }));
+      expect(setPersistence).not.toHaveBeenCalled();
+      expect(console.warn).toHaveBeenCalled();
+    });
+  });
+
+  describe('FirebaseFirestoreFactory', () => {
+    it('uses getFirestore without settings', () => {
+      expect(p.FirebaseFirestoreFactory(app, config({}))).toEqual({ default: true });
+      expect(initializeFirestore).not.toHaveBeenCalled();
+      expect(enableIndexedDbPersistence).not.toHaveBeenCalled();
+    });
+
+    it('uses initializeFirestore with settings, the emulator and the persistence', () => {
+      const result = p.FirebaseFirestoreFactory(app, config({
+        'firebase.firestore.settings': { ignoreUndefinedProperties: true },
+        'firebase.emulator.firestore': [ 'localhost', 8080 ],
+        'firebase.firestore.enablePersistence': true,
+        'firebase.firestore.persistenceSettings': { forceOwnership: true },
+      }));
+      expect(result).toEqual({ custom: true });
+      expect(initializeFirestore).toHaveBeenCalledWith(app, { ignoreUndefinedProperties: true });
+      expect(getFirestore).not.toHaveBeenCalled();
+      expect(connectFirestoreEmulator).toHaveBeenCalledWith(result, 'localhost', 8080);
+      expect(enableIndexedDbPersistence).toHaveBeenCalledWith(result, { forceOwnership: true });
+    });
+  });
+
+  describe('FirebaseFunctionsFactory', () => {
+    it('prefers the region over the origin', () => {
+      p.FirebaseFunctionsFactory(app, config({ 'firebase.functions.region': 'eu', 'firebase.functions.origin': 'o' }));
+      expect(getFunctions).toHaveBeenCalledWith(app, 'eu');
+    });
+
+    it('falls back to the origin and connects the emulator', () => {
+      const result = p.FirebaseFunctionsFactory(app, config({
+        'firebase.functions.origin': 'https://f.example.com',
+        'firebase.emulator.functions': [ 'localhost', 5001 ],
+      }));
+      expect(getFunctions).toHaveBeenCalledWith(app, 'https://f.example.com');
+      expect(connectFunctionsEmulator).toHaveBeenCalledWith(result, 'localhost', 5001);
+    });
+
+    it('uses the default region without configuration', () => {
+      p.FirebaseFunctionsFactory(app, config({}));
+      expect(getFunctions).toHaveBeenCalledWith(app, undefined);
+    });
+  });
+
+  describe('FirebaseStorageFactory', () => {
+    it('configures the bucket and the retry times', () => {
+      const storage: any = {};
+      (getStorage as jest.Mock).mockReturnValue(storage);
+      expect(p.FirebaseStorageFactory(app, config({
+        'firebase.storage.bucket': 'gs://b',
+        'firebase.storage.maxUploadRetryTime': 1000,
+        'firebase.storage.maxOperationRetryTime': 2000,
+      }))).toBe(storage);
+      expect(getStorage).toHaveBeenCalledWith(app, 'gs://b');
+      expect(storage.maxUploadRetryTime).toBe(1000);
+      expect(storage.maxOperationRetryTime).toBe(2000);
+    });
+
+    it('keeps the sdk defaults without configuration', () => {
+      const storage: any = {};
+      (getStorage as jest.Mock).mockReturnValue(storage);
+      p.FirebaseStorageFactory(app, config({}));
+      expect(getStorage).toHaveBeenCalledWith(app, undefined);
+      expect(storage).toEqual({});
+    });
+  });
+
+  describe('FirebaseMessagingFactory', () => {
+    const original = Object.getOwnPropertyDescriptor(navigator, 'serviceWorker');
+    afterEach(() => {
+      if (original) Object.defineProperty(navigator, 'serviceWorker', original);
+      else delete (navigator as any).serviceWorker;
+    });
+
+    it('returns null if service workers are not supported', () => {
+      delete (navigator as any).serviceWorker;
+      expect(p.FirebaseMessagingFactory(app)).toBeNull();
+      expect(getMessaging).not.toHaveBeenCalled();
+    });
+
+    it('returns the messaging instance', () => {
+      Object.defineProperty(navigator, 'serviceWorker', { configurable: true, value: {} });
+      expect(p.FirebaseMessagingFactory(app)).toEqual({ messaging: true });
+    });
+
+    it('returns null if the sdk reports the environment as unsupported', () => {
+      Object.defineProperty(navigator, 'serviceWorker', { configurable: true, value: {} });
+      (getMessaging as jest.Mock).mockImplementationOnce(() => {
+        throw new Error('unsupported');
+      });
+      expect(p.FirebaseMessagingFactory(app)).toBeNull();
+    });
+  });
+
+  describe('FirebaseAnalyticsFactory', () => {
+    it('applies the collection flag', () => {
+      expect(p.FirebaseAnalyticsFactory(app, config({ 'firebase.analytics.enabled': false }))).toEqual({ analytics: true });
+      expect(setAnalyticsCollectionEnabled).toHaveBeenCalledWith({ analytics: true }, false);
+    });
+
+    it('does not touch the collection flag when it is not configured', () => {
+      p.FirebaseAnalyticsFactory(app, config({}));
+      expect(setAnalyticsCollectionEnabled).not.toHaveBeenCalled();
+    });
+
+    it('returns null if analytics is not available', () => {
+      (getAnalytics as jest.Mock).mockImplementationOnce(() => {
+        throw new Error('unavailable');
+      });
+      expect(p.FirebaseAnalyticsFactory(app, config({}))).toBeNull();
+    });
+  });
+
+  describe('FirebasePerformanceFactory', () => {
+    it('applies the configured flags', () => {
+      const performance: any = {};
+      (getPerformance as jest.Mock).mockReturnValue(performance);
+      p.FirebasePerformanceFactory(app, config({
+        'firebase.performance.instrumentationEnabled': false,
+        'firebase.performance.dataCollectionEnabled': true,
+      }));
+      expect(performance).toEqual({ instrumentationEnabled: false, dataCollectionEnabled: true });
+    });
+
+    it('leaves the flags untouched without configuration', () => {
+      const performance: any = {};
+      (getPerformance as jest.Mock).mockReturnValue(performance);
+      p.FirebasePerformanceFactory(app, config({}));
+      expect(performance).toEqual({});
+    });
+  });
+
+  describe('FirebaseAppCheckFactory', () => {
+    it('returns null and warns when disabled', () => {
+      expect(p.FirebaseAppCheckFactory(app, null, 'site', null)).toBeNull();
+      expect(console.warn).toHaveBeenCalledWith('App check is disabled');
+      expect(initializeAppCheck).not.toHaveBeenCalled();
+    });
+
+    it('returns null and errors when enabled without site key', () => {
+      expect(p.FirebaseAppCheckFactory(app, true, null, null)).toBeNull();
+      expect(console.error).toHaveBeenCalledWith('The app check site key is not provided');
+    });
+
+    it('initializes app check with the reCAPTCHA v3 provider', () => {
+      expect(p.FirebaseAppCheckFactory(app, true, 'site', true)).toEqual({ appCheck: true });
+      const [ calledApp, options ] = (initializeAppCheck as jest.Mock).mock.calls[0];
+      expect(calledApp).toBe(app);
+      expect(options.provider.siteKey).toBe('site');
+      expect(options.isTokenAutoRefreshEnabled).toBe(true);
+    });
+
+    it('passes undefined for the auto refresh flag when it is not configured', () => {
+      p.FirebaseAppCheckFactory(app, true, 'site', null);
+      expect((initializeAppCheck as jest.Mock).mock.calls[0][1].isTokenAutoRefreshEnabled).toBeUndefined();
+    });
+  });
+
+  it('FIREBASE_APP is created from the configured options and name', () => {
     TestBed.configureTestingModule({
       providers: [
-        { provide: FIREBASE_OPTIONS, useValue: { apiKey: 'k', projectId: 'zoneless-test' } },
-        { provide: FIREBASE_APP_NAME, useValue: 'zoneless-test-app' },
-        // the compat factory only needs NgZone.runOutsideAngular, which the zoneless NoopNgZone provides
-        p.FIREBASE_APP_PROVIDERS.filter((provider: any) => provider.provide === FirebaseApp),
+        { provide: ConfigService, useValue: config({ 'firebase.options': { apiKey: 'k', projectId: 'p' }, 'firebase.name': 'configured' }) },
+        p.FIREBASE_APP_PROVIDERS,
       ],
     });
-    expect(TestBed.inject(NgZone).constructor.name).toBe('NoopNgZone');
-    const app = TestBed.inject(FirebaseApp);
-    expect(app).toBeDefined();
-    expect(app.name).toBe('zoneless-test-app');
-    expect(app.options.projectId).toBe('zoneless-test');
+    expect(TestBed.inject(FIREBASE_OPTIONS)).toEqual({ apiKey: 'k', projectId: 'p' });
+    expect(TestBed.inject(FIREBASE_APP_NAME)).toBe('configured');
+    expect(TestBed.inject(FIREBASE_APP).name).toBe('configured');
   });
 });

@@ -9,18 +9,16 @@ import {
   from,
   Observable,
 } from 'rxjs';
-import {
-  AppCheck,
-  getToken,
-} from '@angular/fire/app-check';
+import { getToken } from 'firebase/app-check';
 import {
   APP_CHECK_ENABLED,
+  FIREBASE_APP_CHECK,
   FIREBASE_APP_CHECK_HTTP_INTERCEPTOR_URL_PATTERN,
 } from './tokens';
 
 @Injectable()
 export class FirebaseAppCheckHttpInterceptor implements HttpInterceptor {
-  readonly appCheck = inject(AppCheck);
+  readonly appCheck = inject(FIREBASE_APP_CHECK, { optional: true }) ?? null;
   private readonly enabled = inject(APP_CHECK_ENABLED, { optional: true });
 
 
@@ -33,7 +31,7 @@ export class FirebaseAppCheckHttpInterceptor implements HttpInterceptor {
   }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (this.enabled && this.isMatch(req)) {
+    if (this.enabled && this.appCheck && this.isMatch(req)) {
       return from(getToken(this.appCheck)).pipe(
         map(response => response.token),
         switchMap(token => next.handle(req.clone({

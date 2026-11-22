@@ -10,7 +10,6 @@
   "peerDependencies": {
     "@angular/common": "^22.3.0",
     "@angular/core": "^22.3.0",
-    "@angular/fire": "^7.5.0",
     "@rxap/config": "^22.0.0-dev.0",
     "@rxap/rxjs": "^1.1.18",
     "@rxap/utilities": "^16.5.2",
@@ -45,10 +44,6 @@
       {
         "package": "@angular/core",
         "version": "22.3.0"
-      },
-      {
-        "package": "@angular/fire",
-        "version": "7.5.0"
       },
       {
         "package": "@angular/platform-browser",

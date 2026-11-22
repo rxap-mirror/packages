@@ -206,7 +206,6 @@
           "@angular/common",
           "@angular/compiler",
           "@angular/core",
-          "@angular/fire",
           "@angular/forms",
           "@angular/localize",
           "@angular/material",

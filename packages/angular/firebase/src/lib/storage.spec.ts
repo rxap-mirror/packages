@@ -1,31 +1,32 @@
 import { ApplicationInitStatus } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { provideAngularFireStorageEmulator, USE_STORAGE_EMULATOR } from './storage';
+import { provideFirebaseStorageEmulator, USE_STORAGE_EMULATOR } from './storage';
+import { FIREBASE_STORAGE } from './tokens';
 
-jest.mock('@angular/fire/compat/storage', () => ({ AngularFireStorage: class {} }));
+const connectStorageEmulator = jest.fn();
+jest.mock('firebase/storage', () => ({ connectStorageEmulator: (...a: unknown[]) => connectStorageEmulator(...a) }));
 
-describe('provideAngularFireStorageEmulator', () => {
-  const useEmulator = jest.fn();
+describe('provideFirebaseStorageEmulator', () => {
+  const storage = { storage: true };
   const setup = (emulator?: [string, number]) => {
     TestBed.configureTestingModule({
       providers: [
-        provideAngularFireStorageEmulator(),
-        { provide: AngularFireStorage, useValue: { storage: { useEmulator } } },
+        provideFirebaseStorageEmulator(),
+        { provide: FIREBASE_STORAGE, useValue: storage },
         ...(emulator ? [{ provide: USE_STORAGE_EMULATOR, useValue: emulator }] : []),
       ],
     });
     return TestBed.inject(ApplicationInitStatus).donePromise;
   };
-  beforeEach(() => useEmulator.mockReset());
+  beforeEach(() => connectStorageEmulator.mockReset());
 
   it('connects to the emulator when configured', async () => {
     await setup(['localhost', 9199]);
-    expect(useEmulator).toHaveBeenCalledWith('localhost', 9199);
+    expect(connectStorageEmulator).toHaveBeenCalledWith(storage, 'localhost', 9199);
   });
 
   it('does nothing without emulator configuration', async () => {
     await setup();
-    expect(useEmulator).not.toHaveBeenCalled();
+    expect(connectStorageEmulator).not.toHaveBeenCalled();
   });
 });
