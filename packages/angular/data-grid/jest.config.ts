@@ -3,6 +3,7 @@ module.exports = {
   displayName: 'angular-data-grid',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  coveragePathIgnorePatterns: ['/node_modules/', '\\.cy\\.ts$'],
   coverageDirectory: '../../../coverage/packages/angular/data-grid',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [

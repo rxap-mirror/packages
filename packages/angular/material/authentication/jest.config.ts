@@ -3,6 +3,7 @@ module.exports = {
   displayName: 'angular-material-authentication',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  coveragePathIgnorePatterns: ['/node_modules/', '\\.(cy|stories)\\.ts$'],
   coverageDirectory:
     '../../../../coverage/packages/angular/material/authentication',
   transform: {

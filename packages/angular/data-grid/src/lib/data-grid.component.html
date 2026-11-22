@@ -25,7 +25,7 @@ never shown. -->
     }
     <tbody>
       @for (row of rows$ | async; track row; let first = $first) {
-        @if ((!displayProperties() || row.isSubHeader || (row.name() && displayProperties()?.includes(row.name()!))) && (!hideEmptyProperties() || false === (data$ | isEmpty: row.name() | async))) {
+        @if ((!displayProperties() || row.isSubHeader || (row.name() && displayProperties()?.includes(row.name()!))) && (!hideEmptyProperties() || row.isSubHeader || false === (data$ | isEmpty: row.name() | async))) {
           <!-- region horizontal view -->
           @if (row.flip()) {
             <tr>

@@ -3,6 +3,7 @@ module.exports = {
   displayName: 'angular-material-localize',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  coveragePathIgnorePatterns: ['/node_modules/', '\\.(cy|stories)\\.ts$'],
   coverageDirectory: '../../../../coverage/packages/angular/material/localize',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [

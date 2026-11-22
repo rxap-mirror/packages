@@ -7,5 +7,7 @@ module.exports = {
     '^.+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json' }],
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
+  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  coveragePathIgnorePatterns: ['/node_modules/', '\\.(cy|stories)\\.ts$'],
   coverageDirectory: '../../../coverage/packages/schematic/nestjs',
 };

@@ -3,6 +3,7 @@ module.exports = {
   displayName: 'angular-material-table-window-system',
   preset: '../../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  coveragePathIgnorePatterns: ['/node_modules/', '\\.(cy|stories)\\.ts$'],
   coverageDirectory:
     '../../../../coverage/packages/angular/material/table-window-system',
   transform: {
