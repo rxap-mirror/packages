@@ -1,3 +1,14 @@
+## 0.1.9-dev.1 (2026-11-22)
+
+### 🔥 Performance
+
+- speed up index-export and jest transforms
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 0.1.9-dev.0 (2026-11-20)
 
 This was a version bump only for n8n-nodes-yaml to align it with other projects, there were no code changes.

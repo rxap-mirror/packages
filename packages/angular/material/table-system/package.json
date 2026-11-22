@@ -1,5 +1,5 @@
 {
-  "version": "21.0.1-dev.0",
+  "version": "21.0.1-dev.1",
   "name": "@rxap/material-table-system",
   "description": "This package provides a set of Angular directives, components, and services to enhance and customize Angular Material tables. It includes features such as row selection, column filtering, expandable rows, table actions, and more. The goal is to simplify common table-related tasks and provide a more flexible and feature-rich table experience.\n",
   "license": "GPL-3.0-or-later",
@@ -15,16 +15,16 @@
     "@angular/forms": "^21.2.9",
     "@angular/material": "^21.2.9",
     "@angular/router": "^21.2.9",
-    "@rxap/components": "^21.0.1-dev.0",
-    "@rxap/data-source": "^21.0.1-dev.0",
-    "@rxap/directives": "^21.0.1-dev.0",
-    "@rxap/forms": "^21.0.1-dev.0",
-    "@rxap/material-directives": "^21.0.1-dev.0",
-    "@rxap/pattern": "^1.1.16-dev.0",
-    "@rxap/reflect-metadata": "^1.0.18-dev.0",
-    "@rxap/rxjs": "^1.1.18-dev.0",
-    "@rxap/utilities": "^16.5.2-dev.0",
-    "@rxap/window-system": "^21.0.1-dev.0",
+    "@rxap/components": "^21.0.1-dev.1",
+    "@rxap/data-source": "^21.0.1-dev.1",
+    "@rxap/directives": "^21.0.1-dev.1",
+    "@rxap/forms": "^21.0.1-dev.1",
+    "@rxap/material-directives": "^21.0.1-dev.1",
+    "@rxap/pattern": "^1.1.16-dev.1",
+    "@rxap/reflect-metadata": "^1.0.18-dev.1",
+    "@rxap/rxjs": "^1.1.18-dev.1",
+    "@rxap/utilities": "^16.5.2-dev.1",
+    "@rxap/window-system": "^21.0.1-dev.1",
     "rxjs": "^7.8.2"
   },
   "author": {
@@ -83,71 +83,71 @@
       },
       {
         "package": "@rxap/browser-utilities",
-        "version": "1.1.15-dev.0"
+        "version": "1.1.15-dev.1"
       },
       {
         "package": "@rxap/components",
-        "version": "21.0.1-dev.0"
+        "version": "21.0.1-dev.1"
       },
       {
         "package": "@rxap/data-source",
-        "version": "21.0.1-dev.0"
+        "version": "21.0.1-dev.1"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.19-dev.0"
+        "version": "1.1.19-dev.1"
       },
       {
         "package": "@rxap/definition",
-        "version": "21.0.1-dev.0"
+        "version": "21.0.1-dev.1"
       },
       {
         "package": "@rxap/directives",
-        "version": "21.0.1-dev.0"
+        "version": "21.0.1-dev.1"
       },
       {
         "package": "@rxap/environment",
-        "version": "21.0.1-dev.0"
+        "version": "21.0.1-dev.1"
       },
       {
         "package": "@rxap/forms",
-        "version": "21.0.1-dev.0"
+        "version": "21.0.1-dev.1"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "21.0.1-dev.0"
+        "version": "21.0.1-dev.1"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "21.0.1-dev.0"
+        "version": "21.0.1-dev.1"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.16-dev.0"
+        "version": "1.1.16-dev.1"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.18-dev.0"
+        "version": "1.0.18-dev.1"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.18-dev.0"
+        "version": "1.1.18-dev.1"
       },
       {
         "package": "@rxap/services",
-        "version": "21.0.1-dev.0"
+        "version": "21.0.1-dev.1"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.2-dev.0"
+        "version": "16.5.2-dev.1"
       },
       {
         "package": "@rxap/validator",
-        "version": "3.0.15-dev.0"
+        "version": "3.0.15-dev.1"
       },
       {
         "package": "@rxap/window-system",
-        "version": "21.0.1-dev.0"
+        "version": "21.0.1-dev.1"
       }
     ]
   },

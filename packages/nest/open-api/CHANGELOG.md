@@ -1,3 +1,21 @@
+## 11.0.2-dev.1 (2026-11-22)
+
+### 🔥 Performance
+
+- speed up index-export and jest transforms
+
+### 🧱 Updated Dependencies
+
+- Updated nest-utilities to 11.0.2-dev.1
+- Updated node-utilities to 1.3.13-dev.1
+- Updated nest-testing to 11.0.2-dev.1
+- Updated utilities to 16.5.2-dev.1
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 11.0.2-dev.0 (2026-11-20)
 
 ### 🩹 Fixes

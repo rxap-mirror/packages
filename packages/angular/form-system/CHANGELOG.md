@@ -1,3 +1,19 @@
+## 21.0.1-dev.1 (2026-11-22)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-remote-method to 21.0.1-dev.1
+- Updated angular-data-source to 21.0.1-dev.1
+- Updated angular-definition to 21.0.1-dev.1
+- Updated angular-open-api to 21.0.1-dev.1
+- Updated reflect-metadata to 1.0.18-dev.1
+- Updated angular-forms to 21.0.1-dev.1
+- Updated utilities to 16.5.2-dev.1
+- Updated validator to 3.0.15-dev.1
+- Updated pattern to 1.1.16-dev.1
+- Updated mixin to 16.0.17-dev.1
+- Updated rxjs to 1.1.18-dev.1
+
 ## 21.0.1-dev.0 (2026-11-20)
 
 ### 🩹 Fixes

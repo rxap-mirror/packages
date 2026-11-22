@@ -1,3 +1,36 @@
+## 21.0.1-dev.1 (2026-11-22)
+
+### 🚀 Features
+
+- **angular:** add ng-prism styleguide targets and environment showcase
+
+### 🩹 Fixes
+
+- **angular:** fix response validation, lazy tree nodes and table-select window
+
+### 🧱 Updated Dependencies
+
+- Updated angular-material-table-window-system to 21.0.1-dev.1
+- Updated angular-material-table-system to 21.0.1-dev.1
+- Updated angular-material-form-system to 21.0.1-dev.1
+- Updated angular-material-directives to 21.0.1-dev.1
+- Updated angular-window-system to 21.0.1-dev.1
+- Updated angular-data-source to 21.0.1-dev.1
+- Updated angular-form-system to 21.0.1-dev.1
+- Updated reflect-metadata to 1.0.18-dev.1
+- Updated angular-forms to 21.0.1-dev.1
+- Updated angular-pipes to 21.0.1-dev.1
+- Updated utilities to 16.5.2-dev.1
+- Updated pattern to 1.1.16-dev.1
+- Updated mixin to 16.0.17-dev.1
+- Updated rxjs to 1.1.18-dev.1
+
+### ❤️ Thank You
+
+- Claude Opus 5.5
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 21.0.1-dev.0 (2026-11-20)
 
 ### 🩹 Fixes

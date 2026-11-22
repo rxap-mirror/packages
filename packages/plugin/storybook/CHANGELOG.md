@@ -1,3 +1,21 @@
+## 22.0.1-dev.1 (2026-11-22)
+
+### 🔥 Performance
+
+- speed up index-export and jest transforms
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 22.0.1-dev.1
+- Updated workspace-ts-morph to 22.0.1-dev.1
+- Updated utilities to 16.5.2-dev.1
+- Updated ts-morph to 1.7.1-dev.1
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 22.0.1-dev.0 (2026-11-20)
 
 ### 🧱 Updated Dependencies

@@ -1,3 +1,7 @@
+## 21.0.1-dev.1 (2026-11-22)
+
+This was a version bump only for angular-handlebars to align it with other projects, there were no code changes.
+
 ## 21.0.1-dev.0 (2026-11-20)
 
 This was a version bump only for angular-handlebars to align it with other projects, there were no code changes.

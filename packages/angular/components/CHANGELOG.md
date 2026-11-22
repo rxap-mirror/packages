@@ -1,3 +1,24 @@
+## 21.0.1-dev.1 (2026-11-22)
+
+### 🚀 Features
+
+- **angular:** add ng-prism showcases from the leaf library outwards
+- **angular:** add ng-prism styleguide targets and environment showcase
+
+### 🧱 Updated Dependencies
+
+- Updated angular-environment to 21.0.1-dev.1
+- Updated angular-open-api to 21.0.1-dev.1
+- Updated angular-config to 21.0.1-dev.1
+- Updated angular-icon to 21.0.1-dev.1
+- Updated utilities to 16.5.2-dev.1
+- Updated rxjs to 1.1.18-dev.1
+
+### ❤️ Thank You
+
+- Claude Opus 5.5
+- Merzough Münker
+
 ## 21.0.1-dev.0 (2026-11-20)
 
 ### 🩹 Fixes

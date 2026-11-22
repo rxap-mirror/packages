@@ -1,3 +1,19 @@
+## 21.0.1-dev.1 (2026-11-22)
+
+### 🩹 Fixes
+
+- **angular:** fix open items in config, theme, authorization and data-source
+
+### 🧱 Updated Dependencies
+
+- Updated angular-config to 21.0.1-dev.1
+- Updated utilities to 16.5.2-dev.1
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 21.0.1-dev.0 (2026-11-20)
 
 ### 🩹 Fixes

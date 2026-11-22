@@ -1,3 +1,20 @@
+## 21.0.1-dev.1 (2026-11-22)
+
+### 🔥 Performance
+
+- speed up index-export and jest transforms
+
+### 🧱 Updated Dependencies
+
+- Updated schematic-utilities to 21.0.1-dev.1
+- Updated schematic-ts-morph to 21.0.1-dev.1
+- Updated xml-parser to 16.3.2-dev.1
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 21.0.1-dev.0 (2026-11-20)
 
 ### 🩹 Fixes

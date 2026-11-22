@@ -1,3 +1,12 @@
+## 21.0.1-dev.1 (2026-11-22)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-environment to 21.0.1-dev.1
+- Updated angular-pub-sub to 21.0.1-dev.1
+- Updated angular-config to 21.0.1-dev.1
+- Updated utilities to 16.5.2-dev.1
+
 ## 21.0.1-dev.0 (2026-11-20)
 
 ### 🩹 Fixes

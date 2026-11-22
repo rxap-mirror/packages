@@ -1,3 +1,10 @@
+## 21.0.1-dev.1 (2026-11-22)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-authentication to 21.0.1-dev.1
+- Updated rxjs to 1.1.18-dev.1
+
 ## 21.0.1-dev.0 (2026-11-20)
 
 ### 🩹 Fixes

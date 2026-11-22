@@ -1,3 +1,31 @@
+## 21.0.1-dev.1 (2026-11-22)
+
+### 🚀 Features
+
+- **angular:** add ng-prism showcases from the leaf library outwards
+- **angular:** add ng-prism styleguide targets and environment showcase
+
+### 🧱 Updated Dependencies
+
+- Updated angular-material-directives to 21.0.1-dev.1
+- Updated angular-data-source to 21.0.1-dev.1
+- Updated angular-environment to 21.0.1-dev.1
+- Updated workspace-utilities to 22.0.1-dev.1
+- Updated workspace-ts-morph to 22.0.1-dev.1
+- Updated browser-utilities to 1.1.15-dev.1
+- Updated angular-pub-sub to 21.0.1-dev.1
+- Updated angular-config to 21.0.1-dev.1
+- Updated angular-theme to 21.0.1-dev.1
+- Updated angular-icon to 21.0.1-dev.1
+- Updated utilities to 16.5.2-dev.1
+- Updated ts-morph to 1.7.1-dev.1
+- Updated pattern to 1.1.16-dev.1
+
+### ❤️ Thank You
+
+- Claude Opus 5.5
+- Merzough Münker
+
 ## 21.0.1-dev.0 (2026-11-20)
 
 ### 🩹 Fixes

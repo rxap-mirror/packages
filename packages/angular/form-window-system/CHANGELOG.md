@@ -1,3 +1,25 @@
+## 21.0.1-dev.1 (2026-11-22)
+
+### 🩹 Fixes
+
+- **angular:** repair signal migration fallout in data-source, directives, remote-method
+
+### 🧱 Updated Dependencies
+
+- Updated angular-window-system to 21.0.1-dev.1
+- Updated angular-form-system to 21.0.1-dev.1
+- Updated angular-directives to 21.0.1-dev.1
+- Updated reflect-metadata to 1.0.18-dev.1
+- Updated angular-forms to 21.0.1-dev.1
+- Updated utilities to 16.5.2-dev.1
+- Updated pattern to 1.1.16-dev.1
+- Updated rxjs to 1.1.18-dev.1
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 21.0.1-dev.0 (2026-11-20)
 
 ### 🩹 Fixes

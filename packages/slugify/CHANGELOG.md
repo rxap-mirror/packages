@@ -1,3 +1,14 @@
+## 16.0.15-dev.1 (2026-11-22)
+
+### 🔥 Performance
+
+- speed up index-export and jest transforms
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 16.0.15-dev.0 (2026-11-20)
 
 This was a version bump only for slugify to align it with other projects, there were no code changes.

@@ -1,5 +1,5 @@
 {
-  "version": "21.0.1-dev.0",
+  "version": "21.0.1-dev.1",
   "name": "@rxap/service-worker",
   "description": "Provides services and components to simplify the management of service worker updates in Angular applications. It includes features such as automatic updates, dialog prompts for updates, and logging of update events. The package also offers utilities to unregister service workers and initialize peer dependencies.\n",
   "license": "GPL-3.0-or-later",
@@ -11,8 +11,8 @@
     "@angular/common": "^21.2.9",
     "@angular/core": "^21.2.9",
     "@angular/service-worker": "^21.2.9",
-    "@rxap/environment": "^21.0.1-dev.0",
-    "@rxap/life-cycle": "^21.0.1-dev.0",
+    "@rxap/environment": "^21.0.1-dev.1",
+    "@rxap/life-cycle": "^21.0.1-dev.1",
     "rxjs": "^7.8.2"
   },
   "author": {
@@ -58,15 +58,15 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "21.0.1-dev.0"
+        "version": "21.0.1-dev.1"
       },
       {
         "package": "@rxap/life-cycle",
-        "version": "21.0.1-dev.0"
+        "version": "21.0.1-dev.1"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.2-dev.0"
+        "version": "16.5.2-dev.1"
       }
     ]
   },
