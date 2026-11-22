@@ -191,6 +191,8 @@ export class RemoteMethodTemplateCollectionDirective<ReturnType = any,
           // guard against non-array responses (null/undefined/scalar) to
           // avoid reading .length off a non-iterable and crashing
           const isArray = Array.isArray(response);
+          // a successful call clears a previous error, otherwise the error template sticks forever
+          this._error = null;
           this._empty = !isArray || response.length === 0;
           this._data = isArray ? response : [];
           this.cdr.detectChanges();

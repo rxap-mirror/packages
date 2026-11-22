@@ -49,3 +49,28 @@ describe('StandaloneApplication', () => {
   });
 
 });
+
+describe('StandaloneApplication providers and bootstrap', () => {
+  const environment = { name: 'test', production: false, app: 'test-app', tag: 'v1', origin: 'http://o' } as any;
+
+  it('builds the default config url from environment', () => {
+    const app = new StandaloneApplication(environment, TestRootComponent);
+    expect(app.configLoadOptions?.url).toBe('http://o/api/configuration/v1/test-app');
+    const fallback = new StandaloneApplication({ name: 'x', production: false, app: 'z' } as any, TestRootComponent);
+    expect(fallback.configLoadOptions?.url).toBe(`${location.origin}/api/configuration/latest/z`);
+  });
+
+  it('prepareConfig coerces providers and importProvidersFrom appends', () => {
+    const app = new StandaloneApplication(environment, TestRootComponent, {} as any);
+    (app as any).prepareConfig(app.options);
+    expect(app.options.providers).toEqual([]);
+    app.importProvidersFrom([]);
+    expect(app.options.providers).toHaveLength(1);
+  });
+
+  it('importProvidersFrom initializes providers when missing', () => {
+    const app = new StandaloneApplication(environment, TestRootComponent, {} as any);
+    app.importProvidersFrom([]);
+    expect(app.options.providers).toHaveLength(1);
+  });
+});

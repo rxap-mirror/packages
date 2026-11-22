@@ -337,9 +337,12 @@ export class ThemeService {
         if (colorPaletteConfig.base) {
           colorPalette =
             ComputeColorPalette(colorPaletteConfig.base, colorPaletteConfig.color, colorPaletteConfig.algorithm);
+        } else {
+          colorPalette = colorPaletteConfig.color;
         }
+      } else {
+        colorPalette = colorPaletteConfig.color;
       }
-      colorPalette = colorPaletteConfig.color;
     } else if (colorPaletteConfig.base) {
       colorPalette = ComputeColorPalette(colorPaletteConfig.base, {}, colorPaletteConfig.algorithm);
     }

@@ -43,9 +43,9 @@ export class AsyncActionDirective {
           this.matButton.disabled = false;
         }
         this.cdr.detectChanges();
-      });
-      result.catch(() => {
-        this.hasError$.disable();
+      }, () => {
+        this.loading$.disable();
+        this.hasError$.enable();
         if (this.matButton) {
           this.matButton.disabled = false;
         }
