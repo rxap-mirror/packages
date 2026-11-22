@@ -25,5 +25,7 @@ module.exports = {
     // @angular-devkit/schematics 21 bundles ESM-only ora v8 which jest (CJS)
     // cannot parse from node_modules; stub it (it is never used in unit tests).
     '^ora$': join(__dirname, 'tools/jest/ora-stub.js'),
+    // @ng-prism/core is ESM-only; components only import the @Showcase decorator, a runtime no-op.
+    '^@ng-prism/core$': join(__dirname, 'tools/jest/ng-prism-stub.js'),
   },
 };

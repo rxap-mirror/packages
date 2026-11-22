@@ -1,0 +1,14 @@
+@use '@angular/material' as mat;
+
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @include mat.theme(
+    (
+      color: mat.$azure-palette,
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}

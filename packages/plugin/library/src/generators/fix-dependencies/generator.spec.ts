@@ -58,6 +58,7 @@ describe('fix-dependencies generator', () => {
       `import { x } from '@scope/other';`,
       `import { u } from 'unknown-pkg';`,
       `import { join } from 'path';`,
+      `import { Showcase } from '@ng-prism/core';`,
       `import { local } from './local';`,
     ].join('\n'));
     tree.write(`${ root }/src/lib/a.spec.ts`, `import 'ignored-test-package';`);
@@ -76,6 +77,7 @@ describe('fix-dependencies generator', () => {
     }));
     expect(packageJson.peerDependencies['ignored-test-package']).toBeUndefined();
     expect(packageJson.peerDependencies['path']).toBeUndefined();
+    expect(packageJson.peerDependencies['@ng-prism/core']).toBeUndefined();
     expect(packageJson.dependencies['lodash']).toBe('4.0.0');
     expect(packageJson.dependencies['removed']).toBeUndefined();
     expect(packageJson.dependencies['@scope/lib']).toBeUndefined();

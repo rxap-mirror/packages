@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { PRISM_LIBRARY_PROVIDERS } from './library-providers';
 
 const PLACEHOLDER_ICON =
@@ -24,6 +25,8 @@ const PLACEHOLDER_ICON =
  */
 export const PRISM_HOST_PROVIDERS: Array<Provider | EnvironmentProviders> = [
   provideHttpClient(),
+  // many components use @angular/animations triggers
+  provideAnimationsAsync(),
   // the libraries use svg icons that are registered by the consuming application.
   // Every unknown svg icon is resolved to a placeholder
   provideAppInitializer(() => {

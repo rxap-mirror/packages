@@ -16,7 +16,8 @@
         "browser": "applications/prism-host/src/main.ts",
         "tsConfig": "applications/prism-host/tsconfig.app.json",
         "styles": [
-          "node_modules/highlight.js/styles/base16/solarized-dark.min.css"
+          "node_modules/highlight.js/styles/base16/solarized-dark.min.css",
+          "applications/prism-host/src/styles.scss"
         ],
         "polyfills": ["zone.js", "@angular/localize/init"],
         "allowedCommonJsDependencies": ["highlight.js", "axe-core"],

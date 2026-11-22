@@ -3,7 +3,9 @@ import {
   getProjects,
   joinPathFragments,
   readNxJson,
+  readProjectConfiguration,
   Tree,
+  updateProjectConfiguration,
 } from '@nx/devkit';
 import { relative } from 'path/posix';
 import {
@@ -56,6 +58,7 @@ import {
 } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { PRISM_LIBRARY_PROVIDERS } from './library-providers';
 
 const PLACEHOLDER_ICON = 'data:image/svg+xml;utf8,' + encodeURIComponent(
@@ -71,6 +74,8 @@ const PLACEHOLDER_ICON = 'data:image/svg+xml;utf8,' + encodeURIComponent(
  */
 export const PRISM_HOST_PROVIDERS: Array<Provider | EnvironmentProviders> = [
   provideHttpClient(),
+  // many components use @angular/animations triggers
+  provideAnimationsAsync(),
   // the libraries use svg icons that are registered by the consuming application.
   // Every unknown svg icon is resolved to a placeholder
   provideAppInitializer(() => {
@@ -87,6 +92,8 @@ const INDEX_HTML = `<!DOCTYPE html>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>RxAP Styleguide</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&amp;display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <style>* { margin: 0; padding: 0; box-sizing: border-box; } html, body { height: 100%; }</style>
 </head>
 <body>
@@ -94,6 +101,44 @@ const INDEX_HTML = `<!DOCTYPE html>
 </body>
 </html>
 `;
+
+/**
+ * Global styles for the rendered components: the angular material theme and the tailwind utilities the library
+ * templates use. The tailwind base layer (preflight) is left out, it would restyle the styleguide shell.
+ */
+const STYLES_SCSS = `@use '@angular/material' as mat;
+
+@tailwind components;
+@tailwind utilities;
+
+html {
+  @include mat.theme((
+    color: mat.$azure-palette,
+    typography: Roboto,
+    density: 0,
+  ));
+}
+`;
+
+function tailwindConfig(toRoot: string, libsDir: string) {
+  return `const { join } = require('path');
+
+/**
+ * The styleguide renders the components of all libraries, so tailwind has to scan the sources of all libraries.
+ * @type {import('tailwindcss').Config}
+ */
+module.exports = {
+  content: [
+    join(__dirname, 'src/**/*.{ts,html}'),
+    join(__dirname, '${ toRoot }/${ libsDir }/**/src/**/!(*.stories|*.spec|*.cy).{ts,html}'),
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+`;
+}
 
 const NG_PRISM_CONFIG = `import { defineConfig } from '@ng-prism/core/config';
 import { jsDocPlugin } from '@ng-prism/plugin-jsdoc';
@@ -162,9 +207,13 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
   CoerceFile(tree, joinPathFragments(appRoot, 'src/providers.ts'), PROVIDERS_TS, options.overwrite);
   UpdateLibraryProviders(tree, prismProject);
   CoerceFile(tree, joinPathFragments(appRoot, 'src/index.html'), INDEX_HTML, options.overwrite);
+  CoerceFile(tree, joinPathFragments(appRoot, 'src/styles.scss'), STYLES_SCSS, options.overwrite);
 
   const depth = appRoot.split('/').length;
   const toRoot = Array(depth).fill('..').join('/');
+  const libsDir = readNxJson(tree)?.workspaceLayout?.libsDir ?? 'libs';
+
+  CoerceFile(tree, joinPathFragments(appRoot, 'tailwind.config.js'), tailwindConfig(toRoot, libsDir), options.overwrite);
 
   CoerceFile(tree, joinPathFragments(appRoot, 'tsconfig.app.json'), JSON.stringify({
     extends: `${ toRoot }/tsconfig.base.json`,
@@ -197,7 +246,10 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
             index: joinPathFragments(appRoot, 'src/index.html'),
             browser: joinPathFragments(appRoot, 'src/main.ts'),
             tsConfig: joinPathFragments(appRoot, 'tsconfig.app.json'),
-            styles: [ 'node_modules/highlight.js/styles/base16/solarized-dark.min.css' ],
+            styles: [
+              'node_modules/highlight.js/styles/base16/solarized-dark.min.css',
+              joinPathFragments(appRoot, 'src/styles.scss'),
+            ],
             polyfills: [ 'zone.js', '@angular/localize/init' ],
             allowedCommonJsDependencies: [ 'highlight.js', 'axe-core' ],
             preserveSymlinks: true,
@@ -219,6 +271,15 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
         },
       },
     });
+  }
+
+  // hosts created by an older version of this generator do not include the global styles
+  const host = readProjectConfiguration(tree, prismProject);
+  const buildOptions = host.targets?.['build']?.options;
+  const stylesFile = joinPathFragments(appRoot, 'src/styles.scss');
+  if (buildOptions && !buildOptions.styles?.includes(stylesFile)) {
+    buildOptions.styles = [ ...(buildOptions.styles ?? []), stylesFile ];
+    updateProjectConfiguration(tree, prismProject, host);
   }
 
 }

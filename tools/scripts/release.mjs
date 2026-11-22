@@ -557,9 +557,12 @@ async function main() {
 
   // ---- 8. dist transforms (former prepack) ----
   if (!DRY_RUN) {
-    log('Dist transforms (theme export, strip workspace marker)');
+    log('Dist transforms (theme export, strip workspace marker, strip ng-prism showcases)');
     run('bash tools/scripts/add-theme-entry-point-to-package-json.sh');
     run('bash tools/scripts/remove-blacklisted-package-dependenceis.sh');
+    // the @Showcase decorators import @ng-prism/core, which is not a dependency of the published packages.
+    // Only projects with a prism-strip target (@rxap/plugin-ng-prism:init-library) run it; the build already ran.
+    run(`yarn nx run-many --targets=prism-strip --projects=${changed.join(',')} --excludeTaskDependencies --skip-nx-cache --nxBail`);
   }
 
   // ---- 9. publish the `packages` group from dist ----

@@ -92,4 +92,15 @@ describe('init-library generator', () => {
     expect(readProjectConfiguration(tree, 'ui').targets?.['prism']).toBeDefined();
   });
 
+  it('should configure the host application for material and tailwind components', async () => {
+    await initLibraryGenerator(tree, { project: 'ui', skipFormat: true });
+
+    expect(tree.read('apps/prism-host/src/providers.ts', 'utf-8')).toContain('provideAnimationsAsync()');
+    expect(tree.read('apps/prism-host/src/styles.scss', 'utf-8')).toContain('mat.theme(');
+    expect(tree.read('apps/prism-host/src/index.html', 'utf-8')).toContain('Material+Icons');
+    expect(tree.read('apps/prism-host/tailwind.config.js', 'utf-8')).toContain(`'../../libs/**/src/**/`);
+    expect(readProjectConfiguration(tree, 'prism-host').targets?.['build']?.options.styles)
+      .toContain('apps/prism-host/src/styles.scss');
+  });
+
 });

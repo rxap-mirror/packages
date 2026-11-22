@@ -110,6 +110,8 @@ const TESTING_FOLDERS = [ 'cypress', '.storybook', 'compodoc', 'docs', '.nyc_out
 const PACKAGE_REMOVE_BLACK_LIST = [ 'tslib' ];
 const PACKAGE_ADD_BLACK_LIST = [
   /@firebase/,
+  // the @Showcase decorators are removed from the built package by the prism-strip target (@rxap/plugin-ng-prism)
+  '@ng-prism/core',
   'fs',
   'path',
   'child_process',
