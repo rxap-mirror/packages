@@ -50,13 +50,14 @@ export function IsFragmentedAngularJson(angularJson: AngularJson | FragmentedAng
 
 export function GetAngularJson(host: Tree): AngularJson {
 
-  let filePath = 'angular.json';
+  let filePath = 'workspace.json';
 
-  if (HasJsonFile(host, filePath)) {
+  if (!HasJsonFile(host, filePath)) {
+    if (!HasJsonFile(host, 'angular.json')) {
+      throw new SchematicsException('Could not find angular.json or workspace.json');
+    }
     console.warn('use workspace.json instead of angular.json');
-    filePath = 'workspace.json';
-  } else if (!HasJsonFile(host, filePath)) {
-    throw new SchematicsException('Could not find angular.json or workspace.json');
+    filePath = 'angular.json';
   }
 
   let content = GetJsonFile<AngularJson | FragmentedAngularJson>(host, filePath);

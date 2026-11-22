@@ -138,7 +138,7 @@ export function GenerateHttpResource(
 
   httpOptions[
     'context'
-    ] = `new HttpContext().set(OPEN_API_OPERATION_ID, '${parameter.operationId}').set(OPEN_API_SERVER_ID, '${parameter.options.serverId}')`;
+    ] = `new HttpContext().set(OPEN_API_OPERATION_ID, '${parameter.operationId}')${parameter.options.serverId ? `.set(OPEN_API_SERVER_ID, '${parameter.options.serverId}')` : ''}`;
   httpOptions['withCredentials'] = 'true';
 
   const parameters: OptionalKind<ParameterDeclarationStructure>[] = [];

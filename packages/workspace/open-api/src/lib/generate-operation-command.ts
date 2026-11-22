@@ -157,7 +157,7 @@ export async function GenerateOperationCommand(
         name: 'OperationCommand',
         arguments: (writer) =>
           Writers.object({
-            serverId: (w) => w.quote(parameter.options.serverId!),
+            serverId: parameter.options.serverId ? (w) => w.quote(parameter.options.serverId!) : 'undefined',
             operationId: (w) => w.quote(parameter.operationId),
             operation: (w) =>
               w.quote(
