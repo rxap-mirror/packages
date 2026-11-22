@@ -26,9 +26,6 @@
       "path": "./tsconfig.editor.json"
     },
     {
-      "path": "./cypress/tsconfig.json"
-    },
-    {
       "path": "./tsconfig.compodoc.json"
     }
   ],

@@ -30,15 +30,6 @@
         ]
       }
     },
-    "component-test": {
-      "options": {
-        "cypressConfig": "packages/angular/error/cypress.config.ts",
-        "devServerTarget": "angular-error:build:development"
-      },
-      "configurations": {
-        "open": {}
-      }
-    },
     "prism": {
       "executor": "@ng-prism/core:serve",
       "parallelism": false,

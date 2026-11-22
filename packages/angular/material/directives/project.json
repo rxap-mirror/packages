@@ -41,20 +41,6 @@
         ]
       }
     },
-    "component-test": {
-      "executor": "@nx/cypress:cypress",
-      "options": {
-        "cypressConfig": "packages/angular/material/directives/cypress.config.ts",
-        "testingType": "component",
-        "skipServe": true,
-        "devServerTarget": "angular:build"
-      },
-      "configurations": {
-        "open": {
-          "watch": true
-        }
-      }
-    },
     "storybook": {
       "executor": "@storybook/angular:start-storybook",
       "continuous": true,

@@ -23,9 +23,6 @@
       "path": "./tsconfig.spec.json"
     },
     {
-      "path": "./cypress/tsconfig.json"
-    },
-    {
       "path": "./.storybook/tsconfig.json"
     },
     {

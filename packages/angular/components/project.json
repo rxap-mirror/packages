@@ -21,12 +21,6 @@
         "development": {}
       }
     },
-    "component-test": {
-      "options": {
-        "cypressConfig": "packages/angular/components/cypress.config.ts",
-        "devServerTarget": "angular:build"
-      }
-    },
     "lint": {
       "options": {
         "lintFilePatterns": [

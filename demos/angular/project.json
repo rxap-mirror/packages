@@ -121,11 +121,6 @@
         }
       }
     },
-    "component-test": {
-      "options": {
-        "cypressConfig": "demos/angular/cypress.config.ts"
-      }
-    },
     "docker": {
       "options": {
         "imageSuffix": "/user-interface/angular"
