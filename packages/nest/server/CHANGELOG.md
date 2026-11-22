@@ -1,3 +1,19 @@
+## 11.0.2 (2026-11-22)
+
+### 🔥 Performance
+
+- speed up index-export and jest transforms
+
+### 🧱 Updated Dependencies
+
+- Updated nest-utilities to 11.0.2
+- Updated utilities to 16.5.2
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 11.0.2-dev.1 (2026-11-22)
 
 ### 🔥 Performance

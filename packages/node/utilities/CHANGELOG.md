@@ -1,3 +1,22 @@
+## 1.3.13 (2026-11-22)
+
+### 🩹 Fixes
+
+- **upgrade:** lint for angular21/nx22 (prefer-inject/prefer-control-flow off, config.js boundary, rxap resolve)
+
+### 🔥 Performance
+
+- speed up index-export and jest transforms
+
+### 🧱 Updated Dependencies
+
+- Updated utilities to 16.5.2
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 1.3.13-dev.1 (2026-11-22)
 
 ### 🔥 Performance

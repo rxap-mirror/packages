@@ -1,3 +1,26 @@
+## 21.0.1 (2026-11-22)
+
+### 🚀 Features
+
+- **angular:** add ng-prism styleguide targets and environment showcase
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+
+### 🧱 Updated Dependencies
+
+- Updated angular-form-system to 21.0.1
+- Updated reflect-metadata to 1.0.18
+- Updated angular-forms to 21.0.1
+- Updated utilities to 16.5.2
+- Updated mixin to 16.0.17
+
+### ❤️ Thank You
+
+- Claude Opus 5.5
+- Merzough Münker
+
 ## 21.0.1-dev.1 (2026-11-22)
 
 ### 🚀 Features

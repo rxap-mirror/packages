@@ -1,3 +1,24 @@
+## 21.0.1 (2026-11-22)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+
+### 🧱 Updated Dependencies
+
+- Updated angular-material-table-system to 21.0.1
+- Updated angular-window-system to 21.0.1
+- Updated angular-data-source to 21.0.1
+- Updated angular-form-system to 21.0.1
+- Updated angular-forms to 21.0.1
+- Updated utilities to 16.5.2
+- Updated pattern to 1.1.16
+- Updated mixin to 16.0.17
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 21.0.1-dev.1 (2026-11-22)
 
 ### 🧱 Updated Dependencies

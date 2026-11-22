@@ -1,3 +1,14 @@
+## 1.1.16 (2026-11-22)
+
+### 🔥 Performance
+
+- speed up index-export and jest transforms
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 1.1.16-dev.1 (2026-11-22)
 
 ### 🔥 Performance

@@ -1,3 +1,23 @@
+## 22.0.1 (2026-11-22)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+- **upgrade:** jest30 env + ora ESM stub + TextEncoder polyfill casts (test infra)
+
+### 🔥 Performance
+
+- speed up index-export and jest transforms
+
+### 🧱 Updated Dependencies
+
+- Updated plugin-workspace to 22.0.1
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 22.0.1-dev.1 (2026-11-22)
 
 ### 🔥 Performance

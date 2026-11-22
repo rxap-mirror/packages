@@ -1,3 +1,25 @@
+## 11.0.3 (2026-11-22)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+
+### 🔥 Performance
+
+- speed up index-export and jest transforms
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 22.0.1
+- Updated nest-utilities to 11.0.2
+- Updated nest-logger to 11.0.3
+- Updated ts-morph to 1.7.1
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 11.0.3-dev.1 (2026-11-22)
 
 ### 🔥 Performance

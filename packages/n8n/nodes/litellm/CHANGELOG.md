@@ -1,3 +1,18 @@
+## 0.0.6 (2026-11-22)
+
+### 🩹 Fixes
+
+- **upgrade:** angular 20 / ts 5.9 code fixes across libraries
+
+### 🔥 Performance
+
+- speed up index-export and jest transforms
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 0.0.6-dev.1 (2026-11-22)
 
 ### 🔥 Performance

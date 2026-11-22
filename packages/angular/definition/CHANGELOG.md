@@ -1,3 +1,19 @@
+## 21.0.1 (2026-11-22)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+- **upgrade:** angular 20 / ts 5.9 code fixes across libraries
+
+### 🧱 Updated Dependencies
+
+- Updated reflect-metadata to 1.0.18
+- Updated utilities to 16.5.2
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 21.0.1-dev.1 (2026-11-22)
 
 ### 🧱 Updated Dependencies

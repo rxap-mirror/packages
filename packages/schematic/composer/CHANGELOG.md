@@ -1,3 +1,25 @@
+## 21.0.1 (2026-11-22)
+
+### 🩹 Fixes
+
+- **upgrade:** dedupe @angular-devkit to 21.2.16 (single instance for test type identity)
+
+### 🔥 Performance
+
+- speed up index-export and jest transforms
+
+### 🧱 Updated Dependencies
+
+- Updated schematic-utilities to 21.0.1
+- Updated workspace-utilities to 22.0.1
+- Updated schematic-ts-morph to 21.0.1
+- Updated utilities to 16.5.2
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 21.0.1-dev.1 (2026-11-22)
 
 ### 🔥 Performance

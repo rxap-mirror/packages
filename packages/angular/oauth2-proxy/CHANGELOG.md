@@ -1,3 +1,20 @@
+## 21.0.1 (2026-11-22)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+
+### 🧱 Updated Dependencies
+
+- Updated angular-data-source to 21.0.1
+- Updated angular-pub-sub to 21.0.1
+- Updated angular-config to 21.0.1
+- Updated pattern to 1.1.16
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 21.0.1-dev.1 (2026-11-22)
 
 ### 🧱 Updated Dependencies

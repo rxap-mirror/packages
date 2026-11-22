@@ -1,3 +1,18 @@
+## 0.0.7 (2026-11-22)
+
+### 🔥 Performance
+
+- speed up index-export and jest transforms
+
+### 🧱 Updated Dependencies
+
+- Updated n8n-utilities to 1.2.4
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 0.0.7-dev.1 (2026-11-22)
 
 ### 🔥 Performance

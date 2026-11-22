@@ -1,3 +1,28 @@
+## 21.0.1 (2026-11-22)
+
+### 🚀 Features
+
+- **angular:** add ng-prism showcases from the leaf library outwards
+- **angular:** add ng-prism styleguide targets and environment showcase
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+- **upgrade:** angular 20 / ts 5.9 code fixes across libraries
+
+### 🧱 Updated Dependencies
+
+- Updated angular-material-directives to 21.0.1
+- Updated angular-directives to 21.0.1
+- Updated angular-services to 21.0.1
+- Updated utilities to 16.5.2
+- Updated rxjs to 1.1.18
+
+### ❤️ Thank You
+
+- Claude Opus 5.5
+- Merzough Münker
+
 ## 21.0.1-dev.1 (2026-11-22)
 
 ### 🚀 Features

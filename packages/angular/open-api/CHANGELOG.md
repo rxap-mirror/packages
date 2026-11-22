@@ -1,3 +1,26 @@
+## 21.0.1 (2026-11-22)
+
+### 🩹 Fixes
+
+- **angular:** fix response validation, lazy tree nodes and table-select window
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+
+### 🧱 Updated Dependencies
+
+- Updated angular-remote-method to 21.0.1
+- Updated angular-data-source to 21.0.1
+- Updated angular-environment to 21.0.1
+- Updated angular-config to 21.0.1
+- Updated utilities to 16.5.2
+- Updated pattern to 1.1.16
+- Updated mixin to 16.0.17
+- Updated rxjs to 1.1.18
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 21.0.1-dev.1 (2026-11-22)
 
 ### 🩹 Fixes

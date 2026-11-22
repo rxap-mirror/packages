@@ -1,3 +1,18 @@
+## 1.2.4 (2026-11-22)
+
+### 🔥 Performance
+
+- speed up index-export and jest transforms
+
+### 🧱 Updated Dependencies
+
+- Updated utilities to 16.5.2
+
+### ❤️ Thank You
+
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 1.2.4-dev.1 (2026-11-22)
 
 ### 🔥 Performance

@@ -1,5 +1,5 @@
 {
-  "version": "21.0.1-dev.1",
+  "version": "21.0.1",
   "name": "@rxap/ngx-changelog",
   "description": "This package provides Angular components and services to display changelogs within an application. It fetches changelog data from a remote source and presents it in a user-friendly dialog or component, allowing users to view updates and changes. The package also includes features to remember the last viewed version and disable the changelog display.\n",
   "license": "GPL-3.0-or-later",
@@ -11,9 +11,9 @@
     "@angular/common": "^21.2.9",
     "@angular/core": "^21.2.9",
     "@angular/forms": "^21.2.9",
-    "@rxap/directives": "^21.0.1-dev.1",
-    "@rxap/environment": "^21.0.1-dev.1",
-    "@rxap/open-api": "^21.0.1-dev.1",
+    "@rxap/directives": "^21.0.1",
+    "@rxap/environment": "^21.0.1",
+    "@rxap/open-api": "^21.0.1",
     "ngx-markdown": "^19.1.0",
     "rxjs": "^7.8.2"
   },
@@ -63,59 +63,59 @@
       },
       {
         "package": "@rxap/config",
-        "version": "21.0.1-dev.1"
+        "version": "21.0.1"
       },
       {
         "package": "@rxap/data-source",
-        "version": "21.0.1-dev.1"
+        "version": "21.0.1"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.19-dev.1"
+        "version": "1.1.19"
       },
       {
         "package": "@rxap/definition",
-        "version": "21.0.1-dev.1"
+        "version": "21.0.1"
       },
       {
         "package": "@rxap/directives",
-        "version": "21.0.1-dev.1"
+        "version": "21.0.1"
       },
       {
         "package": "@rxap/environment",
-        "version": "21.0.1-dev.1"
+        "version": "21.0.1"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.17-dev.1"
+        "version": "16.0.17"
       },
       {
         "package": "@rxap/open-api",
-        "version": "21.0.1-dev.1"
+        "version": "21.0.1"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.16-dev.1"
+        "version": "1.1.16"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.18-dev.1"
+        "version": "1.0.18"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "21.0.1-dev.1"
+        "version": "21.0.1"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.18-dev.1"
+        "version": "1.1.18"
       },
       {
         "package": "@rxap/services",
-        "version": "21.0.1-dev.1"
+        "version": "21.0.1"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.2-dev.1"
+        "version": "16.5.2"
       }
     ]
   },

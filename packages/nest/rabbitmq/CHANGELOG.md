@@ -1,3 +1,17 @@
+## 11.0.2 (2026-11-22)
+
+### 🩹 Fixes
+
+- **upgrade:** TestBed.get->inject (removed in angular) + dedupe rxjs to single version
+
+### 🧱 Updated Dependencies
+
+- Updated utilities to 16.5.2
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 11.0.2-dev.1 (2026-11-22)
 
 ### 🧱 Updated Dependencies

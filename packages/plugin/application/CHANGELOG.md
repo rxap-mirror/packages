@@ -1,3 +1,25 @@
+## 22.0.1 (2026-11-22)
+
+### 🩹 Fixes
+
+- **upgrade:** unify handlebars version specifier to a single instance
+
+### 🔥 Performance
+
+- speed up index-export and jest transforms
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 22.0.1
+- Updated plugin-utilities to 22.0.1
+- Updated utilities to 16.5.2
+
+### ❤️ Thank You
+
+- Claude Sonnet 5
+- Claude Sonnet 5.5
+- Merzough Münker
+
 ## 22.0.1-dev.1 (2026-11-22)
 
 ### 🔥 Performance
