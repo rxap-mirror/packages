@@ -1,3 +1,7 @@
+## 24.0.0-dev.0 (2026-11-22)
+
+This was a version bump only for rxap to align it with other projects, there were no code changes.
+
 ## 22.0.1 (2026-11-22)
 
 ### 🩹 Fixes
