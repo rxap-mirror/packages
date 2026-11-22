@@ -9,6 +9,7 @@ import {
   MODULE_OPTIONS_TOKEN,
   OPTIONS_TYPE,
 } from './configurable-module-builder';
+import { HealthIndicatorService } from '@nestjs/terminus';
 import { MinioHealthIndicator } from './minio.health-indicator';
 import { MinioService } from './minio.service';
 import { MINIO_OPTIONS } from './tokens';
@@ -16,7 +17,7 @@ import { MINIO_OPTIONS } from './tokens';
 
 @Global()
 @Module({
-  providers: [ MinioService, MinioHealthIndicator ],
+  providers: [ MinioService, MinioHealthIndicator, HealthIndicatorService ],
   exports: [ MinioService, MinioHealthIndicator ],
 })
 export class MinioModule extends ConfigurableModuleClass {

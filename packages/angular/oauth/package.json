@@ -1,16 +1,16 @@
 {
-  "version": "21.0.1",
+  "version": "22.0.0",
   "name": "@rxap/oauth",
   "description": "This package provides an authentication guard and service for Angular applications using OAuth 2.0 and OpenID Connect. It simplifies the integration of authentication flows, including sign-in, sign-out, and token management, with support for disabled authentication scenarios. The package also includes a provider function to streamline configuration.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^22.1.8",
-    "@angular/router": "^22.1.8",
-    "@rxap/authentication": "^21.0.1",
+    "@angular/core": "^22.3.0",
+    "@angular/router": "^22.3.0",
+    "@rxap/authentication": "^22.0.0",
     "@rxap/rxjs": "^1.1.18",
     "angular-oauth2-oidc": "^15.0.1",
     "angular-oauth2-oidc-jwks": "^15.0.1",
@@ -39,27 +39,27 @@
     "packageGroup": [
       {
         "package": "@angular/common",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/compiler",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/core",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/router",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@rxap/authentication",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/rxjs",

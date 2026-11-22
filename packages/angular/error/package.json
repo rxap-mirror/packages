@@ -1,22 +1,22 @@
 {
-  "version": "21.0.1",
+  "version": "22.0.0",
   "name": "@rxap/ngx-error",
   "description": "This package provides a comprehensive error handling solution for Angular applications, including interceptors, services, and UI components to display different types of errors in a user-friendly dialog. It supports handling of generic errors, HTTP errors with messages or codes, and OpenAPI HTTP response errors, with customizable options for logging, displaying dialogs, and integrating with Sentry. The package aims to simplify error management and improve the user experience by providing clear and informative error messages.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^22.1.8",
-    "@angular/common": "^22.1.8",
-    "@angular/core": "^22.1.8",
-    "@rxap/components": "^21.0.1",
-    "@rxap/config": "^21.0.1",
-    "@rxap/data-grid": "^21.0.1",
-    "@rxap/environment": "^21.0.1",
-    "@rxap/open-api": "^21.0.1",
-    "@sentry/angular": "^10.10.0",
+    "@angular/cdk": "^22.3.0",
+    "@angular/common": "^22.3.0",
+    "@angular/core": "^22.3.0",
+    "@rxap/components": "^22.0.0",
+    "@rxap/config": "^22.0.0",
+    "@rxap/data-grid": "^22.0.0",
+    "@rxap/environment": "^22.0.0",
+    "@rxap/open-api": "^22.0.0",
+    "@sentry/angular": "^11.16.0",
     "rxjs": "^7.8.2"
   },
   "author": {
@@ -41,47 +41,47 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/common",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/core",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/forms",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/material",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/router",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@rxap/components",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/config",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/data-grid",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -89,19 +89,19 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/mixin",
@@ -109,7 +109,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/pattern",
@@ -117,7 +117,7 @@
       },
       {
         "package": "@rxap/pipes",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -125,7 +125,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -133,7 +133,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/utilities",
@@ -145,7 +145,7 @@
       },
       {
         "package": "@sentry/angular",
-        "version": "10.10.0"
+        "version": "11.16.0"
       }
     ]
   },

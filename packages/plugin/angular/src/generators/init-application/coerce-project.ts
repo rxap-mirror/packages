@@ -1,13 +1,9 @@
 import {
   applicationGenerator as angularApplicationGenerator,
   E2eTestRunner,
-  host as angularHostGenerator,
-  remote as angularRemoteGenerator,
   UnitTestRunner,
 } from '@nx/angular/generators';
 import { Schema as AngularApplicationGeneratorSchema } from '@nx/angular/src/generators/application/schema';
-import { Schema as AngularHostGeneratorSchema } from '@nx/angular/src/generators/host/schema';
-import { Schema as AngularRemoteGeneratorSchema } from '@nx/angular/src/generators/remote/schema';
 import { Tree } from '@nx/devkit';
 import {
   GetDefaultGeneratorOptions,
@@ -53,76 +49,37 @@ export async function CoerceProject(tree: Tree, projectName: string, options: In
   }
 
   if (options.moduleFederation) {
-
-    if (options.moduleFederation === 'host') {
-      const defaultOptions = GetDefaultGeneratorOptions<Partial<AngularHostGeneratorSchema>>(tree, '@nx/angular:host');
-      const schema: AngularHostGeneratorSchema = {
-        style: 'scss',
-        inlineStyle: false,
-        inlineTemplate: false,
-        skipTests: false,
-        skipFormat: false,
-        skipPackageJson: false,
-        unitTestRunner: UnitTestRunner.Jest,
-        e2eTestRunner: E2eTestRunner.None,
-        linter: 'eslint',
-        strict: true,
-        standaloneConfig: true,
-        ...defaultOptions,
-        directory,
-        ...formOptions,
-        name: projectName,
-        dynamic: true,
-        projectNameAndRootFormat: 'as-provided',
-      };
-      await angularHostGenerator(tree, schema);
-    } else {
-      const defaultOptions = GetDefaultGeneratorOptions<Partial<AngularRemoteGeneratorSchema>>(tree, '@nx/angular:remote');
-      const schema: AngularRemoteGeneratorSchema = {
-        style: 'scss',
-        inlineStyle: false,
-        inlineTemplate: false,
-        skipTests: false,
-        skipFormat: false,
-        skipPackageJson: false,
-        unitTestRunner: UnitTestRunner.Jest,
-        e2eTestRunner: E2eTestRunner.None,
-        linter: 'eslint',
-        strict: true,
-        standaloneConfig: true,
-        ...defaultOptions,
-        directory,
-        ...formOptions,
-        host: options.host,
-        name: projectName,
-        projectNameAndRootFormat: 'as-provided',
-      };
-      await angularRemoteGenerator(tree, schema);
-    }
-
-  } else {
-    const defaultOptions = GetDefaultGeneratorOptions<Partial<AngularApplicationGeneratorSchema>>(tree, '@nx/angular:application');
-    const schema: AngularApplicationGeneratorSchema = {
-      style: 'scss',
-      routing: true,
-      inlineStyle: false,
-      inlineTemplate: false,
-      skipTests: false,
-      skipFormat: false,
-      skipPackageJson: false,
-      unitTestRunner: UnitTestRunner.Jest,
-      e2eTestRunner: E2eTestRunner.None,
-      linter: 'eslint',
-      strict: true,
-      standaloneConfig: true,
-      minimal: true,
-      ...defaultOptions,
-      directory,
-      ...formOptions,
-      name: projectName,
-      projectNameAndRootFormat: 'as-provided',
-    };
-    await angularApplicationGenerator(tree, schema);
+    // The host and remote generators were removed from @nx/angular with Nx 24 (webpack module federation
+    // is no longer supported). Existing module federation projects can still be initialized, but new
+    // projects can not be coerced.
+    throw new Error(
+      `Can not coerce the project '${ projectName }' as module federation ${ options.moduleFederation }: ` +
+      'the host and remote generators were removed from @nx/angular in Nx 24. ' +
+      'Create the application with the application generator and initialize it without the coerce option.',
+    );
   }
+
+  const defaultOptions = GetDefaultGeneratorOptions<Partial<AngularApplicationGeneratorSchema>>(tree, '@nx/angular:application');
+  const schema: AngularApplicationGeneratorSchema = {
+    style: 'scss',
+    routing: true,
+    inlineStyle: false,
+    inlineTemplate: false,
+    skipTests: false,
+    skipFormat: false,
+    skipPackageJson: false,
+    unitTestRunner: UnitTestRunner.Jest,
+    e2eTestRunner: E2eTestRunner.None,
+    linter: 'eslint',
+    strict: true,
+    standaloneConfig: true,
+    minimal: true,
+    ...defaultOptions,
+    directory,
+    ...formOptions,
+    name: projectName,
+    projectNameAndRootFormat: 'as-provided',
+  };
+  await angularApplicationGenerator(tree, schema);
 
 }

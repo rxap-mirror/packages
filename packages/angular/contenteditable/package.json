@@ -1,14 +1,14 @@
 {
-  "version": "21.0.1",
+  "version": "22.0.0",
   "name": "@rxap/contenteditable",
   "description": "Provides an Angular directive to make any element contenteditable. It supports change detection and debouncing, and allows binding to a method for handling content changes. The package also includes an init generator for managing peer dependencies.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^22.1.8",
+    "@angular/core": "^22.3.0",
     "@rxap/pattern": "^1.1.16",
     "@rxap/utilities": "^16.5.2"
   },
@@ -36,11 +36,11 @@
     "packageGroup": [
       {
         "package": "@angular/compiler",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/core",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@rxap/pattern",

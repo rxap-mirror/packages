@@ -40,8 +40,8 @@ exports[`preset should use workspace preset 2`] = `
   "devDependencies": {
     "@commitlint/cli": "latest",
     "@commitlint/config-conventional": "latest",
-    "@nx/jest": "23.3.3",
-    "@nx/js": "23.3.3",
+    "@nx/jest": "24.0.6",
+    "@nx/js": "24.0.6",
     "@rxap/cli": "latest",
     "@rxap/schematic-composer": "latest",
     "@swc/helpers": "~0.5.18",
@@ -51,7 +51,7 @@ exports[`preset should use workspace preset 2`] = `
     "jest-environment-node": "~30.3.0",
     "jest-util": "~30.3.0",
     "nx-cloud": "latest",
-    "oxfmt": "^0.60.0",
+    "oxfmt": "^0.72.0",
     "rxap": "latest",
     "ts-jest": "^29.4.7",
     "ts-node": "10.9.1",
@@ -84,23 +84,6 @@ exports[`preset should use workspace preset 3`] = `
     },
     "lint": {
       "cache": true
-    },
-    "@nx/jest:jest": {
-      "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/jest.preset.js"
-      ],
-      "options": {
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
     }
   },
   "defaultProject": "workspace",
@@ -129,7 +112,7 @@ exports[`preset should use workspace preset 3`] = `
       "!{projectRoot}/.storybook/**/*",
       "!{projectRoot}/tsconfig.storybook.json",
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
-      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/jest.config.{cjs,mjs,js,cts,mts,ts}",
       "!{projectRoot}/test-setup.[jt]s"
     ],
     "test": [
@@ -175,7 +158,13 @@ exports[`preset should use workspace preset 3`] = `
     "packageManager": "yarn"
   },
   "plugins": [
-    "@rxap/plugin-workspace/plugin"
+    "@rxap/plugin-workspace/plugin",
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      }
+    }
   ]
 }
 "

@@ -75,7 +75,7 @@ RUN yarn install --production && yarn cache clean
 
 COPY . /app
 ",
-  "api-e2e/jest.config.cts": "export default {
+  "api-e2e/jest.config.cts": "module.exports = {
   displayName: 'api-e2e',
   preset: '../jest.preset.js',
   globalSetup: '<rootDir>/src/support/global-setup.ts',
@@ -100,7 +100,7 @@ COPY . /app
   ],
   "targets": {
     "e2e": {
-      "executor": "@nx/jest:jest",
+      "command": "jest --passWithNoTests",
       "outputs": [
         "{workspaceRoot}/coverage/{e2eProjectRoot}"
       ],
@@ -109,8 +109,7 @@ COPY . /app
         "api:serve"
       ],
       "options": {
-        "jestConfig": "api-e2e/jest.config.cts",
-        "passWithNoTests": true
+        "cwd": "api-e2e"
       }
     }
   },
@@ -205,6 +204,23 @@ module.exports = async function() {
   coverageDirectory: '../coverage/api'
 };
 ",
+  "api/package.json": "{
+  "name": "@proj/api",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@nestjs/common": "^11.0.0",
+    "@nestjs/core": "^11.0.0",
+    "@nestjs/platform-express": "^11.0.0",
+    "reflect-metadata": "^0.2.0",
+    "rxjs": "^7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@nestjs/testing": "^11.0.0"
+  }
+}
+",
   "api/project.json": "{
   "name": "api",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
@@ -219,40 +235,6 @@ module.exports = async function() {
     "express"
   ],
   "targets": {
-    "build": {
-      "executor": "@nx/webpack:webpack",
-      "outputs": [
-        "{options.outputPath}"
-      ],
-      "defaultConfiguration": "production",
-      "options": {
-        "target": "node",
-        "compiler": "tsc",
-        "outputPath": "dist/api",
-        "main": "api/src/main.ts",
-        "tsConfig": "api/tsconfig.app.json",
-        "assets": [
-          "api/src/assets"
-        ],
-        "webpackConfig": "api/webpack.config.js",
-        "generatePackageJson": true,
-        "isolatedConfig": true
-      },
-      "configurations": {
-        "development": {
-          "outputHashing": "none",
-          "progress": true
-        },
-        "production": {
-          "fileReplacements": [
-            {
-              "replace": "api/src/environments/environment.ts",
-              "with": "api/src/environments/environment.prod.ts"
-            }
-          ]
-        }
-      }
-    },
     "prune-lockfile": {
       "dependsOn": [
         "build"
@@ -294,8 +276,11 @@ module.exports = async function() {
       "dependsOn": [
         "build"
       ],
+      "readyWhen": {
+        "signal": true
+      },
       "options": {
-        "buildTarget": "api:build:development",
+        "buildTarget": "api:build",
         "runBuildTargetDependencies": false
       },
       "configurations": {
@@ -308,24 +293,25 @@ module.exports = async function() {
       }
     },
     "test": {
-      "executor": "@nx/jest:jest",
+      "options": {
+        "passWithNoTests": true
+      },
       "outputs": [
         "{workspaceRoot}/coverage/{projectName}",
         "{workspaceRoot}/junit/{projectName}"
-      ],
-      "options": {
-        "jestConfig": "api/jest.config.cts",
-        "passWithNoTests": true
-      }
+      ]
     },
     "docker": {
-      "options": {},
-      "configurations": {
-        "development": {},
-        "production": {}
-      }
+      "options": {}
     },
-    "docker-save": {}
+    "docker-save": {},
+    "build": {
+      "configurations": {
+        "development": {
+          "config": "webpack.config.dev.js"
+        }
+      }
+    }
   }
 }
 ",
@@ -444,6 +430,16 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3000;
   await app.listen(port);
+  // Set when Nx waits for this server to be ready
+  if (process.env.NX_READY_SIGNAL_SOCKET) {
+    try {
+      // Function keeps TypeScript and bundlers from rewriting or bundling the import
+      const load = new Function('s', 'return import(s)') as (s: string) => Promise<{ emitReadySignal(server: unknown): boolean }>;
+      (await load('@nx/js/ready-signal')).emitReadySignal(app.getHttpServer());
+    } catch {
+      // @nx/js isn't installed
+    }
+  }
   Logger.log(\`🚀 Application is running on: http://localhost:\${port}/\${globalPrefix}\`);
 }
 
@@ -506,27 +502,61 @@ bootstrap();
   ]
 }
 ",
-  "api/webpack.config.js": "const { composePlugins, withNx} = require('@nx/webpack');
+  "api/webpack.config.dev.js": "const { NxAppWebpackPlugin } = require('@nx/webpack/app-plugin');
+const { join } = require('path');
 
-// Nx plugins for webpack.
-module.exports = composePlugins(
-  withNx({
-    target: 'node',
-  }),
-  (config) => {
-    config.output = {
-      ...config.output,
-      ...(process.env.NODE_ENV !== 'production' && {
-      clean: true,
+module.exports = {
+  output: {
+    path: join(__dirname, '../dist/api'),
+    clean: true,
+    ...(process.env.NODE_ENV !== 'production' && {
       devtoolModuleFilenameTemplate: '[absolute-resource-path]',
-      }),
-    };
-    config.devtool = 'source-map';
-    // Update the webpack config as needed here.
-    // e.g. \`config.plugins.push(new MyPlugin())\`
-    return config;
-  }
-);
+    }),
+  },
+  plugins: [
+    new NxAppWebpackPlugin({
+      target: 'node',
+      compiler: 'tsc',
+      main: './src/main.ts',
+      tsConfig: './tsconfig.app.json',
+      assets: ["./src/assets"],
+      optimization: false,
+      outputHashing: 'none',
+      generatePackageJson: true,
+      sourceMap: true,
+    })
+  ],
+};
+",
+  "api/webpack.config.js": "const { NxAppWebpackPlugin } = require('@nx/webpack/app-plugin');
+const { join } = require('path');
+
+module.exports = {
+  output: {
+    path: join(__dirname, '../dist/api'),
+    clean: true,
+    ...(process.env.NODE_ENV !== 'production' && {
+      devtoolModuleFilenameTemplate: '[absolute-resource-path]',
+    }),
+  },
+  plugins: [
+    new NxAppWebpackPlugin({
+      target: 'node',
+      fileReplacements: [{
+        replace: 'api/src/environments/environment.ts',
+        with: 'api/src/environments/environment.prod.ts',
+      }],
+      compiler: 'tsc',
+      main: './src/main.ts',
+      tsConfig: './tsconfig.app.json',
+      assets: ["./src/assets"],
+      optimization: false,
+      outputHashing: 'none',
+      generatePackageJson: true,
+      sourceMap: true,
+    })
+  ],
+};
 ",
   "jest.config.ts": "import type { Config } from 'jest';
 import { getJestProjectsAsync } from '@nx/jest';
@@ -548,50 +578,43 @@ module.exports = { ...nxPreset };",
     "lint": {
       "cache": true
     },
-    "@nx/webpack:webpack": {
-      "cache": true,
-      "dependsOn": [
-        "^build",
-        "^index-export",
-        "index-export"
-      ],
-      "inputs": [
-        "default",
-        "^default",
-        {
-          "json": "{workspaceRoot}/tsconfig.json",
-          "fields": [
-            "extends",
-            "files",
-            "include"
-          ]
-        }
-      ]
-    },
-    "@nx/jest:jest": {
-      "cache": true,
-      "inputs": [
-        "default",
-        "^default",
-        "{workspaceRoot}/jest.preset.js"
-      ],
-      "options": {
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
     "@rxap/plugin-docker:build": {
       "options": {
         "imageRegistry": "registry.gitlab.com",
         "imageName": "proj"
       }
+    },
+    "@nx/webpack:webpack": {
+      "dependsOn": [
+        "^index-export",
+        "index-export",
+        "^build"
+      ],
+      "cache": true
     }
-  }
+  },
+  "plugins": [
+    {
+      "plugin": "@nx/webpack/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "serveTargetName": "serve",
+        "previewTargetName": "preview",
+        "buildDepsTargetName": "build-deps",
+        "watchDepsTargetName": "watch-deps",
+        "serveStaticTargetName": "serve-static"
+      }
+    },
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      },
+      "exclude": [
+        "api-e2e/**/*"
+      ]
+    }
+  ]
 }
 ",
   "package.json": "{
@@ -599,12 +622,12 @@ module.exports = { ...nxPreset };",
   "dependencies": {
     "@nestjs/cache-manager": "^3.0.1",
     "@nestjs/common": "^11.0.0",
-    "@nestjs/config": "4.0.4",
+    "@nestjs/config": "12.1.1",
     "@nestjs/core": "11.1.1",
-    "@nestjs/platform-express": "11.1.27",
+    "@nestjs/platform-express": "12.6.0",
     "@nestjs/swagger": "latest",
-    "@nestjs/terminus": "11.1.1",
-    "@nestjs/throttler": "6.5.0",
+    "@nestjs/terminus": "12.2.0",
+    "@nestjs/throttler": "6.8.0",
     "@rxap/nest-logger": "latest",
     "@rxap/nest-server": "latest",
     "@rxap/nest-utilities": "latest",
@@ -623,12 +646,12 @@ module.exports = { ...nxPreset };",
   "devDependencies": {
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.0.0",
-    "@nx/jest": "23.3.3",
-    "@nx/js": "23.3.3",
-    "@nx/nest": "23.3.3",
-    "@nx/node": "23.3.3",
-    "@nx/web": "23.3.3",
-    "@nx/webpack": "23.3.3",
+    "@nx/jest": "24.0.6",
+    "@nx/js": "24.0.6",
+    "@nx/nest": "24.0.6",
+    "@nx/node": "24.0.6",
+    "@nx/web": "24.0.6",
+    "@nx/webpack": "24.0.6",
     "@rxap/plugin-application": "latest",
     "@rxap/plugin-docker": "latest",
     "@rxap/plugin-library": "latest",
@@ -644,11 +667,12 @@ module.exports = { ...nxPreset };",
     "jest-environment-node": "~30.3.0",
     "jest-junit": "latest",
     "jest-util": "~30.3.0",
-    "oxfmt": "^0.60.0",
+    "oxfmt": "^0.72.0",
     "ts-jest": "^29.4.7",
     "ts-node": "10.9.1",
     "typescript": "~6.0.3",
     "webpack": "~5.110.0",
+    "webpack-cli": "^7.0.0",
     "webpack-dev-server": "^5.2.1"
   },
   "jest-junit": {

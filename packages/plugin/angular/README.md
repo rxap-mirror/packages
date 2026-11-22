@@ -91,6 +91,10 @@ nx g @rxap/plugin-angular:init-feature-library \
 
 ## Module Federation
 
+> **Note:** The `@nx/angular:host` and `@nx/angular:remote` generators were removed in Nx 24 (webpack module federation
+> is no longer part of `@nx/angular`). The commands below only work with Nx < 24. `init-application` can still
+> initialize an already existing host/remote project, but it refuses to coerce (`--coerce`) a new one.
+
 ### Host
 
 Use the nx generate to create a new module federation host application:

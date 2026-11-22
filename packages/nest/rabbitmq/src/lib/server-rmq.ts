@@ -22,11 +22,11 @@ import {
   CONNECTION_FAILED_MESSAGE,
   DISCONNECTED_RMQ_MESSAGE,
   NO_MESSAGE_HANDLER,
-  RQM_NO_EVENT_HANDLER,
-  RQM_NO_MESSAGE_HANDLER,
+  RMQ_NO_EVENT_HANDLER,
+  RMQ_NO_MESSAGE_HANDLER,
 } from '@nestjs/microservices/constants';
 import { RmqEventsMap } from '@nestjs/microservices/events/rmq.events';
-import { RmqRecordSerializer } from '@nestjs/microservices/serializers';
+import { RmqRecordSerializer } from '@nestjs/microservices/serializers/rmq-record.serializer';
 import { ServerRmqOptions } from './options';
 import { coerceArray } from '@rxap/utilities';
 import {
@@ -246,7 +246,7 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
       if (!(
         this.options.noAck ?? true
       )) {
-        this.logger.warn(RQM_NO_MESSAGE_HANDLER`${ pattern }`);
+        this.logger.warn(RMQ_NO_MESSAGE_HANDLER`${ pattern }`);
         this.channel!.nack(rmqContext.getMessage() as Message, false, false);
       }
       const status = 'error';
@@ -282,7 +282,7 @@ export class ServerRMQ extends Server implements CustomTransportStrategy {
       this.options.noAck ?? true
     )) {
       this.channel!.nack(context.getMessage() as Message, false, false);
-      return this.logger.warn(RQM_NO_EVENT_HANDLER`${ pattern }`);
+      return this.logger.warn(RMQ_NO_EVENT_HANDLER`${ pattern }`);
     }
     return super.handleEvent(pattern, packet, context);
   }

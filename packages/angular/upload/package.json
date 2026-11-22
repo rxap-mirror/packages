@@ -1,19 +1,19 @@
 {
-  "version": "21.0.1",
+  "version": "22.0.0",
   "name": "@rxap/upload",
   "description": "A Material Design upload button component for Angular that supports file selection, display, and download. It integrates with Angular Forms and provides visual feedback. It also includes a pipe to read files as data URLs.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^22.1.8",
-    "@angular/common": "^22.1.8",
-    "@angular/core": "^22.1.8",
-    "@angular/forms": "^22.1.8",
-    "@angular/material": "^22.1.8",
-    "@rxap/directives": "^21.0.1",
+    "@angular/cdk": "^22.3.0",
+    "@angular/common": "^22.3.0",
+    "@angular/core": "^22.3.0",
+    "@angular/forms": "^22.3.0",
+    "@angular/material": "^22.3.0",
+    "@rxap/directives": "^22.0.0",
     "@rxap/pattern": "^1.1.16",
     "rxjs": "^7.8.2"
   },
@@ -40,31 +40,31 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/common",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/core",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/forms",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/material",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/pattern",
@@ -76,7 +76,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/utilities",

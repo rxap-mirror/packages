@@ -1,19 +1,19 @@
 {
-  "version": "11.1.1",
+  "version": "12.0.0",
   "name": "@rxap/nest-jwt",
   "description": "This package provides a set of NestJS utilities for JWT (JSON Web Token) authentication and authorization. It includes guards, decorators, and a module options loader to simplify the integration of JWT-based security in NestJS applications. It allows you to easily protect your API endpoints and manage user permissions.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^11.1.27",
-    "@nestjs/config": "^4.0.4",
-    "@nestjs/core": "^11.1.27",
-    "@nestjs/cqrs": "^11.0.3",
-    "@nestjs/jwt": "^11.0.2",
-    "@rxap/nest-utilities": "^11.0.2",
+    "@nestjs/common": "^12.6.0",
+    "@nestjs/config": "^12.1.1",
+    "@nestjs/core": "^12.6.0",
+    "@nestjs/cqrs": "^12.1.3",
+    "@nestjs/jwt": "^12.0.5",
+    "@rxap/nest-utilities": "^12.0.0",
     "@rxap/pattern": "^1.1.16",
     "rxjs": "^7.8.2"
   },
@@ -39,47 +39,47 @@
     "packageGroup": [
       {
         "package": "@nestjs/cache-manager",
-        "version": "3.1.3"
+        "version": "12.0.5"
       },
       {
         "package": "@nestjs/common",
-        "version": "11.1.27"
+        "version": "12.6.0"
       },
       {
         "package": "@nestjs/config",
-        "version": "4.0.4"
+        "version": "12.1.1"
       },
       {
         "package": "@nestjs/core",
-        "version": "11.1.27"
+        "version": "12.6.0"
       },
       {
         "package": "@nestjs/cqrs",
-        "version": "11.0.3"
+        "version": "12.1.3"
       },
       {
         "package": "@nestjs/jwt",
-        "version": "11.0.2"
+        "version": "12.0.5"
       },
       {
         "package": "@nestjs/microservices",
-        "version": "11.1.27"
+        "version": "12.6.0"
       },
       {
         "package": "@nestjs/platform-express",
-        "version": "11.1.27"
+        "version": "12.6.0"
       },
       {
         "package": "@nestjs/throttler",
-        "version": "6.5.0"
+        "version": "6.8.0"
       },
       {
         "package": "@nestjs/websockets",
-        "version": "11.0.0"
+        "version": "12.0.0"
       },
       {
         "package": "@rxap/nest-utilities",
-        "version": "11.0.2"
+        "version": "12.0.0"
       },
       {
         "package": "@rxap/pattern",

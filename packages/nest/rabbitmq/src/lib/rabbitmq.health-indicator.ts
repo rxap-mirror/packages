@@ -3,20 +3,24 @@ import {
   Injectable
 } from '@nestjs/common';
 import {
-  HealthCheckError,
-  HealthIndicator,
-  HealthIndicatorResult
+  HealthIndicatorResult,
+  HealthIndicatorService
 } from '@nestjs/terminus';
 import { ClientRMQExchange } from './client-rmq-exchange';
 import { RABBITMQ_EXCHANGE } from './tokens';
 
 @Injectable()
-export class RabbitmqHealthIndicator extends HealthIndicator {
+export class RabbitmqHealthIndicator {
 
   @Inject(RABBITMQ_EXCHANGE)
   private readonly client!: ClientRMQExchange;
 
+  @Inject(HealthIndicatorService)
+  private readonly healthIndicatorService!: HealthIndicatorService;
+
   public async isHealthy(): Promise<HealthIndicatorResult> {
+
+    const indicator = this.healthIndicatorService.check('rabbitmq');
 
     // call the connect method before checking the connection.
     // only on an send or emit method called a connection will be created
@@ -26,12 +30,9 @@ export class RabbitmqHealthIndicator extends HealthIndicator {
     const isConnected = this.client.isConnected();
 
     if (isConnected) {
-      return this.getStatus('rabbitmq', true);
+      return indicator.up();
     }
 
-    throw new HealthCheckError(
-      'Connection to RabbitMQ is not established!',
-      this.getStatus('rabbitmq', false)
-    );
+    return indicator.down({ message: 'Connection to RabbitMQ is not established!' });
   }
 }

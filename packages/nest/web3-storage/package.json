@@ -1,15 +1,15 @@
 {
-  "version": "11.0.2",
+  "version": "12.0.0",
   "name": "@rxap/nest-web3-storage",
   "description": "NestJS module for interacting with web3.storage. It provides a service for uploading and retrieving data from the decentralized web using the web3.storage service. The module can be configured using the NestJS config service.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^11.1.27",
-    "@nestjs/config": "^4.0.4",
+    "@nestjs/common": "^12.6.0",
+    "@nestjs/config": "^12.1.1",
     "web3.storage": "^4.5.5"
   },
   "author": {
@@ -33,11 +33,11 @@
     "packageGroup": [
       {
         "package": "@nestjs/common",
-        "version": "11.1.27"
+        "version": "12.6.0"
       },
       {
         "package": "@nestjs/config",
-        "version": "4.0.4"
+        "version": "12.1.1"
       }
     ]
   },

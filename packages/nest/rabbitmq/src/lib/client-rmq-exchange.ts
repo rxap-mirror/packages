@@ -10,10 +10,10 @@ import {
 } from '@nestjs/microservices';
 import {
   DISCONNECTED_RMQ_MESSAGE,
-  RQM_DEFAULT_NOACK,
+  RMQ_DEFAULT_NOACK,
 } from '@nestjs/microservices/constants';
 import { RmqEventsMap } from '@nestjs/microservices/events/rmq.events';
-import { RmqRecordSerializer } from '@nestjs/microservices/serializers';
+import { RmqRecordSerializer } from '@nestjs/microservices/serializers/rmq-record.serializer';
 import { ExchangeRmqOptions } from './options';
 
 import {
@@ -190,7 +190,7 @@ export class ClientRMQExchange extends ClientProxy {
   }
 
   public async consumeChannel(channel: Channel) {
-    const noAck = this.getOptionsProp(this.options, 'noAck', RQM_DEFAULT_NOACK);
+    const noAck = this.getOptionsProp(this.options, 'noAck', RMQ_DEFAULT_NOACK);
     await channel.consume(
       this.options.replyQueue ?? REPLY_QUEUE,
       (msg: ConsumeMessage | null) => {

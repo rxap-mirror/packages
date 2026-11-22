@@ -98,13 +98,15 @@ describe('plugin-angular init-application', () => {
     await initApplicationGenerator(tree, { project: 'user-interface-demo', coerce: true, skipFormat: true } as any);
   }, 180000);
 
-  it('coerces and links a module federation host and remote', async () => {
+  it('refuses to coerce a module federation host or remote project', async () => {
     const tree = await setup([]);
-    await initApplicationGenerator(tree, { project: 'host', moduleFederation: 'host', monolithic: true, coerce: true, generateMain: true, overwrite: true, skipFormat: true } as any);
-    expect(tree.exists('user-interface/host/project.json')).toBe(true);
-    await initApplicationGenerator(tree, {
+    await expect(initApplicationGenerator(tree, {
+      project: 'host', moduleFederation: 'host', monolithic: true, coerce: true, generateMain: true, overwrite: true, skipFormat: true,
+    } as any)).rejects.toThrow(/removed from @nx\/angular in Nx 24/);
+    expect(tree.exists('user-interface/host/project.json')).toBe(false);
+    await expect(initApplicationGenerator(tree, {
       project: 'remote_x', host: 'host', coerce: true, generateMain: true, overwrite: true, skipFormat: true,
-    } as any);
-    expect(tree.exists('user-interface/remote_x/project.json')).toBe(true);
-  }, 240000);
+    } as any)).rejects.toThrow(/module federation remote/);
+    expect(tree.exists('user-interface/remote_x/project.json')).toBe(false);
+  }, 120000);
 });

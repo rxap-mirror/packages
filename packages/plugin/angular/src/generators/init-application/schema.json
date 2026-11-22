@@ -25,7 +25,7 @@
       "alias": "mfe",
       "type": "string",
       "enum": ["host", "remote"],
-      "description": "The module federation role of the project."
+      "description": "The module federation role of the project. Only supported for existing projects: new projects can not be coerced as host or remote, because the @nx/angular host and remote generators were removed in Nx 24."
     },
     "layoutRoutePath": {
       "type": "string",
@@ -41,7 +41,7 @@
     },
     "host": {
       "type": "string",
-      "description": "Host project for module federation"
+      "description": "Host project for module federation. Implies moduleFederation remote. Only supported for existing projects (see moduleFederation)."
     },
     "deploy": {
       "type": "string",

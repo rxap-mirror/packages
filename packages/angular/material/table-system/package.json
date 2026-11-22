@@ -1,30 +1,30 @@
 {
-  "version": "21.0.1",
+  "version": "22.0.0",
   "name": "@rxap/material-table-system",
   "description": "This package provides a set of Angular directives, components, and services to enhance and customize Angular Material tables. It includes features such as row selection, column filtering, expandable rows, table actions, and more. The goal is to simplify common table-related tasks and provide a more flexible and feature-rich table experience.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/animations": "^22.1.8",
-    "@angular/cdk": "^22.1.8",
-    "@angular/common": "^22.1.8",
-    "@angular/core": "^22.1.8",
-    "@angular/forms": "^22.1.8",
-    "@angular/material": "^22.1.8",
-    "@angular/router": "^22.1.8",
-    "@rxap/components": "^21.0.1",
-    "@rxap/data-source": "^21.0.1",
-    "@rxap/directives": "^21.0.1",
-    "@rxap/forms": "^21.0.1",
-    "@rxap/material-directives": "^21.0.1",
+    "@angular/animations": "^22.3.0",
+    "@angular/cdk": "^22.3.0",
+    "@angular/common": "^22.3.0",
+    "@angular/core": "^22.3.0",
+    "@angular/forms": "^22.3.0",
+    "@angular/material": "^22.3.0",
+    "@angular/router": "^22.3.0",
+    "@rxap/components": "^22.0.0",
+    "@rxap/data-source": "^22.0.0",
+    "@rxap/directives": "^22.0.0",
+    "@rxap/forms": "^22.0.0",
+    "@rxap/material-directives": "^22.0.0",
     "@rxap/pattern": "^1.1.16",
     "@rxap/reflect-metadata": "^1.0.18",
     "@rxap/rxjs": "^1.1.18",
     "@rxap/utilities": "^16.5.2",
-    "@rxap/window-system": "^21.0.1",
+    "@rxap/window-system": "^22.0.0",
     "rxjs": "^7.8.2"
   },
   "author": {
@@ -51,35 +51,35 @@
     "packageGroup": [
       {
         "package": "@angular/animations",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/cdk",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/common",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/core",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/forms",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/material",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/router",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@rxap/browser-utilities",
@@ -87,11 +87,11 @@
       },
       {
         "package": "@rxap/components",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -99,27 +99,27 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/pattern",
@@ -135,7 +135,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/utilities",
@@ -147,7 +147,7 @@
       },
       {
         "package": "@rxap/window-system",
-        "version": "21.0.1"
+        "version": "22.0.0"
       }
     ]
   },

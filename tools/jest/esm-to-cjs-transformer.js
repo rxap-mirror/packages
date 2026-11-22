@@ -4,7 +4,13 @@ const ts = require('typescript');
 
 module.exports = {
   process(sourceText, sourcePath) {
-    const { outputText } = ts.transpileModule(sourceText, {
+    // `import.meta` and a top level `const require = createRequire(...)` (used by @nestjs/* 12) are not valid in CommonJS
+    const source = sourceText
+      .replace(/const require = /g, 'const __esmRequire = ')
+      .replace(/import\.meta\.dirname/g, '__dirname')
+      .replace(/import\.meta\.filename/g, '__filename')
+      .replace(/import\.meta\.url/g, "require('url').pathToFileURL(__filename).href");
+    const { outputText } = ts.transpileModule(source, {
       // a .mjs file name would make typescript keep the ESM syntax
       fileName: sourcePath.replace(/\.m?js$/, '.js'),
       compilerOptions: {

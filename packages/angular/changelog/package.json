@@ -1,19 +1,19 @@
 {
-  "version": "21.0.1",
+  "version": "22.0.0",
   "name": "@rxap/ngx-changelog",
   "description": "This package provides Angular components and services to display changelogs within an application. It fetches changelog data from a remote source and presents it in a user-friendly dialog or component, allowing users to view updates and changes. The package also includes features to remember the last viewed version and disable the changelog display.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^22.1.8",
-    "@angular/core": "^22.1.8",
-    "@angular/forms": "^22.1.8",
-    "@rxap/directives": "^21.0.1",
-    "@rxap/environment": "^21.0.1",
-    "@rxap/open-api": "^21.0.1",
+    "@angular/common": "^22.3.0",
+    "@angular/core": "^22.3.0",
+    "@angular/forms": "^22.3.0",
+    "@rxap/directives": "^22.0.0",
+    "@rxap/environment": "^22.0.0",
+    "@rxap/open-api": "^22.0.0",
     "ngx-markdown": "^19.1.0",
     "rxjs": "^7.8.2"
   },
@@ -39,35 +39,35 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/common",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/core",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/forms",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/material",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@rxap/config",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -75,15 +75,15 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/mixin",
@@ -91,7 +91,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/pattern",
@@ -103,7 +103,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -111,7 +111,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/utilities",

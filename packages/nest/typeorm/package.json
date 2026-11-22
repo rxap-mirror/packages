@@ -1,16 +1,16 @@
 {
-  "version": "11.0.2",
+  "version": "12.0.0",
   "name": "@rxap/nest-typeorm",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^11.1.27",
-    "@nestjs/config": "^4.0.4",
-    "@nestjs/typeorm": "^11.0.2",
-    "@rxap/nest-utilities": "^11.0.2",
-    "joi": "^17.9.2",
+    "@nestjs/common": "^12.6.0",
+    "@nestjs/config": "^12.1.1",
+    "@nestjs/typeorm": "^12.0.3",
+    "@rxap/nest-utilities": "^12.0.0",
+    "joi": "^18.3.2",
     "typeorm": "^0.3.26"
   },
   "author": {

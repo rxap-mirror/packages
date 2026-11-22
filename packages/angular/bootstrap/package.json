@@ -1,19 +1,18 @@
 {
-  "version": "21.0.1",
+  "version": "22.0.0",
   "name": "@rxap/ngx-bootstrap",
   "description": "Provides base classes and utilities for bootstrapping Angular applications, including module-based and standalone components, with configuration loading and environment management. It offers abstractions for common setup tasks, such as dynamic module federation and environment updates. This package simplifies the initialization process for Angular projects.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/angular": "^23.3.3",
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^22.1.8",
-    "@angular/platform-browser": "^22.1.8",
-    "@angular/platform-browser-dynamic": "^22.1.8",
-    "@rxap/config": "^21.0.1",
-    "@rxap/environment": "^21.0.1",
+    "@angular/core": "^22.3.0",
+    "@angular/platform-browser": "^22.3.0",
+    "@angular/platform-browser-dynamic": "^22.3.0",
+    "@rxap/config": "^22.0.0",
+    "@rxap/environment": "^22.0.0",
     "ngx-logger": "^5.0.12"
   },
   "author": {
@@ -39,35 +38,35 @@
     "packageGroup": [
       {
         "package": "@angular/animations",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/common",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/compiler",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/core",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/platform-browser-dynamic",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@rxap/config",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/utilities",

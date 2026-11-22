@@ -1,32 +1,32 @@
 {
-  "version": "21.0.1",
+  "version": "22.0.0",
   "name": "@rxap/ngx-material-table-select",
   "description": "Provides components and directives to integrate a table selection window into Angular Material forms. It includes features for data binding, filtering, and display customization, making it easier to select data from a table within a form context. This package also offers decorators and mixins to streamline the configuration and extraction of data for table selection.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^22.1.8",
-    "@angular/common": "^22.1.8",
-    "@angular/core": "^22.1.8",
-    "@angular/forms": "^22.1.8",
-    "@angular/material": "^22.1.8",
-    "@rxap/data-source": "^21.0.1",
-    "@rxap/form-system": "^21.0.1",
-    "@rxap/forms": "^21.0.1",
-    "@rxap/material-directives": "^21.0.1",
-    "@rxap/material-form-system": "^21.0.1",
-    "@rxap/material-table-system": "^21.0.1",
-    "@rxap/material-table-window-system": "^21.0.1",
+    "@angular/cdk": "^22.3.0",
+    "@angular/common": "^22.3.0",
+    "@angular/core": "^22.3.0",
+    "@angular/forms": "^22.3.0",
+    "@angular/material": "^22.3.0",
+    "@rxap/data-source": "^22.0.0",
+    "@rxap/form-system": "^22.0.0",
+    "@rxap/forms": "^22.0.0",
+    "@rxap/material-directives": "^22.0.0",
+    "@rxap/material-form-system": "^22.0.0",
+    "@rxap/material-table-system": "^22.0.0",
+    "@rxap/material-table-window-system": "^22.0.0",
     "@rxap/mixin": "^16.0.17",
     "@rxap/pattern": "^1.1.16",
-    "@rxap/pipes": "^21.0.1",
+    "@rxap/pipes": "^22.0.0",
     "@rxap/reflect-metadata": "^1.0.18",
     "@rxap/rxjs": "^1.1.18",
     "@rxap/utilities": "^16.5.2",
-    "@rxap/window-system": "^21.0.1",
+    "@rxap/window-system": "^22.0.0",
     "rxjs": "^7.8.2"
   },
   "author": {
@@ -53,35 +53,35 @@
     "packageGroup": [
       {
         "package": "@angular/animations",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/cdk",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/common",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/core",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/forms",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/material",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/router",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@rxap/browser-utilities",
@@ -89,15 +89,15 @@
       },
       {
         "package": "@rxap/components",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/config",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -105,39 +105,39 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/form-system",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/material-form-system",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/material-table-window-system",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/mixin",
@@ -145,11 +145,11 @@
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/open-api",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/pattern",
@@ -157,7 +157,7 @@
       },
       {
         "package": "@rxap/pipes",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/reflect-metadata",
@@ -165,7 +165,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -173,7 +173,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/utilities",
@@ -185,7 +185,7 @@
       },
       {
         "package": "@rxap/window-system",
-        "version": "21.0.1"
+        "version": "22.0.0"
       }
     ]
   },

@@ -47,18 +47,8 @@ Run \`nx test feat\` to execute the unit tests.
   "prefix": "lib",
   "projectType": "library",
   "tags": [],
-  "targets": {
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectRoot}"
-      ],
-      "options": {
-        "jestConfig": "feat/jest.config.cts",
-        "tsConfig": "feat/tsconfig.spec.json"
-      }
-    }
-  }
+  "// targets": "to see all targets run: nx show project feat --web",
+  "targets": {}
 }
 ",
   "feat/schematic.yaml": "package: "@rxap/plugin-angular"
@@ -180,23 +170,6 @@ module.exports = { ...nxPreset };",
     "lint": {
       "cache": true
     },
-    "@nx/jest:jest": {
-      "cache": true,
-      "inputs": [
-        "default",
-        "^default",
-        "{workspaceRoot}/jest.preset.js"
-      ],
-      "options": {
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
     "@nx/js:tsc": {
       "dependsOn": [
         "^index-export",
@@ -219,6 +192,15 @@ module.exports = { ...nxPreset };",
       ]
     }
   },
+  "plugins": [
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      }
+    },
+    "@rxap/plugin-library/plugin"
+  ],
   "generators": {
     "@nx/angular:library": {
       "unitTestRunner": "jest",
@@ -227,29 +209,26 @@ module.exports = { ...nxPreset };",
     "@nx/angular:component": {
       "style": "css"
     }
-  },
-  "plugins": [
-    "@rxap/plugin-library/plugin"
-  ]
+  }
 }
 ",
   "package.json": "{
   "name": "@proj/source",
   "dependencies": {
     "@angular/core": "22.1.8",
-    "@angular/localize": "21.2.9",
-    "@angular/platform-browser-dynamic": "~22.1.0",
+    "@angular/localize": "22.3.0",
+    "@angular/platform-browser-dynamic": "~22.2.0",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@angular-devkit/core": "~22.1.0",
-    "@angular-devkit/schematics": "~22.1.0",
+    "@angular-devkit/core": "~22.2.0",
+    "@angular-devkit/schematics": "~22.2.0",
     "@angular/cli": "22.1.9",
-    "@angular/compiler-cli": "~22.1.0",
-    "@angular/language-service": "~22.1.0",
-    "@nx/jest": "23.3.3",
-    "@nx/js": "23.3.3",
-    "@schematics/angular": "~22.1.0",
+    "@angular/compiler-cli": "~22.2.0",
+    "@angular/language-service": "~22.2.0",
+    "@nx/jest": "24.0.6",
+    "@nx/js": "24.0.6",
+    "@schematics/angular": "~22.2.0",
     "@swc/helpers": "~0.5.18",
     "@types/jest": "~30.0.0",
     "@types/node": "^22.0.0",
@@ -257,7 +236,7 @@ module.exports = { ...nxPreset };",
     "jest-environment-jsdom": "~30.3.0",
     "jest-preset-angular": "~17.0.0",
     "jest-util": "~30.3.0",
-    "oxfmt": "^0.60.0",
+    "oxfmt": "^0.72.0",
     "ts-jest": "^29.4.7",
     "ts-node": "10.9.1",
     "typescript": "~6.0.3"

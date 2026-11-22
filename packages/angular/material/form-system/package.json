@@ -1,21 +1,21 @@
 {
-  "version": "21.0.1",
+  "version": "22.0.0",
   "name": "@rxap/material-form-system",
   "description": "Provides directives and a module to enhance Angular Material forms. It includes features such as displaying control errors, clearing input fields, handling required fields, and managing form field visibility based on defined conditions. The package also offers a form controls component with built-in reset, cancel, and submit functionalities.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^22.1.8",
-    "@angular/common": "^22.1.8",
-    "@angular/core": "^22.1.8",
-    "@angular/forms": "^22.1.8",
-    "@angular/material": "^22.1.8",
-    "@angular/router": "^22.1.8",
-    "@rxap/form-system": "^21.0.1",
-    "@rxap/forms": "^21.0.1",
+    "@angular/cdk": "^22.3.0",
+    "@angular/common": "^22.3.0",
+    "@angular/core": "^22.3.0",
+    "@angular/forms": "^22.3.0",
+    "@angular/material": "^22.3.0",
+    "@angular/router": "^22.3.0",
+    "@rxap/form-system": "^22.0.0",
+    "@rxap/forms": "^22.0.0",
     "@rxap/mixin": "^16.0.17",
     "@rxap/reflect-metadata": "^1.0.18",
     "@rxap/utilities": "^16.5.2",
@@ -45,39 +45,39 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/common",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/core",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/forms",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/material",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/router",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@rxap/config",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -85,23 +85,23 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/directives",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/form-system",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/forms",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/mixin",
@@ -109,7 +109,7 @@
       },
       {
         "package": "@rxap/open-api",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/pattern",
@@ -121,7 +121,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/rxjs",
@@ -129,7 +129,7 @@
       },
       {
         "package": "@rxap/services",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/utilities",

@@ -56,7 +56,16 @@ export class RxapFormControl<
   }
 
   override readonly value!: T;
-  override readonly errors!: E | null;
+  override get errors(): E | null {
+    return super.errors as E | null;
+  }
+
+  // The accessor must be redeclared as a pair: defining only the getter would shadow the
+  // (private) setter of AbstractControl, which Angular invokes internally.
+  override set errors(value: E | null) {
+    // @ts-expect-error the setter of AbstractControl is private
+    super.errors = value;
+  }
   // TODO : find solution to only overwrite the type with out impl the getter or setter logic
   // readonly asyncValidator!: AsyncValidatorFn<T>;
   override readonly valueChanges!: Observable<T>;

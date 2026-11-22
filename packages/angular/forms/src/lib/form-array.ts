@@ -112,7 +112,16 @@ export class RxapFormArray<T = any,
   public readonly disabled$ = controlDisabled$(this);
   public override readonly statusChanges!: Observable<ControlState>;
   public readonly enabled$ = controlEnabled$(this);
-  public override readonly errors!: E | null;
+  override get errors(): E | null {
+    return super.errors as E | null;
+  }
+
+  // The accessor must be redeclared as a pair: defining only the getter would shadow the
+  // (private) setter of AbstractControl, which Angular invokes internally.
+  override set errors(value: E | null) {
+    // @ts-expect-error the setter of AbstractControl is private
+    super.errors = value;
+  }
   public readonly status$ = controlStatusChanges$(this);
   public readonly errors$ = controlErrorChanges$<E>(this);
   public readonly controlId: string;

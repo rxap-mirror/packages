@@ -1,18 +1,18 @@
 {
-  "version": "21.0.1",
+  "version": "22.0.0",
   "name": "@rxap/components",
   "description": "This package provides a set of reusable Angular components, including a navigate back button, a JSON viewer, an empty router outlet, a copy-to-clipboard button and component, and a confirmation dialog with directive and module. These components are designed to simplify common UI tasks and improve the user experience in Angular applications. The package also includes an init generator for use with Nx workspaces.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^22.1.8",
-    "@angular/common": "^22.1.8",
-    "@angular/core": "^22.1.8",
-    "@angular/material": "^22.1.8",
-    "@angular/router": "^22.1.8",
+    "@angular/cdk": "^22.3.0",
+    "@angular/common": "^22.3.0",
+    "@angular/core": "^22.3.0",
+    "@angular/material": "^22.3.0",
+    "@angular/router": "^22.3.0",
     "@rxap/rxjs": "^1.1.18",
     "@rxap/utilities": "^16.5.2",
     "rxjs": "^7.8.2"
@@ -40,31 +40,31 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/common",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/core",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/forms",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/material",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/router",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@rxap/rxjs",

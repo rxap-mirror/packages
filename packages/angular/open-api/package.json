@@ -1,20 +1,20 @@
 {
-  "version": "21.0.1",
+  "version": "22.0.0",
   "name": "@rxap/open-api",
   "description": "This package provides tools for working with OpenAPI specifications in Angular applications. It includes services for configuring and loading OpenAPI definitions, validating requests and responses against schemas, and handling errors. It also offers utilities for building HTTP requests based on OpenAPI definitions.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^22.1.8",
-    "@angular/core": "^22.1.8",
-    "@rxap/config": "^21.0.1",
-    "@rxap/data-source": "^21.0.1",
-    "@rxap/environment": "^21.0.1",
+    "@angular/common": "^22.3.0",
+    "@angular/core": "^22.3.0",
+    "@rxap/config": "^22.0.0",
+    "@rxap/data-source": "^22.0.0",
+    "@rxap/environment": "^22.0.0",
     "@rxap/mixin": "^16.0.17",
-    "@rxap/remote-method": "^21.0.1",
+    "@rxap/remote-method": "^22.0.0",
     "@rxap/rxjs": "^1.1.18",
     "@rxap/utilities": "^16.5.2",
     "ajv": "^8.12.0",
@@ -44,35 +44,35 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/common",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/core",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/forms",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/material",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@rxap/config",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -80,11 +80,11 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/mixin",
@@ -100,7 +100,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/rxjs",

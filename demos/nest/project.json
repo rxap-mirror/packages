@@ -16,39 +16,17 @@
   ],
   "targets": {
     "build": {
-      "executor": "@nx/webpack:webpack",
-      "outputs": ["{options.outputPath}"],
+      "dependsOn": [
+        "^build",
+        "^index-export",
+        "index-export",
+        "generate-package-json"
+      ],
+      "outputs": ["{workspaceRoot}/dist/demos/nest"],
       "defaultConfiguration": "production",
-      "options": {
-        "target": "node",
-        "compiler": "tsc",
-        "outputPath": "dist/demos/nest",
-        "main": "demos/nest/src/main.ts",
-        "tsConfig": "demos/nest/tsconfig.app.json",
-        "assets": [
-          "demos/nest/src/assets",
-          {
-            "input": "",
-            "glob": "LICENSE",
-            "output": "/"
-          }
-        ],
-        "webpackConfig": "demos/nest/webpack.config.js",
-        "generatePackageJson": true,
-        "isolatedConfig": true
-      },
       "configurations": {
-        "development": {
-          "progress": true
-        },
-        "production": {
-          "fileReplacements": [
-            {
-              "replace": "demos/nest/src/environments/environment.ts",
-              "with": "demos/nest/src/environments/environment.prod.ts"
-            }
-          ]
-        }
+        "development": {},
+        "production": {}
       }
     },
     "serve": {

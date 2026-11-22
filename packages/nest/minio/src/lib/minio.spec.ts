@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { Global, Logger, Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { HealthCheckError } from '@nestjs/terminus';
+import { HealthIndicatorService } from '@nestjs/terminus';
 import * as fs from 'fs';
 import { MinioHealthIndicator } from './minio.health-indicator';
 import { MinioModuleOptionsLoader } from './minio-module-options-loader';
@@ -29,6 +29,7 @@ describe('MinioHealthIndicator', () => {
     indicator = new MinioHealthIndicator();
     indicator.minioService = { listBuckets } as any;
     indicator.logger = logger as any;
+    indicator.healthIndicatorService = new HealthIndicatorService();
   });
 
   it('is healthy when buckets are listed', async () => {
@@ -36,20 +37,20 @@ describe('MinioHealthIndicator', () => {
     await expect(indicator.isHealthy()).resolves.toEqual({ minio: { status: 'up' } });
   });
 
-  it('throws when the response is not an array', async () => {
+  it('is down when the response is not an array', async () => {
     listBuckets.mockResolvedValue(undefined);
-    await expect(indicator.isHealthy()).rejects.toBeInstanceOf(HealthCheckError);
+    await expect(indicator.isHealthy()).resolves.toMatchObject({ minio: { status: 'down' } });
   });
 
-  it('logs and throws on errors with message', async () => {
+  it('logs and is down on errors with message', async () => {
     listBuckets.mockRejectedValue(Object.assign(new Error('down'), { code: 'X' }));
-    await expect(indicator.isHealthy()).rejects.toBeInstanceOf(HealthCheckError);
+    await expect(indicator.isHealthy()).resolves.toMatchObject({ minio: { status: 'down' } });
     expect(logger.error).toHaveBeenCalledWith(expect.stringContaining('down'), expect.anything(), 'MinioHealthIndicator');
   });
 
-  it('logs and throws on non-error rejections', async () => {
+  it('logs and is down on non-error rejections', async () => {
     listBuckets.mockRejectedValue({});
-    await expect(indicator.isHealthy()).rejects.toBeInstanceOf(HealthCheckError);
+    await expect(indicator.isHealthy()).resolves.toMatchObject({ minio: { status: 'down' } });
     expect(logger.error).toHaveBeenCalledWith(expect.stringContaining('Failed to list minio buckets'), undefined, 'MinioHealthIndicator');
   });
 });

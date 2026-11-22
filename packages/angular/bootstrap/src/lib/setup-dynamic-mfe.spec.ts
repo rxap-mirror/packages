@@ -1,7 +1,7 @@
-import { setRemoteDefinitions, setRemoteUrlResolver } from '@nx/angular/mf';
+import { setRemoteDefinitions, setRemoteUrlResolver } from './remote-resolver';
 import { SetupDynamicMfe } from './setup-dynamic-mfe';
 
-jest.mock('@nx/angular/mf', () => ({
+jest.mock('./remote-resolver', () => ({
   setRemoteDefinitions: jest.fn(),
   setRemoteUrlResolver: jest.fn(),
 }));

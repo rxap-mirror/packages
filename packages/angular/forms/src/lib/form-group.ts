@@ -82,7 +82,16 @@ export class RxapFormGroup<
   private _rxapFormDefinition?: FormType<T> & FormDefinition<T>;
 
   override readonly value!: T;
-  override readonly errors!: E | null;
+  override get errors(): E | null {
+    return super.errors as E | null;
+  }
+
+  // The accessor must be redeclared as a pair: defining only the getter would shadow the
+  // (private) setter of AbstractControl, which Angular invokes internally.
+  override set errors(value: E | null) {
+    // @ts-expect-error the setter of AbstractControl is private
+    super.errors = value;
+  }
   override readonly valueChanges!: Observable<T>;
   // @ts-expect-error overwrite the public type
   override readonly status!: ControlState;

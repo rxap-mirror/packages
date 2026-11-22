@@ -420,7 +420,16 @@
     "./packages/plugin/kraft/src/plugin.ts",
     "./packages/plugin/workspace/src/plugin.ts",
     "./packages/plugin/n8n/src/plugin.ts",
-    "./packages/plugin/open-api/src/plugin.ts"
+    "./packages/plugin/open-api/src/plugin.ts",
+    {
+      "plugin": "@nx/webpack/plugin",
+      "options": {
+        "buildTargetName": "build",
+        "previewTargetName": "preview",
+        "serveStaticTargetName": "serve-static",
+        "serveTargetName": "serve"
+      }
+    }
   ],
   "analytics": false,
   "affected": {

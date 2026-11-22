@@ -1,18 +1,18 @@
 {
-  "version": "21.0.1",
+  "version": "22.0.0",
   "name": "@rxap/dialog",
   "description": "This package provides Angular Material-based message and confirm dialog components and services. It offers customizable dialogs for displaying messages and confirmations to users. The package includes components for rendering the dialogs and services for easily opening them with configurable options.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/cdk": "^22.1.8",
-    "@angular/common": "^22.1.8",
-    "@angular/core": "^22.1.8",
-    "@angular/material": "^22.1.8",
-    "@rxap/pipes": "^21.0.1",
+    "@angular/cdk": "^22.3.0",
+    "@angular/common": "^22.3.0",
+    "@angular/core": "^22.3.0",
+    "@angular/material": "^22.3.0",
+    "@rxap/pipes": "^22.0.0",
     "rxjs": "^7.8.2"
   },
   "author": {
@@ -38,31 +38,31 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/common",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/core",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/forms",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/material",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@rxap/pipes",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/utilities",

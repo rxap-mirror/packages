@@ -6,7 +6,7 @@ import {
 } from './determine-sentry-release';
 import * as Sentry from '@sentry/angular';
 import { DetermineSentryEnvironment } from './determine-sentry-environment';
-import { Integration } from '@sentry/core';
+import type { DataCollection, Integration } from '@sentry/core';
 
 export function sentryInitBootstrapHook(environment: Environment, custom: (options: BrowserOptions, config: ConfigService) => BrowserOptions = options => options) {
   return (config: ConfigService) => {
@@ -55,12 +55,21 @@ export function sentryInitBootstrapHook(environment: Environment, custom: (optio
       transport: Sentry.makeBrowserOfflineTransport(Sentry.makeFetchTransport),
       integrations,
       tracesSampleRate: config.get('sentry.tracesSampleRate', 1.0),
-      profilesSampleRate: config.get('sentry.profilesSampleRate', 1.0),
+      // Sentry v11 replaced `profilesSampleRate` with the session based `profileSessionSampleRate`.
+      // The legacy config key `sentry.profilesSampleRate` is still honored as a fallback.
+      profileSessionSampleRate: config.get('sentry.profileSessionSampleRate', config.get('sentry.profilesSampleRate', 1.0)),
+      profileLifecycle: config.get('sentry.profileLifecycle', 'trace'),
       tracePropagationTargets: ["localhost", new RegExp(`${location.origin}/api/`)],
       replaysSessionSampleRate: config.get('sentry.replaysSessionSampleRate', 0.0),
       replaysOnErrorSampleRate: config.get('sentry.replaysOnErrorSampleRate', 1.0),
       maxValueLength: config.get('sentry.maxValueLength', Number.MAX_SAFE_INTEGER),
-      sendDefaultPii: config.get('sentry.sendDefaultPii', true),
+      // Sentry v11 removed `sendDefaultPii` in favor of `dataCollection`. The defaults of `dataCollection`
+      // collect everything, which matches the former default `sendDefaultPii: true`. The legacy config key
+      // `sentry.sendDefaultPii: false` is mapped to the equivalent restrictive `dataCollection` settings.
+      dataCollection: config.get<DataCollection>(
+        'sentry.dataCollection',
+        config.get('sentry.sendDefaultPii', true) ? {} : { userInfo: false, cookies: false, httpHeaders: false },
+      ),
 
       initialScope: {
         user: { ip_address: '{{auto}}' },

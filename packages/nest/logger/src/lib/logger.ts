@@ -53,7 +53,10 @@ export class RxapLogger extends ConsoleLogger {
     @Optional()
     options: ConsoleLoggerOptions = {},
   ) {
-    super(context as any, options);
+    // Nest 12 collects plain objects that follow the message into a separate `params` argument (structuredParams).
+    // The %JSON interpolation below consumes those objects from the message list, so the legacy behaviour
+    // is the default. Pass `structuredParams: true` to opt in to the Nest 12 behaviour.
+    super(context as any, { structuredParams: false, ...options });
   }
 
   protected interpolate(messages: unknown[]): unknown[] {

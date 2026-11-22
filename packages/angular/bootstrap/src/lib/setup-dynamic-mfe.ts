@@ -1,8 +1,8 @@
+import type { Environment } from '@rxap/environment';
 import {
   setRemoteDefinitions,
   setRemoteUrlResolver,
-} from '@nx/angular/mf';
-import type { Environment } from '@rxap/environment';
+} from './remote-resolver';
 
 /**
  * @deprecated It is not possible to use the `import` statement in the `main.ts` file. This results in a runtime error.

@@ -1,16 +1,16 @@
 {
-  "version": "11.0.2",
+  "version": "12.0.0",
   "name": "@rxap/nest-vault",
   "description": "A NestJS module for integrating with HashiCorp Vault. It provides a VaultService for interacting with the Vault API, including authentication, reading, writing, and managing secrets. It supports token-based and Kubernetes authentication methods, along with health checks to ensure Vault connectivity.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^11.1.27",
-    "@nestjs/config": "^4.0.4",
-    "@nestjs/terminus": "^11.1.1",
+    "@nestjs/common": "^12.6.0",
+    "@nestjs/config": "^12.1.1",
+    "@nestjs/terminus": "^12.2.0",
     "node-vault": "^0.10.2"
   },
   "author": {
@@ -34,39 +34,43 @@
     "packageGroup": [
       {
         "package": "@nestjs/axios",
-        "version": "4.0.1"
+        "version": "12.0.2"
       },
       {
         "package": "@nestjs/common",
-        "version": "11.1.27"
+        "version": "12.6.0"
       },
       {
         "package": "@nestjs/config",
-        "version": "4.0.4"
+        "version": "12.1.1"
       },
       {
         "package": "@nestjs/core",
-        "version": "11.1.27"
+        "version": "12.6.0"
       },
       {
         "package": "@nestjs/microservices",
-        "version": "11.1.27"
+        "version": "12.6.0"
       },
       {
         "package": "@nestjs/mongoose",
-        "version": "11.0.4"
+        "version": "12.0.1"
       },
       {
         "package": "@nestjs/sequelize",
-        "version": "11.0.1"
+        "version": "12.0.1"
+      },
+      {
+        "package": "@nestjs/swagger",
+        "version": "12.1.2"
       },
       {
         "package": "@nestjs/terminus",
-        "version": "11.1.1"
+        "version": "12.2.0"
       },
       {
         "package": "@nestjs/typeorm",
-        "version": "11.0.2"
+        "version": "12.0.3"
       }
     ]
   },

@@ -1,4 +1,4 @@
-import { HealthCheckError } from '@nestjs/terminus';
+import { HealthIndicatorService } from '@nestjs/terminus';
 import { ClientRMQExchange } from './client-rmq-exchange';
 import { ClientRmqExchangeModuleOptionsFactory } from './client-rmq-exchange-module-options-factory';
 import { RabbitmqHealthIndicator } from './rabbitmq.health-indicator';
@@ -77,6 +77,7 @@ describe('ClientRmqExchangeModuleOptionsFactory', () => {
 describe('RabbitmqHealthIndicator', () => {
   const make2 = (connected: boolean) => {
     const i: any = new RabbitmqHealthIndicator();
+    i.healthIndicatorService = new HealthIndicatorService();
     i.client = { connect: jest.fn(async () => undefined), isConnected: () => connected };
     return i as any;
   };
@@ -87,7 +88,9 @@ describe('RabbitmqHealthIndicator', () => {
     expect(i.client.connect).toHaveBeenCalled();
   });
 
-  it('throws a HealthCheckError when not connected', async () => {
-    await expect(make2(false).isHealthy()).rejects.toBeInstanceOf(HealthCheckError);
+  it('reports down when not connected', async () => {
+    await expect(make2(false).isHealthy()).resolves.toEqual({
+      rabbitmq: { status: 'down', message: 'Connection to RabbitMQ is not established!' },
+    });
   });
 });

@@ -5,14 +5,13 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import {
-  HealthCheckError,
-  HealthIndicator,
   HealthIndicatorResult,
+  HealthIndicatorService,
 } from '@nestjs/terminus';
 import { OpenFgaService } from './open-fga.service';
 
 @Injectable()
-export class OpenfgaHealthIndicator extends HealthIndicator {
+export class OpenfgaHealthIndicator {
   @Inject(OpenFgaService)
   private readonly openfga!: OpenFgaService;
 
@@ -22,14 +21,15 @@ export class OpenfgaHealthIndicator extends HealthIndicator {
   @Inject(ConfigService)
   private readonly config!: ConfigService;
 
+  @Inject(HealthIndicatorService)
+  private readonly healthIndicatorService!: HealthIndicatorService;
+
   public async isHealthy(silentError = false): Promise<HealthIndicatorResult> {
+    const indicator = this.healthIndicatorService.check('openfga');
     const storeId = this.config.get('FGA_STORE_ID');
     if (!storeId) {
       this.logger.error('FGA_STORE_ID not set!', 'OpenfgaHealthIndicator');
-      throw new HealthCheckError(
-        'FGA_STORE_ID not set!',
-        this.getStatus('openfga', false)
-      );
+      return indicator.down({ message: 'FGA_STORE_ID not set!' });
     }
     const authorizationModelId = this.config.get('FGA_AUTHORIZATION_MODEL_ID');
     if (!authorizationModelId) {
@@ -37,10 +37,7 @@ export class OpenfgaHealthIndicator extends HealthIndicator {
         'FGA_AUTHORIZATION_MODEL_ID not set!',
         'OpenfgaHealthIndicator'
       );
-      throw new HealthCheckError(
-        'FGA_AUTHORIZATION_MODEL_ID not set!',
-        this.getStatus('openfga', false)
-      );
+      return indicator.down({ message: 'FGA_AUTHORIZATION_MODEL_ID not set!' });
     }
     try {
       await this.openfga.checkValidApiConnection({
@@ -54,9 +51,9 @@ export class OpenfgaHealthIndicator extends HealthIndicator {
           'OpenfgaHealthIndicator'
         );
       }
-      throw new HealthCheckError(e.message, this.getStatus('openfga', false));
+      return indicator.down({ message: e.message });
     }
-    return this.getStatus('openfga', true);
+    return indicator.up();
   }
 
 }

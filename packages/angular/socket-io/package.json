@@ -1,15 +1,15 @@
 {
-  "version": "21.0.1",
+  "version": "22.0.0",
   "name": "@rxap/socket-io",
   "description": "Provides Angular providers for integrating Socket.IO client functionality. It simplifies the configuration and injection of a Socket.IO client instance using tokens and dynamic configuration options. This package allows you to easily connect to a Socket.IO server within your Angular application.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^22.1.8",
-    "@rxap/config": "^21.0.1",
+    "@angular/core": "^22.3.0",
+    "@rxap/config": "^22.0.0",
     "rxjs": "^7.8.2",
     "socket.io-client": "^4.8.1"
   },
@@ -36,23 +36,23 @@
     "packageGroup": [
       {
         "package": "@angular/common",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/compiler",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/core",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@rxap/config",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/utilities",

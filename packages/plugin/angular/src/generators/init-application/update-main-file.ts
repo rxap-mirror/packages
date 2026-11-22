@@ -86,7 +86,7 @@ export function updateMainFile(
           `import {
   setRemoteDefinitions,
   setRemoteUrlResolver
-} from '@nx/angular/mf';
+} from '@rxap/ngx-bootstrap';
 import type { Environment } from '@rxap/environment';
 import { environment } from './environments/environment';
 

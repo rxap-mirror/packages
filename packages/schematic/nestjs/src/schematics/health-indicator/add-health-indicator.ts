@@ -25,11 +25,16 @@ export function AddHealthIndicator(project: Project, name: string) {
         arguments: [],
       },
     ],
-    extends: 'HealthIndicator',
     ctors: [
       {
-        parameters: [],
-        statements: 'super();',
+        parameters: [
+          {
+            name: 'healthIndicatorService',
+            type: 'HealthIndicatorService',
+            scope: Scope.Private,
+            isReadonly: true,
+          },
+        ],
       },
     ],
     methods: [
@@ -39,7 +44,8 @@ export function AddHealthIndicator(project: Project, name: string) {
         scope: Scope.Public,
         returnType: 'Promise<HealthIndicatorResult>',
         statements: [
-          `throw new HealthCheckError('Not yet implemented!', this.getStatus('${ dasherize(name) }', false))`,
+          `const indicator = this.healthIndicatorService.check('${ dasherize(name) }');`,
+          `return indicator.down({ message: 'Not yet implemented!' });`,
         ],
       },
     ],
@@ -51,7 +57,7 @@ export function AddHealthIndicator(project: Project, name: string) {
       moduleSpecifier: '@nestjs/common',
     },
     {
-      namedImports: [ 'HealthCheckError', 'HealthIndicator', 'HealthIndicatorResult' ],
+      namedImports: [ 'HealthIndicatorResult', 'HealthIndicatorService' ],
       moduleSpecifier: '@nestjs/terminus',
     },
   ]);

@@ -1,17 +1,17 @@
 {
-  "version": "21.0.1",
+  "version": "22.0.0",
   "name": "@rxap/icon",
   "description": "This package provides an Angular module to load SVG icons from specified asset paths using the Angular Material Icon Registry. It simplifies the process of registering and using custom icons in Angular applications. The module allows configuring the icon asset paths and automatically loads the icon sets during initialization.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^22.1.8",
-    "@angular/core": "^22.1.8",
-    "@angular/material": "^22.1.8",
-    "@angular/platform-browser": "^22.1.8",
+    "@angular/common": "^22.3.0",
+    "@angular/core": "^22.3.0",
+    "@angular/material": "^22.3.0",
+    "@angular/platform-browser": "^22.3.0",
     "@rxap/utilities": "^16.5.2"
   },
   "author": {
@@ -37,27 +37,27 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/common",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/core",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/forms",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/material",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@rxap/utilities",

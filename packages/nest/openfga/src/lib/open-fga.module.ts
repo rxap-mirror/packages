@@ -7,6 +7,7 @@ import {
   Module,
   OnApplicationBootstrap,
 } from '@nestjs/common';
+import { HealthIndicatorService } from '@nestjs/terminus';
 import { OpenFgaGuard } from './open-fga.guard';
 import { OpenFgaOptions } from './open-fga.options';
 import { OpenFgaService } from './open-fga.service';
@@ -24,7 +25,7 @@ export const {
 
 @Global()
 @Module({
-  providers: [ OpenFgaService, OpenFgaGuard, OpenfgaHealthIndicator],
+  providers: [ OpenFgaService, OpenFgaGuard, OpenfgaHealthIndicator, HealthIndicatorService ],
   exports: [ OpenFgaService, OpenFgaGuard, OpenfgaHealthIndicator]
 })
 export class OpenFgaModule extends ConfigurableModuleClass implements OnApplicationBootstrap {
@@ -68,6 +69,7 @@ export class OpenFgaModule extends ConfigurableModuleClass implements OnApplicat
           this.logger.log('OpenFGA is ready', 'OpenfgaHealthIndicator::onApplicationBootstrap');
           return;
         }
+        this.logger.warn(`OpenFGA is not ready (${counter}/${maxRetry}). Retry in ${retryInterval}ms: ${result['openfga']['message'] ?? 'status ' + result['openfga'].status}`, 'OpenfgaHealthIndicator::onApplicationBootstrap');
       } catch (e: any) {
         this.logger.warn(`OpenFGA is not ready (${counter}/${maxRetry}). Retry in ${retryInterval}ms: ${e.message}`, 'OpenfgaHealthIndicator::onApplicationBootstrap');
       }

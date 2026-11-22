@@ -3,6 +3,7 @@ export interface InitApplicationGeneratorSchema {
   projects?: Array<string>;
   /** Whether to enable incremental build */
   incrementalBuild?: boolean;
+  /** The module federation role of the project. Only supported for existing projects: coercing a new host/remote project is not possible since Nx 24 */
   moduleFederation?: 'host' | 'remote';
   /** Route path for layout children */
   layoutRoutePath?: string;
@@ -10,7 +11,7 @@ export interface InitApplicationGeneratorSchema {
   standaloneImport?: boolean;
   /** Whether to skip the docker configuration */
   skipDocker?: boolean;
-  /** Host project for module federation */
+  /** Host project for module federation. Implies moduleFederation remote. Only supported for existing projects */
   host?: string;
   /** Add target to deploy to after build */
   deploy?: 'web3-storage' | 'test';

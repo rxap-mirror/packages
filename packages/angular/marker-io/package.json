@@ -1,18 +1,18 @@
 {
-  "version": "21.0.1",
+  "version": "22.0.0",
   "name": "@rxap/ngx-marker-io",
   "description": "This package provides an Angular service to integrate with marker.io, a visual feedback and bug reporting tool. It allows you to easily load the marker.io widget, set custom data, and manage reporter information within your Angular application. The package also includes an init generator for setting up peer dependencies.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/core": "^22.1.8",
+    "@angular/core": "^22.3.0",
     "@marker.io/browser": "^0.20.2",
-    "@rxap/config": "^21.0.1",
-    "@rxap/environment": "^21.0.1",
-    "@rxap/ngx-pub-sub": "^21.0.1",
+    "@rxap/config": "^22.0.0",
+    "@rxap/environment": "^22.0.0",
+    "@rxap/ngx-pub-sub": "^22.0.0",
     "@rxap/utilities": "^16.5.2",
     "rxjs": "^7.8.2"
   },
@@ -37,27 +37,27 @@
     "packageGroup": [
       {
         "package": "@angular/common",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/compiler",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/core",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@rxap/config",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/utilities",

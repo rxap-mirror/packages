@@ -12,7 +12,7 @@ import { CoerceImports } from '../coerce-imports';
 
 /**
  * Coerces a custom HealthIndicator class.
- * Creates a service extending `HealthIndicator`.
+ * Creates a service which uses the Terminus `HealthIndicatorService` to report the status.
  *
  * @param sourceFile - The source file to add the indicator to.
  * @param name - The name of the health indicator.
@@ -29,11 +29,16 @@ export function CoerceHealthIndicator(sourceFile: SourceFile, name: string) {
         arguments: [],
       },
     ],
-    extends: 'HealthIndicator',
     ctors: [
       {
-        parameters: [],
-        statements: 'super();',
+        parameters: [
+          {
+            name: 'healthIndicatorService',
+            type: 'HealthIndicatorService',
+            scope: Scope.Private,
+            isReadonly: true,
+          },
+        ],
       },
     ],
     methods: [
@@ -43,7 +48,8 @@ export function CoerceHealthIndicator(sourceFile: SourceFile, name: string) {
         scope: Scope.Public,
         returnType: 'Promise<HealthIndicatorResult>',
         statements: [
-          `throw new HealthCheckError('Not yet implemented!', this.getStatus('${ dasherize(name) }', false))`,
+          `const indicator = this.healthIndicatorService.check('${ dasherize(name) }');`,
+          `return indicator.down({ message: 'Not yet implemented!' });`,
         ],
       },
     ],
@@ -55,7 +61,7 @@ export function CoerceHealthIndicator(sourceFile: SourceFile, name: string) {
       moduleSpecifier: '@nestjs/common',
     },
     {
-      namedImports: [ 'HealthCheckError', 'HealthIndicator', 'HealthIndicatorResult' ],
+      namedImports: [ 'HealthIndicatorResult', 'HealthIndicatorService' ],
       moduleSpecifier: '@nestjs/terminus',
     },
   ]);

@@ -13,12 +13,12 @@ module.exports = {
   // made generator beforeEach() hooks time out. Raise the default for the whole
   // workspace.
   testTimeout: 30000,
-  // ESM-only dependencies of @angular-devkit/schematics 22 (magic-string >= 1 and its @jridgewell deps) have to be
-  // transformed to CommonJS for the jest runtime.
-  transformIgnorePatterns: [ 'node_modules/(?!(?:magic-string|@jridgewell/[^/]+)/)' ],
+  // ESM-only dependencies (magic-string >= 1 and its @jridgewell deps from @angular-devkit/schematics 22, @nestjs/* 12)
+  // have to be transformed to CommonJS for the jest runtime. The project `transform` entries must not match node_modules.
+  transformIgnorePatterns: [ 'node_modules/(?!(?:magic-string|@jridgewell/[^/]+|@nestjs/[^/]+|reflect-metadata)/)' ],
   transform: {
     // has to be the first entry: the first matching pattern wins
-    '^.+/node_modules/(?:magic-string|@jridgewell/[^/]+)/.+\\.m?js$': join(__dirname, 'tools/jest/esm-to-cjs-transformer.js'),
+    '^.+/node_modules/(?:magic-string|@jridgewell/[^/]+|@nestjs/[^/]+|reflect-metadata)/.+\\.m?js$': join(__dirname, 'tools/jest/esm-to-cjs-transformer.js'),
     ...(nxPreset.transform ?? {}),
   },
   // Resolve every workspace @rxap/* import to source via the tsconfig paths.

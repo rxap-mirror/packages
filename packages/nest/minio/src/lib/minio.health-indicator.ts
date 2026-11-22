@@ -5,19 +5,17 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import {
-  HealthCheckError,
-  HealthIndicator,
   HealthIndicatorResult,
+  HealthIndicatorService,
 } from '@nestjs/terminus';
 import { MinioService } from './minio.service';
 
 /**
  * Class representing a MinioHealthIndicator.
  * @class
- * @inheritDoc
  */
 @Injectable()
-export class MinioHealthIndicator extends HealthIndicator {
+export class MinioHealthIndicator {
 
   @Inject(MinioService)
   public minioService!: MinioService;
@@ -28,11 +26,15 @@ export class MinioHealthIndicator extends HealthIndicator {
   @Inject(Logger)
   public logger!: Logger;
 
+  @Inject(HealthIndicatorService)
+  public healthIndicatorService!: HealthIndicatorService;
+
   public async isHealthy(): Promise<HealthIndicatorResult> {
+    const indicator = this.healthIndicatorService.check('minio');
     try {
       const response = await this.minioService.listBuckets();
       if (Array.isArray(response)) {
-        return this.getStatus('minio', true);
+        return indicator.up();
       }
     } catch (error: any) {
       if ('message' in error && typeof error.message === 'string') {
@@ -41,9 +43,6 @@ export class MinioHealthIndicator extends HealthIndicator {
         this.logger.error(`Failed to list minio buckets: ${ error }`, undefined, 'MinioHealthIndicator');
       }
     }
-    throw new HealthCheckError(
-      'Not yet implemented!',
-      this.getStatus('minio', false),
-    );
+    return indicator.down({ message: 'Failed to list minio buckets!' });
   }
 }

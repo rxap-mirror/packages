@@ -1,19 +1,19 @@
 {
-  "version": "11.0.2",
+  "version": "12.0.0",
   "name": "@rxap/nest-openfga",
   "description": "A NestJS module for integrating with OpenFGA, a fine-grained authorization service. It provides a service, guard, and decorator to simplify authorization logic within NestJS applications. The module allows you to define authorization rules and enforce them using OpenFGA.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@nestjs/common": "^11.1.27",
-    "@nestjs/config": "^4.0.4",
-    "@nestjs/core": "^11.1.27",
+    "@nestjs/common": "^12.6.0",
+    "@nestjs/config": "^12.1.1",
+    "@nestjs/core": "^12.6.0",
     "@openfga/sdk": "^0.8.0",
-    "@rxap/nest-utilities": "^11.0.2",
-    "joi": "^17.9.2"
+    "@rxap/nest-utilities": "^12.0.0",
+    "joi": "^18.3.2"
   },
   "author": {
     "name": "Merzough Münker",

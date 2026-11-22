@@ -1,17 +1,17 @@
 {
-  "version": "21.0.1",
+  "version": "22.0.0",
   "name": "@rxap/ngx-localize",
   "description": "This package provides internationalization (i18n) support for Angular applications, including services for language management, an HTTP interceptor for setting the `Accept-Language` header, and a language selector component. It allows you to set and manage the current language of your application, redirect users based on their language preference, and configure available languages. The package also includes an init generator to handle peer dependencies.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/devkit": "23.3.3",
+    "@nx/devkit": "24.0.6",
     "tslib": "2.6.2"
   },
   "peerDependencies": {
-    "@angular/common": "^22.1.8",
-    "@angular/core": "^22.1.8",
-    "@rxap/config": "^21.0.1",
-    "@rxap/ngx-user": "^21.0.1",
+    "@angular/common": "^22.3.0",
+    "@angular/core": "^22.3.0",
+    "@rxap/config": "^22.0.0",
+    "@rxap/ngx-user": "^22.0.0",
     "rxjs": "^7.8.2"
   },
   "author": {
@@ -36,35 +36,35 @@
     "packageGroup": [
       {
         "package": "@angular/cdk",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/common",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/core",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/forms",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/material",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@angular/platform-browser",
-        "version": "21.2.9"
+        "version": "22.3.0"
       },
       {
         "package": "@rxap/config",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/data-source",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/data-structure-tree",
@@ -72,11 +72,11 @@
       },
       {
         "package": "@rxap/definition",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/environment",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/mixin",
@@ -84,15 +84,15 @@
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/ngx-user",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/open-api",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/pattern",
@@ -104,7 +104,7 @@
       },
       {
         "package": "@rxap/remote-method",
-        "version": "21.0.1"
+        "version": "22.0.0"
       },
       {
         "package": "@rxap/rxjs",

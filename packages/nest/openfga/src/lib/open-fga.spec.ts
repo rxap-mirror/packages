@@ -1,4 +1,4 @@
-import { HealthCheckError } from '@nestjs/terminus';
+import { HealthIndicatorService } from '@nestjs/terminus';
 import { IS_PUBLIC_KEY } from '@rxap/nest-utilities';
 import { OPEN_FGA_METADATA, OpenFGA } from './open-fga.decorator';
 import { OpenFgaGuard, ResolveFgaChecks } from './open-fga.guard';
@@ -125,7 +125,7 @@ describe('OpenfgaHealthIndicator', () => {
     openfga = { checkValidApiConnection: jest.fn().mockResolvedValue(undefined) };
     logger = { error: jest.fn() };
     indicator = new OpenfgaHealthIndicator();
-    Object.assign(indicator as any, { openfga, logger, config: { get: (k: string) => env[k] } });
+    Object.assign(indicator as any, { openfga, logger, healthIndicatorService: new HealthIndicatorService(), config: { get: (k: string) => env[k] } });
   });
 
   it('is healthy when the connection check passes', async () => {
@@ -133,20 +133,22 @@ describe('OpenfgaHealthIndicator', () => {
     expect(openfga.checkValidApiConnection).toHaveBeenCalledWith({ storeId: 's', authorizationModelId: 'm' });
   });
 
-  it('fails without store id or model id', async () => {
+  it('is down without store id or model id', async () => {
     delete env['FGA_STORE_ID'];
-    await expect(indicator.isHealthy()).rejects.toThrow('FGA_STORE_ID not set!');
+    await expect(indicator.isHealthy()).resolves.toEqual({ openfga: { status: 'down', message: 'FGA_STORE_ID not set!' } });
     env['FGA_STORE_ID'] = 's';
     delete env['FGA_AUTHORIZATION_MODEL_ID'];
-    await expect(indicator.isHealthy()).rejects.toThrow('FGA_AUTHORIZATION_MODEL_ID not set!');
+    await expect(indicator.isHealthy()).resolves.toEqual({
+      openfga: { status: 'down', message: 'FGA_AUTHORIZATION_MODEL_ID not set!' },
+    });
   });
 
   it('logs connection errors unless silent', async () => {
     openfga.checkValidApiConnection.mockRejectedValue(new Error('down'));
-    await expect(indicator.isHealthy()).rejects.toBeInstanceOf(HealthCheckError);
+    await expect(indicator.isHealthy()).resolves.toMatchObject({ openfga: { status: 'down', message: 'down' } });
     expect(logger['error']).toHaveBeenCalledWith(expect.stringContaining('down'), 'OpenfgaHealthIndicator');
     logger['error'].mockClear();
-    await expect(indicator.isHealthy(true)).rejects.toBeInstanceOf(HealthCheckError);
+    await expect(indicator.isHealthy(true)).resolves.toMatchObject({ openfga: { status: 'down' } });
     expect(logger['error']).not.toHaveBeenCalled();
   });
 });
