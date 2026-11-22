@@ -111,7 +111,7 @@ export abstract class BaseTypeOrmModuleOptionsFactory implements TypeOrmOptionsF
         url: this.config.getOrThrow('POSTGRES_URL'),
       };
       this.logger.debug(
-        `Connection string: ${credentials.url!.replace(/:.+@/g, ':******@')}`
+        `Connection string: ${credentials.url!.replace(/^([^:/@]+:\/\/[^:/@]+):.+@/, '$1:******@')}`
       );
     } else {
       credentials = {

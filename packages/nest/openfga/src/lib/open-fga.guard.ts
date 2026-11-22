@@ -59,7 +59,7 @@ export function ResolveFgaChecks(req: Request) {
         [userLeft, userRight] = ['user', '*'];
       }
     } else if (!Array.isArray(user)) {
-      [userLeft, userRight] = user(req);
+      [userLeft, userRight, userModifier = null] = user(req) as [string, string, string?];
     } else {
       userLeft = user[0];
       if (user.length === 3) {
