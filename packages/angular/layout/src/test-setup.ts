@@ -1,13 +1,9 @@
-// @ts-expect-error https://thymikee.github.io/jest-preset-angular/docs/getting-started/test-environment
-globalThis.ngJest = {
-  testEnvironmentOptions: {
-    errorOnUnknownElements: true,
-    errorOnUnknownProperties: true,
-  },
-};
-import { setupZoneTestEnv } from 'jest-preset-angular/setup-env/zone';
+import { setupZonelessTestEnv } from 'jest-preset-angular/setup-env/zoneless';
 
-setupZoneTestEnv();
+setupZonelessTestEnv({
+  errorOnUnknownElements: true,
+  errorOnUnknownProperties: true,
+});
 import { TextDecoder, TextEncoder } from 'util';
 global.TextEncoder ??= TextEncoder as any;
 global.TextDecoder ??= TextDecoder as any;

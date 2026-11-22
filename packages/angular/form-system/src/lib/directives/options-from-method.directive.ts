@@ -9,6 +9,7 @@ import {
   input,
   linkedSignal,
   OnDestroy,
+  PendingTasks,
   Signal,
   signal,
   TemplateRef,
@@ -87,6 +88,7 @@ export abstract class AbstractOptionsFromMethodDirective<Value = any, Parameters
   protected readonly viewContainerRef: ViewContainerRef                    = inject(ViewContainerRef);
   protected injector: Injector                                             = inject(INJECTOR);
   protected readonly cdr: ChangeDetectorRef                                = inject(ChangeDetectorRef);
+  protected readonly pendingTasks: PendingTasks                            = inject(PendingTasks);
   private readonly template: TemplateRef<OptionsFromMethodTemplateContext> = inject(TemplateRef);
 
   protected readonly initialized = signal(false);
@@ -155,6 +157,9 @@ export abstract class AbstractOptionsFromMethodDirective<Value = any, Parameters
 
   public async load(parameters: Parameters | undefined = untracked(this.parameters)) {
     this.loading.set(true);
+    // keep the application unstable while the options are loading. This allows
+    // ApplicationRef.whenStable (and therefore the tests) to await the load
+    const done = this.pendingTasks.add();
     try {
       const result = await this.loadOptions(parameters);
       if (isObservable(result)) {
@@ -167,6 +172,7 @@ export abstract class AbstractOptionsFromMethodDirective<Value = any, Parameters
       }
     } finally {
       this.loading.set(false);
+      done();
     }
   }
 

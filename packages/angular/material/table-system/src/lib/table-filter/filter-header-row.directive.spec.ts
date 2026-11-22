@@ -1,5 +1,5 @@
 import { Component, INJECTOR, Injector, viewChild } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { RxapForm, RxapFormBuilder, RxapFormControl, RxapFormGroup, UseFormControl } from '@rxap/forms';
@@ -47,6 +47,10 @@ describe('FilterHeaderRowDirective', () => {
     });
   });
 
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
   it('uses the form definition bound to the rxap-filter-header-row alias input', () => {
     const fixture = TestBed.createComponent(AliasHostComponent);
     fixture.detectChanges();
@@ -73,21 +77,23 @@ describe('FilterHeaderRowDirective', () => {
     expect(() => fixture.detectChanges()).toThrow();
   });
 
-  it('forwards debounced form values to the table filter service', fakeAsync(() => {
+  it('forwards debounced form values to the table filter service', async () => {
+    jest.useFakeTimers();
     const fixture = TestBed.createComponent(AliasHostComponent);
     fixture.detectChanges();
     const filter = fixture.debugElement.injector.get(TableFilterService);
     const spy = jest.spyOn(filter, 'setMap');
     const group = fixture.componentInstance.definition.rxapFormGroup;
     group.get('name')!.setValue('abc');
-    tick(999);
+    await jest.advanceTimersByTimeAsync(999);
     expect(spy).not.toHaveBeenCalled();
-    tick(1);
+    await jest.advanceTimersByTimeAsync(1);
     expect(spy).toHaveBeenCalledWith(expect.objectContaining({ name: 'abc' }));
     fixture.destroy();
-  }));
+  });
 
-  it('resets the form when the filter is reset', fakeAsync(() => {
+  it('resets the form when the filter is reset', async () => {
+    jest.useFakeTimers();
     const fixture = TestBed.createComponent(AliasHostComponent);
     fixture.detectChanges();
     const filter = fixture.debugElement.injector.get(TableFilterService);
@@ -95,7 +101,7 @@ describe('FilterHeaderRowDirective', () => {
     const reset = jest.spyOn(group, 'reset');
     filter.reset();
     expect(reset).toHaveBeenCalled();
-    tick(1000);
+    await jest.advanceTimersByTimeAsync(1000);
     fixture.destroy();
-  }));
+  });
 });

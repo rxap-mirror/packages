@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, inject, OnDestroy } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Directive, inject, OnDestroy } from '@angular/core';
 import { ControlContainer } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { RxapFormArray } from '@rxap/forms';
@@ -20,6 +20,7 @@ import {
 export class FormArrayAddItemButtonDirective implements AfterViewInit, OnDestroy {
   protected readonly parent = inject(ControlContainer, { skipSelf: true });
   protected readonly matButton = inject(MatButton, { optional: true });
+  protected readonly cdr = inject(ChangeDetectorRef);
 
 
   readonly type = 'button';
@@ -39,9 +40,15 @@ export class FormArrayAddItemButtonDirective implements AfterViewInit, OnDestroy
       this.formArray = this.parent.control;
     }
     const matButton = this.matButton;
-    if (matButton) {
+    if (matButton || this.formArray) {
+      // the disabled host binding must be refreshed if the control state changes outside of a template event (zoneless)
       this._controlDisabledSubscription = this.formArray.disabled$.pipe(
-        tap(isDisabled => matButton.disabled = isDisabled),
+        tap(isDisabled => {
+          if (matButton) {
+            matButton.disabled = isDisabled;
+          }
+          this.cdr.markForCheck();
+        }),
       ).subscribe();
     }
   }

@@ -4,6 +4,7 @@ import {
   Component,
   computed,
   inject,
+  PendingTasks,
   signal,
 } from '@angular/core';
 import { MethodTemplateDirective } from '@rxap/directives';
@@ -79,13 +80,19 @@ export class ChangelogComponent {
     this.loadAvailableVersions();
   }
 
+  private readonly pendingTasks = inject(PendingTasks);
+
   private async loadAvailableVersions() {
+    // register the load as an Angular pending task so that whenStable() waits for it (zoneless)
+    const removeTask = this.pendingTasks.add();
     try {
       const availableVersions = await this.getAvailableVersionsMethod.call();
       this.availableVersions.set(availableVersions);
       this.activeIndex.set(availableVersions.length - 1);
     } catch (e: any) {
       this.error.set(e.message);
+    } finally {
+      removeTask();
     }
   }
 

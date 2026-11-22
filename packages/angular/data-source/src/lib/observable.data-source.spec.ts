@@ -1,15 +1,14 @@
 import { StaticDataSource } from './static.data-source';
 import { ObservableDataSource } from './observable.data-source';
-import {
-  fakeAsync,
-  tick,
-} from '@angular/core/testing';
 
 describe('@rxap/data-source', () => {
 
   describe('ObservableDataSource', () => {
 
-    it('BUG: disconnect from data source if a connection observable is used as source', fakeAsync(() => {
+    beforeEach(() => jest.useFakeTimers());
+    afterEach(() => jest.useRealTimers());
+
+    it('BUG: disconnect from data source if a connection observable is used as source', async () => {
 
       const dataSource = new StaticDataSource('data', { id: 'static' });
 
@@ -25,12 +24,13 @@ describe('@rxap/data-source', () => {
       observableDataSource.connect({ id: 'test' });
       observableDataSource.disconnect('test');
 
-      tick(10000);
+      // let any (wrongly) scheduled disconnect run before asserting
+      await jest.advanceTimersByTimeAsync(10000);
 
       expect(dataSource.hasConnections).toBeTruthy();
       expect(dataSource.isConnected('test')).toBeTruthy();
 
-    }));
+    });
 
   });
 

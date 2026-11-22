@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatOption } from '@angular/material/core';
 import { By } from '@angular/platform-browser';
@@ -71,7 +71,6 @@ describe('table cells', () => {
   it('copy to clipboard cell hides for empty values', () => {
     fixture.detectChanges();
     expect($('#copy rxap-copy-to-clipboard')).toBeTruthy();
-    host.copy = '';
     fixture = TestBed.createComponent(HostComponent);
     fixture.componentInstance.copy = null;
     fixture.detectChanges();
@@ -144,7 +143,7 @@ describe('table cells', () => {
   template: `
     <table>
       <tr>
-        <td [rxap-options-cell]="value" default="dflt" empty="none">
+        <td [rxap-options-cell]="value()" default="dflt" empty="none">
           <mat-option [value]="1">One</mat-option>
           <mat-option [value]="2">Two</mat-option>
         </td>
@@ -153,7 +152,7 @@ describe('table cells', () => {
   `,
 })
 class OptionsHostComponent {
-  value: any = 2;
+  readonly value = signal<any>(2);
 }
 
 describe('OptionsCellComponent', () => {
@@ -164,10 +163,10 @@ describe('OptionsCellComponent', () => {
     const cell: OptionsCellComponent = fixture.debugElement.query(By.directive(OptionsCellComponent)).componentInstance;
     expect(cell.getViewValue()).toBe('Two');
     expect(fixture.nativeElement.querySelector('mat-option').style.display).toBe('none');
-    fixture.componentInstance.value = 99;
+    fixture.componentInstance.value.set(99);
     fixture.detectChanges();
     expect(cell.viewValue()).toBe('dflt');
-    fixture.componentInstance.value = null;
+    fixture.componentInstance.value.set(null);
     fixture.detectChanges();
     expect(cell.viewValue()).toBe('none');
   });
@@ -206,5 +205,93 @@ describe('TreeControlCellComponent', () => {
     const fixture = create({ depth: 0, hasChildren: false, expanded: false, toggleExpand: jest.fn() });
     const cell: TreeControlCellComponent = fixture.debugElement.query(By.directive(TreeControlCellComponent)).componentInstance;
     expect(cell.icon).toEqual({ icon: 'subdirectory_arrow_right' });
+  });
+
+  describe('zoneless change detection (OnPush host, no manual detectChanges)', () => {
+    // the tree node is a plain mutable object (not reactive), exactly like the real data-structure Node
+    function createNode(expanded = false) {
+      const node: any = {
+        depth: 1,
+        hasChildren: true,
+        expanded,
+        toggleExpand: jest.fn(() => {
+          node.expanded = !node.expanded;
+          return Promise.resolve();
+        }),
+      };
+      return node;
+    }
+
+    @Component({
+      standalone: true,
+      imports: [TreeControlCellComponent],
+      changeDetection: ChangeDetectionStrategy.OnPush,
+      template: `
+        <span class="revision">{{ revision() }}</span>
+        <rxap-tree-control-cell [rxap-tree-control-cell]="element()">content</rxap-tree-control-cell>
+      `,
+    })
+    class OnPushHost {
+      readonly element = signal<any>(undefined);
+      readonly revision = signal(0);
+    }
+
+    async function render(node: any) {
+      TestBed.configureTestingModule({ imports: [OnPushHost] });
+      const fixture = TestBed.createComponent(OnPushHost);
+      fixture.componentInstance.element.set({ __node: node });
+      await fixture.whenStable();
+      return fixture;
+    }
+
+    const expandIcon = (fixture: any) => fixture.nativeElement.querySelector('button mat-icon').textContent.trim();
+
+    it('renders the initial icon', async () => {
+      const fixture = await render(createNode(false));
+      expect(expandIcon(fixture)).toBe('expand_less');
+    });
+
+    it('updates the rendered icon after a click on the toggle button', async () => {
+      const node = createNode(false);
+      const fixture = await render(node);
+      expect(expandIcon(fixture)).toBe('expand_less');
+
+      fixture.nativeElement.querySelector('button').click();
+      await fixture.whenStable();
+      expect(node.toggleExpand).toHaveBeenCalledTimes(1);
+      expect(expandIcon(fixture)).toBe('expand_more');
+
+      fixture.nativeElement.querySelector('button').click();
+      await fixture.whenStable();
+      expect(expandIcon(fixture)).toBe('expand_less');
+    });
+
+    it('updates the rendered icon when the node state changed outside of the cell and the parent view is refreshed', async () => {
+      const node = createNode(false);
+      const fixture = await render(node);
+      expect(expandIcon(fixture)).toBe('expand_less');
+
+      node.expanded = true;
+      // dirty the parent view: ngDoCheck of the cell runs and must mark the OnPush cell view for check
+      fixture.componentInstance.revision.update(v => v + 1);
+      await fixture.whenStable();
+      expect(fixture.nativeElement.querySelector('.revision').textContent).toBe('1');
+      expect(expandIcon(fixture)).toBe('expand_more');
+    });
+
+    it('does not mark the view for check while the node state is unchanged', async () => {
+      const fixture = await render(createNode(true));
+      const cell: TreeControlCellComponent = fixture.debugElement.query(By.directive(TreeControlCellComponent)).componentInstance;
+      const markForCheck = jest.spyOn((cell as any).cdr, 'markForCheck');
+      cell.ngDoCheck();
+      cell.ngDoCheck();
+      expect(markForCheck).not.toHaveBeenCalled();
+    });
+
+    it('renders the leaf icon for nodes without children', async () => {
+      const fixture = await render({ depth: 0, hasChildren: false, expanded: false, toggleExpand: jest.fn() });
+      expect(fixture.nativeElement.querySelectorAll('mat-icon').length).toBe(2);
+      expect(fixture.nativeElement.querySelector('.content').textContent).toBe('content');
+    });
   });
 });

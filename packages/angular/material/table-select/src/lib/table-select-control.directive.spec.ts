@@ -1,9 +1,5 @@
 import { Component, signal } from '@angular/core';
-import {
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import {
   FormControl,
   ReactiveFormsModule,
@@ -112,7 +108,10 @@ describe('TableSelectControlDirective', () => {
       set: { providers: [{ provide: OpenTableSelectWindowMethod, useValue: { call } }] },
     });
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => {
+    jest.useRealTimers();
+    jest.restoreAllMocks();
+  });
 
   function create<T>(component: new () => T) {
     const fixture = TestBed.createComponent(component);
@@ -234,19 +233,20 @@ describe('TableSelectControlDirective', () => {
       expect(await input.toDisplay(rows[1])).toBe('def:b');
     });
 
-    it('propagates the disabled state of the control', fakeAsync(() => {
+    it('propagates the disabled state of the control', async () => {
+      jest.useFakeTimers();
       const { fixture, window } = create(DefinitionHostComponent);
       fixture.detectChanges();
       expect(window.disabled()).toBe(false);
       fixture.componentInstance.control.disable();
-      tick(200);
+      await jest.advanceTimersByTimeAsync(200);
       fixture.detectChanges();
       expect(window.disabled()).toBe(true);
       fixture.componentInstance.control.enable();
-      tick(200);
+      await jest.advanceTimersByTimeAsync(200);
       fixture.detectChanges();
       expect(window.disabled()).toBe(false);
       fixture.destroy();
-    }));
+    });
   });
 });

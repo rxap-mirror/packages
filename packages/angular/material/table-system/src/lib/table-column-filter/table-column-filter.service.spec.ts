@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { RXAP_TABLE_FILTER } from '../table-data-source.directive';
@@ -33,7 +33,12 @@ class HostComponent {
 }
 
 describe('TableColumnFilterInputDirective', () => {
-  it('debounces ngModel changes into the filter service', fakeAsync(() => {
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
+  it('debounces ngModel changes into the filter service', async () => {
+    jest.useFakeTimers();
     const filter = new TableColumnFilterService();
     TestBed.configureTestingModule({
       imports: [HostComponent],
@@ -41,13 +46,16 @@ describe('TableColumnFilterInputDirective', () => {
     });
     const fixture = TestBed.createComponent(HostComponent);
     fixture.detectChanges();
-    tick();
+    // flush the NgModel control registration (resolved promise)
+    await jest.advanceTimersByTimeAsync(0);
     fixture.detectChanges();
     const input = fixture.debugElement.query(By.css('input'));
     input.nativeElement.value = 'abc';
     input.nativeElement.dispatchEvent(new Event('input'));
-    tick(500);
+    await jest.advanceTimersByTimeAsync(499);
+    expect(filter.current).toEqual({});
+    await jest.advanceTimersByTimeAsync(1);
     expect(filter.current).toEqual({ name: 'abc' });
     fixture.destroy();
-  }));
+  });
 });

@@ -342,6 +342,9 @@ export class DataSourceCollectionDirective<Data = any>
       viewRef.context.index = i;
       viewRef.context.count = ilen;
       viewRef.context.connection$ = this.connection$!;
+      // the context is mutated from an effect and is not a signal. Without zone.js the embedded
+      // view would not be refreshed by the targeted change detection run and would show stale values
+      viewRef.markForCheck();
     }
 
     changes.forEachIdentityChange((record: any) => {
@@ -349,6 +352,7 @@ export class DataSourceCollectionDirective<Data = any>
         EmbeddedViewRef<DataSourceCollectionTemplateContext<Data>>
         >this.viewContainerRef.get(record.currentIndex);
       viewRef.context.$implicit = record.item;
+      viewRef.markForCheck();
     });
   }
 

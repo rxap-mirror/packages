@@ -209,9 +209,15 @@ export class AutocompleteOptionsFromMethodDirective<Value = any, Parameters exte
       // to trigger the toDisplay function in the mat-autocomplete
       distinctUntilChanged(),
       tap(async value => {
-        await this.load(untracked(this.parameters));
-        if (this.resolvedIsValue()?.(value)) {
-          this.triggerAutocompleteToDisplay();
+        // also track the work after the load (the trigger of the to display function)
+        const done = this.pendingTasks.add();
+        try {
+          await this.load(untracked(this.parameters));
+          if (this.resolvedIsValue()?.(value)) {
+            this.triggerAutocompleteToDisplay();
+          }
+        } finally {
+          done();
         }
       }),
     ).subscribe();

@@ -152,12 +152,23 @@ describe('dialogs', () => {
       expect(overlay().querySelector('.controls')).toBeNull();
     });
 
-    it('emits and completes when the dialog is closed', () => {
+    it('emits and completes when the dialog is closed', async () => {
       const next = jest.fn();
       const complete = jest.fn();
-      TestBed.inject(ErrorCaptureDialogService).open(InnerComponent, signal([{ message: 'x' }])).subscribe({ next, complete });
+      // closing is asynchronous without zone.js (the dialog finishes closing after a render), so wait for completion
+      const completed = new Promise<void>((resolve) => {
+        TestBed.inject(ErrorCaptureDialogService).open(InnerComponent, signal([{ message: 'x' }])).subscribe({
+          next,
+          complete: () => {
+            complete();
+            resolve();
+          },
+        });
+      });
       tick();
       button('Close').click();
+      tick();
+      await completed;
       expect(next).toHaveBeenCalledTimes(1);
       expect(complete).toHaveBeenCalled();
     });

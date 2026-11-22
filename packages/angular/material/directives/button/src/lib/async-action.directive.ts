@@ -42,6 +42,9 @@ export class AsyncActionDirective {
         if (this.matButton) {
           this.matButton.disabled = false;
         }
+        // zoneless: the cdr of a directive on a MatButton host only refreshes the button's own view,
+        // the host bindings (attr.disabled) live in the parent view and need a scheduled refresh
+        this.cdr.markForCheck();
         this.cdr.detectChanges();
       }, () => {
         this.loading$.disable();
@@ -49,6 +52,9 @@ export class AsyncActionDirective {
         if (this.matButton) {
           this.matButton.disabled = false;
         }
+        // zoneless: the cdr of a directive on a MatButton host only refreshes the button's own view,
+        // the host bindings (attr.disabled) live in the parent view and need a scheduled refresh
+        this.cdr.markForCheck();
         this.cdr.detectChanges();
       });
     }

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, computed, Directive, forwardRef, inject, input, isDevMode, OnChanges, OnDestroy, OnInit, output, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, computed, Directive, forwardRef, inject, input, isDevMode, OnChanges, OnDestroy, OnInit, output, PendingTasks, SimpleChanges } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
   ControlContainer,
@@ -113,6 +113,7 @@ export class FormDirective<T = any>
    */
   readonly cdr = inject<ChangeDetectorRef>(ChangeDetectorRef);
   protected readonly formDefinitionBuilder = inject<RxapFormBuilder | null>(RXAP_FORM_DEFINITION_BUILDER, { skipSelf: true, optional: true }) ?? null;
+  private readonly pendingTasks = inject(PendingTasks);
   protected readonly loadingIndicatorService = inject<LoadingIndicatorService | null>(LoadingIndicatorService, { optional: true }) ?? null;
 
   // skip self, bc the tokens are set to null in the providers of this directive
@@ -388,6 +389,8 @@ export class FormDirective<T = any>
         try {
           const resultOrPromise = loadMethod.call({ context: this.currentContext(), initial: this.currentInitial() });
           if (isPromise(resultOrPromise)) {
+            // zoneless: register the pending load, so that ApplicationRef.whenStable() waits for it
+            const done = this.pendingTasks.add();
             resultOrPromise
               .then((value) => {
                 form.patchValue(value, { setInitialValue: true });
@@ -400,6 +403,7 @@ export class FormDirective<T = any>
               })
               .finally(() => {
                 this.loading$.disable();
+                done();
               });
           } else if (isObject(resultOrPromise)) {
             form.patchValue(resultOrPromise, { setInitialValue: true });
@@ -470,6 +474,8 @@ export class FormDirective<T = any>
       try {
         const resultOrPromise = submitMethod.call(value, this.currentContext(), this.currentInitial());
         if (isPromise(resultOrPromise)) {
+          // zoneless: register the pending submit, so that ApplicationRef.whenStable() waits for it
+          const done = this.pendingTasks.add();
           resultOrPromise
             .then((result) => {
               Reflect.set(this, 'submitted', true);
@@ -482,6 +488,7 @@ export class FormDirective<T = any>
             })
             .finally(() => {
               this.submitting$.disable();
+              done();
             });
         } else {
           Reflect.set(this, 'submitted', true);

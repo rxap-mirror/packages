@@ -68,7 +68,9 @@ describe('FormControlsComponent', () => {
       imports: [HostComponent],
       providers: [
         provideNoopAnimations(),
-        ...(withRouter ? [{ provide: Router, useValue: router }] : []),
+        // Router is providedIn root: to simulate "no router available" it has to be explicitly overridden with null,
+        // otherwise the real router is injected and rejects the navigation to the unknown route.
+        { provide: Router, useValue: withRouter ? router : null },
       ],
     });
     fixture = TestBed.createComponent(HostComponent);

@@ -76,11 +76,11 @@ export class MethodDataSource<Data, Parameters = any>
               viewer.viewChange as Observable<Parameters>
             ).pipe(
               tap(() => this.loading$.enable()),
-              switchMap((parameters) => from(this.execute(parameters)).pipe(this.handelExecution())),
+              switchMap((parameters) => from(this.execute(parameters)).pipe(this.handelExecution(), this.trackPendingLoad())),
             );
           } else {
             this.loading$.enable();
-            return from(this.execute(viewer as Parameters)).pipe(this.handelExecution());
+            return from(this.execute(viewer as Parameters)).pipe(this.handelExecution(), this.trackPendingLoad());
           }
         }),
       );
@@ -115,6 +115,7 @@ export class MethodDataSource<Data, Parameters = any>
       tap({
         next: (data) => this._data$.next(data),
       }),
+      this.trackPendingLoad(),
     ));
   }
 

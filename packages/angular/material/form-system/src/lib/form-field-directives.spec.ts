@@ -116,6 +116,21 @@ describe('InputClearButtonDirective', () => {
     expect(fixture.debugElement.query(By.css('button')).nativeElement.disabled).toBe(true);
   });
 
+  it('is disabled with the control without an explicit change detection run', async () => {
+    const fixture = TestBed.createComponent(Host);
+    await fixture.whenStable();
+    const button = fixture.debugElement.query(By.css('button')).nativeElement;
+    expect(button.disabled).toBe(false);
+    // e.g. disabled from an async callback: only the zoneless scheduler can refresh the host binding
+    setTimeout(() => fixture.componentInstance.control.disable());
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    await fixture.whenStable();
+    expect(button.disabled).toBe(true);
+    fixture.componentInstance.control.enable();
+    await fixture.whenStable();
+    expect(button.disabled).toBe(false);
+  });
+
   it('resets a control without a form control', () => {
     jest.spyOn(console, 'log').mockImplementation(() => undefined);
     const fixture = TestBed.createComponent(PlainHost);
@@ -292,6 +307,17 @@ describe('ChipInputAdapterDirective / ChipListIteratorDirective', () => {
     fixture.componentInstance.control.setValue(['c']);
     fixture.detectChanges();
     expect(chips()).toEqual(['c']);
+  });
+
+  it('renders the chips of a programmatic value change without an explicit change detection run', async () => {
+    const fixture = TestBed.createComponent(Host);
+    await fixture.whenStable();
+    const chips = () => fixture.debugElement.queryAll(By.css('mat-chip-row')).map((c) => c.nativeElement.textContent.trim());
+    expect(chips()).toEqual(['a', 'b']);
+    setTimeout(() => fixture.componentInstance.control.setValue(['x', 'y', 'z']));
+    await new Promise((resolve) => setTimeout(resolve, 10));
+    await fixture.whenStable();
+    expect(chips()).toEqual(['x', 'y', 'z']);
   });
 
   it('adds unique values on chipEnd and clears the input', () => {

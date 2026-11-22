@@ -1,4 +1,4 @@
-import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy, ApplicationRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RemoteMethodLoader } from '@rxap/remote-method';
@@ -178,5 +178,79 @@ describe('RemoteMethodTemplateCollectionDirective', () => {
     host.withoutParameters.set(true);
     fixture.detectChanges();
     expect(directive()).toBeTruthy();
+  });
+});
+
+@Component({
+  standalone: true,
+  imports: [RemoteMethodTemplateCollectionDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  template: `
+    <ng-template #emptyTpl><span id="empty">empty</span></ng-template>
+    <ng-template #errorTpl let-message="message"><span id="error">{{ message }}</span></ng-template>
+    <ng-template
+      rxapRemoteMethodCollection
+      let-item
+      rxapRemoteMethodCollectionCall="list"
+      [rxapRemoteMethodCollectionWithoutParameters]="true"
+      [rxapRemoteMethodCollectionEmpty]="emptyTpl"
+      [rxapRemoteMethodCollectionError]="errorTpl"
+    >
+      <li class="item">{{ item.name }}</li>
+    </ng-template>
+  `,
+})
+class OnPushHostComponent {}
+
+describe('RemoteMethodTemplateCollectionDirective (zoneless, OnPush host, no manual change detection)', () => {
+  let call$: jest.Mock;
+
+  const setup = () => {
+    TestBed.configureTestingModule({ providers: [{ provide: RemoteMethodLoader, useValue: { call$ } }] });
+    const fixture = TestBed.createComponent(OnPushHostComponent);
+    fixture.detectChanges();
+    return fixture;
+  };
+  // waits until the promise returned by the remote method and the directive's handlers have settled.
+  // Intentionally does NOT trigger change detection: the directive has to render on its own,
+  // because ngDoCheck only runs when the view is dirtied in a zoneless application.
+  const settle = async () => {
+    await call$.mock.results[0].value.catch(() => undefined);
+    await new Promise<void>((r) => setTimeout(r));
+  };
+  const texts = (f: ComponentFixture<unknown>, sel: string) =>
+    Array.from<HTMLElement>(f.nativeElement.querySelectorAll(sel)).map((e) => e.textContent);
+
+  it('renders the collection without any further change detection after the call resolved', async () => {
+    call$ = jest.fn().mockResolvedValue([{ name: 'a' }, { name: 'b' }]);
+    const f = setup();
+    expect(texts(f, '.item')).toEqual([]);
+    await settle();
+    expect(texts(f, '.item')).toEqual(['a', 'b']);
+  });
+
+  it('renders the empty template without any further change detection', async () => {
+    call$ = jest.fn().mockResolvedValue([]);
+    const f = setup();
+    await settle();
+    expect(f.nativeElement.querySelector('#empty')).not.toBeNull();
+  });
+
+  it('renders the error template without any further change detection', async () => {
+    call$ = jest.fn().mockRejectedValue(new Error('bad'));
+    const f = setup();
+    await settle();
+    expect(texts(f, '#error')).toEqual(['bad']);
+  });
+
+  it('keeps the rendered views stable across later application ticks', async () => {
+    call$ = jest.fn().mockResolvedValue([{ name: 'a' }, { name: 'b' }]);
+    const f = setup();
+    await settle();
+    const first = f.nativeElement.querySelector('.item');
+    TestBed.inject(ApplicationRef).tick();
+    await f.whenStable();
+    expect(f.nativeElement.querySelector('.item')).toBe(first);
+    expect(texts(f, '.item')).toEqual(['a', 'b']);
   });
 });

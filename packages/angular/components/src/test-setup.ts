@@ -1,14 +1,10 @@
 import { clone } from '@rxap/utilities';
-import { setupZoneTestEnv } from 'jest-preset-angular/setup-env/zone';
+import { setupZonelessTestEnv } from 'jest-preset-angular/setup-env/zoneless';
 
-setupZoneTestEnv();
-// @ts-expect-error https://thymikee.github.io/jest-preset-angular/docs/getting-started/test-environment
-globalThis.ngJest = {
-  testEnvironmentOptions: {
-    errorOnUnknownElements: true,
-    errorOnUnknownProperties: true,
-  },
-};
+setupZonelessTestEnv({
+  errorOnUnknownElements: true,
+  errorOnUnknownProperties: true,
+});
 global.structuredClone ??= clone as any;
 
 import { TextDecoder, TextEncoder } from 'util';

@@ -42,7 +42,7 @@ import { SettingsMenuItem } from '../../types';
     selector: 'rxap-settings-button',
     templateUrl: './settings-button.component.html',
     styleUrls: ['./settings-button.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
     MatIconButton,
     MatIcon,

@@ -75,9 +75,11 @@ export class StaticDataSource<Data = any>
       ).subscribe();
     } else if (isPromiseLike(data)) {
       if (isPromise(data)) {
-        data.then(data => this._data$.next(data)).catch((error) => this.error$.next(error));
+        this.trackPendingPromise(
+          data.then(data => this._data$.next(data)).catch((error) => this.error$.next(error)),
+        );
       } else {
-        data.then(data => this._data$.next(data));
+        this.trackPendingPromise(data.then(data => this._data$.next(data)));
       }
     } else if (typeof data === 'function') {
       // TODO : fix typeof function cast

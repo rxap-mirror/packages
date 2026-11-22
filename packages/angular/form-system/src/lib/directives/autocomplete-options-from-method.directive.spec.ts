@@ -18,8 +18,8 @@ import {
   RxapFormControl,
   UseFormControl,
 } from '@rxap/forms';
-import { signal } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ApplicationRef, signal } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { NgControl } from '@angular/forms';
 import { TestNgControl } from './test-ng-control';
 
@@ -70,6 +70,11 @@ describe(AutocompleteOptionsFromMethodDirective.name, () => {
   let control: RxapFormControl;
   let autocompleteOptionsMethodCall: jest.SpyInstance;
   let resolveMethodCall: jest.SpyInstance;
+  /** waits until the pending (tracked) option loading of the directive is finished */
+  async function settle() {
+    await TestBed.inject(ApplicationRef).whenStable();
+  }
+
   let inputs: Record<string, ReturnType<typeof signal<any>>>;
 
   beforeEach(() => {
@@ -129,27 +134,27 @@ describe(AutocompleteOptionsFromMethodDirective.name, () => {
     Object.assign(directive, inputs);
   });
 
-  it('should only call the autocomplete options method if a value is set', fakeAsync(() => {
-    tick();
+  it('should only call the autocomplete options method if a value is set', async () => {
+    await settle();
     directive.ngAfterViewInit();
-    tick();
+    await settle();
     expect(autocompleteOptionsMethodCall).not.toHaveBeenCalled();
     expect(resolveMethodCall).not.toHaveBeenCalled();
     control.setValue('test');
-    tick();
+    await settle();
     expect(autocompleteOptionsMethodCall).toHaveBeenCalledWith(
       { parameters: { search: 'test' } },
       expect.any(RxapFormControl),
     );
     expect(resolveMethodCall).not.toHaveBeenCalled();
-  }));
+  });
 
-  it('should link directive with MatAutocomplete', fakeAsync(() => {
+  it('should link directive with MatAutocomplete', async () => {
     inputs['matAutocomplete'].set({ displayWith: jest.fn() });
 
-    tick();
+    await settle();
     directive.ngAfterViewInit();
-    tick();
+    await settle();
 
     expect(autocompleteOptionsMethodCall).not.toHaveBeenCalled();
     expect(resolveMethodCall).not.toHaveBeenCalled();
@@ -160,34 +165,35 @@ describe(AutocompleteOptionsFromMethodDirective.name, () => {
     expect((inputs['matAutocomplete']() as any).displayWith('error')).toBe(
       (directive as any).resolvedToDisplay().bind(directive)('error'),
     );
-  }));
+  });
 
-  it('should convert value to display', fakeAsync(() => {
+  it('should convert value to display', async () => {
     inputs['matAutocomplete'].set({ displayWith: jest.fn() });
 
-    tick();
+    await settle();
     directive.ngAfterViewInit();
-    tick();
+    await settle();
 
     directive.options = [{ value: 'test', display: 'display_test' }];
 
     expect((directive as any).resolvedToDisplay()('test')).toBe('display_test');
-  }));
+  });
 
-  it('should resolve a value to display', fakeAsync(() => {
+  it('should resolve a value to display', async () => {
     const setValueSpy = jest.spyOn(control, 'setValue');
 
-    tick();
+    await settle();
     directive.ngAfterViewInit();
-    tick();
+    await settle();
 
     (directive as any).resolvedIsValue.set((value: any) => value === 'test');
 
     expect(setValueSpy).not.toHaveBeenCalled();
-    expect(directive.options).toBeNull();
+    // the initial (effect triggered) load has no search value and therefore results in an empty options list
+    expect(directive.options).toEqual([]);
 
     control.setValue('test');
-    tick();
+    await settle();
     expect(autocompleteOptionsMethodCall).not.toHaveBeenCalled();
     expect(resolveMethodCall).toHaveBeenCalledWith({ value: 'test' });
     expect(directive.options).toEqual([
@@ -197,5 +203,5 @@ describe(AutocompleteOptionsFromMethodDirective.name, () => {
       TestBed.inject(TemplateRef),
       { $implicit: { value: 'test', display: 'resolved display' } },
     );
-  }));
+  });
 });

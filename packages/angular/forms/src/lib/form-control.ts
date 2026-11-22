@@ -248,6 +248,14 @@ export class RxapFormControl<
     this.markAsDirty({ onlySelf: true });
   }
 
+  public markAllAsPristine(): void {
+    this.markAsPristine({ onlySelf: true });
+  }
+
+  public markAllAsUntouched(): void {
+    this.markAsUntouched({ onlySelf: true });
+  }
+
   public override reset(
     formState?: OrBoxedValue<T>,
     options?: ControlEventOptions,

@@ -1,5 +1,5 @@
 import { Component, DebugElement, signal } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpRemoteMethodDirective } from './http-remote-method.directive';
 import { By } from '@angular/platform-browser';
 import { RemoteMethodLoader } from '@rxap/remote-method';
@@ -42,7 +42,7 @@ describe('@rxap/remote-method/directive/button', () => {
       componentfixture.detectChanges();
     });
 
-    it('should call execute on button click', fakeAsync(() => {
+    it('should call execute on button click', () => {
       const executeSpy = jest.spyOn(directive, 'execute');
 
       const button = componentfixture.debugElement.query(By.css('button'));
@@ -50,7 +50,7 @@ describe('@rxap/remote-method/directive/button', () => {
       button.nativeElement.click();
 
       expect(executeSpy).toHaveBeenCalledTimes(1);
-    }));
+    });
   });
 });
 

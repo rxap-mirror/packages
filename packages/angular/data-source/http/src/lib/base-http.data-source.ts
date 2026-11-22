@@ -150,6 +150,7 @@ export abstract class BaseHttpDataSource<Data = any, PathParams = any, Body = an
       tap(() => this.requestsInProgress$.increase()),
       switchMap(options => this.buildRequest(options).pipe(
         finalize(() => this.requestsInProgress$.decrease()),
+        this.trackPendingLoad(),
       )),
     ).subscribe(this._data$);
 

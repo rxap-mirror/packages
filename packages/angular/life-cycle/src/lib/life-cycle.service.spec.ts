@@ -1,7 +1,10 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { ApplicationRef } from '@angular/core';
 import { EMPTY, of, Subject } from 'rxjs';
 import { LifeCycleService } from './life-cycle.service';
+
+// Flushes all pending microtasks (promise chains) without relying on zone.js
+const flushPromises = () => new Promise<void>((resolve) => setTimeout(resolve));
 
 describe('LifeCycle', () => {
   describe('LifeCycleService', () => {
@@ -21,7 +24,7 @@ describe('LifeCycle', () => {
       lifeCycle = TestBed.inject(LifeCycleService);
     });
 
-    it('should resolve when app is ready', fakeAsync(() => {
+    it('should resolve when app is ready', async () => {
       const observable$ = lifeCycle.whenReady(of('ready'));
       const promise$ = lifeCycle.whenReady(Promise.resolve('ready'));
       const observableFunction$ = lifeCycle.whenReady(() => of('ready'));
@@ -49,7 +52,7 @@ describe('LifeCycle', () => {
       expect(functionSpy).not.toHaveBeenCalled();
 
       isStable.next(false);
-      tick();
+      await flushPromises();
 
       expect(observableSpy).not.toHaveBeenCalled();
       expect(promiseSpy).not.toHaveBeenCalled();
@@ -58,7 +61,7 @@ describe('LifeCycle', () => {
       expect(functionSpy).not.toHaveBeenCalled();
 
       isStable.next(false);
-      tick();
+      await flushPromises();
 
       expect(observableSpy).not.toHaveBeenCalled();
       expect(promiseSpy).not.toHaveBeenCalled();
@@ -67,7 +70,7 @@ describe('LifeCycle', () => {
       expect(functionSpy).not.toHaveBeenCalled();
 
       isStable.next(true);
-      tick();
+      await flushPromises();
 
       expect(observableSpy).toHaveBeenCalled();
       expect(promiseSpy).toHaveBeenCalled();
@@ -76,13 +79,13 @@ describe('LifeCycle', () => {
       expect(functionSpy).toHaveBeenCalled();
 
       isStable.next(true);
-      tick();
+      await flushPromises();
 
       expect(observableSpy).toHaveBeenCalledTimes(1);
       expect(promiseSpy).toHaveBeenCalledTimes(1);
       expect(observableFunctionSpy).toHaveBeenCalledTimes(1);
       expect(promiseFunctionSpy).toHaveBeenCalledTimes(1);
       expect(functionSpy).toHaveBeenCalledTimes(1);
-    }));
+    });
   });
 });

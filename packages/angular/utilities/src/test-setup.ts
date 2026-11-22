@@ -1,8 +1,8 @@
-import { setupZoneTestEnv } from 'jest-preset-angular/setup-env/zone';
+import { setupZonelessTestEnv } from 'jest-preset-angular/setup-env/zoneless';
 import { TextDecoder, TextEncoder } from 'util';
 import '@angular/localize/init';
 
-setupZoneTestEnv({
+setupZonelessTestEnv({
   errorOnUnknownElements: true,
   errorOnUnknownProperties: true,
 });

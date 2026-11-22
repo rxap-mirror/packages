@@ -1,4 +1,5 @@
 import {
+  ApplicationRef,
   ChangeDetectorRef,
   Injectable,
   signal,
@@ -6,7 +7,7 @@ import {
   ViewContainerRef,
   WritableSignal,
 } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { NgControl } from '@angular/forms';
 import {
   FormType,
@@ -49,6 +50,11 @@ describe('OptionsFromMethodDirective', () => {
   let control: RxapFormControl;
   let methodCallSpy: jest.SpyInstance;
   let parameters: WritableSignal<any>;
+
+  /** waits until the pending (tracked) option loading of the directive is finished */
+  async function settle() {
+    await TestBed.inject(ApplicationRef).whenStable();
+  }
   let resetOnChange: WritableSignal<any>;
 
   beforeEach(() => {
@@ -95,31 +101,31 @@ describe('OptionsFromMethodDirective', () => {
     Object.assign(directive, { parameters, resetOnChange });
   });
 
-  it('should not call options method before ngAfterViewInit if paramters are set', fakeAsync(() => {
+  it('should not call options method before ngAfterViewInit if paramters are set', async () => {
     parameters.set({ data: 'data' });
     TestBed.tick();
-    tick();
+    await settle();
     expect(clearMock).not.toHaveBeenCalled();
     expect(createEmbeddedViewMock).not.toHaveBeenCalled();
     expect(detectChangesMock).not.toHaveBeenCalled();
     expect(methodCallSpy).not.toHaveBeenCalled();
-  }));
+  });
 
-  it('should not call options method before ngAfterViewInit if without paramters is set', fakeAsync(() => {
+  it('should not call options method before ngAfterViewInit if without paramters is set', async () => {
     TestBed.tick();
-    tick();
+    await settle();
     expect(clearMock).not.toHaveBeenCalled();
     expect(createEmbeddedViewMock).not.toHaveBeenCalled();
     expect(detectChangesMock).not.toHaveBeenCalled();
     expect(methodCallSpy).not.toHaveBeenCalled();
-  }));
+  });
 
-  it('should call options method after ngAfterViewInit', fakeAsync(() => {
+  it('should call options method after ngAfterViewInit', async () => {
     TestBed.tick();
-    tick();
+    await settle();
     directive.ngAfterViewInit();
     TestBed.tick();
-    tick();
+    await settle();
     expect(clearMock).toHaveBeenCalledTimes(1);
     expect(createEmbeddedViewMock).not.toHaveBeenCalled();
     expect(detectChangesMock).toHaveBeenCalledTimes(1);
@@ -128,9 +134,9 @@ describe('OptionsFromMethodDirective', () => {
       undefined,
       expect.any(RxapFormControl),
     );
-  }));
+  });
 
-  it('should pass the paratmers to the method call', fakeAsync(() => {
+  it('should pass the paratmers to the method call', async () => {
     methodCallSpy.mockReturnValue([
       { value: 'value', display: 'display' },
       { value: 'value', display: 'display' },
@@ -138,10 +144,10 @@ describe('OptionsFromMethodDirective', () => {
     ]);
     parameters.set({ data: 'data' });
     TestBed.tick();
-    tick();
+    await settle();
     directive.ngAfterViewInit();
     TestBed.tick();
-    tick();
+    await settle();
     expect(methodCallSpy).toHaveBeenCalledTimes(1);
     expect(methodCallSpy).toHaveBeenCalledWith(
       parameters(),
@@ -159,19 +165,19 @@ describe('OptionsFromMethodDirective', () => {
       { $implicit: { value: 'value', display: 'display' } },
     );
     expect(detectChangesMock).toHaveBeenCalledTimes(1);
-  }));
+  });
 
-  it('should call the method without parameters', fakeAsync(() => {
+  it('should call the method without parameters', async () => {
     methodCallSpy.mockReturnValue([
       { value: 'value', display: 'display' },
       { value: 'value', display: 'display' },
       { value: 'value', display: 'display' },
     ]);
     TestBed.tick();
-    tick();
+    await settle();
     directive.ngAfterViewInit();
     TestBed.tick();
-    tick();
+    await settle();
     expect(methodCallSpy).toHaveBeenCalledTimes(1);
     expect(methodCallSpy.mock.lastCall).toEqual([
       undefined,
@@ -185,29 +191,29 @@ describe('OptionsFromMethodDirective', () => {
       { $implicit: { value: 'value', display: 'display' } },
     );
     expect(detectChangesMock).toHaveBeenCalledTimes(1);
-  }));
+  });
 
-  it('should reset control of resetOnChange is set', fakeAsync(() => {
+  it('should reset control of resetOnChange is set', async () => {
     const resetSpy = jest.spyOn(control, 'reset');
     resetOnChange.set('custom value');
     TestBed.tick();
-    tick();
+    await settle();
     directive.ngAfterViewInit();
     TestBed.tick();
-    tick();
+    await settle();
     expect(clearMock).toHaveBeenCalledTimes(1);
     expect(createEmbeddedViewMock).not.toHaveBeenCalled();
     expect(detectChangesMock).toHaveBeenCalledTimes(1);
     expect(resetSpy).toHaveBeenCalledTimes(1);
     expect(resetSpy).toHaveBeenCalledWith(resetOnChange());
-  }));
+  });
 
-  it('should reload the options if the parameters are changed', fakeAsync(() => {
+  it('should reload the options if the parameters are changed', async () => {
     TestBed.tick();
-    tick();
+    await settle();
     directive.ngAfterViewInit();
     TestBed.tick();
-    tick();
+    await settle();
     expect(clearMock).toHaveBeenCalledTimes(1);
     expect(createEmbeddedViewMock).not.toHaveBeenCalled();
     expect(detectChangesMock).toHaveBeenCalledTimes(1);
@@ -218,7 +224,7 @@ describe('OptionsFromMethodDirective', () => {
     );
     parameters.set({ data: 'data' });
     TestBed.tick();
-    tick();
+    await settle();
     expect(clearMock).toHaveBeenCalledTimes(2);
     expect(createEmbeddedViewMock).not.toHaveBeenCalled();
     expect(detectChangesMock).toHaveBeenCalledTimes(2);
@@ -227,5 +233,5 @@ describe('OptionsFromMethodDirective', () => {
       parameters(),
       expect.any(RxapFormControl),
     );
-  }));
+  });
 });

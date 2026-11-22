@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectorRef,
   Directive,
   ElementRef,
   inject,
@@ -39,6 +40,7 @@ export abstract class FormArrayItemButton implements AfterViewInit, OnDestroy {
 
   protected readonly parent: ControlContainer = inject(ControlContainer, { skipSelf: true });
   protected readonly matButton: MatButton | null = inject(MatButton, { optional: true });
+  protected readonly cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
   protected readonly renderer: Renderer2 = inject(Renderer2);
   protected readonly elementRef: ElementRef = inject(ElementRef);
 
@@ -80,12 +82,16 @@ export abstract class FormArrayItemButton implements AfterViewInit, OnDestroy {
       throw new Error(`The parent is not a form group instance`);
     }
     const matButton = this.matButton;
-    if (matButton) {
-      this._controlDisabledSubscription = this.formGroup.disabled$.pipe(
-        tap(isDisabled => matButton.disabled = isDisabled),
-      ).subscribe();
-    }
-    this.deletedControl.value$.pipe(
+    // the disabled host binding must be refreshed if the control state changes outside of a template event (zoneless)
+    this._controlDisabledSubscription = this.formGroup.disabled$.pipe(
+      tap(isDisabled => {
+        if (matButton) {
+          matButton.disabled = isDisabled;
+        }
+        this.cdr.markForCheck();
+      }),
+    ).subscribe();
+    this._deletedControlValueSubscription = this.deletedControl.value$.pipe(
       tap(() => this.updateDisplayStyle()),
     ).subscribe();
   }

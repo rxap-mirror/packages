@@ -1,8 +1,10 @@
 import {
+  inject,
   Inject,
   Injectable,
   isDevMode,
   Optional,
+  PendingTasks,
   Signal,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -23,8 +25,10 @@ import {
   GenerateRandomString,
 } from '@rxap/utilities';
 import {
+  defer,
   EMPTY,
   firstValueFrom,
+  MonoTypeOperatorFunction,
   Observable,
   ReplaySubject,
   Subject,
@@ -39,6 +43,19 @@ import {
 } from 'rxjs/operators';
 
 export type DataSourceViewerId = string;
+
+/**
+ * Resolves the Angular PendingTasks service if the current context is an injection context.
+ * Data sources are sometimes created with `new` outside of an injection context. In that case
+ * the loading work is simply not tracked by Angular.
+ */
+function injectPendingTasksOrNull(): PendingTasks | null {
+  try {
+    return inject(PendingTasks, { optional: true });
+  } catch {
+    return null;
+  }
+}
 
 export interface BaseDataSourceViewer<View = any> {
   id?: DataSourceViewerId;
@@ -92,6 +109,17 @@ export class BaseDataSource<
   public loading?: Signal<boolean>;
 
   public hasError?: Signal<boolean>;
+
+  /**
+   * Makes in-flight loads visible to Angular (ApplicationRef.whenStable, fixture.whenStable, SSR stability).
+   * null if the data source was created outside of an injection context.
+   */
+  private readonly _pendingTasks: PendingTasks | null = injectPendingTasksOrNull();
+
+  /**
+   * The release callbacks of all currently open pending tasks. Released on destroy.
+   */
+  private readonly _pendingTaskReleases = new Set<() => void>();
 
   constructor(
     @Optional()
@@ -301,6 +329,64 @@ export class BaseDataSource<
     // eslint-disable-next-line no-prototype-builtins
     if (this.metadata.hasOwnProperty('context')) {
       delete this.metadata['context'];
+    }
+  }
+
+  public override ngOnDestroy() {
+    this.releaseAllPendingTasks();
+    super.ngOnDestroy();
+  }
+
+  /**
+   * Registers a pending task at Angular. The returned function releases the task. It is idempotent
+   * and is also called automatically if the data source is destroyed.
+   *
+   * Without an injection context at construction time this is a no-op.
+   */
+  protected addPendingTask(): () => void {
+    const pendingTasks = this._pendingTasks;
+    if (!pendingTasks) {
+      return () => undefined;
+    }
+    const remove = pendingTasks.add();
+    let released = false;
+    const release = () => {
+      if (released) {
+        return;
+      }
+      released = true;
+      this._pendingTaskReleases.delete(release);
+      remove();
+    };
+    this._pendingTaskReleases.add(release);
+    return release;
+  }
+
+  /**
+   * Keeps an Angular pending task open until the promise settles (fulfilled or rejected).
+   * The promise result is passed through unchanged.
+   */
+  protected trackPendingPromise<T>(promise: PromiseLike<T>): Promise<T> {
+    const release = this.addPendingTask();
+    return Promise.resolve(promise).finally(release);
+  }
+
+  /**
+   * Operator that keeps an Angular pending task open from subscribe until the source
+   * completes, errors or is unsubscribed (e.g. switchMap replaced it or the viewer disconnected).
+   * Only use it for sources that complete after the load (e.g. `from(promise)`), never for
+   * long living streams, as that would keep the application unstable.
+   */
+  protected trackPendingLoad<T>(): MonoTypeOperatorFunction<T> {
+    return (source) => defer(() => {
+      const release = this.addPendingTask();
+      return source.pipe(finalize(release));
+    });
+  }
+
+  private releaseAllPendingTasks() {
+    for (const release of [ ...this._pendingTaskReleases ]) {
+      release();
     }
   }
 

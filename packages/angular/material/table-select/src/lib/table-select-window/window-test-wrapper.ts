@@ -17,7 +17,8 @@ import {
   ViewRef,
   input,
   viewChildren,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  signal,
 } from '@angular/core';
 import { RXAP_WINDOW_REF } from '@rxap/window-system';
 import {
@@ -71,15 +72,15 @@ export class MockWindowRef<O = any, R = any> extends Subject<R> {
     template: `
     <div class="flex flex-col gap-8">
       <div class="grow">
-        <ng-template [cdkPortalOutlet]="content"></ng-template>
+        <ng-template [cdkPortalOutlet]="content()"></ng-template>
       </div>
       <hr class="m-4">
       <div class="grow-0">
-        <ng-template [cdkPortalOutlet]="footer"></ng-template>
+        <ng-template [cdkPortalOutlet]="footer()"></ng-template>
       </div>
     </div>
   `,
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
     PortalModule
 ]
@@ -88,8 +89,10 @@ export class WindowTestWrapperComponent implements AfterViewInit {
 
   readonly component = input.required<ComponentType<unknown>>();
 
-  content: Portal<unknown> | null = null;
-  footer: Portal<unknown> | null = null;
+  // signals: the portals are set after the view was initialized (ngAfterViewInit / timer) which
+  // is only picked up by the change detection (without zone.js) when it is tracked by a signal
+  readonly content = signal<Portal<unknown> | null>(null);
+  readonly footer = signal<Portal<unknown> | null>(null);
 
   injector         = inject(INJECTOR);
   viewContainerRef = this.injector.get(ViewContainerRef);
@@ -120,9 +123,9 @@ export class WindowTestWrapperComponent implements AfterViewInit {
       } ],
     });
     windowRef.footerPortal$.pipe(
-      tap((portal) => this.footer = portal),
+      tap((portal) => this.footer.set(portal)),
     ).subscribe();
-    this.content = new ComponentPortal(this.component(), this.viewContainerRef, injector);
+    this.content.set(new ComponentPortal(this.component(), this.viewContainerRef, injector));
   }
 
 }

@@ -248,6 +248,30 @@ describe('WindowService', () => {
     expect(bar.nativeElement.querySelector('rxap-window-task-bar')).toBeNull();
   });
 
+  it('task bar reacts to window state changes without manual change detection (zoneless)', async () => {
+    const { WindowTaskBarContainerComponent } = await import(
+      './window-task-bar/window-task-bar-container/window-task-bar-container.component'
+    );
+    setup();
+    const bar = TestBed.createComponent(WindowTaskBarContainerComponent);
+    await bar.whenStable();
+    expect(bar.nativeElement.querySelector('rxap-window-task-bar')).toBeNull();
+    const ref = service.open({ id: 'reactive', component: ContentComponent, title: 'R', minimizable: true });
+    await bar.whenStable();
+    const task = bar.nativeElement.querySelector('rxap-window-task .rxap-container') as HTMLElement;
+    expect(task).toBeTruthy();
+    expect(task.classList.contains('minimized')).toBe(false);
+    ref.minimize();
+    await bar.whenStable();
+    expect(task.classList.contains('minimized')).toBe(true);
+    ref.reopen();
+    await bar.whenStable();
+    expect(task.classList.contains('minimized')).toBe(false);
+    ref.complete();
+    await bar.whenStable();
+    expect(bar.nativeElement.querySelector('rxap-window-task-bar')).toBeNull();
+  });
+
   it('task bar container honors the settings token', async () => {
     const { WindowTaskBarContainerComponent, RXAP_WINDOW_TASK_BAR_CONTAINER_SETTINGS } = await import(
       './window-task-bar/window-task-bar-container/window-task-bar-container.component'

@@ -36,13 +36,13 @@ describe('ErrorCaptureDialogService', () => {
     expect(console.debug).toHaveBeenCalled();
   });
 
-  it('renders the dialog, and removes it on close', () => {
+  it('renders the dialog, and removes it on close', async () => {
     TestBed.configureTestingModule({});
     const service = TestBed.inject(ErrorCaptureDialogService);
     const appRef = TestBed.inject(ApplicationRef);
     const next = jest.fn();
     const sub = service.open(TestErrorComponent, signal([{ message: 'oops' }])).subscribe(next);
-    appRef.tick();
+    await appRef.whenStable();
     expect(document.body.querySelectorAll('dialog').length).toBe(1);
     expect(document.body.querySelector('.err')?.textContent).toBe('oops');
     expect(HTMLDialogElement.prototype.showModal).toHaveBeenCalled();

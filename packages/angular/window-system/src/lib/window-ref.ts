@@ -6,7 +6,8 @@ import {
 import { Portal } from '@angular/cdk/portal';
 import {
   ComponentRef,
-  EmbeddedViewRef
+  EmbeddedViewRef,
+  signal,
 } from '@angular/core';
 import {
   BehaviorSubject,
@@ -42,6 +43,12 @@ export class WindowRef<D = any, R = any> extends Subject<R> {
    * @internal
    */
   private oldSizes: { width: string, height: string, pos: { x: string, y: string } } | null = null;
+
+  /**
+   * Bumped whenever minimize/reopen change the host display style, so that `isMinimized` is
+   * tracked by signal consumers (OnPush/zoneless templates).
+   */
+  private readonly displayVersion = signal(0);
 
   constructor(
     protected readonly overlayRef: OverlayRef,
@@ -80,6 +87,7 @@ export class WindowRef<D = any, R = any> extends Subject<R> {
   }
 
   public get isMinimized(): boolean {
+    this.displayVersion();
     return this.overlayRef.hostElement.style.display === 'none';
   }
 
@@ -102,12 +110,14 @@ export class WindowRef<D = any, R = any> extends Subject<R> {
 
   public minimize(): void {
     this.overlayRef.hostElement.style.display = 'none';
+    this.displayVersion.update(v => v + 1);
   }
 
   public reopen(): void {
     const startPos = GetWindowStartPos();
     this.setPos(startPos.left, startPos.top);
     this.overlayRef.hostElement.style.display = 'flex';
+    this.displayVersion.update(v => v + 1);
   }
 
   public getSizeConfig(): OverlaySizeConfig {

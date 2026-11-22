@@ -632,7 +632,8 @@ export class TreeDataSource<
     let loadRoot: Promise<Array<Node<Data>> | void> = Promise.resolve();
 
     if (this.tree$.value.length === 0) {
-      loadRoot = this.getTreeRoot();
+      // register the load as an Angular pending task so that whenStable() waits for the root nodes (zoneless)
+      loadRoot = this.trackPendingPromise(this.getTreeRoot());
     }
 
     let autoRefreshExecuted = false;

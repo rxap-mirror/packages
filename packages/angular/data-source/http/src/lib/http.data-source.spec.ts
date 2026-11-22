@@ -1,4 +1,4 @@
-import { fakeAsync, TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import {
   HttpTestingController,
   provideHttpClientTesting,
@@ -44,7 +44,7 @@ describe('@rxap/data-source', () => {
         httpMock.verify();
       });
 
-      it('should emit http response without viewChange option', fakeAsync(() => {
+      it('should emit http response without viewChange option', () => {
         const viewer = { id: 'test' };
         const data = {};
 
@@ -62,9 +62,9 @@ describe('@rxap/data-source', () => {
         expect(nextSpy).toHaveBeenCalledWith(data);
         expect(errorSpy).not.toHaveBeenCalled();
         expect(completeSpy).not.toHaveBeenCalled();
-      }));
+      });
 
-      it('should emit http response with viewChange option', fakeAsync(() => {
+      it('should emit http response with viewChange option', () => {
         const viewChange = new Subject<any>();
         const viewer = {
           id: 'test',
@@ -98,9 +98,9 @@ describe('@rxap/data-source', () => {
         expect(nextSpy).toHaveBeenCalledWith(data);
         expect(errorSpy).not.toHaveBeenCalled();
         expect(completeSpy).not.toHaveBeenCalled();
-      }));
+      });
 
-      it('should share http response with all connections', fakeAsync(() => {
+      it('should share http response with all connections', () => {
         const viewer1 = {
           id: 'viewer1',
           viewChange: new Subject<any>(),
@@ -168,7 +168,7 @@ describe('@rxap/data-source', () => {
         expect(next3Spy).toHaveBeenCalledWith('data3');
 
         viewer1.viewChange.next(undefined);
-      }));
+      });
 
       it('should replace one url parameter', () => {
         dataSource = new HttpDataSource<any>(http, {

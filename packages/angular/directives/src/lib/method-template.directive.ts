@@ -116,7 +116,7 @@ export class MethodTemplateDirective<ReturnType = any, Parameters = any> impleme
             $implicit: error,
             message: error.message,
           },
-        );
+        ).markForCheck(); // zoneless: the view is created outside of change detection and must schedule one
       }
     }
   }

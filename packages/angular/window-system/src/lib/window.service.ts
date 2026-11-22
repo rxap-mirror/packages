@@ -3,7 +3,7 @@ import {
   OverlayConfig,
 } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { Injectable, Injector, ViewContainerRef, inject } from '@angular/core';
+import { Injectable, Injector, ViewContainerRef, inject, signal } from '@angular/core';
 import { LoadingIndicatorService } from '@rxap/services';
 import { GenerateRandomString } from '@rxap/utilities';
 import { Subject } from 'rxjs';
@@ -40,16 +40,24 @@ export class WindowService {
 
   public readonly activeCount$ = new Subject<number>();
   private readonly active = new Map<string, WindowRef<any>>();
+  /**
+   * Incremented whenever the set of active windows changes. The getters below read this signal,
+   * so templates (and effects) that use them are notified without zone.js.
+   */
+  private readonly activeVersion = signal(0);
 
   public get hasActiveWindows(): boolean {
+    this.activeVersion();
     return this.active.size !== 0;
   }
 
   public get activeWindowCount(): number {
+    this.activeVersion();
     return this.active.size;
   }
 
   public get allActiveWindows(): Array<WindowRef<any>> {
+    this.activeVersion();
     return Array.from(this.active.values());
   }
 
@@ -154,12 +162,14 @@ export class WindowService {
 
   public remove(id: string) {
     const result = this.active.delete(id);
+    this.activeVersion.update(v => v + 1);
     this.activeCount$.next(this.active.size);
     return result;
   }
 
   public add(windowRef: WindowRef<any>): void {
     this.active.set(windowRef.id!, windowRef);
+    this.activeVersion.update(v => v + 1);
     this.activeCount$.next(this.active.size);
   }
 

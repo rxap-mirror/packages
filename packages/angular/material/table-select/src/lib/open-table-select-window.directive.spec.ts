@@ -141,6 +141,18 @@ describe('OpenTableSelectWindowDirective', () => {
     expect(button.disabled).toBe(false);
   });
 
+  it('reflects setDisabled in the DOM without an explicit detectChanges (zoneless)', async () => {
+    const { fixture, button, directive } = create();
+    directive.setDisabled(true);
+    await fixture.whenStable();
+    expect(button.disabled).toBe(true);
+    expect(button.getAttribute('disabled')).not.toBeNull();
+    directive.setDisabled(false);
+    await fixture.whenStable();
+    expect(button.disabled).toBe(false);
+    expect(button.getAttribute('disabled')).toBeNull();
+  });
+
   it('opens the window on click and emits the selection', async () => {
     const { fixture, button, directive } = create();
     const selectedChange = jest.fn();

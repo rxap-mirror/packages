@@ -4,7 +4,10 @@ import {
   HttpHandlerFn,
   HttpRequest,
 } from '@angular/common/http';
-import { inject } from '@angular/core';
+import {
+  inject,
+  PendingTasks,
+} from '@angular/core';
 import * as Sentry from '@sentry/angular';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
@@ -28,6 +31,7 @@ export function HttpErrorInterceptor(req: HttpRequest<unknown>, next: HttpHandle
   const anyHttpErrorService = inject(AnyHttpErrorService);
   const messageHttpErrorService = inject(MessageHttpErrorService);
   const codeHttpErrorService = inject(CodeHttpErrorService);
+  const pendingTasks = inject(PendingTasks);
   const options = inject(RXAP_ERROR_INTERCEPTOR_OPTIONS, { optional: true }) ?? {};
 
   options.extractErrorCode ??= DefaultErrorCodeExtractor;
@@ -36,52 +40,62 @@ export function HttpErrorInterceptor(req: HttpRequest<unknown>, next: HttpHandle
     options.filter.push(DefaultErrorFilter);
   }
 
+  async function handleError(event: HttpErrorResponse) {
+    if (!options.filter?.some((filter) => filter(event))) {
+      return;
+    }
+
+    let error = event.error;
+    if (event.error instanceof Blob) {
+      error = await event.error.text();
+      try {
+        error = JSON.parse(error);
+      } catch (e) {
+        console.warn('error response object is not a json');
+      }
+    }
+
+    const data = {
+      ...SimplifyHttpErrorResponse(event),
+      method: req.method,
+      body: req.body,
+      timestamp: Date.now(),
+    };
+
+    if (error && typeof error === 'object') {
+      const errorCode = options.extractErrorCode!(event);
+      if (errorCode) {
+        Sentry.captureMessage(`Error Code ${ errorCode }`, {
+          level: 'warning',
+          contexts: ExtractContextFromError(error),
+          extra: ExtractExtraFromError(error),
+          tags: ExtractTagsFromError(error),
+        });
+        codeHttpErrorService.push({
+          ...data,
+          errorCode,
+        });
+      } else if (error.message) {
+        messageHttpErrorService.push(data);
+      } else {
+        anyHttpErrorService.push(data);
+      }
+    } else {
+      anyHttpErrorService.push(data);
+    }
+  }
+
   return next(req).pipe(
     tap({
       error: async (event: Error) => {
         if (event instanceof HttpErrorResponse) {
-
-          if (!options.filter?.some((filter) => filter(event))) {
-            return;
-          }
-
-          let error = event.error;
-          if (event.error instanceof Blob) {
-            error = await event.error.text();
-            try {
-              error = JSON.parse(error);
-            } catch (e) {
-              console.warn('error response object is not a json');
-            }
-          }
-
-          const data = {
-            ...SimplifyHttpErrorResponse(event),
-            method: req.method,
-            body: req.body,
-            timestamp: Date.now(),
-          };
-
-          if (error && typeof error === 'object') {
-            const errorCode = options.extractErrorCode!(event);
-            if (errorCode) {
-              Sentry.captureMessage(`Error Code ${ errorCode }`, {
-                level: 'warning',
-                contexts: ExtractContextFromError(error),
-                extra: ExtractExtraFromError(error),
-                tags: ExtractTagsFromError(error),
-              });
-              codeHttpErrorService.push({
-                ...data,
-                errorCode,
-              });
-            } else if (error.message) {
-              messageHttpErrorService.push(data);
-            } else {
-              anyHttpErrorService.push(data);
-            }
-          } else {
-            anyHttpErrorService.push(data);
+          // The error handling is async (blob parsing). Register it as a pending task so that
+          // ApplicationRef.whenStable() (tests, SSR) waits until the error dialog data is pushed.
+          const removeTask = pendingTasks.add();
+          try {
+            await handleError(event);
+          } finally {
+            removeTask();
           }
         }
       },

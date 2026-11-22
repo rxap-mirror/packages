@@ -5,8 +5,7 @@ import {
   Injector,
   runInInjectionContext,
 } from '@angular/core';
-import { fakeAsync, TestBed } from '@angular/core/testing';
-import { run } from 'jest';
+import { TestBed } from '@angular/core/testing';
 import { Subject } from 'rxjs';
 import {
   BaseDataSource,
@@ -162,7 +161,7 @@ describe('@rxap/data-source', () => {
       });
     });
 
-    it('should emit static data on subscribe', fakeAsync(() => {
+    it('should emit static data on subscribe', () => {
       const connection = dataSource.connect({ id: 'test' });
 
       const nextSpy = jest.fn();
@@ -177,9 +176,9 @@ describe('@rxap/data-source', () => {
       expect(completeSpy).not.toHaveBeenCalled();
 
       dataSource.disconnect({ id: 'test' });
-    }));
+    });
 
-    it('should emit data if changed', fakeAsync(() => {
+    it('should emit data if changed', () => {
       const connection = dataSource.connect({ id: 'test' });
 
       const nextSpy = jest.fn();
@@ -206,7 +205,7 @@ describe('@rxap/data-source', () => {
       expect(completeSpy).not.toHaveBeenCalled();
 
       dataSource.disconnect({ id: 'test' });
-    }));
+    });
   });
 
   describe('@RxapDataSource', () => {

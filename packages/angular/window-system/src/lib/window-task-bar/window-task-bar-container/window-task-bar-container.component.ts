@@ -17,7 +17,7 @@ export const RXAP_WINDOW_TASK_BAR_CONTAINER_SETTINGS = new InjectionToken('rxap/
     selector: 'rxap-window-task-bar-container',
     templateUrl: './window-task-bar-container.component.html',
     styleUrls: ['./window-task-bar-container.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
     MatButtonModule,
     MatBadgeModule,

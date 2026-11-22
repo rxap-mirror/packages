@@ -1,3 +1,7 @@
+import { NgZone } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { FIREBASE_APP_NAME, FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { FirebaseApp } from '@angular/fire/app';
 import { ConfigService } from '@rxap/config';
 import * as p from './firebase.provider';
 
@@ -89,5 +93,21 @@ describe('firebase provider factories', () => {
         expect(typeof provider.useFactory).toBe('function');
       }
     }
+  });
+
+  it('FirebaseApp provider works with the NgZone of the zoneless test environment', () => {
+    TestBed.configureTestingModule({
+      providers: [
+        { provide: FIREBASE_OPTIONS, useValue: { apiKey: 'k', projectId: 'zoneless-test' } },
+        { provide: FIREBASE_APP_NAME, useValue: 'zoneless-test-app' },
+        // the compat factory only needs NgZone.runOutsideAngular, which the zoneless NoopNgZone provides
+        p.FIREBASE_APP_PROVIDERS.filter((provider: any) => provider.provide === FirebaseApp),
+      ],
+    });
+    expect(TestBed.inject(NgZone).constructor.name).toBe('NoopNgZone');
+    const app = TestBed.inject(FirebaseApp);
+    expect(app).toBeDefined();
+    expect(app.name).toBe('zoneless-test-app');
+    expect(app.options.projectId).toBe('zoneless-test');
   });
 });

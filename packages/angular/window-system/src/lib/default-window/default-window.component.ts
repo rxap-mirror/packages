@@ -9,7 +9,7 @@ import { WindowContainerComponent } from '../window-container/window-container.c
     selector: 'rxap-default-window',
     templateUrl: './default-window.component.html',
     styleUrls: ['./default-window.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [WindowContainerComponent, WindowContentComponent]
 })
 export class DefaultWindowComponent {

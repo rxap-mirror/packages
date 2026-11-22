@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import {
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import {
   FormControl,
   ReactiveFormsModule,
@@ -27,6 +23,10 @@ class HostComponent {
 class StandaloneHostComponent {}
 
 describe('TableSelectInputComponent', () => {
+  // the component delays the display update with a rxjs timer (delay(100)) which is not tracked by angular
+  beforeEach(() => jest.useFakeTimers());
+  afterEach(() => jest.useRealTimers());
+
   it('works standalone and shows the placeholder', () => {
     const fixture = TestBed.createComponent(StandaloneHostComponent);
     fixture.detectChanges();
@@ -51,14 +51,14 @@ describe('TableSelectInputComponent', () => {
     expect(fixture.nativeElement.querySelector('.mat-select-trigger').classList).toContain('disabled');
   });
 
-  it('writes values and displays them', fakeAsync(() => {
+  it('writes values and displays them', async () => {
     const fixture = TestBed.createComponent(HostComponent);
     fixture.detectChanges();
     const input: TableSelectInputComponent = fixture.debugElement.children[0].componentInstance;
     const changes = jest.fn();
     input.stateChanges.subscribe(changes);
     fixture.componentInstance.control.setValue('abc');
-    tick(100);
+    await jest.advanceTimersByTimeAsync(100);
     fixture.detectChanges();
     expect(input.value).toBe('abc');
     expect(input.empty).toBe(false);
@@ -66,10 +66,10 @@ describe('TableSelectInputComponent', () => {
     expect(input.display).toBe('abc');
     expect(fixture.nativeElement.querySelector('span').textContent).toBe('abc');
     fixture.componentInstance.control.setValue(null);
-    tick(100);
+    await jest.advanceTimersByTimeAsync(100);
     expect(input.display).toBe('');
     expect(changes).toHaveBeenCalled();
-  }));
+  });
 
   it('setValue notifies the control', () => {
     const fixture = TestBed.createComponent(HostComponent);
@@ -88,7 +88,7 @@ describe('TableSelectInputComponent', () => {
     expect(input.errorState).toBe(true);
   });
 
-  it('allows overriding toDisplay and has no-op helpers', fakeAsync(() => {
+  it('allows overriding toDisplay and has no-op helpers', async () => {
     const fixture = TestBed.createComponent(HostComponent);
     fixture.detectChanges();
     const input: TableSelectInputComponent = fixture.debugElement.children[0].componentInstance;
@@ -96,11 +96,11 @@ describe('TableSelectInputComponent', () => {
     input.setDescribedByIds(['a']);
     input.onContainerClick(new MouseEvent('click'));
     fixture.componentInstance.control.setValue('x');
-    tick(100);
+    await jest.advanceTimersByTimeAsync(100);
     expect(input.display).toBe('<x>');
-  }));
+  });
 
-  it('follows the disabled state of rxap controls', fakeAsync(() => {
+  it('follows the disabled state of rxap controls', async () => {
     @Component({
       imports: [TableSelectInputComponent, ReactiveFormsModule],
       template: `<rxap-table-select-input [formControl]="control"></rxap-table-select-input>`,
@@ -113,11 +113,11 @@ describe('TableSelectInputComponent', () => {
     const input: TableSelectInputComponent = fixture.debugElement.children[0].componentInstance;
     expect(input.rxapControl).toBe(fixture.componentInstance.control);
     fixture.componentInstance.control.disable();
-    tick(100);
+    await jest.advanceTimersByTimeAsync(100);
     expect(input.disabled).toBe(true);
     fixture.componentInstance.control.enable();
-    tick(100);
+    await jest.advanceTimersByTimeAsync(100);
     expect(input.disabled).toBe(false);
     fixture.destroy();
-  }));
+  });
 });

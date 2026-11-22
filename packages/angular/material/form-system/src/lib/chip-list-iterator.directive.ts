@@ -1,4 +1,4 @@
-import { Directive, EmbeddedViewRef, IterableChangeRecord, IterableChanges, IterableDiffer, IterableDiffers, OnDestroy, OnInit, TemplateRef, ViewContainerRef, inject } from '@angular/core';
+import { ChangeDetectorRef, Directive, EmbeddedViewRef, IterableChangeRecord, IterableChanges, IterableDiffer, IterableDiffers, OnDestroy, OnInit, TemplateRef, ViewContainerRef, inject } from '@angular/core';
 import { NgControl } from '@angular/forms';
 import { MatChipEvent } from '@angular/material/chips';
 import { Subscription } from 'rxjs';
@@ -34,6 +34,7 @@ export class ChipListIteratorDirective implements OnInit, OnDestroy {
   private readonly viewContainerRef = inject(ViewContainerRef);
   private readonly ngControl = inject(NgControl);
   private readonly differs = inject(IterableDiffers);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   private _subscription?: Subscription;
 
@@ -64,6 +65,10 @@ export class ChipListIteratorDirective implements OnInit, OnDestroy {
                                    const changes = this._differ.diff(items);
                                    if (changes) {
                                      this.applyChanges(changes);
+                                     // the values can change outside of an Angular tracked event (e.g. a
+                                     // programmatic setValue after an async load). Without zone.js the
+                                     // created/updated embedded views must be marked for a refresh explicitly.
+                                     this.cdr.markForCheck();
                                    }
                                  }
                                }),

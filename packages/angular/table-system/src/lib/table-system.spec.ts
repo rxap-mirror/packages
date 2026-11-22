@@ -1,6 +1,6 @@
 import { CdkTable } from '@angular/cdk/table';
 import { Component } from '@angular/core';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { MatCheckbox } from '@angular/material/checkbox';
 import { MatTableModule } from '@angular/material/table';
@@ -79,22 +79,27 @@ describe('TableFilterInputDirective', () => {
     });
   });
 
-  it('debounces the value and ignores short inputs', fakeAsync(() => {
+  afterEach(() => {
+    jest.useRealTimers();
+  });
+
+  it('debounces the value and ignores short inputs', async () => {
+    jest.useFakeTimers();
     const f = TestBed.createComponent(HostComponent);
     f.detectChanges();
-    tick();
+    await jest.advanceTimersByTimeAsync(0);
     const input: HTMLInputElement = f.nativeElement.querySelector('input');
-    const type = (v: string) => {
+    const type = async (v: string) => {
       input.value = v;
       input.dispatchEvent(new Event('input'));
       f.detectChanges();
-      tick(200);
+      await jest.advanceTimersByTimeAsync(200);
     };
-    type('abcd');
+    await type('abcd');
     expect(service.current).toBe('abcd');
-    type('ab');
+    await type('ab');
     expect(service.current).toBeNull();
-  }));
+  });
 });
 
 describe('select and expand row in a table', () => {
@@ -197,6 +202,19 @@ describe('select and expand row in a table', () => {
     row.click();
     f.detectChanges();
     expect(expand.expandedRow.value).toBeNull();
+  });
+
+  it('updates the expanded row class when the service is toggled programmatically', async () => {
+    const { f, el, expand } = await setup();
+    const rows = () => Array.from(el.querySelectorAll('tr[mat-row]')) as HTMLElement[];
+    expand.toggleRow(f.componentInstance.rows[1]);
+    await f.whenStable();
+    expect(rows()[0].classList.contains('expanded-row')).toBe(false);
+    expect(rows()[1].classList.contains('expanded-row')).toBe(true);
+    expand.toggleRow(f.componentInstance.rows[0]);
+    await f.whenStable();
+    expect(rows()[0].classList.contains('expanded-row')).toBe(true);
+    expect(rows()[1].classList.contains('expanded-row')).toBe(false);
   });
 });
 

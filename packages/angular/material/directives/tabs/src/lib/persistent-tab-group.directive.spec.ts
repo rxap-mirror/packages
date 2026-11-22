@@ -1,9 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
 import {
   ComponentFixture,
-  fakeAsync,
   TestBed,
-  tick,
 } from '@angular/core/testing';
 import { MatTabsModule } from '@angular/material/tabs';
 import { By } from '@angular/platform-browser';
@@ -73,13 +71,16 @@ describe('@rxap/directives/material/expansion', () => {
 
         directive.ngOnInit();
 
+        // zoneless: TestComponent is OnPush and nothing dirtied its view, so mark it explicitly
+        // (in a real app the directive runs ngOnInit during the parent's change detection)
+        componentFixture.debugElement.injector.get(ChangeDetectorRef).markForCheck();
         componentFixture.detectChanges();
 
         expect(directive.tabGroup.selectedIndex).toEqual(1);
 
       });
 
-      it('should store expansion state to local storage', fakeAsync(() => {
+      it('should store expansion state to local storage', async () => {
 
         const tabLabels = componentFixture.debugElement.query(By.css('.mat-mdc-tab-labels'));
 
@@ -97,19 +98,19 @@ describe('@rxap/directives/material/expansion', () => {
         expect(localStorage.get(directive.key)).toBeNull();
         tabElement1.nativeElement.click();
         componentFixture.detectChanges();
-        tick();
+        await componentFixture.whenStable();
         expect(directive.tabGroup.selectedIndex).toEqual(1);
         expect(localStorage.get(directive.key)).toEqual('1');
         tabElement2.nativeElement.click();
         componentFixture.detectChanges();
-        tick();
+        await componentFixture.whenStable();
         expect(localStorage.get(directive.key)).toEqual('2');
         tabElement0.nativeElement.click();
         componentFixture.detectChanges();
-        tick();
+        await componentFixture.whenStable();
         expect(localStorage.get(directive.key)).toEqual('0');
 
-      }));
+      });
 
     });
 

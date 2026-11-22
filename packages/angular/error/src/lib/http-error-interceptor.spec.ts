@@ -7,6 +7,7 @@ import {
   HttpTestingController,
   provideHttpClientTesting,
 } from '@angular/common/http/testing';
+import { ApplicationRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import * as Sentry from '@sentry/angular';
 import { AnyHttpErrorService } from './any-http-error/any-http-error.service';
@@ -43,7 +44,8 @@ describe('HttpErrorInterceptor', () => {
   const fail = async (body: any, status = 500, url = '/api/x') => {
     http.post(url, { b: 1 }).subscribe({ error: () => undefined });
     ctrl.expectOne(url).flush(body, { status, statusText: 'ERR' });
-    await new Promise((r) => setTimeout(r));
+    // the interceptor registers its async error handling as a pending task
+    await TestBed.inject(ApplicationRef).whenStable();
   };
 
   // jsdom does not implement Blob.text
@@ -100,7 +102,7 @@ describe('HttpErrorInterceptor', () => {
     setup();
     http.get('/b', { responseType: 'blob' }).subscribe({ error: () => undefined });
     ctrl.expectOne('/b').flush(blob(JSON.stringify({ message: 'blob msg' })), { status: 500, statusText: 'ERR' });
-    await new Promise((r) => setTimeout(r, 20));
+    await TestBed.inject(ApplicationRef).whenStable();
     expect(message.push).toHaveBeenCalled();
   });
 
@@ -108,7 +110,7 @@ describe('HttpErrorInterceptor', () => {
     setup();
     http.get('/b', { responseType: 'blob' }).subscribe({ error: () => undefined });
     ctrl.expectOne('/b').flush(blob('not json'), { status: 500, statusText: 'ERR' });
-    await new Promise((r) => setTimeout(r, 20));
+    await TestBed.inject(ApplicationRef).whenStable();
     expect(any.push).toHaveBeenCalled();
   });
 

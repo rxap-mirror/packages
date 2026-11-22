@@ -1,9 +1,6 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import {
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { ApplicationRef } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
 import { faker } from '@faker-js/faker';
 import { RXAP_DATA_SOURCE_METADATA } from '@rxap/data-source';
 import { Node } from '@rxap/data-structure-tree';
@@ -81,15 +78,15 @@ describe(TreeDataSource.name, () => {
 
     });
 
-    it('should restore nothing if no selection is cached', fakeAsync(() => {
+    it('should restore nothing if no selection is cached', async () => {
 
       const subscribe = jest.fn();
       treeDataSource.connect({ id: 'test' }).subscribe(subscribe);
-      tick();
+      await TestBed.inject(ApplicationRef).whenStable();
 
       // expect(subscribe).toBeCalledWith(treeData);
 
-    }));
+    });
 
   });
 

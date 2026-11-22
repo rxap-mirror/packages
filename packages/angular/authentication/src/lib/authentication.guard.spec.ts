@@ -1,9 +1,6 @@
 import { RxapAuthenticationGuard } from './authentication.guard';
-import {
-  fakeAsync,
-  TestBed,
-  tick,
-} from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+import { ApplicationRef } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 import {
   Router,
@@ -83,181 +80,181 @@ describe('Authentication', () => {
 
     });
 
-    it('should redirect to login component if not authenticated or to last url', fakeAsync(() => {
+    it('should redirect to login component if not authenticated or to last url', async () => {
       auth.isAuthenticated$.next(false);
       expect(auth.isAuthenticated$.value).toBeFalsy();
       expect(guard.lastUrl).toBe(null);
 
       router.initialNavigation();
-      tick();
+      await TestBed.inject(ApplicationRef).whenStable();
       expect(location.path()).toBe('/authentication/login');
       expect(guard.lastUrl).toBe('/');
 
-      router.navigate([ '' ]);
-      tick();
+      await router.navigate([ '' ]);
+      await TestBed.inject(ApplicationRef).whenStable();
       expect(location.path()).toBe('/authentication/login');
       expect(guard.lastUrl).toBe('/');
 
-      router.navigate([ '/child-1' ]);
-      tick();
+      await router.navigate([ '/child-1' ]);
+      await TestBed.inject(ApplicationRef).whenStable();
       expect(location.path()).toBe('/authentication/login');
       expect(guard.lastUrl).toBe('/child-1');
 
       auth.isAuthenticated$.next(true);
 
-      router.navigate([ '' ]);
-      tick();
+      await router.navigate([ '' ]);
+      await TestBed.inject(ApplicationRef).whenStable();
       expect(location.path()).toBe('/child-1');
       expect(guard.lastUrl).toBeNull();
 
-      router.navigate([ '' ]);
-      tick();
+      await router.navigate([ '' ]);
+      await TestBed.inject(ApplicationRef).whenStable();
       expect(location.path()).toBe('/');
       expect(guard.lastUrl).toBeNull();
 
       auth.isAuthenticated$.next(false);
 
-      router.navigate([ '/child-3' ]);
-      tick();
+      await router.navigate([ '/child-3' ]);
+      await TestBed.inject(ApplicationRef).whenStable();
       expect(location.path()).toBe('/authentication/login');
       expect(guard.lastUrl).toBe('/child-3');
 
       auth.isAuthenticated$.next(true);
 
-      router.navigate([ '/child-1' ]);
-      tick();
+      await router.navigate([ '/child-1' ]);
+      await TestBed.inject(ApplicationRef).whenStable();
       expect(location.path()).toBe('/child-1');
       expect(guard.lastUrl).toBeNull();
 
       auth.isAuthenticated$.next(false);
 
-      router.navigate([ '/child-2' ]);
-      tick();
+      await router.navigate([ '/child-2' ]);
+      await TestBed.inject(ApplicationRef).whenStable();
       expect(location.path()).toBe('/authentication/login');
       expect(guard.lastUrl).toBe('/child-2');
 
-    }));
+    });
 
-    it('should redirect from any authentication path to the last url if authenticated', fakeAsync(() => {
+    it('should redirect from any authentication path to the last url if authenticated', async () => {
       auth.isAuthenticated$.next(true);
       router.initialNavigation();
-      tick();
+      await TestBed.inject(ApplicationRef).whenStable();
 
       expect(location.path()).toBe('/');
 
       guard.lastUrl = '/child-2';
 
-      router.navigate([ '/authentication/login' ]);
-      tick();
+      await router.navigate([ '/authentication/login' ]);
+      await TestBed.inject(ApplicationRef).whenStable();
       expect(location.path()).toBe('/child-2');
       expect(guard.lastUrl).toBeNull();
 
-    }));
+    });
 
     it(
       'should redirect from any authentication path to the last url with query params if authenticated',
-      fakeAsync(() => {
+      async () => {
         auth.isAuthenticated$.next(true);
         router.initialNavigation();
-        tick();
+        await TestBed.inject(ApplicationRef).whenStable();
 
         expect(location.path()).toBe('/');
 
         guard.lastUrl = '/child-2?key1=value1&key2=value2';
 
-        router.navigate([ '/authentication/login' ]);
-        tick();
+        await router.navigate([ '/authentication/login' ]);
+        await TestBed.inject(ApplicationRef).whenStable();
         expect(location.path()).toBe('/child-2?key1=value1&key2=value2');
         expect(guard.lastUrl).toBeNull();
 
-      }),
+      },
     );
 
-    it('should redirect from any authentication path to the last url with fragments if authenticated', fakeAsync(() => {
+    it('should redirect from any authentication path to the last url with fragments if authenticated', async () => {
       auth.isAuthenticated$.next(true);
       router.initialNavigation();
-      tick();
+      await TestBed.inject(ApplicationRef).whenStable();
 
       expect(location.path()).toBe('/');
 
       guard.lastUrl = '/child-2#key1=value1&key2=value2';
 
-      router.navigate([ '/authentication/login' ]);
-      tick();
+      await router.navigate([ '/authentication/login' ]);
+      await TestBed.inject(ApplicationRef).whenStable();
       expect(location.path()).toBe('/child-2#key1=value1&key2=value2');
       expect(guard.lastUrl).toBeNull();
 
-    }));
+    });
 
     it(
       'should redirect from any authentication path to the last url with fragments and query params if authenticated',
-      fakeAsync(() => {
+      async () => {
         auth.isAuthenticated$.next(true);
         router.initialNavigation();
-        tick();
+        await TestBed.inject(ApplicationRef).whenStable();
 
         expect(location.path()).toBe('/');
 
         guard.lastUrl = '/child-2?key1=value1&key2=value2#key1=value1&key2=value2';
 
-        router.navigate([ '/authentication/login' ]);
-        tick();
+        await router.navigate([ '/authentication/login' ]);
+        await TestBed.inject(ApplicationRef).whenStable();
         expect(location.path()).toBe('/child-2?key1=value1&key2=value2#key1=value1&key2=value2');
         expect(guard.lastUrl).toBeNull();
 
-      }),
+      },
     );
 
-    it('should not redirect away from password reset path if not authenticated', fakeAsync(() => {
+    it('should not redirect away from password reset path if not authenticated', async () => {
 
       auth.isAuthenticated$.next(false);
 
       router.initialNavigation();
-      tick();
+      await TestBed.inject(ApplicationRef).whenStable();
 
       expect(location.path()).toBe('/authentication/login');
 
-      router.navigate([ '/authentication/reset-password/token' ]);
-      tick();
+      await router.navigate([ '/authentication/reset-password/token' ]);
+      await TestBed.inject(ApplicationRef).whenStable();
       expect(location.path()).toBe('/authentication/reset-password/token');
 
-      router.navigate([ '/authentication/login' ]);
-      tick();
+      await router.navigate([ '/authentication/login' ]);
+      await TestBed.inject(ApplicationRef).whenStable();
       expect(location.path()).toBe('/authentication/login');
 
 
-    }));
+    });
 
-    it('should not redirect away from password reset path if authenticated', fakeAsync(() => {
+    it('should not redirect away from password reset path if authenticated', async () => {
 
       auth.isAuthenticated$.next(true);
 
       router.initialNavigation();
-      tick();
+      await TestBed.inject(ApplicationRef).whenStable();
 
-      router.navigate([ '/authentication/reset-password/token' ]);
-      tick();
+      await router.navigate([ '/authentication/reset-password/token' ]);
+      await TestBed.inject(ApplicationRef).whenStable();
       expect(location.path()).toBe('/authentication/reset-password/token');
 
-      router.navigate([ '/authentication/login' ]);
-      tick();
+      await router.navigate([ '/authentication/login' ]);
+      await TestBed.inject(ApplicationRef).whenStable();
 
-      router.navigate([ '/authentication/reset-password/token' ]);
-      tick();
+      await router.navigate([ '/authentication/reset-password/token' ]);
+      await TestBed.inject(ApplicationRef).whenStable();
       expect(location.path()).toBe('/authentication/reset-password/token');
 
-    }));
+    });
 
-    it('should redirect to loading component if authentication status is unknown', fakeAsync(() => {
+    it('should redirect to loading component if authentication status is unknown', async () => {
 
       auth.isAuthenticated$.next(null);
 
       router.initialNavigation();
-      tick();
+      await TestBed.inject(ApplicationRef).whenStable();
 
       expect(location.path()).toBe('/authentication/loading');
 
-    }));
+    });
 
   });
 

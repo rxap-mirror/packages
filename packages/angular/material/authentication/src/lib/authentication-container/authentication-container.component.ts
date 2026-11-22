@@ -5,7 +5,7 @@ import { RouterOutlet } from '@angular/router';
     selector: 'rxap-authentication-container',
     templateUrl: './authentication-container.component.html',
     styleUrls: ['./authentication-container.component.scss'],
-    changeDetection: ChangeDetectionStrategy.Eager,
+    changeDetection: ChangeDetectionStrategy.OnPush,
     imports: [
         RouterOutlet,
     ]

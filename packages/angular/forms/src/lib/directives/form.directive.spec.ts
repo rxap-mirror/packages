@@ -1,5 +1,6 @@
 import { outputToObservable } from '@angular/core/rxjs-interop';
 import {
+  ApplicationRef,
   ChangeDetectorRef,
   Component,
   DebugElement,
@@ -9,9 +10,7 @@ import {
 } from '@angular/core';
 import {
   ComponentFixture,
-  fakeAsync,
   TestBed,
-  tick,
 } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { RxapForm } from '../decorators/form';
@@ -82,6 +81,10 @@ describe('@rxap/forms', () => {
           parent: TestBed.inject(Injector),
           providers: [FormDirective],
         }).get(FormDirective);
+
+      afterEach(() => {
+        jest.useRealTimers();
+      });
 
       it('should create a form definition instance', () => {
         TestBed.configureTestingModule({
@@ -183,7 +186,7 @@ describe('@rxap/forms', () => {
         });
       });
 
-      it('should call the load method(async)', fakeAsync(() => {
+      it('should call the load method(async)', async () => {
         TestBed.configureTestingModule({
           providers: [
             TestFormProviders,
@@ -214,7 +217,7 @@ describe('@rxap/forms', () => {
 
         expect(formDirective.loading()).toBeTruthy();
 
-        tick();
+        await TestBed.inject(ApplicationRef).whenStable();
 
         expect(formDirective.loaded()).toBeTruthy();
         expect(formDirective.loading()).toBeFalsy();
@@ -223,9 +226,9 @@ describe('@rxap/forms', () => {
           username: 'rxap',
           password: 'paxr',
         });
-      }));
+      });
 
-      it('should call the load method(async) with error', fakeAsync(() => {
+      it('should call the load method(async) with error', async () => {
         TestBed.configureTestingModule({
           providers: [
             TestFormProviders,
@@ -253,7 +256,7 @@ describe('@rxap/forms', () => {
 
         expect(formDirective.loading()).toBeTruthy();
 
-        tick();
+        await TestBed.inject(ApplicationRef).whenStable();
 
         expect(formDirective.loaded()).toBeFalsy();
         expect(formDirective.loading()).toBeFalsy();
@@ -262,7 +265,7 @@ describe('@rxap/forms', () => {
           username: null,
           password: null,
         });
-      }));
+      });
 
       it('should call the submit method(sync)', () => {
         TestBed.configureTestingModule({
@@ -336,7 +339,7 @@ describe('@rxap/forms', () => {
         expect(formDirective.submitError()).toEqual(new Error('failed'));
       });
 
-      it('should call the submit method(async)', fakeAsync(() => {
+      it('should call the submit method(async)', async () => {
         TestBed.configureTestingModule({
           providers: [
             TestFormProviders,
@@ -366,7 +369,7 @@ describe('@rxap/forms', () => {
 
         expect(formDirective.submitting()).toBeTruthy();
 
-        tick();
+        await TestBed.inject(ApplicationRef).whenStable();
 
         expect(rxapSubmitSpy).toHaveBeenCalled();
         expect(rxapSubmitSpy).toHaveBeenCalledWith({
@@ -376,9 +379,9 @@ describe('@rxap/forms', () => {
         expect(formDirective.submitted).toBeTruthy();
         expect(formDirective.submitting()).toBeFalsy();
         expect(formDirective.submitError()).toBeNull();
-      }));
+      });
 
-      it('should call the submit method(async) with error', fakeAsync(() => {
+      it('should call the submit method(async) with error', async () => {
         TestBed.configureTestingModule({
           providers: [
             TestFormProviders,
@@ -408,15 +411,16 @@ describe('@rxap/forms', () => {
 
         expect(formDirective.submitting()).toBeTruthy();
 
-        tick();
+        await TestBed.inject(ApplicationRef).whenStable();
 
         expect(rxapSubmitSpy).not.toHaveBeenCalled();
         expect(formDirective.submitted).toBeFalsy();
         expect(formDirective.submitting()).toBeFalsy();
         expect(formDirective.submitError()).toEqual(new Error('failed'));
-      }));
+      });
 
-      it('should auto submit', fakeAsync(() => {
+      it('should auto submit', async () => {
+        jest.useFakeTimers();
         interface ITestAutoSubmit {
           username: string;
           password: string;
@@ -477,10 +481,10 @@ describe('@rxap/forms', () => {
 
         expect(submitSpy).not.toHaveBeenCalled();
 
-        tick(5000);
+        await jest.advanceTimersByTimeAsync(5000);
 
         expect(submitSpy).toHaveBeenCalled();
-      }));
+      });
 
       describe('With Component', () => {
         let fixture: ComponentFixture<HostComponent>;
