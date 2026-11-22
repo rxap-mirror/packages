@@ -179,11 +179,11 @@ Option | Type | Default | Description
 project | string |  | The name of the project to initialize.
 projects | array |  | The list of projects to initialize.
 incrementalBuild | boolean |  | Whether to enable incremental build for the project.
-moduleFederation | string |  | The module federation role of the project.
+moduleFederation | string |  | The module federation role of the project. Only supported for existing projects: new projects can not be coerced as host or remote, because the @nx/angular host and remote generators were removed in Nx 24.
 layoutRoutePath | string |  | The route path for layout children components.
 standaloneImport | boolean |  | Whether to import the MFE remote as a standalone unit.
 skipDocker | boolean |  | Whether to skip the docker configuration
-host | string |  | Host project for module federation
+host | string |  | Host project for module federation. Implies moduleFederation remote. Only supported for existing projects (see moduleFederation).
 deploy | string |  | Add target to deploy to after build
 sentry | boolean | true | 
 apiStatusCheck | boolean | false | Whether to enable API status check during bootstrap.
