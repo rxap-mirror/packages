@@ -144,7 +144,9 @@
       ],
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "watch": false
+        "watch": false,
+        "coverage": true,
+        "coverageReporters": ["text-summary", "json-summary"]
       }
     },
     "lint": {

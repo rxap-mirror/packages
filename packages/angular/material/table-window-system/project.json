@@ -33,7 +33,26 @@
           "packages/angular/material/table-window-system/src/test-setup.ts"
         ],
         "exclude": ["generators/**"],
-        "watch": false
+        "watch": false,
+        "coverageInclude": [
+          "packages/angular/material/table-window-system/**/*.ts"
+        ],
+        "coverageExclude": [
+          "**/*.spec.ts",
+          "**/test-setup.ts",
+          "**/index.ts",
+          "**/*.stories.ts",
+          "**/.storybook/**",
+          "**/prism/**",
+          "**/jest.generators.config.ts",
+          "**/generators/**",
+          "**/schematics/**",
+          "**/migrations/**"
+        ],
+        "coverageThresholds": {
+          "lines": 90,
+          "statements": 90
+        }
       },
       "dependsOn": ["test-generators"]
     },

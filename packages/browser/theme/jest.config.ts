@@ -1,4 +1,5 @@
 module.exports = {
+  coverageThreshold: { global: { lines: 70, statements: 70 } },
   displayName: 'browser-theme',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',

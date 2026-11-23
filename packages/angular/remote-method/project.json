@@ -30,7 +30,24 @@
         "setupFiles": ["packages/angular/remote-method/src/test-setup.ts"],
         "exclude": ["generators/**"],
         "watch": false,
-        "include": ["**/*.spec.ts", "../*/**/*.spec.ts"]
+        "include": ["**/*.spec.ts", "../*/**/*.spec.ts"],
+        "coverageInclude": ["packages/angular/remote-method/**/*.ts"],
+        "coverageExclude": [
+          "**/*.spec.ts",
+          "**/test-setup.ts",
+          "**/index.ts",
+          "**/*.stories.ts",
+          "**/.storybook/**",
+          "**/prism/**",
+          "**/jest.generators.config.ts",
+          "**/generators/**",
+          "**/schematics/**",
+          "**/migrations/**"
+        ],
+        "coverageThresholds": {
+          "lines": 90,
+          "statements": 90
+        }
       },
       "dependsOn": ["test-generators"]
     },

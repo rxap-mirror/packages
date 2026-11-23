@@ -1,5 +1,6 @@
 /* eslint-disable */
 module.exports = {
+  coverageThreshold: { global: { lines: 70, statements: 70 } },
   displayName: 'node-local-storage',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',

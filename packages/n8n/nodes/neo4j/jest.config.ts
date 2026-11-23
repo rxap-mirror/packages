@@ -1,5 +1,6 @@
 /* eslint-disable */
 module.exports = {
+  coverageThreshold: { global: { lines: 90, statements: 90 } },
   displayName: 'n8n-nodes-neo4j',
   preset: '../../../../jest.preset.js',
   testEnvironment: 'node',

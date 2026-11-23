@@ -1,5 +1,6 @@
 /* eslint-disable */
 module.exports = {
+  coverageThreshold: { global: { lines: 70, statements: 70 } },
   displayName: 'plugin-docker',
   preset: '../../../jest.preset.js',
   transform: {

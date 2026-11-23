@@ -1,5 +1,6 @@
 /* eslint-disable */
 module.exports = {
+  coverageThreshold: { global: { lines: 70, statements: 70 } },
   displayName: 'json-schema-to-typescript',
   preset: '../../jest.preset.js',
   transform: {

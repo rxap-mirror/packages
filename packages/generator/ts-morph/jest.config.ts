@@ -1,5 +1,6 @@
 /* eslint-disable */
 module.exports = {
+  coverageThreshold: { global: { lines: 70, statements: 70 } },
   displayName: 'generator-ts-morph',
   preset: '../../../jest.preset.js',
   transform: {

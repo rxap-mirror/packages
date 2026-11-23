@@ -1,4 +1,5 @@
 module.exports = {
+  coverageThreshold: { global: { lines: 90, statements: 90 } },
   displayName: 'nest-keyv-minio',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',

@@ -1,5 +1,6 @@
 /* eslint-disable */
 module.exports = {
+  coverageThreshold: { global: { lines: 90, statements: 90 } },
   displayName: 'nest-oauth2-proxy',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',

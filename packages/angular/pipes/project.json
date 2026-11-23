@@ -29,7 +29,24 @@
         "runner": "vitest",
         "setupFiles": ["packages/angular/pipes/src/test-setup.ts"],
         "watch": false,
-        "include": ["**/*.spec.ts", "../santization/**/*.spec.ts"]
+        "include": ["**/*.spec.ts", "../santization/**/*.spec.ts"],
+        "coverageInclude": ["packages/angular/pipes/**/*.ts"],
+        "coverageExclude": [
+          "**/*.spec.ts",
+          "**/test-setup.ts",
+          "**/index.ts",
+          "**/*.stories.ts",
+          "**/.storybook/**",
+          "**/prism/**",
+          "**/jest.generators.config.ts",
+          "**/generators/**",
+          "**/schematics/**",
+          "**/migrations/**"
+        ],
+        "coverageThresholds": {
+          "lines": 90,
+          "statements": 90
+        }
       }
     },
     "lint": {

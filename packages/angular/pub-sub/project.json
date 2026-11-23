@@ -34,7 +34,24 @@
         "tsConfig": "packages/angular/pub-sub/tsconfig.spec.json",
         "runner": "vitest",
         "setupFiles": ["packages/angular/pub-sub/src/test-setup.ts"],
-        "watch": false
+        "watch": false,
+        "coverageInclude": ["packages/angular/pub-sub/**/*.ts"],
+        "coverageExclude": [
+          "**/*.spec.ts",
+          "**/test-setup.ts",
+          "**/index.ts",
+          "**/*.stories.ts",
+          "**/.storybook/**",
+          "**/prism/**",
+          "**/jest.generators.config.ts",
+          "**/generators/**",
+          "**/schematics/**",
+          "**/migrations/**"
+        ],
+        "coverageThresholds": {
+          "lines": 90,
+          "statements": 90
+        }
       }
     }
   }

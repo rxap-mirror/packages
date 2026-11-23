@@ -13,6 +13,17 @@ module.exports = {
   // made generator beforeEach() hooks time out. Raise the default for the whole
   // workspace.
   testTimeout: 30000,
+  // coverage is always collected (also for files no spec imports) so the per-project coverageThreshold is enforced
+  collectCoverage: true,
+  coverageReporters: [ 'json-summary', 'text-summary' ],
+  collectCoverageFrom: [
+    'src/**/*.ts',
+    '!src/**/*.spec.ts',
+    '!src/**/*.d.ts',
+    '!src/**/index.ts',
+    '!src/**/*.stories.ts',
+    '!src/test-setup.ts',
+  ],
   // ESM-only dependencies (magic-string >= 1 and its @jridgewell deps from @angular-devkit/schematics 22, @nestjs/* 12)
   // have to be transformed to CommonJS for the jest runtime. The project `transform` entries must not match node_modules.
   transformIgnorePatterns: [ 'node_modules/(?!(?:magic-string|@jridgewell/[^/]+|@nestjs/[^/]+|reflect-metadata)/)' ],

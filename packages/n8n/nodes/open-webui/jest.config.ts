@@ -1,4 +1,5 @@
 module.exports = {
+  coverageThreshold: { global: { lines: 90, statements: 90 } },
   displayName: 'n8n-nodes-open-webui',
   preset: '../../../../jest.preset.js',
   testEnvironment: 'node',

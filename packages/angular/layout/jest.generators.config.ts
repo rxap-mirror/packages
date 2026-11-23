@@ -4,6 +4,7 @@ module.exports = {
   displayName: 'angular-layout-generators',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',
+  collectCoverage: false,
   testMatch: [
     '<rootDir>/src/generators/**/*.spec.ts',
     '<rootDir>/src/migrations/**/*.spec.ts',

@@ -4,6 +4,7 @@ module.exports = {
   displayName: 'angular-localize-generators',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',
+  collectCoverage: false,
   testMatch: ['<rootDir>/src/generators/**/*.spec.ts'],
   transform: {
     '^(?!.*/node_modules/).+\\.[tj]s$': [

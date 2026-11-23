@@ -1,5 +1,6 @@
 /* eslint-disable */
 module.exports = {
+  coverageThreshold: { global: { lines: 70, statements: 70 } },
   displayName: 'plugin-angular',
   preset: '../../../jest.preset.js',
   // Generator tests run @nx/angular generators which (under Nx 21) build the

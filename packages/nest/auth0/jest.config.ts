@@ -1,5 +1,6 @@
 /* eslint-disable */
 module.exports = {
+  coverageThreshold: { global: { lines: 90, statements: 90 } },
   displayName: 'nest-auth0',
   preset: '../../../jest.preset.js',
   testEnvironment: 'node',

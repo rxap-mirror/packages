@@ -28,7 +28,24 @@
         "tsConfig": "packages/angular/utilities/tsconfig.spec.json",
         "runner": "vitest",
         "setupFiles": ["packages/angular/utilities/src/test-setup.ts"],
-        "watch": false
+        "watch": false,
+        "coverageInclude": ["packages/angular/utilities/**/*.ts"],
+        "coverageExclude": [
+          "**/*.spec.ts",
+          "**/test-setup.ts",
+          "**/index.ts",
+          "**/*.stories.ts",
+          "**/.storybook/**",
+          "**/prism/**",
+          "**/jest.generators.config.ts",
+          "**/generators/**",
+          "**/schematics/**",
+          "**/migrations/**"
+        ],
+        "coverageThresholds": {
+          "lines": 90,
+          "statements": 90
+        }
       }
     },
     "nx-release-publish": {

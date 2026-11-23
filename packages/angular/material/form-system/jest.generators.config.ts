@@ -4,6 +4,7 @@ module.exports = {
   displayName: 'angular-material-form-system-generators',
   preset: '../../../../jest.preset.js',
   testEnvironment: 'node',
+  collectCoverage: false,
   testMatch: ['<rootDir>/src/generators/**/*.spec.ts'],
   transform: {
     '^(?!.*/node_modules/).+\\.[tj]s$': [
