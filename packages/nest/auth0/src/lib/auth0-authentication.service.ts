@@ -1,5 +1,10 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { AuthenticationClient, AuthenticationClientOptions } from 'auth0';
+// auth0 >= 7 no longer ships the authentication client in its main entrypoint; the (v4 API compatible)
+// legacy entrypoint keeps the public API of this service unchanged.
+import {
+  AuthenticationClient,
+  AuthenticationClientOptions,
+} from 'auth0/legacy';
 import {
   AUTH0_AUTHENTICATION_OPTIONS,
   AUTH0_OPTIONS

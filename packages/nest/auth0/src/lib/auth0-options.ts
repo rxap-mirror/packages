@@ -2,7 +2,7 @@ import {
   AuthenticationClientOptions,
   ManagementClientOptionsWithToken,
   ManagementClientOptionsWithClientCredentials
-} from 'auth0';
+} from 'auth0/legacy';
 
 export interface Auth0Options {
   authentication: AuthenticationClientOptions,

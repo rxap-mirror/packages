@@ -14,7 +14,7 @@
     "@rxap/directives": "^22.0.0-dev.0",
     "@rxap/environment": "^22.0.0-dev.0",
     "@rxap/open-api": "^22.0.0-dev.0",
-    "ngx-markdown": "^19.0.0",
+    "ngx-markdown": "^22.0.0",
     "rxjs": "^7.0.0"
   },
   "author": {

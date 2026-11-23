@@ -180,7 +180,8 @@ export class KeycloakService {
       initOptions,
     } = options;
 
-    this._instance = new Keycloak(config);
+    // keycloak-js >= 24 requires the config; the old implicit default was the keycloak.json next to the app
+    this._instance = new Keycloak(config ?? 'keycloak.json');
     this.bindsKeycloakEvents();
 
     const authenticated = await this._instance.init(initOptions ?? {});

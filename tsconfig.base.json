@@ -340,6 +340,7 @@
       "workspace": ["tools/workspace/src/index.ts"],
       "workspace/commands": ["tools/workspace/src/cypress/commands.ts"],
       "workspace/support": ["tools/workspace/src/cypress/support.ts"],
+      "auth0/legacy": ["node_modules/auth0/legacy/exports/index.d.ts"],
       "@nx/angular/generators": ["node_modules/@nx/angular/dist/generators.d.ts"],
       "@nx/angular/plugins/component-testing": ["node_modules/@nx/angular/dist/plugins/component-testing.d.ts"],
       "@nx/angular/src/generators/*/schema": ["node_modules/@nx/angular/dist/src/generators/*/schema.d.ts"],

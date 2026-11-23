@@ -4,7 +4,7 @@
   "description": "This plugin provides generators to initialize Cypress testing for Nx workspaces, with a focus on component testing for Angular applications and libraries. It automates configuration, dependency management, and code modifications to streamline Cypress setup and integration. The plugin also includes utilities for coercing configurations and dependencies to ensure compatibility and best practices.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@nx/angular": "^24.0.6",
+    "@nx/angular": "24.0.6",
     "@nx/devkit": "24.0.6",
     "@rxap/plugin-angular": "^24.0.0-dev.0",
     "@rxap/ts-morph": "^1.7.1",

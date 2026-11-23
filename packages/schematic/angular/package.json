@@ -14,7 +14,7 @@
     "@rxap/workspace-ts-morph": "^24.0.0-dev.0",
     "@rxap/workspace-utilities": "^24.0.0-dev.0",
     "colors": "1.4.0",
-    "handlebars": "^4.7.10",
+    "handlebars": "4.7.10",
     "ts-morph": "18.0.0",
     "tslib": "2.9.1"
   },

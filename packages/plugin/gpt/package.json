@@ -8,8 +8,8 @@
     "@rxap/ts-morph": "^1.7.1",
     "@rxap/workspace-ts-morph": "^24.0.0-dev.0",
     "@rxap/workspace-utilities": "^24.0.0-dev.0",
-    "openai": "^4.82.0",
-    "tiktoken": "^1.0.22",
+    "openai": "7.57.0",
+    "tiktoken": "1.0.22",
     "ts-morph": "18.0.0",
     "tslib": "2.9.1"
   },

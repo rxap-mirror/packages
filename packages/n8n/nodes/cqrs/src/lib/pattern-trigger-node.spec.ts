@@ -9,6 +9,8 @@ const closeChannel = jest.fn();
 jest.mock('./GenericFunctions', () => ({
   rabbitmqCreateChannel: jest.fn(),
   parseMessage: jest.fn(),
+  // the real helper falls back to channel.connection.close() for channels it did not create
+  closeChannelConnection: jest.fn(async (channel: any) => channel.connection.close()),
   MessageTracker: jest.fn().mockImplementation(() => ({
     received: jest.fn(),
     answered: jest.fn(),

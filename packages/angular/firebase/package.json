@@ -13,7 +13,7 @@
     "@rxap/config": "^22.0.0-dev.0",
     "@rxap/rxjs": "^1.1.18",
     "@rxap/utilities": "^16.5.2",
-    "firebase": "^9.0.0",
+    "firebase": "^13.0.0",
     "rxjs": "^7.0.0"
   },
   "author": {

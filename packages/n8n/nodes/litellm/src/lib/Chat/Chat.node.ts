@@ -11,9 +11,9 @@ import {
 import {
   ChatOpenAI,
   type ClientOptions,
+  OpenAIClient,
 } from '@langchain/openai';
 import { getConnectionHintNoticeField } from '../utils/sharedFields';
-import { RateLimitError } from 'openai';
 import { N8nLlmTracing } from '../N8nLlmTracing';
 import { getCustomErrorMessage } from '../error-handling';
 
@@ -250,7 +250,7 @@ export class Chat implements INodeType {
       onFailedAttempt: (error: any) => {
         // If the error is a rate limit error, we want to handle it differently
         // because OpenAI has multiple different rate limit errors
-        if (error instanceof RateLimitError) {
+        if (error instanceof OpenAIClient.RateLimitError) {
           const errorCode = error?.code;
           if (errorCode) {
             const customErrorMessage = getCustomErrorMessage(errorCode);

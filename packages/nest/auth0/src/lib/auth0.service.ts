@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { AuthenticationClient, AuthenticationClientOptions } from 'auth0';
+import { AuthenticationClient, AuthenticationClientOptions } from 'auth0/legacy';
 import { AUTH0_OPTIONS } from './tokens';
 
 /**

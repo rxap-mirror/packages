@@ -10,7 +10,7 @@
     "colors": "1.4.0",
     "glob": "14.0.6",
     "nx": "24.0.6",
-    "tslib": "^2.9.1"
+    "tslib": "2.9.1"
   },
   "author": {
     "name": "Merzough Münker",

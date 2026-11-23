@@ -25,6 +25,7 @@ import {
   MessageTracker,
   parseMessage,
   rabbitmqCreateChannel,
+  closeChannelConnection,
 } from './GenericFunctions';
 import {
   type ExchangeType,
@@ -156,7 +157,7 @@ export class PatternTriggerNode implements INodeType {
 
       const closeFunction = async () => {
         await channel.close();
-        await channel.connection.close();
+        await closeChannelConnection(channel);
         return;
       };
 

@@ -3,8 +3,8 @@
   "name": "@rxap/browser-theme",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@material/material-color-utilities": "^0.4.0",
-    "tslib": "^2.9.1"
+    "@material/material-color-utilities": "0.4.0",
+    "tslib": "2.9.1"
   },
   "author": {
     "name": "Merzough Münker",

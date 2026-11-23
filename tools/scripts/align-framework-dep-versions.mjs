@@ -50,8 +50,9 @@ for (const file of files) {
         }
         want = match[1] === '0' ? `^0.${ match[2] }.0` : `^${ match[1] }.0.0`;
       } else {
-        const prefix = current.startsWith('^') ? '^' : current.startsWith('~') ? '~' : '';
-        want = prefix + rootClean;
+        // copy the root range verbatim: a different range (e.g. ^x vs x) would resolve separately and
+        // let the package manager install a second, possibly un-vetted copy of the package
+        want = rootRange;
       }
       if (current !== want) {
         deps[dep] = want;

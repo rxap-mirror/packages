@@ -1,7 +1,9 @@
-import {
-  KeyvStoreAdapter,
-  StoredData,
+import type {
+  KeyvStorageAdapter,
+  KeyvStorageEntry,
+  KeyvStorageGetResult,
 } from 'keyv';
+import { EventEmitter } from 'node:events';
 import {
   Client,
   ClientOptions,
@@ -13,20 +15,39 @@ export interface KeyvMinioOptions extends ClientOptions {
   pathPrefix?: string;
 }
 
-export class KeyvMinio implements KeyvStoreAdapter {
+/**
+ * Keyv >= 6 storage adapter backed by a minio bucket.
+ *
+ * The adapter deliberately does not declare `capabilities.expires`: Keyv then treats it as a legacy
+ * adapter, wraps it in a KeyvBridgeAdapter and keeps passing a relative `ttl` to `set` (the
+ * `{ value, expires }` document format in the bucket is unchanged).
+ */
+export class KeyvMinio extends EventEmitter implements KeyvStorageAdapter {
   opts: any;
+
+  namespace?: string;
 
   private readonly client: Client;
 
   constructor(private readonly options: KeyvMinioOptions) {
+    super();
     this.client = new Client(options);
+  }
+
+  // keyv's IEventEmitter expects typed listener functions, node's EventEmitter returns `Function[]`
+  override listeners(eventName: string | symbol): Array<(...args: any[]) => void> {
+    return super.listeners(eventName) as Array<(...args: any[]) => void>;
+  }
+
+  override rawListeners(eventName: string | symbol): Array<(...args: any[]) => void> {
+    return super.rawListeners(eventName) as Array<(...args: any[]) => void>;
   }
 
   get bucketName(): string {
     return this.options.bucketName;
   }
 
-  async get<Value>(key: string): Promise<StoredData<Value> | undefined> {
+  async get<Value>(key: string): Promise<KeyvStorageGetResult<Value>> {
     const filePath = join(this.options.pathPrefix ?? '', key + '.json');
     try {
       const dataStream = await this.client.getObject(this.bucketName, filePath);
@@ -43,9 +64,34 @@ export class KeyvMinio implements KeyvStoreAdapter {
     }
   }
 
-  async set(key: string, value: any, ttl?: number) {
+  async set(key: string, value: any, ttl?: number): Promise<boolean> {
     const filePath = join(this.options.pathPrefix ?? '', key + '.json');
     await this.client.putObject(this.bucketName, filePath, JSON.stringify({ value, expires: ttl ? Date.now() + ttl : null }), undefined);
+    return true;
+  }
+
+  async setMany<Value>(values: KeyvStorageEntry<Value>[]): Promise<boolean[]> {
+    return Promise.all(values.map(entry => {
+      // legacy adapters receive a relative ttl; tolerate entries that carry an absolute expiry instead
+      const { ttl, expires } = entry as KeyvStorageEntry<Value> & { ttl?: number };
+      return this.set(entry.key, entry.value, ttl ?? (expires ? Math.max(expires - Date.now(), 1) : undefined));
+    }));
+  }
+
+  async getMany<Value>(keys: string[]): Promise<Array<KeyvStorageGetResult<Value | undefined>>> {
+    return Promise.all(keys.map(key => this.get<Value | undefined>(key)));
+  }
+
+  async has(key: string): Promise<boolean> {
+    return (await this.get(key)) !== undefined;
+  }
+
+  async hasMany(keys: string[]): Promise<boolean[]> {
+    return Promise.all(keys.map(key => this.has(key)));
+  }
+
+  async deleteMany(keys: string[]): Promise<boolean[]> {
+    return Promise.all(keys.map(key => this.delete(key)));
   }
 
   async delete(key: string): Promise<boolean> {
@@ -91,10 +137,6 @@ export class KeyvMinio implements KeyvStoreAdapter {
     } catch (err: any) {
       throw new Error(`Error clearing minio bucket ${this.bucketName}: ${err.message}`);
     }
-  }
-
-  on(event: string, listener: (...arguments_: any[]) => void): this {
-    throw new Error('Method not implemented.');
   }
 
 }

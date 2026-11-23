@@ -17,7 +17,8 @@
  *        [--pin name=range,...] [--status minor|major] [--section dependencies|devDependencies] [--min-age-days N]  (raises every tier to at least N)
  *
  * Without --apply the script only reports. With --apply the root package.json is rewritten (the
- * range style - exact / ^ / ~ - of every entry is preserved). Run `yarn` afterwards.
+ * entries are written as EXACT versions so the lockfile can never resolve to a newer, un-vetted release).
+ * Run `yarn` afterwards.
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
@@ -186,12 +187,6 @@ function reversePeerConflicts(name, candidate, overrides) {
   return conflicts;
 }
 
-function style(range) {
-  if (range.startsWith('^')) return '^';
-  if (range.startsWith('~')) return '~';
-  return '';
-}
-
 const docCache = {};
 
 async function resolveOne(name, range, section, overrides = {}, ignorePeers = false) {
@@ -244,7 +239,8 @@ async function resolveOne(name, range, section, overrides = {}, ignorePeers = fa
     ...base,
     status: semver.major(target) > semver.major(current) ? 'major' : 'minor',
     target,
-    newRange: `${ style(range) }${ target }`,
+    // exact pin: a ^/~ range would let the package manager float to a release that never went through the cooldown
+    newRange: target,
     publishedDaysAgo: Math.floor((now - Date.parse(doc.time[target])) / DAY),
   };
 }
@@ -275,14 +271,12 @@ for (const section of SECTIONS) {
   }
 }
 
-await pool(work, 6, async w => {
-  docCache[w.name] ??= getJson(`${ REGISTRY }/${ w.name.replace('/', '%2f') }`);
-  docCache[w.name] = await docCache[w.name];
-  return w;
+// the reverse peer check needs the metadata of EVERY workspace dependency, not only of the selected ones
+await pool(Object.keys(workspaceVersions).filter(n => !n.startsWith('@rxap/')), 6, async name => {
+  docCache[name] ??= getJson(`${ REGISTRY }/${ name.replace('/', '%2f') }`);
+  docCache[name] = await docCache[name];
+  return name;
 });
-// Greatest fixpoint: start from the newest age-eligible version of everything (ignoring peers),
-// then repeatedly step packages down until all peerDependencies hold. Unlike an ascent from the
-// installed versions this lets groups (react + react-dom, @langchain/*, typedoc + plugins) move together.
 let results = await pool(work, 6, w => resolveOne(w.name, w.range, w.section, {}, true));
 let converged = false;
 for (let pass = 0; pass < 10 && !converged; pass++) {

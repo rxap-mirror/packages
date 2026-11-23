@@ -7,6 +7,8 @@ import { rabbitmqConnectExchange } from './GenericFunctions';
 jest.mock('./GenericFunctions', () => ({
   rabbitmqConnectExchange: jest.fn(),
   parsePublishArguments: jest.fn(() => ({})),
+  // the real helper falls back to channel.connection.close() for channels it did not create
+  closeChannelConnection: jest.fn(async (channel: any) => channel.connection.close()),
 }));
 
 const schema = {

@@ -10,7 +10,7 @@ import {
   AuthenticationClientOptions,
   ManagementClientOptionsWithClientCredentials,
   ManagementClientOptionsWithToken
-} from 'auth0';
+} from 'auth0/legacy';
 import { passportJwtSecret } from 'jwks-rsa';
 import { Auth0ManagementService } from './auth0-management.service';
 import { Auth0Options } from './auth0-options';

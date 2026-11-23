@@ -5,12 +5,11 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@langchain/community": "^0.3.32",
-    "@langchain/core": "^0.3.80",
-    "@langchain/openai": "^0.6.17",
+    "@langchain/core": "0.3.80",
+    "@langchain/openai": "0.6.17",
     "@langchain/textsplitters": "^0.1.0",
-    "langchain": "^0.3.37",
+    "langchain": "0.3.37",
     "lodash": "^4.17.21",
-    "openai": "^4.82.0",
     "tmp-promise": "^3.0.3",
     "tslib": "2.9.1"
   },

@@ -6,7 +6,7 @@ import {
   ManagementClient,
   ManagementClientOptionsWithClientCredentials,
   ManagementClientOptionsWithToken
-} from 'auth0';
+} from 'auth0/legacy';
 import { AUTH0_MANAGEMENT_OPTIONS } from './tokens';
 
 @Injectable()

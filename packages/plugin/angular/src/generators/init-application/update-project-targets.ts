@@ -131,11 +131,7 @@ export function updateProjectTargets(
   project.targets['build'].options.sourceMap = true;
   project.targets['build'].options.assets ??= [];
   project.targets['build'].options.scripts ??= [];
-  if (options.moduleFederation !== 'remote') {
-    if (!project.targets['build'].options.scripts.includes('node_modules/marked/marked.min.js')) {
-      project.targets['build'].options.scripts.push('node_modules/marked/marked.min.js');
-    }
-  }
+  // marked >= 5 is an ES module that ngx-markdown imports itself: the global marked.min.js script is obsolete
   CoerceAssets(project.targets['build'].options.assets, [
     `${projectSourceRoot}/assets`,
     {

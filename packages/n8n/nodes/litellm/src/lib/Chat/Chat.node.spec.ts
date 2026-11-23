@@ -1,24 +1,26 @@
 import { NodeApiError } from 'n8n-workflow';
-import { RateLimitError } from 'openai';
+import { OpenAIClient } from '@langchain/openai';
 import { Chat } from './Chat.node';
 
 const mockChatOpenAI = jest.fn();
+// the error class has to come from the openai copy that @langchain/openai nests (OpenAIClient.RateLimitError),
+// not from the workspace `openai` package: that is a different class and `instanceof` would never match
 jest.mock('@langchain/openai', () => ({
+  OpenAIClient: {
+    RateLimitError: class RateLimitError extends Error {
+      constructor(public code?: string) {
+        super('rate limit');
+      }
+    },
+  },
   ChatOpenAI: jest.fn().mockImplementation((args: unknown) => {
     mockChatOpenAI(args);
     return { kind: 'chat-model', args };
   }),
 }));
 
-jest.mock('openai', () => ({
-  RateLimitError: class RateLimitError extends Error {
-    constructor(public code?: string) {
-      super('rate limit');
-    }
-  },
-}));
 
-const FakeRateLimitError = RateLimitError as unknown as new (code?: string) => Error;
+const FakeRateLimitError = OpenAIClient.RateLimitError as unknown as new (code?: string) => Error;
 
 function ctx(options: Record<string, unknown> = {}) {
   return {

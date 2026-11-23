@@ -83,7 +83,7 @@
           }
         ],
         "styles": ["demos/angular/src/styles.scss"],
-        "scripts": ["node_modules/marked/marked.min.js"],
+        "scripts": [],
         "sourceMap": true
       },
       "configurations": {

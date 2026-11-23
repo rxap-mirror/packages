@@ -15,6 +15,8 @@ const ESM_ONLY_PACKAGES = [
   'dom-serializer',
   'domelementtype',
   'entities',
+  // amqplib >= 2 / amqp-connection-manager >= 5
+  'promise-breaker',
 ].join('|');
 
 module.exports = {
@@ -57,7 +59,8 @@ module.exports = {
   moduleNameMapper: {
     ...pathsToModuleNameMapper(
       // `@nx/*` entries only exist so TypeScript (moduleResolution node10) can find the exports-only @nx packages
-      Object.fromEntries(Object.entries(compilerOptions.paths ?? {}).filter(([ key ]) => !key.startsWith('@nx/'))),
+      // (`auth0/legacy` is the same kind of entry: types for an exports-only subpath, resolved by node at runtime)
+      Object.fromEntries(Object.entries(compilerOptions.paths ?? {}).filter(([ key ]) => !key.startsWith('@nx/') && key !== 'auth0/legacy')),
       {
       prefix: `${ __dirname }/`,
     }),

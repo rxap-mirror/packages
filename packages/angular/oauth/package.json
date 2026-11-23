@@ -12,8 +12,8 @@
     "@angular/router": "^22.0.0",
     "@rxap/authentication": "^22.0.0-dev.0",
     "@rxap/rxjs": "^1.1.18",
-    "angular-oauth2-oidc": "^15.0.0",
-    "angular-oauth2-oidc-jwks": "^15.0.0",
+    "angular-oauth2-oidc": "^22.0.0",
+    "angular-oauth2-oidc-jwks": "^22.0.0",
     "rxjs": "^7.0.0"
   },
   "author": {

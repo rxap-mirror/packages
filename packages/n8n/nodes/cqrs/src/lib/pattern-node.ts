@@ -30,6 +30,7 @@ import { v4 as uuid } from 'uuid';
 import {
   parsePublishArguments,
   rabbitmqConnectExchange,
+  closeChannelConnection,
 } from './GenericFunctions';
 import { Options } from './types';
 
@@ -247,7 +248,7 @@ export abstract class PatternNode implements INodeType {
       // handling threw, to avoid leaking connections on the RabbitMQ broker
       try {
         await channel.close();
-        await channel.connection.close();
+        await closeChannelConnection(channel);
       } catch (closeError: any) {
         this.logger.error(`Failed to close RabbitMQ channel: ${ closeError.message }`);
       }

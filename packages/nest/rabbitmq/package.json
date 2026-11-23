@@ -13,8 +13,8 @@
     "@nestjs/microservices": "^12.0.0",
     "@nestjs/terminus": "^12.0.0",
     "@rxap/utilities": "^16.5.2",
-    "amqp-connection-manager": "^4.0.0",
-    "amqplib": "^0.10.0",
+    "amqp-connection-manager": "^5.0.0",
+    "amqplib": "^2.0.0",
     "rxjs": "^7.0.0"
   },
   "author": {

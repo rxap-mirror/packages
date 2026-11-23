@@ -11,7 +11,7 @@
     "@angular/common": "^22.0.0",
     "@angular/core": "^22.0.0",
     "@angular/router": "^22.0.0",
-    "keycloak-js": "^23.0.0",
+    "keycloak-js": "^26.0.0",
     "rxjs": "^7.0.0"
   },
   "author": {

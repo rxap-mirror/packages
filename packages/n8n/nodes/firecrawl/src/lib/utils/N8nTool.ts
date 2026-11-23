@@ -3,7 +3,7 @@ import { DynamicStructuredTool, DynamicTool } from '@langchain/core/tools';
 import { StructuredOutputParser } from 'langchain/output_parsers';
 import type { ISupplyDataFunctions, IDataObject } from 'n8n-workflow';
 import { NodeConnectionType, jsonParse, NodeOperationError } from 'n8n-workflow';
-import type { ZodTypeAny } from 'zod';
+import type { z, ZodTypeAny } from 'zod';
 import { ZodBoolean, ZodNullable, ZodNumber, ZodObject, ZodOptional } from 'zod';
 
 const getSimplifiedType = (schema: ZodTypeAny) => {
@@ -44,18 +44,30 @@ ALL parameters marked as required must be provided`;
 	return description;
 };
 
-export class N8nTool extends DynamicStructuredTool {
+// @langchain/core >= 0.3.6x also accepts JSON schemas as tool input; the fallback logic below needs a zod object
+type N8nToolSchema = z.ZodObject<Record<string, z.ZodTypeAny>>;
+
+interface N8nToolFields {
+	name: string;
+	description: string;
+	schema: N8nToolSchema;
+	func: (query: any) => Promise<string>;
+}
+
+// the generic is intentionally `any`: instantiating the conditional zod types of @langchain/core here is "excessively deep"
+export class N8nTool extends DynamicStructuredTool<any> {
 	constructor(
 		private context: ISupplyDataFunctions,
-		fields: DynamicStructuredToolInput,
+		fields: N8nToolFields,
 	) {
-		super(fields);
+		super(fields as DynamicStructuredToolInput<any>);
 	}
 
 	asDynamicTool(): DynamicTool {
-		const { name, func, schema, context, description } = this;
+		const { name, func, context, description } = this;
+		const schema = this.schema as N8nToolSchema;
 
-		const parser = new StructuredOutputParser(schema);
+		const parser = new StructuredOutputParser(schema as any) as { parse(text: string): Promise<object> };
 
 		const wrappedFunc = async function (query: string) {
 			let parsedQuery: object;

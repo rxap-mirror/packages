@@ -52,7 +52,7 @@ export function formatPrivateKey(privateKey: string, keyIsPublic = false): strin
 
 export async function rabbitmqConnect(
 	credentials: RabbitMQCredentials,
-): Promise<amqplib.Connection> {
+): Promise<amqplib.ChannelModel> {
 	const credentialData = credentialKeys.reduce((acc, key) => {
 		acc[key] = credentials[key] === '' ? undefined : credentials[key];
 		return acc;
@@ -77,6 +77,20 @@ export async function rabbitmqConnect(
 	return await amqplib.connect(credentialData, optsData);
 }
 
+// amqplib >= 1 only types `channel.connection` as an opaque low-level Connection; the promise based
+// ChannelModel (which owns close()) has to be remembered per channel to release the connection properly.
+const channelModels = new WeakMap<amqplib.Channel, amqplib.ChannelModel>();
+
+export async function closeChannelConnection(channel: amqplib.Channel): Promise<void> {
+	const model = channelModels.get(channel);
+	if (model) {
+		await model.close();
+		return;
+	}
+	// channels that were not created by rabbitmqCreateChannel
+	await (channel.connection as unknown as { close(): unknown }).close();
+}
+
 export async function rabbitmqCreateChannel(
 	this: IExecuteFunctions | ITriggerFunctions,
 ): Promise<amqplib.Channel> {
@@ -90,6 +104,7 @@ export async function rabbitmqCreateChannel(
 			connection.on('error', reject);
 
 			const channel = await connection.createChannel();
+			channelModels.set(channel, connection);
 			resolve(channel);
 		} catch (error) {
 			reject(error);
@@ -196,7 +211,7 @@ export class MessageTracker {
 		}
 
 		await channel.close();
-		await channel.connection.close();
+		await closeChannelConnection(channel);
 	}
 }
 

@@ -102,8 +102,38 @@ describe('KeyvMinio', () => {
     });
   });
 
-  it('does not implement on()', () => {
-    expect(() => store.on('x', () => undefined)).toThrow('not implemented');
+  it('is an event emitter (keyv >= 6 storage adapter contract)', () => {
+    const listener = jest.fn();
+    store.on('x', listener);
+    store.emit('x', 1);
+    expect(listener).toHaveBeenCalledWith(1);
+  });
+
+  describe('bulk operations (keyv >= 6 storage adapter contract)', () => {
+    it('getMany reads every key', async () => {
+      client.getObject.mockImplementation(async (_bucket: string, path: string) => Readable.from([ path.endsWith('a.json') ? '{"value":1}' : '{"value":2}' ]));
+      await expect(store.getMany([ 'a', 'b' ])).resolves.toEqual([ { value: 1 }, { value: 2 } ]);
+    });
+
+    it('has reports whether the key exists', async () => {
+      client.getObject.mockResolvedValueOnce(Readable.from([ '{"value":1}' ]));
+      client.getObject.mockRejectedValueOnce({ code: 'NoSuchKey' });
+      await expect(store.hasMany([ 'a', 'b' ])).resolves.toEqual([ true, false ]);
+    });
+
+    it('setMany stores every entry, converting an absolute expiry to a relative ttl', async () => {
+      jest.spyOn(Date, 'now').mockReturnValue(1000);
+      await expect(store.setMany([ { key: 'a', value: 1 }, { key: 'b', value: 2, expires: 1600 } ])).resolves.toEqual([ true, true ]);
+      expect(client.putObject).toHaveBeenCalledWith('b', 'app/a.json', JSON.stringify({ value: 1, expires: null }), undefined);
+      expect(client.putObject).toHaveBeenCalledWith('b', 'app/b.json', JSON.stringify({ value: 2, expires: 1600 }), undefined);
+      jest.restoreAllMocks();
+    });
+
+    it('deleteMany removes every key', async () => {
+      client.removeObject.mockResolvedValue(undefined);
+      await expect(store.deleteMany([ 'a', 'b' ])).resolves.toEqual([ true, true ]);
+      expect(client.removeObject).toHaveBeenCalledTimes(2);
+    });
   });
 });
 
