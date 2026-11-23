@@ -16,7 +16,22 @@ import {
   Subscription,
 } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<TableSelectInputComponent>({
+  title: 'Table Select Input',
+  category: 'Table Select',
+  description: 'Form field control that shows the display value of the selected table row. The selection is made in a table select window.',
+  status: 'stable',
+  imports: [{ name: 'MatFormFieldModule', from: '@angular/material/form-field' }],
+  host: { template: '<mat-form-field><mat-label>User</mat-label><rxap-table-select-input></rxap-table-select-input></mat-form-field>' },
+  variants: [
+    { name: 'Default' },
+    { name: 'Placeholder', inputs: { placeholderInput: 'Select a user' } },
+    { name: 'Required', inputs: { requiredInput: true, placeholderInput: 'Select a user' } },
+    { name: 'Disabled', inputs: { disabledInput: true, placeholderInput: 'Select a user' } },
+  ],
+})
 @Component({
     selector: 'rxap-table-select-input',
     templateUrl: './table-select-input.component.html',

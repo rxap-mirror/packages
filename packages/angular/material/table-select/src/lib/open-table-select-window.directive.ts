@@ -34,12 +34,52 @@ import {
   OpenTableSelectWindowMethod,
   TableSelectColumn,
 } from './open-table-select-window.method';
+import { Showcase } from '@ng-prism/core';
 
 export interface OpenTableSelectWindowDirective<Data extends Record<string, any>, Value = Data>
   extends ExtractTableSelectDataSourceMixin<Data>, ExtractTableSelectColumnMapMixin,
     ExtractTableSelectToValueMixin<Data, Value> {
 }
 
+@Showcase<OpenTableSelectWindowDirective<Record<string, any>>>({
+  title: 'Open Table Select Window',
+  category: 'Table Select',
+  description: 'Opens a window with a table to select one or multiple rows of the data. The button is disabled as long as the data or the columns are missing.',
+  status: 'stable',
+  imports: [{ name: 'MatButton', from: '@angular/material/button' }],
+  host: { template: '<button mat-stroked-button rxapOpenTableSelectWindow>Select a user</button>' },
+  variants: [
+    {
+      name: 'Single select',
+      inputs: {
+        dataInput: [
+          { id: 1, name: 'Alice', email: 'alice@example.com' },
+          { id: 2, name: 'Bob', email: 'bob@example.com' },
+          { id: 3, name: 'Carol', email: 'carol@example.com' },
+        ],
+        columnsInput: { name: { label: 'Name' }, email: { label: 'E-Mail' } },
+        labelInput: 'Select a user',
+      },
+    },
+    {
+      name: 'Multiple select',
+      inputs: {
+        dataInput: [
+          { id: 1, name: 'Alice', email: 'alice@example.com' },
+          { id: 2, name: 'Bob', email: 'bob@example.com' },
+          { id: 3, name: 'Carol', email: 'carol@example.com' },
+        ],
+        columnsInput: { name: { label: 'Name', filter: true }, email: { label: 'E-Mail', filter: true } },
+        labelInput: 'Select users',
+        multiple: true,
+      },
+    },
+    {
+      name: 'Without data',
+      description: 'The button is disabled without data and columns.',
+    },
+  ],
+})
 @Mixin(ExtractTableSelectDataSourceMixin,
   ExtractTableSelectColumnMapMixin,
   ExtractTableSelectToValueMixin,

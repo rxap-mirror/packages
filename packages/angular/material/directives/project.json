@@ -26,6 +26,7 @@
       "outputs": [
         "{workspaceRoot}/coverage/packages/angular/material/directives"
       ],
+      "dependsOn": ["test-generators"],
       "options": {
         "tsConfig": "packages/angular/material/directives/tsconfig.spec.json",
         "runner": "vitest",
@@ -90,6 +91,10 @@
     "storybook": {
       "executor": "@storybook/angular:start-storybook",
       "continuous": true,
+      "readyWhen": {
+        "port": "{env.SBCONFIG_PORT ?? options.port ?? 9009}",
+        "host": "{env.SBCONFIG_HOSTNAME ?? options.host ?? localhost}"
+      },
       "options": {
         "port": 4400,
         "configDir": "packages/angular/material/directives/.storybook",
@@ -106,10 +111,6 @@
         "ci": {
           "quiet": true
         }
-      },
-      "readyWhen": {
-        "port": "{env.SBCONFIG_PORT ?? options.port ?? 9009}",
-        "host": "{env.SBCONFIG_HOSTNAME ?? options.host ?? localhost}"
       }
     },
     "build-storybook": {
@@ -152,6 +153,37 @@
         "ci": {
           "buildTarget": "angular:build:development"
         }
+      }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/material/directives",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-material-directives",
+        "libraryImportPath": "@rxap/material-directives",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-material-directives"],
+      "options": {
+        "entryPoint": "packages/angular/material/directives",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-material-directives",
+        "libraryImportPath": "@rxap/material-directives",
+        "outputPath": "dist/prism/angular-material-directives"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/material/directives",
+        "cwd": "{workspaceRoot}"
       }
     }
   }

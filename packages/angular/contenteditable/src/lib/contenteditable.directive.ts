@@ -9,7 +9,19 @@ import {
   DebounceCall,
 } from '@rxap/utilities';
 import { Method } from '@rxap/pattern';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<ContenteditableDirective>({
+  title: 'Contenteditable',
+  category: 'Content Editing',
+  description: 'Makes the text content of an element editable. The change output emits the new text one second after the last input.',
+  status: 'stable',
+  host: '<p style="min-width: 240px; padding: 4px; border: 1px dashed currentColor">Click here to edit this text</p>',
+  variants: [
+    { name: 'Editable' },
+    { name: 'Disabled', inputs: { disabled: true } },
+  ],
+})
 @Directive({
   selector: '[rxapContenteditable]',
   standalone: true,

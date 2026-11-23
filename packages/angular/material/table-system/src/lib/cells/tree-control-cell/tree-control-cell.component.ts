@@ -12,10 +12,24 @@ import { IconDirective } from '@rxap/material-directives/icon';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RowDataWithNode } from '@rxap/data-source/table/tree';
+import { Showcase } from '@ng-prism/core';
 
 
 const LEAF_ICON: IconConfig = { icon: 'subdirectory_arrow_right' };
 
+@Showcase({
+  title: 'Tree Control Cell',
+  category: 'Table System',
+  description: 'Table cell of a tree table. It indents the content by the depth of the node and toggles the node expansion. The showcase uses static nodes: toggling the expansion needs a real tree node of a tree table data source.',
+  status: 'stable',
+  host: { template: '<table><tr><td rxap-tree-control-cell>Documents</td></tr></table>' },
+  variants: [
+    { name: 'Collapsed node', inputs: { element: { __node: { depth: 0, hasChildren: true, expanded: false }, icon: { icon: 'folder' } } } },
+    { name: 'Expanded node', inputs: { element: { __node: { depth: 0, hasChildren: true, expanded: true }, icon: { icon: 'folder_open' } } } },
+    { name: 'Nested node', description: 'The depth of the node indents the cell.', inputs: { element: { __node: { depth: 2, hasChildren: true, expanded: false }, icon: { icon: 'folder' } } } },
+    { name: 'Leaf', description: 'A leaf shows the default leaf icon.', inputs: { element: { __node: { depth: 1, hasChildren: false, expanded: false } } } },
+  ],
+})
 @Component({
     selector: 'rxap-tree-control-cell, td[rxap-tree-control-cell]',
     templateUrl: './tree-control-cell.component.html',

@@ -29,7 +29,17 @@ import { ToggleSubject } from '@rxap/rxjs';
 import { fadeAnimation } from '../fade-animation';
 import { LoginFormProviders } from './login.form';
 import { RequestResetPasswordMethod } from './request-reset-password.method';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<LoginComponent>({
+  title: 'Login',
+  category: 'Authentication',
+  description: 'Login form with email, password and remember me. The sign in method is not implemented by the library, so a submit shows the error of the not implemented method.',
+  status: 'stable',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     selector: 'rxap-login',
     templateUrl: './login.component.html',

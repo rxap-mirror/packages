@@ -15,7 +15,17 @@ import { MatIcon } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
 import { IconDirective } from '@rxap/material-directives/icon';
 import { ExternalAppsService } from '../../external-apps.service';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Apps Button',
+  category: 'Layout',
+  description: 'Icon button that expands a list of links to the external apps. It is only rendered if at least one app is configured. The apps are provided with demo data by the styleguide host.',
+  status: 'stable',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     selector: 'rxap-apps-button',
     templateUrl: './apps-button.component.html',

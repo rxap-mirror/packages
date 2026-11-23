@@ -10,6 +10,7 @@
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "defaultConfiguration": "production",
       "options": {
         "project": "packages/angular/timeago/ng-package.json",
         "tsConfig": "packages/angular/timeago/tsconfig.lib.json"
@@ -19,8 +20,7 @@
           "tsConfig": "packages/angular/timeago/tsconfig.lib.prod.json"
         },
         "development": {}
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "test": {
       "executor": "@nx/angular:unit-test",
@@ -47,6 +47,37 @@
           "lines": 90,
           "statements": 90
         }
+      }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/timeago",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-timeago",
+        "libraryImportPath": "@rxap/ngx-timeago",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-timeago"],
+      "options": {
+        "entryPoint": "packages/angular/timeago",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-timeago",
+        "libraryImportPath": "@rxap/ngx-timeago",
+        "outputPath": "dist/prism/angular-timeago"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/timeago",
+        "cwd": "{workspaceRoot}"
       }
     }
   }

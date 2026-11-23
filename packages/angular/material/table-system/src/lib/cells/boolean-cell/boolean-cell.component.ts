@@ -7,14 +7,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { Showcase } from '@ng-prism/core';
 
 
-@Showcase({
+@Showcase<BooleanCellComponent>({
   title: 'Boolean Cell',
   category: 'Table System',
   description: 'Table cell that shows a boolean value as an icon.',
   status: 'stable',
-  host: { template: '<table><tr><td [rxap-boolean-cell]="true"></td><td [rxap-boolean-cell]="false"></td><td [rxap-boolean-cell]="null"></td></tr></table>' },
+  host: { template: '<table><tr><td rxap-boolean-cell></td></tr></table>' },
   variants: [
-    { name: 'True, false and null' },
+    { name: 'True', inputs: { value: true } },
+    { name: 'False', inputs: { value: false } },
+    { name: 'Empty', description: 'A null value is shown like false.', inputs: { value: null } },
   ],
 })
 @Component({

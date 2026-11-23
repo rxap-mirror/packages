@@ -4,7 +4,33 @@ import {
   equals,
   getFromObject,
 } from '@rxap/utilities';
+import { Showcase } from '@ng-prism/core';
 
+const PRISM_FORM_STYLE = 'display: flex; flex-direction: column; gap: 8px; min-width: 280px';
+
+@Showcase<CompareWithDirective>({
+  title: 'Compare With',
+  category: 'Material Form System',
+  description: 'Compares the options of a select by the value of an object path instead of the object reference. The value of the control is a different object than the option, but the matching option is selected.',
+  status: 'stable',
+  imports: [
+    { name: 'ReactiveFormsModule', from: '@angular/forms' },
+    { name: 'FormDirective', from: '@rxap/forms' },
+    { name: 'MatFormFieldModule', from: '@angular/material/form-field' },
+    { name: 'MatInputModule', from: '@angular/material/input' },
+    { name: 'MatSelectModule', from: '@angular/material/select' },
+  ],
+  variants: [
+    {
+      name: 'By id',
+      host: { template: `<form rxapForm style="${ PRISM_FORM_STYLE }"><mat-form-field><mat-label>Role</mat-label><mat-select formControlName="role" rxapCompareWith="id"><mat-option [value]="{ id: 1, label: 'Administrator' }">Administrator</mat-option><mat-option [value]="{ id: 2, label: 'Editor' }">Editor</mat-option></mat-select></mat-form-field></form>` },
+    },
+    {
+      name: 'By label',
+      host: { template: `<form rxapForm style="${ PRISM_FORM_STYLE }"><mat-form-field><mat-label>Role</mat-label><mat-select formControlName="role" rxapCompareWith="label"><mat-option [value]="{ id: 1, label: 'Administrator' }">Administrator</mat-option><mat-option [value]="{ id: 2, label: 'Editor' }">Editor</mat-option></mat-select></mat-form-field></form>` },
+    },
+  ],
+})
 @Directive({
   selector: 'mat-select[rxapCompareWith]',
   standalone: true,

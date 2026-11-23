@@ -6,8 +6,25 @@ import {
   Subscription,
   tap,
 } from 'rxjs';
+import { Showcase } from '@ng-prism/core';
 
 // TODO : move to rxap packages
+const PRISM_FORM_ARRAY_TEMPLATE = '<form rxapForm style="display: flex; flex-direction: column; gap: 8px; min-width: 280px"><div formArrayName="items" style="display: flex; flex-direction: column; gap: 8px"><div *rxapForFormArrayItem="let group" [formGroup]="group" style="display: flex; gap: 8px"><input formControlName="label" /><button rxapFormArrayItemRemoveButton>Remove</button></div><div><button rxapFormArrayItemAddButton>Add item</button></div></div></form>';
+
+@Showcase<FormArrayAddItemButtonDirective>({
+  title: 'Form Array Add Item Button',
+  category: 'Form System',
+  description: 'A button that adds a new item to the form array of the parent control container. The demo form has an array of two items, each of them with a remove button.',
+  status: 'stable',
+  imports: [
+    { name: 'ReactiveFormsModule', from: '@angular/forms' },
+    { name: 'FormDirective', from: '@rxap/forms' },
+  ],
+  host: { template: PRISM_FORM_ARRAY_TEMPLATE },
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Directive({
   selector: '[rxapFormArrayItemAddButton]',
   standalone: true,

@@ -5,6 +5,7 @@ import {
   input,
   output,
 } from '@angular/core';
+import { Showcase } from '@ng-prism/core';
 
 export interface ShareData {
   files?: File[];
@@ -41,6 +42,17 @@ export class ShareService {
 
 }
 
+@Showcase<ShareButtonDirective>({
+  title: 'Share Button',
+  category: 'Directives',
+  description: 'Opens the native share dialog of the browser with the configured data when the host element is clicked. Where the Web Share API is not supported, a warning is logged instead.',
+  status: 'stable',
+  host: '<button type="button">Share</button>',
+  variants: [
+    { name: 'Link', inputs: { url: 'https://rxap.dev', title: 'RxAP', text: 'Reactive Application Platform' } },
+    { name: 'Text only', inputs: { text: 'Check out the RxAP styleguide' } },
+  ],
+})
 @Directive({
   selector: '[rxapShareButton],[rxapShare]',
   standalone: true,

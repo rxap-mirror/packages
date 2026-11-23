@@ -8,7 +8,14 @@ import { StopPropagationDirective } from '@rxap/directives';
 import { SelectRowService } from '../../select-row/select-row.service';
 import { TableFilterService } from '../../table-filter/table-filter.service';
 import { TableColumnMenuComponent } from '../table-column-menu.component';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Show Archived Slide',
+  description: 'Slide toggle for the column menu that shows or hides the archived rows of a table and the related removed at columns.',
+  status: 'stable',
+  partOf: 'rxap-table-column-menu',
+})
 @Component({
     selector: 'rxap-table-show-archived-slide',
     templateUrl: './table-show-archived-slide.component.html',

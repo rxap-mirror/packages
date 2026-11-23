@@ -1,7 +1,14 @@
 import { Directive, inject, TemplateRef, ViewContainerRef } from '@angular/core';
 import { outputToObservable, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormDirective } from './form.directive';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Form Submit Successful',
+  description: 'Structural directive. Renders its template after the form was submitted successfully. The result is the implicit context: `*rxapFormSubmitSuccessful="let result"`.',
+  status: 'stable',
+  partOf: 'form[rxapForm]',
+})
 @Directive({
   selector: '[rxapFormSubmitSuccessful]',
   standalone: true,

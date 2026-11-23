@@ -1,7 +1,14 @@
 import { Directive, effect, inject, TemplateRef, untracked, ViewContainerRef } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormDirective } from './form.directive';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Form Loading Error',
+  description: 'Structural directive. Renders its template if loading the initial state failed. The error is the implicit context: `*rxapFormLoadingError="let error"`.',
+  status: 'stable',
+  partOf: 'form[rxapForm]',
+})
 @Directive({
   selector: '[rxapFormLoadingError]',
   standalone: true,

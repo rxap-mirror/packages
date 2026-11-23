@@ -15,7 +15,22 @@ import { DefaultHeaderService } from './default-header.service';
 import { SettingsButtonComponent } from './settings-button/settings-button.component';
 import { SidenavToggleButtonComponent } from './sidenav-toggle-button/sidenav-toggle-button.component';
 import { UserProfileIconComponent } from './user-profile-icon/user-profile-icon.component';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Default Header',
+  category: 'Layout',
+  description: 'Default content of the application header: the projected content followed by the apps button, the settings button and the user profile icon.',
+  status: 'stable',
+  canvasLayout: 'stretch',
+  variants: [
+    { name: 'Default' },
+    {
+      name: 'With content',
+      content: '<span style="font-size: 20px">Application title</span>',
+    },
+  ],
+})
 @Component({
     selector: 'rxap-default-header',
     imports: [

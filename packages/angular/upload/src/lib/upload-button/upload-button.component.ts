@@ -46,6 +46,8 @@ import { Showcase } from '@ng-prism/core';
   variants: [
     { name: 'Default', content: 'Select file' },
     { name: 'Images only', inputs: { accept: 'image/*' }, content: 'Select image' },
+    { name: 'With download', description: 'A selected file can be downloaded again.', inputs: { allowDownload: true }, content: 'Select file' },
+    { name: 'Disabled', inputs: { disabledInput: true }, content: 'Select file' },
   ],
 })
 @Component({

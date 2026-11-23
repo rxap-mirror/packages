@@ -12,7 +12,19 @@ import {
   tap,
 } from 'rxjs/operators';
 import { ConfirmComponent } from './confirm.component';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<ConfirmDirective>({
+  title: 'Confirm Directive',
+  category: 'Components',
+  description: 'Opens a small confirm overlay below the host element when it is clicked. The `confirmed` and `unconfirmed` outputs emit the optional event value.',
+  status: 'stable',
+  host: '<button type="button">Delete</button>',
+  variants: [
+    { name: 'Default', description: 'Click the button to open the confirm overlay.' },
+    { name: 'With event value', description: 'The value of the `rxapConfirm` input is emitted with the `confirmed` and `unconfirmed` outputs.', inputs: { eventValueInput: 'item-42' } },
+  ],
+})
 @Directive({
   selector: '[rxapConfirm]',
   standalone: true,

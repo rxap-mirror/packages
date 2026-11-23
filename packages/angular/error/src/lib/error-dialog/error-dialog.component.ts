@@ -22,11 +22,21 @@ import {
   RXAP_ERROR_DIALOG_DATA,
   RXAP_ERROR_DIALOG_ERROR,
 } from '../tokens';
+import { Showcase } from '@ng-prism/core';
 
 export interface IErrorDialogComponent<Error = any> {
   error: Error;
 }
 
+@Showcase<ErrorDialogComponent>({
+  title: 'Error Dialog',
+  category: 'Error',
+  description: 'Native modal dialog that lists the captured errors and renders the active one with the `RXAP_ERROR_DIALOG_COMPONENT`. The styleguide host provides three demo errors. The dialog is opened as modal on render: close it with the close button to use the styleguide again.',
+  status: 'stable',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     selector: 'rxap-error-dialog',
     templateUrl: './error-dialog.component.html',

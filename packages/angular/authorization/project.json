@@ -9,6 +9,7 @@
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "defaultConfiguration": "production",
       "options": {
         "project": "packages/angular/authorization/ng-package.json",
         "tsConfig": "packages/angular/authorization/tsconfig.lib.json"
@@ -18,12 +19,12 @@
           "tsConfig": "packages/angular/authorization/tsconfig.lib.prod.json"
         },
         "development": {}
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "test": {
       "executor": "@nx/angular:unit-test",
       "outputs": ["{workspaceRoot}/coverage/packages/angular/authorization"],
+      "dependsOn": ["test-generators"],
       "options": {
         "tsConfig": "packages/angular/authorization/tsconfig.spec.json",
         "runner": "vitest",
@@ -68,6 +69,37 @@
           "packages/angular/authorization/**/*.ts",
           "packages/angular/authorization/**/*.html"
         ]
+      }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/authorization",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-authorization",
+        "libraryImportPath": "@rxap/authorization",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-authorization"],
+      "options": {
+        "entryPoint": "packages/angular/authorization",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-authorization",
+        "libraryImportPath": "@rxap/authorization",
+        "outputPath": "dist/prism/angular-authorization"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/authorization",
+        "cwd": "{workspaceRoot}"
       }
     }
   }

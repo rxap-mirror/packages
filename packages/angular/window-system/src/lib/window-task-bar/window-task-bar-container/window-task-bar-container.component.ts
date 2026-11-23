@@ -6,6 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { NgClass } from '@angular/common';
+import { Showcase } from '@ng-prism/core';
 
 export interface WindowTaskBarContainerSettings {
   expand?: boolean;
@@ -13,6 +14,15 @@ export interface WindowTaskBarContainerSettings {
 
 export const RXAP_WINDOW_TASK_BAR_CONTAINER_SETTINGS = new InjectionToken('rxap/window-system/task-bar-container');
 
+@Showcase({
+  title: 'Window Task Bar Container',
+  category: 'Window System',
+  description: 'Collapsible container with a badge for the number of open windows that wraps the task bar. It is only rendered while windows are open. The styleguide host reports two open windows.',
+  status: 'stable',
+  variants: [
+    { name: 'Open windows' },
+  ],
+})
 @Component({
     selector: 'rxap-window-task-bar-container',
     templateUrl: './window-task-bar-container.component.html',

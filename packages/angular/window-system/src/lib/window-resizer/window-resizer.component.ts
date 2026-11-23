@@ -15,7 +15,14 @@ import { RXAP_WINDOW_CONTEXT } from '../tokens';
 import { WindowRef } from '../window-ref';
 import { NgClass } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Window Resizer',
+  description: 'Drag handle in the corner of a window container that resizes the window with the mouse. It needs the element of the window container as `containerRef`.',
+  partOf: 'rxap-window-container',
+  status: 'stable',
+})
 @Component({
     selector: 'rxap-window-resizer',
     templateUrl: './window-resizer.component.html',

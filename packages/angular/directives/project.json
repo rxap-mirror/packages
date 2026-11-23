@@ -9,6 +9,7 @@
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "defaultConfiguration": "production",
       "options": {
         "project": "packages/angular/directives/ng-package.json",
         "tsConfig": "packages/angular/directives/tsconfig.lib.json"
@@ -18,12 +19,12 @@
           "tsConfig": "packages/angular/directives/tsconfig.lib.prod.json"
         },
         "development": {}
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "test": {
       "executor": "@nx/angular:unit-test",
       "outputs": ["{workspaceRoot}/coverage/packages/angular/directives"],
+      "dependsOn": ["test-generators"],
       "options": {
         "tsConfig": "packages/angular/directives/tsconfig.spec.json",
         "runner": "vitest",
@@ -68,6 +69,37 @@
           "packages/angular/directives/**/*.ts",
           "packages/angular/directives/**/*.html"
         ]
+      }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/directives",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-directives",
+        "libraryImportPath": "@rxap/directives",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-directives"],
+      "options": {
+        "entryPoint": "packages/angular/directives",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-directives",
+        "libraryImportPath": "@rxap/directives",
+        "outputPath": "dist/prism/angular-directives"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/directives",
+        "cwd": "{workspaceRoot}"
       }
     }
   }

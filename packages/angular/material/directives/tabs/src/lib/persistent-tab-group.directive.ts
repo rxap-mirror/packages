@@ -3,7 +3,22 @@ import { MatTabGroup } from '@angular/material/tabs';
 import { LocalStorageService } from '@rxap/ngx-memory';
 import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<PersistentTabGroupDirective>({
+  title: 'Persistent Tab Group',
+  category: 'Material Directives',
+  description: 'Stores the selected tab of a `mat-tab-group` in the local storage and restores it on the next visit.',
+  status: 'stable',
+  host: {
+    template: '<mat-tab-group rxapPersistentTabGroup style="width: 360px"><mat-tab label="First">Content of the first tab</mat-tab><mat-tab label="Second">Content of the second tab</mat-tab><mat-tab label="Third">Content of the third tab</mat-tab></mat-tab-group>',
+  },
+  imports: [
+    { name: 'MatTabGroup', from: '@angular/material/tabs' },
+    { name: 'MatTab', from: '@angular/material/tabs' },
+  ],
+  variants: [{ name: 'Default', inputs: { id: 'prism-tabs' } }],
+})
 @Directive({
   selector: 'mat-tab-group[rxapPersistentTabGroup]',
   standalone: true,

@@ -12,7 +12,18 @@ import { RXAP_ENVIRONMENT } from '@rxap/environment';
 import { MarkdownModule } from 'ngx-markdown';
 import { ChangelogControllerGetVersionRemoteMethod } from '../openapi/remote-methods/changelog-controller-get-version.remote-method';
 import { ChangelogControllerListRemoteMethod } from '../openapi/remote-methods/changelog-controller-list.remote-method';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Changelog',
+  category: 'Changelog',
+  description: 'Paginated changelog of the application. The available versions and the entries are loaded with remote methods, which return demo data in the styleguide.',
+  status: 'stable',
+  canvasLayout: 'stretch',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     selector: 'rxap-changelog',
     imports: [

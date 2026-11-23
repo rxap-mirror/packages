@@ -40,6 +40,7 @@ import {
 import { DataGridRowDefDirective } from './data-grid-row-def.directive';
 import { DataGridValuePipe } from './data-grid-value.pipe';
 import { IsEmptyPipe } from './is-empty.pipe';
+import { Showcase } from '@ng-prism/core';
 
 export enum DataGridMode {
   /**
@@ -63,6 +64,73 @@ function coerceDataGridMode(value: DataGridMode | string): DataGridMode {
   throw new Error(`The data grid mode only support 'plain' and 'form' - given '${ value }'`);
 }
 
+@Showcase<DataGridComponent<any>>({
+  title: 'Data Grid',
+  category: 'Data Grid',
+  description: 'Shows the properties of a data object as label and value rows. The rows are defined with `rxapDataGridRowDef` and can be customized with header, view and edit cell templates.',
+  status: 'stable',
+  variants: [
+    {
+      name: 'Default',
+      inputs: { data: { username: 'jdoe', email: 'jane.doe@example.com', role: 'Administrator' } },
+      template: '<ng-container rxapDataGridRowDef="username"></ng-container><ng-container rxapDataGridRowDef="email"></ng-container><ng-container rxapDataGridRowDef="role"></ng-container>',
+    },
+    {
+      name: 'With header',
+      inputs: { data: { username: 'jdoe', email: 'jane.doe@example.com', role: 'Administrator' }, header: true },
+      template: '<ng-container rxapDataGridRowDef="username"></ng-container><ng-container rxapDataGridRowDef="email"></ng-container><ng-container rxapDataGridRowDef="role"></ng-container>',
+    },
+    {
+      name: 'Nested property',
+      description: 'The row name is the path of a nested property.',
+      inputs: { data: { username: 'jdoe', address: { city: 'Berlin', zip: '10115' } } },
+      template: '<ng-container rxapDataGridRowDef="username"></ng-container><ng-container rxapDataGridRowDef="address.city"></ng-container><ng-container rxapDataGridRowDef="address.zip"></ng-container>',
+    },
+    {
+      name: 'Flipped rows',
+      description: 'The header is shown above the value.',
+      inputs: { data: { username: 'jdoe', description: 'Maintains the user administration of the platform.' } },
+      template: '<ng-container rxapDataGridRowDef="username"></ng-container><ng-container rxapDataGridRowDef="description" [flip]="true"></ng-container>',
+    },
+    {
+      name: 'Display properties',
+      description: 'Only the listed properties are shown.',
+      inputs: { data: { username: 'jdoe', email: 'jane.doe@example.com', role: 'Administrator' }, displayProperties: ['username', 'role'] },
+      template: '<ng-container rxapDataGridRowDef="username"></ng-container><ng-container rxapDataGridRowDef="email"></ng-container><ng-container rxapDataGridRowDef="role"></ng-container>',
+    },
+    {
+      name: 'Hide empty properties',
+      inputs: { data: { username: 'jdoe', phone: null, role: 'Administrator' }, hideEmptyProperties: true },
+      template: '<ng-container rxapDataGridRowDef="username"></ng-container><ng-container rxapDataGridRowDef="phone"></ng-container><ng-container rxapDataGridRowDef="role"></ng-container>',
+    },
+    {
+      name: 'Custom cells',
+      description: 'The header cell and the view cell of a row are replaced with templates.',
+      inputs: { data: { username: 'jdoe', email: 'jane.doe@example.com' } },
+      template: `
+        <ng-container rxapDataGridRowDef="username"></ng-container>
+        <ng-container rxapDataGridRowDef="email">
+          <th *rxapDataGridHeaderCellDef="let name" class="py-2 whitespace-nowrap">Contact ({{ name }})</th>
+          <ng-template rxapDataGridCellDef let-value>
+            <strong>{{ value }}</strong>
+          </ng-template>
+        </ng-container>
+      `,
+    },
+    {
+      name: 'Sub header',
+      description: 'A row without a name is a sub header with a custom header cell.',
+      inputs: { data: { username: 'jdoe', email: 'jane.doe@example.com' } },
+      template: `
+        <ng-container rxapDataGridRowDef="username"></ng-container>
+        <ng-container rxapDataGridRowDef>
+          <th *rxapDataGridHeaderCellDef colspan="2">Contact</th>
+        </ng-container>
+        <ng-container rxapDataGridRowDef="email"></ng-container>
+      `,
+    },
+  ],
+})
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'rxap-data-grid',

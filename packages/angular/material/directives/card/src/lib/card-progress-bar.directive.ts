@@ -11,7 +11,33 @@ import {
   ProgressBarMode,
 } from '@angular/material/progress-bar';
 import { Observable } from 'rxjs';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<CardProgressBarDirective>({
+  title: 'Card Progress Bar',
+  category: 'Material Directives',
+  description: 'Places a `mat-progress-bar` at the top edge of a card. The bar is hidden as soon as the loading observable emits `false`.',
+  status: 'stable',
+  host: {
+    template: '<mat-card style="position: relative; width: 280px"><mat-progress-bar rxapCardProgressBar></mat-progress-bar><mat-card-content>Card content below the progress bar.</mat-card-content></mat-card>',
+  },
+  imports: [
+    { name: 'MatCard', from: '@angular/material/card' },
+    { name: 'MatCardContent', from: '@angular/material/card' },
+    { name: 'MatProgressBar', from: '@angular/material/progress-bar' },
+  ],
+  variants: [
+    { name: 'Indeterminate', inputs: { mode: 'indeterminate' } },
+    { name: 'Query', inputs: { mode: 'query' } },
+    {
+      name: 'Determinate',
+      inputs: { mode: 'determinate' },
+      host: {
+        template: '<mat-card style="position: relative; width: 280px"><mat-progress-bar rxapCardProgressBar value="60"></mat-progress-bar><mat-card-content>Card content below the progress bar.</mat-card-content></mat-card>',
+      },
+    },
+  ],
+})
 @Directive({
   selector: 'mat-progress-bar[rxapCardProgressBar]',
   standalone: true,

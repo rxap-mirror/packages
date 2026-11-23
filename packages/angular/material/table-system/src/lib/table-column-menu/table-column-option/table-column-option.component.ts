@@ -1,7 +1,14 @@
 import { ChangeDetectionStrategy, Component, ElementRef, computed, input, inject, linkedSignal } from '@angular/core';
 import { Router } from '@angular/router';
 import { coerceBoolean } from '@rxap/utilities';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Column Option',
+  description: 'Option of the column menu. The projected text is the label of the column. The active state is stored in the local storage.',
+  status: 'stable',
+  partOf: 'rxap-table-column-menu',
+})
 @Component({
   selector: 'rxap-table-column-option',
   templateUrl: './table-column-option.component.html',

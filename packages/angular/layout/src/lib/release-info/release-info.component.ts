@@ -12,7 +12,17 @@ import {
 } from '@rxap/environment';
 import { RXAP_RELEASE_INFO_MODULE } from '../tokens';
 import { coerceArray } from '@rxap/utilities';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Release Info',
+  category: 'Layout',
+  description: 'Shows the name of the release and a table with the version and hash of the configured modules. The release name opens the environment dialog. The values are provided with demo data by the styleguide host.',
+  status: 'stable',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     selector: 'rxap-release-info',
     imports: [

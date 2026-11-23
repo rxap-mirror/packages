@@ -1,7 +1,14 @@
 import { Directive, effect, inject, TemplateRef, untracked, ViewContainerRef } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormDirective } from './form.directive';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Form Loaded',
+  description: 'Structural directive. Renders its template after the form has loaded its initial state. Use it as `*rxapFormLoaded`.',
+  status: 'stable',
+  partOf: 'form[rxapForm]',
+})
 @Directive({
   selector: '[rxapFormLoaded]',
   standalone: true,

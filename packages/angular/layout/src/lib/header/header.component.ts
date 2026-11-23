@@ -12,7 +12,26 @@ import {
   MatToolbarRow,
 } from '@angular/material/toolbar';
 import { HeaderService } from '../header.service';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<HeaderComponent>({
+  title: 'Header',
+  category: 'Layout',
+  description: 'Toolbar that renders one row for each template registered with the `rxapHeader` directive. Without a registered template nothing is rendered.',
+  status: 'stable',
+  canvasLayout: 'stretch',
+  host: { template: '<rxap-header /><ng-template rxapHeader><span style="font-size: 20px">Application title</span></ng-template>' },
+  variants: [
+    { name: 'Default' },
+    { name: 'Primary', inputs: { color: 'primary' } },
+    { name: 'Accent', inputs: { color: 'accent' } },
+    { name: 'Warn', inputs: { color: 'warn' } },
+    {
+      name: 'Two rows',
+      host: { template: '<rxap-header /><ng-template rxapHeader><span style="font-size: 20px">Application title</span></ng-template><ng-template rxapHeader><span>Sub header</span></ng-template>' },
+    },
+  ],
+})
 @Component({
     selector: 'rxap-header',
     templateUrl: './header.component.html',

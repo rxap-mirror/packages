@@ -18,8 +18,26 @@ import {
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { NgClass } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { Showcase } from '@ng-prism/core';
 declare const $localize: any;
 
+@Showcase<FormControlsComponent<any>>({
+  title: 'Form Controls',
+  category: 'Material Form System',
+  description: 'The reset, cancel and submit buttons of a form. Must be used inside a form with the rxapForm directive.',
+  status: 'stable',
+  imports: [
+    { name: 'ReactiveFormsModule', from: '@angular/forms' },
+    { name: 'FormDirective', from: '@rxap/forms' },
+  ],
+  host: {
+    template: `<form rxapForm style="display: flex; flex-direction: column; gap: 16px; min-width: 480px"><label>Name <input formControlName="name" /></label><rxap-form-controls /></form>`,
+  },
+  variants: [
+    { name: 'Default' },
+    { name: 'Allow resubmit', inputs: { allowResubmit: true } },
+  ],
+})
 @Component({
     selector: 'rxap-form-controls',
     templateUrl: './form-controls.component.html',

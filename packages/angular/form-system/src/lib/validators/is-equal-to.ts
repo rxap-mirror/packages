@@ -11,7 +11,30 @@ import {
   ValidationErrors,
   Validator,
 } from '@angular/forms';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<IsEqualToDirective>({
+  title: 'Is Equal To',
+  category: 'Form System',
+  description: 'A validator that is invalid as long as the control value is not equal to the given value, e.g. for a password confirmation. The validation errors are printed below the input.',
+  status: 'stable',
+  imports: [
+    { name: 'FormsModule', from: '@angular/forms' },
+    { name: 'JsonPipe', from: '@angular/common' },
+  ],
+  variants: [
+    {
+      name: 'Equal',
+      inputs: { equalTo: 'secret' },
+      host: { template: '<div style="display: flex; flex-direction: column; gap: 4px"><input ngModel="secret" #model="ngModel" rxapIsEqualTo /><small>errors: {{ model.errors | json }}</small></div>' },
+    },
+    {
+      name: 'Not equal',
+      inputs: { equalTo: 'secret' },
+      host: { template: '<div style="display: flex; flex-direction: column; gap: 4px"><input ngModel="other" #model="ngModel" rxapIsEqualTo /><small>errors: {{ model.errors | json }}</small></div>' },
+    },
+  ],
+})
 @Directive({
   selector: '[rxapIsEqualTo]',
   providers: [

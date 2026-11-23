@@ -23,10 +23,11 @@ import { Showcase } from '@ng-prism/core';
 @Showcase({
   title: 'Language Selector',
   category: 'Localize',
-  description: 'Select field to switch the language of the application. It is only shown if the application has more than one language.',
+  description: 'Select field to switch the language of the application. It is only shown if the application has more than one language. The styleguide host provides two demo languages.',
   status: 'stable',
   variants: [
     { name: 'Default' },
+    { name: 'Without auto reload', description: 'The page is not reloaded after the language was changed.', inputs: { autoReload: false } },
   ],
 })
 @Component({

@@ -7,7 +7,23 @@ import {
 } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FooterService } from '../footer.service';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Footer',
+  category: 'Layout',
+  description: 'Toolbar that renders one row for each template registered with the `rxapFooter` directive. Without a registered template nothing is rendered.',
+  status: 'stable',
+  canvasLayout: 'stretch',
+  host: { template: '<rxap-footer /><ng-template rxapFooter><span>Demo App - all rights reserved</span></ng-template>' },
+  variants: [
+    { name: 'Single row' },
+    {
+      name: 'Two rows',
+      host: { template: '<rxap-footer /><ng-template rxapFooter><span>Demo App - all rights reserved</span></ng-template><ng-template rxapFooter><span>Imprint | Privacy</span></ng-template>' },
+    },
+  ],
+})
 @Component({
     selector: 'rxap-footer',
     templateUrl: './footer.component.html',

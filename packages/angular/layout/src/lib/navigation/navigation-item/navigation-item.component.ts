@@ -40,7 +40,43 @@ import {
   NavigationItem,
 } from '../navigation-item';
 import { NavigationComponent } from '../navigation.component';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<NavigationItemComponent>({
+  title: 'Navigation Item',
+  category: 'Layout',
+  description: 'A single entry of the navigation. The item that matches the current route is highlighted and expands its children.',
+  status: 'stable',
+  variants: [
+    {
+      name: 'Default',
+      inputs: { item: { label: 'Users', routerLink: '/users' } },
+    },
+    {
+      name: 'With icon',
+      inputs: { item: { label: 'Users', routerLink: '/users', icon: 'group' } },
+    },
+    {
+      name: 'Active',
+      description: 'The route of the item matches the current route of the styleguide.',
+      inputs: { item: { label: 'Home', routerLink: '/', icon: 'home' } },
+    },
+    {
+      name: 'Active with children',
+      inputs: {
+        item: {
+          label: 'Administration',
+          routerLink: '/',
+          icon: 'admin_panel_settings',
+          children: [
+            { label: 'Users', routerLink: '/users' },
+            { label: 'Roles', routerLink: '/roles' },
+          ],
+        },
+      },
+    },
+  ],
+})
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'li[rxap-navigation-item]',

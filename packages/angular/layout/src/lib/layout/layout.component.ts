@@ -22,8 +22,20 @@ import { NavigationComponent } from '../navigation/navigation.component';
 import { ReleaseInfoComponent } from '../release-info/release-info.component';
 import { SidenavFooterDirective } from '../sidenav/sidenav-footer.directive';
 import { SidenavComponent } from '../sidenav/sidenav.component';
+import { Showcase } from '@ng-prism/core';
 
 
+@Showcase({
+  title: 'Layout',
+  category: 'Layout',
+  description: 'Application shell with header, navigation sidenav, router outlet and footer. The sidenav footer shows the logo and the release info. The navigation, the logo and the release modules come from the layout tokens, which the styleguide host provides with demo data.',
+  status: 'stable',
+  canvasLayout: 'stretch',
+  host: { template: '<div style="height: 480px"><rxap-layout /></div>' },
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     selector: 'rxap-layout',
     templateUrl: './layout.component.html',

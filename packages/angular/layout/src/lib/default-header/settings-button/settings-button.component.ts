@@ -37,7 +37,17 @@ import {
   RXAP_SETTINGS_MENU_ITEM_COMPONENT,
 } from '../../tokens';
 import { SettingsMenuItem } from '../../types';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Settings Button',
+  category: 'Layout',
+  description: 'Icon button that opens the settings menu of the header: dark mode, theme, density, typography and custom menu items.',
+  status: 'stable',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     selector: 'rxap-settings-button',
     templateUrl: './settings-button.component.html',

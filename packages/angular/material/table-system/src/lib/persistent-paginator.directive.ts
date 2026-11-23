@@ -2,7 +2,20 @@ import { DestroyRef, Directive, OnInit, input, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatPaginator } from '@angular/material/paginator';
 import { tap } from 'rxjs/operators';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<PersistentPaginatorDirective>({
+  title: 'Persistent Paginator',
+  category: 'Table System',
+  description: 'Stores the page size of a `mat-paginator` in the local storage and restores it, identified by the id input.',
+  status: 'stable',
+  imports: [{ name: 'MatPaginator', from: '@angular/material/paginator' }],
+  host: { template: '<mat-paginator rxapPersistent [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]"></mat-paginator>' },
+  variants: [
+    { name: 'Default', inputs: { id: 'prism-table' } },
+    { name: 'Other table', description: 'The page size is stored per id.', inputs: { id: 'prism-other-table' } },
+  ],
+})
 @Directive({
   selector: 'mat-paginator[rxapPersistent]',
   standalone: true,

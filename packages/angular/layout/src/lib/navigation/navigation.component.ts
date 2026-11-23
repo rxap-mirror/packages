@@ -19,7 +19,47 @@ import {
   NavigationItem,
 } from './navigation-item';
 import { NavigationItemComponent } from './navigation-item/navigation-item.component';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<NavigationComponent>({
+  title: 'Navigation',
+  category: 'Layout',
+  description: 'List of navigation items and dividers. A root navigation reads the items from the `NavigationService`, a nested navigation renders the `items` input.',
+  status: 'stable',
+  variants: [
+    {
+      name: 'Flat',
+      inputs: {
+        items: [
+          { label: 'Dashboard', routerLink: '/dashboard' },
+          { label: 'Users', routerLink: '/users' },
+          { label: 'Settings', routerLink: '/settings' },
+        ],
+      },
+    },
+    {
+      name: 'With icons',
+      inputs: {
+        items: [
+          { label: 'Dashboard', routerLink: '/dashboard', icon: 'dashboard' },
+          { label: 'Users', routerLink: '/users', icon: 'group' },
+          { label: 'Settings', routerLink: '/settings', icon: 'settings' },
+        ],
+      },
+    },
+    {
+      name: 'With divider',
+      inputs: {
+        items: [
+          { label: 'Dashboard', routerLink: '/dashboard', icon: 'dashboard' },
+          { divider: true, title: 'Administration' },
+          { label: 'Users', routerLink: '/users', icon: 'group' },
+          { label: 'Settings', routerLink: '/settings', icon: 'settings' },
+        ],
+      },
+    },
+  ],
+})
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'ul[rxap-navigation]',

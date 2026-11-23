@@ -10,7 +10,22 @@ import {
   IsDefinedAndNotNull,
 } from '@rxap/utilities';
 import { TimeagoFormatter } from './timeago.formatter';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<TimeagoDirective>({
+  title: 'Timeago',
+  category: 'Directives',
+  description: 'Replaces the text content of the host element with the human readable relative time of the given date, e.g. `3 years ago`.',
+  status: 'stable',
+  // `date` is a union type (string | number | Date) that ng-prism cannot bind from a variant input,
+  // so every variant writes the date into its host template
+  variants: [
+    { name: 'Past date', host: { template: '<span rxapTimeago date="2024-01-15T00:00:00"></span>' } },
+    { name: 'Future date', host: { template: '<span rxapTimeago date="2099-01-15T00:00:00"></span>' } },
+    { name: 'Timestamp', host: { template: '<span rxapTimeago [date]="1700000000000"></span>' } },
+    { name: 'Not live', host: { template: '<span rxapTimeago date="2024-01-15T00:00:00" [live]="false"></span>' } },
+  ],
+})
 @Directive({
   selector: '[rxapTimeago]',
   exportAs: 'rxapTimeago',

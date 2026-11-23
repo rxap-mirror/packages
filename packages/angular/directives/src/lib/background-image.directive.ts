@@ -1,5 +1,6 @@
 import { computed, Directive, effect, ElementRef, inject, input, Renderer2, untracked } from '@angular/core';
 import { ImageLoaderService } from '@rxap/services';
+import { Showcase } from '@ng-prism/core';
 
 export enum GlobalStyleOptions {
   INITIAL = 'initial',
@@ -25,7 +26,7 @@ export enum BackgroundRepeatOptions {
   NO_REPEAT = 'no-repeat',
 }
 
-export type BackgroundRepeat = GlobalStyleOptions | BackgroundRepeatOptions;
+export type BackgroundRepeat = GlobalStyleOptions | BackgroundRepeatOptions | string;
 
 // TODO : complete options and description
 // https://www.w3schools.com/cssref/pr_background-position.asp
@@ -39,6 +40,19 @@ export type BackgroundPosition =
   | BackgroundPositionOptions
   | string;
 
+@Showcase<BackgroundImageDirective>({
+  title: 'Background Image',
+  category: 'Directives',
+  description: 'Sets the `background-image` of the host element. The image is preloaded and an optional placeholder image is shown until it is loaded.',
+  status: 'stable',
+  host: '<div style="width: 240px; height: 160px; border: 1px solid #9e9e9e">',
+  variants: [
+    { name: 'Cover', inputs: { imageUrl: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='40'><rect width='60' height='40' fill='%231e88e5'/><circle cx='30' cy='20' r='14' fill='white'/></svg>", size: 'cover', repeat: BackgroundRepeatOptions.NO_REPEAT, position: 'center' } },
+    { name: 'Contain', inputs: { imageUrl: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='40'><rect width='60' height='40' fill='%231e88e5'/><circle cx='30' cy='20' r='14' fill='white'/></svg>", size: 'contain', repeat: BackgroundRepeatOptions.NO_REPEAT, position: 'center' } },
+    { name: 'Repeated', inputs: { imageUrl: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='40'><rect width='60' height='40' fill='%231e88e5'/><circle cx='30' cy='20' r='14' fill='white'/></svg>", size: '30px 20px' } },
+    { name: 'Placeholder only', inputs: { placeholderImageUrl: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='40'><rect width='60' height='40' fill='%23bdbdbd'/></svg>", size: 'cover' } },
+  ],
+})
 @Directive({
   selector: '[rxapBackgroundImage]',
   standalone: true,

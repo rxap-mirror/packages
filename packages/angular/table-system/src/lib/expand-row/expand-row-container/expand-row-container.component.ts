@@ -17,7 +17,42 @@ import {
 } from '@angular/animations';
 import { ExpandRowService } from '../expand-row.service';
 import { switchMap } from 'rxjs/operators';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<ExpandRowContainerComponent<any>>({
+  title: 'Expand Row Container (Basic)',
+  category: 'Table System (Basic)',
+  description: 'Table cell that holds the content of an expandable row. The content is shown with an animation if the row is expanded. The content is defined with the `rxapExpandRowContent` template.',
+  status: 'stable',
+  imports: [{ name: 'MatTableModule', from: '@angular/material/table' }],
+  host: {
+    template: `
+      <table mat-table multiTemplateDataRows [dataSource]="[{ name: 'Alice', mail: 'alice@example.com' }, { name: 'Bob', mail: 'bob@example.com' }]">
+        <ng-container matColumnDef="expand">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" [rxap-expand-controls-cell]="element"></td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+        <ng-container matColumnDef="detail">
+          <td mat-cell *matCellDef="let element" [rxap-expand-row]="element" colspan="2">
+            <ng-template rxapExpandRowContent let-row>
+              <p>Mail: {{ row.mail }}</p>
+            </ng-template>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="['expand', 'name']"></tr>
+        <tr mat-row *matRowDef="let element; columns: ['expand', 'name']" [rxapExpandRow]="element"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['detail']"></tr>
+      </table>
+    `,
+  },
+  variants: [
+    { name: 'In a table', description: 'Click a row to expand the detail content.' },
+  ],
+})
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'td[rxap-expand-row]',

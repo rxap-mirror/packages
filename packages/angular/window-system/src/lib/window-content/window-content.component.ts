@@ -28,7 +28,17 @@ import {
 } from 'rxjs';
 import { LoadingIndicatorService } from '@rxap/services';
 import { isDefined } from '@rxap/rxjs';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Window Content',
+  category: 'Window System',
+  description: 'Renders the component or template of the window configuration inside a portal and registers it at the window ref. The component is read from the window container context, which the styleguide host provides with a demo component.',
+  status: 'stable',
+  variants: [
+    { name: 'Component' },
+  ],
+})
 @Component({
     selector: 'rxap-window-content',
     templateUrl: './window-content.component.html',

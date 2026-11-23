@@ -14,6 +14,7 @@ import {
   Subscription,
   tap,
 } from 'rxjs';
+import { Showcase } from '@ng-prism/core';
 
 export interface ForFormArrayItemsDirectiveContext {
   $implicit: UntypedFormGroup;
@@ -26,6 +27,12 @@ export interface ForFormArrayItemsDirectiveContext {
 }
 
 // TODO : move to rxap packages
+@Showcase({
+  title: 'For Form Array Items',
+  description: 'Structural directive. Renders its template for each form group of the form array of the parent control container. The form group is the implicit context: `*rxapForFormArrayItem="let group; let index = index"`.',
+  status: 'stable',
+  partOf: '[rxapFormArrayItemAddButton]',
+})
 @Directive({
   selector: '[rxapForFormArrayItem]',
   standalone: true,

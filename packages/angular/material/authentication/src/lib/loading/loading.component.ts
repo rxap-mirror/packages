@@ -7,7 +7,19 @@ import {
   filter,
   tap,
 } from 'rxjs/operators';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<LoadingComponent>({
+  title: 'Loading',
+  category: 'Authentication',
+  description: 'Indeterminate progress bar that is shown while the authentication state is unknown. As soon as it is known the user is redirected to the login page. The styleguide host never resolves the authentication state.',
+  status: 'stable',
+  canvasLayout: 'stretch',
+  host: { template: '<div style="position: relative; width: 480px; height: 70vh"><rxap-auth-loading /></div>' },
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     selector: 'rxap-auth-loading',
     templateUrl: './loading.component.html',

@@ -25,6 +25,7 @@ import {
   StatusCheckService,
 } from '../status-check.service';
 import { STATUS_CHECK_INTERVAL } from '../tokens';
+import { Showcase } from '@ng-prism/core';
 
 export interface ServiceStatus {
   name: string,
@@ -32,6 +33,16 @@ export interface ServiceStatus {
   message?: string
 }
 
+@Showcase<StatusCheckComponent>({
+  title: 'Status Check',
+  category: 'Status Check',
+  description: 'Page that lists the health of the backend services selected with the `service` query parameter and counts down to the next check. The styleguide has no selected services, so the empty state is shown.',
+  status: 'stable',
+  canvasLayout: 'stretch',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'rxap-status-check',

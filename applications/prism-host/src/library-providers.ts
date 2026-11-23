@@ -2,20 +2,36 @@
 // Add a prism/providers.ts file that exports PRISM_PROVIDERS to a library and run
 // the @rxap/plugin-ng-prism:init-library generator again.
 import { EnvironmentProviders, Provider } from '@angular/core';
+import { PRISM_PROVIDERS as ANGULAR_AUTHENTICATION_PROVIDERS } from '../../../packages/angular/authentication/prism/providers';
+import { PRISM_PROVIDERS as ANGULAR_AUTHORIZATION_PROVIDERS } from '../../../packages/angular/authorization/prism/providers';
+import { PRISM_PROVIDERS as ANGULAR_CHANGELOG_PROVIDERS } from '../../../packages/angular/changelog/prism/providers';
 import { PRISM_PROVIDERS as ANGULAR_CONFIG_PROVIDERS } from '../../../packages/angular/config/prism/providers';
 import { PRISM_PROVIDERS as ANGULAR_DIALOG_PROVIDERS } from '../../../packages/angular/dialog/prism/providers';
 import { PRISM_PROVIDERS as ANGULAR_ENVIRONMENT_PROVIDERS } from '../../../packages/angular/environment/prism/providers';
 import { PRISM_PROVIDERS as ANGULAR_ERROR_PROVIDERS } from '../../../packages/angular/error/prism/providers';
+import { PRISM_PROVIDERS as ANGULAR_FORMS_PROVIDERS } from '../../../packages/angular/forms/prism/providers';
 import { PRISM_PROVIDERS as ANGULAR_LAYOUT_PROVIDERS } from '../../../packages/angular/layout/prism/providers';
+import { PRISM_PROVIDERS as ANGULAR_MATERIAL_LOCALIZE_PROVIDERS } from '../../../packages/angular/material/localize/prism/providers';
+import { PRISM_PROVIDERS as ANGULAR_MATERIAL_TABLE_SYSTEM_PROVIDERS } from '../../../packages/angular/material/table-system/prism/providers';
 import { PRISM_PROVIDERS as ANGULAR_SERVICE_WORKER_PROVIDERS } from '../../../packages/angular/service-worker/prism/providers';
 import { PRISM_PROVIDERS as ANGULAR_STATUS_CHECK_PROVIDERS } from '../../../packages/angular/status-check/prism/providers';
+import { PRISM_PROVIDERS as ANGULAR_TABLE_SYSTEM_PROVIDERS } from '../../../packages/angular/table-system/prism/providers';
+import { PRISM_PROVIDERS as ANGULAR_WINDOW_SYSTEM_PROVIDERS } from '../../../packages/angular/window-system/prism/providers';
 
 export const PRISM_LIBRARY_PROVIDERS: Array<Provider | EnvironmentProviders> = [
+  ...ANGULAR_AUTHENTICATION_PROVIDERS,
+  ...ANGULAR_AUTHORIZATION_PROVIDERS,
+  ...ANGULAR_CHANGELOG_PROVIDERS,
   ...ANGULAR_CONFIG_PROVIDERS,
   ...ANGULAR_DIALOG_PROVIDERS,
   ...ANGULAR_ENVIRONMENT_PROVIDERS,
   ...ANGULAR_ERROR_PROVIDERS,
+  ...ANGULAR_FORMS_PROVIDERS,
   ...ANGULAR_LAYOUT_PROVIDERS,
+  ...ANGULAR_MATERIAL_LOCALIZE_PROVIDERS,
+  ...ANGULAR_MATERIAL_TABLE_SYSTEM_PROVIDERS,
   ...ANGULAR_SERVICE_WORKER_PROVIDERS,
   ...ANGULAR_STATUS_CHECK_PROVIDERS,
+  ...ANGULAR_TABLE_SYSTEM_PROVIDERS,
+  ...ANGULAR_WINDOW_SYSTEM_PROVIDERS,
 ];

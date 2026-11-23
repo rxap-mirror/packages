@@ -45,7 +45,35 @@ import {
   RXAP_FORM_SUBMIT_METHOD,
   RXAP_FORM_SUBMIT_SUCCESSFUL_METHOD,
 } from './tokens';
+import { Showcase } from '@ng-prism/core';
 
+const PRISM_FORM_FIELDS = '<label>Name <input formControlName="name" /></label><label>Email <input formControlName="email" type="email" /></label>';
+const PRISM_FORM_STYLE = 'display: flex; flex-direction: column; gap: 8px; min-width: 280px';
+
+@Showcase<FormDirective>({
+  title: 'Form',
+  category: 'Forms',
+  description: 'Binds a form definition (`RXAP_FORM_DEFINITION`, `RXAP_FORM_DEFINITION_BUILDER` or the `rxapForm` input) to a form element and manages loading, submitting and the submit result. Submit the form with the name `fail` to see the failing submit.',
+  status: 'stable',
+  imports: [ { name: 'ReactiveFormsModule', from: '@angular/forms' } ],
+  variants: [
+    {
+      name: 'Default',
+      template: `<div style="${ PRISM_FORM_STYLE }">${ PRISM_FORM_FIELDS }<div><button type="submit">Submit</button></div></div>`,
+    },
+    {
+      name: 'With initial value',
+      description: 'The `initial` input patches the form after it is created.',
+      inputs: { initial: { name: 'Grace Hopper', email: 'grace@example.com' } },
+      template: `<div style="${ PRISM_FORM_STYLE }">${ PRISM_FORM_FIELDS }<div><button type="submit">Submit</button></div></div>`,
+    },
+    {
+      name: 'Submit feedback',
+      description: 'The structural directives render depending on the state of the form submit.',
+      template: `<div style="${ PRISM_FORM_STYLE }">${ PRISM_FORM_FIELDS }<div><button type="submit">Submit</button></div><p *rxapFormSubmitting>Submitting...</p><p *rxapFormSubmitSuccessful="let result">Saved the form of {{ result.name }}</p><p *rxapFormSubmitFailed="let error">Failed: {{ error.message }}</p><p *rxapFormSubmitInvalid>The form is invalid</p></div>`,
+    },
+  ],
+})
 @Directive({
   selector: 'form[rxapForm]:not([formGroup]):not([ngForm]),rxap-form,form[rxapForm]',
   providers: [

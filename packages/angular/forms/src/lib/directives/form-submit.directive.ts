@@ -12,7 +12,25 @@ import {
   tap,
 } from 'rxjs/operators';
 import { FormDirective } from './form.directive';
+import { Showcase } from '@ng-prism/core';
 
+const PRISM_FORM_STYLE = 'display: flex; flex-direction: column; gap: 8px; min-width: 280px';
+
+@Showcase<FormSubmitDirective>({
+  title: 'Form Submit',
+  category: 'Forms',
+  description: 'A button that marks the whole form as dirty and touched and submits it. Submit the form with the name `fail` to see the failing submit.',
+  status: 'stable',
+  imports: [ { name: 'ReactiveFormsModule', from: '@angular/forms' } ],
+  host: {
+    template: `<form rxapForm style="${ PRISM_FORM_STYLE }"><label>Name <input formControlName="name" /></label><label>Email <input formControlName="email" type="email" /></label><div><button rxapFormSubmit>Submit</button></div></form>`,
+  },
+  variants: [
+    { name: 'Default' },
+    { name: 'Reset after submit', inputs: { resetAfterSubmit: true } },
+    { name: 'Not disabled while submitting', inputs: { disableWhileSubmitting: false } },
+  ],
+})
 @Directive({
   selector: '[rxapFormSubmit]',
 

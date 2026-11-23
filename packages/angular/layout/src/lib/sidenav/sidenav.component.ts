@@ -21,7 +21,26 @@ import { LayoutService } from '../layout.service';
 import { NavigationComponent } from '../navigation/navigation.component';
 import { SidenavFooterDirective } from './sidenav-footer.directive';
 import { SidenavHeaderDirective } from './sidenav-header.directive';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Sidenav',
+  category: 'Layout',
+  description: 'Collapsible sidenav with the navigation and the page content as projected content. A `rxapSidenavHeader` and a `rxapSidenavFooter` template are rendered above and below the navigation.',
+  status: 'stable',
+  canvasLayout: 'stretch',
+  host: { template: '<div style="height: 420px"><rxap-sidenav /></div>' },
+  variants: [
+    {
+      name: 'Default',
+      template: '<div style="padding: 16px">Page content</div>',
+    },
+    {
+      name: 'With header and footer',
+      template: '<ng-template rxapSidenavHeader><div style="padding: 8px 16px">Signed in as Jane Doe</div></ng-template><ng-template rxapSidenavFooter><div style="padding: 8px 16px">Version 1.4.2</div></ng-template><div style="padding: 16px">Page content</div>',
+    },
+  ],
+})
 @Component({
   selector: 'rxap-sidenav',
   templateUrl: './sidenav.component.html',

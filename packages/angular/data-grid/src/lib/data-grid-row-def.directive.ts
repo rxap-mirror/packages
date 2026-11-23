@@ -7,7 +7,14 @@ import { coerceBoolean } from '@rxap/utilities';
 import { DataGridCellDefDirective } from './data-grid-cell-def.directive';
 import { DataGridHeaderCellDefDirective } from './data-grid-header-cell-def.directive';
 import { DataGridEditCellDefDirective } from './data-grid-edit-cell-def.directive';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Data Grid Row Def',
+  description: 'Defines a row of the data grid. The value of the directive is the name (path) of the data property that is shown in the row. A row without a name is a sub header.',
+  status: 'stable',
+  partOf: 'rxap-data-grid',
+})
 @Directive({
   selector: '[rxapDataGridRowDef]',
   standalone: true,

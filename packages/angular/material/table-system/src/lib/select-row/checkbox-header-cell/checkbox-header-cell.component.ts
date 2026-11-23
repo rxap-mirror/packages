@@ -7,7 +7,34 @@ import {
   MatCheckboxModule,
 } from '@angular/material/checkbox';
 import { CdkTable } from '@angular/cdk/table';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<CheckboxHeaderCellComponent<any>>({
+  title: 'Checkbox Header Cell',
+  category: 'Table System',
+  description: 'Header cell with a checkbox that selects or deselects all rows of the table. Only shown if the select row service allows a multiple selection.',
+  status: 'stable',
+  imports: [{ name: 'MatTableModule', from: '@angular/material/table' }],
+  host: {
+    template: `
+      <table mat-table [dataSource]="[{ uuid: 'row-1', name: 'Alice' }, { uuid: 'row-2', name: 'Bob' }, { uuid: 'row-3', name: 'Carol' }]">
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef rxap-checkbox-header-cell></th>
+          <td mat-cell *matCellDef="let element" rxap-checkbox-cell [element]="element"></td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="['select', 'name']"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['select', 'name']"></tr>
+      </table>
+    `,
+  },
+  variants: [
+    { name: 'In a table', description: 'Select all rows with the header checkbox.' },
+  ],
+})
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'th[rxap-checkbox-header-cell]',

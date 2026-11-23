@@ -12,7 +12,24 @@ import {
   MatExpansionPanelHeader,
 } from '@angular/material/expansion';
 import { Subscription } from 'rxjs';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<PersistentAccordionDirective>({
+  title: 'Persistent Accordion',
+  category: 'Material Directives',
+  description: 'Stores the expanded state of the panels of a `mat-accordion` in the local storage and restores it on the next visit.',
+  status: 'stable',
+  host: {
+    template: '<mat-accordion rxapPersistentAccordion style="display: block; width: 360px"><mat-expansion-panel><mat-expansion-panel-header><mat-panel-title>First panel</mat-panel-title></mat-expansion-panel-header>Content of the first panel</mat-expansion-panel><mat-expansion-panel><mat-expansion-panel-header><mat-panel-title>Second panel</mat-panel-title></mat-expansion-panel-header>Content of the second panel</mat-expansion-panel></mat-accordion>',
+  },
+  imports: [
+    { name: 'MatAccordion', from: '@angular/material/expansion' },
+    { name: 'MatExpansionPanel', from: '@angular/material/expansion' },
+    { name: 'MatExpansionPanelHeader', from: '@angular/material/expansion' },
+    { name: 'MatExpansionPanelTitle', from: '@angular/material/expansion' },
+  ],
+  variants: [{ name: 'Default', inputs: { key: 'prism-accordion' } }],
+})
 @Directive({
   selector: 'mat-accordion[rxapPersistentAccordion]',
   standalone: true,

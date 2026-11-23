@@ -17,7 +17,17 @@ import {
 } from '@angular/material/dialog';
 import { SantizationPipe } from '@rxap/pipes/santization';
 import { ComponentDialogData } from './types';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Component Dialog',
+  category: 'Dialog',
+  description: 'Dialog that renders an arbitrary component as its content, below an optional title. The data is read from `MAT_DIALOG_DATA`, which the styleguide host provides with the http error component as demo content.',
+  status: 'stable',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
   selector: 'rxap-component-dialog',
   imports: [

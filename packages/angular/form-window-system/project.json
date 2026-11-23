@@ -9,6 +9,7 @@
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "defaultConfiguration": "production",
       "options": {
         "project": "packages/angular/form-window-system/ng-package.json",
         "tsConfig": "packages/angular/form-window-system/tsconfig.lib.json"
@@ -18,14 +19,14 @@
           "tsConfig": "packages/angular/form-window-system/tsconfig.lib.prod.json"
         },
         "development": {}
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "test": {
       "executor": "@nx/angular:unit-test",
       "outputs": [
         "{workspaceRoot}/coverage/packages/angular/form-window-system"
       ],
+      "dependsOn": ["test-generators"],
       "options": {
         "tsConfig": "packages/angular/form-window-system/tsconfig.spec.json",
         "runner": "vitest",
@@ -70,6 +71,37 @@
           "packages/angular/form-window-system/**/*.ts",
           "packages/angular/form-window-system/**/*.html"
         ]
+      }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/form-window-system",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-form-window-system",
+        "libraryImportPath": "@rxap/form-window-system",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-form-window-system"],
+      "options": {
+        "entryPoint": "packages/angular/form-window-system",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-form-window-system",
+        "libraryImportPath": "@rxap/form-window-system",
+        "outputPath": "dist/prism/angular-form-window-system"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/form-window-system",
+        "cwd": "{workspaceRoot}"
       }
     }
   }

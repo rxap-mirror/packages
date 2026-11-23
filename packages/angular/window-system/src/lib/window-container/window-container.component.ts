@@ -29,7 +29,28 @@ import {
 } from '../tokens';
 import { WindowResizerComponent } from '../window-resizer/window-resizer.component';
 import { WindowToolBarComponent } from '../window-tool-bar/window-tool-bar.component';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Window Container',
+  category: 'Window System',
+  description: 'Frame of a window: a draggable tool bar with the title, the projected content, an optional footer and a resizer. The size and the title are read from the window ref, which the styleguide host provides with demo data.',
+  status: 'stable',
+  variants: [
+    {
+      name: 'With content',
+      content: '<div style="padding: 16px"><h3>Quarterly report</h3><p>The projected content is rendered below the tool bar.</p></div>',
+    },
+    {
+      name: 'Scrolling content',
+      description: 'Content that is higher than the window scrolls inside the frame.',
+      content: '<div style="padding: 16px"><p>Line 1</p><p>Line 2</p><p>Line 3</p><p>Line 4</p><p>Line 5</p><p>Line 6</p><p>Line 7</p><p>Line 8</p><p>Line 9</p><p>Line 10</p><p>Line 11</p><p>Line 12</p></div>',
+    },
+    {
+      name: 'Empty',
+    },
+  ],
+})
 @Component({
     selector: 'rxap-window-container',
     templateUrl: './window-container.component.html',

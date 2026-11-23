@@ -14,7 +14,23 @@ import {
   NormalizedIconConfig,
   NormalizeIconConfig,
 } from '@rxap/utilities';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<IconDirective>({
+  title: 'Icon',
+  category: 'Material Directives',
+  description: 'Configures a `mat-icon` from an icon config: a plain icon name, a material icon config or a svg icon config.',
+  status: 'stable',
+  host: { template: '<mat-icon rxapIcon></mat-icon>' },
+  imports: [{ name: 'MatIcon', from: '@angular/material/icon' }],
+  variants: [
+    { name: 'Icon name', inputs: { icon: 'delete' } },
+    { name: 'Material icon', inputs: { icon: { icon: 'visibility', color: 'primary' } } },
+    { name: 'Font color', inputs: { icon: { icon: 'favorite', fontColor: 'crimson' } } },
+    { name: 'Svg icon', inputs: { icon: { svgIcon: 'view-dashboard' } } },
+    { name: 'Empty', inputs: { icon: null } },
+  ],
+})
 @Directive({
   selector: 'mat-icon[rxapIcon]',
   standalone: true,

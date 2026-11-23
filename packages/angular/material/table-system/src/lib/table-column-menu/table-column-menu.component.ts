@@ -14,7 +14,40 @@ import { MatMenuModule } from '@angular/material/menu';
 import { StopPropagationDirective } from '@rxap/directives';
 import { coerceBoolean } from '@rxap/utilities';
 import { TableColumnOptionComponent } from './table-column-option/table-column-option.component';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<TableColumnMenuComponent>({
+  title: 'Column Menu',
+  category: 'Table System',
+  description: 'Menu button to show and hide the columns of a table. The columns are defined with projected `rxap-table-column-option` elements.',
+  status: 'stable',
+  variants: [
+    {
+      name: 'Default',
+      template: '<rxap-table-column-option name="name">Name</rxap-table-column-option><rxap-table-column-option name="email">E-Mail</rxap-table-column-option><rxap-table-column-option name="role">Role</rxap-table-column-option>',
+    },
+    {
+      name: 'Inactive column',
+      description: 'A column can be initial inactive or hidden from the menu.',
+      template: '<rxap-table-column-option name="name">Name</rxap-table-column-option><rxap-table-column-option name="email" inactive>E-Mail</rxap-table-column-option><rxap-table-column-option name="internal" hidden>Internal</rxap-table-column-option>',
+    },
+    {
+      name: 'Inline',
+      inputs: { inline: true },
+      template: '<rxap-table-column-option name="name">Name</rxap-table-column-option><rxap-table-column-option name="email">E-Mail</rxap-table-column-option>',
+    },
+    {
+      name: 'Mat card',
+      inputs: { matCard: true },
+      template: '<rxap-table-column-option name="name">Name</rxap-table-column-option><rxap-table-column-option name="email">E-Mail</rxap-table-column-option>',
+    },
+    {
+      name: 'With archived toggle',
+      description: 'The show archived slide toggles the archived rows and the removed at columns.',
+      template: '<rxap-table-column-option name="name">Name</rxap-table-column-option><rxap-table-column-option name="removedAt">Removed at</rxap-table-column-option><span mat-menu-item><rxap-table-show-archived-slide></rxap-table-show-archived-slide></span>',
+    },
+  ],
+})
 @Component({
     selector: 'rxap-table-column-menu',
     templateUrl: './table-column-menu.component.html',

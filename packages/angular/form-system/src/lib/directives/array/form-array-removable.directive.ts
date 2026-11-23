@@ -11,8 +11,15 @@ import {
   Subscription,
   tap,
 } from 'rxjs';
+import { Showcase } from '@ng-prism/core';
 
 // TODO : move to rxap packages
+@Showcase({
+  title: 'Form Array Removable',
+  description: 'Marks an array item container as removable: all controls of the item are disabled while the item is marked as deleted.',
+  status: 'stable',
+  partOf: '[rxapFormArrayItemAddButton]',
+})
 @Directive({
   selector: '[rxapFormArrayRemovable]',
   standalone: true,

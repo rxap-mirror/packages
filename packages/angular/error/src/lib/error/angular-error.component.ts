@@ -8,7 +8,17 @@ import { DataGridComponent, DataGridRowDefDirective, DataGridHeaderCellDefDirect
 import { IErrorDialogComponent } from '../error-dialog/error-dialog.component';
 import { RXAP_ERROR_DIALOG_ERROR } from '../tokens';
 import { AngularErrorDialogData } from './angular-error-dialog-data';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<AngularErrorComponent>({
+  title: 'Angular Error',
+  category: 'Error',
+  description: 'Content of the error dialog for an error thrown inside of the Angular application. Shows the message, the stack and the captured tags, contexts and extra data. The error is read from the `RXAP_ERROR_DIALOG_ERROR` token, which the styleguide host provides with demo data.',
+  status: 'stable',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
     selector: 'rxap-angular-error',
     changeDetection: ChangeDetectionStrategy.OnPush,

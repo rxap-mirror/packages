@@ -8,10 +8,10 @@ import { Showcase } from '@ng-prism/core';
 @Showcase({
   title: 'Window Task Bar',
   category: 'Window System',
-  description: 'Task bar that lists all minimized windows of the `WindowService`. Without open windows it is empty.',
+  description: 'Task bar that lists the open windows of the `WindowService`. The styleguide host reports two open windows, one of them is minimized.',
   status: 'stable',
   variants: [
-    { name: 'Empty' },
+    { name: 'Open windows' },
   ],
 })
 @Component({

@@ -1,7 +1,14 @@
 import { Directive, effect, inject, TemplateRef, untracked, ViewContainerRef } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { FormDirective } from './form.directive';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Form Submitting',
+  description: 'Structural directive. Renders its template while the form is submitting. Use it as `*rxapFormSubmitting`.',
+  status: 'stable',
+  partOf: 'form[rxapForm]',
+})
 @Directive({
   selector: '[rxapFormSubmitting]',
   standalone: true,

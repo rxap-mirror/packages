@@ -9,6 +9,7 @@
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "defaultConfiguration": "production",
       "options": {
         "project": "packages/angular/forms/ng-package.json",
         "tsConfig": "packages/angular/forms/tsconfig.lib.json"
@@ -18,12 +19,12 @@
           "tsConfig": "packages/angular/forms/tsconfig.lib.prod.json"
         },
         "development": {}
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "test": {
       "executor": "@nx/angular:unit-test",
       "outputs": ["{workspaceRoot}/coverage/packages/angular/forms"],
+      "dependsOn": ["test-generators"],
       "options": {
         "tsConfig": "packages/angular/forms/tsconfig.spec.json",
         "runner": "vitest",
@@ -66,6 +67,37 @@
           "packages/angular/forms/**/*.ts",
           "packages/angular/forms/**/*.html"
         ]
+      }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/forms",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-forms",
+        "libraryImportPath": "@rxap/forms",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-forms"],
+      "options": {
+        "entryPoint": "packages/angular/forms",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-forms",
+        "libraryImportPath": "@rxap/forms",
+        "outputPath": "dist/prism/angular-forms"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/forms",
+        "cwd": "{workspaceRoot}"
       }
     }
   }

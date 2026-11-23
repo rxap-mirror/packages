@@ -4,7 +4,30 @@ import {
   Subscription,
 } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<MovableDividerDirective>({
+  title: 'Movable Divider',
+  category: 'Directives',
+  description: 'Turns the host element into a divider that resizes a fixed element inside a container by dragging. The `origin` defines on which side of the divider the fixed element is placed.',
+  status: 'stable',
+  variants: [
+    {
+      name: 'Fixed element left',
+      description: 'The default origin `right` measures the width of the fixed element from the left edge of the container.',
+      host: {
+        template: '<div #container style="display: flex; width: 480px; height: 120px; border: 1px solid #9e9e9e"><div #fixed style="flex-basis: 160px; padding: 8px; background: #e3f2fd">Fixed</div><div rxapMovableDivider [containerElement]="container" [fixedElement]="fixed" style="width: 6px; background: #9e9e9e"></div><div style="flex: 1; padding: 8px">Flexible</div></div>',
+      },
+    },
+    {
+      name: 'Fixed element right',
+      description: 'With the origin `left` the width of the fixed element is measured from the right edge of the container.',
+      host: {
+        template: '<div #container style="display: flex; width: 480px; height: 120px; border: 1px solid #9e9e9e"><div style="flex: 1; padding: 8px">Flexible</div><div rxapMovableDivider origin="left" [containerElement]="container" [fixedElement]="fixed" style="width: 6px; background: #9e9e9e"></div><div #fixed style="flex-basis: 160px; padding: 8px; background: #e3f2fd">Fixed</div></div>',
+      },
+    },
+  ],
+})
 @Directive({
   selector: '[rxapMovableDivider]',
   standalone: true,

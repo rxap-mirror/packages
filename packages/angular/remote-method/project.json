@@ -9,6 +9,7 @@
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "defaultConfiguration": "production",
       "options": {
         "project": "packages/angular/remote-method/ng-package.json",
         "tsConfig": "packages/angular/remote-method/tsconfig.lib.json"
@@ -18,12 +19,12 @@
           "tsConfig": "packages/angular/remote-method/tsconfig.lib.prod.json"
         },
         "development": {}
-      },
-      "defaultConfiguration": "production"
+      }
     },
     "test": {
       "executor": "@nx/angular:unit-test",
       "outputs": ["{workspaceRoot}/coverage/packages/angular/remote-method"],
+      "dependsOn": ["test-generators"],
       "options": {
         "tsConfig": "packages/angular/remote-method/tsconfig.spec.json",
         "runner": "vitest",
@@ -77,6 +78,37 @@
           "packages/angular/remote-method/http/directive/**/*.ts",
           "packages/angular/remote-method/http/directive/**/*.html"
         ]
+      }
+    },
+    "prism": {
+      "executor": "@ng-prism/core:serve",
+      "parallelism": false,
+      "options": {
+        "entryPoint": "packages/angular/remote-method",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-remote-method",
+        "libraryImportPath": "@rxap/remote-method",
+        "port": 4400
+      }
+    },
+    "prism-build": {
+      "executor": "@ng-prism/core:build",
+      "parallelism": false,
+      "outputs": ["{workspaceRoot}/dist/prism/angular-remote-method"],
+      "options": {
+        "entryPoint": "packages/angular/remote-method",
+        "prismProject": "prism-host",
+        "libraryProject": "angular-remote-method",
+        "libraryImportPath": "@rxap/remote-method",
+        "outputPath": "dist/prism/angular-remote-method"
+      }
+    },
+    "prism-strip": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "npx ng-prism-strip dist/packages/angular/remote-method",
+        "cwd": "{workspaceRoot}"
       }
     }
   }

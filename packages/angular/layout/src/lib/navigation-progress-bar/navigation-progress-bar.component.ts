@@ -15,7 +15,18 @@ import {
   filter,
   map,
 } from 'rxjs/operators';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Navigation Progress Bar',
+  category: 'Layout',
+  description: 'Indeterminate progress bar that is shown while the router navigates. In the styleguide no navigation has completed yet, so the bar is shown.',
+  status: 'stable',
+  canvasLayout: 'stretch',
+  variants: [
+    { name: 'Navigating' },
+  ],
+})
 @Component({
     selector: 'rxap-navigation-progress-bar',
     templateUrl: './navigation-progress-bar.component.html',

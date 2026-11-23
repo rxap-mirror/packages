@@ -21,7 +21,17 @@ import {
 } from '@angular/material/dialog';
 import { RXAP_ERROR_DIALOG_ERROR } from '@rxap/ngx-error';
 import { ErrorCaptureDialogData } from './types';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase({
+  title: 'Error Capture Dialog',
+  category: 'Dialog',
+  description: 'Dialog that shows a list of captured errors. With more than one error a pagination is shown above the error component. The data is read from `MAT_DIALOG_DATA`, which the styleguide host provides with three demo errors.',
+  status: 'stable',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Component({
   selector: 'rxap-component-dialog',
   imports: [

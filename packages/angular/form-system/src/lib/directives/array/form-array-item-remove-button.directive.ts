@@ -6,8 +6,15 @@ import {
 } from '@angular/core';
 import { RxapFormGroup } from '@rxap/forms';
 import { FormArrayItemButton } from './form-array-item-button';
+import { Showcase } from '@ng-prism/core';
 
 // TODO : move to rxap packages
+@Showcase({
+  title: 'Form Array Item Remove Button',
+  description: 'Removes the form group of the surrounding array item from the form array on click. With `shouldTemporarilyDeleted` the item is only marked as deleted and can be restored with the restore button.',
+  status: 'stable',
+  partOf: '[rxapFormArrayItemAddButton]',
+})
 @Directive({
   selector: 'button[rxapFormArrayItemRemoveButton]',
   standalone: true,

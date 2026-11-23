@@ -1,6 +1,17 @@
 import { Directive, output, inject } from '@angular/core';
 import { RxapAuthenticationService } from './authentication.service';
+import { Showcase } from '@ng-prism/core';
 
+@Showcase<SignOutDirective>({
+  title: 'Sign Out',
+  category: 'Authentication',
+  description: 'Signs the user out when the host element is clicked. The `successful` output emits after the sign out, `failure` emits with the error. The authentication service of the styleguide host does not need a backend.',
+  status: 'stable',
+  host: '<button type="button">Sign out</button>',
+  variants: [
+    { name: 'Default' },
+  ],
+})
 @Directive({
   selector: '[rxapSignOut]',
   standalone: true,
