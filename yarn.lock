@@ -27908,17 +27908,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jose@npm:6.2.17":
+  version: 6.2.17
+  resolution: "jose@npm:6.2.17"
+  checksum: 796f1d9743823b278407026c9496a039f298684cac442f24f65c01b06f11f2496b3b549df2727a2ac82fe78552fb7524a5fda68b7b08bd26f2071b2a60828fa7
+  languageName: node
+  linkType: hard
+
 "jose@npm:^4.13.2":
   version: 4.15.9
   resolution: "jose@npm:4.15.9"
   checksum: 41abe1c99baa3cf8a78ebbf93da8f8e50e417b7a26754c4afa21865d87527b8ac2baf66de2c5f6accc3f7d7158658dae7364043677236ea1d07895b040097f15
-  languageName: node
-  linkType: hard
-
-"jose@npm:^6.1.3":
-  version: 6.2.18
-  resolution: "jose@npm:6.2.18"
-  checksum: 0aafdc82032947d34d8d3d73084c45c5ebdbf85d3f079429cb1fdfbd237a85f97e37f9964c45325929143077d7e9088c789f1f52b231469fd67668e86afadd54
   languageName: node
   linkType: hard
 
