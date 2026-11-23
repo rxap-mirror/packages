@@ -73,6 +73,13 @@ The built package still imports `@ng-prism/core`, which the consumers do not hav
 after the production build. The `fix-dependencies` generator of `@rxap/plugin-library` never adds `@ng-prism/core` to
 the `package.json` of a library.
 
+`tools/scripts/check-dist-for-ng-prism.mjs` runs right after `prism-strip` and fails the release before the publish step
+when a built package (`.js`, `.mjs`, `.d.ts`, `package.json`) still references `@ng-prism`. Source maps and markdown files
+are not checked. Run it by hand with `node tools/scripts/check-dist-for-ng-prism.mjs --projects angular-components`.
+
+Libraries that only contain directives get the targets too (`HasDirectives`); a library without components and
+directives is skipped.
+
 ## Angular 21
 
 ng-prism 22.x is compiled with Angular 22. Its component styles contain the `%NS%` placeholder for the css variable

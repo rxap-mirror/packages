@@ -681,6 +681,9 @@ async function main() {
     // the @Showcase decorators import @ng-prism/core, which is not a dependency of the published packages.
     // Only projects with a prism-strip target (@rxap/plugin-ng-prism:init-library) run it; the build already ran.
     run(`yarn nx run-many --targets=prism-strip --projects=${changed.join(',')} --excludeTaskDependencies --skip-nx-cache --nxBail`);
+    // safety net: nothing that references @ng-prism may be published (a library without a prism-strip target,
+    // a stale dist, a new file type). Fails the release before the publish step.
+    run(`node tools/scripts/check-dist-for-ng-prism.mjs --projects=${changed.join(',')}`);
   }
 
   // ---- 9. publish the `packages` group from dist ----

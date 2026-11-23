@@ -46,6 +46,22 @@ describe('init-library generator', () => {
     expect(ui.targets?.['prism-strip']?.options.command).toBe('npx ng-prism-strip dist/libs/ui');
   });
 
+  it('should also add the targets to a library that only contains directives', async () => {
+    tree.write('libs/dir/package.json', JSON.stringify({ name: '@acme/dir' }));
+    tree.write('libs/dir/src/lib/tooltip.directive.ts', '@Directive({}) export class TooltipDirective {}');
+    addProjectConfiguration(tree, 'dir', {
+      root: 'libs/dir',
+      sourceRoot: 'libs/dir/src',
+      projectType: 'library',
+      tags: [ 'angular' ],
+      targets: {},
+    });
+
+    await initLibraryGenerator(tree, { skipFormat: true });
+
+    expect(readProjectConfiguration(tree, 'dir').targets?.['prism-strip']).toBeDefined();
+  });
+
   it('should be idempotent and keep existing targets', async () => {
     await initLibraryGenerator(tree, { project: 'ui', skipFormat: true });
     const before = readProjectConfiguration(tree, 'ui');

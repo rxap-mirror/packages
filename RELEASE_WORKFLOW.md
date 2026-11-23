@@ -73,7 +73,9 @@ with a temporary `currentVersionResolver: disk` / `specifierSource: prompt` conf
 7. **Production build → dist** – readme/compodoc/typedoc + `build --configuration=production`,
    so `dist/{projectRoot}` carries the bumped version, regenerated package group, and changelog.
 8. **Dist transforms** – add the `./theme` export where a `theme.css` exists and strip the
-   internal `workspace` marker dependency.
+   internal `workspace` marker dependency, remove the ng-prism `@Showcase` decorators
+   (`prism-strip`) and verify with `tools/scripts/check-dist-for-ng-prism.mjs` that no built
+   package references `@ng-prism` (the release aborts before publishing otherwise).
 9. **Publish** – `releasePublish` from `dist/{projectRoot}` with the branch dist-tag/registry.
 10. **GitLab releases** – created via the GitLab Releases API (Nx 20.5.0 has no native GitLab
     support), one per published project, using the generated changelog as the body.

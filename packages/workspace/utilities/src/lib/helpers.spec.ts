@@ -13,6 +13,7 @@ import { GetMajorNxVersion, GetNxVersion } from './get-nx-version';
 import { GetWorkspaceName } from './get-workspace-name';
 import { GetWorkspaceScope } from './get-workspace-scope';
 import { HasComponents } from './has-components';
+import { HasDirectives } from './has-directives';
 import { HasTarget } from './has-target';
 import { IsAlreadyExecuted } from './is-already-executed';
 import { IsBuildable } from './is-buildable';
@@ -472,6 +473,12 @@ describe('project lookup', () => {
     expect(IsPublishable(tree, project)).toBe(false);
     expect(IsPublishable(tree, GetProject(tree, 'b'))).toBe(false);
     expect(IsPublishable(tree, { ...project, root: 'libs/nopkg' })).toBe(false);
+  });
+
+  it('finds directives', () => {
+    expect(HasDirectives(tree, 'libs/d')).toBe(false);
+    tree.write('libs/d/src/x.directive.ts', '');
+    expect(HasDirectives(tree, 'libs/d')).toBe(true);
   });
 
   it('finds components and secondary entry points', () => {

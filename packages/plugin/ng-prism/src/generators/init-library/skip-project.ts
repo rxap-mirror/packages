@@ -5,6 +5,7 @@ import {
 import {
   GetProjectRoot,
   HasComponents,
+  HasDirectives,
   SkipNonAngularProject,
   SkipNonLibraryProject,
 } from '@rxap/workspace-utilities';
@@ -29,8 +30,9 @@ export function skipProject(
     return true;
   }
 
-  // a styleguide is only useful for libraries that contain angular components
-  if (!HasComponents(tree, GetProjectRoot(tree, projectName))) {
+  // a styleguide is only useful for libraries that contain angular components or directives
+  const projectRoot = GetProjectRoot(tree, projectName);
+  if (!HasComponents(tree, projectRoot) && !HasDirectives(tree, projectRoot)) {
     return true;
   }
 
