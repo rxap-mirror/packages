@@ -1,3 +1,10 @@
+## 22.0.0-dev.1 (2026-11-23)
+
+### 🧱 Updated Dependencies
+
+- Updated plugin-workspace to 24.0.0-dev.1
+- Updated plugin-angular to 24.0.0-dev.1
+
 ## 22.0.0-dev.0 (2026-11-22)
 
 ### 🧱 Updated Dependencies

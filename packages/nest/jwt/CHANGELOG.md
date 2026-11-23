@@ -1,3 +1,10 @@
+## 12.0.0-dev.1 (2026-11-23)
+
+### 🧱 Updated Dependencies
+
+- Updated nest-utilities to 12.0.0-dev.1
+- Updated pattern to 1.1.17-dev.0
+
 ## 12.0.0-dev.0 (2026-11-22)
 
 ### 🧱 Updated Dependencies

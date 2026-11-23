@@ -1,3 +1,7 @@
+## 1.1.17-dev.0 (2026-11-23)
+
+This was a version bump only for pattern to align it with other projects, there were no code changes.
+
 ## 1.1.16 (2026-11-22)
 
 ### 🩹 Fixes

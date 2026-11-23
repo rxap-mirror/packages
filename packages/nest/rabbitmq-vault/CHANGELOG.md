@@ -1,3 +1,10 @@
+## 12.0.0-dev.1 (2026-11-23)
+
+### 🧱 Updated Dependencies
+
+- Updated nest-rabbitmq to 12.0.0-dev.1
+- Updated nest-vault to 12.0.0-dev.1
+
 ## 12.0.0-dev.0 (2026-11-22)
 
 ### 🧱 Updated Dependencies

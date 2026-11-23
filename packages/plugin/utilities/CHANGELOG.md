@@ -1,3 +1,10 @@
+## 24.0.0-dev.1 (2026-11-23)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 24.0.0-dev.1
+- Updated node-utilities to 1.3.14-dev.0
+
 ## 24.0.0-dev.0 (2026-11-22)
 
 ### 🧱 Updated Dependencies

@@ -1,3 +1,23 @@
+## 22.0.0-dev.1 (2026-11-23)
+
+### 🚀 Features
+
+- **angular:** add ng-prism showcases to components and directives
+- **angular:** run all angular packages zoneless
+
+### 🧱 Updated Dependencies
+
+- Updated angular-environment to 22.0.0-dev.1
+- Updated angular-open-api to 22.0.0-dev.1
+- Updated angular-config to 22.0.0-dev.1
+- Updated angular-error to 22.0.0-dev.1
+- Updated angular-pipes to 22.0.0-dev.1
+- Updated angular-icon to 22.0.0-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 22.0.0-dev.0 (2026-11-22)
 
 ### 🧱 Updated Dependencies

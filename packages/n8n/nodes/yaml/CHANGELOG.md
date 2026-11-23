@@ -1,3 +1,7 @@
+## 0.1.10-dev.0 (2026-11-23)
+
+This was a version bump only for n8n-nodes-yaml to align it with other projects, there were no code changes.
+
 ## 0.1.9 (2026-11-22)
 
 ### 🔥 Performance

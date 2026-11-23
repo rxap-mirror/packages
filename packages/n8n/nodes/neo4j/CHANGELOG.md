@@ -1,3 +1,7 @@
+## 0.0.11-dev.0 (2026-11-23)
+
+This was a version bump only for n8n-nodes-neo4j to align it with other projects, there were no code changes.
+
 ## 0.0.10 (2026-11-22)
 
 ### 🔥 Performance

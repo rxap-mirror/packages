@@ -1,3 +1,23 @@
+## 24.0.0-dev.1 (2026-11-23)
+
+### 🚀 Features
+
+- **plugin-library:** widen generated peer dependency ranges to the major release
+
+### 🧱 Updated Dependencies
+
+- Updated json-schema-to-typescript to 16.1.6-dev.0
+- Updated workspace-utilities to 24.0.0-dev.1
+- Updated workspace-ts-morph to 24.0.0-dev.1
+- Updated plugin-utilities to 24.0.0-dev.1
+- Updated node-utilities to 1.3.14-dev.0
+- Updated utilities to 16.5.3-dev.0
+- Updated ts-morph to 1.7.2-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 24.0.0-dev.0 (2026-11-22)
 
 ### 🧱 Updated Dependencies

@@ -1,3 +1,10 @@
+## 1.1.20-dev.0 (2026-11-23)
+
+### 🧱 Updated Dependencies
+
+- Updated utilities to 16.5.3-dev.0
+- Updated rxjs to 1.1.19-dev.0
+
 ## 1.1.19 (2026-11-22)
 
 ### 🩹 Fixes

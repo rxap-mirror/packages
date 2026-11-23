@@ -1,3 +1,30 @@
+## 22.0.0-dev.1 (2026-11-23)
+
+### 🚀 Features
+
+- **angular:** add ng-prism showcases to components and directives
+- **angular:** run all angular packages zoneless
+
+### 🧱 Updated Dependencies
+
+- Updated angular-material-directives to 22.0.0-dev.1
+- Updated angular-data-source to 22.0.0-dev.1
+- Updated angular-environment to 22.0.0-dev.1
+- Updated workspace-utilities to 24.0.0-dev.1
+- Updated workspace-ts-morph to 24.0.0-dev.1
+- Updated browser-utilities to 1.1.16-dev.0
+- Updated angular-pub-sub to 22.0.0-dev.1
+- Updated angular-config to 22.0.0-dev.1
+- Updated angular-theme to 22.0.0-dev.1
+- Updated angular-icon to 22.0.0-dev.1
+- Updated utilities to 16.5.3-dev.0
+- Updated ts-morph to 1.7.2-dev.0
+- Updated pattern to 1.1.17-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 22.0.0-dev.0 (2026-11-22)
 
 ### 🧱 Updated Dependencies

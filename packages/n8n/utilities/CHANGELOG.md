@@ -1,3 +1,9 @@
+## 1.2.5-dev.0 (2026-11-23)
+
+### 🧱 Updated Dependencies
+
+- Updated utilities to 16.5.3-dev.0
+
 ## 1.2.4 (2026-11-22)
 
 ### 🔥 Performance

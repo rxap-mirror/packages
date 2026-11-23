@@ -1,3 +1,9 @@
+## 12.0.0-dev.1 (2026-11-23)
+
+### 🧱 Updated Dependencies
+
+- Updated utilities to 16.5.3-dev.0
+
 ## 12.0.0-dev.0 (2026-11-22)
 
 This was a version bump only for nest-oauth2-proxy to align it with other projects, there were no code changes.

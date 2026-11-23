@@ -1,3 +1,11 @@
+## 22.0.0-dev.1 (2026-11-23)
+
+### 🧱 Updated Dependencies
+
+- Updated schematic-utilities to 22.0.0-dev.1
+- Updated schematic-ts-morph to 22.0.0-dev.1
+- Updated xml-parser to 16.3.3-dev.0
+
 ## 22.0.0-dev.0 (2026-11-22)
 
 ### 🧱 Updated Dependencies

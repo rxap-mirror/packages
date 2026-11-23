@@ -1,3 +1,9 @@
+## 1.1.6-dev.0 (2026-11-23)
+
+### 🧱 Updated Dependencies
+
+- Updated n8n-utilities to 1.2.5-dev.0
+
 ## 1.1.5 (2026-11-22)
 
 ### 🔥 Performance

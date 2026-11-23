@@ -1,3 +1,7 @@
+## 0.1.2-dev.0 (2026-11-23)
+
+This was a version bump only for browser-localize to align it with other projects, there were no code changes.
+
 ## 0.1.1 (2026-11-22)
 
 ### 🔥 Performance

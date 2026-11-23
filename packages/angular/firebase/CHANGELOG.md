@@ -1,3 +1,28 @@
+## 22.0.0-dev.1 (2026-11-23)
+
+### 🚀 Features
+
+- ⚠️  **firebase:** replace @angular/fire with the modular firebase sdk
+- **angular:** run all angular packages zoneless
+
+### ⚠️  Breaking Changes
+
+- **firebase:** replace @angular/fire with the modular firebase sdk
+  the compat tokens and classes of @angular/fire (for
+  example AngularFireAuth, AngularFirestore, AngularFireMessaging and their
+  SETTINGS/USE_EMULATOR tokens) are no longer provided. Inject the new
+  FIREBASE_* tokens, which resolve to the modular firebase sdk instances.
+
+### 🧱 Updated Dependencies
+
+- Updated angular-config to 22.0.0-dev.1
+- Updated utilities to 16.5.3-dev.0
+- Updated rxjs to 1.1.19-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 22.0.0-dev.0 (2026-11-22)
 
 ### 🧱 Updated Dependencies

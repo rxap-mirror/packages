@@ -1,3 +1,18 @@
+## 22.0.0-dev.1 (2026-11-23)
+
+### 🚀 Features
+
+- **angular:** run all angular packages zoneless
+
+### 🧱 Updated Dependencies
+
+- Updated angular-authentication to 22.0.0-dev.1
+- Updated rxjs to 1.1.19-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 22.0.0-dev.0 (2026-11-22)
 
 ### 🧱 Updated Dependencies

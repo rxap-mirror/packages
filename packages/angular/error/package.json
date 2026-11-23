@@ -1,5 +1,5 @@
 {
-  "version": "22.0.0-dev.0",
+  "version": "22.0.0-dev.1",
   "name": "@rxap/ngx-error",
   "description": "This package provides a comprehensive error handling solution for Angular applications, including interceptors, services, and UI components to display different types of errors in a user-friendly dialog. It supports handling of generic errors, HTTP errors with messages or codes, and OpenAPI HTTP response errors, with customizable options for logging, displaying dialogs, and integrating with Sentry. The package aims to simplify error management and improve the user experience by providing clear and informative error messages.\n",
   "license": "GPL-3.0-or-later",
@@ -11,11 +11,11 @@
     "@angular/cdk": "^22.0.0",
     "@angular/common": "^22.0.0",
     "@angular/core": "^22.0.0",
-    "@rxap/components": "^22.0.0-dev.0",
-    "@rxap/config": "^22.0.0-dev.0",
-    "@rxap/data-grid": "^22.0.0-dev.0",
-    "@rxap/environment": "^22.0.0-dev.0",
-    "@rxap/open-api": "^22.0.0-dev.0",
+    "@rxap/components": "^22.0.0-dev.1",
+    "@rxap/config": "^22.0.0-dev.1",
+    "@rxap/data-grid": "^22.0.0-dev.1",
+    "@rxap/environment": "^22.0.0-dev.1",
+    "@rxap/open-api": "^22.0.0-dev.1",
     "@sentry/angular": "^11.0.0",
     "rxjs": "^7.0.0"
   },
@@ -69,79 +69,79 @@
       },
       {
         "package": "@rxap/components",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/config",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/data-grid",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/data-source",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.19"
+        "version": "1.1.20-dev.0"
       },
       {
         "package": "@rxap/definition",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/directives",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/environment",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/forms",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.17"
+        "version": "16.0.18-dev.0"
       },
       {
         "package": "@rxap/open-api",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.16"
+        "version": "1.1.17-dev.0"
       },
       {
         "package": "@rxap/pipes",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.18"
+        "version": "1.0.19-dev.0"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.18"
+        "version": "1.1.19-dev.0"
       },
       {
         "package": "@rxap/services",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.2"
+        "version": "16.5.3-dev.0"
       },
       {
         "package": "@rxap/validator",
-        "version": "3.0.15"
+        "version": "3.0.16-dev.0"
       },
       {
         "package": "@sentry/angular",

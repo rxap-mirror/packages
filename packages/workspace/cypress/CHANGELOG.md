@@ -1,3 +1,7 @@
+## 24.0.0-dev.1 (2026-11-23)
+
+This was a version bump only for workspace-cypress to align it with other projects, there were no code changes.
+
 ## 24.0.0-dev.0 (2026-11-22)
 
 This was a version bump only for workspace-cypress to align it with other projects, there were no code changes.

@@ -1,5 +1,5 @@
 {
-  "version": "22.0.0-dev.0",
+  "version": "22.0.0-dev.1",
   "name": "@rxap/dialog",
   "description": "This package provides Angular Material-based message and confirm dialog components and services. It offers customizable dialogs for displaying messages and confirmations to users. The package includes components for rendering the dialogs and services for easily opening them with configurable options.\n",
   "license": "GPL-3.0-or-later",
@@ -12,7 +12,7 @@
     "@angular/common": "^22.0.0",
     "@angular/core": "^22.0.0",
     "@angular/material": "^22.0.0",
-    "@rxap/pipes": "^22.0.0-dev.0",
+    "@rxap/pipes": "^22.0.0-dev.1",
     "rxjs": "^7.0.0"
   },
   "author": {
@@ -62,11 +62,11 @@
       },
       {
         "package": "@rxap/pipes",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.2"
+        "version": "16.5.3-dev.0"
       }
     ]
   },

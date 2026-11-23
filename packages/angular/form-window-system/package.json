@@ -1,5 +1,5 @@
 {
-  "version": "22.0.0-dev.0",
+  "version": "22.0.0-dev.1",
   "name": "@rxap/form-window-system",
   "description": "Provides directives and services to simplify opening forms in windows within an Angular application. It includes features for submitting forms, managing window footers, and opening forms using methods. This package integrates with @rxap/forms and @rxap/window-system to streamline form-based workflows in a windowed environment.\n",
   "license": "GPL-3.0-or-later",
@@ -10,14 +10,14 @@
   "peerDependencies": {
     "@angular/cdk": "^22.0.0",
     "@angular/core": "^22.0.0",
-    "@rxap/directives": "^22.0.0-dev.0",
-    "@rxap/form-system": "^22.0.0-dev.0",
-    "@rxap/forms": "^22.0.0-dev.0",
-    "@rxap/pattern": "^1.1.16",
-    "@rxap/reflect-metadata": "^1.0.18",
-    "@rxap/rxjs": "^1.1.18",
-    "@rxap/utilities": "^16.5.2",
-    "@rxap/window-system": "^22.0.0-dev.0",
+    "@rxap/directives": "^22.0.0-dev.1",
+    "@rxap/form-system": "^22.0.0-dev.1",
+    "@rxap/forms": "^22.0.0-dev.1",
+    "@rxap/pattern": "^1.1.17-dev.0",
+    "@rxap/reflect-metadata": "^1.0.19-dev.0",
+    "@rxap/rxjs": "^1.1.19-dev.0",
+    "@rxap/utilities": "^16.5.3-dev.0",
+    "@rxap/window-system": "^22.0.0-dev.1",
     "rxjs": "^7.0.0"
   },
   "author": {
@@ -71,87 +71,87 @@
       },
       {
         "package": "@rxap/browser-utilities",
-        "version": "1.1.15"
+        "version": "1.1.16-dev.0"
       },
       {
         "package": "@rxap/config",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/data-source",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.19"
+        "version": "1.1.20-dev.0"
       },
       {
         "package": "@rxap/definition",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/directives",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/environment",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/form-system",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/forms",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.17"
+        "version": "16.0.18-dev.0"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/open-api",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.16"
+        "version": "1.1.17-dev.0"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.18"
+        "version": "1.0.19-dev.0"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.18"
+        "version": "1.1.19-dev.0"
       },
       {
         "package": "@rxap/services",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.2"
+        "version": "16.5.3-dev.0"
       },
       {
         "package": "@rxap/validator",
-        "version": "3.0.15"
+        "version": "3.0.16-dev.0"
       },
       {
         "package": "@rxap/window-system",
-        "version": "22.0.0-dev.0"
+        "version": "22.0.0-dev.1"
       }
     ]
   },

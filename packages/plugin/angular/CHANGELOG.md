@@ -1,3 +1,23 @@
+## 24.0.0-dev.1 (2026-11-23)
+
+### 🩹 Fixes
+
+- **rxap:** update package group
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 24.0.0-dev.1
+- Updated plugin-application to 24.0.0-dev.1
+- Updated workspace-ts-morph to 24.0.0-dev.1
+- Updated plugin-utilities to 24.0.0-dev.1
+- Updated plugin-library to 24.0.0-dev.1
+- Updated utilities to 16.5.3-dev.0
+- Updated ts-morph to 1.7.2-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 24.0.0-dev.0 (2026-11-22)
 
 ### 🧱 Updated Dependencies

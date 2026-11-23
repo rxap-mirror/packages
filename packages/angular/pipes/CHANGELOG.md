@@ -1,3 +1,17 @@
+## 22.0.0-dev.1 (2026-11-23)
+
+### 🚀 Features
+
+- **angular:** run all angular packages zoneless
+
+### 🧱 Updated Dependencies
+
+- Updated utilities to 16.5.3-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 22.0.0-dev.0 (2026-11-22)
 
 This was a version bump only for angular-pipes to align it with other projects, there were no code changes.

@@ -1,3 +1,25 @@
+## 22.0.0-dev.1 (2026-11-23)
+
+### 🚀 Features
+
+- **angular:** run all angular packages zoneless
+
+### 🧱 Updated Dependencies
+
+- Updated angular-material-directives to 22.0.0-dev.1
+- Updated angular-contenteditable to 22.0.0-dev.1
+- Updated angular-data-source to 22.0.0-dev.1
+- Updated data-structure-tree to 1.1.20-dev.0
+- Updated angular-config to 22.0.0-dev.1
+- Updated angular-forms to 22.0.0-dev.1
+- Updated utilities to 16.5.3-dev.0
+- Updated pattern to 1.1.17-dev.0
+- Updated rxjs to 1.1.19-dev.0
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 22.0.0-dev.0 (2026-11-22)
 
 ### 🧱 Updated Dependencies

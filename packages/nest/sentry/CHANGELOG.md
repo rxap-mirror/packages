@@ -1,3 +1,12 @@
+## 12.0.0-dev.1 (2026-11-23)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 24.0.0-dev.1
+- Updated nest-utilities to 12.0.0-dev.1
+- Updated nest-logger to 12.0.0-dev.1
+- Updated ts-morph to 1.7.2-dev.0
+
 ## 12.0.0-dev.0 (2026-11-22)
 
 ### 🧱 Updated Dependencies
