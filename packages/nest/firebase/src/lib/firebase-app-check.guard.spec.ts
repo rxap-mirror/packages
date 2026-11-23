@@ -1,8 +1,8 @@
 import { BadRequestException, ExecutionContext, ForbiddenException } from '@nestjs/common';
-import * as admin from 'firebase-admin';
+import { getAppCheck } from 'firebase-admin/app-check';
 import { FirebaseAppCheckGuard } from './firebase-app-check.guard';
 
-jest.mock('firebase-admin', () => ({ appCheck: jest.fn() }));
+jest.mock('firebase-admin/app-check', () => ({ getAppCheck: jest.fn() }));
 
 function ctx(headers: Record<string, string>): ExecutionContext {
   return { switchToHttp: () => ({ getRequest: () => ({ headers }) }) } as any;
@@ -16,7 +16,7 @@ describe('FirebaseAppCheckGuard', () => {
     guard = new FirebaseAppCheckGuard();
     (guard as any).logger = { debug: jest.fn() };
     verifyToken = jest.fn();
-    (admin.appCheck as jest.Mock).mockReturnValue({ verifyToken });
+    (getAppCheck as jest.Mock).mockReturnValue({ verifyToken });
   });
 
   it('is bypassed when deactivated', async () => {

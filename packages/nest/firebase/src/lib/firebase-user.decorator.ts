@@ -2,8 +2,7 @@ import {
   createParamDecorator,
   ExecutionContext,
 } from '@nestjs/common';
-import { auth } from 'firebase-admin';
-import DecodedIdToken = auth.DecodedIdToken;
+import type { DecodedIdToken } from 'firebase-admin/auth';
 
 /**
  * Maps the decoded id token

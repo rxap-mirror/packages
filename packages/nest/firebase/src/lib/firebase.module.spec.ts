@@ -1,4 +1,5 @@
-import * as admin from 'firebase-admin';
+import * as admin from 'firebase-admin/app';
+import { getFirestore } from 'firebase-admin/firestore';
 import { FirebaseModule } from './firebase.module';
 import {
   ALLOW_UNVERIFIED_EMAIL,
@@ -9,7 +10,12 @@ import {
   FIRESTORE,
 } from './tokens';
 
-jest.mock('firebase-admin', () => ({ apps: [] as any[], initializeApp: jest.fn() }));
+jest.mock('firebase-admin/app', () => {
+  const apps: any[] = [];
+  return { apps, getApps: () => apps, initializeApp: jest.fn() };
+});
+
+jest.mock('firebase-admin/firestore', () => ({ getFirestore: jest.fn() }));
 
 const mockAdmin = admin as any;
 
@@ -19,11 +25,12 @@ function value(module: any, token: string) {
 
 describe('FirebaseModule.forRoot', () => {
   const firestore = { id: 'fs' };
-  const app = { name: '[DEFAULT]', firestore: () => firestore };
+  const app = { name: '[DEFAULT]' };
 
   beforeEach(() => {
     mockAdmin.apps.length = 0;
     mockAdmin.initializeApp.mockReset().mockReturnValue(app);
+    (getFirestore as jest.Mock).mockReset().mockReturnValue(firestore);
   });
 
   it('initializes a new app with defaults', () => {
@@ -31,6 +38,7 @@ describe('FirebaseModule.forRoot', () => {
     expect(mockAdmin.initializeApp).toHaveBeenCalledWith({ projectId: undefined }, undefined);
     expect(value(m, FIREBASE_TOKEN)).toBe(app);
     expect(value(m, FIRESTORE)).toBe(firestore);
+    expect(getFirestore).toHaveBeenCalledWith(app);
     expect(value(m, ALLOW_UNVERIFIED_EMAIL)).toBe(false);
     expect(value(m, FIREBASE_AUTH_HEADER)).toBe('idtoken');
     expect(value(m, DEACTIVATE_APP_CHECK_GUARD)).toBe(false);

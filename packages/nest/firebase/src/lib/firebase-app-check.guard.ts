@@ -8,7 +8,7 @@ import {
   Logger,
   Optional,
 } from '@nestjs/common';
-import * as admin from 'firebase-admin';
+import { getAppCheck } from 'firebase-admin/app-check';
 import { RequestWithDecodedIdToken } from './firebase-auth.guard';
 import { DEACTIVATE_APP_CHECK_GUARD } from './tokens';
 
@@ -50,7 +50,7 @@ export class FirebaseAppCheckGuard implements CanActivate {
     }
 
     try {
-      await admin.appCheck().verifyToken(appCheckToken);
+      await getAppCheck().verifyToken(appCheckToken);
     } catch (e) {
       throw new ForbiddenException('The app check claim is not valid');
     }

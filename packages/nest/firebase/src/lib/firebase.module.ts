@@ -4,7 +4,13 @@ import {
   Logger,
   Module,
 } from '@nestjs/common';
-import * as admin from 'firebase-admin';
+import {
+  type App,
+  type AppOptions,
+  getApps,
+  initializeApp,
+} from 'firebase-admin/app';
+import { getFirestore } from 'firebase-admin/firestore';
 import { FirebaseAppCheckGuard } from './firebase-app-check.guard';
 import { FirebaseAuthGuard } from './firebase-auth.guard';
 import {
@@ -16,7 +22,7 @@ import {
   FIRESTORE,
 } from './tokens';
 
-export type FirebaseAppOptions = admin.AppOptions;
+export type FirebaseAppOptions = AppOptions;
 
 export interface FirebaseAuthOptions {
   allowUnverifiedEmail?: boolean;
@@ -61,7 +67,7 @@ export class FirebaseModule {
         },
         {
           provide: FIRESTORE,
-          useValue: app.firestore(),
+          useValue: getFirestore(app),
         },
         {
           provide: ALLOW_UNVERIFIED_EMAIL,
@@ -96,20 +102,22 @@ export class FirebaseModule {
     };
   }
 
-  private static createFirebaseApp(options?: admin.AppOptions, name?: string, defaultProject?: string): admin.app.App {
+  private static createFirebaseApp(options?: AppOptions, name?: string, defaultProject?: string): App {
 
-    if (admin.apps.length) {
+    const apps = getApps();
+
+    if (apps.length) {
       if (name) {
-        const existingApp = admin.apps.find(app => app && app.name === name);
+        const existingApp = apps.find(app => app && app.name === name);
         if (existingApp) {
           return existingApp;
         }
-      } else if (admin.apps[0]) {
-        return admin.apps[0] as admin.app.App;
+      } else if (apps[0]) {
+        return apps[0];
       }
     }
 
-    return admin.initializeApp({
+    return initializeApp({
       projectId: defaultProject,
       ...options,
     }, name);

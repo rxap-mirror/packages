@@ -14,7 +14,7 @@
  *
  * Usage:
  *   node tools/scripts/dependency-cooldown.mjs [--apply] [--only a,b] [--skip a,b] [--json out.json]
- *        [--pin name=range,...] [--status minor|major] [--section dependencies|devDependencies] [--min-age-days N]  (raises every tier to at least N)
+ *        [--ignore-peers-of a,b] [--pin name=range,...] [--status minor|major] [--section dependencies|devDependencies] [--min-age-days N]  (raises every tier to at least N)
  *
  * Without --apply the script only reports. With --apply the root package.json is rewritten (the
  * entries are written as EXACT versions so the lockfile can never resolve to a newer, un-vetted release).
@@ -39,6 +39,8 @@ const PKG_PATH = resolve(ROOT, 'package.json');
 const pkg = JSON.parse(readFileSync(PKG_PATH, 'utf8'));
 
 const ONLY = opt('only')?.split(',');
+// --ignore-peers-of a,b: do not let these installed packages block upgrades through their (optional) peer ranges
+const IGNORE_PEERS_OF = new Set(opt('ignore-peers-of')?.split(',') ?? []);
 const SKIP = new Set(opt('skip')?.split(',') ?? []);
 const SECTIONS = opt('section')?.split(',') ?? [ 'dependencies', 'devDependencies' ];
 const APPLY_STATUS = opt('status'); // limit --apply to 'minor' or 'major' changes
@@ -172,7 +174,7 @@ function peerConflicts(versionMeta, overrides) {
 function reversePeerConflicts(name, candidate, overrides) {
   const conflicts = [];
   for (const dep of Object.keys(workspaceVersions)) {
-    if (dep === name) {
+    if (dep === name || IGNORE_PEERS_OF.has(dep)) {
       continue;
     }
     const installed = overrides[dep] ?? workspaceVersions[dep];

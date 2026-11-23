@@ -4,10 +4,10 @@ import {
   InternalServerErrorException,
   UnauthorizedException,
 } from '@nestjs/common';
-import * as admin from 'firebase-admin';
+import { getAuth } from 'firebase-admin/auth';
 import { FirebaseAuthGuard } from './firebase-auth.guard';
 
-jest.mock('firebase-admin', () => ({ auth: jest.fn() }));
+jest.mock('firebase-admin/auth', () => ({ getAuth: jest.fn() }));
 
 function ctx(request: any): ExecutionContext {
   return { switchToHttp: () => ({ getRequest: () => request }) } as any;
@@ -24,7 +24,7 @@ describe('FirebaseAuthGuard (unit)', () => {
     (guard as any).logger = logger;
     (guard as any).authHeaderName = 'IdToken';
     verifyIdToken = jest.fn();
-    (admin.auth as unknown as jest.Mock).mockReturnValue({ verifyIdToken });
+    (getAuth as unknown as jest.Mock).mockReturnValue({ verifyIdToken });
   });
 
   describe('canActivate', () => {

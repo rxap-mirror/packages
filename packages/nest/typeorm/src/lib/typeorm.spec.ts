@@ -44,7 +44,7 @@ describe('BaseTypeOrmModuleOptionsFactory', () => {
   it('defaults to sqlite in tmpdir for development', () => {
     const o: any = build().createTypeOrmOptions();
     expect(o).toMatchObject({
-      type: 'sqlite',
+      type: 'better-sqlite3',
       database: join(tmpdir(), 'backend.sqlite'),
       entities: [Entity],
       synchronize: false,
@@ -61,7 +61,7 @@ describe('BaseTypeOrmModuleOptionsFactory', () => {
 
   it('uses an in-memory database for swagger generation', () => {
     const o: any = build({ swagger: true }).createTypeOrmOptions();
-    expect(o).toMatchObject({ type: 'sqlite', database: ':memory:', dropSchema: true, synchronize: true });
+    expect(o).toMatchObject({ type: 'better-sqlite3', database: ':memory:', dropSchema: true, synchronize: true });
   });
 
   it('prefers POSTGRES_ synchronize/logging overrides', () => {

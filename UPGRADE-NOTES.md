@@ -89,11 +89,20 @@ built with: `fix-dependencies` (`@rxap/plugin-library`) generates them that way.
 | `typescript` | 6.0.3 | Angular 22 (`@angular/compiler-cli`, `@angular-devkit/build-angular`) requires `<6.1`; TS 7 is rejected |
 | `@types/node` | 22.x | typings follow the minimum supported Node runtime (`engines.node >=22`) |
 | `tailwindcss` | 3.x | v4 is a migration (config format, `@tailwindcss/postcss`, the `RXAP_TAILWIND_CONFIG` preset and the app generators), not a version bump |
-| `@langchain/*`, `langchain` | 0.3.x | `@langchain/community` 1.x is deprecated upstream; this also keeps `ignore` on 5 and `firebase-admin` on 12 (its peers) |
-| `typeorm` | 0.3.x | same peer range of `@langchain/community` |
+| `@langchain/*`, `langchain` | 0.3.x | `@langchain/community` 1.x is deprecated upstream. It is only used by the litellm n8n node (document loaders). Its optional peer ranges for `typeorm`, `ignore` and `firebase-admin` are deliberately ignored (`dependency-cooldown.mjs --ignore-peers-of @langchain/community`), yarn prints peer warnings for them |
 | `jsdom` | 26.1.0 | 27+ pulls ESM-only dependencies (`@exodus/bytes`, `bcp-47`, ...) that the CommonJS jest runtime cannot load |
 | `webpack-dev-server` / `verdaccio` | 5.x / 6.x | `@nx/webpack` / `@nx/js` peer ranges |
 | `@storybook/*` | unchanged | Storybook is being replaced by ng-prism |
 
 `@csstools/*` (via `postcss-preset-env` 11.6.2) resolved to releases that were only 6.1 days old on 2026-11-23 and
 have no older version inside the parent's range; re-run `audit-lockfile-cooldown.mjs` after 2026-11-24.
+
+### Breaking changes of the 2026-11-23 upgrade for consumers
+
+- `@rxap/nest-typeorm`: typeorm 1 removed the `sqlite` (sqlite3) driver. `TYPEORM_TYPE=sqlite` now configures
+  `better-sqlite3`, apps that use it have to install `better-sqlite3` instead of `sqlite3`.
+- `@rxap/nest-firebase`: uses the modular `firebase-admin` API (firebase-admin >= 13); `FirebaseApp`, `FirebaseUser`
+  and `Firestore` are the types of `firebase-admin/app`, `/auth` and `/firestore`.
+- `@rxap/nest-auth0`: auth0 7 dropped the authentication client from its main entrypoint; the services import from
+  `auth0/legacy` (API unchanged).
+- `@rxap/nest-keyv-minio`: implements the keyv 6 storage adapter contract (bulk methods, event emitter).

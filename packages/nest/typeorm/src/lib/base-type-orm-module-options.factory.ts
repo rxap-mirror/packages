@@ -18,8 +18,8 @@ import { join } from 'path';
 import { DataSourceOptions } from 'typeorm';
 import { BaseDataSourceOptions } from 'typeorm/data-source/BaseDataSourceOptions';
 import { PostgresConnectionCredentialsOptions } from 'typeorm/driver/postgres/PostgresConnectionCredentialsOptions';
-import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
-import { SqliteConnectionOptions } from 'typeorm/driver/sqlite/SqliteConnectionOptions';
+import { BetterSqlite3DataSourceOptions } from 'typeorm/driver/better-sqlite3/BetterSqlite3DataSourceOptions';
+import { PostgresDataSourceOptions } from 'typeorm/driver/postgres/PostgresDataSourceOptions';
 
 @Injectable()
 export abstract class BaseTypeOrmModuleOptionsFactory implements TypeOrmOptionsFactory {
@@ -91,10 +91,11 @@ export abstract class BaseTypeOrmModuleOptionsFactory implements TypeOrmOptionsF
     };
   }
 
-  protected sqliteConfig(): TypeOrmModuleOptions & SqliteConnectionOptions {
+  protected sqliteConfig(): TypeOrmModuleOptions & BetterSqlite3DataSourceOptions {
     return {
       ...this.baseConfig(),
-      type: 'sqlite',
+      // typeorm >= 1 removed the `sqlite` (sqlite3) driver: the TYPEORM_TYPE=sqlite setting now uses better-sqlite3
+      type: 'better-sqlite3',
       database: this.config.get(
         'SQLITE_DATABASE',
         this.environment.production
@@ -104,7 +105,7 @@ export abstract class BaseTypeOrmModuleOptionsFactory implements TypeOrmOptionsF
     };
   }
 
-  protected postgresConfig(): TypeOrmModuleOptions & PostgresConnectionOptions {
+  protected postgresConfig(): TypeOrmModuleOptions & PostgresDataSourceOptions {
     let credentials: PostgresConnectionCredentialsOptions;
     if (this.config.get('POSTGRES_URL')) {
       credentials = {
@@ -127,7 +128,7 @@ export abstract class BaseTypeOrmModuleOptionsFactory implements TypeOrmOptionsF
         }@${credentials.host}:${credentials.port}/${credentials.database}`
       );
     }
-    const config: TypeOrmModuleOptions & PostgresConnectionOptions = {
+    const config: TypeOrmModuleOptions & PostgresDataSourceOptions = {
       ...this.baseConfig(),
       ...credentials,
       type: 'postgres',

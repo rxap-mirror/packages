@@ -17,6 +17,8 @@ const ESM_ONLY_PACKAGES = [
   'entities',
   // amqplib >= 2 / amqp-connection-manager >= 5
   'promise-breaker',
+  // jwks-rsa >= 4 (firebase-admin >= 13)
+  'jose',
 ].join('|');
 
 module.exports = {

@@ -9,7 +9,7 @@ import {
   Optional,
   UnauthorizedException,
 } from '@nestjs/common';
-import * as admin from 'firebase-admin';
+import { getAuth } from 'firebase-admin/auth';
 import {
   ALLOW_UNVERIFIED_EMAIL,
   DEACTIVATE_FIREBASE_AUTH_GUARD,
@@ -111,8 +111,7 @@ export class FirebaseAuthGuard implements CanActivate {
    * or null if the ID token is not valid.
    */
   public validateIdToken(idToken: string): Promise<FirebaseUser | null> {
-    return admin
-      .auth()
+    return getAuth()
       .verifyIdToken(idToken, true)
       .then((res) => {
         if (res.firebase?.sign_in_provider === 'anonymous') {
