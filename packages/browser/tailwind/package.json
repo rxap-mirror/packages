@@ -5,7 +5,7 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "24.0.6",
-    "@tailwindcss/typography": "0.5.13",
+    "@tailwindcss/typography": "0.5.20",
     "tailwindcss": "^3.4.4",
     "tslib": "2.9.1"
   },

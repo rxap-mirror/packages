@@ -6,7 +6,7 @@
   "dependencies": {
     "@nx/devkit": "24.0.6",
     "@rxap/utilities": "^16.5.2",
-    "ignore": "5.2.4",
+    "ignore": "5.3.2",
     "tslib": "2.9.1"
   },
   "author": {

@@ -53,3 +53,47 @@ Observed (GitHub releases, `nrwl/nx`):
   (beta → GA took 4–7 weeks for the last minors), possibly slipping past the holidays. A 24.0.7 with the architect fix
   could come earlier, but is not announced.
 - Re-check: `gh release list --repo nrwl/nx --limit 15` and the two upstream issues above.
+
+## 4. Dependency upgrade policy (release cooldown)
+
+Supply-chain rule: **never install the newest release.** A version is only eligible once it has been public for a
+cooldown that depends on how widely the package is used (weekly npm downloads):
+
+| Weekly downloads | Cooldown |
+| --- | --- |
+| >= 1,000,000 | 7 days |
+| >= 100,000 | 14 days |
+| below | 30 days (also used when the download count cannot be determined) |
+
+Tooling (Yarn 3.6 has no min-age setting, so the checks are ours):
+
+- `node tools/scripts/dependency-cooldown.mjs [--apply] [--only a,b] [--status minor|major] [--pin name=range]`
+  picks, per root dependency, the newest stable version that is old enough, never leaves the `latest` dist-tag,
+  skips deprecated versions and only accepts versions whose peerDependencies hold in **both** directions against
+  the versions the workspace pins (so the highest *compatible* major is chosen, e.g. TypeScript stays on 6.0 while
+  Angular 22 requires `<6.1`). `--apply` writes **exact** versions: a `^` range lets yarn float to a release that
+  never went through the cooldown.
+- `node tools/scripts/align-framework-dep-versions.mjs` copies the root ranges verbatim into every package (a
+  different range would resolve separately and install a second copy) and widens `peerDependencies` to the major.
+- `node tools/scripts/audit-lockfile-cooldown.mjs <base-ref> [--write-resolutions]` checks every **transitive**
+  version that a lockfile change introduced and pins offenders via root `resolutions` (key `name@range`, without
+  `npm:` - yarn 3 ignores the prefixed form). Drop those pins once the floating version has aged enough.
+
+Peer ranges of published packages are the major (`^22.0.0`, `^0.20.0` for 0.x), not the version the workspace is
+built with: `fix-dependencies` (`@rxap/plugin-library`) generates them that way.
+
+### Deliberately not at the newest major (2026-11-23)
+
+| Package | Stays on | Reason |
+| --- | --- | --- |
+| `typescript` | 6.0.3 | Angular 22 (`@angular/compiler-cli`, `@angular-devkit/build-angular`) requires `<6.1`; TS 7 is rejected |
+| `@types/node` | 22.x | typings follow the minimum supported Node runtime (`engines.node >=22`) |
+| `tailwindcss` | 3.x | v4 is a migration (config format, `@tailwindcss/postcss`, the `RXAP_TAILWIND_CONFIG` preset and the app generators), not a version bump |
+| `@langchain/*`, `langchain` | 0.3.x | `@langchain/community` 1.x is deprecated upstream; this also keeps `ignore` on 5 and `firebase-admin` on 12 (its peers) |
+| `typeorm` | 0.3.x | same peer range of `@langchain/community` |
+| `jsdom` | 26.1.0 | 27+ pulls ESM-only dependencies (`@exodus/bytes`, `bcp-47`, ...) that the CommonJS jest runtime cannot load |
+| `webpack-dev-server` / `verdaccio` | 5.x / 6.x | `@nx/webpack` / `@nx/js` peer ranges |
+| `@storybook/*` | unchanged | Storybook is being replaced by ng-prism |
+
+`@csstools/*` (via `postcss-preset-env` 11.6.2) resolved to releases that were only 6.1 days old on 2026-11-23 and
+have no older version inside the parent's range; re-run `audit-lockfile-cooldown.mjs` after 2026-11-24.

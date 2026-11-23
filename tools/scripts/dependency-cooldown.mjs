@@ -157,7 +157,8 @@ function peerConflicts(versionMeta, overrides) {
   for (const [ peer, range ] of Object.entries(versionMeta.peerDependencies ?? {})) {
     // optional peers still bind when the package is installed in the workspace (checked via `have` below)
     const have = overrides[peer] ?? workspaceVersions[peer];
-    if (!have) {
+    // ranges with dist-tag tokens (e.g. ">=3.0.0 || insiders") are not valid semver: only the semver part can be checked
+    if (!have || !semver.validRange(range)) {
       continue;
     }
     if (!semver.satisfies(have, range, { includePrerelease: true })) {
@@ -177,7 +178,7 @@ function reversePeerConflicts(name, candidate, overrides) {
     const installed = overrides[dep] ?? workspaceVersions[dep];
     const meta = docCache[dep]?.versions?.[installed];
     const range = meta?.peerDependencies?.[name];
-    if (!range) {
+    if (!range || !semver.validRange(range)) {
       continue;
     }
     if (!semver.satisfies(candidate, range, { includePrerelease: true })) {
