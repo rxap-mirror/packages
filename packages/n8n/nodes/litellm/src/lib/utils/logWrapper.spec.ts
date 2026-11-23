@@ -2,7 +2,7 @@ import { Embeddings } from '@langchain/core/embeddings';
 import { BaseRetriever } from '@langchain/core/retrievers';
 import { VectorStore } from '@langchain/core/vectorstores';
 import { TextSplitter } from '@langchain/textsplitters';
-import { NodeConnectionType, NodeOperationError } from 'n8n-workflow';
+import { NodeConnectionTypes, NodeOperationError } from 'n8n-workflow';
 import { N8nBinaryLoader } from './N8nBinaryLoader';
 import { N8nJsonLoader } from './N8nJsonLoader';
 import { callMethodAsync, logWrapper } from './logWrapper';
@@ -23,7 +23,7 @@ describe('callMethodAsync', () => {
     const ctx = createCtx();
     const res = await callMethodAsync.call({ v: 2 }, {
       executeFunctions: ctx,
-      connectionType: NodeConnectionType.AiTool,
+      connectionType: NodeConnectionTypes.AiTool,
       currentNodeRunIndex: 0,
       method: async function (this: any, a: number) {
         return this.v * a;
@@ -39,7 +39,7 @@ describe('callMethodAsync', () => {
     await expect(
       callMethodAsync.call({}, {
         executeFunctions: ctx,
-        connectionType: NodeConnectionType.AiTool,
+        connectionType: NodeConnectionTypes.AiTool,
         currentNodeRunIndex: 5,
         method: async () => {
           throw new Error('failed');
@@ -48,7 +48,7 @@ describe('callMethodAsync', () => {
       }),
     ).rejects.toMatchObject({ message: 'failed', description: 'failed' });
     expect(ctx.addOutputData).toHaveBeenCalledWith(
-      NodeConnectionType.AiTool,
+      NodeConnectionTypes.AiTool,
       5,
       expect.any(NodeOperationError),
       undefined,
@@ -61,7 +61,7 @@ describe('callMethodAsync', () => {
     await expect(
       callMethodAsync.call({}, {
         executeFunctions: ctx,
-        connectionType: NodeConnectionType.AiTool,
+        connectionType: NodeConnectionTypes.AiTool,
         currentNodeRunIndex: 0,
         method: async () => {
           throw err;
@@ -95,7 +95,7 @@ describe('logWrapper', () => {
       const res = await (logWrapper(m as any, ctx) as any).loadMemoryVariables({ q: 1 });
       expect(res).toEqual({ chat_history: ['m1'] });
       expect(m.loadMemoryVariables).toHaveBeenCalledWith({ q: 1 });
-      expect(ctx.addInputData).toHaveBeenCalledWith(NodeConnectionType.AiMemory, [
+      expect(ctx.addInputData).toHaveBeenCalledWith(NodeConnectionTypes.AiMemory, [
         [{ json: { action: 'loadMemoryVariables', values: { q: 1 } } }],
       ]);
       expect(outputOf()[2]).toEqual([[{ json: { action: 'loadMemoryVariables', chatHistory: ['m1'] } }]]);
@@ -165,7 +165,7 @@ describe('logWrapper', () => {
       const w: any = logWrapper(e, ctx);
       expect(await w.embedDocuments(['a', 'b'])).toEqual([[1], [1]]);
       expect(await w.embedQuery('q')).toEqual([2]);
-      expect(ctx.addInputData).toHaveBeenCalledWith(NodeConnectionType.AiEmbedding, [[{ json: { documents: ['a', 'b'] } }]]);
+      expect(ctx.addInputData).toHaveBeenCalledWith(NodeConnectionTypes.AiEmbedding, [[{ json: { documents: ['a', 'b'] } }]]);
       expect(ctx.logAiEvent).toHaveBeenCalledWith('ai-document-embedded', undefined);
       expect(ctx.logAiEvent).toHaveBeenCalledWith('ai-query-embedded', undefined);
     });
@@ -186,7 +186,7 @@ describe('logWrapper', () => {
       const w: any = logWrapper(loader, ctx);
       expect(await w.processAll([{ json: {} }])).toEqual([{ pageContent: 'a', metadata: {} }]);
       expect(await w.processItem({ json: {} }, 3)).toEqual([{ pageContent: 'b', metadata: {} }]);
-      expect(ctx.addInputData).toHaveBeenCalledWith(NodeConnectionType.AiDocument, [[{ json: {} }]]);
+      expect(ctx.addInputData).toHaveBeenCalledWith(NodeConnectionTypes.AiDocument, [[{ json: {} }]]);
       expect(outputOf(1)[2][0][0].pairedItem).toEqual({ item: 3 });
       expect(ctx.logAiEvent).toHaveBeenCalledWith('ai-document-processed', undefined);
     });
@@ -219,7 +219,7 @@ describe('logWrapper', () => {
       const tool: any = { lc_namespace: ['langchain', 'tools'], _call: jest.fn(async () => 'result') };
       expect(await (logWrapper(tool, ctx) as any)._call('q')).toBe('result');
       expect(ctx.logAiEvent).toHaveBeenCalledWith('ai-tool-called', expect.stringContaining('result'));
-      expect(ctx.addInputData).toHaveBeenCalledWith(NodeConnectionType.AiTool, [[{ json: { query: 'q' } }]]);
+      expect(ctx.addInputData).toHaveBeenCalledWith(NodeConnectionTypes.AiTool, [[{ json: { query: 'q' } }]]);
     });
   });
 
@@ -242,7 +242,7 @@ describe('logWrapper', () => {
       const res = await (logWrapper(s, ctx) as any).similaritySearch('q', 3, { f: 1 });
       expect(res).toEqual([{ pageContent: 'hit', metadata: {} }]);
       expect(s.similaritySearch).toHaveBeenCalledWith('q', 3, { f: 1 }, undefined);
-      expect(ctx.addInputData).toHaveBeenCalledWith(NodeConnectionType.AiVectorStore, [
+      expect(ctx.addInputData).toHaveBeenCalledWith(NodeConnectionTypes.AiVectorStore, [
         [{ json: { query: 'q', k: 3, filter: { f: 1 } } }],
       ]);
       expect(ctx.logAiEvent).toHaveBeenCalledWith('ai-vector-store-searched', expect.any(String));

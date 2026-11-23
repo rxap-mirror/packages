@@ -3,10 +3,10 @@ import {
   IExecuteFunctions,
   INodeExecutionData,
   INodeType,
-  NodeConnectionType,
+  NodeConnectionTypes,
   NodeExecutionWithMetadata,
 } from 'n8n-workflow';
-import { INodeTypeDescription } from 'n8n-workflow/dist/Interfaces';
+import { INodeTypeDescription } from 'n8n-workflow';
 import sanitizeHtml, { AllowedAttribute } from 'sanitize-html';
 
 function getAllowedTags(this: IExecuteFunctions, index: number): string[] {
@@ -51,8 +51,8 @@ export class SanitizeHtml implements INodeType {
       name: 'Sanitize HTML',
     },
     description: 'Sanitize HTML content based on specified rules',
-    inputs: [ NodeConnectionType.Main ],
-    outputs: [ NodeConnectionType.Main ],
+    inputs: [ NodeConnectionTypes.Main ],
+    outputs: [ NodeConnectionTypes.Main ],
     icon: { light: 'file:SanitizeHtml.svg', dark: 'file:SanitizeHtml.dark.svg' },
     properties: [
       {

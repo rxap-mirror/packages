@@ -1,12 +1,12 @@
 import { OpenAIEmbeddings } from '@langchain/openai';
 import {
-    type IExecuteFunctions,
-    INodeProperties,
-    type INodeType,
-    type INodeTypeDescription,
-    ISupplyDataFunctions,
-    NodeConnectionType,
-    type SupplyData,
+  INodeProperties,
+  ISupplyDataFunctions,
+  NodeConnectionTypes,
+  type IExecuteFunctions,
+  type INodeType,
+  type INodeTypeDescription,
+  type SupplyData,
 } from 'n8n-workflow';
 import type { ClientOptions } from '@langchain/openai';
 import { logWrapper } from '../utils/logWrapper';
@@ -73,7 +73,7 @@ export class Embeddings implements INodeType {
       defaults: { name: 'Embeddings LiteLLM' },
       name: 'liteLLMEmbeddings',
       inputs: [  ],
-      outputs: [NodeConnectionType.AiEmbedding],
+      outputs: [NodeConnectionTypes.AiEmbedding],
       outputNames: ['Embeddings'],
       displayName: 'Embeddings LiteLLM',
       group: ['transform'],
@@ -95,7 +95,7 @@ export class Embeddings implements INodeType {
           },
       ],
       properties: [
-          getConnectionHintNoticeField([NodeConnectionType.AiVectorStore]),
+          getConnectionHintNoticeField([NodeConnectionTypes.AiVectorStore]),
           {
               ...modelParameter,
               default: 'embedding/text-embedding-3-small',

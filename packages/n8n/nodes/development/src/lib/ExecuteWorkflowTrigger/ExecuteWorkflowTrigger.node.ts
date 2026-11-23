@@ -1,10 +1,10 @@
 import {
+  NodeConnectionTypes,
   type IExecuteFunctions,
   type INodeType,
   type INodeTypeDescription,
   type ITriggerFunctions,
   type ITriggerResponse,
-  NodeConnectionType,
 } from 'n8n-workflow';
 
 export class ExecuteWorkflowTrigger implements INodeType {
@@ -24,7 +24,7 @@ export class ExecuteWorkflowTrigger implements INodeType {
 		},
 
 		inputs: [],
-		outputs: [NodeConnectionType.Main],
+		outputs: [NodeConnectionTypes.Main],
 		properties: [
 			{
 				name: 'input',

@@ -5,7 +5,7 @@ import {
   INodeExecutionData,
   INodeType,
   INodeTypeDescription,
-  NodeConnectionType,
+  NodeConnectionTypes,
 } from 'n8n-workflow';
 import { basename } from 'path';
 
@@ -18,8 +18,8 @@ export class Download implements INodeType {
       name: 'Download',
     },
     name: 'ipfsDownload',
-    inputs: [ NodeConnectionType.Main ],
-    outputs: [ NodeConnectionType.Main ],
+    inputs: [ NodeConnectionTypes.Main ],
+    outputs: [ NodeConnectionTypes.Main ],
     subtitle: `={{ $parameter["operation"].split('-').map((part) => part.charAt(0).toUpperCase() + part.slice(1)).join(' ') }}`,
     displayName: 'Download',
     group: ['transform'],

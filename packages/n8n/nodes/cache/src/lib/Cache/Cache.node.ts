@@ -7,7 +7,7 @@ import {
   INodeParameters,
   INodeType,
   INodeTypeDescription,
-  NodeConnectionType,
+  NodeConnectionTypes,
   NodeOperationError,
 } from 'n8n-workflow';
 
@@ -17,17 +17,17 @@ const configuredOutputs = (parameters: INodeParameters) => {
   switch (operation) {
 
     case 'write':
-      return [NodeConnectionType.Main];
+      return [NodeConnectionTypes.Main];
 
     case 'read':
       return [
         {
           displayName: 'Cache',
-          type: NodeConnectionType.Main,
+          type: NodeConnectionTypes.Main,
         },
         {
           displayName: 'No Cache',
-          type: NodeConnectionType.Main,
+          type: NodeConnectionTypes.Main,
         },
       ];
 
@@ -53,7 +53,7 @@ export class Cache implements INodeType {
     defaults: {
       name: 'Cache',
     },
-    inputs: [NodeConnectionType.Main],
+    inputs: [NodeConnectionTypes.Main],
     outputs: `={{(${ configuredOutputs })($parameter)}}`,
     properties: [
       {

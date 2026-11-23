@@ -3,14 +3,14 @@ import AdmZip from 'adm-zip';
 import {
   INodeType,
   INodeTypeDescription,
-  NodeConnectionType,
+  NodeConnectionTypes,
   NodeOperationError,
 } from 'n8n-workflow';
 import {
   IBinaryKeyData,
   IExecuteFunctions,
   INodeExecutionData,
-} from 'n8n-workflow/dist/Interfaces';
+} from 'n8n-workflow';
 import { dir } from 'tmp-promise';
 
 export class Zip implements INodeType {
@@ -19,8 +19,8 @@ export class Zip implements INodeType {
     description: 'Interact with zip files',
     defaults: { name: 'Zip' },
     name: 'rxapZip',
-    inputs: [ NodeConnectionType.Main ],
-    outputs: [ NodeConnectionType.Main ],
+    inputs: [ NodeConnectionTypes.Main ],
+    outputs: [ NodeConnectionTypes.Main ],
     displayName: 'Zip',
     group: [ 'transform' ],
     icon: 'file:Zip.svg',

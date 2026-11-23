@@ -1,8 +1,4 @@
-import {
-  INodeTypeDescription,
-  NodeConnectionType,
-  SupplyData,
-} from 'n8n-workflow';
+import { INodeTypeDescription, NodeConnectionTypes, SupplyData } from 'n8n-workflow';
 import { OpenApiNode } from './open-api-node';
 
 export abstract class OpenApiToolNode extends OpenApiNode {
@@ -16,7 +12,7 @@ export abstract class OpenApiToolNode extends OpenApiNode {
       openApiFilePath,
       {
         inputs: [],
-        outputs: [NodeConnectionType.AiTool],
+        outputs: [NodeConnectionTypes.AiTool],
         ...description,
       },
       nameSuffix,

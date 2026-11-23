@@ -3,9 +3,9 @@ import {
   INodeExecutionData,
   INodeType,
   INodeTypeDescription,
-  NodeConnectionType,
+  NodeConnectionTypes,
 } from 'n8n-workflow';
-import { IExecuteFunctions } from 'n8n-workflow/dist/Interfaces';
+import { IExecuteFunctions } from 'n8n-workflow';
 
 export class Hash implements INodeType {
 
@@ -18,8 +18,8 @@ export class Hash implements INodeType {
       name: 'Hash',
     },
     group: ['transform'],
-    inputs: [ NodeConnectionType.Main ],
-    outputs: [ NodeConnectionType.Main ],
+    inputs: [ NodeConnectionTypes.Main ],
+    outputs: [ NodeConnectionTypes.Main ],
     icon: { light: 'file:Hash.svg', dark: 'file:Hash.svg' },
     properties: [
       {

@@ -7,7 +7,7 @@ import {
   IBinaryData,
   IBinaryKeyData,
   INodeExecutionData,
-} from 'n8n-workflow/dist/Interfaces';
+} from 'n8n-workflow';
 import {
   join,
   relative,

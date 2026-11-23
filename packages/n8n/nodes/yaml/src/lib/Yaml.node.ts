@@ -3,8 +3,8 @@ import {
   INodeExecutionData,
   INodeType,
   INodeTypeDescription,
+  NodeConnectionTypes,
 } from 'n8n-workflow';
-import { NodeConnectionType } from 'n8n-workflow/dist/Interfaces';
 import * as extract from './actions/extract.operation';
 import * as convert from './actions/convert.operation';
 import * as jsonToYaml from './actions/jsonToYaml.operation';
@@ -24,8 +24,8 @@ export class Yaml implements INodeType {
     defaults: {
       name: 'YAML',
     },
-    inputs: [NodeConnectionType.Main],
-    outputs: [NodeConnectionType.Main],
+    inputs: [NodeConnectionTypes.Main],
+    outputs: [NodeConnectionTypes.Main],
     properties: [
       {
         displayName: 'Operation',

@@ -1,4 +1,4 @@
-import { NodeApiError, NodeConnectionType, NodeOperationError } from 'n8n-workflow';
+import { NodeApiError, NodeConnectionTypes, NodeOperationError } from 'n8n-workflow';
 import { N8nLlmTracing } from './N8nLlmTracing';
 
 // avoid downloading tiktoken encodings: one token per whitespace separated word
@@ -28,7 +28,7 @@ describe('N8nLlmTracing', () => {
   it('has sane defaults', () => {
     expect(tracing.name).toBe('N8nLlmTracing');
     expect(tracing.awaitHandlers).toBe(true);
-    expect(tracing.connectionType).toBe(NodeConnectionType.AiLanguageModel);
+    expect(tracing.connectionType).toBe(NodeConnectionTypes.AiLanguageModel);
   });
 
   describe('default token usage parser', () => {
@@ -60,7 +60,7 @@ describe('N8nLlmTracing', () => {
   describe('handleLLMStart / handleLLMEnd', () => {
     it('registers the input and stores the run', async () => {
       await tracing.handleLLMStart({ type: 'constructor', kwargs: { model: 'm' } } as any, ['hello world'], 'run1');
-      expect(ctx.addInputData).toHaveBeenCalledWith(NodeConnectionType.AiLanguageModel, [
+      expect(ctx.addInputData).toHaveBeenCalledWith(NodeConnectionTypes.AiLanguageModel, [
         [{ json: { messages: ['hello world'], estimatedTokens: 2, options: { model: 'm' } } }],
       ]);
       expect(tracing.runsMap['run1']).toEqual({ index: 7, options: { model: 'm' }, messages: ['hello world'] });
@@ -83,7 +83,7 @@ describe('N8nLlmTracing', () => {
         'r',
       );
       const [type, index, data] = ctx.addOutputData.mock.calls[0];
-      expect(type).toBe(NodeConnectionType.AiLanguageModel);
+      expect(type).toBe(NodeConnectionTypes.AiLanguageModel);
       expect(index).toBe(7);
       expect(data[0][0].json.response.generations).toEqual([[{ text: 'out', generationInfo: { x: 1 } }]]);
       expect(data[0][0].json.tokenUsage).toEqual({ completionTokens: 5, promptTokens: 2, totalTokens: 7 });
@@ -126,7 +126,7 @@ describe('N8nLlmTracing', () => {
       t.runsMap['r'] = { index: 4, options: {}, messages: '' };
       await t.handleLLMError(err, 'r');
       expect(err.description).toBe('mapped');
-      expect(ctx.addOutputData).toHaveBeenCalledWith(NodeConnectionType.AiLanguageModel, 4, err);
+      expect(ctx.addOutputData).toHaveBeenCalledWith(NodeConnectionTypes.AiLanguageModel, 4, err);
     });
 
     it('stringifies empty error objects for logging', async () => {

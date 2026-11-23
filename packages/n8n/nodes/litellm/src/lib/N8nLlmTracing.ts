@@ -8,6 +8,7 @@ import type {
 } from '@langchain/core/load/serializable';
 import type { LLMResult } from '@langchain/core/outputs';
 import type { IDataObject, ISupplyDataFunctions, JsonObject } from 'n8n-workflow';
+import { NodeConnectionTypes } from 'n8n-workflow';
 import { NodeConnectionType, NodeError, NodeOperationError } from 'n8n-workflow';
 import { pick } from 'lodash';
 import type { BaseMessage } from '@langchain/core/messages';
@@ -34,7 +35,7 @@ export class N8nLlmTracing extends BaseCallbackHandler {
   // This is crucial for the handleLLMError handler to work correctly (it should be called before the error is propagated to the root node)
   override awaitHandlers = true;
 
-  connectionType = NodeConnectionType.AiLanguageModel;
+  connectionType = NodeConnectionTypes.AiLanguageModel;
 
   promptTokensEstimate = 0;
 

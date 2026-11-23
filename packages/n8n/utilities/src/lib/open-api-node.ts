@@ -18,7 +18,7 @@ import {
   INodePropertyOptions,
   INodeType,
   INodeTypeDescription,
-  NodeConnectionType,
+  NodeConnectionTypes,
   NodeOperationError,
   NodePropertyTypes,
 } from 'n8n-workflow';
@@ -26,7 +26,7 @@ import {
   IExecuteFunctions,
   IHttpRequestMethods,
   IRequestOptions,
-} from 'n8n-workflow/dist/Interfaces';
+} from 'n8n-workflow';
 import { OpenAPIV3 } from 'openapi-types';
 import {
   dirname,
@@ -116,8 +116,8 @@ export abstract class OpenApiNode implements INodeType {
       defaults: {
         name
       },
-      inputs: [ NodeConnectionType.Main ],
-      outputs: [ NodeConnectionType.Main ],
+      inputs: [ NodeConnectionTypes.Main ],
+      outputs: [ NodeConnectionTypes.Main ],
       subtitle: '={{ "[" + $parameter["method"].toUpperCase() + "] " + $parameter["operation"] + ": " + $parameter["tag"] }}',
       // use || instead of ?? to ensure an empty string is also replaced
       displayName: this.openapi.info?.title || capitalize(this.constructor.name),

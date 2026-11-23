@@ -34,7 +34,7 @@ export function createTriggerTs(tree: Tree, projectName: string, triggerName: st
             })(w),
             activationHint: w => w.quote('Once you’ve finished building your workflow, <a data-key=\'activate\'>activate</a> it to have it also listen continuously (you just won’t see those executions here).')
           })(w),
-          outputs: '[ NodeConnectionType.Main ]',
+          outputs: '[ NodeConnectionTypes.Main ]',
           displayName: w => w.quote(classify(triggerName) + 'Trigger'),
           group: `['trigger']`,
           icon: w => w.quote(`file:${classify(triggerName)}.svg`),

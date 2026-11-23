@@ -11,10 +11,10 @@ import {
   INodeExecutionData,
   INodeType,
   INodeTypeDescription,
-  NodeConnectionType,
+  NodeConnectionTypes,
   NodeOperationError,
 } from 'n8n-workflow';
-import { INodeProperties } from 'n8n-workflow/dist/Interfaces';
+import { INodeProperties } from 'n8n-workflow';
 import type { ZodSchema } from 'zod';
 
 export class Firecrawl implements INodeType {
@@ -23,8 +23,8 @@ export class Firecrawl implements INodeType {
     description: 'Interactive with the firecrawl api',
     defaults: { name: 'Firecrawl' },
     name: 'rxapFirecrawl',
-    inputs: [ NodeConnectionType.Main ],
-    outputs: [ NodeConnectionType.Main ],
+    inputs: [ NodeConnectionTypes.Main ],
+    outputs: [ NodeConnectionTypes.Main ],
     displayName: 'Firecrawl',
     group: [ 'transform' ],
     icon: 'file:Firecrawl.svg',

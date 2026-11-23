@@ -9,7 +9,6 @@ import {
   readFileSync,
 } from 'fs';
 import {
-  IDeferredPromise,
   IExecuteResponsePromiseData,
   INodeProperties,
   INodeType,
@@ -17,7 +16,7 @@ import {
   IRun,
   ITriggerFunctions,
   ITriggerResponse,
-  NodeConnectionType,
+  NodeConnectionTypes,
   NodeOperationError,
 } from 'n8n-workflow';
 import { OpenAPIV3 } from 'openapi-types';
@@ -31,6 +30,13 @@ import {
   type ExchangeType,
   TriggerOptions,
 } from './types';
+
+// n8n-workflow >= 2 no longer re-exports IDeferredPromise (it lives in the private @n8n/utils package)
+interface IDeferredPromise<T> {
+  promise: Promise<T>;
+  resolve: (result: T | PromiseLike<T>) => void;
+  reject: (error: Error) => void;
+}
 
 type Schema = OpenAPIV3.SchemaObject & { id?: string };
 
@@ -68,7 +74,7 @@ export class PatternTriggerNode implements INodeType {
         activationHint:
           "Once you’ve finished building your workflow, <a data-key='activate'>activate</a> it to have it also listen continuously (you just won’t see those executions here).",
       },
-      outputs: [ NodeConnectionType.Main ],
+      outputs: [ NodeConnectionTypes.Main ],
       subtitle: `={{ $parameter["operation"].replace(/^(command|event|query)./, '').replace(/(Command|Event|Query)$/, '').replace(/([a-z\\d])([A-Z])/g, '$1 $2') }}`,
       // use || instead of ?? to ensure, an empty string is also replaced
       displayName: (this.patterns.title || capitalize(this.constructor.name)) + ' Trigger',

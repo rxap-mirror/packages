@@ -8,6 +8,7 @@ import type {
   INodeTypeDescription,
   ISupplyDataFunctions,
 } from 'n8n-workflow';
+import { NodeConnectionTypes } from 'n8n-workflow';
 import {
   NodeConnectionType,
   NodeOperationError,
@@ -61,10 +62,10 @@ export class ToolFirecrawl implements INodeType {
       },
     },
     inputs: [],
-    outputs: [NodeConnectionType.AiTool],
+    outputs: [NodeConnectionTypes.AiTool],
     outputNames: ['Tool'],
     properties: [
-      getConnectionHintNoticeField([NodeConnectionType.AiAgent]),
+      getConnectionHintNoticeField([NodeConnectionTypes.AiAgent]),
       {
         displayName: 'Description',
         name: 'toolDescription',
@@ -401,7 +402,7 @@ export class ToolFirecrawl implements INodeType {
     // Create the tool function
     const toolFunction = async (query: string | IDataObject): Promise<string> => {
 
-      const { index } = this.addInputData(NodeConnectionType.AiTool, [[{ json: { query } }]]);
+      const { index } = this.addInputData(NodeConnectionTypes.AiTool, [[{ json: { query } }]]);
 
 
       const formats = this.getNodeParameter('formats', index, ['markdown']) as any;

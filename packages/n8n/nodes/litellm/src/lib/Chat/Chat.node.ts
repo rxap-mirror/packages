@@ -1,12 +1,12 @@
 import {
-  NodeConnectionType,
+  ISupplyDataFunctions,
+  NodeApiError,
+  NodeConnectionTypes,
   type IExecuteFunctions,
   type INodeType,
   type INodeTypeDescription,
-  type SupplyData,
   type JsonObject,
-  NodeApiError,
-  ISupplyDataFunctions,
+  type SupplyData,
 } from 'n8n-workflow';
 import {
   ChatOpenAI,
@@ -24,7 +24,7 @@ export class Chat implements INodeType {
     defaults: { name: 'LiteLLM Chat' },
     name: 'liteLLMChat',
     inputs: [],
-    outputs: [ NodeConnectionType.AiLanguageModel ],
+    outputs: [ NodeConnectionTypes.AiLanguageModel ],
     outputNames: ['Model'],
     displayName: 'LiteLLM Chat Model',
     group: [ 'transform' ],
@@ -47,7 +47,7 @@ export class Chat implements INodeType {
       },
     ],
     properties: [
-      getConnectionHintNoticeField([ NodeConnectionType.AiChain, NodeConnectionType.AiAgent ]),
+      getConnectionHintNoticeField([ NodeConnectionTypes.AiChain, NodeConnectionTypes.AiAgent ]),
       {
         displayName:
           'If using JSON response format, you must include word "json" in the prompt in your chain or agent. Also, make sure to select latest models released post November 2023.',

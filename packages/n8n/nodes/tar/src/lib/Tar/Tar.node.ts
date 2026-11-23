@@ -5,14 +5,14 @@ import {
 import {
   INodeType,
   INodeTypeDescription,
-  NodeConnectionType,
+  NodeConnectionTypes,
   NodeOperationError,
 } from 'n8n-workflow';
 import {
   IBinaryKeyData,
   IExecuteFunctions,
   INodeExecutionData,
-} from 'n8n-workflow/dist/Interfaces';
+} from 'n8n-workflow';
 import { join } from 'path';
 import { Readable } from 'stream';
 import { extract } from 'tar';
@@ -24,8 +24,8 @@ export class Tar implements INodeType {
     description: 'Interact with tar files',
     defaults: { name: 'Tar' },
     name: 'Tar',
-    inputs: [ NodeConnectionType.Main ],
-    outputs: [ NodeConnectionType.Main ],
+    inputs: [ NodeConnectionTypes.Main ],
+    outputs: [ NodeConnectionTypes.Main ],
     displayName: 'Tar',
     group: [ 'transform' ],
     icon: 'file:Tar.svg',

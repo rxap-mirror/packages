@@ -15,7 +15,7 @@ import {
   INodeProperties,
   INodeType,
   INodeTypeDescription,
-  NodeConnectionType,
+  NodeConnectionTypes,
   NodeOperationError,
 } from 'n8n-workflow';
 import { OpenAPIV3 } from 'openapi-types';
@@ -65,8 +65,8 @@ export abstract class PatternNode implements INodeType {
         name: capitalize(this.constructor.name),
       },
       name,
-      inputs: [ NodeConnectionType.Main ],
-      outputs: [ NodeConnectionType.Main ],
+      inputs: [ NodeConnectionTypes.Main ],
+      outputs: [ NodeConnectionTypes.Main ],
       subtitle: `={{ $parameter["operation"].replace(/^(command|event|query)./, '').replace(/(Command|Event|Query)$/, '').replace(/([a-z\\d])([A-Z])/g, '$1 $2') }}`,
       // use || instead of ?? to ensure, an empty string is also replaced
       displayName: this.patterns.title || capitalize(this.constructor.name),
