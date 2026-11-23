@@ -60,7 +60,8 @@ const modules: Record<string, Record<string, unknown>> = {
 };
 
 describe('generated remote methods', () => {
-  const dir = join(__dirname, 'remote-methods');
+  // the spec is bundled by the unit-test builder: __dirname is not the spec directory, resolve from the workspace root (cwd of the nx executor)
+  const dir = join(process.cwd(), 'packages/angular/user/src/lib/openapi/remote-methods');
   const files = readdirSync(dir).filter((f) => f.endsWith('.remote-method.ts'));
 
   it('has remote methods', () => {
