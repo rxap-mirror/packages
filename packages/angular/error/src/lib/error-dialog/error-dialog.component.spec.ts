@@ -24,8 +24,8 @@ describe('ErrorDialogComponent', () => {
   const data = signal<any[]>([{ n: 0 }]);
 
   beforeEach(() => {
-    HTMLDialogElement.prototype.showModal = jest.fn();
-    HTMLDialogElement.prototype.close = jest.fn();
+    HTMLDialogElement.prototype.showModal = vi.fn();
+    HTMLDialogElement.prototype.close = vi.fn();
     data.set([{ n: 0 }]);
     TestBed.configureTestingModule({
       providers: [
@@ -70,7 +70,7 @@ describe('ErrorDialogComponent', () => {
   });
 
   it('closes the dialog and emits', () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     fixture.componentInstance.closeDialog.subscribe(spy);
     fixture.nativeElement.querySelector('dialog > button').click();
     expect(HTMLDialogElement.prototype.close).toHaveBeenCalled();

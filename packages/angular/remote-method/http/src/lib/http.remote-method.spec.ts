@@ -91,10 +91,10 @@ describe('HttpRemoteMethod events', () => {
     const ctrl = TestBed.inject(HttpTestingController);
     const m = TestBed.inject(GetItem);
     const spies = {
-      sent: jest.spyOn(m, 'onSentEvent'),
-      header: jest.spyOn(m, 'onHeaderResponse'),
-      progress: jest.spyOn(m, 'onProgressEvent'),
-      response: jest.spyOn(m, 'onResponse'),
+      sent: vi.spyOn(m, 'onSentEvent'),
+      header: vi.spyOn(m, 'onHeaderResponse'),
+      progress: vi.spyOn(m, 'onProgressEvent'),
+      response: vi.spyOn(m, 'onResponse'),
     };
     const p = m.call({ pathParams: { id: '1' }, reportProgress: true } as any);
     const req = ctrl.expectOne('/api/item/1');
@@ -191,8 +191,8 @@ describe('HttpRemoteMethodLoader', () => {
 
   it('rejects other remote methods', () => {
     TestBed.configureTestingModule({ providers: [provideHttpClient(withXhr()), provideHttpClientTesting()] });
-    const other = { call: jest.fn() };
-    jest.spyOn(TestBed.inject(RemoteMethodLoader), 'load').mockReturnValue(other as any);
+    const other = { call: vi.fn() };
+    vi.spyOn(TestBed.inject(RemoteMethodLoader), 'load').mockReturnValue(other as any);
     expect(() => TestBed.inject(HttpRemoteMethodLoader).request$('x' as any, {})).toThrow(/not a HttpRemoteMethod/);
   });
 });

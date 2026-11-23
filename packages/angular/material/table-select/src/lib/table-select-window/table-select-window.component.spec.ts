@@ -36,7 +36,7 @@ describe('TableSelectWindowComponent', () => {
         },
         {
           provide: TABLE_DATA_SOURCE,
-          useValue: new DynamicTableDataSource(ToMethod(jest.fn()))
+          useValue: new DynamicTableDataSource(ToMethod(vi.fn()))
         },
         {
           provide: RXAP_TABLE_FILTER_FORM_DEFINITION,

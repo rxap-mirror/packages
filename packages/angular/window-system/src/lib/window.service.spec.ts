@@ -152,7 +152,7 @@ describe('WindowService', () => {
   it('closes the window on backdrop click', async () => {
     setup();
     const ref = service.open({ id: 'bd', component: ContentComponent });
-    const completed = jest.fn();
+    const completed = vi.fn();
     ref.subscribe({ complete: completed });
     (ref as any).overlayRef.backdropClick().subscribe;
     (ref as any).overlayRef._backdropClick.next(new MouseEvent('click'));
@@ -188,7 +188,7 @@ describe('WindowService', () => {
 
   it('attaches a loading$ member of the content component', async () => {
     setup();
-    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
     service.open({ id: 'l', component: LoadingContentComponent });
     await flush();
     expect(warn).toHaveBeenCalledWith('The component has a loading indicator member');

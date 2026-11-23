@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
@@ -38,16 +38,23 @@ class TestForm implements FormType<IForm> {
 }
 
 describe('OptionsFromRemoteMethodDirective', () => {
-  const call$ = jest.fn();
+  const call$ = vi.fn();
 
-  function create(control: keyof IForm, attrs: string) {
+  interface Config {
+    parameters?: any;
+    withoutParameters?: boolean;
+    resetOnChange?: any;
+  }
+
+  function create(controlName: keyof IForm, cfg: Config = {}) {
     @Component({
       imports: [ReactiveFormsModule, OptionsFromRemoteMethodDirective],
-      template: '<select [formControl]="form.' + control + '"><option *rxapOptionsFromRemoteMethod="let o' + attrs + '" [value]="o.value">{{ o.display }}</option></select>',
+      template: `<select [formControl]="form[control]"><option *rxapOptionsFromRemoteMethod="let o; parameters: cfg.parameters; withoutParameters: cfg.withoutParameters ?? false; resetOnChange: cfg.resetOnChange" [value]="o.value">{{ o.display }}</option></select>`,
     })
     class Host {
-      form = new RxapFormBuilder<IForm>(TestForm).build({ withMethod: 'a' });
-      params = signal<any>(undefined);
+      form: any = new RxapFormBuilder<IForm>(TestForm).build({ withMethod: 'a' });
+      control = controlName;
+      cfg = cfg;
     }
     TestBed.configureTestingModule({
       providers: [{ provide: RemoteMethodLoader, useValue: { call$ } }],
@@ -67,7 +74,7 @@ describe('OptionsFromRemoteMethodDirective', () => {
   });
 
   it('renders the options loaded with the bound parameters', async () => {
-    const f = create('withMethod', '; parameters: { id: 1 }');
+    const f = create('withMethod', { parameters: { id: 1 } });
     f.detectChanges();
     await f.whenStable();
     f.detectChanges();
@@ -76,7 +83,7 @@ describe('OptionsFromRemoteMethodDirective', () => {
   });
 
   it('loads without parameters when requested', async () => {
-    const f = create('withMethod', '; withoutParameters: true');
+    const f = create('withMethod', { withoutParameters: true });
     f.detectChanges();
     await f.whenStable();
     expect(call$).toHaveBeenCalledWith(FakeRemoteMethod, undefined, undefined, expect.anything());
@@ -84,21 +91,21 @@ describe('OptionsFromRemoteMethodDirective', () => {
   });
 
   it('does nothing without parameters', async () => {
-    const f = create('withMethod', '');
+    const f = create('withMethod');
     f.detectChanges();
     await f.whenStable();
     expect(call$).not.toHaveBeenCalled();
   });
 
   it('resets the control with the resetOnChange value', async () => {
-    const f = create('withMethod', "; parameters: { id: 1 }; resetOnChange: 'x'");
+    const f = create('withMethod', { parameters: { id: 1 }, resetOnChange: 'x' });
     f.detectChanges();
     await f.whenStable();
     expect(f.componentInstance.form.withMethod.value).toBe('x');
   });
 
   it('throws if the options method is not registered', () => {
-    const f = create('other', '; withoutParameters: true');
+    const f = create('other', { withoutParameters: true });
     expect(() => {
       f.detectChanges();
       TestBed.tick();
@@ -106,7 +113,7 @@ describe('OptionsFromRemoteMethodDirective', () => {
   });
 
   it('throws if the control has no remote method definitions', () => {
-    const f = create('none', '; withoutParameters: true');
+    const f = create('none', { withoutParameters: true });
     expect(() => {
       f.detectChanges();
       TestBed.tick();

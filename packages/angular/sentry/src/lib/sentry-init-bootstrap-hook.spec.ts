@@ -1,12 +1,13 @@
+import type { Mock } from 'vitest';
 import { sentryInitBootstrapHook } from './sentry-init-bootstrap-hook';
 import * as Sentry from '@sentry/angular';
 
-jest.mock('@sentry/angular', () => {
-  const integration = (name: string) => jest.fn((opts?: unknown) => ({ name, opts }));
+vi.mock('@sentry/angular', () => {
+  const integration = (name: string) => vi.fn((opts?: unknown) => ({ name, opts }));
   return {
-    init: jest.fn(),
-    makeBrowserOfflineTransport: jest.fn(() => 'offline'),
-    makeFetchTransport: jest.fn(),
+    init: vi.fn(),
+    makeBrowserOfflineTransport: vi.fn(() => 'offline'),
+    makeFetchTransport: vi.fn(),
     browserTracingIntegration: integration('tracing'),
     browserProfilingIntegration: integration('profiling'),
     browserSessionIntegration: integration('session'),
@@ -21,21 +22,21 @@ jest.mock('@sentry/angular', () => {
 
 function makeConfig(values: Record<string, unknown> = {}) {
   return {
-    get: jest.fn((key: string, def?: unknown) => (key in values ? values[key] : def)),
+    get: vi.fn((key: string, def?: unknown) => (key in values ? values[key] : def)),
   } as any;
 }
 
 describe('sentryInitBootstrapHook', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.spyOn(console, 'warn').mockImplementation();
+    vi.clearAllMocks();
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('warns without dsn and initializes with defaults', () => {
     sentryInitBootstrapHook({ tier: 'local' } as any)(makeConfig());
     expect(console.warn).toHaveBeenCalledWith('No sentry dsn provided.');
-    const opts = (Sentry.init as jest.Mock).mock.calls[0][0];
+    const opts = (Sentry.init as Mock).mock.calls[0][0];
     expect(opts.enabled).toBe(false);
     expect(opts.debug).toBe(false);
     expect(opts.integrations).toHaveLength(7);
@@ -46,7 +47,7 @@ describe('sentryInitBootstrapHook', () => {
   it('uses environment values and config overrides', () => {
     const env = { tier: 'production', tag: 'v1.2.3', sentry: { dsn: 'env-dsn', enabled: true, debug: true } } as any;
     sentryInitBootstrapHook(env)(makeConfig({ 'sentry.tracesSampleRate': 0.5 }));
-    const opts = (Sentry.init as jest.Mock).mock.calls[0][0];
+    const opts = (Sentry.init as Mock).mock.calls[0][0];
     expect(console.warn).not.toHaveBeenCalled();
     expect(opts.dsn).toBe('env-dsn');
     expect(opts.enabled).toBe(true);
@@ -64,17 +65,17 @@ describe('sentryInitBootstrapHook', () => {
         'sentry.integrations.feedback': { colorScheme: 'dark' },
       }),
     );
-    const opts = (Sentry.init as jest.Mock).mock.calls[0][0];
+    const opts = (Sentry.init as Mock).mock.calls[0][0];
     expect(opts.integrations).toHaveLength(9);
     expect(Sentry.replayIntegration).toHaveBeenCalledWith({ maskAllText: true });
     expect(Sentry.feedbackIntegration).toHaveBeenCalledWith({ colorScheme: 'dark' });
   });
 
   it('applies the custom options callback', () => {
-    const custom = jest.fn((o: any) => ({ ...o, dsn: 'custom' }));
+    const custom = vi.fn((o: any) => ({ ...o, dsn: 'custom' }));
     const config = makeConfig();
     sentryInitBootstrapHook({ tier: 'local' } as any, custom)(config);
     expect(custom).toHaveBeenCalledWith(expect.any(Object), config);
-    expect((Sentry.init as jest.Mock).mock.calls[0][0].dsn).toBe('custom');
+    expect((Sentry.init as Mock).mock.calls[0][0].dsn).toBe('custom');
   });
 });

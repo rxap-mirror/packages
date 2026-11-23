@@ -15,7 +15,7 @@ class HostComponent {}
 
 describe('CloseWindowAfterSubmitDirective', () => {
   const afterSubmit = new Subject<void>();
-  const windowRef = { complete: jest.fn() };
+  const windowRef = { complete: vi.fn() };
 
   beforeEach(() => {
     windowRef.complete.mockClear();

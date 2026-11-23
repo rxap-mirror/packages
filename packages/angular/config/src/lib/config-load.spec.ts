@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import {
   HttpTestingController,
@@ -25,11 +26,11 @@ function failing(status: number, statusText = ''): Response {
 }
 
 describe('ConfigService static loading', () => {
-  let fetchMock: jest.Mock;
-  const handler = jest.fn();
+  let fetchMock: Mock;
+  const handler = vi.fn();
 
   beforeEach(() => {
-    fetchMock = jest.fn();
+    fetchMock = vi.fn();
     (globalThis as any).fetch = fetchMock;
     ConfigService.Config = null;
     ConfigService.Defaults = {};
@@ -40,13 +41,13 @@ describe('ConfigService static loading', () => {
     handler.mockReset();
     localStorage.clear();
     window.history.replaceState({}, '', '/');
-    jest.spyOn(console, 'log').mockImplementation();
-    jest.spyOn(console, 'warn').mockImplementation();
-    jest.spyOn(console, 'error').mockImplementation();
-    jest.spyOn(console, 'debug').mockImplementation();
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
   });
 
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('merges defaults, static, urls and overwrites in order', async () => {
     ConfigService.Defaults = { a: 1, b: 1, c: 1 };
@@ -59,7 +60,7 @@ describe('ConfigService static loading', () => {
   it('supports url arrays and url functions', async () => {
     fetchMock.mockImplementation(async (url: string) => ok({ [url.replace('/', '')]: true }));
     const env = { production: false } as Environment;
-    await ConfigService.Load({ url: ['/x', (e: Environment) => ['/y', '/z']] }, env);
+    await ConfigService.Load({ url: ['/x', (e: Environment) => ['/y', '/z']] as any }, env);
     expect(ConfigService.Config).toEqual({ x: true, y: true, z: true });
   });
 
@@ -85,7 +86,7 @@ describe('ConfigService static loading', () => {
 
   it('validates with a schema', async () => {
     fetchMock.mockResolvedValue(ok({ a: 1 }));
-    const schema = { validateAsync: jest.fn(async (c: any) => ({ ...c, validated: true })) };
+    const schema = { validateAsync: vi.fn(async (c: any) => ({ ...c, validated: true })) };
     await ConfigService.Load({ url: '/c.json', schema });
     expect(ConfigService.Config).toEqual({ a: 1, validated: true });
   });
@@ -118,7 +119,7 @@ describe('ConfigService static loading', () => {
     });
 
     it('loads from a cid', async () => {
-      const fetchCidContent = jest.fn().mockResolvedValue({ text: async () => '{"cid":true}' });
+      const fetchCidContent = vi.fn().mockResolvedValue({ text: async () => '{"cid":true}' });
       await ConfigService.Load({
         fromUrls: false,
         fromLocalStorage: false,
@@ -132,7 +133,7 @@ describe('ConfigService static loading', () => {
     it('skips cid loading without gateways or with non object content', async () => {
       await ConfigService.Load({ fromUrls: false, fromLocalStorage: false, fromCid: 'bafy' });
       expect(ConfigService.Config).toEqual({});
-      const fetchCidContent = jest.fn().mockResolvedValue({ text: async () => '"str"' });
+      const fetchCidContent = vi.fn().mockResolvedValue({ text: async () => '"str"' });
       await ConfigService.Load({
         fromUrls: false, fromLocalStorage: false, fromCid: 'bafy',
         ipfsGatewayServers: [c => c], fetchCidContent,
@@ -147,7 +148,7 @@ describe('ConfigService static loading', () => {
     });
 
     it('swallows cid fetch errors', async () => {
-      const fetchCidContent = jest.fn().mockRejectedValue(new Error('x'));
+      const fetchCidContent = vi.fn().mockRejectedValue(new Error('x'));
       await ConfigService.Load({
         fromUrls: false, fromLocalStorage: false, fromCid: 'bafy',
         ipfsGatewayServers: [c => c], fetchCidContent,
@@ -163,7 +164,7 @@ describe('ConfigService static loading', () => {
         }
         return ok({});
       });
-      const fetchCidContent = jest.fn().mockResolvedValue({ text: async () => '{"dns":true}' });
+      const fetchCidContent = vi.fn().mockResolvedValue({ text: async () => '{"dns":true}' });
       await ConfigService.Load({
         fromUrls: false, fromLocalStorage: false,
         fromDns: 'example.com', dnsServers: ['https://dns'],
@@ -235,7 +236,7 @@ describe('ConfigService static loading', () => {
       [500, "Config request results in non ok response for '/c.json': (500) Server"],
     ])('maps http status %i', async (status, message) => {
       fetchMock.mockResolvedValue(failing(status, 'Server'));
-      const onRequestError = jest.fn();
+      const onRequestError = vi.fn();
       ConfigService.onRequestErrorFnc.push(() => { throw new Error('hook'); }, onRequestError);
       await expect(load()).rejects.toThrow(message);
       expect(handler).toHaveBeenCalledWith(expect.objectContaining<Partial<ConfigLoadError>>({ kind: 'http', status, required: true }));
@@ -250,7 +251,7 @@ describe('ConfigService static loading', () => {
 
     it('reports parse errors and notifies onError hooks', async () => {
       fetchMock.mockResolvedValue({ ok: true, type: 'basic', status: 200, json: async () => { throw new Error('bad'); } });
-      const onError = jest.fn();
+      const onError = vi.fn();
       ConfigService.onErrorFnc.push(() => { throw new Error('hook'); }, onError);
       await expect(load()).rejects.toThrow("Could not parse config from '/c.json' to a json object: bad");
       expect(handler.mock.calls[0][0].kind).toBe('parse');
@@ -259,7 +260,7 @@ describe('ConfigService static loading', () => {
 
     it('reports schema errors', async () => {
       fetchMock.mockResolvedValue(ok({}));
-      const schema = { validateAsync: jest.fn().mockRejectedValue(new Error('invalid')) };
+      const schema = { validateAsync: vi.fn().mockRejectedValue(new Error('invalid')) };
       await expect(load({ schema })).rejects.toThrow("Config from '/c.json' is not valid: invalid");
       expect(handler.mock.calls[0][0].kind).toBe('schema');
     });
@@ -302,7 +303,7 @@ describe('ConfigService static loading', () => {
     it('does not notify hooks for optional urls but uses the default handler', async () => {
       ConfigService.Config = {};
       fetchMock.mockResolvedValue(failing(500, 'x'));
-      const onError = jest.fn();
+      const onError = vi.fn();
       ConfigService.onErrorFnc.push(onError);
       await ConfigService.SideLoad('/s.json', 'a', false, undefined, {});
       expect(onError).not.toHaveBeenCalled();

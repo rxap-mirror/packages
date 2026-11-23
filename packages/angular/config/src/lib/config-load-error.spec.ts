@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import {
   ConfigLoadError,
   ConfigLoadErrorKind,
@@ -13,7 +14,7 @@ function mockResponse(init: Partial<Omit<Response, 'body'>> & { body?: any, json
     status: init.status ?? 200,
     statusText: init.statusText ?? 'OK',
     type: init.type ?? 'basic',
-    json: jest.fn(async () => {
+    json: vi.fn(async () => {
       if (init.jsonError) {
         throw init.jsonError;
       }
@@ -35,7 +36,7 @@ interface KindCase {
 
 describe('ConfigService config load error handling', () => {
 
-  let fetchMock: jest.Mock;
+  let fetchMock: Mock;
   let originalFetch: typeof fetch;
 
   const redirectResponse = mockResponse({ ok: false, status: 0, type: 'opaqueredirect' });
@@ -82,32 +83,32 @@ describe('ConfigService config load error handling', () => {
   ];
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     originalFetch = global.fetch;
-    fetchMock = jest.fn();
+    fetchMock = vi.fn();
     global.fetch = fetchMock;
     ConfigService.Config = null;
     ConfigService.RequestOptions = {};
     ConfigService.onErrorFnc = [];
     ConfigService.onRequestErrorFnc = [];
     document.body.innerHTML = '';
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-    jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
   });
 
   afterEach(() => {
     global.fetch = originalFetch;
-    jest.clearAllTimers();
-    jest.useRealTimers();
-    jest.restoreAllMocks();
+    vi.clearAllTimers();
+    vi.useRealTimers();
+    vi.restoreAllMocks();
   });
 
   describe.each(cases)('kind $kind', (testCase) => {
 
     it('calls the error handler instead of the default handler for a required url', async () => {
       fetchMock.mockImplementation(testCase.fetch);
-      const errorHandler = jest.fn();
-      const hook = jest.fn();
+      const errorHandler = vi.fn();
+      const hook = vi.fn();
       if (testCase.hook === 'onError') {
         ConfigService.onErrorFnc.push(hook);
       } else {
@@ -135,13 +136,13 @@ describe('ConfigService config load error handling', () => {
       }
       expect(hook).toHaveBeenCalledTimes(1);
       expect(document.getElementById('rxap-config-error')).toBeNull();
-      expect(jest.getTimerCount()).toBe(0);
+      expect(vi.getTimerCount()).toBe(0);
     });
 
     it('calls the error handler and resolves with null for an optional url', async () => {
       ConfigService.Config = {};
       fetchMock.mockImplementation(testCase.fetch);
-      const errorHandler = jest.fn();
+      const errorHandler = vi.fn();
 
       await ConfigService.SideLoad(URL, 'side', false, testCase.schema, { errorHandler });
 
@@ -149,7 +150,7 @@ describe('ConfigService config load error handling', () => {
       expect(errorHandler.mock.calls[0][0]).toMatchObject({ kind: testCase.kind, url: URL, required: false });
       expect(ConfigService.Config.side).toBeNull();
       expect(document.getElementById('rxap-config-error')).toBeNull();
-      expect(jest.getTimerCount()).toBe(0);
+      expect(vi.getTimerCount()).toBe(0);
     });
 
   });
@@ -162,7 +163,7 @@ describe('ConfigService config load error handling', () => {
   });
 
   it('uses the error handler and requestInit from Load for SideLoad', async () => {
-    const errorHandler = jest.fn();
+    const errorHandler = vi.fn();
     fetchMock.mockResolvedValueOnce(mockResponse({ body: {} }));
     await ConfigService.Load({ url: URL, errorHandler, requestInit: { redirect: 'manual' } });
 
@@ -171,12 +172,12 @@ describe('ConfigService config load error handling', () => {
 
     expect(fetchMock).toHaveBeenLastCalledWith('https://example.com/side.json', { redirect: 'manual' });
     expect(errorHandler).toHaveBeenCalledWith(expect.objectContaining({ kind: 'redirect', required: true }));
-    expect(jest.getTimerCount()).toBe(0);
+    expect(vi.getTimerCount()).toBe(0);
   });
 
   it('still throws for a required url if the error handler throws', async () => {
     fetchMock.mockResolvedValue(httpResponse);
-    const errorHandler = jest.fn(() => {
+    const errorHandler = vi.fn(() => {
       throw new Error('handler failed');
     });
     await expect(ConfigService.Load({ url: URL, errorHandler })).rejects.toThrow(/non ok response/);
@@ -187,7 +188,7 @@ describe('ConfigService config load error handling', () => {
 
     it('shows the error overlay and schedules a reload for a required url', async () => {
       fetchMock.mockResolvedValue(mockResponse({ ok: false, status: 404, statusText: 'Not Found' }));
-      const hook = jest.fn();
+      const hook = vi.fn();
       ConfigService.onRequestErrorFnc.push(hook);
 
       await expect(ConfigService.Load({ url: URL })).rejects.toThrow(`Config not found at '${ URL }'`);
@@ -195,7 +196,7 @@ describe('ConfigService config load error handling', () => {
       const ul = document.getElementById('rxap-config-error');
       expect(ul).not.toBeNull();
       expect((ul!.children[0] as HTMLElement).innerText).toBe(`Config not found at '${ URL }'`);
-      expect(jest.getTimerCount()).toBe(1);
+      expect(vi.getTimerCount()).toBe(1);
       expect(hook).toHaveBeenCalledTimes(1);
     });
 
@@ -208,7 +209,7 @@ describe('ConfigService config load error handling', () => {
       expect(ConfigService.Config.side).toBeNull();
       expect(console.warn).toHaveBeenCalledWith(`Could not fetch config from '${ URL }': Failed to fetch`);
       expect(document.getElementById('rxap-config-error')).toBeNull();
-      expect(jest.getTimerCount()).toBe(0);
+      expect(vi.getTimerCount()).toBe(0);
     });
 
   });

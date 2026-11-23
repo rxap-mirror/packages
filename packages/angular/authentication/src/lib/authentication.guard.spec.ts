@@ -12,7 +12,7 @@ import { RxapAuthenticationService } from './authentication.service';
 
 describe('Authentication', () => {
 
-  xdescribe('Authentication Guard', () => {
+  describe.skip('Authentication Guard', () => {
 
     let guard: RxapAuthenticationGuard;
     let location: Location;

@@ -31,7 +31,7 @@ const formProviders: Provider[] = [
   ZonelessForm,
   {
     provide: RXAP_FORM_DEFINITION_BUILDER,
-    useFactory: (injector: Injector) => new RxapFormBuilder<any>(ZonelessForm, injector),
+    useFactory: (injector: Injector) => new RxapFormBuilder<any>(ZonelessForm as any, injector),
     deps: [ INJECTOR ],
   },
   {
@@ -70,8 +70,8 @@ const formProviders: Provider[] = [
 })
 class OnPushHost {
   dir = viewChild.required(FormDirective);
-  submit: any = { call: jest.fn(async (v: any) => v) };
-  load: any = { call: jest.fn(async () => ({ username: 'loaded' })) };
+  submit: any = { call: vi.fn(async (v: any) => v) };
+  load: any = { call: vi.fn(async () => ({ username: 'loaded' })) };
 }
 
 describe('form directives (zoneless, OnPush host, no manual detectChanges)', () => {
@@ -84,14 +84,14 @@ describe('form directives (zoneless, OnPush host, no manual detectChanges)', () 
     f = TestBed.createComponent(OnPushHost);
     host = f.componentInstance;
     configure?.(host);
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-    jest.spyOn(console, 'error').mockImplementation(() => undefined);
-    jest.spyOn(console, 'debug').mockImplementation(() => undefined);
-    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
     await f.whenStable();
   };
 
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('renders the loaded state after an async load', async () => {
     await create();
@@ -100,7 +100,7 @@ describe('form directives (zoneless, OnPush host, no manual detectChanges)', () 
   });
 
   it('renders the loading error after a failed async load', async () => {
-    await create((h) => (h.load = { call: jest.fn(async () => { throw new Error('nope'); }) }));
+    await create((h) => (h.load = { call: vi.fn(async () => { throw new Error('nope'); }) }));
     expect(q('.load-error')?.textContent).toBe('nope');
   });
 
@@ -114,7 +114,7 @@ describe('form directives (zoneless, OnPush host, no manual detectChanges)', () 
   });
 
   it('renders the submit failed state', async () => {
-    await create((h) => (h.submit = { call: jest.fn(async () => { throw new Error('sub'); }) }));
+    await create((h) => (h.submit = { call: vi.fn(async () => { throw new Error('sub'); }) }));
     host.dir().form.setValue({ username: 'user' });
     q('.submit')!.click();
     await f.whenStable();

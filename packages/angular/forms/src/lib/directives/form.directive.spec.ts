@@ -83,7 +83,7 @@ describe('@rxap/forms', () => {
         }).get(FormDirective);
 
       afterEach(() => {
-        jest.useRealTimers();
+        vi.useRealTimers();
       });
 
       it('should create a form definition instance', () => {
@@ -289,7 +289,7 @@ describe('@rxap/forms', () => {
           password: 'paxr',
         });
 
-        const rxapSubmitSpy = jest.fn();
+        const rxapSubmitSpy = vi.fn();
 
         outputToObservable(formDirective.rxapSubmit).subscribe(rxapSubmitSpy);
 
@@ -327,7 +327,7 @@ describe('@rxap/forms', () => {
           password: 'paxr',
         });
 
-        const rxapSubmitSpy = jest.fn();
+        const rxapSubmitSpy = vi.fn();
 
         outputToObservable(formDirective.rxapSubmit).subscribe(rxapSubmitSpy);
 
@@ -361,7 +361,7 @@ describe('@rxap/forms', () => {
           password: 'paxr',
         });
 
-        const rxapSubmitSpy = jest.fn();
+        const rxapSubmitSpy = vi.fn();
 
         outputToObservable(formDirective.rxapSubmit).subscribe(rxapSubmitSpy);
 
@@ -403,7 +403,7 @@ describe('@rxap/forms', () => {
           password: 'paxr',
         });
 
-        const rxapSubmitSpy = jest.fn();
+        const rxapSubmitSpy = vi.fn();
 
         outputToObservable(formDirective.rxapSubmit).subscribe(rxapSubmitSpy);
 
@@ -420,7 +420,7 @@ describe('@rxap/forms', () => {
       });
 
       it('should auto submit', async () => {
-        jest.useFakeTimers();
+        vi.useFakeTimers();
         interface ITestAutoSubmit {
           username: string;
           password: string;
@@ -466,7 +466,7 @@ describe('@rxap/forms', () => {
         const formDirective = createDirective();
         formDirective.ngOnInit();
 
-        const submitSpy = jest.spyOn(formDirective, 'submit' as any);
+        const submitSpy = vi.spyOn(formDirective, 'submit' as any);
 
         expect(formDirective.formDefinition).toHaveProperty('rxapMetadata');
         expect(formDirective.formDefinition.rxapMetadata).toHaveProperty(
@@ -481,7 +481,7 @@ describe('@rxap/forms', () => {
 
         expect(submitSpy).not.toHaveBeenCalled();
 
-        await jest.advanceTimersByTimeAsync(5000);
+        await vi.advanceTimersByTimeAsync(5000);
 
         expect(submitSpy).toHaveBeenCalled();
       });
@@ -514,7 +514,7 @@ describe('@rxap/forms', () => {
         });
 
         it('should only trigger the submit logic once', async () => {
-          const onSubmitSpy = jest.spyOn(formDirective, 'onSubmit');
+          const onSubmitSpy = vi.spyOn(formDirective, 'onSubmit');
 
           submitButton.nativeElement.click();
 

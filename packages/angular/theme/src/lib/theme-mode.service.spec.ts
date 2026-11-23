@@ -20,14 +20,14 @@ describe('ThemeModeService', () => {
   let mq: FakeMediaQuery;
   let restore$: Subject<{ data?: boolean }>;
   let configValues: Record<string, unknown>;
-  const pubSub = { subscribe: jest.fn(), publish: jest.fn() };
+  const pubSub = { subscribe: vi.fn(), publish: vi.fn() };
 
   function create() {
     return TestBed.inject(ThemeModeService);
   }
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     localStorage.clear();
     document.body.className = '';
     mq = new FakeMediaQuery();
@@ -48,7 +48,7 @@ describe('ThemeModeService', () => {
   });
 
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
     delete (window as any).__rxap__;
   });
 
@@ -132,11 +132,11 @@ describe('ThemeModeService', () => {
   it('restores dark mode from pubsub with debounce, ignoring undefined', () => {
     const service = create();
     restore$.next({ data: undefined });
-    jest.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1000);
     expect(service.themeSetting()).toBe('system');
     restore$.next({ data: true });
     expect(service.activeTheme()).toBe('light');
-    jest.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1000);
     expect(service.themeSetting()).toBe('dark');
     expect(service.activeTheme()).toBe('dark');
   });

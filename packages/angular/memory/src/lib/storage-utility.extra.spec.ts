@@ -22,7 +22,7 @@ describe('storage-utility (extra)', () => {
   });
 
   it('calculates expiry for every unit', () => {
-    jest.useFakeTimers().setSystemTime(1000);
+    vi.useFakeTimers().setSystemTime(1000);
     expect(getExpired(0, 's')).toBe(0);
     expect(getExpired(-1, 's')).toBe(0);
     expect(getExpired(2, 's')).toBe(1000 + 2000);
@@ -33,7 +33,7 @@ describe('storage-utility (extra)', () => {
     expect(getExpired(1, 'y')).toBe(1000 + 365 * 86400000);
     expect(getExpired(5, 't')).toBe(1005);
     expect(() => getExpired(1, 'x' as any)).toThrow('Invalid expired unit');
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   it('MockStorage removeItem ignores unknown keys', () => {

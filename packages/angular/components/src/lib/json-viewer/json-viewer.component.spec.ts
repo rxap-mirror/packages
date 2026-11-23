@@ -99,7 +99,7 @@ describe('JsonViewerComponent', () => {
         type: 'person',
       };
 
-      const cleanObjectSpy = jest.spyOn(component, 'cleanObject');
+      const cleanObjectSpy = vi.spyOn(component, 'cleanObject');
 
       component.setInspectValue(obj);
 
@@ -107,7 +107,7 @@ describe('JsonViewerComponent', () => {
     });
 
     it('should not use cleanObject if object is not an object', () => {
-      const cleanObjectSpy = jest.spyOn(component, 'cleanObject');
+      const cleanObjectSpy = vi.spyOn(component, 'cleanObject');
 
       component.setInspectValue(undefined);
       component.setInspectValue(null);

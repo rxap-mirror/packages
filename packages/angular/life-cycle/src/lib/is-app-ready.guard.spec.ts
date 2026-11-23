@@ -6,8 +6,8 @@ import { LifeCycleService } from './life-cycle.service';
 
 describe('IsAppReadyGuard', () => {
   it('emits true once the life cycle is ready', async () => {
-    jest.spyOn(console, 'debug').mockImplementation();
-    jest.spyOn(console, 'log').mockImplementation();
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
     TestBed.configureTestingModule({
       providers: [ { provide: ApplicationRef, useValue: { isStable: of(true), afterTick: EMPTY } } ],
     });

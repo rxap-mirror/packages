@@ -16,8 +16,8 @@ import {
   RXAP_SOCKET_IO_URL,
 } from './tokens';
 
-const connect = jest.fn((url: string, opts: unknown) => ({ url, opts }));
-jest.mock('socket.io-client', () => ({
+const connect = vi.hoisted(() => vi.fn((url: string, opts: unknown) => ({ url, opts })));
+vi.mock('socket.io-client', () => ({
   connect: (url: string, opts: unknown) => connect(url, opts),
 }));
 
@@ -50,8 +50,8 @@ describe('socket io providers', () => {
 
   it('dynamic providers read from the ConfigService', () => {
     const config = {
-      getOrThrow: jest.fn((k: string) => (k === 'socket.url' ? 'http://dyn' : 'ns')),
-      get: jest.fn((_k: string, d: unknown) => ({ ...(d as object), reconnection: false })),
+      getOrThrow: vi.fn((k: string) => (k === 'socket.url' ? 'http://dyn' : 'ns')),
+      get: vi.fn((_k: string, d: unknown) => ({ ...(d as object), reconnection: false })),
     };
     TestBed.configureTestingModule({
       providers: [

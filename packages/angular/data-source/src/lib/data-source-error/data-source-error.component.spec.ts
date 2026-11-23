@@ -27,8 +27,8 @@ describe('DataSourceErrorComponent', () => {
 
   it('retry prefers retry over refresh and shows a spinner while in progress', async () => {
     create();
-    const retry = jest.fn();
-    const refresh = jest.fn();
+    const retry = vi.fn();
+    const refresh = vi.fn();
     set('retry', retry);
     set('refresh', refresh);
     await flush();
@@ -43,7 +43,7 @@ describe('DataSourceErrorComponent', () => {
 
   it('falls back to refresh', async () => {
     create();
-    const refresh = jest.fn();
+    const refresh = vi.fn();
     set('refresh', refresh);
     await flush();
     buttons()[0].click();
@@ -52,14 +52,14 @@ describe('DataSourceErrorComponent', () => {
 
   it('uses the data source like fallbacks and lets explicit inputs win', async () => {
     create();
-    const like = { refresh: jest.fn(), reset: jest.fn() };
+    const like = { refresh: vi.fn(), reset: vi.fn() };
     set('dataSourceLike', like);
     await flush();
     expect(buttons()).toHaveLength(2);
     buttons()[1].click();
     expect(like.reset).toHaveBeenCalled();
     expect(fixture.componentInstance.resetInProgress()).toBe(true);
-    const reset = jest.fn();
+    const reset = vi.fn();
     set('reset', reset);
     await flush();
     fixture.componentInstance.triggerReset();
@@ -69,7 +69,7 @@ describe('DataSourceErrorComponent', () => {
   it('ends the progress when loading turns false or a new error arrives', async () => {
     create();
     const loading$ = new BehaviorSubject(true);
-    set('retry', jest.fn());
+    set('retry', vi.fn());
     set('loading', loading$);
     await flush();
     fixture.componentInstance.triggerRetry();
@@ -85,7 +85,7 @@ describe('DataSourceErrorComponent', () => {
 
   it('a plain false loading flag ends the progress', async () => {
     create();
-    set('retry', jest.fn());
+    set('retry', vi.fn());
     set('loading', true);
     await flush();
     fixture.componentInstance.triggerRetry();

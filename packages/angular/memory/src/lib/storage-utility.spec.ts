@@ -86,8 +86,8 @@ describe('StorageUtility', () => {
 
     beforeEach(() => {
       mockStorage = {
-        setItem: jest.fn(),
-        getItem: jest.fn(),
+        setItem: vi.fn(),
+        getItem: vi.fn(),
         // Implement other required Storage methods if needed
       } as unknown as Storage;
     });

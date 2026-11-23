@@ -21,6 +21,30 @@
       },
       "defaultConfiguration": "production"
     },
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "outputs": ["{workspaceRoot}/coverage/packages/angular/socket-io"],
+      "options": {
+        "tsConfig": "packages/angular/socket-io/tsconfig.spec.json",
+        "runner": "vitest",
+        "setupFiles": ["packages/angular/socket-io/src/test-setup.ts"],
+        "exclude": ["generators/**"],
+        "watch": false
+      },
+      "dependsOn": ["test-generators"]
+    },
+    "test-generators": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "outputs": [
+        "{workspaceRoot}/coverage/packages/angular/socket-io/generators"
+      ],
+      "options": {
+        "command": "jest --config jest.generators.config.ts --passWithNoTests",
+        "cwd": "packages/angular/socket-io"
+      }
+    },
     "lint": {
       "options": {
         "lintFilePatterns": [

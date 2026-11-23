@@ -25,7 +25,7 @@ setMetadata(FormSystemMetadataKeys.FORM_COMPONENT, FormComponent, FormDefinition
 class FormDefinitionWithoutComponent {}
 
 describe('FormWindowService', () => {
-  const windowService = { open: jest.fn().mockReturnValue('window-ref') };
+  const windowService = { open: vi.fn().mockReturnValue('window-ref') };
   let service: FormWindowService;
 
   beforeEach(() => {

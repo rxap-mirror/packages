@@ -5,13 +5,13 @@ import { StatusCheckGuard } from './status-check.guard';
 import { StatusCheckService } from './status-check.service';
 
 describe('StatusCheckGuard', () => {
-  const service = { getStatus: jest.fn() };
-  const router = { createUrlTree: jest.fn() };
+  const service = { getStatus: vi.fn() };
+  const router = { createUrlTree: vi.fn() };
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.spyOn(console, 'log').mockImplementation(() => undefined);
-    jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.clearAllMocks();
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
     TestBed.configureTestingModule({
       providers: [
         { provide: StatusCheckService, useValue: service },
@@ -20,7 +20,7 @@ describe('StatusCheckGuard', () => {
     });
   });
 
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   const run = (data: any) =>
     TestBed.runInInjectionContext(() =>

@@ -33,8 +33,8 @@ describe('validators', () => {
     ['_IsNumber', _IsNumber(), [1, '2', 1.5], ['x', Infinity, NaN], 'isNumber'],
   ] as any[])('%s', (_name, validator, valid, invalid, key) => {
     it('accepts null', () => expect(run(validator, null)).toBeNull());
-    it.each(valid.map((x: any) => [x]))('accepts %p', (v) => expect(run(validator, v)).toBeNull());
-    it.each(invalid.map((x: any) => [x]))('rejects %p', (v) => {
+    it.each(valid.map((x: any) => [x]) as [any][])('accepts %p', (v: any) => expect(run(validator, v)).toBeNull());
+    it.each(invalid.map((x: any) => [x]) as [any][])('rejects %p', (v: any) => {
       const result = run(validator, v);
       expect(result).toHaveProperty(key);
       expect(result[key].actual).toBe(v);

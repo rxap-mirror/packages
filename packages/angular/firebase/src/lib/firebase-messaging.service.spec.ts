@@ -6,16 +6,16 @@ import {
   RXAP_REQUEST_CLOUD_MESSAGING_TOKEN,
 } from './tokens';
 
-const onMessageFn = jest.fn();
-const getTokenFn = jest.fn();
-jest.mock('firebase/messaging', () => ({
+const onMessageFn = vi.fn();
+const getTokenFn = vi.fn();
+vi.mock('firebase/messaging', () => ({
   onMessage: (...a: unknown[]) => onMessageFn(...a),
   getToken: (...a: unknown[]) => getTokenFn(...a),
 }));
 
 describe('RxapFirebaseMessagingService', () => {
   const messaging = { messaging: true };
-  const NotificationMock: any = jest.fn();
+  const NotificationMock: any = vi.fn();
   const originalServiceWorker = Object.getOwnPropertyDescriptor(navigator, 'serviceWorker');
 
   function create(options: { requestImmediately?: boolean; messaging?: unknown; vapid?: string } = {}) {
@@ -30,23 +30,23 @@ describe('RxapFirebaseMessagingService', () => {
   }
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     NotificationMock.mockReset();
     NotificationMock.permission = 'granted';
-    NotificationMock.requestPermission = jest.fn().mockResolvedValue('granted');
+    NotificationMock.requestPermission = vi.fn().mockResolvedValue('granted');
     (window as any).Notification = NotificationMock;
     Object.defineProperty(navigator, 'serviceWorker', {
       configurable: true,
       value: { getRegistration: () => Promise.resolve('registration') },
     });
     getTokenFn.mockResolvedValue('token-1');
-    jest.spyOn(console, 'log').mockImplementation();
-    jest.spyOn(console, 'info').mockImplementation();
-    jest.spyOn(console, 'warn').mockImplementation();
-    jest.spyOn(console, 'error').mockImplementation();
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'info').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
   });
   afterEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
     delete (window as any).Notification;
     if (originalServiceWorker) Object.defineProperty(navigator, 'serviceWorker', originalServiceWorker);
     else delete (navigator as any).serviceWorker;
@@ -129,7 +129,7 @@ describe('RxapFirebaseMessagingService', () => {
   it('alerts when notifications are unsupported', () => {
     const s = create();
     delete (window as any).Notification;
-    const alertSpy = jest.fn();
+    const alertSpy = vi.fn();
     window.alert = alertSpy;
     s.showNotification('a', 'b');
     expect(alertSpy).toHaveBeenCalled();

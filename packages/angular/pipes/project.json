@@ -21,6 +21,16 @@
       },
       "defaultConfiguration": "production"
     },
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "outputs": ["{workspaceRoot}/coverage/packages/angular/pipes"],
+      "options": {
+        "tsConfig": "packages/angular/pipes/tsconfig.spec.json",
+        "runner": "vitest",
+        "setupFiles": ["packages/angular/pipes/src/test-setup.ts"],
+        "watch": false
+      }
+    },
     "lint": {
       "options": {
         "lintFilePatterns": [

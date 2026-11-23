@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import {
   FormType,
   RxapForm,
@@ -52,7 +52,7 @@ class TestForm implements FormType<IForm> {
 }
 
 describe('ControlHideShowDirective', () => {
-  function build() {
+  function build(): any {
     return new RxapFormBuilder<IForm>(TestForm).build({ mode: 'x' });
   }
 
@@ -163,14 +163,14 @@ describe('ControlHideShowDirective', () => {
         template: `<input [formControl]="control" rxapControlHideShow />`,
       })
       class Bad {
-        control = new (require('@angular/forms').FormControl)('');
+        control = new FormControl('');
       }
       const f = TestBed.createComponent(Bad);
       expect(() => f.detectChanges()).toThrow('not an instance of RxapFormControl');
     });
 
     it('logs errors thrown by the functions and keeps the stream alive', () => {
-      const err = jest.spyOn(console, 'error').mockImplementation(() => undefined);
+      const err = vi.spyOn(console, 'error').mockImplementation(() => undefined);
       @RxapForm('hide-show-error')
       class ErrForm {
         @UseHideFunction(() => {

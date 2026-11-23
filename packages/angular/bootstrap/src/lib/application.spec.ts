@@ -1,11 +1,6 @@
 import { ConfigService } from '@rxap/config';
+import type { MockInstance } from 'vitest';
 import { Application, RefWithInjector } from './application';
-
-const updateEnvironment = jest.fn();
-jest.mock('@rxap/environment', () => ({
-  ...jest.requireActual('@rxap/environment'),
-  UpdateEnvironment: (...a: unknown[]) => updateEnvironment(...a),
-}));
 
 interface Cfg { prepared?: boolean }
 
@@ -20,18 +15,27 @@ class TestApplication extends Application<Cfg, RefWithInjector, any> {
 
 describe('Application', () => {
   const env = { name: 'n', production: false, app: 'a' } as any;
-  let load: jest.SpyInstance;
+  let load: MockInstance;
+  // UpdateEnvironment (@rxap/environment) loads the build.json through fetch
+  const fetchBuildJson = vi.fn();
 
   beforeEach(() => {
-    updateEnvironment.mockReset().mockResolvedValue(undefined);
+    fetchBuildJson.mockReset().mockResolvedValue({ ok: true, json: async () => ({}) });
+    vi.stubGlobal('fetch', fetchBuildJson);
     ConfigService.Config = {};
-    load = jest.spyOn(ConfigService, 'Load').mockResolvedValue(undefined);
+    load = vi.spyOn(ConfigService, 'Load').mockResolvedValue(undefined);
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => {
+    vi.restoreAllMocks();
+    vi.unstubAllGlobals();
+  });
 
   it('runs the bootstrap phases in order and exposes app, logger and config', async () => {
     const order: string[] = [];
-    updateEnvironment.mockImplementation(async () => void order.push('env'));
+    fetchBuildJson.mockImplementation(async () => {
+      order.push('env');
+      return { ok: true, json: async () => ({}) };
+    });
     load.mockImplementation(async () => void order.push('load'));
     const app = new TestApplication(env, {});
     app.before(function (this: any, config, options, environment) {
@@ -54,7 +58,7 @@ describe('Application', () => {
     await app.bootstrap();
 
     expect(order).toEqual(['env', 'load', 'before', 'after']);
-    expect(updateEnvironment).toHaveBeenCalledWith(env);
+    expect(fetchBuildJson).toHaveBeenCalledWith('build.json');
     expect(app.app).not.toBeNull();
     expect(app.logger).toBe(console);
     expect(app.config).toBe(app.configInstance);

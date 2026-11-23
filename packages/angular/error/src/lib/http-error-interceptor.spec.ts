@@ -17,12 +17,12 @@ import { HttpErrorInterceptor } from './http-error-interceptor';
 import { MessageHttpErrorService } from './message-http-error/message-http-error.service';
 import { RXAP_ERROR_INTERCEPTOR_OPTIONS } from './tokens';
 
-jest.mock('@sentry/angular', () => ({ captureMessage: jest.fn() }));
+vi.mock('@sentry/angular', () => ({ captureMessage: vi.fn() }));
 
 describe('HttpErrorInterceptor', () => {
-  const any = { push: jest.fn() };
-  const message = { push: jest.fn() };
-  const code = { push: jest.fn() };
+  const any = { push: vi.fn() };
+  const message = { push: vi.fn() };
+  const code = { push: vi.fn() };
   let http: HttpClient;
   let ctrl: HttpTestingController;
 
@@ -56,8 +56,8 @@ describe('HttpErrorInterceptor', () => {
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.clearAllMocks();
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
 
   it('passes successful responses', async () => {

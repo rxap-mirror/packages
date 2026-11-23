@@ -5,8 +5,8 @@ describe('@rxap/data-source', () => {
 
   describe('ObservableDataSource', () => {
 
-    beforeEach(() => jest.useFakeTimers());
-    afterEach(() => jest.useRealTimers());
+    beforeEach(() => vi.useFakeTimers());
+    afterEach(() => vi.useRealTimers());
 
     it('BUG: disconnect from data source if a connection observable is used as source', async () => {
 
@@ -25,7 +25,7 @@ describe('@rxap/data-source', () => {
       observableDataSource.disconnect('test');
 
       // let any (wrongly) scheduled disconnect run before asserting
-      await jest.advanceTimersByTimeAsync(10000);
+      await vi.advanceTimersByTimeAsync(10000);
 
       expect(dataSource.hasConnections).toBeTruthy();
       expect(dataSource.isConnected('test')).toBeTruthy();

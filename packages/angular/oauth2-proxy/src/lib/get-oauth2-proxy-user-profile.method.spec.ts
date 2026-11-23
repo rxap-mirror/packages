@@ -10,7 +10,7 @@ import { Oauth2ProxyUserProfileDataSource } from './oauth2-proxy-user-profile.da
 
 describe('GetOauth2ProxyUserProfileMethod', () => {
   let http: HttpTestingController;
-  const config = { get: jest.fn((_key: string, def: string) => def) };
+  const config = { get: vi.fn((_key: string, def: string) => def) };
 
   beforeEach(() => {
     config.get.mockClear();

@@ -68,7 +68,7 @@ describe('OpenApiConfigService operations', () => {
   });
   afterEach(() => {
     OpenApiConfigService.Config = savedConfig;
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   it('indexes operations with path and method', () => {
@@ -78,7 +78,7 @@ describe('OpenApiConfigService operations', () => {
   });
 
   it('throws on unknown operations', () => {
-    jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
     const s = new OpenApiConfigService(doc(paths));
     expect(() => s.getOperation('nope')).toThrow("The operation 'nope' is not defined");
   });
@@ -107,7 +107,7 @@ describe('OpenApiConfigService operations', () => {
   });
 
   it('resolves base urls by index and server id', () => {
-    jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
     const s = new OpenApiConfigService(doc(paths, [{ url: 'http://a' }, { url: 'http://b' }]));
     expect(s.getBaseUrl()).toBe('http://a');
     expect(s.getBaseUrl(1)).toBe('http://b');
@@ -126,26 +126,26 @@ describe('OpenApiConfigService operations', () => {
 
   it('Load fetches, validates and stores the config', async () => {
     const d = doc(paths);
-    (global as any).fetch = jest.fn(async () => ({ json: async () => d }));
+    (global as any).fetch = vi.fn(async () => ({ json: async () => d }));
     await OpenApiConfigService.Load();
     expect((global as any).fetch).toHaveBeenCalledWith('openapi.json');
     expect(OpenApiConfigService.Config).toBe(d);
   });
 
   it('Load stores null when the fetch fails and rejects bad input', async () => {
-    jest.spyOn(console, 'error').mockImplementation(() => undefined);
-    jest.spyOn(console, 'debug').mockImplementation(() => undefined);
-    (global as any).fetch = jest.fn(async () => { throw new Error('net'); });
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
+    (global as any).fetch = vi.fn(async () => { throw new Error('net'); });
     await OpenApiConfigService.Load('x.json');
     expect(OpenApiConfigService.Config).toBeNull();
     await expect(OpenApiConfigService.Load('')).rejects.toThrow('not defined');
-    (global as any).fetch = jest.fn(async () => ({ json: async () => ({ openapi: '2.0' }) }));
+    (global as any).fetch = vi.fn(async () => ({ json: async () => ({ openapi: '2.0' }) }));
     await expect(OpenApiConfigService.Load('y.json')).rejects.toThrow('3.x.x');
   });
 
   it('GetBaseUrl (private) reads the server by index', () => {
     const get = (OpenApiConfigService as any).GetBaseUrl.bind(OpenApiConfigService);
-    jest.spyOn(console, 'debug').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
     expect(get(doc(paths))).toBe('http://a');
     expect(() => get(doc(paths), 3)).toThrow('Could not extract');
   });

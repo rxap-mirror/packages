@@ -8,18 +8,18 @@ describe('LocalStorageService', () => {
 
   beforeEach(() => {
     let store: { [key: string]: any } = {};
-    localStorage.getItem = jest.fn().mockImplementation((key: string) => {
+    localStorage.getItem = vi.fn().mockImplementation((key: string) => {
       return store[key];
     });
-    localStorage.setItem = jest.fn().mockImplementation((key: string, value: any) => {
+    localStorage.setItem = vi.fn().mockImplementation((key: string, value: any) => {
       return (
         store[key] = value
       );
     });
-    localStorage.removeItem = jest.fn().mockImplementation((key: string) => {
+    localStorage.removeItem = vi.fn().mockImplementation((key: string) => {
       delete store[key];
     });
-    localStorage.clear = jest.fn().mockImplementation((key: string) => {
+    localStorage.clear = vi.fn().mockImplementation((key: string) => {
       store = {};
     });
   });

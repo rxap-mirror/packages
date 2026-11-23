@@ -21,7 +21,7 @@ class A {}
 class B {}
 
 describe('LogoService', () => {
-  const config = (value?: any) => ({ get: jest.fn((_k: string, def: any) => value ?? def) });
+  const config = (value?: any) => ({ get: vi.fn((_k: string, def: any) => value ?? def) });
 
   it('uses defaults', () => {
     TestBed.configureTestingModule({ providers: [{ provide: ConfigService, useValue: config() }] });
@@ -151,7 +151,7 @@ describe('ExternalAppsService', () => {
   });
 
   it('lists visible apps, applies filters and stores the active list', async () => {
-    const filter = { call: jest.fn(async (l: any[]) => l.filter((a) => a.id !== 'n')) };
+    const filter = { call: vi.fn(async (l: any[]) => l.filter((a) => a.id !== 'n')) };
     const s = await setup({ production: true, filters: [filter], extra: [{ id: 'x', href: 'http://x' }] });
     const list = await s.getAppList();
     expect(list.map((a) => a.id)).toEqual(['x', 'a']);
@@ -162,7 +162,7 @@ describe('ExternalAppsService', () => {
 
   it('navigate clicks a link for known apps only', async () => {
     const s = await setup();
-    const click = jest.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => undefined);
+    const click = vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => undefined);
     s.navigate('a', 'p');
     expect(click).toHaveBeenCalledTimes(1);
     s.navigate('n', 'p');

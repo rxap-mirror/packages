@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import { Component, signal, ChangeDetectionStrategy, ApplicationRef } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -42,7 +43,7 @@ class HostComponent {
 }
 
 describe('RemoteMethodTemplateCollectionDirective', () => {
-  let call$: jest.Mock;
+  let call$: Mock;
   let fixture: ComponentFixture<HostComponent>;
   let host: HostComponent;
 
@@ -58,13 +59,13 @@ describe('RemoteMethodTemplateCollectionDirective', () => {
       .injector.get(RemoteMethodTemplateCollectionDirective);
 
   beforeEach(() => {
-    call$ = jest.fn().mockResolvedValue([{ name: 'a' }, { name: 'b' }, { name: 'c' }]);
-    jest.spyOn(console, 'warn').mockImplementation();
+    call$ = vi.fn().mockResolvedValue([{ name: 'a' }, { name: 'b' }, { name: 'c' }]);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
     TestBed.configureTestingModule({ providers: [{ provide: RemoteMethodLoader, useValue: { call$ } }] });
     fixture = TestBed.createComponent(HostComponent);
     host = fixture.componentInstance;
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('does nothing until parameters are provided', async () => {
     fixture.detectChanges();
@@ -203,7 +204,7 @@ describe('RemoteMethodTemplateCollectionDirective', () => {
 class OnPushHostComponent {}
 
 describe('RemoteMethodTemplateCollectionDirective (zoneless, OnPush host, no manual change detection)', () => {
-  let call$: jest.Mock;
+  let call$: Mock;
 
   const setup = () => {
     TestBed.configureTestingModule({ providers: [{ provide: RemoteMethodLoader, useValue: { call$ } }] });
@@ -222,7 +223,7 @@ describe('RemoteMethodTemplateCollectionDirective (zoneless, OnPush host, no man
     Array.from<HTMLElement>(f.nativeElement.querySelectorAll(sel)).map((e) => e.textContent);
 
   it('renders the collection without any further change detection after the call resolved', async () => {
-    call$ = jest.fn().mockResolvedValue([{ name: 'a' }, { name: 'b' }]);
+    call$ = vi.fn().mockResolvedValue([{ name: 'a' }, { name: 'b' }]);
     const f = setup();
     expect(texts(f, '.item')).toEqual([]);
     await settle();
@@ -230,21 +231,21 @@ describe('RemoteMethodTemplateCollectionDirective (zoneless, OnPush host, no man
   });
 
   it('renders the empty template without any further change detection', async () => {
-    call$ = jest.fn().mockResolvedValue([]);
+    call$ = vi.fn().mockResolvedValue([]);
     const f = setup();
     await settle();
     expect(f.nativeElement.querySelector('#empty')).not.toBeNull();
   });
 
   it('renders the error template without any further change detection', async () => {
-    call$ = jest.fn().mockRejectedValue(new Error('bad'));
+    call$ = vi.fn().mockRejectedValue(new Error('bad'));
     const f = setup();
     await settle();
     expect(texts(f, '#error')).toEqual(['bad']);
   });
 
   it('keeps the rendered views stable across later application ticks', async () => {
-    call$ = jest.fn().mockResolvedValue([{ name: 'a' }, { name: 'b' }]);
+    call$ = vi.fn().mockResolvedValue([{ name: 'a' }, { name: 'b' }]);
     const f = setup();
     await settle();
     const first = f.nativeElement.querySelector('.item');

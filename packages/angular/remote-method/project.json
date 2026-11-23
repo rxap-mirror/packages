@@ -21,6 +21,31 @@
       },
       "defaultConfiguration": "production"
     },
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "outputs": ["{workspaceRoot}/coverage/packages/angular/remote-method"],
+      "options": {
+        "tsConfig": "packages/angular/remote-method/tsconfig.spec.json",
+        "runner": "vitest",
+        "setupFiles": ["packages/angular/remote-method/src/test-setup.ts"],
+        "exclude": ["generators/**"],
+        "watch": false,
+        "include": ["**/*.spec.ts", "../*/**/*.spec.ts"]
+      },
+      "dependsOn": ["test-generators"]
+    },
+    "test-generators": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "outputs": [
+        "{workspaceRoot}/coverage/packages/angular/remote-method/generators"
+      ],
+      "options": {
+        "command": "jest --config jest.generators.config.ts --passWithNoTests",
+        "cwd": "packages/angular/remote-method"
+      }
+    },
     "lint": {
       "options": {
         "lintFilePatterns": [

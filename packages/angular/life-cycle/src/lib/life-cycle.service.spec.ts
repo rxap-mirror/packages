@@ -33,11 +33,11 @@ describe('LifeCycle', () => {
       );
       const function$ = lifeCycle.whenReady(() => 'ready');
 
-      const observableSpy = jest.fn();
-      const promiseSpy = jest.fn();
-      const observableFunctionSpy = jest.fn();
-      const promiseFunctionSpy = jest.fn();
-      const functionSpy = jest.fn();
+      const observableSpy = vi.fn();
+      const promiseSpy = vi.fn();
+      const observableFunctionSpy = vi.fn();
+      const promiseFunctionSpy = vi.fn();
+      const functionSpy = vi.fn();
 
       observable$.subscribe(observableSpy);
       promise$.subscribe(promiseSpy);

@@ -21,12 +21,12 @@ describe('StandaloneApplication', () => {
   };
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   it('passes the configLoadOptions to ConfigService.Load unchanged', async () => {
-    const load = jest.spyOn(ConfigService, 'Load').mockResolvedValue(undefined);
-    const errorHandler = jest.fn();
+    const load = vi.spyOn(ConfigService, 'Load').mockResolvedValue(undefined);
+    const errorHandler = vi.fn();
     const requestInit: RequestInit = { redirect: 'manual' };
     const configLoadOptions: ConfigLoadOptions = {
       url: 'https://example.com/config.json',

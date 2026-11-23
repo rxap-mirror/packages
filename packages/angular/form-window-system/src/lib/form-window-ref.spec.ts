@@ -1,7 +1,7 @@
 import { FormWindowRef } from './form-window-ref';
 
 describe('FormWindowRef', () => {
-  const windowRef = { close: jest.fn() } as any;
+  const windowRef = { close: vi.fn() } as any;
   const ref = new FormWindowRef({} as any, windowRef);
 
   it('is not yet implemented for submit and reset', () => {

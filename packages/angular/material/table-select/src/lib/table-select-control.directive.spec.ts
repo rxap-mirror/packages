@@ -42,7 +42,7 @@ const rows = [{ id: 1, name: 'a' }, { id: 2, name: 'b' }];
     </mat-form-field>`,
 })
 class HostComponent {
-  openMethod: any = { call: jest.fn() };
+  openMethod: any = { call: vi.fn() };
   data = signal<any>(rows);
   columns = signal<any>(columns);
   toDisplay = (v: any) => `display:${ v.name }`;
@@ -60,7 +60,7 @@ class HostComponent {
 })
 class StandaloneHostComponent {
   toValue = (v: any) => v;
-  openMethod: any = { call: jest.fn() };
+  openMethod: any = { call: vi.fn() };
 }
 
 class Definition {}
@@ -78,7 +78,7 @@ UseTableSelectDataSource({ id: 'rows' } as any)(Definition.prototype, 'item');
     </mat-form-field>`,
 })
 class DefinitionHostComponent {
-  openMethod: any = { call: jest.fn() };
+  openMethod: any = { call: vi.fn() };
   control = new RxapFormControl<any>(null, { controlId: 'item' });
   group = (() => {
     const group = new RxapFormGroup({ item: this.control }, { controlId: 'form' });
@@ -88,19 +88,19 @@ class DefinitionHostComponent {
 }
 
 describe('TableSelectControlDirective', () => {
-  const call = jest.fn();
+  const call = vi.fn();
   const loaded = staticDataSource(rows);
-  const load = jest.fn(() => loaded);
+  const load = vi.fn(() => loaded);
 
   beforeEach(() => {
     call.mockReset().mockResolvedValue([rows[1]]);
     load.mockClear();
-    jest.spyOn(console, 'debug').mockImplementation(() => undefined);
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
     TestBed.configureTestingModule({
       providers: [
-        { provide: WindowService, useValue: { has: () => false, close: jest.fn() } },
+        { provide: WindowService, useValue: { has: () => false, close: vi.fn() } },
         { provide: DataSourceLoader, useValue: { load } },
       ],
     });
@@ -109,8 +109,8 @@ describe('TableSelectControlDirective', () => {
     });
   });
   afterEach(() => {
-    jest.useRealTimers();
-    jest.restoreAllMocks();
+    vi.useRealTimers();
+    vi.restoreAllMocks();
   });
 
   function create<T>(component: new () => T) {
@@ -234,16 +234,16 @@ describe('TableSelectControlDirective', () => {
     });
 
     it('propagates the disabled state of the control', async () => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
       const { fixture, window } = create(DefinitionHostComponent);
       fixture.detectChanges();
       expect(window.disabled()).toBe(false);
       fixture.componentInstance.control.disable();
-      await jest.advanceTimersByTimeAsync(200);
+      await vi.advanceTimersByTimeAsync(200);
       fixture.detectChanges();
       expect(window.disabled()).toBe(true);
       fixture.componentInstance.control.enable();
-      await jest.advanceTimersByTimeAsync(200);
+      await vi.advanceTimersByTimeAsync(200);
       fixture.detectChanges();
       expect(window.disabled()).toBe(false);
       fixture.destroy();

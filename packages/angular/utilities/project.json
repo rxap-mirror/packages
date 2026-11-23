@@ -21,6 +21,16 @@
         "development": {}
       }
     },
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "outputs": ["{workspaceRoot}/coverage/packages/angular/utilities"],
+      "options": {
+        "tsConfig": "packages/angular/utilities/tsconfig.spec.json",
+        "runner": "vitest",
+        "setupFiles": ["packages/angular/utilities/src/test-setup.ts"],
+        "watch": false
+      }
+    },
     "nx-release-publish": {
       "options": {
         "packageRoot": "dist/{projectRoot}"

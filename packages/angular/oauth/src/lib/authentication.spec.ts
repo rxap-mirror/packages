@@ -1,3 +1,4 @@
+import type { MockInstance } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import {
   AuthenticationAccessToken,
@@ -17,21 +18,21 @@ import { AuthenticationGuard } from './authentication-guard';
 import { AuthenticationService } from './authentication.service';
 import { ProvideAuth, withAuthConfig } from './provide-auth';
 
-jest.mock('angular-oauth2-oidc-jwks', () => ({
+vi.mock('angular-oauth2-oidc-jwks', () => ({
   JwksValidationHandler: class JwksValidationHandler {},
 }));
 
 function createOAuthMock() {
   return {
     events: new Subject<OAuthEvent>(),
-    configure: jest.fn(),
-    setStorage: jest.fn(),
-    setupAutomaticSilentRefresh: jest.fn(),
-    loadDiscoveryDocumentAndTryLogin: jest.fn().mockResolvedValue(true),
-    getAccessToken: jest.fn().mockReturnValue('tok'),
-    hasValidAccessToken: jest.fn().mockReturnValue(true),
-    logOut: jest.fn(),
-    initLoginFlow: jest.fn(),
+    configure: vi.fn(),
+    setStorage: vi.fn(),
+    setupAutomaticSilentRefresh: vi.fn(),
+    loadDiscoveryDocumentAndTryLogin: vi.fn().mockResolvedValue(true),
+    getAccessToken: vi.fn().mockReturnValue('tok'),
+    hasValidAccessToken: vi.fn().mockReturnValue(true),
+    logOut: vi.fn(),
+    initLoginFlow: vi.fn(),
     silentRefreshRedirectUri: '',
     tokenValidationHandler: undefined as unknown,
   };
@@ -54,9 +55,9 @@ function setup(options: { disabled: boolean; config?: object }) {
 }
 
 describe('AuthenticationService', () => {
-  let warn: jest.SpyInstance;
+  let warn: MockInstance;
   beforeEach(() => {
-    warn = jest.spyOn(console, 'warn').mockImplementation();
+    warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
   afterEach(() => warn.mockRestore());
 
@@ -176,9 +177,9 @@ describe('ProvideAuth', () => {
 describe('AuthenticationGuard', () => {
   const route = {} as never;
   const state = {} as never;
-  let warn: jest.SpyInstance;
+  let warn: MockInstance;
   beforeEach(() => {
-    warn = jest.spyOn(console, 'warn').mockImplementation();
+    warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
   afterEach(() => warn.mockRestore());
 
@@ -203,8 +204,8 @@ describe('AuthenticationGuard', () => {
 
   it('allows when authenticated, otherwise signs in', async () => {
     const service = Object.create(AuthenticationService.prototype);
-    service.isAuthenticated = jest.fn().mockResolvedValue(true);
-    service.signIn = jest.fn();
+    service.isAuthenticated = vi.fn().mockResolvedValue(true);
+    service.signIn = vi.fn();
     TestBed.configureTestingModule({
       providers: [{ provide: RxapAuthenticationService, useValue: service }],
     });

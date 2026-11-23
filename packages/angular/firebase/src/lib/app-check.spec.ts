@@ -7,11 +7,11 @@ import {
 import { FIREBASE_APP_CHECK } from './tokens';
 
 const appCheckInstance = { appCheck: true };
-const getTokenFn = jest.fn();
-const onTokenChangedFn = jest.fn();
-const setAutoRefresh = jest.fn();
+const getTokenFn = vi.fn();
+const onTokenChangedFn = vi.fn();
+const setAutoRefresh = vi.fn();
 
-jest.mock('firebase/app-check', () => ({
+vi.mock('firebase/app-check', () => ({
   getToken: (...a: unknown[]) => getTokenFn(...a),
   onTokenChanged: (...a: unknown[]) => onTokenChangedFn(...a),
   setTokenAutoRefreshEnabled: (...a: unknown[]) => setAutoRefresh(...a),
@@ -28,7 +28,7 @@ describe('AppCheckService', () => {
     return TestBed.inject(AppCheckService);
   }
 
-  beforeEach(() => jest.clearAllMocks());
+  beforeEach(() => vi.clearAllMocks());
 
   describe('without an app check instance (disabled or not configured)', () => {
     it('rejects the token request and ignores the auto refresh flag', async () => {
@@ -73,7 +73,7 @@ describe('AppCheckService', () => {
       let error: unknown;
       let completed = false;
       s.onTokenChanged$.subscribe({ next: (v) => values.push(v), error: (e) => (error = e), complete: () => (completed = true) });
-      s.onTokenChanged$.subscribe();
+      s.onTokenChanged$.subscribe({ error: () => undefined });
       expect(onTokenChangedFn).toHaveBeenCalledTimes(1);
       const [ instance, next, err ] = onTokenChangedFn.mock.calls[0];
       expect(instance).toBe(appCheckInstance);

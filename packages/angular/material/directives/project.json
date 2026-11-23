@@ -21,6 +21,35 @@
         "development": {}
       }
     },
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "outputs": [
+        "{workspaceRoot}/coverage/packages/angular/material/directives"
+      ],
+      "options": {
+        "tsConfig": "packages/angular/material/directives/tsconfig.spec.json",
+        "runner": "vitest",
+        "setupFiles": [
+          "packages/angular/material/directives/src/test-setup.ts"
+        ],
+        "exclude": ["generators/**"],
+        "watch": false,
+        "include": ["**/*.spec.ts", "../*/**/*.spec.ts"]
+      },
+      "dependsOn": ["test-generators"]
+    },
+    "test-generators": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "outputs": [
+        "{workspaceRoot}/coverage/packages/angular/material/directives/generators"
+      ],
+      "options": {
+        "command": "jest --config jest.generators.config.ts --passWithNoTests",
+        "cwd": "packages/angular/material/directives"
+      }
+    },
     "lint": {
       "options": {
         "lintFilePatterns": [

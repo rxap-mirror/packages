@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
+import { ControlValueAccessor, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BaseDataSource } from '@rxap/data-source';
 import {
   FormType,
@@ -89,7 +89,7 @@ describe('FormSystemControlDirective', () => {
     `,
   })
   class Host {
-    form = new RxapFormBuilder<IForm>(TestForm).build({ withSource: 'init' });
+    form: any = new RxapFormBuilder<IForm>(TestForm).build({ withSource: 'init' });
     id = 'withSource';
   }
 
@@ -118,8 +118,8 @@ describe('FormSystemControlDirective', () => {
     const f = create('withSource');
     const dir = f.debugElement.query((d) => d.nativeElement.classList?.contains('host')).injector.get(FormSystemControlDirective);
     const cva = (dir as any).componentRef.instance as CvaComponent;
-    const change = jest.fn();
-    const touched = jest.fn();
+    const change = vi.fn();
+    const touched = vi.fn();
     dir.registerOnChange(change);
     dir.registerOnTouched(touched);
     expect(cva.onChange).toBe(change);
@@ -149,7 +149,7 @@ describe('FormSystemControlDirective', () => {
       },
     });
     const f = TestBed.createComponent(Host);
-    f.componentInstance.form.rxapFormGroup.addControl('nested', new (require('@angular/forms').FormControl)(''));
+    f.componentInstance.form.rxapFormGroup.addControl('nested', new FormControl(''));
     expect(() => f.detectChanges()).toThrow('not a RxapFormControl');
   });
 });

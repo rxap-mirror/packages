@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { HttpRemoteMethodLoader } from '@rxap/remote-method/http';
@@ -12,14 +13,14 @@ import { ContenteditableDirective } from './contenteditable.directive';
 class HostComponent {}
 
 describe('ContenteditableDirective', () => {
-  let request$: jest.Mock;
+  let request$: Mock;
 
   beforeEach(() => {
-    jest.useFakeTimers();
-    request$ = jest.fn().mockResolvedValue(undefined);
+    vi.useFakeTimers();
+    request$ = vi.fn().mockResolvedValue(undefined);
     TestBed.configureTestingModule({ providers: [{ provide: HttpRemoteMethodLoader, useValue: { request$ } }] });
   });
-  afterEach(() => jest.useRealTimers());
+  afterEach(() => vi.useRealTimers());
 
   function setup() {
     const f = TestBed.createComponent(HostComponent);
@@ -33,7 +34,7 @@ describe('ContenteditableDirective', () => {
 
   it('stops click propagation', () => {
     const el = setup();
-    const parent = jest.fn();
+    const parent = vi.fn();
     el.parentElement!.addEventListener('click', parent);
     el.click();
     expect(parent).not.toHaveBeenCalled();
@@ -46,7 +47,7 @@ describe('ContenteditableDirective', () => {
     el.textContent = 'abcde';
     el.dispatchEvent(new Event('input'));
     expect(request$).not.toHaveBeenCalled();
-    jest.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1000);
     expect(request$).toHaveBeenCalledTimes(1);
     expect(request$).toHaveBeenCalledWith('update-item', {
       pathParams: { uuid: 'u-1' },
@@ -58,7 +59,7 @@ describe('ContenteditableDirective', () => {
     const el = setup();
     el.textContent = 'abc';
     el.dispatchEvent(new Event('input'));
-    jest.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1000);
     expect(request$).not.toHaveBeenCalled();
   });
 });

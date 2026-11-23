@@ -280,7 +280,10 @@ export class DataSourceCollectionDirective<Data = any>
                 this.embedErrorTemplate(error);
               },
             }),
-          ).subscribe(),
+          )
+            // the error is already handled in the tap above; without an error callback rxjs
+            // would rethrow it asynchronously as an uncaught exception
+            .subscribe({ error: () => undefined }),
         );
       }, { injector: this.injector });
     } else {

@@ -1,5 +1,5 @@
 /* eslint-disable */
-// Node/CommonJS specs of the Nx generators. The Angular library specs run with Vitest (target `test`).
+// Node/CommonJS specs (generators). The Angular library specs run with Vitest (target `test`).
 module.exports = {
   displayName: 'angular-material-table-system-generators',
   preset: '../../../../jest.preset.js',

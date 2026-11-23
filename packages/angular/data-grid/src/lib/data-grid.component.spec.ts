@@ -1,8 +1,9 @@
+import type { Mock } from 'vitest';
 import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, Subject } from 'rxjs';
 import { DataSource } from '@rxap/pattern';
 import { DataGridCellDefDirective } from './data-grid-cell-def.directive';
 import { DataGridEditCellDefDirective } from './data-grid-edit-cell-def.directive';
@@ -86,14 +87,14 @@ class EditHostComponent {
 
 describe('DataGridComponent', () => {
   beforeEach(() => {
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
     TestBed.configureTestingModule({
       providers: [provideRouter([])],
       imports: [NoopAnimationsModule],
     });
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   async function setup(): Promise<{
     fixture: ComponentFixture<HostComponent>;
@@ -177,7 +178,7 @@ describe('DataGridComponent', () => {
 
   it('warns and returns from edit actions without form mode or form directive', async () => {
     const { grid } = await setup();
-    const warn = console.warn as jest.Mock;
+    const warn = console.warn as Mock;
     warn.mockClear();
     grid.enableEditMode();
     grid.disableEditMode();
@@ -194,7 +195,7 @@ describe('DataGridComponent', () => {
     const { fixture, grid } = await setup();
     fixture.componentInstance.mode.set('form');
     fixture.detectChanges();
-    const warn = console.warn as jest.Mock;
+    const warn = console.warn as Mock;
     warn.mockClear();
     grid.enableEditMode();
     grid.disableEditMode();
@@ -324,11 +325,9 @@ describe('DataGridComponent', () => {
 
 describe('DataGridValuePipe', () => {
   const pipe = new DataGridValuePipe<any>();
-  it('reads the path value', (done) => {
-    pipe.transform(new BehaviorSubject({ a: { b: 1 } }), 'a.b').subscribe((v) => {
-      expect(v).toBe(1);
-      done();
-    });
+  it('reads the path value', async () => {
+    const v = await firstValueFrom(pipe.transform(new BehaviorSubject({ a: { b: 1 } }), 'a.b'));
+    expect(v).toBe(1);
   });
   it('throws without path', () => {
     expect(() => pipe.transform(new BehaviorSubject({}))).toThrow();
@@ -355,9 +354,9 @@ describe('IsEmptyPipe', () => {
 
 function makeDataSource(subject: BehaviorSubject<Data>): DataSource<Data> & any {
   return {
-    connect: jest.fn(() => subject.asObservable()),
-    disconnect: jest.fn(),
-    refresh: jest.fn(),
+    connect: vi.fn(() => subject.asObservable()),
+    disconnect: vi.fn(),
+    refresh: vi.fn(),
     hasError$: undefined,
     loading$: undefined,
   };

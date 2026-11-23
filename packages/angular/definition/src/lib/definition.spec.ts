@@ -90,13 +90,13 @@ describe('definition', () => {
     });
 
     it('init registers once, calls ngOnInit and emits', () => {
-      const ngOnInit = jest.fn();
+      const ngOnInit = vi.fn();
       class WithInit extends DecoratedDefinition {
         ngOnInit = ngOnInit;
       }
       const d = new WithInit();
-      const instInit = jest.fn();
-      const staticInit = jest.fn();
+      const instInit = vi.fn();
+      const staticInit = vi.fn();
       d.initialised$?.subscribe(instInit);
       const sub = BaseDefinition.initialised$.subscribe(staticInit);
 
@@ -118,8 +118,8 @@ describe('definition', () => {
     it('ngOnDestroy and destroy remove the instance and emit', () => {
       const d = new DecoratedDefinition();
       d.init();
-      const destroyed = jest.fn();
-      const staticDestroyed = jest.fn();
+      const destroyed = vi.fn();
+      const staticDestroyed = vi.fn();
       d.destroyed$?.subscribe(destroyed);
       const sub = BaseDefinition.destroyed$.subscribe(staticDestroyed);
 
@@ -158,7 +158,7 @@ describe('definition', () => {
 
     it('returns an instance unchanged without metadata', () => {
       const d = new DecoratedDefinition();
-      const spy = jest.spyOn(d, 'applyMetadata');
+      const spy = vi.spyOn(d, 'applyMetadata');
       expect(loader.load(d)).toBe(d);
       expect(spy).not.toHaveBeenCalled();
     });

@@ -71,7 +71,7 @@ describe('TableDataSource', () => {
 
   it('applyFilterBy ignores string filters and empty filters', () => {
     const { ds } = create();
-    jest.spyOn(console, 'error').mockImplementation();
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
     expect(ds.applyFilterBy(rows, 'abc')).toHaveLength(4);
     expect(ds.applyFilterBy(rows, '')).toHaveLength(4);
   });
@@ -89,10 +89,10 @@ describe('TableDataSource', () => {
 
   it('refresh and disconnect are delegated to the source', () => {
     const { ds, source } = create();
-    const refresh = jest.spyOn(source, 'refresh');
+    const refresh = vi.spyOn(source, 'refresh');
     ds.refresh();
     expect(refresh).toHaveBeenCalled();
-    const disconnect = jest.spyOn(source, 'disconnect');
+    const disconnect = vi.spyOn(source, 'disconnect');
     ds.disconnect({ id: 'v' });
     expect(disconnect).toHaveBeenCalled();
   });

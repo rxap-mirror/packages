@@ -44,8 +44,8 @@ describe('DataSourceLoader', () => {
 describe('DataSourceRefreshToMethodAdapterFactory', () => {
   it('creates a method that refreshes the data source', async () => {
     const ds = staticDataSource([1], { id: 's' });
-    const refresh = jest.spyOn(ds, 'refresh');
-    const method = DataSourceRefreshToMethodAdapterFactory(ds);
+    const refresh = vi.spyOn(ds, 'refresh');
+    const method = DataSourceRefreshToMethodAdapterFactory(ds as any);
     await method.call();
     expect(refresh).toHaveBeenCalled();
   });

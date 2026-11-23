@@ -61,7 +61,7 @@ describe('JsonViewerComponent rendering', () => {
   });
 
   it('re-inspects when the json input changes', () => {
-    jest.spyOn(console, 'debug').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
     const f = create({ a: 1 });
     f.componentRef.setInput('json', { b: 2 });
     f.detectChanges();
@@ -76,7 +76,7 @@ describe('JsonViewerComponent rendering', () => {
   });
 
   it('warns for non-object input', () => {
-    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
     const f = create({});
     f.componentInstance.setInspectValue('x');
     expect(warn).toHaveBeenCalled();

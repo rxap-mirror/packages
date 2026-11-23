@@ -1,3 +1,4 @@
+import type { MockInstance } from 'vitest';
 import {
   BackgroundImageDirective,
   BackgroundSizeOptions,
@@ -22,11 +23,11 @@ describe('@rxap/directives', () => {
     let fixture: ComponentFixture<HostComponent>;
     let divElement: HTMLDivElement;
     let imageLoaderService: ImageLoaderService;
-    let loadSpy: jest.SpyInstance;
+    let loadSpy: MockInstance;
 
     beforeEach(() => {
       imageLoaderService = TestBed.inject(ImageLoaderService);
-      loadSpy = jest.spyOn(imageLoaderService, 'load').mockResolvedValue();
+      loadSpy = vi.spyOn(imageLoaderService, 'load').mockResolvedValue();
       fixture = TestBed.createComponent(HostComponent);
       divElement = fixture.nativeElement.querySelector('div');
     });

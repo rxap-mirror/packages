@@ -1,25 +1,26 @@
+import type { Mock } from 'vitest';
 import { PaginatorFake } from '@rxap/data-source/testing';
 import { of, Subject } from 'rxjs';
 import { DynamicTableDataSource } from './dynamic-table.data-source';
 
 describe('DynamicTableDataSource', () => {
-  let method: { call: jest.Mock; metadata: { id: string } };
+  let method: { call: Mock; metadata: { id: string } };
 
   beforeEach(() => {
-    jest.useFakeTimers();
-    jest.spyOn(console, 'error').mockImplementation();
-    method = { call: jest.fn(async (e: any) => [`row-${e.start}`]), metadata: { id: 'dyn' } };
+    vi.useFakeTimers();
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    method = { call: vi.fn(async (e: any) => [`row-${e.start}`]), metadata: { id: 'dyn' } };
   });
   afterEach(() => {
-    jest.useRealTimers();
-    jest.restoreAllMocks();
+    vi.useRealTimers();
+    vi.restoreAllMocks();
   });
 
   const create = (paginator: any = null, sort: any = null, filter: any = null, parameters: any = null) =>
     new DynamicTableDataSource<any>(method as any, paginator, sort, filter, parameters);
 
   async function tick(ms = 100) {
-    jest.advanceTimersByTime(ms);
+    vi.advanceTimersByTime(ms);
     await Promise.resolve();
     await Promise.resolve();
   }
@@ -45,7 +46,7 @@ describe('DynamicTableDataSource', () => {
     const filterChange = new Subject<any>();
     const params = new Subject<any>();
     const paginator = new PaginatorFake(5, 0, 0) as any;
-    paginator.firstPage = jest.fn();
+    paginator.firstPage = vi.fn();
     const ds = create(
       paginator,
       { active: 'a', direction: 'asc', start: 'asc', sortChange },
@@ -74,7 +75,7 @@ describe('DynamicTableDataSource', () => {
     ds.connect({ id: 'v' }).subscribe();
     await tick();
     expect(method.call.mock.calls[0][0]).toMatchObject({ start: 0, end: Number.MAX_SAFE_INTEGER });
-    jest.setSystemTime(Date.now() + 1000);
+    vi.setSystemTime(Date.now() + 1000);
     ds.refresh();
     await tick();
     expect(method.call).toHaveBeenCalledTimes(2);

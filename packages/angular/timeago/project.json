@@ -21,6 +21,16 @@
         "development": {}
       },
       "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "outputs": ["{workspaceRoot}/coverage/packages/angular/timeago"],
+      "options": {
+        "tsConfig": "packages/angular/timeago/tsconfig.spec.json",
+        "runner": "vitest",
+        "setupFiles": ["packages/angular/timeago/src/test-setup.ts"],
+        "watch": false
+      }
     }
   }
 }

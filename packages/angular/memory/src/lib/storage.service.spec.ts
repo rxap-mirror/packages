@@ -24,13 +24,13 @@ describe('StorageService', () => {
   });
 
   it('expires values using the configured unit', () => {
-    jest.useFakeTimers().setSystemTime(0);
+    vi.useFakeTimers().setSystemTime(0);
     service.set('a', 1, 1, 's');
     expect(service.get('a')).toBe(1);
-    jest.setSystemTime(1500);
+    vi.setSystemTime(1500);
     expect(service.get('a')).toBeNull();
     expect(service.has('a')).toBe(false);
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   it('removes by key', () => {

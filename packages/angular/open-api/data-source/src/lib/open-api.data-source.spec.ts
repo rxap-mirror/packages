@@ -12,7 +12,7 @@ import {
 import { TestBed } from '@angular/core/testing';
 import { OpenApiConfigService } from '@rxap/open-api';
 
-xdescribe('@rxap/open-api/data-source', () => {
+describe.skip('@rxap/open-api/data-source', () => {
   describe('OpenApiDataSource', () => {
     let dataSource: OpenApiDataSource<any>;
     let httpMock: HttpTestingController;
@@ -85,9 +85,9 @@ xdescribe('@rxap/open-api/data-source', () => {
 
       const connection = dataSource.connect(viewer);
 
-      const nextSpy = jest.fn();
-      const errorSpy = jest.fn();
-      const completeSpy = jest.fn();
+      const nextSpy = vi.fn();
+      const errorSpy = vi.fn();
+      const completeSpy = vi.fn();
 
       connection.subscribe(nextSpy, errorSpy, completeSpy);
 
@@ -109,9 +109,9 @@ xdescribe('@rxap/open-api/data-source', () => {
 
       const connection = dataSource.connect(viewer);
 
-      const nextSpy = jest.fn();
-      const errorSpy = jest.fn();
-      const completeSpy = jest.fn();
+      const nextSpy = vi.fn();
+      const errorSpy = vi.fn();
+      const completeSpy = vi.fn();
 
       connection.subscribe(nextSpy, errorSpy, completeSpy);
 
@@ -160,9 +160,9 @@ xdescribe('@rxap/open-api/data-source', () => {
 
       const connection = dataSource.connect(viewer);
 
-      const nextSpy = jest.fn();
-      const errorSpy = jest.fn();
-      const completeSpy = jest.fn();
+      const nextSpy = vi.fn();
+      const errorSpy = vi.fn();
+      const completeSpy = vi.fn();
 
       connection.subscribe(nextSpy, errorSpy, completeSpy);
 
@@ -244,9 +244,9 @@ xdescribe('@rxap/open-api/data-source', () => {
           },
         });
 
-        const nextSpy = jest.fn();
-        const errorSpy = jest.fn();
-        const completeSpy = jest.fn();
+        const nextSpy = vi.fn();
+        const errorSpy = vi.fn();
+        const completeSpy = vi.fn();
 
         connection$.subscribe(nextSpy, errorSpy, completeSpy);
 
@@ -284,9 +284,9 @@ xdescribe('@rxap/open-api/data-source', () => {
           },
         });
 
-        const nextSpy = jest.fn();
-        const errorSpy = jest.fn();
-        const completeSpy = jest.fn();
+        const nextSpy = vi.fn();
+        const errorSpy = vi.fn();
+        const completeSpy = vi.fn();
 
         connection$.subscribe(nextSpy, errorSpy, completeSpy);
 

@@ -7,8 +7,8 @@ import {
 } from './firebase-app-check.http-interceptor';
 import { APP_CHECK_ENABLED, FIREBASE_APP_CHECK, FIREBASE_APP_CHECK_HTTP_INTERCEPTOR_URL_PATTERN } from './tokens';
 
-const getTokenFn = jest.fn();
-jest.mock('firebase/app-check', () => ({
+const getTokenFn = vi.fn();
+vi.mock('firebase/app-check', () => ({
   getToken: (...a: unknown[]) => getTokenFn(...a),
 }));
 

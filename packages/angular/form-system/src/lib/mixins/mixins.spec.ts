@@ -56,7 +56,7 @@ class TestForm implements FormType<{ name: string; empty: string }> {
 class FormWithComponent {}
 
 describe('form-system mixins', () => {
-  let form: TestForm;
+  let form: any;
   let injector: Injector;
 
   @Mixin(
@@ -113,7 +113,7 @@ describe('form-system mixins', () => {
 
   it('ExtractControlMixin uses the control of the mat form field', () => {
     probe.ngControl = null;
-    probe['matFormField'] = { _control: { ngControl: { control: form.name } } };
+    probe['matFormField'] = { _control: { ngControl: { control: form.name } } } as any;
     expect(probe['extractControl']()).toBe(form.name);
   });
 
@@ -196,7 +196,7 @@ describe('form-system mixins', () => {
     it('throws for unknown methods and controls', () => {
       expect(() => probe['extractMethod'](form, 'name', 'nope')).toThrow('not attached');
       expect(() => probe['extractMethods'](form, 'empty')).toThrow('does not exists');
-      jest.spyOn(console, 'log').mockImplementation(() => undefined);
+      vi.spyOn(console, 'log').mockImplementation(() => undefined);
       expect(() => probe['extractMethods']({} as any, 'name')).toThrow('Could not extract');
     });
   });
@@ -237,7 +237,7 @@ describe('control data source and factories', () => {
   });
 
   it('is injectable with the control token', () => {
-    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
     const control = new RxapFormControl('a', { controlId: 'c' });
     TestBed.configureTestingModule({
       providers: [

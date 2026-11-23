@@ -46,7 +46,7 @@ describe('table select decorators', () => {
   it('stores the method without overwriting toValue', () => {
     class Form {}
     const toValue = (v: any) => v.id;
-    const method = { call: jest.fn() };
+    const method = { call: vi.fn() };
     UseTableSelectToValue(toValue)(Form.prototype, 'company');
     UseTableSelectMethod(method as any)(Form.prototype, 'company');
     expect(getMetadata<Map<string, unknown>>(TABLE_SELECT_TO_VALUE, Form.prototype)!.get('company')).toBe(toValue);

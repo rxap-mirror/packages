@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import {
   defaultIpfsGatewayServers,
   dnsLookup,
@@ -18,18 +19,18 @@ function response(init: Partial<Response> & { json?: () => unknown; blob?: () =>
 }
 
 describe('config utilities', () => {
-  let fetchMock: jest.Mock;
+  let fetchMock: Mock;
 
   beforeEach(() => {
-    fetchMock = jest.fn();
+    fetchMock = vi.fn();
     (globalThis as any).fetch = fetchMock;
-    jest.spyOn(console, 'log').mockImplementation();
-    jest.spyOn(console, 'warn').mockImplementation();
-    jest.spyOn(console, 'error').mockImplementation();
-    jest.spyOn(console, 'debug').mockImplementation();
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
   });
 
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   describe('raceSuccess', () => {
     it('resolves with the first success even when others reject', async () => {
@@ -93,8 +94,8 @@ describe('config utilities', () => {
     it('emits the blob and completes', async () => {
       const blob = {} as Blob;
       fetchMock.mockResolvedValue(response({ blob: async () => blob }));
-      const next = jest.fn();
-      const complete = jest.fn();
+      const next = vi.fn();
+      const complete = vi.fn();
       fetchContentViaHttp('u').subscribe({ next, complete });
       await new Promise(r => setTimeout(r));
       expect(next).toHaveBeenCalledWith(blob);
@@ -103,7 +104,7 @@ describe('config utilities', () => {
 
     it('warns and emits nothing for http errors', async () => {
       fetchMock.mockResolvedValue(response({ ok: false, status: 404, statusText: 'NF' }));
-      const next = jest.fn();
+      const next = vi.fn();
       fetchContentViaHttp('u').subscribe({ next });
       await new Promise(r => setTimeout(r));
       expect(next).not.toHaveBeenCalled();
@@ -112,9 +113,9 @@ describe('config utilities', () => {
 
     it('completes without a value when the request fails', async () => {
       fetchMock.mockResolvedValue(response({ ok: false, status: 500, statusText: 'ERR' }));
-      const next = jest.fn();
-      const complete = jest.fn();
-      const error = jest.fn();
+      const next = vi.fn();
+      const complete = vi.fn();
+      const error = vi.fn();
       fetchContentViaHttp('u').subscribe({ next, complete, error });
       await new Promise(r => setTimeout(r));
       expect(next).not.toHaveBeenCalled();
@@ -124,7 +125,7 @@ describe('config utilities', () => {
 
     it('completes without a value when fetch rejects', async () => {
       fetchMock.mockRejectedValue(new Error('network'));
-      const complete = jest.fn();
+      const complete = vi.fn();
       fetchContentViaHttp('u').subscribe({ complete });
       await new Promise(r => setTimeout(r));
       expect(complete).toHaveBeenCalled();
@@ -154,7 +155,7 @@ describe('config utilities', () => {
       const gateways = [(c: string) => `https://slow/${c}`, (c: string) => `https://fast/${c}`];
       const result = await new Promise(resolve => fetchCidContentViaHttp('cid', 'a.json', gateways).subscribe(resolve));
       expect(result).toBe(blob);
-      expect(fetchMock.mock.calls.map(c => c[0])).toEqual(expect.arrayContaining(['https://fast/cid/a.json']));
+      expect(fetchMock.mock.calls.map((c: any[]) => c[0])).toEqual(expect.arrayContaining(['https://fast/cid/a.json']));
     });
   });
 
@@ -174,18 +175,18 @@ describe('config utilities', () => {
 
   describe('fetchCidContentAsJson', () => {
     it('parses the blob text', async () => {
-      const fetcher = jest.fn().mockResolvedValue({ text: async () => '{"a":1}' });
+      const fetcher = vi.fn().mockResolvedValue({ text: async () => '{"a":1}' });
       await expect(fetchCidContentAsJson('c', 'p', fetcher, [])).resolves.toEqual({ a: 1 });
       expect(fetcher).toHaveBeenCalledWith('c', 'p', []);
     });
 
     it('returns null for invalid json', async () => {
-      const fetcher = jest.fn().mockResolvedValue({ text: async () => 'nope' });
+      const fetcher = vi.fn().mockResolvedValue({ text: async () => 'nope' });
       await expect(fetchCidContentAsJson('c', undefined, fetcher)).resolves.toBeNull();
     });
 
     it('returns null without a blob', async () => {
-      await expect(fetchCidContentAsJson('c', undefined, jest.fn().mockResolvedValue(null))).resolves.toBeNull();
+      await expect(fetchCidContentAsJson('c', undefined, vi.fn().mockResolvedValue(null))).resolves.toBeNull();
     });
   });
 });

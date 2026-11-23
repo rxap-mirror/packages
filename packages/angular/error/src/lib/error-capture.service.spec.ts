@@ -22,7 +22,7 @@ class TestService extends ErrorCaptureService<{ id: number }> {
 }
 
 describe('ErrorCaptureService', () => {
-  const open = jest.fn(() => EMPTY);
+  const open = vi.fn((..._args: any[]) => EMPTY);
 
   beforeEach(() => {
     open.mockClear();
@@ -45,7 +45,7 @@ describe('ErrorCaptureService', () => {
     service.push({ id: 1 });
     service.push({ id: 1 });
     expect(open).toHaveBeenCalledTimes(1);
-    expect((open.mock.calls[0] as any[])[1]()).toHaveLength(2);
+    expect(open.mock.calls[0][1]()).toHaveLength(2);
   });
 
   it('opens a new dialog for a different error', () => {
@@ -62,7 +62,7 @@ describe('error services', () => {
   } as any;
 
   beforeEach(() => TestBed.configureTestingModule({
-    providers: [{ provide: RXAP_ERROR_CAPTURE_DIALOG_SERVICE, useValue: { open: jest.fn() } }],
+    providers: [{ provide: RXAP_ERROR_CAPTURE_DIALOG_SERVICE, useValue: { open: vi.fn() } }],
   }));
 
   it('AnyHttpErrorService compares url, method, status and message', () => {

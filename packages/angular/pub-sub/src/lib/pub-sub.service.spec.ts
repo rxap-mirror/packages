@@ -80,15 +80,15 @@ describe('PubSubService', () => {
     });
 
     it('should emit if a message with matching topic is published', () => {
-      const spy = jest.fn();
+      const spy = vi.fn();
       service.subscribe('test').subscribe(spy);
       service.publish('test');
       expect(spy).toHaveBeenCalledTimes(1);
     });
 
     it('should not interfere with other subscribers', () => {
-      const spyA = jest.fn();
-      const spyB = jest.fn();
+      const spyA = vi.fn();
+      const spyB = vi.fn();
       service
         .subscribe('test')
         .pipe(
@@ -96,7 +96,9 @@ describe('PubSubService', () => {
             throw new Error('some error');
           }),
         )
-        .subscribe(spyA);
+        // the error handler keeps rxjs from reporting the error as an unhandled
+        // (asynchronously thrown) error, which vitest treats as a failed run
+        .subscribe({ next: spyA, error: () => undefined });
       service.subscribe('test').subscribe(spyB);
       service.publish('test');
       expect(spyA).not.toHaveBeenCalled();
@@ -107,7 +109,7 @@ describe('PubSubService', () => {
     });
 
     it('should publish a message to all subscribers', () => {
-      const spy = jest.fn();
+      const spy = vi.fn();
       service.subscribe('test').subscribe(spy);
       service.subscribe('test').subscribe(spy);
       service.publish('test');
@@ -143,14 +145,14 @@ describe('PubSubService', () => {
     );
 
     it('should return messages from the cache', () => {
-      const spy = jest.fn();
+      const spy = vi.fn();
       service.publish('test');
       service.subscribe('test', 1).subscribe(spy);
       expect(spy).toHaveBeenCalledTimes(1);
     });
 
     it('should return messages from the cache based on the given replayCount', () => {
-      const spy = jest.fn();
+      const spy = vi.fn();
       for (let i = 0; i < 10; i++) {
         service.publish('test');
       }
@@ -159,13 +161,13 @@ describe('PubSubService', () => {
     });
 
     it('should remove messages from the cache based on the given retention', () => {
-      const spyA = jest.fn();
-      const spyB = jest.fn();
+      const spyA = vi.fn();
+      const spyB = vi.fn();
       const now = Date.now();
       service.publish('test', undefined, 1);
       service.subscribe('test', 1).subscribe(spyA);
       expect(spyA).toHaveBeenCalledTimes(1);
-      const dateNowSpy = jest
+      const dateNowSpy = vi
         .spyOn(Date, 'now')
         .mockReturnValueOnce(now + 1000);
       service.runGarbageCollector();

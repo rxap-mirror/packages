@@ -53,6 +53,9 @@ describe('@rxap/data-source', () => {
 
       let dataSource: TestDataSource;
       let dataSourceB: TestDataSource;
+      // the cache key contains the class name, which the esbuild bundle of the unit-test
+      // builder may suffix (TestDataSource2) to avoid name collisions between spec files
+      const cacheKey = () => `rxap_data-source_${ TestDataSource.name }_test`;
 
       beforeEach(() => {
         const token = new InjectionToken<TestDataSource>('dataSourceB');
@@ -79,18 +82,18 @@ describe('@rxap/data-source', () => {
         const data = 'test';
         dataSource.push(data);
         expect(
-          localStorage.getItem('rxap_data-source_TestDataSource_test'),
+          localStorage.getItem(cacheKey()),
         ).toBe(JSON.stringify(data));
       });
 
       it('should restore data from local storage', () => {
         const data = 'test';
         localStorage.setItem(
-          'rxap_data-source_TestDataSource_test',
+          cacheKey(),
           JSON.stringify(data),
         );
 
-        const spy = jest.fn();
+        const spy = vi.fn();
         dataSource.connect({ id: 'test' }).subscribe(spy);
         expect(spy).toHaveBeenCalledWith(data);
 
@@ -101,11 +104,11 @@ describe('@rxap/data-source', () => {
       it('should not restore data from local storage if restore is false', () => {
         const data = 'test';
         localStorage.setItem(
-          'rxap_data-source_TestDataSource_test',
+          cacheKey(),
           JSON.stringify(data),
         );
 
-        const spy = jest.fn();
+        const spy = vi.fn();
         dataSource.connect({ id: 'test', restore: false }).subscribe(spy);
         expect(spy).not.toHaveBeenCalled();
 
@@ -116,15 +119,15 @@ describe('@rxap/data-source', () => {
 
       it('should store and restore complex data', () => {
         const data = { test: 'test' };
-        const spyA = jest.fn();
+        const spyA = vi.fn();
         dataSource.connect({ id: 'test' }).subscribe(spyA);
         dataSource.push(data);
         expect(spyA).toHaveBeenCalledWith(data);
         expect(
-          localStorage.getItem('rxap_data-source_TestDataSource_test'),
+          localStorage.getItem(cacheKey()),
         ).toBe(JSON.stringify(data));
 
-        const spyB = jest.fn();
+        const spyB = vi.fn();
         dataSourceB.connect({ id: 'test' }).subscribe(spyB);
         expect(spyB).toHaveBeenCalledWith(data);
       });
@@ -132,15 +135,15 @@ describe('@rxap/data-source', () => {
       it('should handle complex data with circular references', () => {
         const data: any = { test: 'test' };
         data.data = data;
-        const spyA = jest.fn();
+        const spyA = vi.fn();
         dataSource.connect({ id: 'test' }).subscribe(spyA);
         dataSource.push(data);
         expect(spyA).toHaveBeenCalledWith(data);
         expect(
-          localStorage.getItem('rxap_data-source_TestDataSource_test'),
+          localStorage.getItem(cacheKey()),
         ).toBeNull();
 
-        const spyB = jest.fn();
+        const spyB = vi.fn();
         dataSourceB.connect({ id: 'test' }).subscribe(spyB);
         expect(spyB).not.toHaveBeenCalled();
       });
@@ -164,9 +167,9 @@ describe('@rxap/data-source', () => {
     it('should emit static data on subscribe', () => {
       const connection = dataSource.connect({ id: 'test' });
 
-      const nextSpy = jest.fn();
-      const errorSpy = jest.fn();
-      const completeSpy = jest.fn();
+      const nextSpy = vi.fn();
+      const errorSpy = vi.fn();
+      const completeSpy = vi.fn();
 
       connection.subscribe(nextSpy, errorSpy, completeSpy);
 
@@ -181,9 +184,9 @@ describe('@rxap/data-source', () => {
     it('should emit data if changed', () => {
       const connection = dataSource.connect({ id: 'test' });
 
-      const nextSpy = jest.fn();
-      const errorSpy = jest.fn();
-      const completeSpy = jest.fn();
+      const nextSpy = vi.fn();
+      const errorSpy = vi.fn();
+      const completeSpy = vi.fn();
 
       connection.subscribe(nextSpy, errorSpy, completeSpy);
 

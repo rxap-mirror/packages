@@ -48,15 +48,15 @@ describe('DataSourceDirective', () => {
     fixture.debugElement.queryAllNodes(By.directive(DataSourceDirective))[0].injector.get(DataSourceDirective);
 
   beforeEach(() => {
-    jest.spyOn(console, 'error').mockImplementation();
-    jest.spyOn(console, 'log').mockImplementation();
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
     data$ = new BehaviorSubject({ id: 1, name: 'one' });
     ds = new ObservableDataSource<any>(data$, { id: 'obs' });
     fixture = TestBed.createComponent(HostComponent);
     host = fixture.componentInstance;
     host.source.set(ds);
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('embeds the template with the emitted data after the first render', async () => {
     expect(text('data')).toBeUndefined();
@@ -109,7 +109,7 @@ describe('DataSourceDirective', () => {
   });
 
   it('refresh from the error context refreshes the data source', async () => {
-    const refresh = jest.spyOn(ds, 'refresh');
+    const refresh = vi.spyOn(ds, 'refresh');
     await settle();
     ds.hasError$.enable();
     await settle();
@@ -119,13 +119,13 @@ describe('DataSourceDirective', () => {
 
   it('skips the error template when none is defined', async () => {
     await settle();
-    jest.spyOn(directive(), 'errorTemplate' as any).mockReturnValue(undefined);
+    vi.spyOn(directive(), 'errorTemplate' as any).mockReturnValue(undefined);
     expect(() => directive().embedErrorTemplate(null)).not.toThrow();
   });
 
   it('stops listening to hasError$ after destroy', async () => {
     await settle();
-    const embedError = jest.spyOn(directive(), 'embedErrorTemplate');
+    const embedError = vi.spyOn(directive(), 'embedErrorTemplate');
     fixture.destroy();
     ds.hasError$.enable();
     expect(embedError).not.toHaveBeenCalled();
@@ -133,7 +133,7 @@ describe('DataSourceDirective', () => {
 
   it('disconnects on destroy and exposes the context guard', async () => {
     await settle();
-    const disconnect = jest.spyOn(ds, 'disconnect');
+    const disconnect = vi.spyOn(ds, 'disconnect');
     fixture.destroy();
     expect(disconnect).toHaveBeenCalled();
     expect(DataSourceDirective.ngTemplateContextGuard({} as any, {})).toBe(true);

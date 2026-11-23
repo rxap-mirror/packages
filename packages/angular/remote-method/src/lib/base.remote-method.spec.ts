@@ -20,7 +20,7 @@ function mk<T>(cls: new (...a: any[]) => T, ...args: any[]): T {
 }
 
 class Refreshable {
-  refresh = jest.fn();
+  refresh = vi.fn();
 }
 
 describe('BaseRemoteMethod', () => {
@@ -48,7 +48,7 @@ describe('BaseRemoteMethod', () => {
 
   it('initialises the definition on first call', async () => {
     const m = mk(TestMethod, null, null);
-    const init = jest.spyOn(m, 'init');
+    const init = vi.spyOn(m, 'init');
     await m.call();
     await m.call();
     expect(init).toHaveBeenCalledTimes(2);
@@ -72,7 +72,7 @@ describe('BaseRemoteMethod', () => {
   it('decreases the in-progress counter when the call fails', async () => {
     const m = mk(TestMethod, null, null);
     m.impl = () => Promise.reject(new Error('fail'));
-    const emitted = jest.fn();
+    const emitted = vi.fn();
     m.executed$.subscribe(emitted);
     await expect(m.call()).rejects.toThrow('fail');
     expect(m.executionsInProgress()).toBe(0);
@@ -150,9 +150,9 @@ describe('ProxyRemoteMethod', () => {
   it('transforms parameters and forwards the call to the target', async () => {
     TestBed.configureTestingModule({ providers: [Proxy] });
     const target = mk(TestMethod, null, null);
-    const callSpy = jest.spyOn(target, 'call');
+    const callSpy = vi.spyOn(target, 'call');
     // metadata defaults to the target metadata when not provided
-    const proxy = mk(Proxy as any, target, Injector.NULL, undefined);
+    const proxy = mk<any>(Proxy as any, target, Injector.NULL, undefined);
     await expect(proxy.call(2)).resolves.toBe('result-4');
     expect(callSpy).toHaveBeenCalledWith({ a: 4 });
     expect(proxy.id).toBe('test-method');

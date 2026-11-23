@@ -9,7 +9,7 @@ import { ACCORDION_DATA_SOURCE } from './tokens';
 const flush = () => new Promise<void>((r) => setTimeout(r));
 
 function method(fn: (p: any) => any): AccordionDataSourceMethod<any, any> {
-  return { call: jest.fn(fn) } as any;
+  return { call: vi.fn(fn) } as any;
 }
 
 @RxapDataSource({ id: 'acc' })
@@ -28,8 +28,8 @@ class TestPanel extends PanelAccordionDataSource<string, { id: number }> {
 }
 
 describe('AccordionDataSource', () => {
-  beforeEach(() => jest.spyOn(console, 'error').mockImplementation());
-  afterEach(() => jest.restoreAllMocks());
+  beforeEach(() => vi.spyOn(console, 'error').mockImplementation(() => undefined));
+  afterEach(() => vi.restoreAllMocks());
 
   const create = (cls = TestAccordion, extra: any[] = []) => {
     TestBed.configureTestingModule({ providers: [cls, ...extra] });
@@ -93,7 +93,7 @@ describe('AccordionDataSource', () => {
     const ds = create();
     ds.ngOnInit();
     await flush();
-    const spy = jest.fn();
+    const spy = vi.fn();
     ds.refresh$.subscribe(spy);
     ds.refresh();
     await flush();

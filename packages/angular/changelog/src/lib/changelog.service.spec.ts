@@ -39,7 +39,7 @@ describe('ChangelogService', () => {
   describe('showChangelogDialogIfNewVersion', () => {
     it('does nothing when disabled', () => {
       const service = setup();
-      const spy = jest.spyOn(service, 'showChangelogDialog').mockImplementation();
+      const spy = vi.spyOn(service, 'showChangelogDialog').mockImplementation(() => undefined);
       localStorage.setItem(RXAP_CHANGELOG_DISABLED, 'true');
       service.showChangelogDialogIfNewVersion();
       expect(spy).not.toHaveBeenCalled();
@@ -47,7 +47,7 @@ describe('ChangelogService', () => {
 
     it('does nothing when version already seen', () => {
       const service = setup('1.0.0');
-      const spy = jest.spyOn(service, 'showChangelogDialog').mockImplementation();
+      const spy = vi.spyOn(service, 'showChangelogDialog').mockImplementation(() => undefined);
       service.lastVersion = '1.0.0';
       service.showChangelogDialogIfNewVersion();
       expect(spy).not.toHaveBeenCalled();
@@ -55,14 +55,14 @@ describe('ChangelogService', () => {
 
     it('shows when no last version exists', () => {
       const service = setup('1.0.0');
-      const spy = jest.spyOn(service, 'showChangelogDialog').mockImplementation();
+      const spy = vi.spyOn(service, 'showChangelogDialog').mockImplementation(() => undefined);
       service.showChangelogDialogIfNewVersion();
       expect(spy).toHaveBeenCalledTimes(1);
     });
 
     it('resets last version and shows when version changed', () => {
       const service = setup('2.0.0');
-      const spy = jest.spyOn(service, 'showChangelogDialog').mockImplementation();
+      const spy = vi.spyOn(service, 'showChangelogDialog').mockImplementation(() => undefined);
       service.lastVersion = '1.0.0';
       service.showChangelogDialogIfNewVersion();
       expect(service.lastVersion).toBeNull();
@@ -72,8 +72,8 @@ describe('ChangelogService', () => {
 
   describe('showChangelogDialog', () => {
     beforeEach(() => {
-      (HTMLDialogElement.prototype as any).showModal = jest.fn();
-      (HTMLDialogElement.prototype as any).close = jest.fn();
+      (HTMLDialogElement.prototype as any).showModal = vi.fn();
+      (HTMLDialogElement.prototype as any).close = vi.fn();
       TestBed.overrideComponent(ChangelogDialogComponent, {
         set: { template: '<dialog #dialog></dialog>', imports: [] },
       });
@@ -111,7 +111,7 @@ describe('ChangelogService', () => {
 
   it('ProvideChangelog initializer triggers the version check', () => {
     localStorage.clear();
-    (HTMLDialogElement.prototype as any).showModal = jest.fn();
+    (HTMLDialogElement.prototype as any).showModal = vi.fn();
     TestBed.configureTestingModule({
       providers: [
         { provide: RXAP_ENVIRONMENT, useValue: { name: '1' } },

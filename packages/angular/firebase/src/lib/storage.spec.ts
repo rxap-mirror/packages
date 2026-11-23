@@ -3,8 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { provideFirebaseStorageEmulator, USE_STORAGE_EMULATOR } from './storage';
 import { FIREBASE_STORAGE } from './tokens';
 
-const connectStorageEmulator = jest.fn();
-jest.mock('firebase/storage', () => ({ connectStorageEmulator: (...a: unknown[]) => connectStorageEmulator(...a) }));
+const connectStorageEmulator = vi.fn();
+vi.mock('firebase/storage', () => ({ connectStorageEmulator: (...a: unknown[]) => connectStorageEmulator(...a) }));
 
 describe('provideFirebaseStorageEmulator', () => {
   const storage = { storage: true };

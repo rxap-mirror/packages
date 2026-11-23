@@ -22,6 +22,30 @@
       },
       "defaultConfiguration": "production"
     },
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "outputs": ["{workspaceRoot}/coverage/packages/angular/sentry"],
+      "options": {
+        "tsConfig": "packages/angular/sentry/tsconfig.spec.json",
+        "runner": "vitest",
+        "setupFiles": ["packages/angular/sentry/src/test-setup.ts"],
+        "exclude": ["generators/**"],
+        "watch": false
+      },
+      "dependsOn": ["test-generators"]
+    },
+    "test-generators": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "outputs": [
+        "{workspaceRoot}/coverage/packages/angular/sentry/generators"
+      ],
+      "options": {
+        "command": "jest --config jest.generators.config.ts --passWithNoTests",
+        "cwd": "packages/angular/sentry"
+      }
+    },
     "lint": {
       "options": {
         "lintFilePatterns": [

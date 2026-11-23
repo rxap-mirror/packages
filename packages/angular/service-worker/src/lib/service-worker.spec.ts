@@ -5,6 +5,7 @@ import {
   ApplicationInitStatus,
 } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import type { Mock } from 'vitest';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import {
   SwUpdate,
@@ -44,24 +45,37 @@ function swUpdateMock(isEnabled = true) {
   return {
     isEnabled,
     versionUpdates: new Subject<VersionEvent>(),
-    checkForUpdate: jest.fn().mockResolvedValue(true),
-    activateUpdate: jest.fn().mockResolvedValue(true),
+    checkForUpdate: vi.fn().mockResolvedValue(true),
+    activateUpdate: vi.fn().mockResolvedValue(true),
   };
 }
 
 describe('service worker', () => {
-  // jsdom does not allow stubbing location; a reload surfaces as a "not implemented: navigation" error
-  let reload: jest.Mock;
+  // jsdom does not allow stubbing location; a reload surfaces as a "not implemented: navigation" jsdomError
+  // on the jsdom virtual console (vitest forwards it to the console that existed before the spec spied on it)
+  let reload: Mock;
+  let jsdomErrorListeners: Array<(...args: any[]) => void>;
 
   beforeEach(() => {
-    jest.spyOn(console, 'log').mockImplementation();
-    jest.spyOn(console, 'debug').mockImplementation();
-    jest.spyOn(console, 'warn').mockImplementation();
-    reload = jest.spyOn(console, 'error').mockImplementation() as unknown as jest.Mock;
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    reload = vi.fn();
+    const virtualConsole = (window as any).jsdom.virtualConsole;
+    jsdomErrorListeners = virtualConsole.listeners('jsdomError');
+    virtualConsole.removeAllListeners('jsdomError');
+    virtualConsole.on('jsdomError', (error: Error) => {
+      if (/navigation/.test(error.message)) {
+        reload();
+      }
+    });
   });
 
   afterEach(() => {
-    jest.restoreAllMocks();
+    const virtualConsole = (window as any).jsdom.virtualConsole;
+    virtualConsole.removeAllListeners('jsdomError');
+    jsdomErrorListeners.forEach(listener => virtualConsole.on('jsdomError', listener));
+    vi.restoreAllMocks();
   });
 
   describe('LogUpdateService', () => {
@@ -95,7 +109,7 @@ describe('service worker', () => {
     it('opens a snackbar and activates after dismissal', async () => {
       const sw = swUpdateMock();
       const dismissed = new Subject<void>();
-      const snackBar = { open: jest.fn().mockReturnValue({ afterDismissed: () => dismissed }) };
+      const snackBar = { open: vi.fn().mockReturnValue({ afterDismissed: () => dismissed }) };
       TestBed.configureTestingModule({
         providers: [
           { provide: SwUpdate, useValue: sw },
@@ -120,7 +134,7 @@ describe('service worker', () => {
     function setup(isEnabled: boolean) {
       const sw = swUpdateMock(isEnabled);
       const lifeCycle = {
-        whenReady: jest.fn((factory: () => Observable<unknown>) => factory()),
+        whenReady: vi.fn((factory: () => Observable<unknown>) => factory()),
       };
       TestBed.configureTestingModule({
         providers: [
@@ -131,17 +145,17 @@ describe('service worker', () => {
       return { sw, lifeCycle, service: TestBed.inject(CheckForUpdateService) };
     }
 
-    beforeEach(() => jest.useFakeTimers());
-    afterEach(() => jest.useRealTimers());
+    beforeEach(() => vi.useFakeTimers());
+    afterEach(() => vi.useRealTimers());
 
     it('checks immediately and then every 15 minutes', () => {
       const { sw, service } = setup(true);
       service.start();
       // direct call + startWith(null) call
       expect(sw.checkForUpdate).toHaveBeenCalledTimes(2);
-      jest.advanceTimersByTime(15 * 60 * 1000);
+      vi.advanceTimersByTime(15 * 60 * 1000);
       expect(sw.checkForUpdate).toHaveBeenCalledTimes(3);
-      jest.advanceTimersByTime(15 * 60 * 1000);
+      vi.advanceTimersByTime(15 * 60 * 1000);
       expect(sw.checkForUpdate).toHaveBeenCalledTimes(4);
     });
 
@@ -164,8 +178,8 @@ describe('service worker', () => {
 
   describe('ServiceWorkerUpdateDialogComponent', () => {
     beforeEach(() => {
-      HTMLDialogElement.prototype.showModal = jest.fn();
-      HTMLDialogElement.prototype.close = jest.fn();
+      HTMLDialogElement.prototype.showModal = vi.fn();
+      HTMLDialogElement.prototype.close = vi.fn();
     });
 
     it('shows modal after render and emits closeDialog on close', async () => {
@@ -173,7 +187,7 @@ describe('service worker', () => {
         providers: [{ provide: UPDATE_AVAILABLE_EVENT, useValue: ready }],
       });
       const fixture = TestBed.createComponent(ServiceWorkerUpdateDialogComponent);
-      const closed = jest.fn();
+      const closed = vi.fn();
       fixture.componentInstance.closeDialog.subscribe(closed);
       fixture.detectChanges();
       await fixture.whenStable();
@@ -204,8 +218,8 @@ describe('service worker', () => {
 
   describe('DialogUpdateService', () => {
     it('creates the dialog on VERSION_READY, then activates and reloads after close', async () => {
-      HTMLDialogElement.prototype.showModal = jest.fn();
-      HTMLDialogElement.prototype.close = jest.fn();
+      HTMLDialogElement.prototype.showModal = vi.fn();
+      HTMLDialogElement.prototype.close = vi.fn();
       const sw = swUpdateMock();
       TestBed.configureTestingModule({ providers: [{ provide: SwUpdate, useValue: sw }] });
       TestBed.inject(DialogUpdateService).start();
@@ -238,7 +252,7 @@ describe('service worker', () => {
     }
 
     it('ProvideServiceWorkerUpdater starts the check service', async () => {
-      const start = jest.fn();
+      const start = vi.fn();
       await run(ProvideServiceWorkerUpdater({ provide: CheckForUpdateService, useValue: { start } }));
       expect(start).toHaveBeenCalled();
     });
@@ -249,7 +263,7 @@ describe('service worker', () => {
       ['withAutoUpdater', withAutoUpdater, AutoUpdateService],
       ['withSnackbarUpdater', withSnackbarUpdater, SnackbarUpdateService],
     ])('%s starts its service', async (_n, fn, token) => {
-      const start = jest.fn();
+      const start = vi.fn();
       await run([fn(), { provide: token, useValue: { start } }]);
       expect(start).toHaveBeenCalledTimes(1);
     });
@@ -265,8 +279,8 @@ describe('service worker', () => {
       }
     });
 
-    function mockRegistrations(regs: Array<{ scope: string; unregister: jest.Mock }>) {
-      const getRegistrations = jest.fn().mockResolvedValue(regs);
+    function mockRegistrations(regs: Array<{ scope: string; unregister: Mock }>) {
+      const getRegistrations = vi.fn().mockResolvedValue(regs);
       Object.defineProperty(navigator, 'serviceWorker', {
         configurable: true,
         value: { getRegistrations },
@@ -281,9 +295,9 @@ describe('service worker', () => {
     });
 
     it('unregisters all and reloads when confirmed', async () => {
-      const regs = [{ scope: 'a', unregister: jest.fn() }, { scope: 'b', unregister: jest.fn() }];
+      const regs = [{ scope: 'a', unregister: vi.fn() }, { scope: 'b', unregister: vi.fn() }];
       mockRegistrations(regs);
-      const confirmSpy = jest.fn().mockReturnValue(true);
+      const confirmSpy = vi.fn().mockReturnValue(true);
       (globalThis as any).confirm = confirmSpy;
       UnregisterServiceWorker({ serviceWorker: false } as never);
       await new Promise(r => setTimeout(r));
@@ -293,8 +307,8 @@ describe('service worker', () => {
     });
 
     it('does not reload when declined or when nothing was registered', async () => {
-      mockRegistrations([{ scope: 'a', unregister: jest.fn() }]);
-      const confirmSpy = jest.fn().mockReturnValue(false);
+      mockRegistrations([{ scope: 'a', unregister: vi.fn() }]);
+      const confirmSpy = vi.fn().mockReturnValue(false);
       (globalThis as any).confirm = confirmSpy;
       UnregisterServiceWorker({ serviceWorker: false } as never);
       await new Promise(r => setTimeout(r));

@@ -31,7 +31,7 @@ function controlFor(definition: object, controlId = 'company') {
 }
 
 interface Probe extends ExtractTableSelectColumnMapMixin, ExtractTableSelectToDisplayMixin, ExtractTableSelectToValueMixin,
-  ExtractTableSelectDataSourceMixin<any> {}
+  Omit<ExtractTableSelectDataSourceMixin<any>, 'control'> {}
 
 @Mixin(ExtractTableSelectColumnMapMixin, ExtractTableSelectToDisplayMixin, ExtractTableSelectToValueMixin, ExtractTableSelectDataSourceMixin)
 class Probe {
@@ -73,7 +73,7 @@ describe('table select extract mixins', () => {
     const source = { id: 'src' };
     UseTableSelectDataSource(source as any)(DsDefinition.prototype, 'company');
     const loaded = {};
-    const dataSourceLoader = { load: jest.fn(() => loaded) };
+    const dataSourceLoader = { load: vi.fn(() => loaded) };
     const p: any = new Probe();
     p.dataSourceLoader = dataSourceLoader;
     p.injector = Injector.NULL;

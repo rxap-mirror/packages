@@ -22,8 +22,8 @@ import { UserSettingsThemeService } from './user-settings-theme.service';
 import { UserSettingsDataSource } from './user-settings.data-source';
 import { UserSettingsService } from './user-settings.service';
 
-const method = (result: any = undefined) => ({ call: jest.fn().mockResolvedValue(result) });
-const ds = () => ({ refresh: jest.fn() });
+const method = (result: any = undefined) => ({ call: vi.fn().mockResolvedValue(result) });
+const ds = () => ({ refresh: vi.fn() });
 
 describe('UserSettingsDarkModeService', () => {
   const get = method(true), toggle = method(), disable = method(), enable = method(), source = ds();
@@ -74,7 +74,7 @@ describe('UserSettingsLanguageService', () => {
   it('gets the language', async () => expect(await service.getLanguage()).toBe('de'));
 
   it('sets the language, runs hooks and refreshes', async () => {
-    const hook = jest.fn();
+    const hook = vi.fn();
     service.registerSetLanguageHook(hook);
     await service.setLanguage('en');
     expect(hook).toHaveBeenCalledWith('en', false);
@@ -83,7 +83,7 @@ describe('UserSettingsLanguageService', () => {
   });
 
   it('unregisters and clears hooks', async () => {
-    const a = jest.fn(), b = jest.fn();
+    const a = vi.fn(), b = vi.fn();
     service.registerSetLanguageHook(a);
     service.registerSetLanguageHook(b);
     service.unregisterSetLanguageHook(a);
@@ -122,7 +122,7 @@ describe('UserSettingsThemeService', () => {
   let pubSub: PubSubService;
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     for (const m of [set, density, preset, typography]) m.call.mockClear();
     source.refresh.mockClear();
     TestBed.configureTestingModule({
@@ -139,7 +139,7 @@ describe('UserSettingsThemeService', () => {
     pubSub = TestBed.inject(PubSubService);
   });
 
-  afterEach(() => jest.useRealTimers());
+  afterEach(() => vi.useRealTimers());
 
   it('get returns the theme', async () => {
     expect(await service.get()).toEqual({ preset: 'p', density: -1, typography: 't' });
@@ -163,7 +163,7 @@ describe('UserSettingsThemeService', () => {
     pubSub.publish(RXAP_TOPICS.theme.preset.changed, 'abc');
     pubSub.publish(RXAP_TOPICS.theme.typography.changed, 'def');
     expect(density.call).not.toHaveBeenCalled();
-    await jest.advanceTimersByTimeAsync(1000);
+    await vi.advanceTimersByTimeAsync(1000);
     expect(density.call).toHaveBeenCalledWith({ requestBody: { value: -1 } });
     expect(preset.call).toHaveBeenCalledWith({ requestBody: { value: 'abc' } });
     expect(typography.call).toHaveBeenCalledWith({ requestBody: { value: 'def' } });
@@ -175,15 +175,15 @@ describe('UserSettingsThemeService', () => {
     pubSub.publish(RXAP_TOPICS.theme.density.changed, 'nope');
     pubSub.publish(RXAP_TOPICS.theme.preset.changed, 5);
     pubSub.publish(RXAP_TOPICS.theme.typography.changed, 5);
-    await jest.advanceTimersByTimeAsync(1000);
+    await vi.advanceTimersByTimeAsync(1000);
     expect(density.call).not.toHaveBeenCalled();
     expect(preset.call).not.toHaveBeenCalled();
     expect(typography.call).not.toHaveBeenCalled();
   });
 
   it('restore publishes the stored theme', async () => {
-    jest.spyOn(console, 'log').mockImplementation(() => undefined);
-    const spy = jest.spyOn(pubSub, 'publish');
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
+    const spy = vi.spyOn(pubSub, 'publish');
     await service.restore();
     expect(spy).toHaveBeenCalledWith(RXAP_TOPICS.theme.preset.restore, 'p');
     expect(spy).toHaveBeenCalledWith(RXAP_TOPICS.theme.density.restore, -1);

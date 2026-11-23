@@ -30,7 +30,7 @@ describe('FileUploadMethod', () => {
   it('resolves with the selected file and removes the input from the dom', async () => {
     const input = document.createElement('input');
     input.type = 'file';
-    jest.spyOn(input, 'click').mockImplementation(() => undefined);
+    vi.spyOn(input, 'click').mockImplementation(() => undefined);
     const promise = method.call({ fileInput: input, accept: 'image/*' });
     expect(input.getAttribute('accept')).toBe('image/*');
     const file = new File(['abc'], 'a.txt', { type: 'text/plain', lastModified: 5 });
@@ -45,7 +45,7 @@ describe('FileUploadMethod', () => {
   });
 
   it('creates and attaches an input when none is given', async () => {
-    const clicked = jest.spyOn(HTMLInputElement.prototype, 'click').mockImplementation(() => undefined);
+    const clicked = vi.spyOn(HTMLInputElement.prototype, 'click').mockImplementation(() => undefined);
     const promise = method.call();
     const input = document.body.querySelector('input[type=file]') as HTMLInputElement;
     expect(input).toBeTruthy();
@@ -59,7 +59,7 @@ describe('FileUploadMethod', () => {
   });
 
   it('resolves null when the window regains focus (cancel)', async () => {
-    const clicked = jest.spyOn(HTMLInputElement.prototype, 'click').mockImplementation(() => undefined);
+    const clicked = vi.spyOn(HTMLInputElement.prototype, 'click').mockImplementation(() => undefined);
     const promise = method.call();
     document.body.dispatchEvent(new Event('focus'));
     await expect(promise).resolves.toBeNull();
@@ -80,7 +80,7 @@ describe('FileUploadMethod', () => {
     method.progress$.subscribe((p) => progress.push(p));
     const readers: FileReader[] = [];
     const orig = FileReader.prototype.readAsArrayBuffer;
-    jest.spyOn(FileReader.prototype, 'readAsArrayBuffer').mockImplementation(function (this: FileReader) {
+    vi.spyOn(FileReader.prototype, 'readAsArrayBuffer').mockImplementation(function (this: FileReader) {
       readers.push(this);
     });
     (method as any).readFile(new File(['abcd'], 'p.txt'));
@@ -90,10 +90,10 @@ describe('FileUploadMethod', () => {
   });
 
   it('errors the progress stream for non progress events', () => {
-    const error = jest.fn();
+    const error = vi.fn();
     method.progress$.subscribe({ error });
     const readers: FileReader[] = [];
-    jest.spyOn(FileReader.prototype, 'readAsArrayBuffer').mockImplementation(function (this: FileReader) {
+    vi.spyOn(FileReader.prototype, 'readAsArrayBuffer').mockImplementation(function (this: FileReader) {
       readers.push(this);
     });
     (method as any).readFile(new File(['abcd'], 'p.txt'));

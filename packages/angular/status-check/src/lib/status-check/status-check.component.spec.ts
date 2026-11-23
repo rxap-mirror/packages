@@ -6,7 +6,7 @@ import { STATUS_CHECK_INTERVAL } from '../tokens';
 import { StatusCheckComponent } from './status-check.component';
 
 describe('StatusCheckComponent', () => {
-  const service = { getStatus: jest.fn() };
+  const service = { getStatus: vi.fn() };
   let params: BehaviorSubject<any>;
 
   function create(status: any, query: Record<string, any> = { service: ['a'] }) {
@@ -27,8 +27,8 @@ describe('StatusCheckComponent', () => {
     return fixture;
   }
 
-  beforeEach(() => jest.useFakeTimers());
-  afterEach(() => jest.useRealTimers());
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
 
   it('maps services and flags from the status', () => {
     const fixture = create({
@@ -36,7 +36,7 @@ describe('StatusCheckComponent', () => {
       info: { b: { status: 'up' } },
       error: { a: { status: 'down', message: 'bad' } },
     }, { service: ['a', 'b'], url: '/back' });
-    jest.advanceTimersByTime(100);
+    vi.advanceTimersByTime(100);
     fixture.detectChanges();
     const c = fixture.componentInstance;
     expect(c.services().map((s) => s.name)).toEqual(['a', 'b']);
@@ -54,7 +54,7 @@ describe('StatusCheckComponent', () => {
     for (const [status, flag] of [['ok', 'statusIsOk'], ['empty', 'statusIsEmpty'], ['fatal', 'statusIsFatal']] as const) {
       TestBed.resetTestingModule();
       const fixture = create({ status });
-      jest.advanceTimersByTime(100);
+      vi.advanceTimersByTime(100);
       expect((fixture.componentInstance as any)[flag]()).toBe(true);
       fixture.detectChanges();
     }
@@ -62,14 +62,14 @@ describe('StatusCheckComponent', () => {
 
   it('flags unavailable states', () => {
     const fixture = create({ status: 'bad-gateway' });
-    jest.advanceTimersByTime(100);
+    vi.advanceTimersByTime(100);
     fixture.detectChanges();
     expect(fixture.componentInstance.statusIsUnavailable()).toBe(true);
   });
 
   it('toggles the redirect warning', () => {
     const fixture = create({ status: 'error', error: { a: { status: 'down' } } }, { service: ['a'], url: '/x' });
-    jest.advanceTimersByTime(100);
+    vi.advanceTimersByTime(100);
     fixture.detectChanges();
     const c = fixture.componentInstance;
     c.openWarningDialog();
@@ -80,16 +80,16 @@ describe('StatusCheckComponent', () => {
 
   it('counts down and retries when the interval elapses', () => {
     const fixture = create({ status: 'ok', info: { a: { status: 'up' } } });
-    jest.advanceTimersByTime(100);
+    vi.advanceTimersByTime(100);
     const c = fixture.componentInstance;
     expect(service.getStatus).toHaveBeenCalledTimes(1);
-    jest.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1000);
     expect(c.countdown()).toBe(3);
-    jest.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1000);
     expect(c.countdown()).toBe(2);
-    jest.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1000);
     expect(c.countdown()).toBe(1);
-    jest.advanceTimersByTime(200);
+    vi.advanceTimersByTime(200);
     expect(service.getStatus).toHaveBeenCalledTimes(2);
   });
 });

@@ -35,10 +35,10 @@ const fakeLayout = () => ({
   fixedInViewport: signal(true),
   pinned: signal(false),
   collapsable: signal(true),
-  togglePinned: jest.fn(),
-  closeSidenav: jest.fn(),
-  openSidenav: jest.fn(),
-  toggleOpened: jest.fn(),
+  togglePinned: vi.fn(),
+  closeSidenav: vi.fn(),
+  openSidenav: vi.fn(),
+  toggleOpened: vi.fn(),
 });
 
 describe('NavigationComponent / NavigationItemComponent', () => {
@@ -205,8 +205,8 @@ describe('SettingsButtonComponent', () => {
     const theme = {
       darkMode: signal(false), density: signal(0), typography: signal('t'), themeName: signal('n'),
       getAvailableTypographies: () => ['A'], getAvailableThemes: () => ['B'],
-      applyDensity: jest.fn(), setDensity: jest.fn(), applyTypography: jest.fn(), setTypography: jest.fn(),
-      applyTheme: jest.fn(), setTheme: jest.fn(), toggleDarkTheme: jest.fn(),
+      applyDensity: vi.fn(), setDensity: vi.fn(), applyTypography: vi.fn(), setTypography: vi.fn(),
+      applyTheme: vi.fn(), setTheme: vi.fn(), toggleDarkTheme: vi.fn(),
     };
     TestBed.configureTestingModule({
       imports: [SettingsButtonComponent, MatIconTestingModule, NoopAnimationsModule],
@@ -239,7 +239,7 @@ describe('SettingsButtonComponent', () => {
   });
 
   it('runs custom item actions in the injection context', () => {
-    const action = jest.fn();
+    const action = vi.fn();
     const { c } = setup([{ provide: RXAP_SETTINGS_MENU_ITEM, useValue: { label: 'x', action }, multi: true }]);
     expect(c.customItems()).toHaveLength(1);
     c.clickItem(c.customItems()[0]);
@@ -268,7 +268,7 @@ describe('DefaultHeaderComponent', () => {
         { provide: DefaultHeaderService, useValue: { portals: signal([]) } },
         { provide: RXAP_USER_PROFILE_DATA_SOURCE, useValue: { connect: () => new BehaviorSubject({ username: 'u' }) } },
         { provide: ThemeService, useValue: { getAvailableTypographies: () => [], getAvailableThemes: () => [], darkMode: signal(false) } },
-        { provide: require('./external-apps.service').ExternalAppsService, useValue: { activeAppList: signal([]), getAppList: jest.fn() } },
+        { provide: require('./external-apps.service').ExternalAppsService, useValue: { activeAppList: signal([]), getAppList: vi.fn() } },
       ],
     });
     const f = TestBed.createComponent(DefaultHeaderComponent);

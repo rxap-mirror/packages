@@ -10,7 +10,7 @@ import { TableSelectInputComponent } from './table-select-input.component';
 @Component({
   imports: [TableSelectInputComponent, ReactiveFormsModule],
   template: `
-    <rxap-table-select-input [formControl]="control" placeholder="Pick" required disabled></rxap-table-select-input>`,
+    <rxap-table-select-input [formControl]="control" placeholder="Pick" required [disabled]="true"></rxap-table-select-input>`,
 })
 class HostComponent {
   control: FormControl = new FormControl(null);
@@ -24,8 +24,8 @@ class StandaloneHostComponent {}
 
 describe('TableSelectInputComponent', () => {
   // the component delays the display update with a rxjs timer (delay(100)) which is not tracked by angular
-  beforeEach(() => jest.useFakeTimers());
-  afterEach(() => jest.useRealTimers());
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
 
   it('works standalone and shows the placeholder', () => {
     const fixture = TestBed.createComponent(StandaloneHostComponent);
@@ -55,10 +55,10 @@ describe('TableSelectInputComponent', () => {
     const fixture = TestBed.createComponent(HostComponent);
     fixture.detectChanges();
     const input: TableSelectInputComponent = fixture.debugElement.children[0].componentInstance;
-    const changes = jest.fn();
+    const changes = vi.fn();
     input.stateChanges.subscribe(changes);
     fixture.componentInstance.control.setValue('abc');
-    await jest.advanceTimersByTimeAsync(100);
+    await vi.advanceTimersByTimeAsync(100);
     fixture.detectChanges();
     expect(input.value).toBe('abc');
     expect(input.empty).toBe(false);
@@ -66,7 +66,7 @@ describe('TableSelectInputComponent', () => {
     expect(input.display).toBe('abc');
     expect(fixture.nativeElement.querySelector('span').textContent).toBe('abc');
     fixture.componentInstance.control.setValue(null);
-    await jest.advanceTimersByTimeAsync(100);
+    await vi.advanceTimersByTimeAsync(100);
     expect(input.display).toBe('');
     expect(changes).toHaveBeenCalled();
   });
@@ -96,7 +96,7 @@ describe('TableSelectInputComponent', () => {
     input.setDescribedByIds(['a']);
     input.onContainerClick(new MouseEvent('click'));
     fixture.componentInstance.control.setValue('x');
-    await jest.advanceTimersByTimeAsync(100);
+    await vi.advanceTimersByTimeAsync(100);
     expect(input.display).toBe('<x>');
   });
 
@@ -113,10 +113,10 @@ describe('TableSelectInputComponent', () => {
     const input: TableSelectInputComponent = fixture.debugElement.children[0].componentInstance;
     expect(input.rxapControl).toBe(fixture.componentInstance.control);
     fixture.componentInstance.control.disable();
-    await jest.advanceTimersByTimeAsync(100);
+    await vi.advanceTimersByTimeAsync(100);
     expect(input.disabled).toBe(true);
     fixture.componentInstance.control.enable();
-    await jest.advanceTimersByTimeAsync(100);
+    await vi.advanceTimersByTimeAsync(100);
     expect(input.disabled).toBe(false);
     fixture.destroy();
   });

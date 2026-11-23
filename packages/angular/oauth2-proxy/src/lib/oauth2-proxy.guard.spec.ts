@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import {
   HttpErrorResponse,
   provideHttpClient,
@@ -11,13 +12,14 @@ import { oauth2ProxyGuard } from './oauth2-proxy.guard';
 
 describe('oauth2ProxyGuard', () => {
   let http: HttpTestingController;
-  // jsdom does not allow stubbing location.replace; a navigation attempt is
-  // reported as a "not implemented" error on the console instead.
-  let consoleError: jest.SpyInstance;
-  const navigated = () => consoleError.mock.calls.some(([e]) => String(e?.message ?? e).includes('navigation'));
+  // jsdom does not implement navigation (and location.replace cannot be spied
+  // on), so the global location is replaced by a stub that records the redirect.
+  let replace: Mock;
+  const navigated = () => replace.mock.calls.some(([target]: any[]) => target === 'http://localhost/oauth2/sign_in');
 
   beforeEach(() => {
-    consoleError = jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    replace = vi.fn();
+    vi.stubGlobal('location', { origin: 'http://localhost', replace });
     TestBed.configureTestingModule({
       providers: [provideHttpClient(), provideHttpClientTesting()],
     });
@@ -25,7 +27,7 @@ describe('oauth2ProxyGuard', () => {
   });
 
   afterEach(() => {
-    consoleError.mockRestore();
+    vi.unstubAllGlobals();
     http.verify();
   });
 

@@ -153,8 +153,8 @@ describe('dialogs', () => {
     });
 
     it('emits and completes when the dialog is closed', async () => {
-      const next = jest.fn();
-      const complete = jest.fn();
+      const next = vi.fn();
+      const complete = vi.fn();
       // closing is asynchronous without zone.js (the dialog finishes closing after a render), so wait for completion
       const completed = new Promise<void>((resolve) => {
         TestBed.inject(ErrorCaptureDialogService).open(InnerComponent, signal([{ message: 'x' }])).subscribe({
@@ -200,8 +200,8 @@ describe('dialogs', () => {
           { provide: RXAP_ERROR_DIALOG_DISABLED, useValue: true },
         ],
       });
-      jest.spyOn(console, 'debug').mockImplementation(() => undefined);
-      const complete = jest.fn();
+      vi.spyOn(console, 'debug').mockImplementation(() => undefined);
+      const complete = vi.fn();
       TestBed.inject(ErrorCaptureDialogService).open(InnerComponent, signal([])).subscribe({ complete });
       expect(complete).toHaveBeenCalled();
       expect(TestBed.inject(MatDialog).openDialogs.length).toBe(0);

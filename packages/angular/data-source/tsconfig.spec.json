@@ -4,13 +4,11 @@
     "outDir": "../../../dist/out-tsc",
     "module": "preserve",
     "target": "es2016",
-    "types": ["jest", "node", "@angular/localize"],
-    "moduleResolution": "bundler",
-    "isolatedModules": true
+    "types": ["vitest/globals", "node", "@angular/localize"],
+    "moduleResolution": "bundler"
   },
   "files": ["src/test-setup.ts"],
   "include": [
-    "jest.config.ts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "src/**/*.d.ts",
@@ -25,5 +23,6 @@
     "table/**/*.spec.ts",
     "table/tree/**/*.spec.ts",
     "testing/**/*.spec.ts"
-  ]
+  ],
+  "exclude": ["src/generators/**"]
 }

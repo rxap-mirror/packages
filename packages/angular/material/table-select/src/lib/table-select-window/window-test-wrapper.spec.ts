@@ -18,11 +18,11 @@ class FooterComponent {}
 
 describe('WindowTestWrapperComponent', () => {
   beforeEach(() => {
-    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
   });
   afterEach(() => {
-    jest.useRealTimers();
-    jest.restoreAllMocks();
+    vi.useRealTimers();
+    vi.restoreAllMocks();
   });
 
   async function create() {
@@ -45,15 +45,15 @@ describe('WindowTestWrapperComponent', () => {
 
   it('renders a footer portal that is set later on', async () => {
     const fixture = await create();
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const windowRef = fixture.debugElement.query(el => el.name === 'span').injector.get(RXAP_WINDOW_REF) as MockWindowRef;
     expect(fixture.nativeElement.querySelector('.footer')).toBeNull();
     // the footer is published with a timer which is not tracked by angular
     windowRef.setFooterPortal(new ComponentPortal(FooterComponent));
-    await jest.advanceTimersByTimeAsync(1);
+    await vi.advanceTimersByTimeAsync(1);
     // angular schedules the change detection with timers as well
-    await jest.advanceTimersByTimeAsync(100);
-    jest.useRealTimers();
+    await vi.advanceTimersByTimeAsync(100);
+    vi.useRealTimers();
     await fixture.whenStable();
     expect(fixture.componentInstance.footer()).not.toBeNull();
     expect(fixture.nativeElement.querySelector('.footer')?.textContent).toBe('footer');

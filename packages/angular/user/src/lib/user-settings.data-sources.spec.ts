@@ -12,8 +12,8 @@ import { UserSettingsThemeService } from './user-settings-theme.service';
 
 describe('user data sources', () => {
   const settings = { darkMode: true, language: 'de', theme: { preset: 'x' } };
-  const getSettings = { call: jest.fn() };
-  const getProfile = { call: jest.fn() };
+  const getSettings = { call: vi.fn() };
+  const getProfile = { call: vi.fn() };
 
   beforeEach(() => {
     getSettings.call.mockReset().mockResolvedValue(settings);
@@ -49,7 +49,7 @@ describe('user data sources', () => {
   });
 
   it('provideUserTheme restores the theme on init', () => {
-    const restore = jest.fn().mockResolvedValue(undefined);
+    const restore = vi.fn().mockResolvedValue(undefined);
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
       providers: [provideUserTheme(), { provide: UserSettingsThemeService, useValue: { restore } }],

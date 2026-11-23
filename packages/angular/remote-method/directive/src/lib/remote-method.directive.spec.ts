@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import { Component, Directive, signal, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RemoteMethodLoader } from '@rxap/remote-method';
@@ -51,24 +52,24 @@ class TokenProviderDirective {}
 class TokenHostComponent {}
 
 describe('RemoteMethodDirective', () => {
-  let call$: jest.Mock;
+  let call$: Mock;
   let fixture: ComponentFixture<HostComponent>;
   let host: HostComponent;
 
   const button = () => fixture.nativeElement.querySelector('#btn') as HTMLButtonElement;
   const directive = () =>
-    fixture.debugElement.children[0].injector.get(RemoteMethodDirective);
+    fixture.debugElement.children[0].injector.get(RemoteMethodDirective) as RemoteMethodDirective;
   const flush = () => new Promise<void>((r) => setTimeout(r));
 
   beforeEach(() => {
-    call$ = jest.fn().mockResolvedValue('result');
-    jest.spyOn(console, 'error').mockImplementation();
-    jest.spyOn(console, 'debug').mockImplementation();
+    call$ = vi.fn().mockResolvedValue('result');
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
     TestBed.configureTestingModule({ providers: [{ provide: RemoteMethodLoader, useValue: { call$ } }] });
     fixture = TestBed.createComponent(HostComponent);
     host = fixture.componentInstance;
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('executes on click with the bound inputs and emits outputs', async () => {
     host.parameters.set({ a: 1 });

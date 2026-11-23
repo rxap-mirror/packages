@@ -6,9 +6,9 @@ import { KeycloakService } from './keycloak.service';
 const mockInstance: any = {};
 let ctorArgs: any;
 
-jest.mock('keycloak-js', () => ({
+vi.mock('keycloak-js', () => ({
   __esModule: true,
-  default: jest.fn().mockImplementation((config: any) => {
+  default: vi.fn().mockImplementation(function (config: any) {
     ctorArgs = config;
     return mockInstance;
   }),
@@ -19,16 +19,16 @@ function resetInstance() {
   Object.assign(mockInstance, {
     authenticated: true,
     token: 'tok',
-    init: jest.fn().mockResolvedValue(true),
-    login: jest.fn().mockResolvedValue(undefined),
-    logout: jest.fn().mockResolvedValue(undefined),
-    register: jest.fn().mockResolvedValue(undefined),
-    updateToken: jest.fn().mockResolvedValue(true),
-    isTokenExpired: jest.fn().mockReturnValue(false),
-    loadUserProfile: jest.fn().mockResolvedValue({ username: 'jane' }),
-    clearToken: jest.fn(),
-    hasResourceRole: jest.fn().mockReturnValue(false),
-    hasRealmRole: jest.fn().mockReturnValue(false),
+    init: vi.fn().mockResolvedValue(true),
+    login: vi.fn().mockResolvedValue(undefined),
+    logout: vi.fn().mockResolvedValue(undefined),
+    register: vi.fn().mockResolvedValue(undefined),
+    updateToken: vi.fn().mockResolvedValue(true),
+    isTokenExpired: vi.fn().mockReturnValue(false),
+    loadUserProfile: vi.fn().mockResolvedValue({ username: 'jane' }),
+    clearToken: vi.fn(),
+    hasResourceRole: vi.fn().mockReturnValue(false),
+    hasRealmRole: vi.fn().mockReturnValue(false),
     resourceAccess: { a: { roles: ['r1', 'r2'] }, b: {} },
     realmAccess: { roles: ['realm'] },
   });

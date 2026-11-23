@@ -37,7 +37,7 @@ describe('TableDataSourceDirective', () => {
   const rows = [{ id: 1 }, { id: 2 }, { id: 3 }];
 
   async function render(host: (h: HostComponent) => void) {
-    jest.spyOn(console, 'error').mockImplementation();
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
     const f = TestBed.createComponent(HostComponent);
     host(f.componentInstance);
     f.detectChanges();
@@ -46,7 +46,7 @@ describe('TableDataSourceDirective', () => {
     return f;
   }
 
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('assigns paginator, sort, filter and parameters to a table data source for an anonymous viewer', async () => {
     const ds = new TableDataSource<any>(staticDataSource(rows, { id: 'rows' }) as any);
@@ -64,7 +64,7 @@ describe('TableDataSourceDirective', () => {
   it('registers the inputs per viewer on a dynamic table data source', async () => {
     @Injectable()
     class Dyn extends DynamicTableDataSource<any> {}
-    const method = { call: jest.fn().mockResolvedValue(rows), metadata: { id: 'm' } };
+    const method = { call: vi.fn().mockResolvedValue(rows), metadata: { id: 'm' } };
     const ds = new Dyn(method as any);
     const f = await render((h) => h.source.set(ds));
     expect(ds.paginatorMap.get('table-viewer')).toBe(f.componentInstance.paginator);
@@ -74,7 +74,7 @@ describe('TableDataSourceDirective', () => {
   });
 
   it('rejects data sources that are no table data sources', () => {
-    jest.spyOn(console, 'error').mockImplementation();
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
     const f = TestBed.createComponent(HostComponent);
     f.componentInstance.source.set(staticDataSource(rows, { id: 'rows' }));
     expect(() => {

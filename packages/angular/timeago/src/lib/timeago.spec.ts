@@ -13,12 +13,12 @@ const D = 24 * H;
 
 describe('timeago', () => {
   beforeEach(() => {
-    jest.useFakeTimers().setSystemTime(NOW);
+    vi.useFakeTimers().setSystemTime(NOW);
     // join the template parts, strip the "@@id:" meta block
     (globalThis as any).$localize.mockImplementation((s: TemplateStringsArray, ...v: any[]) =>
       s.map((p, i) => (i === 0 ? p.replace(/^:@@[^:]*:/, '') : p) + (i < v.length ? v[ i ] : '')).join(''));
   });
-  afterEach(() => jest.useRealTimers());
+  afterEach(() => vi.useRealTimers());
 
   describe('TimeagoFormatter', () => {
     it.each([
@@ -68,7 +68,7 @@ describe('timeago', () => {
     const values: string[] = [];
     const sub = new TimeagoLivePipe().transform(NOW - 59 * S).subscribe(v => values.push(v));
     expect(values).toEqual([ '59 seconds ago' ]);
-    jest.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1000);
     expect(values).toEqual([ '59 seconds ago', 'about a minute ago' ]);
     sub.unsubscribe();
   });
@@ -77,7 +77,7 @@ describe('timeago', () => {
     @Component({
       standalone: true,
       imports: [ TimeagoDirective ],
-      template: `<span [rxapTimeago] [date]="date()"></span>`,
+      template: `<span rxapTimeago [date]="date()"></span>`,
     })
     class HostComponent {
       date = signal<number>(NOW - 2 * H);

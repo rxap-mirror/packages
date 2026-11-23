@@ -20,7 +20,7 @@ import { OpenFormWindowMethodDirective } from './open-form-window-method.directi
 })
 class HostComponent {
   windowRef = new Subject<any>();
-  method = { call: jest.fn(() => this.windowRef) };
+  method: any = { call: vi.fn(() => this.windowRef) };
   initial = { a: 1 };
   confirm = signal(false);
   submitted: any[] = [];
@@ -64,7 +64,7 @@ describe('OpenFormWindowMethodDirective', () => {
   });
 
   it('skips the click when a confirm directive is present and executes on confirmed', () => {
-    jest.spyOn(console, 'debug').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
     const { host, fixture, el } = setup();
     host.confirm.set(true);
     fixture.detectChanges();
@@ -76,7 +76,7 @@ describe('OpenFormWindowMethodDirective', () => {
 
   it('completes open windows on destroy', () => {
     const { host, fixture, directive } = setup();
-    const ref = { complete: jest.fn() } as any;
+    const ref = { complete: vi.fn() } as any;
     (directive as any)._windowRefInstance.add(ref);
     fixture.destroy();
     expect(ref.complete).toHaveBeenCalled();

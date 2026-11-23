@@ -8,18 +8,18 @@ describe('SessionStorageService', () => {
 
   beforeEach(() => {
     let store: { [key: string]: any } = {};
-    sessionStorage.getItem = jest.fn().mockImplementation((key: string) => {
+    sessionStorage.getItem = vi.fn().mockImplementation((key: string) => {
       return store[key];
     });
-    sessionStorage.setItem = jest.fn().mockImplementation((key: string, value: any) => {
+    sessionStorage.setItem = vi.fn().mockImplementation((key: string, value: any) => {
       return (
         store[key] = value
       );
     });
-    sessionStorage.removeItem = jest.fn().mockImplementation((key: string) => {
+    sessionStorage.removeItem = vi.fn().mockImplementation((key: string) => {
       delete store[key];
     });
-    sessionStorage.clear = jest.fn().mockImplementation((key: string) => {
+    sessionStorage.clear = vi.fn().mockImplementation((key: string) => {
       store = {};
     });
   });

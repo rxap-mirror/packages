@@ -80,20 +80,20 @@ describe('TableFilterInputDirective', () => {
   });
 
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   it('debounces the value and ignores short inputs', async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const f = TestBed.createComponent(HostComponent);
     f.detectChanges();
-    await jest.advanceTimersByTimeAsync(0);
+    await vi.advanceTimersByTimeAsync(0);
     const input: HTMLInputElement = f.nativeElement.querySelector('input');
     const type = async (v: string) => {
       input.value = v;
       input.dispatchEvent(new Event('input'));
       f.detectChanges();
-      await jest.advanceTimersByTimeAsync(200);
+      await vi.advanceTimersByTimeAsync(200);
     };
     await type('abcd');
     expect(service.current).toBe('abcd');

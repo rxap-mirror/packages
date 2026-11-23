@@ -5,8 +5,8 @@ import { ChangelogControllerListRemoteMethod } from '../openapi/remote-methods/c
 import { ChangelogComponent } from './changelog.component';
 
 describe('ChangelogComponent', () => {
-  const list = { call: jest.fn() };
-  const get = { call: jest.fn() };
+  const list = { call: vi.fn() };
+  const get = { call: vi.fn() };
 
   async function create(versions: string[] | Error) {
     list.call.mockReset();

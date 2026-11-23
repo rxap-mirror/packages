@@ -55,7 +55,7 @@ describe('firebase providers with the real sdk (zoneless)', () => {
   it('creates the services of the app', () => {
     const app = TestBed.inject(FIREBASE_APP);
     expect(TestBed.inject(FIREBASE_AUTH).app).toBe(app);
-    expect(TestBed.inject(FIREBASE_AUTH).config.emulator).toBeDefined();
+    expect((TestBed.inject(FIREBASE_AUTH).config as any).emulator).toBeDefined();
     expect(TestBed.inject(FIREBASE_FIRESTORE).app).toBe(app);
     expect(TestBed.inject(FIREBASE_FUNCTIONS).region).toBe('europe-west1');
     const storage = TestBed.inject(FIREBASE_STORAGE);

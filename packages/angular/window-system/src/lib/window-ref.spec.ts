@@ -12,27 +12,27 @@ describe('WindowRef', () => {
   let ref: WindowRef;
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     host = document.createElement('div');
     config = { width: '300px', height: '200px', minWidth: '10px', minHeight: '20px', maxWidth: '1000px', maxHeight: '900px' };
     overlayRef = {
       hostElement: host,
       overlayElement: document.createElement('div'),
-      dispose: jest.fn(),
-      getConfig: jest.fn(() => config),
-      updateSize: jest.fn((c: any) => Object.assign(config, c)),
-      updatePositionStrategy: jest.fn(),
-      updatePosition: jest.fn(),
+      dispose: vi.fn(),
+      getConfig: vi.fn(() => config),
+      updateSize: vi.fn((c: any) => Object.assign(config, c)),
+      updatePositionStrategy: vi.fn(),
+      updatePosition: vi.fn(),
     };
     positionStrategy = {
-      top: jest.fn(() => positionStrategy),
-      left: jest.fn(() => positionStrategy),
+      top: vi.fn(() => positionStrategy),
+      left: vi.fn(() => positionStrategy),
     };
     overlay = { position: () => ({ global: () => positionStrategy }) };
     ref = new WindowRef(overlayRef, overlay, { id: 'x', minimizable: true, draggable: false, title: 'T' });
   });
 
-  afterEach(() => jest.useRealTimers());
+  afterEach(() => vi.useRealTimers());
 
   it('exposes settings', () => {
     expect(ref.id).toBe('x');
@@ -47,9 +47,9 @@ describe('WindowRef', () => {
   });
 
   it('close() emits the result, notifies closed$ and completes', () => {
-    const next = jest.fn();
-    const complete = jest.fn();
-    const closed = jest.fn();
+    const next = vi.fn();
+    const complete = vi.fn();
+    const closed = vi.fn();
     ref.subscribe({ next, complete });
     ref.closed$.subscribe(closed);
     ref.close('r');
@@ -60,7 +60,7 @@ describe('WindowRef', () => {
   });
 
   it('close() without result does not emit a value', () => {
-    const next = jest.fn();
+    const next = vi.fn();
     ref.subscribe(next);
     ref.close();
     expect(next).not.toHaveBeenCalled();
@@ -103,43 +103,43 @@ describe('WindowRef', () => {
   });
 
   it('publishes portals asynchronously', () => {
-    const footer = jest.fn();
-    const title = jest.fn();
+    const footer = vi.fn();
+    const title = vi.fn();
     ref.footerPortal$.subscribe(footer);
     ref.titlePortal$.subscribe(title);
     const portal = {} as TemplatePortal;
     ref.setFooterPortal(portal);
     ref.setTitlePortal(portal);
     expect(footer).not.toHaveBeenCalled();
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(footer).toHaveBeenCalledWith(portal);
     expect(title).toHaveBeenCalledWith(portal);
   });
 
   it('merges the settings of the attached component ref', () => {
-    const settings = jest.fn();
+    const settings = vi.fn();
     ref.settings$.subscribe(settings);
-    const attached = jest.fn();
+    const attached = vi.fn();
     ref.attachedRef$.subscribe(attached);
     const injector = Injector.create({ providers: [{ provide: RXAP_WINDOW_SETTINGS, useValue: { title: 'C', icon: { icon: 'a' } } }] });
     const cmpRef = Object.create(ComponentRef.prototype);
     Object.defineProperty(cmpRef, 'injector', { value: injector });
     ref.setAttachedRef(cmpRef);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(attached).toHaveBeenCalledWith(cmpRef);
     expect(settings).toHaveBeenCalledWith(expect.objectContaining({ id: 'x', title: 'C' }));
   });
 
   it('falls back to the own settings for embedded views and components without settings', () => {
-    const settings = jest.fn();
+    const settings = vi.fn();
     ref.settings$.subscribe(settings);
     ref.setAttachedRef({} as EmbeddedViewRef<any>);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(settings).toHaveBeenCalledWith(expect.objectContaining({ title: 'T' }));
     const cmpRef = Object.create(ComponentRef.prototype);
     Object.defineProperty(cmpRef, 'injector', { value: Injector.create({ providers: [] }) });
     ref.setAttachedRef(cmpRef);
-    jest.runAllTimers();
+    vi.runAllTimers();
     expect(settings).toHaveBeenCalledTimes(2);
   });
 });

@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MatDatepickerIntl } from '@angular/material/datepicker';
@@ -26,7 +27,7 @@ import {
 
 beforeAll(() => {
   // join the template parts so the labels are real strings
-  ((globalThis as any).$localize as jest.Mock).mockImplementation(
+  ((globalThis as any).$localize as Mock).mockImplementation(
     (strings: TemplateStringsArray, ...values: any[]) => {
       const parts = [...strings];
       // strip the ":@@id:" metadata prefix of the first part
@@ -107,7 +108,7 @@ describe('LanguageSelectorComponent', () => {
     hasLanguages,
     languages,
     selectedLanguage,
-    setLanguage: jest.fn().mockResolvedValue(undefined),
+    setLanguage: vi.fn().mockResolvedValue(undefined),
   };
 
   @Component({

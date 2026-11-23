@@ -31,8 +31,8 @@ function buildArray(names: string[]) {
 }
 
 describe('form array directives', () => {
-  beforeEach(() => jest.useFakeTimers());
-  afterEach(() => jest.useRealTimers());
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
 
   describe('ForFormArrayItemsDirective and add / remove / restore buttons', () => {
     @Component({
@@ -69,7 +69,7 @@ describe('form array directives', () => {
     const q = (sel: string) => Array.from(fixture.nativeElement.querySelectorAll(sel)) as HTMLElement[];
 
     async function flush() {
-      await jest.advanceTimersByTimeAsync(150);
+      await vi.advanceTimersByTimeAsync(150);
       fixture.detectChanges();
     }
 
@@ -151,7 +151,7 @@ describe('form array directives', () => {
     it('syncs the disabled state with the mat button', async () => {
       const fixture = TestBed.createComponent(HostComponent);
       fixture.detectChanges();
-      await jest.advanceTimersByTimeAsync(150);
+      await vi.advanceTimersByTimeAsync(150);
       fixture.detectChanges();
       fixture.componentInstance.data.array.disable();
       fixture.detectChanges();
@@ -179,7 +179,7 @@ describe('form array directives', () => {
     it('disables the other controls of a deleted item and enables them again', async () => {
       const fixture = TestBed.createComponent(HostComponent);
       fixture.detectChanges();
-      await jest.advanceTimersByTimeAsync(150);
+      await vi.advanceTimersByTimeAsync(150);
       fixture.detectChanges();
       const group = fixture.componentInstance.data.array.at(0) as RxapFormGroup<any>;
       const name = group.get('name')!;
@@ -194,7 +194,7 @@ describe('form array directives', () => {
     it('does not re-enable controls when the array is disabled', async () => {
       const fixture = TestBed.createComponent(HostComponent);
       fixture.detectChanges();
-      await jest.advanceTimersByTimeAsync(150);
+      await vi.advanceTimersByTimeAsync(150);
       fixture.detectChanges();
       const array = fixture.componentInstance.data.array;
       const group = array.at(0) as RxapFormGroup<any>;

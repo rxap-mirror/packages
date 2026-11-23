@@ -13,9 +13,9 @@ describe('@rxap/data-source', () => {
         const connection2 = dataSource.connect({ id: '2' });
         const connection3 = dataSource.connect({ id: '3' });
 
-        const subscribe1 = jest.fn();
-        const subscribe2 = jest.fn();
-        const subscribe3 = jest.fn();
+        const subscribe1 = vi.fn();
+        const subscribe2 = vi.fn();
+        const subscribe3 = vi.fn();
 
         connection1.subscribe(subscribe1);
         connection2.subscribe(subscribe2);

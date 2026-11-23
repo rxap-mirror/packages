@@ -22,9 +22,9 @@ describe('@rxap/data-source', () => {
 
         const connection = dataSource.connect({ id: 'test' });
 
-        const nextSpy = jest.fn();
-        const errorSpy = jest.fn();
-        const completeSpy = jest.fn();
+        const nextSpy = vi.fn();
+        const errorSpy = vi.fn();
+        const completeSpy = vi.fn();
 
         connection.subscribe(nextSpy, errorSpy, completeSpy);
 
@@ -48,9 +48,9 @@ describe('@rxap/data-source', () => {
 
         const connection = dataSource.connect({ id: 'test' });
 
-        const nextSpy = jest.fn();
-        const errorSpy = jest.fn();
-        const completeSpy = jest.fn();
+        const nextSpy = vi.fn();
+        const errorSpy = vi.fn();
+        const completeSpy = vi.fn();
 
         connection.subscribe(nextSpy, errorSpy, completeSpy);
 
@@ -87,9 +87,9 @@ describe('@rxap/data-source', () => {
         const connection2 = dataSource.connect({ id: 'test2' });
         const connection3 = dataSource.connect({ id: 'test3' });
 
-        const nextSpy1 = jest.fn();
-        const nextSpy2 = jest.fn();
-        const nextSpy3 = jest.fn();
+        const nextSpy1 = vi.fn();
+        const nextSpy2 = vi.fn();
+        const nextSpy3 = vi.fn();
 
         connection1.subscribe(nextSpy1);
 
@@ -153,7 +153,7 @@ describe('@rxap/data-source', () => {
 
         const connection = dataSource.connect({ id: 'test' });
 
-        const disconnectSpy = jest.spyOn(source, 'disconnect');
+        const disconnectSpy = vi.spyOn(source, 'disconnect');
 
         dataSource.disconnect({ id: 'test' });
 

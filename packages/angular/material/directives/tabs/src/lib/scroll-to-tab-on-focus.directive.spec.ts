@@ -18,7 +18,7 @@ describe('ScrollToTabOnFocusDirective', () => {
     const f = TestBed.createComponent(HostComponent);
     f.detectChanges();
     const group = f.debugElement.query(By.directive(MatTabGroup)).componentInstance as MatTabGroup;
-    const scroll = jest.fn();
+    const scroll = vi.fn();
     group._elementRef.nativeElement.scrollIntoView = scroll;
     group.selectedIndexChange.emit(1);
     group.animationDone.emit();

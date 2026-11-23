@@ -25,7 +25,7 @@ describe('AsyncActionDirective', () => {
   }
 
   it('does nothing special for sync actions', () => {
-    const action = jest.fn();
+    const action = vi.fn();
     const { btn, dir } = setup(action);
     btn.click();
     expect(action).toHaveBeenCalled();
@@ -66,7 +66,7 @@ describe('AsyncActionDirective', () => {
 
   it('throws when the input is not a function', () => {
     const { dir } = setup(() => undefined);
-    jest.spyOn(dir, 'method' as any).mockReturnValue('nope');
+    vi.spyOn(dir, 'method' as any).mockReturnValue('nope');
     expect(() => dir.onClick()).toThrow('The method must be a function!');
   });
 });

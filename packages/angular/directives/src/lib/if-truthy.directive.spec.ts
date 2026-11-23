@@ -27,7 +27,7 @@ describe('@rxap/directives', () => {
 
     async function setup(callImpl: () => Promise<any>) {
       const fixture = TestBed.createComponent(HostComponent);
-      fixture.componentInstance.method = { call: jest.fn(callImpl) };
+      fixture.componentInstance.method = { call: vi.fn(callImpl) };
       fixture.componentInstance.trackBy = (data: any) => data.id;
       fixture.detectChanges();
       await fixture.whenStable();
@@ -38,7 +38,7 @@ describe('@rxap/directives', () => {
     it('should not rebuild the view when the trackBy value is unchanged', async () => {
       // each call resolves to a NEW object with the same id
       const { fixture, directive } = await setup(() => Promise.resolve({ id: 1 }));
-      const spy = jest.spyOn((directive as any).viewContainerRef, 'createEmbeddedView');
+      const spy = vi.spyOn((directive as any).viewContainerRef, 'createEmbeddedView');
 
       await (directive as any).execute();
       await (directive as any).execute();
@@ -51,7 +51,7 @@ describe('@rxap/directives', () => {
     it('should rebuild the view when the trackBy value changes', async () => {
       let id = 1;
       const { fixture, directive } = await setup(() => Promise.resolve({ id: id++ }));
-      const spy = jest.spyOn((directive as any).viewContainerRef, 'createEmbeddedView');
+      const spy = vi.spyOn((directive as any).viewContainerRef, 'createEmbeddedView');
 
       await (directive as any).execute();
       await (directive as any).execute();

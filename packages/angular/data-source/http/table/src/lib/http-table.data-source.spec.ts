@@ -4,8 +4,8 @@ import { HttpTableDataSource } from './http-table.data-source';
 import { ToHttpTableDataSourcePipe } from './to-http-table-data-source.pipe';
 
 describe('HttpTableDataSource', () => {
-  beforeEach(() => jest.spyOn(console, 'warn').mockImplementation());
-  afterEach(() => jest.restoreAllMocks());
+  beforeEach(() => vi.spyOn(console, 'warn').mockImplementation(() => undefined));
+  afterEach(() => vi.restoreAllMocks());
 
   function setup(
     response: any,
@@ -15,8 +15,8 @@ describe('HttpTableDataSource', () => {
     const events: any[] = [];
     const source: any = {
       metadata: { id: 'http' },
-      disconnect: jest.fn(),
-      connect: jest.fn((viewer: any) => {
+      disconnect: vi.fn(),
+      connect: vi.fn((viewer: any) => {
         viewer.viewChange.subscribe((o: any) => events.push(o));
         return pages.asObservable();
       }),
@@ -42,7 +42,7 @@ describe('HttpTableDataSource', () => {
   it('includes sort and filter changes in the table event', () => {
     const sortChange = new Subject<any>();
     const filterChange = new BehaviorSubject<any>({ q: 1 });
-    const toOptions = jest.fn((e: any) => ({ sort: e.sort, filter: e.filter }));
+    const toOptions = vi.fn((e: any) => ({ sort: e.sort, filter: e.filter }));
     const { events } = setup(
       { data: [], total: 0 },
       { toOptions, sort: { active: 'a', direction: 'asc', start: 'asc', sortChange }, filter: { change: filterChange, current: {} } },
@@ -73,14 +73,14 @@ describe('HttpTableDataSource', () => {
   it('warns on mismatching size and page and on a preset viewChange', () => {
     setup({ data: [], total: 0, size: 9, page: 9 });
     expect(console.warn).toHaveBeenCalledTimes(2);
-    const source: any = { metadata: { id: 'h' }, disconnect: jest.fn(), connect: () => of({ data: [], total: 0 }) };
+    const source: any = { metadata: { id: 'h' }, disconnect: vi.fn(), connect: () => of({ data: [], total: 0 }) };
     const ds = new HttpTableDataSource<any>(source, new PaginatorFake(2, 0, 0), () => ({}));
     ds.connect({ id: 'v', viewChange: of(1) } as any).subscribe();
     expect(console.warn).toHaveBeenCalledWith('The viewChange property is readonly');
   });
 
   it('errors for a paginator without page and without options function', () => {
-    const source: any = { metadata: { id: 'h' }, disconnect: jest.fn(), connect: () => of({ data: [], total: 0 }) };
+    const source: any = { metadata: { id: 'h' }, disconnect: vi.fn(), connect: () => of({ data: [], total: 0 }) };
     const ds = new HttpTableDataSource<any>(source, { pageSize: 1, pageIndex: 0, length: 0 });
     expect(() => ds.connect({ id: 'v' } as any).subscribe()).toThrow(/has not a page property/);
     expect(() => ds.tableEventToHttpOptions({} as any)).toThrow(/not defined/);

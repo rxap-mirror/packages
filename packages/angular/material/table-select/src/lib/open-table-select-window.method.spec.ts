@@ -22,7 +22,7 @@ import { TableSelectWindowComponent } from './table-select-window/table-select-w
 
 describe('OpenTableSelectWindowMethod', () => {
   let windowRef: Subject<any>;
-  const open = jest.fn();
+  const open = vi.fn();
   let method: OpenTableSelectWindowMethod;
 
   beforeEach(() => {
@@ -77,7 +77,7 @@ describe('OpenTableSelectWindowMethod', () => {
   });
 
   it('uses abstract table data sources as is', () => {
-    const ds = new DynamicTableDataSource(ToMethod(jest.fn()));
+    const ds = new DynamicTableDataSource(ToMethod(vi.fn()));
     void method.call(params({ data: ds }));
     expect(injectorOf().get(TABLE_DATA_SOURCE)).toBe(ds);
   });

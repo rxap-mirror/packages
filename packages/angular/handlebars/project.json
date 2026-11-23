@@ -27,6 +27,16 @@
       },
       "defaultConfiguration": "production"
     },
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "outputs": ["{workspaceRoot}/coverage/packages/angular/handlebars"],
+      "options": {
+        "tsConfig": "packages/angular/handlebars/tsconfig.spec.json",
+        "runner": "vitest",
+        "setupFiles": ["packages/angular/handlebars/src/test-setup.ts"],
+        "watch": false
+      }
+    },
     "fix-dependencies": {
       "options": {
         "dependencies": ["handlebars"]

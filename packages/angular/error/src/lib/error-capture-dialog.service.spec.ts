@@ -19,17 +19,17 @@ class TestErrorComponent {
 
 describe('ErrorCaptureDialogService', () => {
   beforeAll(() => {
-    HTMLDialogElement.prototype.showModal ??= jest.fn();
-    HTMLDialogElement.prototype.close ??= jest.fn();
-    HTMLDialogElement.prototype.showModal = jest.fn();
-    HTMLDialogElement.prototype.close = jest.fn();
+    HTMLDialogElement.prototype.showModal ??= vi.fn();
+    HTMLDialogElement.prototype.close ??= vi.fn();
+    HTMLDialogElement.prototype.showModal = vi.fn();
+    HTMLDialogElement.prototype.close = vi.fn();
   });
 
   it('returns EMPTY and logs when disabled', () => {
     TestBed.configureTestingModule({ providers: [{ provide: RXAP_ERROR_DIALOG_DISABLED, useValue: true }] });
-    jest.spyOn(console, 'debug').mockImplementation(() => undefined);
-    const next = jest.fn();
-    const complete = jest.fn();
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
+    const next = vi.fn();
+    const complete = vi.fn();
     TestBed.inject(ErrorCaptureDialogService).open(TestErrorComponent, signal([])).subscribe({ next, complete });
     expect(complete).toHaveBeenCalled();
     expect(next).not.toHaveBeenCalled();
@@ -40,7 +40,7 @@ describe('ErrorCaptureDialogService', () => {
     TestBed.configureTestingModule({});
     const service = TestBed.inject(ErrorCaptureDialogService);
     const appRef = TestBed.inject(ApplicationRef);
-    const next = jest.fn();
+    const next = vi.fn();
     const sub = service.open(TestErrorComponent, signal([{ message: 'oops' }])).subscribe(next);
     await appRef.whenStable();
     expect(document.body.querySelectorAll('dialog').length).toBe(1);

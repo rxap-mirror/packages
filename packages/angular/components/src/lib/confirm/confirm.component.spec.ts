@@ -5,8 +5,8 @@ describe('ConfirmComponent', () => {
   it('emits confirmed and unconfirmed from the buttons', () => {
     const fixture = TestBed.createComponent(ConfirmComponent);
     fixture.detectChanges();
-    const confirmed = jest.fn();
-    const unconfirmed = jest.fn();
+    const confirmed = vi.fn();
+    const unconfirmed = vi.fn();
     fixture.componentInstance.confirmed.subscribe(confirmed);
     fixture.componentInstance.unconfirmed.subscribe(unconfirmed);
     fixture.nativeElement.querySelector('.accept').click();

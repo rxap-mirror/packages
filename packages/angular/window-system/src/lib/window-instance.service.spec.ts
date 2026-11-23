@@ -2,8 +2,8 @@ import { Subject } from 'rxjs';
 import { WindowInstanceService } from './window-instance.service';
 
 describe('WindowInstanceService', () => {
-  beforeEach(() => jest.useFakeTimers());
-  afterEach(() => jest.useRealTimers());
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
 
   it('forwards the truthiness of attached streams to loading$', () => {
     const service = new WindowInstanceService();
@@ -12,9 +12,9 @@ describe('WindowInstanceService', () => {
     const source = new Subject<any>();
     service.attachLoading(source);
     source.next('x');
-    jest.advanceTimersByTime(1);
+    vi.advanceTimersByTime(1);
     source.next(0);
-    jest.advanceTimersByTime(1);
+    vi.advanceTimersByTime(1);
     expect(values).toEqual([false, true, false]);
   });
 
@@ -26,7 +26,7 @@ describe('WindowInstanceService', () => {
     service.attachLoading(source);
     service.ngOnDestroy();
     source.next(true);
-    jest.advanceTimersByTime(1);
+    vi.advanceTimersByTime(1);
     expect(values).toEqual([false]);
   });
 });

@@ -28,7 +28,7 @@ describe('RemoteMethodTestingLoader', () => {
   });
 
   it('calls mock functions with parameters and metadata', async () => {
-    const fn = jest.fn().mockResolvedValue('r');
+    const fn = vi.fn().mockResolvedValue('r');
     loader.mock('a', fn);
     await expect(loader.call$('a', { p: 1 }, { id: 'a' })).resolves.toBe('r');
     expect(fn).toHaveBeenCalledWith({ p: 1 }, { id: 'a' });

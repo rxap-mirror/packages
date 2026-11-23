@@ -4,20 +4,20 @@ import { HttpPaginationDataSource } from './http-pagination.data-source';
 import { ToHttpPaginationPipe } from './to-http-pagination.pipe';
 
 function fakeSource(pages: BehaviorSubject<any>) {
-  const connect = jest.fn((viewer: any) => {
+  const connect = vi.fn((viewer: any) => {
     // consume the view change like the real http data source does
     viewer.viewChange.subscribe((o: any) => viewerOptions.push(o));
     return pages.asObservable();
   });
   const viewerOptions: any[] = [];
-  return { source: { connect, disconnect: jest.fn(), metadata: { id: 'http' } } as any, viewerOptions, connect };
+  return { source: { connect, disconnect: vi.fn(), metadata: { id: 'http' } } as any, viewerOptions, connect };
 }
 
 describe('HttpPaginationDataSource', () => {
   beforeEach(() => {
-    jest.spyOn(console, 'warn').mockImplementation();
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   function setup(response: any, paginator: any = new PaginatorFake(2, 0, 0)) {
     const pages = new BehaviorSubject<any>(response);

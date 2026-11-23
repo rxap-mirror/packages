@@ -16,8 +16,8 @@ describe('ControlValueAccessor', () => {
   it('registers callbacks with noop defaults', () => {
     const c = new Cva();
     expect(() => { c.onChange!('x'); c.onTouched!(); c.setDisabledState!(true); }).not.toThrow();
-    const change = jest.fn();
-    const touched = jest.fn();
+    const change = vi.fn();
+    const touched = vi.fn();
     c.registerOnChange(change);
     c.registerOnTouched(touched);
     c.onChange!('a');
@@ -31,7 +31,7 @@ describe('ControlValueAccessor', () => {
 
 describe('ToFormMethod', () => {
   it('wraps a function', () => {
-    const fn = jest.fn(() => true);
+    const fn = vi.fn(() => true);
     expect(ToFormMethod(fn).call(1 as never)).toBe(true);
     expect(ToFormSubmitMethod(fn).call(1)).toBe(true);
   });
@@ -78,7 +78,7 @@ describe('FormControlErrorDirective', () => {
     TestBed.configureTestingModule({ imports: [MissingHost] });
     const f = TestBed.createComponent(MissingHost);
     const errors: any[] = [];
-    jest.spyOn(console, 'error').mockImplementation((e) => errors.push(e));
+    vi.spyOn(console, 'error').mockImplementation((e) => errors.push(e));
     expect(() => { f.detectChanges(); TestBed.tick(); }).toThrow('Could not extract form control instance');
   });
 });

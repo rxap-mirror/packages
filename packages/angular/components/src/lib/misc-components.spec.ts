@@ -14,7 +14,7 @@ describe('CopyToClipboardButtonComponent', () => {
     const fixture = TestBed.createComponent(CopyToClipboardButtonComponent);
     fixture.detectChanges();
     const snackbar = fixture.debugElement.injector.get(MatSnackBar);
-    const open = jest.spyOn(snackbar, 'open').mockImplementation(() => undefined as any);
+    const open = vi.spyOn(snackbar, 'open').mockImplementation(() => undefined as any);
     fixture.componentInstance.copied();
     expect(open).toHaveBeenCalledWith(expect.anything(), 'OK', { duration: 2500 });
   });
@@ -22,9 +22,9 @@ describe('CopyToClipboardButtonComponent', () => {
   it('click does not propagate to the parent', () => {
     const fixture = TestBed.createComponent(CopyToClipboardButtonComponent);
     fixture.detectChanges();
-    const parentClick = jest.fn();
+    const parentClick = vi.fn();
     fixture.nativeElement.addEventListener('click', parentClick);
-    const stop = jest.fn();
+    const stop = vi.fn();
     const event = new MouseEvent('click', { bubbles: true });
     event.stopPropagation = stop;
     fixture.nativeElement.querySelector('button').dispatchEvent(event);
@@ -88,7 +88,7 @@ describe('CopyToClipboardComponent', () => {
 
 describe('NavigateBackButtonComponent', () => {
   it('navigates back in history', () => {
-    const spy = jest.spyOn(window.history, 'back').mockImplementation();
+    const spy = vi.spyOn(window.history, 'back').mockImplementation(() => undefined);
     const fixture = TestBed.createComponent(NavigateBackButtonComponent);
     fixture.detectChanges();
     fixture.nativeElement.querySelector('button').click();

@@ -47,24 +47,42 @@ describe('MethodDataSource', () => {
     });
   });
 
-  it('should return data without parameters', done => {
+  it('should return data without parameters', async () => {
 
     const dataSource = new TestWithoutParametersMethodDataSource();
 
-    dataSource.connect({ id: 'call' }).subscribe(data => {
-      expect(data).toEqual({ name: 'test' });
-      done();
+    await new Promise<void>((resolve, reject) => {
+      dataSource.connect({ id: 'call' }).subscribe({
+        next: data => {
+          try {
+            expect(data).toEqual({ name: 'test' });
+            resolve();
+          } catch (e) {
+            reject(e);
+          }
+        },
+        error: reject,
+      });
     });
 
   });
 
-  it('should return data with parameters', done => {
+  it('should return data with parameters', async () => {
 
     const dataSource = new TestMethodDataSource();
 
-    dataSource.connect({ id: 'call' }).subscribe(data => {
-      expect(data).toEqual({ name: 'testcall' });
-      done();
+    await new Promise<void>((resolve, reject) => {
+      dataSource.connect({ id: 'call' }).subscribe({
+        next: data => {
+          try {
+            expect(data).toEqual({ name: 'testcall' });
+            resolve();
+          } catch (e) {
+            reject(e);
+          }
+        },
+        error: reject,
+      });
     });
 
   });

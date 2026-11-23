@@ -1,3 +1,4 @@
+import type { MockInstance } from 'vitest';
 import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,9 +43,9 @@ describe('AUTHENTICATION_ROUTE', () => {
 });
 
 describe('LoginComponent', () => {
-  const requestReset = { call: jest.fn() };
-  const signIn = { call: jest.fn() };
-  const snackBar = { open: jest.fn() };
+  const requestReset = { call: vi.fn() };
+  const signIn = { call: vi.fn() };
+  const snackBar = { open: vi.fn() };
   let config: any;
 
   @Component({
@@ -58,7 +59,7 @@ describe('LoginComponent', () => {
     requestReset.call.mockReset();
     signIn.call.mockReset();
     snackBar.open.mockReset();
-    jest.spyOn(console, 'debug').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule],
       providers: [
@@ -76,7 +77,7 @@ describe('LoginComponent', () => {
     const f = TestBed.createComponent(HostComponent);
     f.detectChanges();
     const loginDebug = f.debugElement.children[1];
-    jest.spyOn(loginDebug.injector.get(MatSnackBar), 'open').mockImplementation(snackBar.open as any);
+    vi.spyOn(loginDebug.injector.get(MatSnackBar), 'open').mockImplementation(snackBar.open as any);
     return { f, el: f.nativeElement as HTMLElement, login: loginDebug.componentInstance as LoginComponent };
   }
 
@@ -143,7 +144,7 @@ describe('LoginComponent', () => {
 
   it('navigates to root after a successful login', async () => {
     const router = TestBed.inject(Router);
-    const nav = jest.spyOn(router, 'navigate').mockResolvedValue(true);
+    const nav = vi.spyOn(router, 'navigate').mockResolvedValue(true);
     const m = TestBed.runInInjectionContext(() => new LoginFormSubmitSuccessful());
     await m.call();
     expect(nav).toHaveBeenCalledWith(['/']);
@@ -155,8 +156,8 @@ describe('LoginComponent', () => {
 });
 
 describe('ResetPasswordComponent', () => {
-  const setNew = { call: jest.fn() };
-  const snackBar = { open: jest.fn() };
+  const setNew = { call: vi.fn() };
+  const snackBar = { open: vi.fn() };
   const params = new BehaviorSubject({ token: 'tok' });
 
   beforeEach(() => {
@@ -196,7 +197,7 @@ describe('ResetPasswordComponent', () => {
 
   it('submits with the route token and navigates', async () => {
     const router = TestBed.inject(Router);
-    const nav = jest.spyOn(router, 'navigate').mockResolvedValue(true);
+    const nav = vi.spyOn(router, 'navigate').mockResolvedValue(true);
     setNew.call.mockReturnValue(of(undefined));
     const m = TestBed.runInInjectionContext(() => new ResetPasswordFormSubmitMethod());
     await expect(m.call({ password: 'x' })).resolves.toBe(true);
@@ -219,7 +220,7 @@ describe('ResetPasswordComponent', () => {
 
 describe('LoadingComponent', () => {
   const isAuthenticated$ = new BehaviorSubject<boolean | null>(null);
-  let navigate: jest.SpyInstance;
+  let navigate: MockInstance;
 
   function setup(auth: any) {
     TestBed.configureTestingModule({
@@ -228,7 +229,7 @@ describe('LoadingComponent', () => {
         { provide: RxapAuthenticationService, useValue: auth },
       ],
     });
-    navigate = jest.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
     const f = TestBed.createComponent(LoadingComponent);
     f.detectChanges();
     return f;

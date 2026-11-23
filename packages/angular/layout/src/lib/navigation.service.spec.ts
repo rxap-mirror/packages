@@ -217,7 +217,7 @@ describe('@rxap/layout', () => {
 
           it('should return null if the isVisible check returns false', async () => {
 
-            jest.spyOn(navigationStatusService, 'isVisible').mockReturnValue(of(false));
+            vi.spyOn(navigationStatusService, 'isVisible').mockReturnValue(of(false));
 
             const nav = await navigationService.checkNavigationItemStatusProviders({
               label: 'test',
@@ -231,7 +231,7 @@ describe('@rxap/layout', () => {
 
           it('should return the navigation item if the isVisible check returns true', async () => {
 
-            jest.spyOn(navigationStatusService, 'isVisible').mockReturnValue(of(true));
+            vi.spyOn(navigationStatusService, 'isVisible').mockReturnValue(of(true));
 
             const nav = await navigationService.checkNavigationItemStatusProviders({
               label: 'test',
@@ -249,7 +249,7 @@ describe('@rxap/layout', () => {
 
           it('should apply the navigation check logic to children', async () => {
 
-            jest.spyOn(navigationStatusService, 'isVisible').mockImplementation(({routerLink}: NavigationItem) => {
+            vi.spyOn(navigationStatusService, 'isVisible').mockImplementation(({routerLink}: NavigationItem) => {
               if (routerLink.includes('hidden')) {
                 return of(false);
               }

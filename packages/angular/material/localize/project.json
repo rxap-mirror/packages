@@ -21,6 +21,32 @@
       },
       "defaultConfiguration": "production"
     },
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "outputs": [
+        "{workspaceRoot}/coverage/packages/angular/material/localize"
+      ],
+      "options": {
+        "tsConfig": "packages/angular/material/localize/tsconfig.spec.json",
+        "runner": "vitest",
+        "setupFiles": ["packages/angular/material/localize/src/test-setup.ts"],
+        "exclude": ["generators/**"],
+        "watch": false
+      },
+      "dependsOn": ["test-generators"]
+    },
+    "test-generators": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "outputs": [
+        "{workspaceRoot}/coverage/packages/angular/material/localize/generators"
+      ],
+      "options": {
+        "command": "jest --config jest.generators.config.ts --passWithNoTests",
+        "cwd": "packages/angular/material/localize"
+      }
+    },
     "prism": {
       "executor": "@ng-prism/core:serve",
       "parallelism": false,

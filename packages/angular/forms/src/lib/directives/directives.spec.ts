@@ -35,7 +35,7 @@ const formProviders: Provider[] = [
   TestForm,
   {
     provide: RXAP_FORM_DEFINITION_BUILDER,
-    useFactory: (injector: Injector) => new RxapFormBuilder<any>(TestForm, injector),
+    useFactory: (injector: Injector) => new RxapFormBuilder<any>(TestForm as any, injector),
     deps: [INJECTOR],
   },
   {
@@ -83,8 +83,8 @@ class Host {
   after: any[] = [];
   reset = false;
   nav?: string[];
-  submit: any = { call: jest.fn(async (v: any) => v) };
-  load: any = { call: jest.fn(async () => ({ username: 'loaded' })) };
+  submit: any = { call: vi.fn(async (v: any) => v) };
+  load: any = { call: vi.fn(async () => ({ username: 'loaded' })) };
 }
 
 describe('form directives', () => {
@@ -105,14 +105,14 @@ describe('form directives', () => {
     f = TestBed.createComponent(Host);
     host = f.componentInstance;
     configure?.(host);
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-    jest.spyOn(console, 'error').mockImplementation(() => undefined);
-    jest.spyOn(console, 'debug').mockImplementation(() => undefined);
-    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
     await settle();
   };
 
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('loads the form and renders loaded state', async () => {
     await create();
@@ -124,7 +124,7 @@ describe('form directives', () => {
   });
 
   it('shows the loading error', async () => {
-    await create((h) => (h.load = { call: jest.fn(async () => { throw new Error('nope'); }) }));
+    await create((h) => (h.load = { call: vi.fn(async () => { throw new Error('nope'); }) }));
     expect(q('.load-error')!.textContent).toBe('nope');
     expect(q('form')!.classList.contains('rxap-loading-error')).toBe(true);
   });
@@ -144,7 +144,7 @@ describe('form directives', () => {
 
   it('shows the submitting state while the submit is pending', async () => {
     let resolve!: (v: any) => void;
-    await create((h) => (h.submit = { call: jest.fn(() => new Promise((r) => (resolve = r))) }));
+    await create((h) => (h.submit = { call: vi.fn(() => new Promise((r) => (resolve = r))) }));
     q('.submit')!.click();
     f.detectChanges();
     expect(q('.submitting')).toBeTruthy();
@@ -157,7 +157,7 @@ describe('form directives', () => {
   });
 
   it('shows submit failures', async () => {
-    await create((h) => (h.submit = { call: jest.fn(async () => { throw new Error('sub'); }) }));
+    await create((h) => (h.submit = { call: vi.fn(async () => { throw new Error('sub'); }) }));
     q('.submit')!.click();
     await settle();
     expect(q('.submit-error')!.textContent).toBe('sub');
@@ -179,8 +179,8 @@ describe('form directives', () => {
       h.reset = true;
       h.nav = ['/target'];
     });
-    const navigate = jest.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
-    const resetSpy = jest.spyOn(host.dir(), 'reset');
+    const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+    const resetSpy = vi.spyOn(host.dir(), 'reset');
     q('.submit')!.click();
     await settle();
     expect(resetSpy).toHaveBeenCalled();
@@ -189,7 +189,7 @@ describe('form directives', () => {
 
   it('reset button resets the form', async () => {
     await create();
-    const spy = jest.spyOn(host.dir(), 'reset');
+    const spy = vi.spyOn(host.dir(), 'reset');
     q('.reset')!.click();
     expect(spy).toHaveBeenCalled();
   });
@@ -208,7 +208,7 @@ describe('form directives', () => {
   });
 
   it('mark directives fall back to the plain control methods', () => {
-    const control = { markAsDirty: jest.fn(), markAsPristine: jest.fn(), markAsUntouched: jest.fn() } as any;
+    const control = { markAsDirty: vi.fn(), markAsPristine: vi.fn(), markAsUntouched: vi.fn() } as any;
     TestBed.configureTestingModule({
       providers: [
         { provide: require('@angular/forms').ControlContainer, useValue: { control } },

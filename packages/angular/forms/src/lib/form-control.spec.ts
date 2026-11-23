@@ -46,7 +46,7 @@ describe('@rxap/forms', () => {
     });
 
     it('should valueChanges$', () => {
-      const spy = jest.fn();
+      const spy = vi.fn();
       control.value$.subscribe(spy);
       expect(spy).toHaveBeenCalledWith(null);
       control.patchValue('patched');
@@ -54,7 +54,7 @@ describe('@rxap/forms', () => {
     });
 
     it('should disabledChanges$', () => {
-      const spy = jest.fn();
+      const spy = vi.fn();
       control.disabled$.subscribe(spy);
       expect(spy).toHaveBeenCalledWith(false);
       control.disable();
@@ -64,7 +64,7 @@ describe('@rxap/forms', () => {
     });
 
     it('should enabledChanges$', () => {
-      const spy = jest.fn();
+      const spy = vi.fn();
       control.enabled$.subscribe(spy);
       expect(spy).toHaveBeenCalledWith(true);
       control.disable();
@@ -74,7 +74,7 @@ describe('@rxap/forms', () => {
     });
 
     it('should statusChanges$', () => {
-      const spy = jest.fn();
+      const spy = vi.fn();
       control.status$.subscribe(spy);
       expect(spy).toHaveBeenCalledWith('VALID');
       control.disable();
@@ -134,7 +134,7 @@ describe('@rxap/forms', () => {
     });
 
     it('should markAsTouched/Untouched', () => {
-      const spy = jest.fn();
+      const spy = vi.fn();
       control.touch$.subscribe(spy);
       control.markAsTouched();
       expect(spy).toHaveBeenCalledWith(true);
@@ -143,7 +143,7 @@ describe('@rxap/forms', () => {
     });
 
     it('should markAsPristine/Dirty', () => {
-      const spy = jest.fn();
+      const spy = vi.fn();
       control.dirty$.subscribe(spy);
       control.markAllAsDirty();
       expect(spy).toHaveBeenCalledWith(true);
@@ -152,25 +152,25 @@ describe('@rxap/forms', () => {
     });
 
     it('should markAllAsDirty', () => {
-      jest.spyOn(control, 'markAsDirty');
+      vi.spyOn(control, 'markAsDirty');
       control.markAllAsDirty();
       expect(control.markAsDirty).toHaveBeenCalled();
     });
 
     it('should reset', () => {
-      jest.spyOn(control, 'reset');
+      vi.spyOn(control, 'reset');
       control.reset();
       expect(control.reset).toHaveBeenCalled();
     });
 
     it('should setValidators', () => {
-      jest.spyOn(control, 'setValidators');
+      vi.spyOn(control, 'setValidators');
       control.setValidators([]);
       expect(control.setValidators).toHaveBeenCalled();
     });
 
     it('should setAsyncValidators', () => {
-      jest.spyOn(control, 'setAsyncValidators');
+      vi.spyOn(control, 'setAsyncValidators');
       control.setAsyncValidators([]);
       expect(control.setAsyncValidators).toHaveBeenCalled();
     });
@@ -216,7 +216,7 @@ describe('@rxap/forms', () => {
 
     it('should errorChanges$', () => {
       control.setValidators(Validators.required);
-      const spy = jest.fn();
+      const spy = vi.fn();
       control.errors$.subscribe(spy);
       expect(spy).toHaveBeenCalledWith({ required: true });
       control.patchValue(null);

@@ -6,8 +6,8 @@ import { injectOpenApiBaseUrlHttpInterceptorFn } from './http-interceptors';
 import { OpenApiConfigService } from './open-api-config.service';
 
 describe('injectOpenApiBaseUrlHttpInterceptorFn', () => {
-  const getBaseUrl = jest.fn(() => 'http://api.test/v1');
-  const next = jest.fn((req: HttpRequest<any>) => of(new HttpResponse({ url: req.url })));
+  const getBaseUrl = vi.fn(() => 'http://api.test/v1');
+  const next = vi.fn((req: HttpRequest<any>) => of(new HttpResponse({ url: req.url })));
 
   beforeEach(() => {
     getBaseUrl.mockClear();
@@ -31,7 +31,7 @@ describe('injectOpenApiBaseUrlHttpInterceptorFn', () => {
   });
 
   it('keeps absolute urls and warns when they do not match', () => {
-    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
     run('http://other/x', new HttpContext().set(OPEN_API_SERVER_ID, 'srv'));
     expect(warn).toHaveBeenCalled();
     expect(next.mock.calls[0][0].url).toBe('http://other/x');

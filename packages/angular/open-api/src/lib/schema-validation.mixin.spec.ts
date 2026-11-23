@@ -1,17 +1,18 @@
+import type { MockInstance } from 'vitest';
 import { SchemaValidationMixin } from './schema-validation.mixin';
 
 describe('SchemaValidationMixin', () => {
   let mixin: any;
-  let warn: jest.SpyInstance;
+  let warn: MockInstance;
 
   beforeEach(() => {
     mixin = new SchemaValidationMixin();
     SchemaValidationMixin.STRICT = false;
-    warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-    jest.spyOn(console, 'debug').mockImplementation(() => undefined);
-    jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   const op = (extra: any = {}): any => ({ path: '/x', method: 'GET', operationId: 'op', ...extra });
   const jsonBody = (schema: any, required = false) => ({ required, content: { 'application/json': { schema } } });

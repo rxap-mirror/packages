@@ -103,8 +103,8 @@ describe('DataSourceCollectionDirective', () => {
       fixture.debugElement.queryAllNodes(By.directive(DataSourceCollectionDirective))[0].injector.get(DataSourceCollectionDirective);
 
     beforeEach(() => {
-      jest.spyOn(console, 'error').mockImplementation();
-      jest.spyOn(console, 'log').mockImplementation();
+      vi.spyOn(console, 'error').mockImplementation(() => undefined);
+      vi.spyOn(console, 'log').mockImplementation(() => undefined);
       data$ = new BehaviorSubject<any[]>(['a', 'b', 'c']);
       ds = new ObservableDataSource<any[]>(data$, { id: 'obs' });
       TestBed.configureTestingModule({});
@@ -112,7 +112,7 @@ describe('DataSourceCollectionDirective', () => {
       host = fixture.componentInstance;
       host.source.set(ds);
     });
-    afterEach(() => jest.restoreAllMocks());
+    afterEach(() => vi.restoreAllMocks());
 
     it('renders items with the template context helpers', async () => {
       await settle();
@@ -168,7 +168,7 @@ describe('DataSourceCollectionDirective', () => {
     it('renders the error template, emits the error and supports refresh', async () => {
       const failing = new Subject<any[]>();
       const failingDs = new ObservableDataSource<any[]>(failing, { id: 'failing' });
-      const refresh = jest.spyOn(failingDs, 'refresh');
+      const refresh = vi.spyOn(failingDs, 'refresh');
       host.source.set(failingDs);
       await settle();
       failing.error(new Error('broken'));
@@ -181,7 +181,7 @@ describe('DataSourceCollectionDirective', () => {
 
     it('disconnects on destroy', async () => {
       await settle();
-      const disconnect = jest.spyOn(ds, 'disconnect');
+      const disconnect = vi.spyOn(ds, 'disconnect');
       fixture.destroy();
       expect(disconnect).toHaveBeenCalled();
     });
@@ -189,7 +189,7 @@ describe('DataSourceCollectionDirective', () => {
     it('embedErrorTemplate skips silently without an error template', async () => {
       await settle();
       const dir = directive();
-      jest.spyOn(dir, 'errorTemplate' as any).mockReturnValue(undefined);
+      vi.spyOn(dir, 'errorTemplate' as any).mockReturnValue(undefined);
       expect(() => dir.embedErrorTemplate(new Error('x'))).not.toThrow();
     });
   });

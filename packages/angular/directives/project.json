@@ -21,6 +21,30 @@
       },
       "defaultConfiguration": "production"
     },
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "outputs": ["{workspaceRoot}/coverage/packages/angular/directives"],
+      "options": {
+        "tsConfig": "packages/angular/directives/tsconfig.spec.json",
+        "runner": "vitest",
+        "setupFiles": ["packages/angular/directives/src/test-setup.ts"],
+        "exclude": ["generators/**"],
+        "watch": false
+      },
+      "dependsOn": ["test-generators"]
+    },
+    "test-generators": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "outputs": [
+        "{workspaceRoot}/coverage/packages/angular/directives/generators"
+      ],
+      "options": {
+        "command": "jest --config jest.generators.config.ts --passWithNoTests",
+        "cwd": "packages/angular/directives"
+      }
+    },
     "lint": {
       "options": {
         "lintFilePatterns": [

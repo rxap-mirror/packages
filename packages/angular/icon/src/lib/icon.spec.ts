@@ -1,3 +1,4 @@
+import type { MockInstance } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -12,14 +13,14 @@ import {
 } from './tokens';
 
 describe('icon', () => {
-  let debugSpy: jest.SpyInstance;
-  let errorSpy: jest.SpyInstance;
-  const registry = { addSvgIconSet: jest.fn() };
+  let debugSpy: MockInstance;
+  let errorSpy: MockInstance;
+  const registry = { addSvgIconSet: vi.fn() };
 
   beforeEach(() => {
     registry.addSvgIconSet.mockReset();
-    debugSpy = jest.spyOn(console, 'debug').mockImplementation();
-    errorSpy = jest.spyOn(console, 'error').mockImplementation();
+    debugSpy = vi.spyOn(console, 'debug').mockImplementation(() => undefined);
+    errorSpy = vi.spyOn(console, 'error').mockImplementation(() => undefined);
   });
   afterEach(() => {
     debugSpy.mockRestore();

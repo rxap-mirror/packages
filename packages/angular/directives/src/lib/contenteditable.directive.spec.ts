@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import type { Mock } from 'vitest';
 import {
   ComponentFixture,
   TestBed,
@@ -9,7 +10,7 @@ import { ContenteditableDirective } from './contenteditable.directive';
 @Component({
   standalone: true,
   imports: [ ContenteditableDirective ],
-  template: `<div [rxapContenteditable]="null" [initial]="'old value'"></div>`,
+  template: `<div [rxapContenteditable]="null!" [initial]="'old value'"></div>`,
 })
 class HostComponent {}
 
@@ -17,8 +18,8 @@ describe('@rxap/directives', () => {
   describe('ContenteditableDirective', () => {
     let fixture: ComponentFixture<HostComponent>;
 
-    beforeEach(() => jest.useFakeTimers());
-    afterEach(() => jest.useRealTimers());
+    beforeEach(() => vi.useFakeTimers());
+    afterEach(() => vi.useRealTimers());
 
     function setup(textContent: string) {
       fixture = TestBed.createComponent(HostComponent);
@@ -30,16 +31,16 @@ describe('@rxap/directives', () => {
       return { directive, element };
     }
 
-    function mockMethod(directive: ContenteditableDirective, call: jest.Mock) {
+    function mockMethod(directive: ContenteditableDirective, call: Mock) {
       (directive as any).method = () => ({ call });
     }
 
     it('should keep the typed text when the save resolves without a value', async () => {
       const { directive, element } = setup('new value');
-      mockMethod(directive, jest.fn().mockResolvedValue(undefined));
+      mockMethod(directive, vi.fn().mockResolvedValue(undefined));
 
       directive.onInput({ target: element } as any);
-      await jest.advanceTimersByTimeAsync(1000);
+      await vi.advanceTimersByTimeAsync(1000);
 
       // the user's text must NOT be reverted to the initial value
       expect(element.textContent).toBe('new value');
@@ -48,10 +49,10 @@ describe('@rxap/directives', () => {
 
     it('should apply a canonical string returned by the handler', async () => {
       const { directive, element } = setup('new value');
-      mockMethod(directive, jest.fn().mockResolvedValue('Canonical'));
+      mockMethod(directive, vi.fn().mockResolvedValue('Canonical'));
 
       directive.onInput({ target: element } as any);
-      await jest.advanceTimersByTimeAsync(1000);
+      await vi.advanceTimersByTimeAsync(1000);
 
       expect(element.innerText).toBe('Canonical');
       expect(directive.initial()).toBe('Canonical');
@@ -59,10 +60,10 @@ describe('@rxap/directives', () => {
 
     it('should revert to the initial value when the save fails', async () => {
       const { directive, element } = setup('new value');
-      mockMethod(directive, jest.fn().mockRejectedValue(new Error('save failed')));
+      mockMethod(directive, vi.fn().mockRejectedValue(new Error('save failed')));
 
       directive.onInput({ target: element } as any);
-      await jest.advanceTimersByTimeAsync(1000);
+      await vi.advanceTimersByTimeAsync(1000);
 
       expect(element.innerText).toBe('old value');
     });

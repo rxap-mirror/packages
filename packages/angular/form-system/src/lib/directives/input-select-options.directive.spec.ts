@@ -65,13 +65,14 @@ class TestForm implements FormType<IForm> {
 }
 
 describe('InputSelectOptionsDirective', () => {
-  function host(control: keyof IForm, extra = '') {
+  function host(controlName: keyof IForm) {
     @Component({
       imports: [ReactiveFormsModule, InputSelectOptionsDirective],
-      template: '<select [formControl]="form.' + control + '"><option *rxapInputSelectOptions="let o' + extra + '" [value]="o.value">{{ o.display }}</option></select>',
+      template: `<select [formControl]="form[control]"><option *rxapInputSelectOptions="let o" [value]="o.value">{{ o.display }}</option></select>`,
     })
     class Host {
-      form = new RxapFormBuilder<IForm>(TestForm).build();
+      form: any = new RxapFormBuilder<IForm>(TestForm).build();
+      control = controlName;
     }
     return Host;
   }
@@ -80,15 +81,15 @@ describe('InputSelectOptionsDirective', () => {
     Array.from(f.nativeElement.querySelectorAll('option')).map((o: any) => o.textContent.trim());
 
   beforeEach(() => {
-    jest.useFakeTimers();
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.useFakeTimers();
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
     for (const s of [source, filteredSource, loadOnceSource, ignoreSource]) {
       s.options$.next([]);
     }
   });
   afterEach(() => {
-    jest.useRealTimers();
-    jest.restoreAllMocks();
+    vi.useRealTimers();
+    vi.restoreAllMocks();
   });
 
   it('renders array options', async () => {
@@ -134,9 +135,9 @@ describe('InputSelectOptionsDirective', () => {
   it('keeps the viewer id bound to the control', () => {
     const f = TestBed.createComponent(host('plain'));
     f.detectChanges();
-    const spy = jest.spyOn(source, 'connect');
+    const spy = vi.spyOn(source, 'connect');
     TestBed.createComponent(host('plain')).detectChanges();
-    expect(spy.mock.calls[0][0].id).toBe('[rxapInputSelectOptions]plain');
+    expect((spy.mock.calls[0][0] as any).id).toBe('[rxapInputSelectOptions]plain');
   });
 
   it('does not refresh with loadOnce', () => {
@@ -151,12 +152,12 @@ describe('InputSelectOptionsDirective', () => {
     f.detectChanges();
     ignoreSource.options$.next([{ value: 'a', display: 'Alpha' }]);
     f.componentInstance.form.ignore.setValue('a');
-    jest.advanceTimersByTime(1500);
+    vi.advanceTimersByTime(1500);
     expect(labels(f)).toEqual(['Alpha']);
   });
 
   it('throws a readable error if the data source can not be injected', () => {
-    jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
     const f = TestBed.createComponent(host('missing'));
     expect(() => f.detectChanges()).toThrow(/Cloud not inject the options data source:/);
   });
@@ -181,7 +182,7 @@ describe('InputSelectOptionsDirective', () => {
         template: `<select [formControl]="form.plain"><option *rxapInputSelectOptions="let o; matAutocomplete: ac" [value]="o.value">{{ o.display }}</option></select>`,
       })
       class Host {
-        form = new RxapFormBuilder<IForm>(TestForm).build();
+        form: any = new RxapFormBuilder<IForm>(TestForm).build();
         ac: any = {
           set displayWith(fn: any) {
             displayWith.set(fn);

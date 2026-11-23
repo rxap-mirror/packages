@@ -16,10 +16,10 @@ class HostComponent {
 
 describe('ContenteditableDirective', () => {
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   function setup() {
@@ -39,7 +39,7 @@ describe('ContenteditableDirective', () => {
 
   it('stops click propagation', () => {
     const { el } = setup();
-    const parentSpy = jest.fn();
+    const parentSpy = vi.fn();
     el.parentElement!.addEventListener('click', parentSpy);
     el.click();
     expect(parentSpy).not.toHaveBeenCalled();
@@ -47,13 +47,13 @@ describe('ContenteditableDirective', () => {
 
   it('emits change debounced and calls method', () => {
     const { fixture, el, host } = setup();
-    const method = { call: jest.fn() };
+    const method = { call: vi.fn() };
     host.method.set(method);
     fixture.detectChanges();
     el.textContent = 'new value';
     el.dispatchEvent(new Event('input'));
     expect(host.changes).toEqual([]);
-    jest.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1000);
     expect(host.changes).toEqual([ 'new value' ]);
     expect(method.call).toHaveBeenCalledWith('new value');
   });
@@ -62,18 +62,18 @@ describe('ContenteditableDirective', () => {
     const { el, host } = setup();
     el.textContent = 'x';
     el.dispatchEvent(new Event('input'));
-    jest.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1000);
     expect(host.changes).toEqual([ 'x' ]);
   });
 
   it('does not emit when disabled', () => {
     const { fixture, el, host } = setup();
-    const method = { call: jest.fn() };
+    const method = { call: vi.fn() };
     host.method.set(method);
     host.disabled.set(true);
     fixture.detectChanges();
     el.dispatchEvent(new Event('input'));
-    jest.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1000);
     expect(host.changes).toEqual([]);
     expect(method.call).not.toHaveBeenCalled();
   });

@@ -5,22 +5,22 @@ import { firstValueFrom, toArray } from 'rxjs';
 import { StatusControllerHealthCheckRemoteMethod } from './openapi/remote-methods/status-controller-health-check.remote-method';
 import { StatusCheckService } from './status-check.service';
 
-jest.mock('@sentry/angular', () => ({ captureMessage: jest.fn() }));
+vi.mock('@sentry/angular', () => ({ captureMessage: vi.fn() }));
 
 describe('StatusCheckService', () => {
-  const method = { call: jest.fn() };
+  const method = { call: vi.fn() };
   let service: StatusCheckService;
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.clearAllMocks();
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
     TestBed.configureTestingModule({
       providers: [{ provide: StatusControllerHealthCheckRemoteMethod, useValue: method }],
     });
     service = TestBed.inject(StatusCheckService);
   });
 
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   const all = (names: string[]) => firstValueFrom(service.getStatus(names).pipe(toArray()));
 

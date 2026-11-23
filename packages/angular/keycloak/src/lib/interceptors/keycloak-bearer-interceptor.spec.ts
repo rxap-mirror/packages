@@ -1,26 +1,27 @@
 import { HttpHeaders, HttpRequest } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { firstValueFrom, of } from 'rxjs';
+import type { Mock } from 'vitest';
 import { KeycloakService } from '../services/keycloak.service';
 import { KeycloakBearerInterceptor } from './keycloak-bearer-interceptor';
 
 describe('KeycloakBearerInterceptor', () => {
   let kc: any;
-  let next: jest.Mock;
+  let next: Mock;
 
   beforeEach(() => {
     kc = {
       enableBearerInterceptor: true,
       excludedUrls: [],
-      isLoggedIn: jest.fn().mockResolvedValue(true),
-      addTokenToHeader: jest.fn((h: HttpHeaders) => of(h.set('Authorization', 'Bearer t'))),
+      isLoggedIn: vi.fn().mockResolvedValue(true),
+      addTokenToHeader: vi.fn((h: HttpHeaders) => of(h.set('Authorization', 'Bearer t'))),
     };
-    next = jest.fn((req: HttpRequest<unknown>) => of(req as any));
+    next = vi.fn((req: HttpRequest<unknown>) => of(req as any));
     TestBed.configureTestingModule({ providers: [{ provide: KeycloakService, useValue: kc }] });
   });
 
   const run = (req: HttpRequest<unknown>) =>
-    TestBed.runInInjectionContext(() => firstValueFrom(KeycloakBearerInterceptor(req, next as any))) as Promise<HttpRequest<unknown>>;
+    TestBed.runInInjectionContext(() => firstValueFrom(KeycloakBearerInterceptor(req, next as any))) as unknown as Promise<HttpRequest<unknown>>;
 
   it('passes the request untouched if disabled', async () => {
     kc.enableBearerInterceptor = false;

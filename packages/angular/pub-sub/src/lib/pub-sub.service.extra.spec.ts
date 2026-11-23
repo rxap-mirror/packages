@@ -4,12 +4,12 @@ import { PubSubService } from './pub-sub.service';
 
 describe('PubSubService (extra)', () => {
   beforeEach(() => {
-    jest.spyOn(console, 'warn').mockImplementation();
-    jest.spyOn(console, 'error').mockImplementation();
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
   });
   afterEach(() => {
-    jest.useRealTimers();
-    jest.restoreAllMocks();
+    vi.useRealTimers();
+    vi.restoreAllMocks();
   });
 
   function create(...providers: any[]) {
@@ -94,16 +94,16 @@ describe('PubSubService (extra)', () => {
   });
 
   it('garbage collects expired messages periodically', () => {
-    jest.useFakeTimers().setSystemTime(0);
+    vi.useFakeTimers().setSystemTime(0);
     const service = create(withGarbageCollectorInterval(100));
     service.publish('short', 1, 50);
     service.publish('forever', 2);
-    jest.advanceTimersByTime(101);
+    vi.advanceTimersByTime(101);
     expect(service.getFromCache('short')).toEqual([]);
     expect(service.getFromCache('forever')).toHaveLength(1);
     service.stopGarbageCollector();
     service.publish('short', 3, 10);
-    jest.advanceTimersByTime(1000);
+    vi.advanceTimersByTime(1000);
     expect(service.getFromCache('short')).toHaveLength(1);
   });
 
@@ -120,7 +120,7 @@ describe('PubSubService (extra)', () => {
 
   it('stops the garbage collector on destroy', () => {
     const service = create();
-    const spy = jest.spyOn(service, 'stopGarbageCollector');
+    const spy = vi.spyOn(service, 'stopGarbageCollector');
     TestBed.resetTestingModule();
     expect(spy).toHaveBeenCalled();
   });

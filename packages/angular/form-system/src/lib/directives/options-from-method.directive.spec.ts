@@ -1,3 +1,4 @@
+import type { Mock, MockInstance } from 'vitest';
 import {
   ApplicationRef,
   ChangeDetectorRef,
@@ -41,14 +42,14 @@ describe('OptionsFromMethodDirective', () => {
     name!: RxapFormControl;
   }
 
-  let createEmbeddedViewMock: jest.Mock;
-  let clearMock: jest.Mock;
-  let detectChangesMock: jest.Mock;
+  let createEmbeddedViewMock: Mock;
+  let clearMock: Mock;
+  let detectChangesMock: Mock;
   let directive: OptionsFromMethodDirective;
   let method: TestMethod;
   let ngControl: TestNgControl;
   let control: RxapFormControl;
-  let methodCallSpy: jest.SpyInstance;
+  let methodCallSpy: MockInstance;
   let parameters: WritableSignal<any>;
 
   /** waits until the pending (tracked) option loading of the directive is finished */
@@ -62,9 +63,9 @@ describe('OptionsFromMethodDirective', () => {
       new RxapFormBuilder<ITestFormDefinition>(TestFormDefinition).build();
     ngControl = new TestNgControl(formDefinition.name);
     control = ngControl.control as RxapFormControl;
-    createEmbeddedViewMock = jest.fn();
-    clearMock = jest.fn();
-    detectChangesMock = jest.fn();
+    createEmbeddedViewMock = vi.fn();
+    clearMock = vi.fn();
+    detectChangesMock = vi.fn();
     TestBed.configureTestingModule({
       providers: [
         OptionsFromMethodDirective,
@@ -93,7 +94,7 @@ describe('OptionsFromMethodDirective', () => {
       ],
     });
     method = TestBed.inject(TestMethod);
-    methodCallSpy = jest.spyOn(method, 'call');
+    methodCallSpy = vi.spyOn(method, 'call');
     directive = TestBed.inject(OptionsFromMethodDirective);
     // the inputs are signal inputs and can not be assigned. Replace them with writable signals
     parameters = signal(undefined);
@@ -194,7 +195,7 @@ describe('OptionsFromMethodDirective', () => {
   });
 
   it('should reset control of resetOnChange is set', async () => {
-    const resetSpy = jest.spyOn(control, 'reset');
+    const resetSpy = vi.spyOn(control, 'reset');
     resetOnChange.set('custom value');
     TestBed.tick();
     await settle();

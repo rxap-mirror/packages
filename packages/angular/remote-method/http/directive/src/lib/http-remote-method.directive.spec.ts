@@ -43,7 +43,7 @@ describe('@rxap/remote-method/directive/button', () => {
     });
 
     it('should call execute on button click', () => {
-      const executeSpy = jest.spyOn(directive, 'execute');
+      const executeSpy = vi.spyOn(directive, 'execute');
 
       const button = componentfixture.debugElement.query(By.css('button'));
 
@@ -75,7 +75,7 @@ describe('HttpRemoteMethodDirective inputs', () => {
   }
 
   it('merges the bound http inputs into the call parameters', async () => {
-    const call$ = jest.fn().mockResolvedValue('ok');
+    const call$ = vi.fn().mockResolvedValue('ok');
     TestBed.configureTestingModule({ providers: [{ provide: RemoteMethodLoader, useValue: { call$ } }] });
     const f = TestBed.createComponent(InputsHostComponent);
     f.detectChanges();
@@ -100,7 +100,7 @@ describe('HttpRemoteMethodDirective inputs', () => {
   it('passes no parameters when no http input is bound', async () => {
     @Component({ imports: [HttpRemoteMethodDirective], template: '<button rxapHttpRemoteMethod="m"></button>' })
     class PlainHost {}
-    const call$ = jest.fn().mockResolvedValue('ok');
+    const call$ = vi.fn().mockResolvedValue('ok');
     TestBed.configureTestingModule({ providers: [{ provide: RemoteMethodLoader, useValue: { call$ } }] });
     const f = TestBed.createComponent(PlainHost);
     f.detectChanges();

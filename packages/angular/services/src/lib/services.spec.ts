@@ -20,8 +20,8 @@ describe('AvatarImageService', () => {
 describe('ResetService', () => {
   it('resetView and resetDataSource emit on their own subjects', () => {
     const service = TestBed.inject(ResetService);
-    const view = jest.fn();
-    const ds = jest.fn();
+    const view = vi.fn();
+    const ds = vi.fn();
     service.view$.subscribe(view);
     service.dataSource$.subscribe(ds);
     service.resetView();
@@ -94,14 +94,14 @@ describe('LoadingIndicatorService', () => {
   let values: boolean[];
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     TestBed.configureTestingModule({ providers: [LoadingIndicatorService] });
     service = TestBed.inject(LoadingIndicatorService);
     values = [];
     service.isLoading$.subscribe(v => values.push(v));
   });
 
-  afterEach(() => jest.useRealTimers());
+  afterEach(() => vi.useRealTimers());
 
   it('starts enabled', () => {
     expect(values).toEqual([true]);
@@ -110,10 +110,10 @@ describe('LoadingIndicatorService', () => {
   it('disable and enable toggle on the next tick', () => {
     service.disable();
     expect(values).toEqual([true]);
-    jest.advanceTimersByTime(0);
+    vi.advanceTimersByTime(0);
     expect(values).toEqual([true, false]);
     service.enable();
-    jest.advanceTimersByTime(0);
+    vi.advanceTimersByTime(0);
     expect(values).toEqual([true, false, true]);
   });
 
@@ -121,10 +121,10 @@ describe('LoadingIndicatorService', () => {
     const source = new Subject<unknown>();
     service.attachLoading(source);
     source.next(0);
-    jest.advanceTimersByTime(0);
+    vi.advanceTimersByTime(0);
     expect(values[values.length - 1]).toBe(false);
     source.next('x');
-    jest.advanceTimersByTime(0);
+    vi.advanceTimersByTime(0);
     expect(values[values.length - 1]).toBe(true);
   });
 
@@ -133,7 +133,7 @@ describe('LoadingIndicatorService', () => {
     service.attachLoading(source);
     service.ngOnDestroy();
     source.next(0);
-    jest.advanceTimersByTime(0);
+    vi.advanceTimersByTime(0);
     expect(values).toEqual([true]);
   });
 });

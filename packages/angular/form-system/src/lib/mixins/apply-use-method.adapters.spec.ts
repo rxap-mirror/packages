@@ -45,7 +45,7 @@ describe(ApplyUseMethodAdapters.name, () => {
   });
 
   it('should apply the parameter adapter', async () => {
-    const parameterAdapter = jest.fn((p) => p + ' p_adapted');
+    const parameterAdapter = vi.fn((p) => p + ' p_adapted');
 
     const adapted = ApplyUseMethodAdapters(injector, method, {
       adapter: {
@@ -61,7 +61,7 @@ describe(ApplyUseMethodAdapters.name, () => {
   });
 
   it('should apply the result adapter', async () => {
-    const resultAdapter = jest.fn((r) => r + ' r_adapted');
+    const resultAdapter = vi.fn((r) => r + ' r_adapted');
 
     const adapted = ApplyUseMethodAdapters(injector, method, {
       adapter: {
@@ -77,8 +77,8 @@ describe(ApplyUseMethodAdapters.name, () => {
   });
 
   it('should apply the parameter and result adapter', async () => {
-    const parameterAdapter = jest.fn((p) => p + ' p_adapted');
-    const resultAdapter = jest.fn((r) => r + ' r_adapted');
+    const parameterAdapter = vi.fn((p) => p + ' p_adapted');
+    const resultAdapter = vi.fn((r) => r + ' r_adapted');
 
     const adapted = ApplyUseMethodAdapters(injector, method, {
       adapter: {
@@ -101,8 +101,8 @@ describe(ApplyUseMethodAdapters.name, () => {
   it('should apply async result adapter', async () => {
     const asyncMethod = ToMethod(async (p) => 'original + ' + p);
 
-    const parameterAdapter = jest.fn((p) => p + ' p_adapted');
-    const resultAdapter = jest.fn((r) => r + ' r_adapted');
+    const parameterAdapter = vi.fn((p) => p + ' p_adapted');
+    const resultAdapter = vi.fn((r) => r + ' r_adapted');
 
     const adapted = ApplyUseMethodAdapters(injector, asyncMethod, {
       adapter: {
@@ -133,8 +133,8 @@ describe(ApplyUseMethodAdapters.name, () => {
 
     const complexMethod = new TestMethod();
 
-    const parameterAdapter = jest.fn((p) => p + ' p_adapted');
-    const resultAdapter = jest.fn((r) => r + ' r_adapted');
+    const parameterAdapter = vi.fn((p) => p + ' p_adapted');
+    const resultAdapter = vi.fn((r) => r + ' r_adapted');
 
     const adapted = ApplyUseMethodAdapters(injector, complexMethod, {
       adapter: {

@@ -132,7 +132,7 @@ describe('InputClearButtonDirective', () => {
   });
 
   it('resets a control without a form control', () => {
-    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
     const fixture = TestBed.createComponent(PlainHost);
     fixture.detectChanges();
     const directive = fixture.debugElement.query(By.directive(InputClearButtonDirective)).injector.get(InputClearButtonDirective);
@@ -237,7 +237,7 @@ describe('CompareWithDirective', () => {
     return fixture.componentInstance.select().compareWith;
   }
 
-  beforeEach(() => jest.spyOn(console, 'warn').mockImplementation(() => undefined));
+  beforeEach(() => vi.spyOn(console, 'warn').mockImplementation(() => undefined));
 
   it('compares by object path', () => {
     const fn = compare('id');
@@ -324,7 +324,7 @@ describe('ChipInputAdapterDirective / ChipListIteratorDirective', () => {
     const fixture = TestBed.createComponent(Host);
     fixture.detectChanges();
     const input = fixture.componentInstance.chipInput();
-    const clear = jest.spyOn(input, 'clear');
+    const clear = vi.spyOn(input, 'clear');
     input.chipEnd.emit({ value: ' ', input: input.inputElement, chipInput: input } as any);
     expect(fixture.componentInstance.control.value).toEqual(['a', 'b']);
     input.chipEnd.emit({ value: 'c', input: input.inputElement, chipInput: input } as any);
@@ -380,7 +380,7 @@ describe('FormFieldHideShowDirective', () => {
     providers: [
       {
         provide: RXAP_FORM_DEFINITION,
-        useFactory: (injector: Injector) => new RxapFormBuilder<any>(TestForm, injector).build(),
+        useFactory: (injector: Injector) => new RxapFormBuilder<any>(TestForm as any, injector).build(),
         deps: [INJECTOR],
       },
     ],
@@ -422,7 +422,7 @@ describe('FormFieldHideShowDirective', () => {
   );
 
   it('shows and hides form fields depending on the control state', () => {
-    jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
     const fixture = TestBed.createComponent(Host);
     fixture.detectChanges();
     const style = (id: string) => fixture.nativeElement.querySelector('#' + id).style.display;

@@ -4,7 +4,7 @@ import { UserSettingsLanguageService } from '@rxap/ngx-user';
 import { I18nService } from './i18n.service';
 
 describe('I18nService', () => {
-  const setLanguage = jest.fn().mockResolvedValue(undefined);
+  const setLanguage = vi.fn().mockResolvedValue(undefined);
   let service: I18nService;
 
   beforeEach(() => {
@@ -16,17 +16,17 @@ describe('I18nService', () => {
       ],
     });
     service = TestBed.inject(I18nService);
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('derives the current language from LOCALE_ID', () => {
     expect(service.currentLanguage()).toBe('de');
   });
 
   it('sets the language in the user settings (dev mode: no redirect)', async () => {
-    const redirect = jest.spyOn(service, 'redirect').mockImplementation();
+    const redirect = vi.spyOn(service, 'redirect').mockImplementation(() => undefined);
     await service.setLanguage('en');
     expect(setLanguage).toHaveBeenCalledWith('en');
     expect(redirect).not.toHaveBeenCalled();
@@ -38,9 +38,16 @@ describe('I18nService', () => {
   });
 
   it('logs the redirect url', () => {
-    jest.spyOn(console, 'error').mockImplementation(() => undefined);
     history.pushState({}, '', '/de/home?a=1');
-    service.redirect('en');
+    // jsdom does not implement navigation: replace location with a stub that records the call
+    const replace = vi.fn();
+    vi.stubGlobal('location', { origin: location.origin, pathname: location.pathname, search: location.search, replace });
+    try {
+      service.redirect('en');
+    } finally {
+      vi.unstubAllGlobals();
+    }
     expect(console.log).toHaveBeenCalledWith(expect.stringContaining('/en/home?a=1'));
+    expect(replace).toHaveBeenCalledWith(expect.stringContaining('/en/home?a=1'));
   });
 });

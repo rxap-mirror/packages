@@ -20,7 +20,7 @@ describe('PipeDataSource', () => {
 
   it('refreshes itself or the parent', () => {
     const source = make();
-    const parentRefresh = jest.spyOn(source, 'refresh');
+    const parentRefresh = vi.spyOn(source, 'refresh');
     const ds = pipeDataSource(source, map((a: number[]) => a));
     const values: unknown[] = [];
     ds.connect({ id: 'v' }).subscribe((v) => values.push(v));
@@ -33,7 +33,7 @@ describe('PipeDataSource', () => {
 
   it('reset is delegated and toJSON includes the source', () => {
     const source = make();
-    const reset = jest.spyOn(source, 'reset');
+    const reset = vi.spyOn(source, 'reset');
     const ds = pipeDataSource(source, map((a: number[]) => a));
     ds.reset();
     expect(reset).toHaveBeenCalled();
@@ -48,7 +48,7 @@ describe('PipeDataSource', () => {
 
   it('disconnects the source on destroy', () => {
     const source = make();
-    const disconnect = jest.spyOn(source, 'disconnect');
+    const disconnect = vi.spyOn(source, 'disconnect');
     const ds = pipeDataSource(source, map((a: number[]) => a));
     ds.ngOnDestroy();
     expect(disconnect).toHaveBeenCalled();

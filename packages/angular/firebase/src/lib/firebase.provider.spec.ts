@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { ConfigService } from '@rxap/config';
 import { getAnalytics, setAnalyticsCollectionEnabled } from 'firebase/analytics';
@@ -24,34 +25,34 @@ import { getStorage } from 'firebase/storage';
 import * as p from './firebase.provider';
 import { FIREBASE_APP, FIREBASE_APP_NAME, FIREBASE_OPTIONS } from './tokens';
 
-jest.mock('firebase/app', () => ({ getApps: jest.fn(() => []), initializeApp: jest.fn((options, name) => ({ name, options })) }));
-jest.mock('firebase/app-check', () => ({
-  initializeAppCheck: jest.fn(() => ({ appCheck: true })),
+vi.mock('firebase/app', () => ({ getApps: vi.fn(() => []), initializeApp: vi.fn((options, name) => ({ name, options })) }));
+vi.mock('firebase/app-check', () => ({
+  initializeAppCheck: vi.fn(() => ({ appCheck: true })),
   ReCaptchaV3Provider: class { constructor(public siteKey: string) {} },
 }));
-jest.mock('firebase/analytics', () => ({ getAnalytics: jest.fn(() => ({ analytics: true })), setAnalyticsCollectionEnabled: jest.fn() }));
-jest.mock('firebase/auth', () => ({
+vi.mock('firebase/analytics', () => ({ getAnalytics: vi.fn(() => ({ analytics: true })), setAnalyticsCollectionEnabled: vi.fn() }));
+vi.mock('firebase/auth', () => ({
   browserLocalPersistence: { type: 'LOCAL' },
   browserSessionPersistence: { type: 'SESSION' },
   inMemoryPersistence: { type: 'NONE' },
-  connectAuthEmulator: jest.fn(),
-  getAuth: jest.fn(),
-  setPersistence: jest.fn(() => Promise.resolve()),
+  connectAuthEmulator: vi.fn(),
+  getAuth: vi.fn(),
+  setPersistence: vi.fn(() => Promise.resolve()),
 }));
-jest.mock('firebase/firestore', () => ({
-  connectFirestoreEmulator: jest.fn(),
-  enableIndexedDbPersistence: jest.fn(() => Promise.resolve()),
-  getFirestore: jest.fn(() => ({ default: true })),
-  initializeFirestore: jest.fn(() => ({ custom: true })),
+vi.mock('firebase/firestore', () => ({
+  connectFirestoreEmulator: vi.fn(),
+  enableIndexedDbPersistence: vi.fn(() => Promise.resolve()),
+  getFirestore: vi.fn(() => ({ default: true })),
+  initializeFirestore: vi.fn(() => ({ custom: true })),
 }));
-jest.mock('firebase/functions', () => ({ connectFunctionsEmulator: jest.fn(), getFunctions: jest.fn(() => ({ functions: true })) }));
-jest.mock('firebase/messaging', () => ({ getMessaging: jest.fn(() => ({ messaging: true })) }));
-jest.mock('firebase/performance', () => ({ getPerformance: jest.fn() }));
-jest.mock('firebase/storage', () => ({ getStorage: jest.fn() }));
+vi.mock('firebase/functions', () => ({ connectFunctionsEmulator: vi.fn(), getFunctions: vi.fn(() => ({ functions: true })) }));
+vi.mock('firebase/messaging', () => ({ getMessaging: vi.fn(() => ({ messaging: true })) }));
+vi.mock('firebase/performance', () => ({ getPerformance: vi.fn() }));
+vi.mock('firebase/storage', () => ({ getStorage: vi.fn() }));
 
 function config(values: Record<string, unknown>) {
   return {
-    get: jest.fn((key: string, def?: unknown) => (key in values ? values[key] : def)),
+    get: vi.fn((key: string, def?: unknown) => (key in values ? values[key] : def)),
   } as unknown as ConfigService<any>;
 }
 
@@ -144,11 +145,11 @@ describe('firebase instance factories', () => {
   const app: any = { name: '[DEFAULT]', options: {} };
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.spyOn(console, 'warn').mockImplementation();
-    jest.spyOn(console, 'error').mockImplementation();
+    vi.clearAllMocks();
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   describe('FirebaseAppFactory', () => {
     it('initializes the default app', () => {
@@ -164,7 +165,7 @@ describe('firebase instance factories', () => {
 
     it('reuses an app that is already initialized', () => {
       const existing = { name: 'named' };
-      (getApps as jest.Mock).mockReturnValueOnce([ existing ]);
+      (getApps as Mock).mockReturnValueOnce([ existing ]);
       expect(p.FirebaseAppFactory({ apiKey: 'k', projectId: 'p' }, 'named')).toBe(existing);
       expect(initializeApp).not.toHaveBeenCalled();
     });
@@ -173,8 +174,8 @@ describe('firebase instance factories', () => {
   describe('FirebaseAuthFactory', () => {
     let auth: any;
     beforeEach(() => {
-      auth = { settings: {}, useDeviceLanguage: jest.fn() };
-      (getAuth as jest.Mock).mockReturnValue(auth);
+      auth = { settings: {}, useDeviceLanguage: vi.fn() };
+      (getAuth as Mock).mockReturnValue(auth);
     });
 
     it('returns the plain auth instance without configuration', () => {
@@ -261,7 +262,7 @@ describe('firebase instance factories', () => {
   describe('FirebaseStorageFactory', () => {
     it('configures the bucket and the retry times', () => {
       const storage: any = {};
-      (getStorage as jest.Mock).mockReturnValue(storage);
+      (getStorage as Mock).mockReturnValue(storage);
       expect(p.FirebaseStorageFactory(app, config({
         'firebase.storage.bucket': 'gs://b',
         'firebase.storage.maxUploadRetryTime': 1000,
@@ -274,7 +275,7 @@ describe('firebase instance factories', () => {
 
     it('keeps the sdk defaults without configuration', () => {
       const storage: any = {};
-      (getStorage as jest.Mock).mockReturnValue(storage);
+      (getStorage as Mock).mockReturnValue(storage);
       p.FirebaseStorageFactory(app, config({}));
       expect(getStorage).toHaveBeenCalledWith(app, undefined);
       expect(storage).toEqual({});
@@ -301,7 +302,7 @@ describe('firebase instance factories', () => {
 
     it('returns null if the sdk reports the environment as unsupported', () => {
       Object.defineProperty(navigator, 'serviceWorker', { configurable: true, value: {} });
-      (getMessaging as jest.Mock).mockImplementationOnce(() => {
+      (getMessaging as Mock).mockImplementationOnce(() => {
         throw new Error('unsupported');
       });
       expect(p.FirebaseMessagingFactory(app)).toBeNull();
@@ -320,7 +321,7 @@ describe('firebase instance factories', () => {
     });
 
     it('returns null if analytics is not available', () => {
-      (getAnalytics as jest.Mock).mockImplementationOnce(() => {
+      (getAnalytics as Mock).mockImplementationOnce(() => {
         throw new Error('unavailable');
       });
       expect(p.FirebaseAnalyticsFactory(app, config({}))).toBeNull();
@@ -330,7 +331,7 @@ describe('firebase instance factories', () => {
   describe('FirebasePerformanceFactory', () => {
     it('applies the configured flags', () => {
       const performance: any = {};
-      (getPerformance as jest.Mock).mockReturnValue(performance);
+      (getPerformance as Mock).mockReturnValue(performance);
       p.FirebasePerformanceFactory(app, config({
         'firebase.performance.instrumentationEnabled': false,
         'firebase.performance.dataCollectionEnabled': true,
@@ -340,7 +341,7 @@ describe('firebase instance factories', () => {
 
     it('leaves the flags untouched without configuration', () => {
       const performance: any = {};
-      (getPerformance as jest.Mock).mockReturnValue(performance);
+      (getPerformance as Mock).mockReturnValue(performance);
       p.FirebasePerformanceFactory(app, config({}));
       expect(performance).toEqual({});
     });
@@ -360,7 +361,7 @@ describe('firebase instance factories', () => {
 
     it('initializes app check with the reCAPTCHA v3 provider', () => {
       expect(p.FirebaseAppCheckFactory(app, true, 'site', true)).toEqual({ appCheck: true });
-      const [ calledApp, options ] = (initializeAppCheck as jest.Mock).mock.calls[0];
+      const [ calledApp, options ] = (initializeAppCheck as Mock).mock.calls[0];
       expect(calledApp).toBe(app);
       expect(options.provider.siteKey).toBe('site');
       expect(options.isTokenAutoRefreshEnabled).toBe(true);
@@ -368,7 +369,7 @@ describe('firebase instance factories', () => {
 
     it('passes undefined for the auto refresh flag when it is not configured', () => {
       p.FirebaseAppCheckFactory(app, true, 'site', null);
-      expect((initializeAppCheck as jest.Mock).mock.calls[0][1].isTokenAutoRefreshEnabled).toBeUndefined();
+      expect((initializeAppCheck as Mock).mock.calls[0][1].isTokenAutoRefreshEnabled).toBeUndefined();
     });
   });
 

@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import {
   HttpHandlerFn,
   HttpRequest,
@@ -38,9 +39,9 @@ import {
 
 describe('authentication', () => {
   beforeEach(() => {
-    jest.spyOn(console, 'debug').mockImplementation();
-    jest.spyOn(console, 'log').mockImplementation();
-    jest.spyOn(console, 'warn').mockImplementation();
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
   });
 
   describe('RxapAuthenticationService', () => {
@@ -87,7 +88,7 @@ describe('authentication', () => {
 
   describe('AuthenticationRoutingService', () => {
     function setup(deactivated: boolean, auth$: BehaviorSubject<boolean | null>) {
-      const router = { navigate: jest.fn() };
+      const router = { navigate: vi.fn() };
       TestBed.configureTestingModule({
         providers: [
           { provide: Router, useValue: router },
@@ -118,7 +119,7 @@ describe('authentication', () => {
       TestBed.configureTestingModule({
         providers: [ { provide: RXAP_AUTHENTICATION_ACCESS_TOKEN, useValue: new BehaviorSubject(token) } ],
       });
-      const next = jest.fn((r: HttpRequest<unknown>) => of(new HttpResponse({ status: 200 }))) as unknown as jest.Mock & HttpHandlerFn;
+      const next = vi.fn((r: HttpRequest<unknown>) => of(new HttpResponse({ status: 200 }))) as unknown as Mock & HttpHandlerFn;
       runInInjectionContext(TestBed.inject(Injector), () => BearerTokenInterceptor(new HttpRequest('GET', url), next)).subscribe();
       return next.mock.calls[ 0 ][ 0 ] as HttpRequest<unknown>;
     }
@@ -152,7 +153,7 @@ describe('authentication', () => {
     }
 
     it('emits successful and failure', async () => {
-      const signOut = jest.fn().mockResolvedValueOnce(undefined).mockRejectedValueOnce(new Error('x'));
+      const signOut = vi.fn().mockResolvedValueOnce(undefined).mockRejectedValueOnce(new Error('x'));
       TestBed.configureTestingModule({ providers: [ { provide: RxapAuthenticationService, useValue: { signOut } } ] });
       const fixture = TestBed.createComponent(HostComponent);
       fixture.detectChanges();

@@ -27,6 +27,16 @@
       },
       "defaultConfiguration": "production"
     },
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "outputs": ["{workspaceRoot}/coverage/packages/angular/keycloak"],
+      "options": {
+        "tsConfig": "packages/angular/keycloak/tsconfig.spec.json",
+        "runner": "vitest",
+        "setupFiles": ["packages/angular/keycloak/src/test-setup.ts"],
+        "watch": false
+      }
+    },
     "lint": {
       "options": {
         "lintFilePatterns": [

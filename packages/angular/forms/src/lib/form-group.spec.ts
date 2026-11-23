@@ -39,7 +39,7 @@ describe('FormGroup', () => {
   });
 
   it('should valueChanges$', () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     control.value$.subscribe(spy);
     expect(spy)
       .toHaveBeenCalledWith({
@@ -63,7 +63,7 @@ describe('FormGroup', () => {
   });
 
   it('should disabledChanges$', () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     control.disabled$.subscribe(spy);
     expect(spy).toHaveBeenCalledWith(false);
     control.disable();
@@ -73,7 +73,7 @@ describe('FormGroup', () => {
   });
 
   it('should enabledChanges$', () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     control.enabled$.subscribe(spy);
     expect(spy).toHaveBeenCalledWith(true);
     control.disable();
@@ -83,7 +83,7 @@ describe('FormGroup', () => {
   });
 
   it('should statusChanges$', () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     control.status$.subscribe(spy);
     expect(spy).toHaveBeenCalledWith('INVALID');
     control.disable();
@@ -91,7 +91,7 @@ describe('FormGroup', () => {
   });
 
   it('should select$', () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     control.select(state => state.name).subscribe(spy);
     expect(spy).toHaveBeenCalledWith(null);
     control.patchValue({
@@ -194,7 +194,7 @@ describe('FormGroup', () => {
   });
 
   it('should markAsTouched/Untouched', () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     control.touch$.subscribe(spy);
     control.markAsTouched();
     expect(spy).toHaveBeenCalledWith(true);
@@ -203,7 +203,7 @@ describe('FormGroup', () => {
   });
 
   it('should markAsPristine/Dirty', () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     control.dirty$.subscribe(spy);
     control.markAllAsDirty();
     expect(spy).toHaveBeenCalledWith(true);
@@ -212,25 +212,25 @@ describe('FormGroup', () => {
   });
 
   it('should markAllAsDirty', () => {
-    jest.spyOn(control, 'markAsDirty');
+    vi.spyOn(control, 'markAsDirty');
     control.markAllAsDirty();
     expect(control.markAsDirty).toHaveBeenCalled();
   });
 
   it('should reset', () => {
-    jest.spyOn(control, 'reset');
+    vi.spyOn(control, 'reset');
     control.reset();
     expect(control.reset).toHaveBeenCalled();
   });
 
   it('should setValidators', () => {
-    jest.spyOn(control, 'setValidators');
+    vi.spyOn(control, 'setValidators');
     control.setValidators([]);
     expect(control.setValidators).toHaveBeenCalled();
   });
 
   it('should setAsyncValidators', () => {
-    jest.spyOn(control, 'setAsyncValidators');
+    vi.spyOn(control, 'setAsyncValidators');
     control.setAsyncValidators([]);
     expect(control.setAsyncValidators).toHaveBeenCalled();
   });
@@ -281,7 +281,7 @@ describe('FormGroup', () => {
     const validator = (_control: RxapFormGroup<Person>) =>
       _control.getRawValue().name === 'Test' ? { invalidName: true } : null;
     control.setValidators(validator as any);
-    const spy = jest.fn();
+    const spy = vi.fn();
     control.errors$.subscribe(spy);
     expect(spy).toHaveBeenCalledWith(null);
     control.patchValue({ name: 'Test' });

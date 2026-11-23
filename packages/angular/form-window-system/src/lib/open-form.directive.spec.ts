@@ -24,8 +24,8 @@ class HostComponent {
 class DefaultHostComponent {}
 
 describe('OpenFormDirective', () => {
-  const ref = { close: jest.fn() };
-  const open = jest.fn().mockReturnValue(ref);
+  const ref = { close: vi.fn() };
+  const open = vi.fn().mockReturnValue(ref);
 
   beforeEach(() => {
     open.mockClear();
@@ -70,7 +70,7 @@ describe('OpenFormDirective', () => {
         { provide: RXAP_WINDOW_FORM_SYSTEM_OPEN_FORM_CONSTRUCTOR, useValue: Def },
       ],
     });
-    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
     const fixture = TestBed.createComponent(DefaultHostComponent);
     fixture.detectChanges();
     const directive = fixture.debugElement.query(By.directive(OpenFormDirective)).injector.get(OpenFormDirective);

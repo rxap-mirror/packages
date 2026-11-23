@@ -61,21 +61,21 @@ class HostComponent {
 }
 
 describe('OpenTableSelectWindowDirective', () => {
-  const call = jest.fn();
-  const windowService = { has: jest.fn(() => false), close: jest.fn(), open: jest.fn() };
+  const call = vi.fn();
+  const windowService = { has: vi.fn(() => false), close: vi.fn(), open: vi.fn() };
 
   beforeEach(() => {
     call.mockReset().mockResolvedValue([rows[1]]);
     windowService.has.mockReset().mockReturnValue(false);
     windowService.close.mockReset();
-    jest.spyOn(console, 'debug').mockImplementation(() => undefined);
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
     TestBed.configureTestingModule({ providers: [{ provide: WindowService, useValue: windowService }] });
     TestBed.overrideDirective(OpenTableSelectWindowDirective, {
       set: { providers: [{ provide: OpenTableSelectWindowMethod, useValue: { call } }] },
     });
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   function create() {
     const fixture = TestBed.createComponent(HostComponent);
@@ -155,9 +155,9 @@ describe('OpenTableSelectWindowDirective', () => {
 
   it('opens the window on click and emits the selection', async () => {
     const { fixture, button, directive } = create();
-    const selectedChange = jest.fn();
+    const selectedChange = vi.fn();
     directive.selectedChange.subscribe(selectedChange);
-    const stop = jest.spyOn(Event.prototype, 'stopPropagation');
+    const stop = vi.spyOn(Event.prototype, 'stopPropagation');
     await directive.onClick(new MouseEvent('click'));
     expect(stop).toHaveBeenCalled();
     expect(call).toHaveBeenCalledWith(expect.objectContaining({
@@ -293,18 +293,18 @@ class DefinitionHostComponent {
 }
 
 describe('OpenTableSelectWindowDirective inside a mat-form-field', () => {
-  const call = jest.fn();
+  const call = vi.fn();
   const loaded = staticDataSource(rows);
-  const load = jest.fn(() => loaded);
+  const load = vi.fn(() => loaded);
 
   beforeEach(() => {
     call.mockReset().mockResolvedValue([rows[0]]);
     load.mockClear();
-    jest.spyOn(console, 'debug').mockImplementation(() => undefined);
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
     TestBed.configureTestingModule({
       providers: [
-        { provide: WindowService, useValue: { has: () => false, close: jest.fn() } },
+        { provide: WindowService, useValue: { has: () => false, close: vi.fn() } },
         { provide: DataSourceLoader, useValue: { load } },
       ],
     });
@@ -312,7 +312,7 @@ describe('OpenTableSelectWindowDirective inside a mat-form-field', () => {
       set: { providers: [{ provide: OpenTableSelectWindowMethod, useValue: { call } }] },
     });
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   function create<T>(component: new () => T): { fixture: ComponentFixture<T>, directive: OpenTableSelectWindowDirective<any, any> } {
     const fixture = TestBed.createComponent(component);

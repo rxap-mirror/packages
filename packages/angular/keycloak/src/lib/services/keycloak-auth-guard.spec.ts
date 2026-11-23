@@ -24,8 +24,8 @@ describe('KeycloakAuthGuard', () => {
   beforeEach(() => {
     kc = {
       isReady: Promise.resolve(true),
-      isLoggedIn: jest.fn().mockResolvedValue(true),
-      getUserRoles: jest.fn().mockReturnValue(['a']),
+      isLoggedIn: vi.fn().mockResolvedValue(true),
+      getUserRoles: vi.fn().mockReturnValue(['a']),
     };
     guard = new TestGuard({} as any, kc);
   });

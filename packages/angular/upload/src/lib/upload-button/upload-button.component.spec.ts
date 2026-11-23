@@ -4,6 +4,7 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { MatIconTestingModule } from '@angular/material/icon/testing';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import type { MockInstance } from 'vitest';
 import { UploadButtonComponent } from './upload-button.component';
 
 @Component({
@@ -33,7 +34,7 @@ describe('UploadButtonComponent', () => {
   let fixture: ComponentFixture<HostComponent>;
   let host: HostComponent;
   let cmp: UploadButtonComponent;
-  let snack: jest.SpyInstance;
+  let snack: MockInstance;
 
   const el = () => fixture.nativeElement as HTMLElement;
   const input = () => el().querySelector('input[type=file]') as HTMLInputElement;
@@ -54,7 +55,7 @@ describe('UploadButtonComponent', () => {
     host = fixture.componentInstance;
     await detect();
     cmp = host.cmp();
-    snack = jest.spyOn(cmp.snackBar, 'open').mockImplementation(() => undefined as any);
+    snack = vi.spyOn(cmp.snackBar, 'open').mockImplementation(() => undefined as any);
   });
 
   it('renders placeholder and projected content when empty', () => {
@@ -73,14 +74,14 @@ describe('UploadButtonComponent', () => {
   });
 
   it('clicking the button opens the file dialog', () => {
-    const spy = jest.spyOn(input(), 'click');
+    const spy = vi.spyOn(input(), 'click');
     (el().querySelector('button[mat-stroked-button]') as HTMLButtonElement).click();
     expect(spy).toHaveBeenCalled();
   });
 
   it('selecting a file updates control, emits and shows the name', async () => {
     const file = new File(['x'], 'doc.txt', { type: 'text/plain' });
-    const stateChanges = jest.fn();
+    const stateChanges = vi.fn();
     cmp.stateChanges.subscribe(stateChanges);
     choose(file);
     await detect();
@@ -131,7 +132,7 @@ describe('UploadButtonComponent', () => {
   });
 
   it('notifies state changes when signal state changes', async () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     cmp.stateChanges.subscribe(spy);
     host.placeholder.set('Other');
     await detect();
@@ -139,7 +140,7 @@ describe('UploadButtonComponent', () => {
   });
 
   it('tracks focus and marks the control touched when focus leaves', async () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     cmp.stateChanges.subscribe(spy);
     const btn = el().querySelector('button[mat-stroked-button]') as HTMLButtonElement;
     btn.dispatchEvent(new FocusEvent('focusin', { bubbles: true }));
@@ -170,7 +171,7 @@ describe('UploadButtonComponent', () => {
   });
 
   it('completes stateChanges on destroy', () => {
-    const complete = jest.fn();
+    const complete = vi.fn();
     cmp.stateChanges.subscribe({ complete });
     fixture.destroy();
     expect(complete).toHaveBeenCalled();
@@ -189,8 +190,8 @@ describe('UploadButtonComponent', () => {
 
     it('creates a temporary link and clicks it', async () => {
       const file = new File(['x'], 'a.txt');
-      (URL as any).createObjectURL = jest.fn(() => 'blob:abc');
-      const click = jest.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => undefined);
+      (URL as any).createObjectURL = vi.fn(() => 'blob:abc');
+      const click = vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => undefined);
       host.allowDownload.set(true);
       host.control.setValue(file);
       await detect();
@@ -203,7 +204,7 @@ describe('UploadButtonComponent', () => {
     });
 
     it('does nothing without a value', () => {
-      (URL as any).createObjectURL = jest.fn();
+      (URL as any).createObjectURL = vi.fn();
       cmp.download();
       expect(URL.createObjectURL).not.toHaveBeenCalled();
     });

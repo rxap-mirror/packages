@@ -1,3 +1,4 @@
+import type { Mock } from 'vitest';
 import { Component, signal, TemplateRef, viewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -44,7 +45,7 @@ class HostComponent {
 }
 
 describe('RemoteMethodTemplateDirective', () => {
-  let call$: jest.Mock;
+  let call$: Mock;
   let fixture: ComponentFixture<HostComponent>;
   let host: HostComponent;
   const text = (id: string) => fixture.nativeElement.querySelector('#' + id)?.textContent;
@@ -58,13 +59,13 @@ describe('RemoteMethodTemplateDirective', () => {
     );
 
   beforeEach(() => {
-    call$ = jest.fn().mockResolvedValue({ v: 1 });
-    jest.spyOn(console, 'error').mockImplementation();
+    call$ = vi.fn().mockResolvedValue({ v: 1 });
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
     TestBed.configureTestingModule({ providers: [{ provide: RemoteMethodLoader, useValue: { call$ } }] });
     fixture = TestBed.createComponent(HostComponent);
     host = fixture.componentInstance;
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('does not call the method until parameters are provided', async () => {
     fixture.detectChanges();

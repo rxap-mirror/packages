@@ -13,7 +13,7 @@ class HostComponent {}
 
 describe('FormWindowFooterDirective', () => {
   it('sets the footer portal on the window ref', () => {
-    const windowRef = { setFooterPortal: jest.fn() };
+    const windowRef = { setFooterPortal: vi.fn() };
     const formDirective = { formDefinition: { id: 'def' } };
     TestBed.configureTestingModule({
       imports: [HostComponent],

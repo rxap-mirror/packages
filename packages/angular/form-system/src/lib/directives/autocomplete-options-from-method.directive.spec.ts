@@ -1,3 +1,4 @@
+import type { Mock, MockInstance } from 'vitest';
 import { UseResolveMethod } from '../mixins/extract-resolve-method.mixin';
 import {
   AutocompleteOptionsFromMethodDirective,
@@ -61,15 +62,15 @@ describe(AutocompleteOptionsFromMethodDirective.name, () => {
   }
 
   let directive: AutocompleteOptionsFromMethodDirective;
-  let createEmbeddedViewMock: jest.Mock;
-  let clearMock: jest.Mock;
-  let detectChangesMock: jest.Mock;
+  let createEmbeddedViewMock: Mock;
+  let clearMock: Mock;
+  let detectChangesMock: Mock;
   let autocompleteOptionsMethod: TestAutocompleteOptionsMethod;
   let resolveMethod: TestResolveMethod;
   let ngControl: TestNgControl;
   let control: RxapFormControl;
-  let autocompleteOptionsMethodCall: jest.SpyInstance;
-  let resolveMethodCall: jest.SpyInstance;
+  let autocompleteOptionsMethodCall: MockInstance;
+  let resolveMethodCall: MockInstance;
   /** waits until the pending (tracked) option loading of the directive is finished */
   async function settle() {
     await TestBed.inject(ApplicationRef).whenStable();
@@ -81,9 +82,9 @@ describe(AutocompleteOptionsFromMethodDirective.name, () => {
     const formDefinition: TestFormDefinition =
       new RxapFormBuilder<ITestFormDefinition>(TestFormDefinition).build();
     const ngControl = new TestNgControl(formDefinition.name);
-    createEmbeddedViewMock = jest.fn();
-    clearMock = jest.fn();
-    detectChangesMock = jest.fn();
+    createEmbeddedViewMock = vi.fn();
+    clearMock = vi.fn();
+    detectChangesMock = vi.fn();
     TestBed.configureTestingModule({
       providers: [
         AutocompleteOptionsFromMethodDirective,
@@ -115,11 +116,11 @@ describe(AutocompleteOptionsFromMethodDirective.name, () => {
     control = ngControl.control as RxapFormControl;
     autocompleteOptionsMethod = TestBed.inject(TestAutocompleteOptionsMethod);
     resolveMethod = TestBed.inject(TestResolveMethod);
-    autocompleteOptionsMethodCall = jest.spyOn(
+    autocompleteOptionsMethodCall = vi.spyOn(
       autocompleteOptionsMethod,
       'call',
     );
-    resolveMethodCall = jest.spyOn(resolveMethod, 'call');
+    resolveMethodCall = vi.spyOn(resolveMethod, 'call');
     directive = TestBed.inject(AutocompleteOptionsFromMethodDirective);
     // the inputs are signal inputs and can not be assigned. Replace them with writable signals
     inputs = {
@@ -150,7 +151,7 @@ describe(AutocompleteOptionsFromMethodDirective.name, () => {
   });
 
   it('should link directive with MatAutocomplete', async () => {
-    inputs['matAutocomplete'].set({ displayWith: jest.fn() });
+    inputs['matAutocomplete'].set({ displayWith: vi.fn() });
 
     await settle();
     directive.ngAfterViewInit();
@@ -168,7 +169,7 @@ describe(AutocompleteOptionsFromMethodDirective.name, () => {
   });
 
   it('should convert value to display', async () => {
-    inputs['matAutocomplete'].set({ displayWith: jest.fn() });
+    inputs['matAutocomplete'].set({ displayWith: vi.fn() });
 
     await settle();
     directive.ngAfterViewInit();
@@ -180,7 +181,7 @@ describe(AutocompleteOptionsFromMethodDirective.name, () => {
   });
 
   it('should resolve a value to display', async () => {
-    const setValueSpy = jest.spyOn(control, 'setValue');
+    const setValueSpy = vi.spyOn(control, 'setValue');
 
     await settle();
     directive.ngAfterViewInit();

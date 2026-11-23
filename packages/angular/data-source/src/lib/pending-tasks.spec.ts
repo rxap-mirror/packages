@@ -82,7 +82,7 @@ describe('data source pending tasks', () => {
 
     it('whenStable waits for a slow load', async () => {
       const dataSource = create(() => new WithParametersDataSource());
-      const next = jest.fn();
+      const next = vi.fn();
       dataSource.connect({ id: 'viewer' }).subscribe(next);
 
       expect(callCount).toBe(1);
@@ -99,7 +99,7 @@ describe('data source pending tasks', () => {
 
     it('whenStable waits for a slow load triggered by a view change', async () => {
       const dataSource = create(() => new WithParametersDataSource());
-      const next = jest.fn();
+      const next = vi.fn();
       const viewChange = new Subject<{ id: string }>();
       dataSource.connect({ id: 'viewer', viewChange }).subscribe(next);
 
@@ -116,7 +116,7 @@ describe('data source pending tasks', () => {
 
     it('whenStable waits for a load without parameters', async () => {
       const dataSource = create(() => new WithoutParametersDataSource());
-      const next = jest.fn();
+      const next = vi.fn();
       dataSource.connect({ id: 'viewer' }).subscribe(next);
       dataSource.init();
 
@@ -129,7 +129,7 @@ describe('data source pending tasks', () => {
 
     it('releases the pending task if the load fails', async () => {
       const dataSource = create(() => new WithParametersDataSource());
-      const error = jest.fn();
+      const error = vi.fn();
       const errors: unknown[] = [];
       dataSource.error$.subscribe((e) => errors.push(e));
       dataSource.connect({ id: 'viewer' }).subscribe({ error });
@@ -151,7 +151,7 @@ describe('data source pending tasks', () => {
       const errors: unknown[] = [];
       dataSource.error$.subscribe((e) => errors.push(e));
       // the failing refresh rejects the returned promise, which is not handled by the data source
-      const refresh = dataSource.executeWithoutParameters().catch((e: unknown) => e);
+      const refresh = (dataSource as any).executeWithoutParameters().catch((e: unknown) => e);
 
       expect(await isStable()).toBe(false);
 
@@ -188,7 +188,7 @@ describe('data source pending tasks', () => {
 
     it('releases the pending task if the data source is destroyed', async () => {
       const dataSource = create(() => new WithoutParametersDataSource());
-      dataSource.executeWithoutParameters().catch(() => undefined);
+      (dataSource as any).executeWithoutParameters().catch(() => undefined);
 
       expect(await isStable()).toBe(false);
 
@@ -201,7 +201,7 @@ describe('data source pending tasks', () => {
       const first = load;
       const dataSource = create(() => new WithParametersDataSource());
       const viewChange = new Subject<{ id: string }>();
-      const next = jest.fn();
+      const next = vi.fn();
       dataSource.connect({ id: 'viewer', viewChange }).subscribe(next);
 
       viewChange.next({ id: 'a' });
@@ -222,7 +222,7 @@ describe('data source pending tasks', () => {
 
     it('works if created outside of an injection context', async () => {
       const dataSource = new WithParametersDataSource();
-      const next = jest.fn();
+      const next = vi.fn();
       dataSource.connect({ id: 'viewer' }).subscribe(next);
 
       // not tracked by angular, but must not fail
@@ -239,7 +239,7 @@ describe('data source pending tasks', () => {
 
     it('whenStable waits until the promise is resolved', async () => {
       const dataSource = create(() => new StaticDataSource<string>(load.promise, { id: 'static' }));
-      const next = jest.fn();
+      const next = vi.fn();
       dataSource.connect({ id: 'viewer' }).subscribe(next);
 
       expect(await isStable()).toBe(false);

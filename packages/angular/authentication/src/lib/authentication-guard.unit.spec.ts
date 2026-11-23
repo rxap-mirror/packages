@@ -6,7 +6,7 @@ import { RXAP_AUTHENTICATION_DEACTIVATED } from './tokens';
 
 describe('RxapAuthenticationGuard (unit)', () => {
   let isAuthenticated: boolean | null;
-  const router = { createUrlTree: jest.fn((commands: any[], extras?: any) => ({ commands, extras })) };
+  const router = { createUrlTree: vi.fn((commands: any[], extras?: any) => ({ commands, extras })) };
 
   function create(deactivated = false) {
     TestBed.configureTestingModule({
@@ -22,7 +22,7 @@ describe('RxapAuthenticationGuard (unit)', () => {
 
   beforeEach(() => {
     router.createUrlTree.mockClear();
-    jest.spyOn(console, 'debug').mockImplementation();
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
   });
 
   it('allows everything when deactivated', async () => {

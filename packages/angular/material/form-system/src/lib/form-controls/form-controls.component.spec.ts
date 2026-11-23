@@ -31,7 +31,7 @@ class TestForm {
   providers: [
     {
       provide: RXAP_FORM_DEFINITION,
-      useFactory: (injector: Injector) => new RxapFormBuilder<any>(TestForm, injector).build(),
+      useFactory: (injector: Injector) => new RxapFormBuilder<any>(TestForm as any, injector).build(),
       deps: [INJECTOR],
     },
   ],
@@ -47,7 +47,7 @@ class TestForm {
   `,
 })
 class HostComponent {
-  submitMethod = jest.fn().mockResolvedValue(undefined);
+  submitMethod = vi.fn().mockResolvedValue(undefined);
   allowResubmit = false;
   navigate: string[] | undefined = undefined;
   submitted: any[] = [];
@@ -60,7 +60,7 @@ describe('FormControlsComponent', () => {
   let fixture: ComponentFixture<HostComponent>;
   let host: HostComponent;
   let formDirective: FormDirective;
-  const router = { navigate: jest.fn().mockResolvedValue(true) };
+  const router = { navigate: vi.fn().mockResolvedValue(true) };
 
   async function setup(configure?: (host: HostComponent) => void, withRouter = true) {
     router.navigate.mockClear();
@@ -94,13 +94,13 @@ describe('FormControlsComponent', () => {
 
   it('should only trigger the submit logic once', async () => {
     const loader = await setup();
-    const onSubmitSpy = jest.spyOn(formDirective, 'onSubmit').mockReturnValue(false);
+    const onSubmitSpy = vi.spyOn(formDirective, 'onSubmit').mockReturnValue(false);
     await (await loader.getHarness(MatButtonHarness.with({ text: /^Submit/ }))).click();
     expect(onSubmitSpy).toHaveBeenCalledTimes(1);
   });
 
   it('shows the invalid state and a snackbar for an invalid submit', async () => {
-    const open = jest.spyOn(MatSnackBar.prototype, 'open').mockReturnValue(undefined as any);
+    const open = vi.spyOn(MatSnackBar.prototype, 'open').mockReturnValue(undefined as any);
     const loader = await setup();
     formDirective.form.get('name')!.setValue('');
     expect(formDirective.form.valid).toBe(false);
@@ -125,7 +125,7 @@ describe('FormControlsComponent', () => {
 
   it('allows resubmit without closing and keeps submitted values', async () => {
     const loader = await setup((h) => (h.allowResubmit = true));
-    const reuse = jest.fn();
+    const reuse = vi.fn();
     (formDirective.formDefinition as any).rxapReuse = reuse;
     formDirective.form.get('name')!.setValue('x');
     await (await loader.getHarness(MatButtonHarness.with({ text: 'Submit' }))).click();
@@ -156,7 +156,7 @@ describe('FormControlsComponent', () => {
   });
 
   it('warns when navigating without a router', async () => {
-    const warn = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
     const loader = await setup((h) => (h.navigate = ['/home']), false);
     await (await loader.getHarness(MatButtonHarness.with({ text: 'Cancel' }))).click();
     expect(warn).toHaveBeenCalled();
@@ -164,7 +164,7 @@ describe('FormControlsComponent', () => {
   });
 
   it('logs the current form state in dev mode', async () => {
-    const log = jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    const log = vi.spyOn(console, 'log').mockImplementation(() => undefined);
     const loader = await setup();
     await (await loader.getHarness(MatButtonHarness.with({ text: 'Current Form State' }))).click();
     expect(log).toHaveBeenCalled();

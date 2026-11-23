@@ -12,16 +12,17 @@ import {
 } from '@rxap/material-table-system';
 import { RXAP_WINDOW_SETTINGS, WindowService } from '@rxap/window-system';
 import { BehaviorSubject, of, Subject } from 'rxjs';
+import type { Mock, MockInstance } from 'vitest';
 import { OpenTableSelectDirective } from './open-table-select.directive';
 import { WindowTableSelectService } from './window-table-select.service';
 
 describe('WindowTableSelectService', () => {
   let service: WindowTableSelectService;
-  let windowService: { open: jest.Mock };
+  let windowService: { open: Mock };
   let windowRef: any;
 
   beforeAll(() => {
-    ((globalThis as any).$localize as jest.Mock).mockImplementation(
+    ((globalThis as any).$localize as Mock).mockImplementation(
       (s: TemplateStringsArray) => s[0].replace(/^:[^:]*:/, ''),
     );
   });
@@ -30,9 +31,9 @@ describe('WindowTableSelectService', () => {
     windowRef = {
       attachedRef$: new Subject<any>(),
       closed$: new Subject<any>(),
-      setFooterPortal: jest.fn(),
+      setFooterPortal: vi.fn(),
     };
-    windowService = { open: jest.fn().mockReturnValue(windowRef) };
+    windowService = { open: vi.fn().mockReturnValue(windowRef) };
     TestBed.configureTestingModule({
       providers: [{ provide: WindowService, useValue: windowService }],
     });
@@ -65,7 +66,7 @@ describe('WindowTableSelectService', () => {
   });
 
   it('uses title, multiple, selected and data from the options', () => {
-    const data = { metadata: { id: 'x' }, connect: jest.fn(), disconnect: jest.fn() } as any as BaseDataSource<any[]>;
+    const data = { metadata: { id: 'x' }, connect: vi.fn(), disconnect: vi.fn() } as any as BaseDataSource<any[]>;
     service.open(Cmp, {
       injector: TestBed.inject(Injector),
       title: 'T',
@@ -98,13 +99,13 @@ describe('WindowTableSelectService', () => {
 
   it('throws when the attached ref is not a component ref', () => {
     service.open(Cmp, { injector: TestBed.inject(Injector) });
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     try {
       windowRef.attachedRef$.next({});
       // rxjs reports the error of the unhandled subscription asynchronously
-      expect(() => jest.runAllTimers()).toThrow('FATAL: the attached ref was not an instance of Component ref');
+      expect(() => vi.runAllTimers()).toThrow('FATAL: the attached ref was not an instance of Component ref');
     } finally {
-      jest.useRealTimers();
+      vi.useRealTimers();
     }
   });
 });
@@ -112,9 +113,9 @@ describe('WindowTableSelectService', () => {
 describe('OpenTableSelectDirective', () => {
   let control: any;
   let formField: any;
-  let loader: { load: jest.Mock };
-  let openMethod: { call: jest.Mock };
-  let valueSpy: jest.SpyInstance;
+  let loader: { load: Mock };
+  let openMethod: { call: Mock };
+  let valueSpy: MockInstance;
 
   @Component({
     template: `<button [rxapOpenTableSelect]="method"></button>`,
@@ -137,21 +138,21 @@ describe('OpenTableSelectDirective', () => {
   const dataSource: any = {
     metadata: { id: 'ds' },
     connect: () => source$,
-    disconnect: jest.fn(),
-    retry: jest.fn(),
+    disconnect: vi.fn(),
+    retry: vi.fn(),
   };
 
   beforeEach(() => {
-    control = new RxapFormControl('x', { controlId: 'c' } as any, undefined as any);
-    control = Object.assign(Object.create(RxapFormControl.prototype), { controlId: 'c', value: undefined, setValue: jest.fn() });
+    control = new RxapFormControl('x', { controlId: 'c' } as any);
+    control = Object.assign(Object.create(RxapFormControl.prototype), { controlId: 'c', value: undefined, setValue: vi.fn() });
     formField = { _control: { ngControl: { control } } };
-    loader = { load: jest.fn().mockReturnValue(dataSource) };
-    openMethod = { call: jest.fn() };
-    valueSpy = jest.spyOn(OpenTableSelectDirective.prototype as any, 'extractDataSourceValue').mockReturnValue({
+    loader = { load: vi.fn().mockReturnValue(dataSource) };
+    openMethod = { call: vi.fn() };
+    valueSpy = vi.spyOn(OpenTableSelectDirective.prototype as any, 'extractDataSourceValue').mockReturnValue({
       dataSource: 'ds',
       settings: undefined,
     });
-    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
     TestBed.configureTestingModule({
       providers: [
         { provide: MAT_FORM_FIELD, useValue: formField },
@@ -159,7 +160,7 @@ describe('OpenTableSelectDirective', () => {
       ],
     });
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('throws without a control', () => {
     formField._control.ngControl = null;
@@ -217,7 +218,7 @@ describe('OpenTableSelectDirective', () => {
   });
 
   it('completes the window ref on destroy while the window is open', async () => {
-    const windowRef = { complete: jest.fn() };
+    const windowRef = { complete: vi.fn() };
     let resolve!: (v: any) => void;
     const p: any = new Promise((r) => (resolve = r));
     p.windowRef = windowRef;
@@ -244,22 +245,22 @@ describe('OpenTableSelectDirective', () => {
     });
 
     it('throws for an unknown data source name', () => {
-      jest.spyOn(dir, 'extractFormDefinition').mockReturnValue({});
-      jest.spyOn(dir, 'extractDataSources').mockReturnValue(new Map());
+      vi.spyOn(dir, 'extractFormDefinition').mockReturnValue({});
+      vi.spyOn(dir, 'extractDataSources').mockReturnValue(new Map());
       expect(() => dir.extractDataSourceValue('options', control)).toThrow('is not defined');
     });
 
     it('applies the transformer of the data source settings', () => {
       const transformer = (v: any) => v;
-      jest.spyOn(dir, 'extractFormDefinition').mockReturnValue({});
-      jest.spyOn(dir, 'extractDataSources').mockReturnValue(
+      vi.spyOn(dir, 'extractFormDefinition').mockReturnValue({});
+      vi.spyOn(dir, 'extractDataSources').mockReturnValue(
         new Map([['options', { dataSource: 'ds', settings: { transformer: (v: any) => [v] } }]]) as any,
       );
       const ds = dir.extractDatasource('options', control);
       expect(ds).toBe(dir.dataSource);
       expect(ds).not.toBe(dataSource);
       expect(dir.extractDataSourceTransformer('options', control)([1])).toEqual([[1]]);
-      jest.spyOn(dir, 'extractDataSources').mockReturnValue(
+      vi.spyOn(dir, 'extractDataSources').mockReturnValue(
         new Map([['options', { dataSource: 'ds' }]]) as any,
       );
       expect(dir.extractDataSourceTransformer('options', control)(7)).toBe(7);

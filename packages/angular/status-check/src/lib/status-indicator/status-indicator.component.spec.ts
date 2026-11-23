@@ -7,7 +7,7 @@ import { STATUS_INDICATOR_INTERVAL } from '../tokens';
 import { StatusIndicatorComponent } from './status-indicator.component';
 
 describe('StatusIndicatorComponent', () => {
-  const service = { getStatus: jest.fn() };
+  const service = { getStatus: vi.fn() };
 
   function create() {
     service.getStatus.mockReset();
@@ -31,8 +31,8 @@ describe('StatusIndicatorComponent', () => {
     return fixture;
   }
 
-  beforeEach(() => jest.useFakeTimers());
-  afterEach(() => jest.useRealTimers());
+  beforeEach(() => vi.useFakeTimers());
+  afterEach(() => vi.useRealTimers());
 
   it('collects services with statusCheck enabled and shows status', () => {
     const fixture = create();
@@ -52,8 +52,8 @@ describe('StatusIndicatorComponent', () => {
 
   it('retries on the interval', () => {
     const fixture = create();
-    jest.advanceTimersByTime(2000);
-    jest.advanceTimersByTime(600);
+    vi.advanceTimersByTime(2000);
+    vi.advanceTimersByTime(600);
     expect(service.getStatus).toHaveBeenCalledTimes(2);
     expect(fixture.componentInstance.countdown()).toBeLessThanOrEqual(2);
   });

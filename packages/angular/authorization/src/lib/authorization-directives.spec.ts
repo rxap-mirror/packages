@@ -1,7 +1,7 @@
 import { Component, signal, TemplateRef, viewChild } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
+import { MatButton, MatButtonModule, MatIconButton } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -40,11 +40,11 @@ describe('provide', () => {
 describe('AuthorizationService extras', () => {
   let service: AuthorizationService;
   beforeEach(() => {
-    jest.spyOn(console, 'log').mockImplementation();
-    jest.spyOn(console, 'warn').mockImplementation();
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
     service = TestBed.inject(AuthorizationService);
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('stores and returns copies of permissions', () => {
     service.setPermissions(['a']);
@@ -130,11 +130,11 @@ describe('IfHasPermissionDirective', () => {
   let auth: AuthorizationService;
 
   beforeEach(() => {
-    jest.spyOn(console, 'log').mockImplementation();
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
     TestBed.configureTestingModule({});
     auth = TestBed.inject(AuthorizationService);
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('renders nothing without else template when denied and content when granted', () => {
     const f = TestBed.createComponent(IfNoElseHostComponent);
@@ -199,7 +199,7 @@ class WriteHostComponent {
 
 describe('HasWritePermissionDirective', () => {
   it('toggles the readonly attribute', () => {
-    jest.spyOn(console, 'log').mockImplementation();
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
     const auth = TestBed.inject(AuthorizationService);
     const f = TestBed.createComponent(WriteHostComponent);
     const input = (): HTMLInputElement => f.nativeElement.querySelector('input');
@@ -212,7 +212,7 @@ describe('HasWritePermissionDirective', () => {
     f.detectChanges();
     f.detectChanges();
     expect(input().readOnly).toBe(true);
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 });
 
@@ -254,15 +254,14 @@ describe('HasEnablePermission directives', () => {
     f.debugElement.query(By.css('#' + id)).injector.get(type);
 
   beforeEach(() => {
-    jest.spyOn(console, 'log').mockImplementation();
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
     auth = TestBed.inject(AuthorizationService);
     f = TestBed.createComponent(EnableHostComponent);
     f.detectChanges();
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('disables everything without permissions', () => {
-    const { MatButton, MatIconButton } = jest.requireActual('@angular/material/button');
     expect(dir(MatButton, 'btn').disabled).toBe(true);
     expect(dir(MatIconButton, 'plain').disabled).toBe(true);
     expect(f.nativeElement.querySelector('#input').disabled).toBe(true);
@@ -271,7 +270,6 @@ describe('HasEnablePermission directives', () => {
   });
 
   it('enables each element once its permission is granted', () => {
-    const { MatButton } = jest.requireActual('@angular/material/button');
     auth.setPermissions(['*']);
     f.detectChanges();
     expect(dir(MatButton, 'btn').disabled).toBe(false);
@@ -288,7 +286,7 @@ describe('HasEnablePermission directives', () => {
     const select = dir(MatSelectHasEnablePermissionDirective, 'select');
     const check = dir(MatCheckboxHasEnablePermissionDirective, 'check');
     const toggle = dir(MatSlideToggleHasEnablePermissionDirective, 'toggle');
-    const spies = [select, check, toggle].map((d) => jest.spyOn(d, 'setDisabled'));
+    const spies = [select, check, toggle].map((d) => vi.spyOn(d, 'setDisabled'));
     auth.setPermissions(['*']);
     f.detectChanges();
     spies.forEach((s) => expect(s).toHaveBeenLastCalledWith(false));

@@ -11,7 +11,7 @@ class Def {}
 class Cmp {}
 
 describe('OpenFormWindowMethod', () => {
-  const formWindowService = { open: jest.fn().mockReturnValue('ref') };
+  const formWindowService = { open: vi.fn().mockReturnValue('ref') };
 
   function setup(extra: any[] = []) {
     formWindowService.open.mockClear();

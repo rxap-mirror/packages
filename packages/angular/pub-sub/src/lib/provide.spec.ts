@@ -33,7 +33,7 @@ describe('pub-sub provide helpers', () => {
   it('starts the garbage collector on app init', () => {
     TestBed.configureTestingModule({ providers: [ProvidePubSub()] });
     const service = TestBed.inject(PubSubService);
-    const spy = jest.spyOn(service, 'startGarbageCollector');
+    const spy = vi.spyOn(service, 'startGarbageCollector');
     TestBed.inject(PubSubService); // already created; initializer ran at module creation
     expect(service['garbageCollectorInitialized']).toBe(true);
     spy.mockRestore();

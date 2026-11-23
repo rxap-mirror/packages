@@ -4,6 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { ConfigService } from '@rxap/config';
 import { PubSubService, RXAP_TOPICS } from '@rxap/ngx-pub-sub';
 import { Subject } from 'rxjs';
+import type { Mock } from 'vitest';
 import { provideTheme } from './provide';
 import { ThemeModeService } from './theme-mode.service';
 import { ThemeService } from './theme.service';
@@ -18,15 +19,15 @@ const FULL_PALETTE = {
 describe('ThemeService', () => {
   let config: Record<string, any>;
   let topics: Record<string, Subject<{ data?: unknown }>>;
-  const pubSub = { subscribe: jest.fn(), publish: jest.fn() };
-  let darkMode: { toggleTheme: jest.Mock; setTheme: jest.Mock; darkMode: () => boolean };
+  const pubSub = { subscribe: vi.fn(), publish: vi.fn() };
+  let darkMode: { toggleTheme: Mock; setTheme: Mock; darkMode: () => boolean };
 
   const body = () => document.body;
   const create = () => TestBed.inject(ThemeService);
 
   beforeEach(() => {
-    jest.useFakeTimers();
-    jest.spyOn(console, 'log').mockImplementation();
+    vi.useFakeTimers();
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
     localStorage.clear();
     document.body.className = '';
     document.body.removeAttribute('style');
@@ -34,7 +35,7 @@ describe('ThemeService', () => {
     topics = {};
     pubSub.publish.mockReset();
     pubSub.subscribe.mockReset().mockImplementation((topic: string) => (topics[topic] ??= new Subject()));
-    darkMode = { toggleTheme: jest.fn(), setTheme: jest.fn(), darkMode: () => false };
+    darkMode = { toggleTheme: vi.fn(), setTheme: vi.fn(), darkMode: () => false };
     TestBed.configureTestingModule({
       providers: [
         { provide: MediaMatcher, useValue: { matchMedia: () => ({ matches: false, addEventListener() {}, removeEventListener() {} }) } },
@@ -56,8 +57,8 @@ describe('ThemeService', () => {
   });
 
   afterEach(() => {
-    jest.useRealTimers();
-    jest.restoreAllMocks();
+    vi.useRealTimers();
+    vi.restoreAllMocks();
     delete (window as any).__rxap__;
   });
 
@@ -234,7 +235,7 @@ describe('ThemeService', () => {
         { href: window.location.origin + '/a.css', cssRules: undefined },
         { href: 'https://cdn.example.com/x.css', cssRules: [rule] },
       ];
-      jest.spyOn(document, 'styleSheets', 'get').mockReturnValue(sheets as any);
+      vi.spyOn(document, 'styleSheets', 'get').mockReturnValue(sheets as any);
       expect(create().getAvailableTypographies()).toEqual(['mono', 'serif']);
     });
 
@@ -272,7 +273,7 @@ describe('ThemeService', () => {
       topics[RXAP_TOPICS.theme.typography.restore].next({ data: 'mono' });
       topics[RXAP_TOPICS.theme.preset.restore].next({ data: 'blue' });
       topics[RXAP_TOPICS.theme.preset.restore].next({});
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
       expect(s.density()).toBe(-2);
       expect(s.typography()).toBe('mono');
       expect(pubSub.publish).not.toHaveBeenCalled();

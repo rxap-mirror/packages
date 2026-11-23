@@ -21,6 +21,16 @@
       },
       "defaultConfiguration": "production"
     },
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "outputs": ["{workspaceRoot}/coverage/packages/angular/icon"],
+      "options": {
+        "tsConfig": "packages/angular/icon/tsconfig.spec.json",
+        "runner": "vitest",
+        "setupFiles": ["packages/angular/icon/src/test-setup.ts"],
+        "watch": false
+      }
+    },
     "lint": {
       "options": {
         "lintFilePatterns": [

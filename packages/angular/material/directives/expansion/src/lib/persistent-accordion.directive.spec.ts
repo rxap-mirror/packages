@@ -123,7 +123,7 @@ describe('PersistentAccordionDirective', () => {
     await settle();
     set('b', true);
     await settle();
-    const spy = jest.spyOn(Storage.prototype, 'setItem');
+    const spy = vi.spyOn(Storage.prototype, 'setItem');
     header('pa').click();
     await settle();
     expect(spy).toHaveBeenCalledTimes(1);

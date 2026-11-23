@@ -6,14 +6,16 @@ import { PubSubService, RXAP_TOPICS } from '@rxap/ngx-pub-sub';
 import { Subject } from 'rxjs';
 import { MarkerIoService, provideMarkerIo } from './marker-io.service';
 
-const widget = {
-  setCustomData: jest.fn(),
-  setReporter: jest.fn(),
-  clearReporter: jest.fn(),
-};
-const loadWidget = jest.fn();
+const { widget, loadWidget } = vi.hoisted(() => ({
+  widget: {
+    setCustomData: vi.fn(),
+    setReporter: vi.fn(),
+    clearReporter: vi.fn(),
+  },
+  loadWidget: vi.fn(),
+}));
 
-jest.mock('@marker.io/browser', () => ({
+vi.mock('@marker.io/browser', () => ({
   __esModule: true,
   default: { loadWidget: (...args: any[]) => loadWidget(...args) },
 }));
@@ -29,10 +31,10 @@ describe('MarkerIoService', () => {
     widget.setCustomData.mockReset();
     widget.setReporter.mockReset();
     widget.clearReporter.mockReset();
-    jest.spyOn(console, 'log').mockImplementation();
-    jest.spyOn(console, 'warn').mockImplementation();
-    jest.spyOn(console, 'error').mockImplementation();
-    jest.spyOn(console, 'debug').mockImplementation();
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
     TestBed.configureTestingModule({
       providers: [
         { provide: ConfigService, useValue: { get: (k: string) => config[k] } },
@@ -43,7 +45,7 @@ describe('MarkerIoService', () => {
         {
           provide: PubSubService,
           useValue: {
-            subscribe: jest.fn((topic: string) => {
+            subscribe: vi.fn((topic: string) => {
               expect(topic).toBe(RXAP_TOPICS.authentication.logout);
               return logout$.asObservable();
             }),
@@ -53,7 +55,7 @@ describe('MarkerIoService', () => {
     });
   });
 
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('warns when no configuration exists', async () => {
     await TestBed.inject(MarkerIoService).load();

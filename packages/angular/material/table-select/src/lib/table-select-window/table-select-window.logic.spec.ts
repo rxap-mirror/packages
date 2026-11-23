@@ -74,8 +74,8 @@ describe('TableSelectWindowComponent logic', () => {
 
   it('single selection sends the row and closes the window', () => {
     const fixture = create();
-    const next = jest.fn();
-    const complete = jest.fn();
+    const next = vi.fn();
+    const complete = vi.fn();
     windowRef.subscribe({ next, complete });
     fixture.componentInstance.selectRow(rows[1]);
     expect(next).toHaveBeenCalledWith([rows[1]]);
@@ -85,7 +85,7 @@ describe('TableSelectWindowComponent logic', () => {
   it('multiple selection keeps the window open until select', () => {
     const fixture = create({ multiple: true, selected: [rows[0]] });
     const c = fixture.componentInstance;
-    const next = jest.fn();
+    const next = vi.fn();
     windowRef.subscribe({ next });
     const states: boolean[] = [];
     c.hasNotSelected$.subscribe((v) => states.push(v));
@@ -108,7 +108,7 @@ describe('TableSelectWindowComponent logic', () => {
 
   it('close completes the window', () => {
     const fixture = create();
-    const complete = jest.fn();
+    const complete = vi.fn();
     windowRef.subscribe({ complete });
     fixture.componentInstance.close();
     expect(complete).toHaveBeenCalled();

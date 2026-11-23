@@ -12,22 +12,16 @@ import {
 } from './error-handler';
 import { OpenApiHttpResponseErrorService } from './open-api-http-response-error/open-api-http-response-error.service';
 
-jest.mock('@sentry/angular', () => ({
-  captureException: jest.fn(() => 'evt-ex'),
-  captureMessage: jest.fn(() => 'evt-msg'),
-  showReportDialog: jest.fn(),
-}));
-
-const devMode = jest.fn(() => true);
-jest.mock('@angular/core', () => ({
-  ...jest.requireActual('@angular/core'),
-  isDevMode: () => devMode(),
+vi.mock('@sentry/angular', () => ({
+  captureException: vi.fn(() => 'evt-ex'),
+  captureMessage: vi.fn(() => 'evt-msg'),
+  showReportDialog: vi.fn(),
 }));
 
 describe('RxapErrorHandler', () => {
-  const angularPush = jest.fn();
-  const openApiPush = jest.fn();
-  const configGet = jest.fn((_: string, def: unknown) => def);
+  const angularPush = vi.fn();
+  const openApiPush = vi.fn();
+  const configGet = vi.fn((_: string, def: unknown) => def);
 
   function setup(options?: ErrorHandlerOptions, environment: any = { production: false, release: false }) {
     TestBed.configureTestingModule({
@@ -44,15 +38,18 @@ describe('RxapErrorHandler', () => {
   }
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.spyOn(console, 'error').mockImplementation(() => undefined);
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
-    jest.spyOn(console, 'groupCollapsed').mockImplementation(() => undefined);
-    jest.spyOn(console, 'groupEnd').mockImplementation(() => undefined);
-    jest.spyOn(console, 'log').mockImplementation(() => undefined);
-    jest.spyOn(console, 'table').mockImplementation(() => undefined);
+    vi.clearAllMocks();
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'groupCollapsed').mockImplementation(() => undefined);
+    vi.spyOn(console, 'groupEnd').mockImplementation(() => undefined);
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'table').mockImplementation(() => undefined);
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => {
+    vi.restoreAllMocks();
+    vi.unstubAllGlobals();
+  });
 
   it('has default options token', () => {
     TestBed.configureTestingModule({});
@@ -123,7 +120,8 @@ describe('RxapErrorHandler', () => {
   });
 
   it('shows the sentry report dialog outside dev mode', () => {
-    devMode.mockReturnValue(false);
+    // isDevMode() reads the global ngDevMode flag
+    vi.stubGlobal('ngDevMode', false);
     configGet.mockImplementation((key: string, def: unknown) => key === 'sentry.showDialog' ? true : def);
     const handler = setup({});
     handler.handleError(new Error('x'));
@@ -132,15 +130,17 @@ describe('RxapErrorHandler', () => {
     expect(Sentry.showReportDialog).toHaveBeenCalledTimes(1);
     expect(angularPush).not.toHaveBeenCalled();
     configGet.mockImplementation((_: string, def: unknown) => def);
-    devMode.mockReturnValue(true);
   });
 
   it('warns and reloads the page on chunk load errors', () => {
+    const reload = vi.fn();
+    vi.stubGlobal('location', { ...window.location, reload });
     const handler = setup();
     handler.handleError(new Error('Loading chunk 12 failed.'));
     handler.handleError({ name: 'ChunkLoadError' });
     handler.handleError('Loading chunk 1 failed');
     handler.handleError(null);
     expect(console.warn).toHaveBeenCalledTimes(3);
+    expect(reload).toHaveBeenCalledTimes(3);
   });
 });

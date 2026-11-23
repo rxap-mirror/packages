@@ -107,7 +107,7 @@ describe('NavigationProgressBarComponent', () => {
 
 describe('ReleaseInfoComponent', () => {
   const setup = (modules?: any[]) => {
-    const open = jest.fn();
+    const open = vi.fn();
     TestBed.configureTestingModule({
       imports: [ReleaseInfoComponent, NoopAnimationsModule],
       providers: [
@@ -138,7 +138,7 @@ describe('ReleaseInfoComponent', () => {
 
 describe('header toolbar buttons', () => {
   it('SidenavToggleButtonComponent toggles the layout service', () => {
-    const layout = { opened: signal(false), toggleOpened: jest.fn() };
+    const layout = { opened: signal(false), toggleOpened: vi.fn() };
     TestBed.configureTestingModule({
       imports: [SidenavToggleButtonComponent, MatIconTestingModule],
       providers: [{ provide: LayoutService, useValue: layout }],
@@ -154,7 +154,7 @@ describe('header toolbar buttons', () => {
   });
 
   it('UserProfileIconComponent derives the username and publishes logout', () => {
-    const publish = jest.fn();
+    const publish = vi.fn();
     TestBed.configureTestingModule({
       imports: [UserProfileIconComponent, MatIconTestingModule, NoopAnimationsModule],
       providers: [{ provide: PubSubService, useValue: { publish } }],
@@ -172,7 +172,7 @@ describe('header toolbar buttons', () => {
 
   it('AppsButtonComponent shows apps and toggles the list', async () => {
     const activeAppList = signal<any[]>([]);
-    const getAppList = jest.fn();
+    const getAppList = vi.fn();
     TestBed.configureTestingModule({
       imports: [AppsButtonComponent, MatIconTestingModule],
       providers: [provideRouter([]), { provide: ExternalAppsService, useValue: { activeAppList, getAppList } }],
@@ -227,11 +227,11 @@ describe('LayoutService', () => {
         ...(opts.defaults ? [{ provide: require('./tokens').RXAP_NAVIGATION_LAYOUT_CONFIG_DEFAULTS, useValue: opts.defaults }] : []),
       ],
     });
-    jest.spyOn(console, 'log').mockImplementation(() => undefined);
+    vi.spyOn(console, 'log').mockImplementation(() => undefined);
     return { s: TestBed.inject(LayoutService), media };
   };
 
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('desktop defaults: collapsable, closed, over mode', () => {
     const { s } = setup();

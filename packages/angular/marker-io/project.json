@@ -20,6 +20,30 @@
         "development": {}
       },
       "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "outputs": ["{workspaceRoot}/coverage/packages/angular/marker-io"],
+      "options": {
+        "tsConfig": "packages/angular/marker-io/tsconfig.spec.json",
+        "runner": "vitest",
+        "setupFiles": ["packages/angular/marker-io/src/test-setup.ts"],
+        "exclude": ["generators/**"],
+        "watch": false
+      },
+      "dependsOn": ["test-generators"]
+    },
+    "test-generators": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "outputs": [
+        "{workspaceRoot}/coverage/packages/angular/marker-io/generators"
+      ],
+      "options": {
+        "command": "jest --config jest.generators.config.ts --passWithNoTests",
+        "cwd": "packages/angular/marker-io"
+      }
     }
   }
 }

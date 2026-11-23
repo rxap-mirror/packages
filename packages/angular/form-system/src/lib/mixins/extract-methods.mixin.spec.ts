@@ -34,8 +34,8 @@ describe('ExtractMethodsMixin', () => {
       rxapMetadata: { id: 'form' },
     }) as FormDefinition;
 
-  beforeEach(() => jest.spyOn(console, 'log').mockImplementation(() => undefined));
-  afterEach(() => jest.restoreAllMocks());
+  beforeEach(() => vi.spyOn(console, 'log').mockImplementation(() => undefined));
+  afterEach(() => vi.restoreAllMocks());
 
   it('should throw error if no method map is found', () => {
     const test = new Test(withPrototype(DefinitionWithoutMethod.prototype), 'mockId');

@@ -1,19 +1,20 @@
+import type { MockInstance } from 'vitest';
 import { ConfigService } from '@rxap/config';
 import { OpenApiConfigService } from './open-api-config.service';
 import { OpenApiInit } from './open-api-init';
 
 describe('OpenApiInit', () => {
-  let insert: jest.SpyInstance;
-  let load: jest.SpyInstance;
-  let get: jest.SpyInstance;
+  let insert: MockInstance;
+  let load: MockInstance;
+  let get: MockInstance;
 
   beforeEach(() => {
-    insert = jest.spyOn(OpenApiConfigService, 'InsertServer').mockImplementation(() => undefined);
-    load = jest.spyOn(OpenApiConfigService, 'Load').mockResolvedValue(undefined);
-    jest.spyOn(console, 'debug').mockImplementation(() => undefined);
-    get = jest.spyOn(ConfigService, 'Get');
+    insert = vi.spyOn(OpenApiConfigService, 'InsertServer').mockImplementation(() => undefined);
+    load = vi.spyOn(OpenApiConfigService, 'Load').mockResolvedValue(undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
+    get = vi.spyOn(ConfigService, 'Get');
   });
-  afterEach(() => jest.restoreAllMocks());
+  afterEach(() => vi.restoreAllMocks());
 
   it('does nothing without api config', () => {
     get.mockReturnValue({});

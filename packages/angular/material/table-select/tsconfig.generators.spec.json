@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "../../../../dist/out-tsc",
+    "module": "commonjs",
+    "moduleResolution": "node10",
+    "types": ["jest", "node"],
+    "isolatedModules": true
+  },
+  "include": [
+    "jest.generators.config.ts",
+    "src/generators/**/*.spec.ts",
+    "src/generators/**/*.d.ts"
+  ]
+}

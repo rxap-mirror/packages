@@ -1,3 +1,4 @@
+import type { MockInstance } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import {
   HttpTestingController,
@@ -50,9 +51,9 @@ describe('@rxap/data-source', () => {
 
         const connection = dataSource.connect(viewer);
 
-        const nextSpy = jest.fn();
-        const errorSpy = jest.fn();
-        const completeSpy = jest.fn();
+        const nextSpy = vi.fn();
+        const errorSpy = vi.fn();
+        const completeSpy = vi.fn();
 
         connection.subscribe(nextSpy, errorSpy, completeSpy);
 
@@ -74,9 +75,9 @@ describe('@rxap/data-source', () => {
 
         const connection = dataSource.connect(viewer);
 
-        const nextSpy = jest.fn();
-        const errorSpy = jest.fn();
-        const completeSpy = jest.fn();
+        const nextSpy = vi.fn();
+        const errorSpy = vi.fn();
+        const completeSpy = vi.fn();
 
         connection.subscribe(nextSpy, errorSpy, completeSpy);
         viewChange.next(undefined);
@@ -113,9 +114,9 @@ describe('@rxap/data-source', () => {
           id: 'viewer3',
           viewChange: new Subject<any>(),
         };
-        const next1Spy = jest.fn();
-        const next2Spy = jest.fn();
-        const next3Spy = jest.fn();
+        const next1Spy = vi.fn();
+        const next2Spy = vi.fn();
+        const next3Spy = vi.fn();
 
         const connection1 = dataSource.connect(viewer1);
         const connectionSubscription = connection1.subscribe(next1Spy);
@@ -184,9 +185,9 @@ describe('@rxap/data-source', () => {
 
         const connection = dataSource.connect(viewer);
 
-        const nextSpy = jest.fn();
-        const errorSpy = jest.fn();
-        const completeSpy = jest.fn();
+        const nextSpy = vi.fn();
+        const errorSpy = vi.fn();
+        const completeSpy = vi.fn();
 
         connection.subscribe(nextSpy, errorSpy, completeSpy);
 
@@ -214,9 +215,9 @@ describe('@rxap/data-source', () => {
 
         const connection = dataSource.connect(viewer);
 
-        const nextSpy = jest.fn();
-        const errorSpy = jest.fn();
-        const completeSpy = jest.fn();
+        const nextSpy = vi.fn();
+        const errorSpy = vi.fn();
+        const completeSpy = vi.fn();
 
         const subscription = connection.subscribe(
           nextSpy,
@@ -248,9 +249,9 @@ describe('@rxap/data-source', () => {
 
         const connection = dataSource.connect(viewer);
 
-        const nextSpy = jest.fn();
-        const errorSpy = jest.fn();
-        const completeSpy = jest.fn();
+        const nextSpy = vi.fn();
+        const errorSpy = vi.fn();
+        const completeSpy = vi.fn();
 
         connection.subscribe(nextSpy, errorSpy, completeSpy);
 
@@ -273,10 +274,10 @@ describe('@rxap/data-source', () => {
     });
 
     describe('should call init on first request', () => {
-      let initSpy: jest.SpyInstance;
+      let initSpy: MockInstance;
 
       beforeEach(() => {
-        initSpy = jest.spyOn(dataSource, 'init');
+        initSpy = vi.spyOn(dataSource, 'init');
       });
 
       it('connect', () => {
