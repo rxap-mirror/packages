@@ -8,6 +8,7 @@ import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import { LoadProjectToPackageMapping } from '@rxap/workspace-utilities';
 import fixDependenciesGenerator, {
   removePackageFromDependencies,
+  widenPeerDependencyRange,
   removeSelfReferenceFromDependencies,
   replaceLatestPackageVersionForProject,
   resolveLatestPackageVersion,
@@ -73,7 +74,7 @@ describe('fix-dependencies generator', () => {
     await fixDependenciesGenerator(tree, { projects: [ 'lib' ] });
     const packageJson = readJson(tree, `${ root }/package.json`);
     expect(packageJson.peerDependencies).toEqual(expect.objectContaining({
-      '@angular/core': '^19.0.0', rxjs: '^7.8.0', '@scope/other': '^3.0.0', 'unknown-pkg': 'latest',
+      '@angular/core': '^19.0.0', rxjs: '^7.0.0', '@scope/other': '^3.0.0', 'unknown-pkg': 'latest',
     }));
     expect(packageJson.peerDependencies['ignored-test-package']).toBeUndefined();
     expect(packageJson.peerDependencies['path']).toBeUndefined();
@@ -143,6 +144,27 @@ describe('fix-dependencies generator', () => {
       };
       removeSelfReferenceFromDependencies('lib', packageJson);
       expect(packageJson).toEqual({ dependencies: {}, peerDependencies: {}, devDependencies: {}, optionalDependencies: {} });
+    });
+
+  });
+
+  describe('widenPeerDependencyRange', () => {
+
+    it('widens caret, tilde and exact versions to the major release', () => {
+      expect(widenPeerDependencyRange('@angular/core', '^22.3.0')).toBe('^22.0.0');
+      expect(widenPeerDependencyRange('@nestjs/common', '~12.6.0')).toBe('^12.0.0');
+      expect(widenPeerDependencyRange('rxjs', '7.8.2')).toBe('^7.0.0');
+    });
+
+    it('keeps the minor for 0.x packages because the minor is their breaking version', () => {
+      expect(widenPeerDependencyRange('@marker.io/browser', '^0.20.2')).toBe('^0.20.0');
+    });
+
+    it('leaves intentionally wide ranges and internal packages untouched', () => {
+      expect(widenPeerDependencyRange('jsonwebtoken', '*')).toBe('*');
+      expect(widenPeerDependencyRange('@angular/core', '^21.0.0 || ^22.0.0')).toBe('^21.0.0 || ^22.0.0');
+      expect(widenPeerDependencyRange('x', '>=2.1.0')).toBe('>=2.1.0');
+      expect(widenPeerDependencyRange('@rxap/utilities', '^22.3.1')).toBe('^22.3.1');
     });
 
   });

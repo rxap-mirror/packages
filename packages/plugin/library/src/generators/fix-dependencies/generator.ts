@@ -610,6 +610,32 @@ function forcePeerDependencies(packageJson: PackageJson) {
   }
 }
 
+/**
+ * Peer dependency ranges describe what a consumer may install, not what this workspace happens
+ * to be built with. Copying the root version (e.g. 22.3.0 -> ^22.3.0) would force every consumer
+ * onto a minor/patch that is newer than necessary, so the floor is widened to the major release:
+ *   ^22.3.0 -> ^22.0.0, ~12.6.0 -> ^12.0.0, 7.8.2 -> ^7.0.0, ^0.20.2 -> ^0.20.0 (0.x: minor is the major)
+ * Ranges that are already intentionally wide (`*`, `>=`, `||`, `workspace:`) and internal @rxap
+ * packages (versions are stamped by the release process) are left untouched.
+ */
+export function widenPeerDependencyRange(packageName: string, range: string): string {
+  if (packageName.startsWith('@rxap/')) {
+    return range;
+  }
+  const match = range.match(/^[\^~]?(\d+)\.(\d+)\.(\d+)$/);
+  if (!match) {
+    return range;
+  }
+  const [ , major, minor ] = match;
+  return major === '0' ? `^0.${ minor }.0` : `^${ major }.0.0`;
+}
+
+function widenPeerDependencyRanges(packageJson: PackageJson) {
+  for (const [ packageName, range ] of Object.entries(packageJson.peerDependencies ?? {})) {
+    packageJson.peerDependencies![packageName] = widenPeerDependencyRange(packageName, range);
+  }
+}
+
 function forcePackagesAsDependencies(tree: Tree, packageJson: PackageJson, packages: string[], projectRoot: string) {
   packageJson.dependencies ??= {};
   packageJson.peerDependencies ??= {};
@@ -746,6 +772,8 @@ export async function fixDependenciesGenerator(
       setDependencyVersionFromRootPackageJson(packageJson, rootPackageJson);
 
       forcePeerDependencies(packageJson);
+
+      widenPeerDependencyRanges(packageJson);
 
       printReport(projectName, peerReport);
 
