@@ -5,16 +5,16 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "24.0.6",
-    "tslib": "2.6.2"
+    "tslib": "2.9.1"
   },
   "peerDependencies": {
-    "@nestjs/common": "^12.6.0",
-    "@nestjs/config": "^12.1.1",
-    "@nestjs/core": "^12.6.0",
-    "@nestjs/jwt": "^12.0.5",
+    "@nestjs/common": "^12.0.0",
+    "@nestjs/config": "^12.0.0",
+    "@nestjs/core": "^12.0.0",
+    "@nestjs/jwt": "^12.0.0",
     "@rxap/nest-utilities": "^12.0.0-dev.0",
-    "auth0": "^4.18.0",
-    "joi": "^18.3.2",
+    "auth0": "^4.0.0",
+    "joi": "^18.0.0",
     "jsonwebtoken": "*",
     "jwks-rsa": "*",
     "passport-jwt": "^4.0.1"

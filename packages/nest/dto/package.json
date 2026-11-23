@@ -5,11 +5,11 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "24.0.6",
-    "tslib": "2.6.2"
+    "tslib": "2.9.1"
   },
   "peerDependencies": {
-    "class-transformer": "^0.5.1",
-    "class-validator": "^0.15.1"
+    "class-transformer": "^0.5.0",
+    "class-validator": "^0.15.0"
   },
   "author": {
     "name": "Merzough Münker",

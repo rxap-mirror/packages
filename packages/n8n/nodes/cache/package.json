@@ -6,11 +6,11 @@
   "dependencies": {
     "@nx/devkit": "24.0.6",
     "@rxap/n8n-utilities": "^1.2.4",
-    "minio": "8.0.1",
-    "tslib": "2.6.2"
+    "minio": "8.0.7",
+    "tslib": "2.9.1"
   },
   "peerDependencies": {
-    "n8n-workflow": "^1.82.0"
+    "n8n-workflow": "^1.0.0"
   },
   "author": {
     "name": "Merzough Münker",

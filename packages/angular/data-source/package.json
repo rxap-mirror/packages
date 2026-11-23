@@ -5,20 +5,20 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "24.0.6",
-    "tslib": "2.6.2"
+    "tslib": "2.9.1"
   },
   "peerDependencies": {
-    "@angular/cdk": "^22.3.0",
-    "@angular/common": "^22.3.0",
-    "@angular/core": "^22.3.0",
-    "@angular/material": "^22.3.0",
+    "@angular/cdk": "^22.0.0",
+    "@angular/common": "^22.0.0",
+    "@angular/core": "^22.0.0",
+    "@angular/material": "^22.0.0",
     "@rxap/data-structure-tree": "^1.1.19",
     "@rxap/definition": "^22.0.0-dev.0",
     "@rxap/environment": "^22.0.0-dev.0",
     "@rxap/pattern": "^1.1.16",
     "@rxap/rxjs": "^1.1.18",
     "@rxap/utilities": "^16.5.2",
-    "rxjs": "^7.8.2"
+    "rxjs": "^7.0.0"
   },
   "author": {
     "name": "Merzough Münker",

@@ -147,11 +147,8 @@ for (const section of [ 'dependencies', 'devDependencies' ]) {
 
 function peerConflicts(versionMeta, overrides) {
   const conflicts = [];
-  const peerMeta = versionMeta.peerDependenciesMeta ?? {};
   for (const [ peer, range ] of Object.entries(versionMeta.peerDependencies ?? {})) {
-    if (peerMeta[peer]?.optional) {
-      continue;
-    }
+    // optional peers still bind when the package is installed in the workspace (checked via `have` below)
     const have = overrides[peer] ?? workspaceVersions[peer];
     if (!have) {
       continue;
@@ -173,7 +170,7 @@ function reversePeerConflicts(name, candidate, overrides) {
     const installed = overrides[dep] ?? workspaceVersions[dep];
     const meta = docCache[dep]?.versions?.[installed];
     const range = meta?.peerDependencies?.[name];
-    if (!range || meta.peerDependenciesMeta?.[name]?.optional) {
+    if (!range) {
       continue;
     }
     if (!semver.satisfies(candidate, range, { includePrerelease: true })) {

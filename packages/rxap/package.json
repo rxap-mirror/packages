@@ -4,7 +4,7 @@
   "description": "Reactive Extensions for APplication development.\n",
   "license": "MIT",
   "dependencies": {
-    "tslib": "2.6.2"
+    "tslib": "2.9.1"
   },
   "author": {
     "name": "Merzough Münker",

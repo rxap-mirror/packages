@@ -11,7 +11,7 @@
     "@rxap/utilities": "^16.5.2",
     "@rxap/workspace-ts-morph": "^24.0.0-dev.0",
     "@rxap/workspace-utilities": "^24.0.0-dev.0",
-    "tslib": "2.6.2"
+    "tslib": "2.9.1"
   },
   "author": {
     "name": "Merzough Münker",

@@ -5,12 +5,12 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "24.0.6",
-    "tslib": "2.6.2"
+    "tslib": "2.9.1"
   },
   "peerDependencies": {
-    "@nestjs/common": "^12.6.0",
-    "@nestjs/config": "^12.1.1",
-    "web3.storage": "^4.5.5"
+    "@nestjs/common": "^12.0.0",
+    "@nestjs/config": "^12.0.0",
+    "web3.storage": "^4.0.0"
   },
   "author": {
     "name": "Merzough Münker",

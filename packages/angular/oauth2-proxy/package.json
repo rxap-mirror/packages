@@ -5,17 +5,17 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "24.0.6",
-    "tslib": "2.6.2"
+    "tslib": "2.9.1"
   },
   "peerDependencies": {
-    "@angular/common": "^22.3.0",
-    "@angular/core": "^22.3.0",
-    "@angular/router": "^22.3.0",
+    "@angular/common": "^22.0.0",
+    "@angular/core": "^22.0.0",
+    "@angular/router": "^22.0.0",
     "@rxap/config": "^22.0.0-dev.0",
     "@rxap/data-source": "^22.0.0-dev.0",
     "@rxap/ngx-pub-sub": "^22.0.0-dev.0",
     "@rxap/pattern": "^1.1.16",
-    "rxjs": "^7.8.2"
+    "rxjs": "^7.0.0"
   },
   "author": {
     "name": "Merzough Münker",

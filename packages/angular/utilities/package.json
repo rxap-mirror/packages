@@ -3,8 +3,8 @@
   "name": "@rxap/ngx-utilities",
   "license": "GPL-3.0-or-later",
   "peerDependencies": {
-    "@angular/common": "^22.3.0",
-    "@angular/core": "^22.3.0"
+    "@angular/common": "^22.0.0",
+    "@angular/core": "^22.0.0"
   },
   "author": {
     "name": "Merzough Münker",

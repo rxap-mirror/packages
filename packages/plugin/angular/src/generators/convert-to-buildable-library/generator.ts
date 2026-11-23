@@ -29,7 +29,7 @@ function addDependencyChecksToEslintConfig(tree: Tree, projectRoot: string) {
     return;
   }
   if (!content.includes('jsonc-eslint-parser')) {
-    content = `import jsoncEslintParser from 'jsonc-eslint-parser';\n${ content }`;
+    content = `import * as jsoncEslintParser from 'jsonc-eslint-parser';\n${ content }`;
   }
   const block = `  {
     files: ['**/*.json'],

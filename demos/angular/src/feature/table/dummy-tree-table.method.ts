@@ -38,7 +38,7 @@ export class DummyTreeTableMethod implements Method<any[], TableEvent> {
       hasChildren: faker.datatype.boolean(),
       isActive: faker.datatype.boolean(),
       email: faker.internet.email(),
-      rating: parseFloat(faker.finance.amount(0, 5, 1)),
+      rating: parseFloat(faker.finance.amount({ min: 0, max: 5, dec: 1 })),
       address: {
         street: faker.location.streetAddress(),
         city: faker.location.city(),
@@ -47,7 +47,7 @@ export class DummyTreeTableMethod implements Method<any[], TableEvent> {
       },
       phoneNumber: faker.phone.number(),
       isAdmin: faker.datatype.boolean(),
-      balance: parseFloat(faker.finance.amount(100, 10000, 2)),
+      balance: parseFloat(faker.finance.amount({ min: 100, max: 10000, dec: 2 })),
       numberOfOrders: faker.number.int({
         min: 1,
         max: 100,
@@ -65,7 +65,7 @@ export class DummyTreeTableMethod implements Method<any[], TableEvent> {
         min: 0,
         max: 1000,
       }),
-      nickname: faker.internet.userName(),
+      nickname: faker.internet.username(),
       favoriteColor: faker.color.human(),
       occupation: faker.person.jobTitle(),
     }));

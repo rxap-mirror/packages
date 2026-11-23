@@ -14,7 +14,8 @@ module.exports = {
       },
     ],
   },
-  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$)'],
+  // @faker-js/faker >= 10 is ESM-only (.js): it has to be transformed together with the .mjs files
+  transformIgnorePatterns: ['node_modules/(?!.*\\.mjs$|@faker-js/faker/)'],
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

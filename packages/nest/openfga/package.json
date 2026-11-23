@@ -5,15 +5,15 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "24.0.6",
-    "tslib": "2.6.2"
+    "tslib": "2.9.1"
   },
   "peerDependencies": {
-    "@nestjs/common": "^12.6.0",
-    "@nestjs/config": "^12.1.1",
-    "@nestjs/core": "^12.6.0",
-    "@openfga/sdk": "^0.8.0",
+    "@nestjs/common": "^12.0.0",
+    "@nestjs/config": "^12.0.0",
+    "@nestjs/core": "^12.0.0",
+    "@openfga/sdk": "^0.9.0",
     "@rxap/nest-utilities": "^12.0.0-dev.0",
-    "joi": "^18.3.2"
+    "joi": "^18.0.0"
   },
   "author": {
     "name": "Merzough Münker",

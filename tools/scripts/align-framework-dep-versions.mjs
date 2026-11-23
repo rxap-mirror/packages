@@ -1,4 +1,4 @@
-// Align every per-package framework dependency (non-@rxap) to the root
+// Align every per-package dependency (non-@rxap) to the root
 // package.json version, preserving the existing range prefix. post-migrate.sh's
 // fix-dependencies step (which normally does this via
 // setDependencyVersionFromRootPackageJson) crashed before completing, leaving
@@ -40,8 +40,19 @@ for (const file of files) {
       }
       const rootClean = rootRange.replace(/^[\^~]/, '');
       const current = deps[dep];
-      const prefix = current.startsWith('^') ? '^' : current.startsWith('~') ? '~' : '';
-      const want = prefix + rootClean;
+      let want;
+      if (field === 'peerDependencies') {
+        // Peers describe what consumers may install: floor at the major release (see
+        // widenPeerDependencyRange in @rxap/plugin-library fix-dependencies). Keep intentionally wide ranges.
+        const match = rootClean.match(/^(\d+)\.(\d+)\.\d+$/);
+        if (!match || /[|>*\s]/.test(current)) {
+          continue;
+        }
+        want = match[1] === '0' ? `^0.${ match[2] }.0` : `^${ match[1] }.0.0`;
+      } else {
+        const prefix = current.startsWith('^') ? '^' : current.startsWith('~') ? '~' : '';
+        want = prefix + rootClean;
+      }
       if (current !== want) {
         deps[dep] = want;
         modified = true;

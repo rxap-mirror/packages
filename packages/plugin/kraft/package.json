@@ -8,9 +8,9 @@
     "@rxap/plugin-utilities": "^24.0.0-dev.0",
     "@rxap/workspace-utilities": "^24.0.0-dev.0",
     "colors": "1.4.0",
-    "glob": "10.3.10",
+    "glob": "14.0.6",
     "nx": "24.0.6",
-    "tslib": "^2.6.2"
+    "tslib": "^2.9.1"
   },
   "author": {
     "name": "Merzough Münker",

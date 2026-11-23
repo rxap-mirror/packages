@@ -7,22 +7,22 @@
     "@nx/devkit": "24.0.6",
     "@rxap/ts-morph": "^1.7.1",
     "@rxap/workspace-utilities": "^24.0.0-dev.0",
-    "tslib": "2.6.2"
+    "tslib": "2.9.1"
   },
   "peerDependencies": {
-    "@nestjs/common": "^12.6.0",
-    "@nestjs/config": "^12.1.1",
-    "@nestjs/core": "^12.6.0",
+    "@nestjs/common": "^12.0.0",
+    "@nestjs/config": "^12.0.0",
+    "@nestjs/core": "^12.0.0",
     "@rxap/nest-logger": "^12.0.0-dev.0",
     "@rxap/nest-utilities": "^12.0.0-dev.0",
-    "@sentry/core": "^11.16.0",
-    "@sentry/nestjs": "^11.16.0",
-    "@sentry/node": "^11.16.0",
-    "@sentry/profiling-node": "^11.16.0",
-    "@sentry/types": "^10.10.0",
-    "@sentry/utils": "^8.55.0",
-    "joi": "^18.3.2",
-    "rxjs": "^7.8.2"
+    "@sentry/core": "^11.0.0",
+    "@sentry/nestjs": "^11.0.0",
+    "@sentry/node": "^11.0.0",
+    "@sentry/profiling-node": "^11.0.0",
+    "@sentry/types": "^10.0.0",
+    "@sentry/utils": "^8.0.0",
+    "joi": "^18.0.0",
+    "rxjs": "^7.0.0"
   },
   "author": {
     "name": "Merzough Münker",

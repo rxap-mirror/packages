@@ -11,9 +11,9 @@ import { SUPABASE_OPTIONS } from './tokens';
 
 export interface SupabaseModuleOptions<
   Database = any,
-  SchemaName extends string & keyof Database = 'public' extends keyof Database
-                                               ? 'public'
-                                               : string & keyof Database,
+  SchemaName extends string & keyof Omit<Database, '__InternalSupabase'> = 'public' extends keyof Omit<Database, '__InternalSupabase'>
+                                                                           ? 'public'
+                                                                           : string & keyof Omit<Database, '__InternalSupabase'>,
 > {
   supabaseUrl: string;
   supabaseKey: string;

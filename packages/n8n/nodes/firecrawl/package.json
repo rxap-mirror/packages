@@ -4,17 +4,17 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@keyv/postgres": "^2.1.1",
-    "@langchain/core": "^0.3.40",
-    "@mendable/firecrawl-js": "^4.8.3",
+    "@langchain/core": "^0.3.80",
+    "@mendable/firecrawl-js": "^4.54.0",
     "@nx/devkit": "24.0.6",
     "@rxap/n8n-utilities": "^1.2.4",
     "@rxap/utilities": "^16.5.2",
     "keyv": "^5.2.3",
-    "langchain": "^0.3.19",
-    "tslib": "2.6.2"
+    "langchain": "^0.3.37",
+    "tslib": "2.9.1"
   },
   "peerDependencies": {
-    "n8n-workflow": "^1.82.0",
+    "n8n-workflow": "^1.0.0",
     "zod": "^3.24.2"
   },
   "author": {

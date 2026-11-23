@@ -3,15 +3,15 @@
   "name": "@rxap/nest-typeorm",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "tslib": "2.6.2"
+    "tslib": "2.9.1"
   },
   "peerDependencies": {
-    "@nestjs/common": "^12.6.0",
-    "@nestjs/config": "^12.1.1",
-    "@nestjs/typeorm": "^12.0.3",
+    "@nestjs/common": "^12.0.0",
+    "@nestjs/config": "^12.0.0",
+    "@nestjs/typeorm": "^12.0.0",
     "@rxap/nest-utilities": "^12.0.0-dev.0",
-    "joi": "^18.3.2",
-    "typeorm": "^0.3.26"
+    "joi": "^18.0.0",
+    "typeorm": "^0.3.0"
   },
   "author": {
     "name": "Merzough Münker",

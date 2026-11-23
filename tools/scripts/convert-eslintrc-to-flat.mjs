@@ -54,7 +54,7 @@ for (const f of files) {
   if (ignores.length) entries.push(lit({ ignores: ignores.map((i) => (/[*!]/.test(i) ? i : `${i.replace(/\/$/, '')}/**`)) }, 2));
   const out = [
     ...(usesNx ? ["import nx from '@nx/eslint-plugin';"] : []),
-    ...(usesJsonc ? ["import jsoncEslintParser from 'jsonc-eslint-parser';"] : []),
+    ...(usesJsonc ? ["import * as jsoncEslintParser from 'jsonc-eslint-parser';"] : []),
     `import baseConfig from '${baseRel}';`,
     '',
     'export default [',

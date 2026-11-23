@@ -6,10 +6,10 @@
   "dependencies": {
     "@nx/devkit": "24.0.6",
     "@rxap/plugin-utilities": "^24.0.0-dev.0",
-    "@ucanto/principal": "^9.0.1",
+    "@ucanto/principal": "^9.0.3",
     "@web3-storage/w3up-client": "^16.2.0",
-    "files-from-path": "1.0.4",
-    "tslib": "2.6.2"
+    "files-from-path": "1.1.4",
+    "tslib": "2.9.1"
   },
   "author": {
     "name": "Merzough Münker",

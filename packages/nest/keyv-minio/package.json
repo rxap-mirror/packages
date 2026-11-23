@@ -5,15 +5,15 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "24.0.6",
-    "tslib": "2.6.2"
+    "tslib": "2.9.1"
   },
   "peerDependencies": {
-    "@nestjs/cache-manager": "^12.0.5",
-    "@nestjs/common": "^12.6.0",
+    "@nestjs/cache-manager": "^12.0.0",
+    "@nestjs/common": "^12.0.0",
     "@rxap/nest-utilities": "^12.0.0-dev.0",
-    "joi": "^18.3.2",
-    "keyv": "^5.2.3",
-    "minio": "^8.0.1"
+    "joi": "^18.0.0",
+    "keyv": "^5.0.0",
+    "minio": "^8.0.0"
   },
   "author": {
     "name": "Merzough Münker",

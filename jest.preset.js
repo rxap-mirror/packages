@@ -3,6 +3,20 @@ const nxPreset = require('@nx/jest/preset').default;
 const { pathsToModuleNameMapper } = require('ts-jest');
 const { compilerOptions } = require('./tsconfig.base.json');
 
+const ESM_ONLY_PACKAGES = [
+  'magic-string',
+  '@jridgewell/[^/]+',
+  '@nestjs/[^/]+',
+  'reflect-metadata',
+  '@faker-js/faker',
+  'htmlparser2',
+  'domhandler',
+  'domutils',
+  'dom-serializer',
+  'domelementtype',
+  'entities',
+].join('|');
+
 module.exports = {
   ...nxPreset,
   // Polyfill performance.mark/measure for Nx 21's project-graph plugin loader,
@@ -24,12 +38,15 @@ module.exports = {
     '!src/**/*.stories.ts',
     '!src/test-setup.ts',
   ],
-  // ESM-only dependencies (magic-string >= 1 and its @jridgewell deps from @angular-devkit/schematics 22, @nestjs/* 12)
-  // have to be transformed to CommonJS for the jest runtime. The project `transform` entries must not match node_modules.
-  transformIgnorePatterns: [ 'node_modules/(?!(?:magic-string|@jridgewell/[^/]+|@nestjs/[^/]+|reflect-metadata)/)' ],
+  // ESM-only dependencies (magic-string >= 1 and its @jridgewell deps from @angular-devkit/schematics 22, @nestjs/* 12,
+  // @faker-js/faker >= 10, htmlparser2 >= 10 with the dom* family) have to be transformed to CommonJS for the jest runtime.
+  // The ignore pattern is anchored to the LAST node_modules segment so nested installs
+  // (node_modules/@angular-devkit/schematics/node_modules/magic-string) are transformed as well.
+  // The project `transform` entries must not match node_modules.
+  transformIgnorePatterns: [ `/node_modules/(?!.*/node_modules/)(?!(?:${ ESM_ONLY_PACKAGES })/)` ],
   transform: {
     // has to be the first entry: the first matching pattern wins
-    '^.+/node_modules/(?:magic-string|@jridgewell/[^/]+|@nestjs/[^/]+|reflect-metadata)/.+\\.m?js$': join(__dirname, 'tools/jest/esm-to-cjs-transformer.js'),
+    [`^.+/node_modules/(?:${ ESM_ONLY_PACKAGES })/.+\\.m?js$`]: join(__dirname, 'tools/jest/esm-to-cjs-transformer.js'),
     ...(nxPreset.transform ?? {}),
   },
   // Resolve every workspace @rxap/* import to source via the tsconfig paths.
