@@ -18,7 +18,7 @@
     "@rxap/workspace-utilities": "^24.0.0-dev.0",
     "colors": "1.4.0",
     "semver": "7.8.6",
-    "ts-morph": "18.0.0",
+    "ts-morph": "28.0.0",
     "tslib": "2.9.1"
   },
   "author": {

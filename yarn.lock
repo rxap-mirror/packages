@@ -12423,7 +12423,7 @@ __metadata:
     "@apidevtools/json-schema-ref-parser": ^9.0.9
     "@nx/devkit": 24.0.6
     "@rxap/utilities": ^16.5.2
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     tslib: 2.9.1
   languageName: unknown
   linkType: soft
@@ -12691,7 +12691,6 @@ __metadata:
     "@langchain/textsplitters": ^0.1.0
     langchain: 0.3.37
     lodash: ^4.17.21
-    openai: 7.57.0
     tmp-promise: ^3.0.3
     tslib: 2.9.1
   peerDependencies:
@@ -13517,7 +13516,7 @@ __metadata:
     handlebars: 4.7.10
     semver: 7.8.6
     tailwindcss: ^3.4.4
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     tslib: 2.9.1
     yaml: 2.9.1
   languageName: unknown
@@ -13600,7 +13599,7 @@ __metadata:
     "@rxap/workspace-utilities": ^24.0.0-dev.0
     openai: 7.57.0
     tiktoken: 1.0.22
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     tslib: 2.9.1
   languageName: unknown
   linkType: soft
@@ -13636,7 +13635,7 @@ __metadata:
     handlebars: 4.7.10
     nx: 24.0.6
     semver: 7.8.6
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     tslib: 2.9.1
   languageName: unknown
   linkType: soft
@@ -13651,7 +13650,7 @@ __metadata:
     colors: 1.4.0
     openai: 7.57.0
     tiktoken: 1.0.22
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     tslib: 2.9.1
     xml2js: ^0.6.2
   languageName: unknown
@@ -13680,7 +13679,7 @@ __metadata:
     "@rxap/workspace-utilities": ^24.0.0-dev.0
     colors: 1.4.0
     nx: 24.0.6
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     tslib: 2.9.1
   languageName: unknown
   linkType: soft
@@ -13703,7 +13702,7 @@ __metadata:
     "@rxap/workspace-utilities": ^24.0.0-dev.0
     colors: 1.4.0
     semver: 7.8.6
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     tslib: 2.9.1
   languageName: unknown
   linkType: soft
@@ -13748,7 +13747,7 @@ __metadata:
     "@rxap/workspace-ts-morph": ^24.0.0-dev.0
     "@rxap/workspace-utilities": ^24.0.0-dev.0
     colors: 1.4.0
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     tslib: 2.9.1
   languageName: unknown
   linkType: soft
@@ -13881,7 +13880,7 @@ __metadata:
     "@rxap/workspace-utilities": ^24.0.0-dev.0
     colors: 1.4.0
     handlebars: 4.7.10
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     tslib: 2.9.1
   languageName: unknown
   linkType: soft
@@ -13914,7 +13913,7 @@ __metadata:
     "@rxap/ts-morph": ^1.7.1
     "@rxap/utilities": ^16.5.2
     "@rxap/workspace-utilities": ^24.0.0-dev.0
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     tslib: 2.9.1
     yaml: 2.9.1
   languageName: unknown
@@ -13934,7 +13933,7 @@ __metadata:
     "@rxap/utilities": ^16.5.2
     "@rxap/workspace-utilities": ^24.0.0-dev.0
     openapi-types: ^10.0.0
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     tslib: 2.9.1
   languageName: unknown
   linkType: soft
@@ -13953,7 +13952,7 @@ __metadata:
     "@rxap/workspace-utilities": ^24.0.0-dev.0
     colors: 1.4.0
     handlebars: 4.7.10
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     tslib: 2.9.1
   languageName: unknown
   linkType: soft
@@ -13980,7 +13979,7 @@ __metadata:
     "@rxap/schematics-ts-morph": ^22.0.0-dev.0
     "@rxap/schematics-utilities": ^22.0.0-dev.0
     "@rxap/xml-parser": ^16.3.2
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     tslib: 2.9.1
   languageName: unknown
   linkType: soft
@@ -14246,7 +14245,7 @@ __metadata:
     tiktoken: 1.0.22
     tmp-promise: ^3.0.3
     ts-jest: 29.4.15
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     ts-node: 10.9.2
     tslib: 2.9.1
     typedoc: ^0.27.7
@@ -14319,7 +14318,7 @@ __metadata:
     "@nx/devkit": 24.0.6
     "@rxap/utilities": ^16.5.2
     colors: 1.4.0
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     tslib: 2.9.1
   languageName: unknown
   linkType: soft
@@ -14398,7 +14397,7 @@ __metadata:
     "@rxap/utilities": ^16.5.2
     "@rxap/workspace-utilities": ^24.0.0-dev.0
     openapi-types: ^10.0.0
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     tslib: 2.9.1
     yaml: 2.9.1
   languageName: unknown
@@ -14412,7 +14411,7 @@ __metadata:
     "@rxap/ts-morph": ^1.7.1
     "@rxap/utilities": ^16.5.2
     "@rxap/workspace-utilities": ^24.0.0-dev.0
-    ts-morph: 18.0.0
+    ts-morph: 28.0.0
     tslib: 2.9.1
   languageName: unknown
   linkType: soft
@@ -15639,18 +15638,6 @@ __metadata:
     path-browserify: ^1.0.1
     tinyglobby: ^0.2.14
   checksum: 00bdc26260272482a914dbf44a80d0f411c68cf2553e1616cdfd5997e353ac1026fa255e2e8fecec21458380ca1aff998f49d985d9c726bf92f22058b178a6a5
-  languageName: node
-  linkType: hard
-
-"@ts-morph/common@npm:~0.19.0":
-  version: 0.19.0
-  resolution: "@ts-morph/common@npm:0.19.0"
-  dependencies:
-    fast-glob: ^3.2.12
-    minimatch: ^7.4.3
-    mkdirp: ^2.1.6
-    path-browserify: ^1.0.1
-  checksum: 6b02a63ded0ce77e2bf86e135c17a6d5126307bbb926a4085d3cc2acaf28cb732780cf8d16961e9600efcc599876f706a2c9e8d135f7668704bb04a1a6fd37ec
   languageName: node
   linkType: hard
 
@@ -20710,13 +20697,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"code-block-writer@npm:^12.0.0":
-  version: 12.0.0
-  resolution: "code-block-writer@npm:12.0.0"
-  checksum: 9f6505a4d668c9131c6f3f686359079439e66d5f50c236614d52fcfa53aeb0bc615b2c6c64ef05b5511e3b0433ccfd9f7756ad40eb3b9298af6a7d791ab1981d
-  languageName: node
-  linkType: hard
-
 "code-block-writer@npm:^13.0.3":
   version: 13.0.3
   resolution: "code-block-writer@npm:13.0.3"
@@ -23757,7 +23737,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:^3.2.12, fast-glob@npm:^3.2.9, fast-glob@npm:^3.3.2":
+"fast-glob@npm:^3.2.9, fast-glob@npm:^3.3.2":
   version: 3.3.2
   resolution: "fast-glob@npm:3.3.2"
   dependencies:
@@ -30131,7 +30111,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:7.4.9, minimatch@npm:^7.4.3":
+"minimatch@npm:7.4.9":
   version: 7.4.9
   resolution: "minimatch@npm:7.4.9"
   dependencies:
@@ -30373,15 +30353,6 @@ __metadata:
   bin:
     mkdirp: bin/cmd.js
   checksum: 0c91b721bb12c3f9af4b77ebf73604baf350e64d80df91754dc509491ae93bf238581e59c7188360cec7cb62fc4100959245a42cfe01834efedc5e9d068376c2
-  languageName: node
-  linkType: hard
-
-"mkdirp@npm:^2.1.6":
-  version: 2.1.6
-  resolution: "mkdirp@npm:2.1.6"
-  bin:
-    mkdirp: dist/cjs/src/bin.js
-  checksum: 8a1d09ffac585e55f41c54f445051f5bc33a7de99b952bb04c576cafdf1a67bb4bae8cb93736f7da6838771fbf75bc630430a3a59e1252047d2278690bd150ee
   languageName: node
   linkType: hard
 
@@ -38098,17 +38069,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ts-morph@npm:18.0.0":
-  version: 18.0.0
-  resolution: "ts-morph@npm:18.0.0"
-  dependencies:
-    "@ts-morph/common": ~0.19.0
-    code-block-writer: ^12.0.0
-  checksum: e3d3099b9a632dfcea2ddc75f00e0d0866b4f6d27b73f9e0ff96cf64fe24ce8074098d6709873afce9edb852c2127c40ad4013f54fdf68dafe0231f1a71827c8
-  languageName: node
-  linkType: hard
-
-"ts-morph@npm:^28.0.0":
+"ts-morph@npm:28.0.0, ts-morph@npm:^28.0.0":
   version: 28.0.0
   resolution: "ts-morph@npm:28.0.0"
   dependencies:
