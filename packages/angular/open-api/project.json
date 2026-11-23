@@ -31,7 +31,9 @@
         "include": [
           "**/*.spec.ts",
           "../data-source/**/*.spec.ts",
-          "../remote-method/**/*.spec.ts"
+          "../remote-method/**/*.spec.ts",
+          "../http-resource/**/*.spec.ts",
+          "../testing/**/*.spec.ts"
         ],
         "exclude": ["generators/**"],
         "watch": false

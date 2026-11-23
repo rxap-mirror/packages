@@ -92,7 +92,9 @@ export class OpenApiTableDataSource<
     @Inject(RXAP_DATA_SOURCE_METADATA)
       metadata: OpenApiTableDataSourceMetadata | null = dataSource.metadata,
   ) {
-    super(paginator, sort, filter, parameters, metadata);
+    // the injector provides null (not undefined) for a missing optional dependency, so the default value
+    // of the parameter is not applied in that case
+    super(paginator, sort, filter, parameters, metadata ?? dataSource.metadata);
 
     if (tableEventToOpenApiParameters) {
       this.tableEventToOpenApiParameters = tableEventToOpenApiParameters;

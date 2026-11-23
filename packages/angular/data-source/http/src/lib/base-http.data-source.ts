@@ -100,6 +100,7 @@ export abstract class BaseHttpDataSource<Data = any, PathParams = any, Body = an
     this._data = undefined;
     if (this._refreshSubscription) {
       this._refreshSubscription.unsubscribe();
+      this._refreshSubscription = null;
     }
     super.reset();
     this._initialised = false;

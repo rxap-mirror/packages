@@ -9,8 +9,6 @@
   },
   "files": ["src/test-setup.ts"],
   "include": [
-    "src/**/*.test.ts",
-    "src/**/*.spec.ts",
     "src/**/*.d.ts",
     "accordion/**/*.spec.ts",
     "directive/**/*.spec.ts",
@@ -22,7 +20,9 @@
     "table/directives/**/*.spec.ts",
     "table/**/*.spec.ts",
     "table/tree/**/*.spec.ts",
-    "testing/**/*.spec.ts"
+    "testing/**/*.spec.ts",
+    "**/*.spec.ts",
+    "**/*.test.ts"
   ],
-  "exclude": ["src/generators/**"]
+  "exclude": ["node_modules/**", "src/generators/**"]
 }

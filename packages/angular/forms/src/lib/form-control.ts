@@ -218,7 +218,7 @@ export class RxapFormControl<
   public mergeAsyncValidators(validators: AsyncValidator) {
     this.setAsyncValidators([
       // TODO : remove 'as any' if solution for the type overwrite issue is found (above)
-      this.asyncValidator as any,
+      ...coerceArray(this.asyncValidator as any),
       ...coerceArray(validators),
     ]);
     this.updateValueAndValidity();

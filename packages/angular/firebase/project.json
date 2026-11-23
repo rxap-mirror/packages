@@ -29,6 +29,7 @@
         "runner": "vitest",
         "setupFiles": ["packages/angular/firebase/src/test-setup.ts"],
         "exclude": ["generators/**"],
+        "include": ["**/*.spec.ts", "../auth/**/*.spec.ts"],
         "watch": false
       },
       "dependsOn": ["test-generators"]

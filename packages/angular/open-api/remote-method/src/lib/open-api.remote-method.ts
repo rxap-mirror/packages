@@ -159,8 +159,12 @@ export class OpenApiRemoteMethod<Response = any, Parameters extends Record<strin
   public async callWithResponse(args: OpenApiRemoteMethodParameter<Parameters, RequestBody> = {}): Promise<HttpResponse<Response>> {
     this.init();
     this.executionsInProgress$.increase();
-    const result = await this._callWithResponse(args);
-    this.executionsInProgress$.decrease();
+    let result: HttpResponse<Response>;
+    try {
+      result = await this._callWithResponse(args);
+    } finally {
+      this.executionsInProgress$.decrease();
+    }
     if (result.body) {
       this.executed$.next(result.body);
       this.executed(result.body);

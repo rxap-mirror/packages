@@ -91,4 +91,13 @@ export default ROUTES;`);
     expect(tree.read('apps/angularC/src/app/layout.routes.ts', 'utf-8')).toMatchSnapshot();
     expect(tree.read('apps/angularD/src/app/layout.routes.ts', 'utf-8')).toMatchSnapshot();
   });
+
+  it('should be idempotent and leave a file that already has provideUserTheme untouched', async () => {
+    await update(tree);
+    const first = tree.read('apps/angularC/src/app/layout.routes.ts', 'utf-8');
+    expect(first).toContain('provideUserTheme(');
+    await update(tree);
+    expect(tree.read('apps/angularC/src/app/layout.routes.ts', 'utf-8')).toBe(first);
+    expect(first!.split('provideUserTheme(').length - 1).toBe(1);
+  });
 });

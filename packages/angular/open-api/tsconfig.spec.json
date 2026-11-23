@@ -14,7 +14,9 @@
     "src/**/*.d.ts",
     "data-source/**/*.spec.ts",
     "data-source/table/**/*.spec.ts",
-    "remote-method/**/*.spec.ts"
+    "remote-method/**/*.spec.ts",
+    "http-resource/**/*.spec.ts",
+    "testing/**/*.spec.ts"
   ],
   "exclude": ["src/generators/**"]
 }

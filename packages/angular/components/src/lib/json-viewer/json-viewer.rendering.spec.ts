@@ -34,6 +34,19 @@ describe('JsonViewerComponent rendering', () => {
     expect(segmentOf(f, 'obj')).toMatchObject({ type: 'object', description: 'Object {"a":1}' });
   });
 
+  it('classifies date and function values when segments are built directly', () => {
+    // cleanObject turns dates into plain objects and drops nothing else, so date and function
+    // values can only reach parseKeyValue through the public buildSegments method
+    const f = create({});
+    const date = new Date(0);
+    const fn = () => 1;
+    f.componentInstance.buildSegments({ date, fn });
+    expect(segmentOf(f, 'date')).toMatchObject({ type: 'date', value: date, description: '' + date });
+    expect(segmentOf(f, 'fn')).toMatchObject({ type: 'function', value: fn });
+    expect(f.componentInstance.isExpandable(segmentOf(f, 'date'))).toBe(false);
+    expect(f.componentInstance.isExpandable(segmentOf(f, 'fn'))).toBe(false);
+  });
+
   it('wraps primitive inspect values', () => {
     const f = create({});
     f.componentInstance.buildSegments(5);

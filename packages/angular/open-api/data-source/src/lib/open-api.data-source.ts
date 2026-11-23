@@ -113,7 +113,7 @@ export class OpenApiDataSource<Response = any, Parameters extends Record<string,
     @Inject(DISABLE_VALIDATION)
       disableValidation: boolean | null = null,
   ) {
-    super(http, metadata as any);
+    super(http, metadata as any, refresh$);
 
     let operation: OperationObjectWithMetadata;
     if (!this.metadata['operation']) {

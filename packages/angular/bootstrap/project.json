@@ -29,7 +29,8 @@
         "runner": "vitest",
         "setupFiles": ["packages/angular/bootstrap/src/test-setup.ts"],
         "exclude": ["generators/**"],
-        "watch": false
+        "watch": false,
+        "include": ["**/*.spec.ts", "../module/**/*.spec.ts"]
       },
       "dependsOn": ["test-generators"]
     },

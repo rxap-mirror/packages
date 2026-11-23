@@ -114,6 +114,41 @@ describe('ConfirmDirective', () => {
     expect(accept()).not.toBeNull();
   });
 
+  describe('when the overlay is not disposed by the confirm result', () => {
+    // the directive resets its own state after a result even if disposing the overlay does not
+    // detach it (e.g. a custom overlay ref); the dispose is stubbed here to exercise that path
+    function openWithoutDispose() {
+      trigger().click();
+      fixture.detectChanges();
+      const directive = fixture.debugElement.children[0].injector.get(ConfirmDirective) as any;
+      const dispose = vi.spyOn(directive.overlayRef, 'dispose').mockImplementation(() => undefined);
+      return { directive, dispose };
+    }
+
+    it('resets the open state and subscription after confirming', () => {
+      host.value.set('v');
+      fixture.detectChanges();
+      const { directive, dispose } = openWithoutDispose();
+      expect(directive.isOverlyOpen).toBe(true);
+      accept()!.click();
+      expect(dispose).toHaveBeenCalledTimes(1);
+      expect(host.confirmed).toEqual([ 'v' ]);
+      expect(directive.isOverlyOpen).toBe(false);
+      expect(directive.subscription).toBeNull();
+    });
+
+    it('resets the open state and subscription after declining', () => {
+      host.value.set('v');
+      fixture.detectChanges();
+      const { directive, dispose } = openWithoutDispose();
+      decline()!.click();
+      expect(dispose).toHaveBeenCalledTimes(1);
+      expect(host.unconfirmed).toEqual([ 'v' ]);
+      expect(directive.isOverlyOpen).toBe(false);
+      expect(directive.subscription).toBeNull();
+    });
+  });
+
   it('disposes the overlay on destroy', () => {
     trigger().click();
     fixture.detectChanges();

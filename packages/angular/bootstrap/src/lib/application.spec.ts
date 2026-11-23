@@ -87,6 +87,15 @@ describe('Application', () => {
     await expect(app.bootstrap()).rejects.toThrow('Angular app creation failed');
   });
 
+  it('fails and skips the after hooks when the app has no ConfigService', async () => {
+    const app = new TestApplication(env, {});
+    app.configInstance = undefined as any;
+    const after = vi.fn();
+    app.after(after);
+    await expect(app.bootstrap()).rejects.toThrow('Could not inject a ConfigService instance');
+    expect(after).not.toHaveBeenCalled();
+  });
+
   it('defaults options to an empty object and passes configLoadOptions', async () => {
     const opts = { url: 'x' };
     const app = new TestApplication(env, undefined, opts);

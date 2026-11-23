@@ -34,6 +34,23 @@ describe('default methods', () => {
   });
 });
 
+describe('default methods as root providers', () => {
+  it.each([
+    ['RequestResetPasswordMethod', RequestResetPasswordMethod, { email: 'a' }],
+    ['SignInWithEmailAndPasswordMethod', SignInWithEmailAndPasswordMethod, { email: 'a', password: 'b' }],
+    ['SetNewPasswordWithResetTokenMethod', SetNewPasswordWithResetTokenMethod, { password: 'a', token: 'b' }],
+  ] as const)('%s is provided in root and can be replaced by the application', (_name, token, parameters) => {
+    const method = TestBed.inject(token as any) as { call: (p: unknown) => unknown };
+    expect(method).toBeInstanceOf(token);
+    expect(() => method.call(parameters)).toThrow('Method not implemented.');
+    // the application overrides the default with its own implementation
+    TestBed.resetTestingModule();
+    const custom = { call: vi.fn(() => 'custom') };
+    TestBed.configureTestingModule({ providers: [{ provide: token, useValue: custom }] });
+    expect((TestBed.inject(token as any) as typeof custom).call()).toBe('custom');
+  });
+});
+
 describe('AUTHENTICATION_ROUTE', () => {
   it('declares the child routes', () => {
     const children = AUTHENTICATION_ROUTE[0].children!;

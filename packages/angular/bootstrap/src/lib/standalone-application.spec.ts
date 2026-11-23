@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { bootstrapApplication } from '@angular/platform-browser';
 import {
   ConfigLoadOptions,
   ConfigService,
@@ -11,6 +12,11 @@ import { StandaloneApplication } from './standalone-application';
   template: '',
 })
 class TestRootComponent {}
+
+vi.mock('@angular/platform-browser', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@angular/platform-browser')>()),
+  bootstrapApplication: vi.fn(),
+}));
 
 describe('StandaloneApplication', () => {
 
@@ -71,6 +77,18 @@ describe('StandaloneApplication providers and bootstrap', () => {
   it('importProvidersFrom initializes providers when missing', () => {
     const app = new StandaloneApplication(environment, TestRootComponent, {} as any);
     app.importProvidersFrom([]);
+    expect(app.options.providers).toHaveLength(1);
+  });
+
+  it('create bootstraps the root component with the prepared options', async () => {
+    const appRef = { injector: {} } as any;
+    vi.mocked(bootstrapApplication).mockResolvedValue(appRef);
+    const app = new StandaloneApplication(environment, TestRootComponent, {} as any);
+    app.importProvidersFrom([]);
+
+    await expect((app as any).create()).resolves.toBe(appRef);
+
+    expect(bootstrapApplication).toHaveBeenCalledWith(TestRootComponent, app.options);
     expect(app.options.providers).toHaveLength(1);
   });
 });
