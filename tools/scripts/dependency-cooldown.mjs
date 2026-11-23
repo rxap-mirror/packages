@@ -14,7 +14,7 @@
  *
  * Usage:
  *   node tools/scripts/dependency-cooldown.mjs [--apply] [--only a,b] [--skip a,b] [--json out.json]
- *        [--section dependencies|devDependencies] [--min-age-days N]  (raises every tier to at least N)
+ *        [--status minor|major] [--section dependencies|devDependencies] [--min-age-days N]  (raises every tier to at least N)
  *
  * Without --apply the script only reports. With --apply the root package.json is rewritten (the
  * range style - exact / ^ / ~ - of every entry is preserved). Run `yarn` afterwards.
@@ -40,6 +40,7 @@ const pkg = JSON.parse(readFileSync(PKG_PATH, 'utf8'));
 const ONLY = opt('only')?.split(',');
 const SKIP = new Set(opt('skip')?.split(',') ?? []);
 const SECTIONS = opt('section')?.split(',') ?? [ 'dependencies', 'devDependencies' ];
+const APPLY_STATUS = opt('status'); // limit --apply to 'minor' or 'major' changes
 const MIN_AGE = Number(opt('min-age-days') ?? 0);
 
 /** Packages that must follow something other than "newest major". */
@@ -318,7 +319,7 @@ if (opt('json')) {
 if (flag('apply')) {
   let changed = 0;
   for (const r of results) {
-    if ((r.status === 'major' || r.status === 'minor') && r.newRange) {
+    if ((r.status === 'major' || r.status === 'minor') && r.newRange && (!APPLY_STATUS || APPLY_STATUS === r.status)) {
       pkg[r.section][r.name] = r.newRange;
       changed++;
     }
