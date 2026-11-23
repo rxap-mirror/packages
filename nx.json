@@ -133,6 +133,20 @@
         "codeCoverage": true
       }
     },
+    "@nx/angular:unit-test": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "^production",
+        {
+          "externalDependencies": ["vitest", "@angular/build"]
+        }
+      ],
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "watch": false
+      }
+    },
     "lint": {
       "outputs": ["{options.outputFile}"],
       "inputs": [

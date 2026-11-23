@@ -39,7 +39,7 @@ describe('TableFilterService', () => {
   });
 
   it('emits reset$', () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     service.reset$.subscribe(spy);
     service.reset();
     expect(spy).toHaveBeenCalled();

@@ -28,7 +28,7 @@ describe('SelectionModel', () => {
   });
 
   it('supports initial values without emitting', () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     const m = new SelectionModel<number>(true, [1, 2]);
     m.changed.subscribe(spy);
     expect(m.selected).toEqual([1, 2]);
@@ -46,7 +46,7 @@ describe('SelectionModel', () => {
   });
 
   it('does not emit when emitChanges is false', () => {
-    const spy = jest.fn();
+    const spy = vi.fn();
     const m = new SelectionModel<number>(true, undefined, false);
     m.changed.subscribe(spy);
     m.select(1);

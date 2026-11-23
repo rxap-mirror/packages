@@ -34,11 +34,11 @@ class HostComponent {
 
 describe('TableColumnFilterInputDirective', () => {
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   it('debounces ngModel changes into the filter service', async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const filter = new TableColumnFilterService();
     TestBed.configureTestingModule({
       imports: [HostComponent],
@@ -47,14 +47,14 @@ describe('TableColumnFilterInputDirective', () => {
     const fixture = TestBed.createComponent(HostComponent);
     fixture.detectChanges();
     // flush the NgModel control registration (resolved promise)
-    await jest.advanceTimersByTimeAsync(0);
+    await vi.advanceTimersByTimeAsync(0);
     fixture.detectChanges();
     const input = fixture.debugElement.query(By.css('input'));
     input.nativeElement.value = 'abc';
     input.nativeElement.dispatchEvent(new Event('input'));
-    await jest.advanceTimersByTimeAsync(499);
+    await vi.advanceTimersByTimeAsync(499);
     expect(filter.current).toEqual({});
-    await jest.advanceTimersByTimeAsync(1);
+    await vi.advanceTimersByTimeAsync(1);
     expect(filter.current).toEqual({ name: 'abc' });
     fixture.destroy();
   });

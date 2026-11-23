@@ -29,7 +29,7 @@ describe('SelectRowService', () => {
 
   it('emits the selected rows', () => {
     const service = create({ multiple: true });
-    const spy = jest.fn();
+    const spy = vi.fn();
     service.selectedRows$.subscribe(spy);
     service.selectionModel.select({ a: 1 }, { a: 2 });
     expect(spy).toHaveBeenCalledWith([{ a: 1 }, { a: 2 }]);

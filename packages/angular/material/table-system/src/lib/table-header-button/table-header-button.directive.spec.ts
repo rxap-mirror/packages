@@ -48,13 +48,13 @@ class Undecorated implements Method {
   template: `<button mat-mini-fab [rxapTableHeaderButton]="dataSource" matTooltip="x" [refresh]="refresh" [rxapConfirm]="confirm"></button>`,
 })
 class HostComponent {
-  dataSource = { refresh: jest.fn() };
+  dataSource: any = { refresh: vi.fn() };
   refresh: boolean | undefined = undefined;
   confirm = false;
 }
 
 describe('TableHeaderButtonDirective', () => {
-  const snackBar = { open: jest.fn() };
+  const snackBar = { open: vi.fn() };
 
   function setup(method: any, configure?: (host: HostComponent) => void) {
     calls.length = 0;
@@ -91,7 +91,7 @@ describe('TableHeaderButtonDirective', () => {
   });
 
   it('shows the error message on failure', async () => {
-    jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
     const { directive, host } = setup(new Action());
     shouldFail = true;
     await directive.execute();
@@ -114,14 +114,14 @@ describe('TableHeaderButtonDirective', () => {
 
   it('opens a confirm overlay for confirm actions', async () => {
     const { directive } = setup(new ConfirmAction());
-    const open = jest.spyOn(directive as any, 'openConfirmOverly').mockImplementation();
+    const open = vi.spyOn(directive as any, 'openConfirmOverly').mockImplementation(() => undefined);
     await directive.onClick();
     expect(open).toHaveBeenCalled();
     expect(calls).toEqual([]);
   });
 
   it('waits for the rxapConfirm directive', async () => {
-    jest.spyOn(console, 'debug').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
     const { directive } = setup(new PlainAction(), (h) => (h.confirm = true));
     await directive.onClick();
     expect(calls).toEqual([]);

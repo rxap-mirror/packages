@@ -142,8 +142,8 @@ class HostComponent {
 }
 
 describe('TableRowActionDirective / TableRowHeaderActionDirective', () => {
-  const dataSource = { refresh: jest.fn() };
-  const snackBar = { open: jest.fn() };
+  const dataSource = { refresh: vi.fn() };
+  const snackBar = { open: vi.fn() };
 
   function setup(methods: any[] = [new EditMethod(), new DeleteMethod(), new SwitchMethod()]) {
     calls.length = 0;
@@ -186,7 +186,7 @@ describe('TableRowActionDirective / TableRowHeaderActionDirective', () => {
   });
 
   it('shows an error message when the method fails', async () => {
-    jest.spyOn(console, 'error').mockImplementation(() => undefined);
+    vi.spyOn(console, 'error').mockImplementation(() => undefined);
     const { get, fixture } = setup();
     fixture.componentInstance.row.fail = true;
     await get('edit').injector.get(TableRowActionDirective).execute();
@@ -202,7 +202,7 @@ describe('TableRowActionDirective / TableRowHeaderActionDirective', () => {
   });
 
   it('skips the click while waiting for a confirmation', async () => {
-    jest.spyOn(console, 'debug').mockImplementation(() => undefined);
+    vi.spyOn(console, 'debug').mockImplementation(() => undefined);
     const { get } = setup([new EditMethod(), new DeleteMethod()]);
     const directive = get('confirm').injector.get(TableRowActionDirective);
     expect(directive.hasConfirmDirective()).toBe(true);
@@ -214,7 +214,7 @@ describe('TableRowActionDirective / TableRowHeaderActionDirective', () => {
   it('opens the confirm overlay for actions that require confirmation', async () => {
     const { get } = setup();
     const directive = get('delete').injector.get(TableRowActionDirective);
-    const open = jest.spyOn(directive as any, 'openConfirmOverly').mockImplementation();
+    const open = vi.spyOn(directive as any, 'openConfirmOverly').mockImplementation(() => undefined);
     await directive.onClick();
     expect(open).toHaveBeenCalled();
     expect(calls).toEqual([]);

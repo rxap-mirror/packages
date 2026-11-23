@@ -42,7 +42,7 @@ describe('PersistentPaginatorDirective', () => {
   });
 
   it('ignores invalid stored configs', () => {
-    jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+    vi.spyOn(console, 'warn').mockImplementation(() => undefined);
     localStorage.setItem(key, '{invalid');
     const { directive, paginator } = create();
     expect(directive.restoreConfig()).toBeNull();

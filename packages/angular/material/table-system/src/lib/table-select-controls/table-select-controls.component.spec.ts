@@ -7,7 +7,7 @@ import { SelectRowService } from '../select-row/select-row.service';
 import { TableSelectControlsComponent } from './table-select-controls.component';
 
 describe('TableSelectControlsComponent', () => {
-  const windowRef = { close: jest.fn() };
+  const windowRef = { close: vi.fn() };
 
   function setup() {
     windowRef.close.mockClear();

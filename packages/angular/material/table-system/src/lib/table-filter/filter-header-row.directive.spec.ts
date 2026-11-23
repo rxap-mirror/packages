@@ -16,7 +16,7 @@ class FilterForm {
 }
 
 function buildDefinition() {
-  return new RxapFormBuilder<any>(FilterForm, TestBed.inject(INJECTOR) as Injector).build();
+  return new RxapFormBuilder<any>(FilterForm as any, TestBed.inject(INJECTOR) as Injector).build();
 }
 
 @Component({
@@ -26,7 +26,7 @@ function buildDefinition() {
   template: `<table [rxap-filter-header-row]="definition"></table>`,
 })
 class AliasHostComponent {
-  definition = buildDefinition();
+  definition: any = buildDefinition();
   readonly directive = viewChild.required(FilterHeaderRowDirective);
 }
 
@@ -48,7 +48,7 @@ describe('FilterHeaderRowDirective', () => {
   });
 
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   it('uses the form definition bound to the rxap-filter-header-row alias input', () => {
@@ -78,30 +78,30 @@ describe('FilterHeaderRowDirective', () => {
   });
 
   it('forwards debounced form values to the table filter service', async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const fixture = TestBed.createComponent(AliasHostComponent);
     fixture.detectChanges();
     const filter = fixture.debugElement.injector.get(TableFilterService);
-    const spy = jest.spyOn(filter, 'setMap');
+    const spy = vi.spyOn(filter, 'setMap');
     const group = fixture.componentInstance.definition.rxapFormGroup;
     group.get('name')!.setValue('abc');
-    await jest.advanceTimersByTimeAsync(999);
+    await vi.advanceTimersByTimeAsync(999);
     expect(spy).not.toHaveBeenCalled();
-    await jest.advanceTimersByTimeAsync(1);
+    await vi.advanceTimersByTimeAsync(1);
     expect(spy).toHaveBeenCalledWith(expect.objectContaining({ name: 'abc' }));
     fixture.destroy();
   });
 
   it('resets the form when the filter is reset', async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     const fixture = TestBed.createComponent(AliasHostComponent);
     fixture.detectChanges();
     const filter = fixture.debugElement.injector.get(TableFilterService);
     const group = fixture.componentInstance.definition.rxapFormGroup;
-    const reset = jest.spyOn(group, 'reset');
+    const reset = vi.spyOn(group, 'reset');
     filter.reset();
     expect(reset).toHaveBeenCalled();
-    await jest.advanceTimersByTimeAsync(1000);
+    await vi.advanceTimersByTimeAsync(1000);
     fixture.destroy();
   });
 });

@@ -10,12 +10,12 @@ import { TABLE_CREATE_REMOTE_METHOD } from './tokens';
   template: `<button [rxapTableCreate]="dataSource">create</button>`,
 })
 class HostComponent {
-  dataSource: any = { refresh: jest.fn() };
+  dataSource: any = { refresh: vi.fn() };
 }
 
 describe('TableCreateButtonDirective', () => {
   function setup(result: any) {
-    const method = { call: jest.fn().mockResolvedValue(result) };
+    const method = { call: vi.fn().mockResolvedValue(result) };
     TestBed.configureTestingModule({
       imports: [HostComponent],
       providers: [{ provide: TABLE_CREATE_REMOTE_METHOD, useValue: method }],

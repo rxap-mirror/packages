@@ -21,6 +21,34 @@
       },
       "defaultConfiguration": "production"
     },
+    "test": {
+      "executor": "@nx/angular:unit-test",
+      "outputs": [
+        "{workspaceRoot}/coverage/packages/angular/material/table-system"
+      ],
+      "options": {
+        "tsConfig": "packages/angular/material/table-system/tsconfig.spec.json",
+        "runner": "vitest",
+        "setupFiles": [
+          "packages/angular/material/table-system/src/test-setup.ts"
+        ],
+        "exclude": ["generators/**"],
+        "watch": false
+      },
+      "dependsOn": ["test-generators"]
+    },
+    "test-generators": {
+      "executor": "nx:run-commands",
+      "cache": true,
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "outputs": [
+        "{workspaceRoot}/coverage/packages/angular/material/table-system/generators"
+      ],
+      "options": {
+        "command": "jest --config jest.generators.config.ts --passWithNoTests",
+        "cwd": "packages/angular/material/table-system"
+      }
+    },
     "lint": {
       "options": {
         "lintFilePatterns": [

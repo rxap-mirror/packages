@@ -20,7 +20,7 @@ import { TableShowArchivedSlideComponent } from './table-show-archived-slide/tab
       <rxap-table-column-option name="b" inactive>Column B</rxap-table-column-option>
       <rxap-table-column-option name="c" [hidden]="true">Column C</rxap-table-column-option>
       <rxap-table-column-option name="d" [show]="show()">Column D</rxap-table-column-option>
-      <rxap-table-column-option name="removedAt" active>Removed</rxap-table-column-option>
+      <rxap-table-column-option name="removedAt" [active]="true">Removed</rxap-table-column-option>
       <rxap-table-show-archived-slide></rxap-table-show-archived-slide>
     </rxap-table-column-menu>
   `,
@@ -95,7 +95,7 @@ describe('TableColumnMenuComponent', () => {
     const { fixture, menu } = setup();
     const filter = fixture.debugElement.injector.get(TableFilterService);
     const select = fixture.debugElement.injector.get(SelectRowService);
-    const clear = jest.spyOn(select, 'clear');
+    const clear = vi.spyOn(select, 'clear');
     const slide: TableShowArchivedSlideComponent = fixture.componentInstance.slide();
     slide.onChange({ checked: true } as any);
     expect(filter.current['__archived']).toBe(true);

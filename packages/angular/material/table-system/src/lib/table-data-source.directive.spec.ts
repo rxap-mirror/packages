@@ -21,11 +21,11 @@ function createDataSource(rows: any[] = [{ uuid: 'a' }]) {
     error$: new Subject<unknown>(),
     metadata: { id: 'mock' },
     lastRefreshed: new Date(0),
-    refresh: jest.fn(),
-    retry: jest.fn(),
-    reset: jest.fn(),
+    refresh: vi.fn(),
+    retry: vi.fn(),
+    reset: vi.fn(),
     connect: () => of(rows),
-    disconnect: jest.fn(),
+    disconnect: vi.fn(),
     paginator: undefined as any,
     sort: undefined as any,
     filter: undefined as any,
@@ -99,7 +99,7 @@ describe('TableDataSourceDirective', () => {
   });
 
   it('creates a dynamic data source from the table method', () => {
-    const method: any = { call: jest.fn().mockResolvedValue([]), metadata: { id: 'meta' } };
+    const method: any = { call: vi.fn().mockResolvedValue([]), metadata: { id: 'meta' } };
     const { fixture } = setup([{ provide: RXAP_TABLE_METHOD, useValue: method }]);
     fixture.detectChanges();
     const d = directive(fixture);
@@ -111,9 +111,9 @@ describe('TableDataSourceDirective', () => {
   });
 
   it('uses the adapter factory for the table method', () => {
-    const method: any = { call: jest.fn().mockResolvedValue([]) };
-    const adapted: any = { call: jest.fn().mockResolvedValue([]) };
-    const factory = jest.fn().mockReturnValue(adapted);
+    const method: any = { call: vi.fn().mockResolvedValue([]) };
+    const adapted: any = { call: vi.fn().mockResolvedValue([]) };
+    const factory = vi.fn().mockReturnValue(adapted);
     const { fixture } = setup([
       { provide: RXAP_TABLE_METHOD, useValue: method },
       { provide: TABLE_REMOTE_METHOD_ADAPTER_FACTORY, useValue: factory },
@@ -148,7 +148,7 @@ describe('TableDataSourceDirective', () => {
     d.retry();
     expect(ds.refresh).toHaveBeenCalled();
     expect(ds.retry).toHaveBeenCalled();
-    const spy = jest.spyOn(filter, 'reset');
+    const spy = vi.spyOn(filter, 'reset');
     d.reset();
     expect(spy).toHaveBeenCalled();
     expect(ds.reset).not.toHaveBeenCalled();
@@ -185,7 +185,7 @@ describe('TableDataSourceDirective without TableFilterService', () => {
       `,
     })
     class Plain {
-      ds = createDataSource();
+      ds: any = createDataSource();
     }
     TestBed.configureTestingModule({ imports: [Plain] });
     const fixture = TestBed.createComponent(Plain);

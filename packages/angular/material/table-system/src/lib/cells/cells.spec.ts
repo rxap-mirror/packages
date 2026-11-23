@@ -189,7 +189,7 @@ describe('TreeControlCellComponent', () => {
   }
 
   it('shows the expand icons and toggles the node', () => {
-    const node = { depth: 2, hasChildren: true, expanded: false, toggleExpand: jest.fn() };
+    const node = { depth: 2, hasChildren: true, expanded: false, toggleExpand: vi.fn() };
     const fixture = create(node);
     const cell: TreeControlCellComponent = fixture.debugElement.query(By.directive(TreeControlCellComponent)).componentInstance;
     expect(cell.offset()).toBe('48px');
@@ -202,7 +202,7 @@ describe('TreeControlCellComponent', () => {
   });
 
   it('falls back to the leaf icon without children', () => {
-    const fixture = create({ depth: 0, hasChildren: false, expanded: false, toggleExpand: jest.fn() });
+    const fixture = create({ depth: 0, hasChildren: false, expanded: false, toggleExpand: vi.fn() });
     const cell: TreeControlCellComponent = fixture.debugElement.query(By.directive(TreeControlCellComponent)).componentInstance;
     expect(cell.icon).toEqual({ icon: 'subdirectory_arrow_right' });
   });
@@ -214,7 +214,7 @@ describe('TreeControlCellComponent', () => {
         depth: 1,
         hasChildren: true,
         expanded,
-        toggleExpand: jest.fn(() => {
+        toggleExpand: vi.fn(() => {
           node.expanded = !node.expanded;
           return Promise.resolve();
         }),
@@ -282,14 +282,14 @@ describe('TreeControlCellComponent', () => {
     it('does not mark the view for check while the node state is unchanged', async () => {
       const fixture = await render(createNode(true));
       const cell: TreeControlCellComponent = fixture.debugElement.query(By.directive(TreeControlCellComponent)).componentInstance;
-      const markForCheck = jest.spyOn((cell as any).cdr, 'markForCheck');
+      const markForCheck = vi.spyOn((cell as any).cdr, 'markForCheck');
       cell.ngDoCheck();
       cell.ngDoCheck();
       expect(markForCheck).not.toHaveBeenCalled();
     });
 
     it('renders the leaf icon for nodes without children', async () => {
-      const fixture = await render({ depth: 0, hasChildren: false, expanded: false, toggleExpand: jest.fn() });
+      const fixture = await render({ depth: 0, hasChildren: false, expanded: false, toggleExpand: vi.fn() });
       expect(fixture.nativeElement.querySelectorAll('mat-icon').length).toBe(2);
       expect(fixture.nativeElement.querySelector('.content').textContent).toBe('content');
     });
