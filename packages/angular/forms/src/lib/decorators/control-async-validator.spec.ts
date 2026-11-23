@@ -57,7 +57,7 @@ describe('@rxap/form-system', () => {
         },
       ];
 
-      it('should add async validator to control', () => {
+      it('should add async validator to control', async () => {
 
         TestBed.configureTestingModule({
           providers: [
@@ -70,7 +70,7 @@ describe('@rxap/form-system', () => {
         expect(form).toBeInstanceOf(TestForm);
         const asyncValidator = form.username.asyncValidator!(form.username);
         expect(asyncValidator).toBeInstanceOf(Observable);
-        expect((asyncValidator as any).toPromise()).resolves.toEqual({ username: 'only rxap is allowed' });
+        await expect((asyncValidator as any).toPromise()).resolves.toEqual({ username: 'only rxap is allowed' });
 
       });
 

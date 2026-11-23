@@ -14,7 +14,7 @@
  *
  * Usage:
  *   node tools/scripts/dependency-cooldown.mjs [--apply] [--only a,b] [--skip a,b] [--json out.json]
- *        [--status minor|major] [--section dependencies|devDependencies] [--min-age-days N]  (raises every tier to at least N)
+ *        [--pin name=range,...] [--status minor|major] [--section dependencies|devDependencies] [--min-age-days N]  (raises every tier to at least N)
  *
  * Without --apply the script only reports. With --apply the root package.json is rewritten (the
  * range style - exact / ^ / ~ - of every entry is preserved). Run `yarn` afterwards.
@@ -49,6 +49,12 @@ const HOLD = {
   // typings must match the minimum supported Node runtime, not the newest Node
   '@types/node': `^${ NODE_MAJOR }.0.0`,
 };
+
+// --pin name=range[,name=range]: restrict candidates to a semver range (e.g. --pin firebase-admin=^13)
+for (const entry of (opt('pin') ?? '').split(',').filter(Boolean)) {
+  const i = entry.lastIndexOf('=');
+  HOLD[entry.slice(0, i)] = entry.slice(i + 1);
+}
 
 const TIERS = [
   { minWeekly: 1_000_000, days: 7 },

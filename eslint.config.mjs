@@ -173,6 +173,14 @@ export default [
   },
   ...nx.configs['flat/javascript'],
   {
+    // rules newly enabled by the ESLint 10 recommended preset; adopting them means touching ~50 existing call sites
+    files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx', '**/*.mjs'],
+    rules: {
+      'preserve-caught-error': 'off',
+      'no-useless-assignment': 'off',
+    },
+  },
+  {
     files: ['**/*.js', '**/*.jsx'],
     rules: {
       'no-extra-semi': 'off',
