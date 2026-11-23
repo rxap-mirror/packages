@@ -57,6 +57,17 @@ The project includes a Docker-based backend infrastructure:
 - **Documentation:** Use `@rxap/plugin-compodoc` for Angular/Nest libraries and `@rxap/plugin-typedoc` for JS/TS libraries.
 - **Commits:** Follow **Conventional Commits**. Use `git cz` or the Commitizen-friendly tools.
 
+### Dependency Upgrades (supply-chain rule — IMPORTANT)
+- **Never install the newest release.** A version must be public for at least 7 days (>= 1M weekly downloads),
+  14 days (>= 100k) or 30 days (less popular / unknown) before it may be used. Check the publish date BEFORE
+  changing any version.
+- Use `node tools/scripts/dependency-cooldown.mjs` (picks the newest eligible, peer-compatible version and writes
+  exact versions), then `node tools/scripts/align-framework-dep-versions.mjs` and
+  `node tools/scripts/audit-lockfile-cooldown.mjs <base-ref>` (transitives). Details and the list of packages that
+  deliberately stay on an older major: `UPGRADE-NOTES.md` section 4.
+- Aim for the highest *compatible* major; `peerDependencies` of published packages are the major (`^22.0.0`),
+  never the workspace's minor.
+
 ### Code Intelligence
 - **Generators:** Consult `yarn nx list @rxap/plugin-<type>` to see available generators.
 - **Project Mapping:** Use `yarn nx show project <name> --json` to understand project roots and targets.
