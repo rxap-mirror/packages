@@ -8,7 +8,7 @@ import {
 import { Reflector } from '@nestjs/core';
 import { CheckRequestTupleKey } from '@openfga/sdk/dist/apiModel';
 import { IS_PUBLIC_KEY } from '@rxap/nest-utilities';
-import { Request } from 'express';
+import type { Request } from 'express';
 import { OPEN_FGA_METADATA, OpenFgaCheck } from './open-fga.decorator';
 import { OpenFgaService } from './open-fga.service';
 

@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { BaseExceptionFilter } from '@nestjs/core';
 import { IsDevMode } from '@rxap/nest-utilities';
-import { Response } from 'express';
+import type { Response } from 'express';
 import { OpenApiOperationCommandException } from './open-api-operation-command-exception';
 
 @Catch(OpenApiOperationCommandException)

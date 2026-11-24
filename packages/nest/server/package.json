@@ -16,7 +16,8 @@
     "@rxap/nest-utilities": "^12.0.0-dev.1",
     "@rxap/utilities": "^16.5.3-dev.0",
     "cookie-parser": "^1.0.0",
-    "helmet": "^8.0.0"
+    "helmet": "^8.0.0",
+    "joi": "^18.0.0"
   },
   "author": {
     "name": "Merzough Münker",

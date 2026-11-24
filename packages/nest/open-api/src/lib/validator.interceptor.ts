@@ -15,7 +15,7 @@ import {
   validateSync,
   ValidationError,
 } from 'class-validator';
-import {
+import type {
   Request,
   Response,
 } from 'express';

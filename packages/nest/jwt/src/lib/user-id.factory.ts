@@ -5,7 +5,7 @@ import {
   isRequestWithUser,
   isRequestWithUserSub,
 } from '@rxap/nest-jwt';
-import { Request } from 'express';
+import type { Request } from 'express';
 import { USER_ID } from './token';
 import { UserContext } from './user.context';
 
