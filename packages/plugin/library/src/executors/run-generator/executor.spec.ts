@@ -64,7 +64,7 @@ describe('library run-generator executor', () => {
       expect(command).toContain(`--bar='2'`);
     });
 
-    it('should use yarn schematic for rxap schematics in the rxap repository', async () => {
+    it('should run the schematic script with the workspace package manager in the rxap repository', async () => {
       isRxapRepository.mockReturnValue(true);
       await runExecutor({ generator: '@rxap/schematic-angular:init' }, context);
       expect(runMock.mock.calls[0][0].command).toMatch(/^yarn schematic @rxap\/schematic-angular:init/);
