@@ -30,27 +30,29 @@
 
 **Add the package to your workspace:**
 ```bash
-yarn add {{packageJson.name}}
+npm install {{packageJson.name}}
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 {{#if hasPeerDependencies ~}}
 
 **Install peer dependencies:**
 ```bash
-yarn add {{#each peerDependencyList}}{{this.name}} {{/each}}
+npm install {{#each peerDependencyList}}{{this.name}} {{/each}}
 ```
 {{/if}}
 {{#if hasInitGenerator ~}}
 
 **Execute the init generator:**
 ```bash
-yarn nx g {{packageJson.name}}:init
+nx g {{packageJson.name}}:init
 ```
 {{/if}}
 {{#if hasConfigGenerator ~}}
 
 **Execute the config generator to use the package with a project:**
 ```bash
-yarn nx g {{packageJson.name}}:config [project]
+nx g {{packageJson.name}}:config [project]
 ```
 {{/if}}
 {{#if getStartedContent ~}}
