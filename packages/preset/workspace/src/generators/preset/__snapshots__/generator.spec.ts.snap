@@ -10,7 +10,6 @@ exports[`preset should use workspace preset 1`] = `
   ".devcontainer",
   ".renovaterc.json",
   ".run",
-  ".yarnrc.yml",
   "tools",
   "angular.json",
   "LICENSE",
@@ -29,8 +28,8 @@ exports[`preset should use workspace preset 2`] = `
   "name": "@proj/source",
   "license": "GPL-3.0-or-later",
   "scripts": {
-    "rxap:update": "npx npm-check-updates --filter /@rxap/ --target newest -u && yarn",
-    "rxap:migrate": "yarn rxap:update && yarn rxap:compose",
+    "rxap:update": "npx --yes npm-check-updates --filter /@rxap/ --target newest -u && npm install",
+    "rxap:migrate": "npm run rxap:update && npm run rxap:compose",
     "rxap:compose": "nx g @rxap/schematic-composer:compose",
     "schematic": "bash tools/scripts/schematic.sh"
   },
@@ -58,13 +57,11 @@ exports[`preset should use workspace preset 2`] = `
     "typescript": "~6.0.3"
   },
   "engines": {
-    "node": ">=18 <21",
-    "yarn": "1.22 || 3.6"
+    "node": ">=18 <21"
   },
   "os": [
     "!win32"
   ],
-  "packageManager": "yarn@3.6.0",
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/rxap/packages/testing.git"
@@ -155,7 +152,7 @@ exports[`preset should use workspace preset 3`] = `
     }
   },
   "cli": {
-    "packageManager": "yarn"
+    "packageManager": "npm"
   },
   "plugins": [
     "@rxap/plugin-workspace/plugin",
@@ -209,13 +206,8 @@ nx-angular-config.xml
 nx-config.xml
 .DS_Store
 Thumbs.db
-.yarn/*
 !yarn.lock
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+!bun.lock
 documentation.json
 gitlab-ci-setup.sh
 .idea/copilot/chatSessions
@@ -231,6 +223,7 @@ gitlab-ci-setup.sh
 .idea/developer-tools.xml
 .idea/dataSources/*/storage_v2
 .firebase
+.npm
 "
 `;
 
@@ -285,10 +278,7 @@ exports[`preset should use workspace preset 8`] = `
 "
 `;
 
-exports[`preset should use workspace preset 9`] = `
-"nodeLinker: node-modules
-"
-`;
+exports[`preset should use workspace preset 9`] = `null`;
 
 exports[`preset should use workspace preset 10`] = `
 "                    GNU GENERAL PUBLIC LICENSE

@@ -16,12 +16,14 @@ export async function presetGenerator(
     license,
     repositoryUrl,
     prefix,
+    packageManager,
   } = options;
   await WorkspaceInitGenerator(tree, {
     packages,
     standalone,
     license,
     repositoryUrl,
+    packageManager,
     overwrite: true,
   });
   await AngularInitGenerator(tree, {

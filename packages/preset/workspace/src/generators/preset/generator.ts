@@ -14,12 +14,14 @@ export async function presetGenerator(
     standalone,
     license,
     repositoryUrl,
+    packageManager,
   } = options;
   await WorkspaceInitGenerator(tree, {
     packages,
     standalone,
     license,
     repositoryUrl,
+    packageManager,
     overwrite: true,
   });
   if (!options.skipInstall) {
