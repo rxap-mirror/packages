@@ -23,12 +23,6 @@ export function resolveWorkspacePackageManager(tree: Tree, options: Pick<InitGen
   return {
     resolved,
     profile,
-    substitutions: {
-      ...PackageManagerSubstitutions(profile),
-      // corepack is no longer bundled with node >= 25, so install it explicitly
-      'pm.devcontainerSetup': [ 'yarn', 'pnpm' ].includes(profile.name) ?
-        'ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0\nRUN npm install -g corepack && corepack enable' :
-        '',
-    },
+    substitutions: PackageManagerSubstitutions(profile),
   };
 }
