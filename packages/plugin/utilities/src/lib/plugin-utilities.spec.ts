@@ -1,4 +1,4 @@
-import { ExecutorContext, Tree } from '@nx/devkit';
+import { detectPackageManager, ExecutorContext, getPackageManagerCommand, Tree } from '@nx/devkit';
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import * as childProcess from 'child_process';
 import { EventEmitter } from 'events';
@@ -61,7 +61,7 @@ import {
   HasProjectTarget,
 } from './project-target';
 import { CollectTypeScriptSyntaxDiagnostics } from './typescript-syntax-check';
-import { YarnRun } from './yarn-run';
+import { PackageManagerExec, YarnRun } from './yarn-run';
 
 jest.mock('child_process', () => ({ ...jest.requireActual('child_process'), spawn: jest.fn() }));
 
@@ -380,7 +380,24 @@ describe('plugin-utilities', () => {
         s.emit('close', 0);
       });
       await expect(YarnRun([ 'x' ])).resolves.toBe(0);
-      expect(console.error).toHaveBeenCalledWith('Yarn must be installed to use the CLI.');
+      expect(console.error).toHaveBeenCalledWith("'yarn' must be installed to use the CLI.");
+    });
+  });
+
+  describe('PackageManagerExec', () => {
+    it('uses the exec command of the package manager Nx detects', async () => {
+      const root = mkdtempSync(join(tmpdir(), 'pm-exec-'));
+      writeFileSync(join(root, 'package-lock.json'), '{}');
+      (childProcess.spawn as jest.Mock).mockImplementation((() => {
+        const s: any = new EventEmitter();
+        s.stdout = new EventEmitter();
+        setImmediate(() => s.emit('close', 0));
+        return s;
+      }) as any);
+      await expect(PackageManagerExec([ 'localazy', 'download' ], root)).resolves.toBe(0);
+      // nx.json cli.packageManager wins over the lockfile, so compare with the Nx detection
+      const exec = getPackageManagerCommand(detectPackageManager(root), root).exec;
+      expect(childProcess.spawn).toHaveBeenLastCalledWith(exec, [ 'localazy', 'download' ], expect.objectContaining({ shell: true }));
     });
   });
 });
