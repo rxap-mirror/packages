@@ -72,6 +72,11 @@ The project includes a Docker-based backend infrastructure:
 - **Generators:** Consult `yarn nx list @rxap/plugin-<type>` to see available generators.
 - **Project Mapping:** Use `yarn nx show project <name> --json` to understand project roots and targets.
 
+## Design (FigCraft)
+- `packages/angular/angular-components.figcraft`: Angular Material + CDK kit (generated in angular/components, linked as a library).
+- `packages/angular/rxap.figcraft`: every rxap Angular component and directive, one page per library, named by selector.
+  **Generated** from the ng-prism styleguides with `yarn figcraft` — never edit by hand; see `tools/figcraft/README.md`.
+
 ## Key Files
 - `nx.json`: Core monorepo configuration and target defaults.
 - `package.json`: Root dependencies and project-wide scripts.

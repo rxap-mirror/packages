@@ -19,7 +19,11 @@
     "rxap:migrate": "yarn rxap:update && yarn rxap:compose",
     "rxap:compose": "yarn schematic @rxap/schematic-composer:compose",
     "post-migrate": "bash tools/scripts/post-migrate.sh",
-    "review": "bash tools/scripts/review.sh"
+    "review": "bash tools/scripts/review.sh",
+    "figcraft": "nx run-many -t prism-build --parallel=1 && yarn figcraft:capture && yarn figcraft:build && yarn figcraft:verify",
+    "figcraft:capture": "node tools/figcraft/capture.mjs",
+    "figcraft:build": "node tools/figcraft/build.mjs",
+    "figcraft:verify": "node tools/figcraft/verify.mjs"
   },
   "dependencies": {
     "@angular/animations": "22.3.0",

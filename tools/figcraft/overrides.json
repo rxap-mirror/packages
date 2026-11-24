@@ -1,0 +1,27 @@
+{
+  "_doc": "Per showcased class: `skip` (with the reason) leaves it out of rxap.figcraft; `open` ({action: click|hover|contextmenu|focus, selector, overlayOnly?, variants?}) captures its opened surface as an extra state `open`. `maxDiff` (share of differing pixels, 0..1) overrides `defaults.maxDiff` for the visual check. `minPixels` (default in `defaults`): a variant fails the visual check only with more differing pixels than this. `viewport` ({width, height}): render a full-screen layout at this window size instead of growing the window to its content.",
+  "defaults": {
+    "maxDiff": 0.1,
+    "minPixels": 200
+  },
+  "classes": {
+    "AuthenticationContainerComponent": {
+      "viewport": {
+        "width": 1280,
+        "height": 800
+      }
+    },
+    "UserProfileIconComponent": {
+      "maxDiff": 0.45,
+      "reason": "An unstyled native <button> (the styleguide has no Tailwind preflight): FigCraft draws Chrome's light button look, Chrome turns it dark in the dark scheme."
+    },
+    "PreventDefaultDirective": {
+      "maxDiff": 0.3,
+      "reason": "An unstyled link: its colour is the browser's link colour (a CSS system colour without a Material token), which Chrome changes in the dark scheme."
+    },
+    "OptionsCellComponent": {
+      "maxDiff": 0.12,
+      "reason": "Short label: glyph drift between Chrome and FigCraft."
+    }
+  }
+}
