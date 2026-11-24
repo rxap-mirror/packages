@@ -43,6 +43,7 @@
           "**/*.stories.ts",
           "**/.storybook/**",
           "**/prism/**",
+          "**/compodoc/**",
           "**/jest.generators.config.ts",
           "**/generators/**",
           "**/schematics/**",
