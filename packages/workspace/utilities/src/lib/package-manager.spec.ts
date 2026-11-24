@@ -48,11 +48,19 @@ describe('package-manager', () => {
       expect(ResolvePackageManager(tree).name).toBe(name);
     });
 
-    it('prefers the packageManager field over the lockfile', () => {
+    it('prefers the packageManager field over ambiguous lockfiles', () => {
       const tree = createTreeWithEmptyWorkspace();
       tree.write('yarn.lock', '');
+      tree.write('package-lock.json', '{}');
       tree.write('package.json', JSON.stringify({ packageManager: 'pnpm@10.1.0' }));
       expect(ResolvePackageManager(tree)).toEqual({ name: 'pnpm', version: '10.1.0' });
+    });
+
+    it('ignores a field that contradicts an unambiguous lockfile', () => {
+      const tree = createTreeWithEmptyWorkspace();
+      tree.write('package-lock.json', '{}');
+      tree.write('package.json', JSON.stringify({ packageManager: 'yarn@3.6.0' }));
+      expect(ResolvePackageManager(tree)).toEqual({ name: 'npm' });
     });
 
     it('prefers the override and keeps the version only if it matches', () => {

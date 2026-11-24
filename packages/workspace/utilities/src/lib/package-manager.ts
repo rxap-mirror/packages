@@ -56,7 +56,8 @@ function readRootFile(tree: TreeLike, file: string): string | null {
  * Determines the package manager of the workspace represented by the tree.
  *
  * Order: explicit override, then the root package.json `packageManager` field, then the lockfile in the
- * workspace root, then `npm`. Works with Nx generator trees, Angular schematic trees and the FsTree, and never
+ * workspace root, then `npm`. If the field names a manager whose lockfile is missing while exactly one other
+ * lockfile exists, the lockfile wins. Works with Nx generator trees, Angular schematic trees and the FsTree, and never
  * reads from the real file system or spawns a process.
  */
 export function ResolvePackageManager(tree: TreeLike, override?: PackageManagerName | null): ResolvedPackageManager {
@@ -75,11 +76,16 @@ export function ResolvePackageManager(tree: TreeLike, override?: PackageManagerN
       version: fromField?.name === override ? fromField.version : undefined,
     };
   }
+  const fromLockfiles = new Set(PACKAGE_MANAGER_LOCKFILES.filter(([ lockfile ]) => tree.exists(lockfile)).map(([ , name ]) => name));
   if (fromField) {
+    // a stale field (e.g. the `yarn@3.6.0` older rxap versions always wrote) loses against an unambiguous lockfile
+    if (fromLockfiles.size === 1 && !fromLockfiles.has(fromField.name)) {
+      return { name: [ ...fromLockfiles ][0] };
+    }
     return fromField;
   }
-  for (const [ lockfile, name ] of PACKAGE_MANAGER_LOCKFILES) {
-    if (tree.exists(lockfile)) {
+  for (const [ , name ] of PACKAGE_MANAGER_LOCKFILES) {
+    if (fromLockfiles.has(name)) {
       return { name };
     }
   }
