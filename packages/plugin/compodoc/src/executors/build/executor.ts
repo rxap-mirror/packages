@@ -18,10 +18,12 @@ import {
   existsSync,
   mkdirSync,
   mkdtempSync,
+  readFileSync,
   writeFileSync,
 } from 'fs';
 import { tmpdir } from 'os';
 import {
+  dirname,
   join,
   relative,
   resolve,
@@ -30,6 +32,28 @@ import {
   BuildExecutorSchema,
   CompodocOptions,
 } from './schema';
+
+/**
+ * Returns the path of the compodoc CLI installed in the workspace.
+ *
+ * The package is resolved from the workspace root and its bin is started with node. A `<pm> exec compodoc`
+ * would run in the project directory, where Yarn only exposes the binaries of the project's own workspace
+ * dependencies, and `node_modules/.bin` is only guaranteed with a hoisted node_modules layout.
+ * Falls back to `node_modules/.bin/compodoc` if the package can not be resolved.
+ */
+function resolveCompodocCli(root: string): { node: boolean, path: string } {
+  try {
+    const packageJsonPath = require.resolve('@compodoc/compodoc/package.json', { paths: [ root ] });
+    const { bin } = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
+    const binPath = typeof bin === 'string' ? bin : bin?.compodoc;
+    if (binPath) {
+      return { node: true, path: join(dirname(packageJsonPath), binPath) };
+    }
+  } catch {
+    // fall through to the node_modules/.bin location
+  }
+  return { node: false, path: joinPathFragments(root, 'node_modules', '.bin', 'compodoc') };
+}
 
 function toCompodocOptions(
   options: BuildExecutorSchema,
@@ -219,10 +243,8 @@ export default async function runExecutor(options: BuildExecutorSchema, context:
 
   const cwd = joinPathFragments(context.root, project.root);
 
-  const cmd = relative(
-    cwd,
-    joinPathFragments(context.root, 'node_modules', '.bin', 'compodoc'),
-  );
+  const cli = resolveCompodocCli(context.root);
+  const cmd = (cli.node ? 'node ' : '') + relative(cwd, cli.path);
   const cmdArgs = toArguments(args);
   const cmdOpts = {
     cwd,

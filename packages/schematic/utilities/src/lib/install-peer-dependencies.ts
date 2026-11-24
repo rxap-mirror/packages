@@ -20,12 +20,14 @@ import {
   AddPackageJsonDependencyRule,
   AddPackageJsonDevDependencyRule,
 } from './package-json-file';
+import { ResolveFromWorkspace } from './resolve-from-workspace';
 
 export function InstallPeerDependencies(): Rule {
   return (host, context) => {
     let packageJson: PackageJson;
-    const packageJsonFilePath = join(context.schematic.description.collection.name, 'package.json');
+    let packageJsonFilePath = join(context.schematic.description.collection.name, 'package.json');
     try {
+      packageJsonFilePath = ResolveFromWorkspace(packageJsonFilePath);
       packageJson = require(packageJsonFilePath);
     } catch (e: any) {
       console.warn(`Could not load schematic package.json file from '${ packageJsonFilePath }': ${ e.message }`);
@@ -48,8 +50,9 @@ export function InstallPeerDependencies(): Rule {
           let peerPackageDirname: string;
           let peerPackageJson: PackageJson;
           try {
-            peerPackageDirname = dirname(require.resolve(join(name, 'package.json')));
-            peerPackageJson = require(join(name, 'package.json'));
+            const peerPackageJsonFilePath = ResolveFromWorkspace(join(name, 'package.json'));
+            peerPackageDirname = dirname(peerPackageJsonFilePath);
+            peerPackageJson = require(peerPackageJsonFilePath);
           } catch (e: any) {
             console.warn(`Could not resolve the peerDependency '${ name }'.`);
             return noop();

@@ -12,6 +12,7 @@
     "tslib": "2.9.1"
   },
   "peerDependencies": {
+    "@compodoc/compodoc": "^2.0.0",
     "nx": "^24.0.0"
   },
   "author": {

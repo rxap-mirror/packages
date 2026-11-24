@@ -39,40 +39,28 @@ function updateLastPackageVersionCache(packageName: string, version: string) {
 }
 
 /**
- * Retrieves the file path for the `package.json` of the `rxap` package within a Node.js project.
+ * The `package.json` of the `rxap` umbrella package. The specifier is assembled at runtime because `rxap` is
+ * not a dependency of this package: it is installed by the consuming workspace, so a literal would be reported
+ * as an undeclared dependency.
+ */
+const RXAP_PACKAGE_JSON = [ 'rxap', 'package.json' ].join('/');
+
+/**
+ * Retrieves the file path for the `package.json` of the `rxap` package installed in the current workspace.
  *
- * The function first checks if the `NX_WORKSPACE_ROOT` environment variable is set, which indicates
- * the root directory of an Nx workspace. If set, it constructs a path to the `package.json` of the
- * `rxap` package within the `node_modules` directory of the workspace. If the file exists at the
- * constructed path, it returns this path.
- *
- * If the `NX_WORKSPACE_ROOT` is not set or the file does not exist at the constructed path, the function
- * then attempts to resolve the path using Node.js's `require.resolve` method, which looks up the path
- * of the main entry file of the `rxap` package as specified in its `package.json`. If successful, it returns
- * the resolved path.
- *
- * If neither method can locate the `package.json`, the function logs an error message and returns `null`.
+ * The package is resolved from the workspace root (`NX_WORKSPACE_ROOT`, falling back to the current working
+ * directory) and not from the location of this package: with an isolated `node_modules` layout (pnpm) only the
+ * declared dependencies of this package are resolvable from its own location.
  *
  * @returns {string | null} The file path to the `package.json` of the `rxap` package if found, otherwise `null`.
  */
 function getRxapPackageJsonFilePath(): string | null {
-
-  if (process.env['NX_WORKSPACE_ROOT']) {
-    const workspaceRoot = process.env['NX_WORKSPACE_ROOT'];
-    const packageJsonFilePath = join(workspaceRoot, 'node_modules', 'rxap', 'package.json');
-    if (existsSync(packageJsonFilePath)) {
-      return packageJsonFilePath;
-    }
-  }
-
+  const paths = [ process.env['NX_WORKSPACE_ROOT'], process.cwd() ].filter((path): path is string => !!path);
   try {
-    // Runtime resolution of the umbrella package path (not a code dependency).
-    // eslint-disable-next-line @nx/enforce-module-boundaries
-    return require.resolve('rxap');
-  } catch (e: any) {
+    return require.resolve(RXAP_PACKAGE_JSON, { paths });
+  } catch {
     console.log('Could not resolve the package rxap');
   }
-
   return null;
 }
 

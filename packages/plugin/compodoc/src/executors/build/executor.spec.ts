@@ -67,6 +67,17 @@ describe('compodoc build executor', () => {
     await expect(runExecutor({} as any, context)).rejects.toThrow('tsConfig option is required');
   });
 
+  it('should start the compodoc cli resolved from the workspace root with node', async () => {
+    const packageRoot = join(root, 'node_modules/@compodoc/compodoc');
+    mkdirSync(join(packageRoot, 'bin'), { recursive: true });
+    writeFileSync(join(packageRoot, 'package.json'), JSON.stringify({ name: '@compodoc/compodoc', bin: { compodoc: './bin/index-cli.js' } }));
+    writeFileSync(join(packageRoot, 'bin/index-cli.js'), '');
+    writeFileSync(join(root, 'libs/lib/tsconfig.compodoc.json'), '{}');
+    await runExecutor({ exportFormat: 'json' } as any, context);
+    const [ cmd ] = spawnMock.mock.calls[0];
+    expect(cmd).toBe('node ../../node_modules/@compodoc/compodoc/bin/index-cli.js');
+  });
+
   it('should spawn compodoc with default options', async () => {
     writeFileSync(join(root, 'libs/lib/tsconfig.compodoc.json'), '{}');
     const result = await runExecutor({ exportFormat: 'json', debug: true } as any, context);
