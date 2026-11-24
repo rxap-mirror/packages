@@ -324,7 +324,7 @@
     "libsDir": "packages"
   },
   "cli": {
-    "packageManager": "yarn"
+    "packageManager": "pnpm"
   },
   "parallel": 12,
   "useInferencePlugins": false,

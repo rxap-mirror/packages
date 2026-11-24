@@ -2,7 +2,8 @@
 /dist
 /coverage
 .angular
-.yarn
+.pnpm-store
+pnpm-lock.yaml
 *.handlebars
 node_modules
 tmp

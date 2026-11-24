@@ -50,19 +50,8 @@ node_modules
 .DS_Store
 Thumbs.db
 
-# yarn
-.yarn/*
-!yarn.lock
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
-
-# Swap the comments on the following lines if you don't wish to use zero-installs
-# Documentation here: https://yarnpkg.com/features/zero-installs
-#!.yarn/cache
-#.pnp.*
+# pnpm
+.pnpm-store
 
 
 junit.xml
@@ -89,5 +78,5 @@ swagger/**/*.*
 /review-reports/
 
 ng-prism-cache
-# yarn patches of dependencies (e.g. @ng-prism for Angular 21, see .yarn/patches)
-!.yarn/patches/*.patch
+# pnpm patches of dependencies (pnpm-workspace.yaml patchedDependencies)
+!/patches/*.patch
