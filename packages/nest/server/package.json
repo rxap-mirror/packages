@@ -86,8 +86,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/server"
+    "access": "public"
   },
   "repository": {
     "type": "git",

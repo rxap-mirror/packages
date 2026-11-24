@@ -67,8 +67,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/directives"
+    "access": "public"
   },
   "repository": {
     "type": "git",

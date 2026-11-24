@@ -24,8 +24,7 @@
     "rxap"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/testing"
+    "access": "public"
   },
   "repository": {
     "type": "git",

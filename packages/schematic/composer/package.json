@@ -31,8 +31,7 @@
     "schematic-composer"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/schematic/composer"
+    "access": "public"
   },
   "repository": {
     "type": "git",

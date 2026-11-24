@@ -42,8 +42,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/memory"
+    "access": "public"
   },
   "repository": {
     "type": "git",

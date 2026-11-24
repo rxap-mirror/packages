@@ -120,8 +120,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/status-check"
+    "access": "public"
   },
   "repository": {
     "type": "git",

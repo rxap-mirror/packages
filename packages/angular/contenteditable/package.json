@@ -53,8 +53,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/contenteditable"
+    "access": "public"
   },
   "repository": {
     "type": "git",

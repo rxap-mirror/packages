@@ -108,8 +108,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/oauth2-proxy"
+    "access": "public"
   },
   "repository": {
     "type": "git",

@@ -120,8 +120,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/changelog"
+    "access": "public"
   },
   "repository": {
     "type": "git",

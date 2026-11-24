@@ -31,8 +31,7 @@
   ],
   "main": "./src/index.js",
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/rabbitmq-vault"
+    "access": "public"
   },
   "repository": {
     "type": "git",

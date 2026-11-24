@@ -118,8 +118,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/open-api"
+    "access": "public"
   },
   "repository": {
     "type": "git",

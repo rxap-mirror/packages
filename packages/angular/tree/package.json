@@ -138,8 +138,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/tree"
+    "access": "public"
   },
   "repository": {
     "type": "git",

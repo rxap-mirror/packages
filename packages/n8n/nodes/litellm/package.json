@@ -45,8 +45,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/n8n/nodes/litellm"
+    "access": "public"
   },
   "repository": {
     "type": "git",

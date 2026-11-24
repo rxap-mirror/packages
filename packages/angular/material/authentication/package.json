@@ -154,8 +154,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/angular/material/authentication"
+    "access": "public"
   },
   "repository": {
     "type": "git",

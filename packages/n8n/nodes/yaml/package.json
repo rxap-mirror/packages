@@ -39,8 +39,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/n8n/nodes/yaml"
+    "access": "public"
   },
   "repository": {
     "type": "git",

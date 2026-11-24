@@ -72,8 +72,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/dialog"
+    "access": "public"
   },
   "repository": {
     "type": "git",

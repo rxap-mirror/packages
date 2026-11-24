@@ -133,8 +133,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/angular/material/localize"
+    "access": "public"
   },
   "repository": {
     "type": "git",

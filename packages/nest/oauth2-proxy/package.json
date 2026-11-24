@@ -41,8 +41,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/oauth2-proxy"
+    "access": "public"
   },
   "repository": {
     "type": "git",

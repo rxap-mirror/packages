@@ -35,8 +35,7 @@
     "schematic-angular"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/schematic/angular"
+    "access": "public"
   },
   "repository": {
     "type": "git",

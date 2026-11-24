@@ -39,8 +39,7 @@
     "rxap"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/plugin/open-api"
+    "access": "public"
   },
   "repository": {
     "type": "git",

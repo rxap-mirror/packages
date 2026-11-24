@@ -170,8 +170,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/angular/material/table-window-system"
+    "access": "public"
   },
   "repository": {
     "type": "git",

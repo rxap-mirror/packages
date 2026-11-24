@@ -36,8 +36,7 @@
     "ts-morph"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/schematic/ts-morph"
+    "access": "public"
   },
   "repository": {
     "type": "git",

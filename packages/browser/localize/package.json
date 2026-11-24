@@ -23,8 +23,7 @@
   ],
   "main": "./src/index.js",
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/browser/localize"
+    "access": "public"
   },
   "repository": {
     "type": "git",

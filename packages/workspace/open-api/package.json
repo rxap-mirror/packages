@@ -31,8 +31,7 @@
     "workspace-open-api"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/workspace/open-api"
+    "access": "public"
   },
   "repository": {
     "type": "git",

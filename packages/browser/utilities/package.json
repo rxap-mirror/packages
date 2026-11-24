@@ -29,8 +29,7 @@
     "utilities"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/browser/utilities"
+    "access": "public"
   },
   "repository": {
     "type": "git",

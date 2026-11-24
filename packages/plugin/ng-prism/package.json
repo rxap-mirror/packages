@@ -30,8 +30,7 @@
     "styleguide"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/plugin/ng-prism"
+    "access": "public"
   },
   "repository": {
     "type": "git",

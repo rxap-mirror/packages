@@ -99,8 +99,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/window-system"
+    "access": "public"
   },
   "repository": {
     "type": "git",

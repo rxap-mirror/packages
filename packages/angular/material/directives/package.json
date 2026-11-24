@@ -85,8 +85,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/angular/material/directives"
+    "access": "public"
   },
   "repository": {
     "type": "git",

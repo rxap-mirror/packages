@@ -23,8 +23,7 @@
   ],
   "main": "./src/index.js",
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/browser/theme"
+    "access": "public"
   },
   "repository": {
     "type": "git",

@@ -33,8 +33,7 @@
   ],
   "main": "./src/index.js",
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/keyv-minio"
+    "access": "public"
   },
   "repository": {
     "type": "git",

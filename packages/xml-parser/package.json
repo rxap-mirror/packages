@@ -31,8 +31,7 @@
     "xml-parser"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../dist/packages/xml-parser"
+    "access": "public"
   },
   "repository": {
     "type": "git",

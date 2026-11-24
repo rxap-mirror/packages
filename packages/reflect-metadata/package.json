@@ -27,8 +27,7 @@
     "standalone"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../dist/packages/reflect-metadata"
+    "access": "public"
   },
   "repository": {
     "type": "git",

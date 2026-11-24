@@ -71,8 +71,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/authorization"
+    "access": "public"
   },
   "repository": {
     "type": "git",

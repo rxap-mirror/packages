@@ -34,8 +34,7 @@
   ],
   "main": "./src/index.js",
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/openfga"
+    "access": "public"
   },
   "repository": {
     "type": "git",

@@ -34,8 +34,7 @@
     "rxap"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/plugin/application"
+    "access": "public"
   },
   "repository": {
     "type": "git",

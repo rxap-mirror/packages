@@ -190,8 +190,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/angular/material/table-select"
+    "access": "public"
   },
   "repository": {
     "type": "git",

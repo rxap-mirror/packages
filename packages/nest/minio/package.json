@@ -94,8 +94,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/minio"
+    "access": "public"
   },
   "repository": {
     "type": "git",

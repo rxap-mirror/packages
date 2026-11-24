@@ -42,8 +42,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/n8n/utilities"
+    "access": "public"
   },
   "repository": {
     "type": "git",

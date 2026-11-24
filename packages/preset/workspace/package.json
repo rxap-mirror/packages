@@ -29,8 +29,7 @@
   ],
   "main": "./src/index.js",
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/preset/workspace"
+    "access": "public"
   },
   "repository": {
     "type": "git",

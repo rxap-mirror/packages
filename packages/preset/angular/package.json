@@ -30,8 +30,7 @@
   ],
   "main": "./src/index.js",
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/preset/angular"
+    "access": "public"
   },
   "repository": {
     "type": "git",

@@ -48,8 +48,7 @@
     "credentials": []
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/n8n/nodes/cqrs"
+    "access": "public"
   },
   "repository": {
     "type": "git",

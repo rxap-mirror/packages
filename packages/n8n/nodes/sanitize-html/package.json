@@ -39,8 +39,7 @@
     "credentials": []
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/n8n/nodes/sanitize-html"
+    "access": "public"
   },
   "repository": {
     "type": "git",

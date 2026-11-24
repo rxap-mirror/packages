@@ -145,8 +145,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/form-system"
+    "access": "public"
   },
   "repository": {
     "type": "git",

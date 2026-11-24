@@ -47,8 +47,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/n8n/nodes/firecrawl"
+    "access": "public"
   },
   "repository": {
     "type": "git",

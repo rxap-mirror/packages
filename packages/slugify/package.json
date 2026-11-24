@@ -25,8 +25,7 @@
     "standalone"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../dist/packages/slugify"
+    "access": "public"
   },
   "repository": {
     "type": "git",

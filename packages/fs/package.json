@@ -21,8 +21,7 @@
   ],
   "main": "./src/index.js",
   "publishConfig": {
-    "access": "public",
-    "directory": "../../dist/packages/fs"
+    "access": "public"
   },
   "repository": {
     "type": "git",

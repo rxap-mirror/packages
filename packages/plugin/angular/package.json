@@ -51,8 +51,7 @@
     "migrations": "./migrations.json"
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/plugin/angular"
+    "access": "public"
   },
   "repository": {
     "type": "git",

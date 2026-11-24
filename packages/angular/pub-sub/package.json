@@ -43,8 +43,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/pub-sub"
+    "access": "public"
   },
   "repository": {
     "type": "git",

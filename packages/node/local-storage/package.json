@@ -26,8 +26,7 @@
     "standalone"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/node/local-storage"
+    "access": "public"
   },
   "repository": {
     "type": "git",

@@ -28,8 +28,7 @@
     "standalone"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../dist/packages/json-schema-to-typescript"
+    "access": "public"
   },
   "repository": {
     "type": "git",

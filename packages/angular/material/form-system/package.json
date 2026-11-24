@@ -142,8 +142,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/angular/material/form-system"
+    "access": "public"
   },
   "repository": {
     "type": "git",

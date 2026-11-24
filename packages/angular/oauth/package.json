@@ -72,8 +72,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/oauth"
+    "access": "public"
   },
   "repository": {
     "type": "git",

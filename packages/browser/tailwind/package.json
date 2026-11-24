@@ -28,8 +28,7 @@
     "tailwind"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/browser/tailwind"
+    "access": "public"
   },
   "repository": {
     "type": "git",

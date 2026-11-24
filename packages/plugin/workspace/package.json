@@ -37,8 +37,7 @@
     "workspace"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/plugin/workspace"
+    "access": "public"
   },
   "repository": {
     "type": "git",

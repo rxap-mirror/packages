@@ -32,8 +32,7 @@
     "workspace-utilities"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/workspace/utilities"
+    "access": "public"
   },
   "repository": {
     "type": "git",

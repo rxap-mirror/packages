@@ -143,8 +143,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/layout"
+    "access": "public"
   },
   "repository": {
     "type": "git",

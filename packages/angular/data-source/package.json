@@ -96,8 +96,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/data-source"
+    "access": "public"
   },
   "repository": {
     "type": "git",

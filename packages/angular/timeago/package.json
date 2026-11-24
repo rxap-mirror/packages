@@ -47,8 +47,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/timeago"
+    "access": "public"
   },
   "repository": {
     "type": "git",

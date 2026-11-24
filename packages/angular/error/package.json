@@ -151,8 +151,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/error"
+    "access": "public"
   },
   "repository": {
     "type": "git",

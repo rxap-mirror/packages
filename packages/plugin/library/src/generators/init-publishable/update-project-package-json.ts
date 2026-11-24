@@ -6,14 +6,10 @@ import {
 } from '@nx/devkit';
 import { ProjectPackageJson } from '@rxap/plugin-utilities';
 import {
-  GetBuildOutputForProject,
   GetWorkspaceScope,
   UpdateTsConfigJson,
 } from '@rxap/workspace-utilities';
-import {
-  join,
-  relative,
-} from 'path';
+import { join } from 'path';
 
 export function updateProjectPackageJson(
   tree: Tree,
@@ -34,8 +30,9 @@ export function updateProjectPackageJson(
   }
   packageJson.publishConfig ??= {};
   packageJson.publishConfig.access = 'public';
-  const output = GetBuildOutputForProject(project);
-  packageJson.publishConfig.directory = relative(project.root, output);
+  // nx release publishes from the build output; pnpm publish would resolve publishConfig.directory
+  // relative to that output again (dist/<root>/../../dist/<root>)
+  delete packageJson.publishConfig.directory;
 
   // add common properties
   packageJson.keywords = [

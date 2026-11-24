@@ -28,8 +28,7 @@
     "utilities"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/node/utilities"
+    "access": "public"
   },
   "repository": {
     "type": "git",

@@ -77,8 +77,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/components"
+    "access": "public"
   },
   "repository": {
     "type": "git",

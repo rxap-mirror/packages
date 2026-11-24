@@ -39,8 +39,7 @@
     "credentials": []
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/n8n/nodes/zip"
+    "access": "public"
   },
   "repository": {
     "type": "git",

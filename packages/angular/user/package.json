@@ -118,8 +118,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/user"
+    "access": "public"
   },
   "repository": {
     "type": "git",

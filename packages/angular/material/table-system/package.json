@@ -152,8 +152,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/angular/material/table-system"
+    "access": "public"
   },
   "repository": {
     "type": "git",

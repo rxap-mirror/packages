@@ -68,8 +68,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/logger"
+    "access": "public"
   },
   "repository": {
     "type": "git",

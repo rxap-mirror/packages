@@ -101,8 +101,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/forms"
+    "access": "public"
   },
   "repository": {
     "type": "git",

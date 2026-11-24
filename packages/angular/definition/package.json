@@ -53,8 +53,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/definition"
+    "access": "public"
   },
   "repository": {
     "type": "git",

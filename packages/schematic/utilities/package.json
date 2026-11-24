@@ -29,8 +29,7 @@
     "utilities"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/schematic/utilities"
+    "access": "public"
   },
   "repository": {
     "type": "git",

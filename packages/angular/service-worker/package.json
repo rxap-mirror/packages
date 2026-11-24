@@ -71,8 +71,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/service-worker"
+    "access": "public"
   },
   "repository": {
     "type": "git",

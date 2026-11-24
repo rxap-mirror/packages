@@ -80,8 +80,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/theme"
+    "access": "public"
   },
   "repository": {
     "type": "git",

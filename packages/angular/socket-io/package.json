@@ -60,8 +60,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/socket-io"
+    "access": "public"
   },
   "repository": {
     "type": "git",

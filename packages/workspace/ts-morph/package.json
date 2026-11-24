@@ -33,8 +33,7 @@
     "workspace-ts-morph"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/workspace/ts-morph"
+    "access": "public"
   },
   "repository": {
     "type": "git",

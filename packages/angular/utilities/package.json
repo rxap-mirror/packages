@@ -27,8 +27,7 @@
     "rxap"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/utilities"
+    "access": "public"
   },
   "repository": {
     "type": "git",

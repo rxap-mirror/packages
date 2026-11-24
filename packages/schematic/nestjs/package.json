@@ -33,8 +33,7 @@
     "schematic-nestjs"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/schematic/nestjs"
+    "access": "public"
   },
   "repository": {
     "type": "git",

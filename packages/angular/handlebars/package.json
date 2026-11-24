@@ -44,8 +44,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/handlebars"
+    "access": "public"
   },
   "repository": {
     "type": "git",

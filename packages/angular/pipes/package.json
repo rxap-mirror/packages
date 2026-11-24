@@ -57,8 +57,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/pipes"
+    "access": "public"
   },
   "repository": {
     "type": "git",

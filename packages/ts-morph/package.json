@@ -34,8 +34,7 @@
     "migrations": "./migrations.json"
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../dist/packages/ts-morph"
+    "access": "public"
   },
   "repository": {
     "type": "git",

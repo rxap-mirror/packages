@@ -632,8 +632,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../dist/packages/rxap"
+    "access": "public"
   },
   "repository": {
     "type": "git",

@@ -63,8 +63,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/remote-method"
+    "access": "public"
   },
   "repository": {
     "type": "git",

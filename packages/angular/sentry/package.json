@@ -66,8 +66,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/sentry"
+    "access": "public"
   },
   "repository": {
     "type": "git",

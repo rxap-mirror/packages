@@ -37,8 +37,7 @@
     "credentials": []
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/n8n/nodes/tar"
+    "access": "public"
   },
   "repository": {
     "type": "git",

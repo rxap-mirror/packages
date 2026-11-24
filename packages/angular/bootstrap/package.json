@@ -79,8 +79,7 @@
     }
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/bootstrap"
+    "access": "public"
   },
   "repository": {
     "type": "git",

@@ -41,8 +41,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../../dist/packages/n8n/nodes/cache"
+    "access": "public"
   },
   "repository": {
     "type": "git",

@@ -93,8 +93,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/jwt"
+    "access": "public"
   },
   "repository": {
     "type": "git",

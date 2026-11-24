@@ -61,8 +61,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/life-cycle"
+    "access": "public"
   },
   "repository": {
     "type": "git",

@@ -30,8 +30,7 @@
   ],
   "main": "./src/index.js",
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/typeorm"
+    "access": "public"
   },
   "repository": {
     "type": "git",

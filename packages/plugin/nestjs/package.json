@@ -48,8 +48,7 @@
     "migrations": "./migrations.json"
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/plugin/nestjs"
+    "access": "public"
   },
   "repository": {
     "type": "git",

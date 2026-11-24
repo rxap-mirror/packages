@@ -87,8 +87,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/rabbitmq"
+    "access": "public"
   },
   "repository": {
     "type": "git",

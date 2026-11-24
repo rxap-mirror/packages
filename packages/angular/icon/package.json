@@ -65,8 +65,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/icon"
+    "access": "public"
   },
   "repository": {
     "type": "git",

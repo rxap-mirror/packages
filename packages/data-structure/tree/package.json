@@ -28,8 +28,7 @@
     "tree"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/data-structure/tree"
+    "access": "public"
   },
   "repository": {
     "type": "git",

@@ -29,8 +29,7 @@
     "standalone"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../dist/packages/rxjs"
+    "access": "public"
   },
   "repository": {
     "type": "git",

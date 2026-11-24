@@ -28,8 +28,7 @@
     "rxap"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/dto"
+    "access": "public"
   },
   "repository": {
     "type": "git",

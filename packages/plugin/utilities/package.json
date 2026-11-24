@@ -31,8 +31,7 @@
     "utilities"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/plugin/utilities"
+    "access": "public"
   },
   "repository": {
     "type": "git",

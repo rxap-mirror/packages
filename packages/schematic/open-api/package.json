@@ -34,8 +34,7 @@
     "schematic-open-api"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/schematic/open-api"
+    "access": "public"
   },
   "repository": {
     "type": "git",

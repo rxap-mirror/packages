@@ -38,8 +38,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/firebase"
+    "access": "public"
   },
   "repository": {
     "type": "git",

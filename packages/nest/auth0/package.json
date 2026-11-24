@@ -37,8 +37,7 @@
   ],
   "main": "./src/index.js",
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/auth0"
+    "access": "public"
   },
   "repository": {
     "type": "git",

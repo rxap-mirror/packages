@@ -57,8 +57,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/nest/socket-io-client"
+    "access": "public"
   },
   "repository": {
     "type": "git",

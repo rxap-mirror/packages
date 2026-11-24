@@ -36,8 +36,7 @@
     "rxap"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/plugin/gpt"
+    "access": "public"
   },
   "repository": {
     "type": "git",

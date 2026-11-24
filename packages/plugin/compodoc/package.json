@@ -35,8 +35,7 @@
     "rxap"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/plugin/compodoc"
+    "access": "public"
   },
   "repository": {
     "type": "git",

@@ -24,8 +24,7 @@
     "validator"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../dist/packages/validator"
+    "access": "public"
   },
   "repository": {
     "type": "git",

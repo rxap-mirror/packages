@@ -114,8 +114,7 @@
     ]
   },
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/angular/open-api"
+    "access": "public"
   },
   "repository": {
     "type": "git",

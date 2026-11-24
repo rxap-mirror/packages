@@ -30,8 +30,7 @@
     "rxap"
   ],
   "publishConfig": {
-    "access": "public",
-    "directory": "../../../dist/packages/plugin/gitlab-ci"
+    "access": "public"
   },
   "repository": {
     "type": "git",
