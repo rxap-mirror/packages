@@ -1,6 +1,6 @@
 #!/bin/bash
 
-yarn
+pnpm install
 
 GIT_ROOT=$(git rev-parse --show-toplevel)
 

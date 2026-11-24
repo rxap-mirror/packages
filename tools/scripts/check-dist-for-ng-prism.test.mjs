@@ -1,4 +1,4 @@
-// Run with: yarn test:scripts   (node --test, no extra dependencies)
+// Run with: pnpm test:scripts   (node --test, no extra dependencies)
 import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';

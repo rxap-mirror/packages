@@ -30,7 +30,7 @@ execute_command() {
   fi
 
   # Construct the full command to execute
-  local full_command="yarn nx g $command --project \"$name\" $additional_args"  #Quote project name to prevent problems with spaces.
+  local full_command="pnpm nx g $command --project \"$name\" $additional_args"  #Quote project name to prevent problems with spaces.
 
   echo "Executing: $full_command"
   eval "$full_command"

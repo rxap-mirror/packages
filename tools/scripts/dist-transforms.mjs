@@ -30,7 +30,7 @@ export function applyDistTransforms({ projects, run = defaultRun }) {
   run('bash tools/scripts/remove-blacklisted-package-dependenceis.sh');
   // the @Showcase decorators import @ng-prism/core, which is not a dependency of the published packages.
   // Only projects with a prism-strip target (@rxap/plugin-ng-prism:init-library) run it; the build already ran.
-  run(`yarn nx run-many --targets=prism-strip --projects=${projects.join(',')} --excludeTaskDependencies --skip-nx-cache --nxBail`);
+  run(`pnpm nx run-many --targets=prism-strip --projects=${projects.join(',')} --excludeTaskDependencies --skip-nx-cache --nxBail`);
   // safety net: nothing that references @ng-prism may be published (a library without a prism-strip target,
   // a stale dist, a new file type). Fails before the publish step.
   run(`node tools/scripts/check-dist-for-ng-prism.mjs --projects=${projects.join(',')}`);

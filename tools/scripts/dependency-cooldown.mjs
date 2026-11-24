@@ -18,7 +18,7 @@
  *
  * Without --apply the script only reports. With --apply the root package.json is rewritten (the
  * entries are written as EXACT versions so the lockfile can never resolve to a newer, un-vetted release).
- * Run `yarn` afterwards.
+ * Run `pnpm install` afterwards.
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
@@ -325,5 +325,5 @@ if (flag('apply')) {
     }
   }
   writeFileSync(PKG_PATH, JSON.stringify(pkg, null, 2) + '\n');
-  console.log(`Applied ${ changed } changes to package.json. Run \`yarn\` next.`);
+  console.log(`Applied ${ changed } changes to package.json. Run \`pnpm install\` next.`);
 }

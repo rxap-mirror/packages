@@ -1,42 +1,26 @@
 #!/bin/sh
+# Installs the workspace dependencies with the pnpm version pinned in package.json#packageManager
+# (used by qodana.yaml; the GitLab CI install runs in the rxap/gitlab-ci components).
 
+export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+# corepack is no longer bundled with Node >= 25
+command -v corepack >/dev/null 2>&1 || npm install -g corepack
 corepack enable
-corepack prepare yarn@3.6.0 --activate
 
-echo "RUN: yarn --version"
-yarn --version
+echo "RUN: pnpm --version"
+pnpm --version
 
-echo "RUN: yarn config get cacheFolder"
-yarn config get cacheFolder
+echo "RUN: pnpm store path"
+pnpm store path
 
 case "$CI_COMMIT_REF_NAME" in
-renovate/*)
-  echo "Detected Renovate branch."
-  echo "RUN: yarn --no-immutable --no-immutable-cache"
-  yarn --no-immutable --no-immutable-cache
-  ;;
-snyk-*)
-  echo "Detected Snyk branch."
-  echo "RUN: yarn --no-immutable --no-immutable-cache"
-  yarn --no-immutable --no-immutable-cache
+renovate/* | snyk-*)
+  echo "Detected a dependency update branch."
+  echo "RUN: pnpm install --no-frozen-lockfile"
+  pnpm install --no-frozen-lockfile
   ;;
 *)
-  if [ "$CI_JOB_STAGE" = ".pre" ]; then
-    echo "Detected .pre stage."
-    echo "RUN: yarn --immutable --check-cache"
-    yarn --immutable --check-cache
-  else
-    echo "Detected NON .pre stage."
-    if [ -d node_modules ] && [ -d .yarn/cache ]; then
-      echo "Detected node_modules and .yarn/cache directory."
-      echo "RUN: yarn --immutable --immutable-cache"
-      yarn --immutable --immutable-cache
-    else
-      echo "WARNING: No node_modules or .yarn/cache directory found."
-      echo "RUN: yarn --immutable"
-      yarn --immutable
-    fi
-  fi
+  echo "RUN: pnpm install --frozen-lockfile"
+  pnpm install --frozen-lockfile
   ;;
 esac
-

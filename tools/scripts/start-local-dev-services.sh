@@ -41,11 +41,11 @@ cd "${GIT_ROOT}" || exit 1
 
 if [ ! -f .env ]; then
   echo "No .env file found. Generating one..."
-  yarn init:env
+  pnpm init:env
 fi
 
 if [[ $skip_generate != "true" ]]; then
-  yarn nx run workspace:docker-compose
+  pnpm nx run workspace:docker-compose
 fi
 
 # Get the current branch name or the commit hash if in detached HEAD state
@@ -114,9 +114,9 @@ function build {
   if [[ $REGISTRY != "" ]]; then
     PARAMS="$PARAMS --imageRegistry $REGISTRY"
   fi
-  echo "yarn nx run-many $PARAMS"
+  echo "pnpm nx run-many $PARAMS"
   # don't use double quotes around $PARAMS here. or else the $PARAMS will be expanded and passed as a single argument
-  yarn nx run-many $PARAMS
+  pnpm nx run-many $PARAMS
 
 }
 

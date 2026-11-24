@@ -27,7 +27,7 @@
  *
  * Usage:
  *   node tools/scripts/e2e-package-managers.mjs [flags]
- *   yarn nx run workspace:e2e-pm [flags]
+ *   pnpm nx run workspace:e2e-pm [flags]
  *
  * Flags:
  *   --pm=<list>           package managers to test, comma separated (default npm,yarn,pnpm,yarn-pnp)
@@ -230,7 +230,7 @@ function run(cmd) {
 /** publishable projects (release group `packages`, minus what the release does not build) with their roots */
 function publishableProjects() {
   const graphFile = join(E2E_DIR, 'graph.json');
-  execSync(`yarn nx graph --file=${graphFile}`, { stdio: 'ignore', env: { ...process.env, NX_TUI: 'false' } });
+  execSync(`pnpm nx graph --file=${graphFile}`, { stdio: 'ignore', env: { ...process.env, NX_TUI: 'false' } });
   const { graph } = JSON.parse(readFileSync(graphFile, 'utf-8'));
   return Object.values(graph.nodes)
     .filter((n) => (n.data.tags ?? []).includes('packages') && !['rxap', 'angular'].includes(n.name) && !n.data.root.startsWith('demos/'))
@@ -270,7 +270,7 @@ async function buildAndPublish(projects) {
   const names = projects.map((p) => p.name);
   if (!SKIP_BUILD) {
     log(`Production build of ${projects.length} publishable projects`);
-    run(`yarn nx run-many --targets=build --configuration=production --projects=${names.join(',')} --nxBail`);
+    run(`pnpm nx run-many --targets=build --configuration=production --projects=${names.join(',')} --nxBail`);
   } else {
     warn('Skipping the build (--skip-build): publishing the existing dist.');
   }

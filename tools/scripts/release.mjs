@@ -3,7 +3,7 @@
  * RxAP release orchestrator — replaces the former Lerna + bash hook pipeline.
  *
  * Drives `nx release` (Nx 20.5.0) via its programmatic API and interleaves the custom
- * pre-steps that have no native equivalent. Run via `yarn release` (which wraps this in
+ * pre-steps that have no native equivalent. Run via `pnpm release` (which wraps this in
  * `env-cmd` so `.env` is loaded).
  *
  * Phase order (the only correct order on Nx 20.5.0 — there is no `manifestRootsToUpdate`,
@@ -181,7 +181,7 @@ function printReport() {
   if (failures.some((f) => f.phase === 'publish' || f.phase === 'tag')) {
     console.error(
       C.yellow(
-        '  Fix the cause, then retry the failed publishes with `yarn release --publish-only` ' +
+        '  Fix the cause, then retry the failed publishes with `pnpm release --publish-only` ' +
           '(already published versions are reported as failures by npm and can be ignored).',
       ),
     );
@@ -521,7 +521,7 @@ function listReleaseProjects(groupName) {
   const fs = require('node:fs');
   const path = require('node:path');
   const tags = capture('git tag -l').split('\n').filter(Boolean);
-  const skip = new Set(['node_modules', 'dist', '.git', '.nx', '.yarn', 'tmp', 'demos']);
+  const skip = new Set(['node_modules', 'dist', '.git', '.nx', 'tmp', 'demos']);
   const found = [];
   const walk = (dir) => {
     for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -659,11 +659,11 @@ async function main() {
   // ---- 3. validate ----
   if (!DRY_RUN && !SKIP_VALIDATE) {
     log('Validate (build, test, lint)');
-    run('yarn nx reset');
+    run('pnpm nx reset');
     run(
       PROJECTS
-        ? `yarn nx run-many --targets=build,test,lint --projects=${PROJECTS.join(',')}`
-        : 'yarn nx run-many --targets=build,test,lint --exclude=angular',
+        ? `pnpm nx run-many --targets=build,test,lint --projects=${PROJECTS.join(',')}`
+        : 'pnpm nx run-many --targets=build,test,lint --exclude=angular',
     );
   } else if (SKIP_VALIDATE) {
     warn('Skipping validation gate (--skip-validate).');
@@ -704,17 +704,17 @@ async function main() {
   // ---- 5. source mutations that must precede the build ----
   if (!DRY_RUN) {
     log('Regenerate package groups + README + lockfile (source)');
-    run('yarn nx reset');
+    run('pnpm nx reset');
     // update-package-group pulls in update-dependencies via its dependsOn (belt-and-suspenders
     // for the internal ^dep pinning that updateDependents/versionPrefix already handles)
     run(
       PROJECTS
-        ? `yarn nx run-many --targets=update-package-group --projects=${changed.join(',')}`
-        : 'yarn nx run-many --targets=update-package-group --exclude=rxap',
+        ? `pnpm nx run-many --targets=update-package-group --projects=${changed.join(',')}`
+        : 'pnpm nx run-many --targets=update-package-group --exclude=rxap',
     );
-    run('yarn nx reset');
-    run('yarn nx run workspace:readme');
-    run('yarn install --mode=update-lockfile', { allowFailure: true });
+    run('pnpm nx reset');
+    run('pnpm nx run workspace:readme');
+    run('pnpm install --lockfile-only', { allowFailure: true });
   }
 
   // ---- 6. changelog + single release commit + tags ----
@@ -740,11 +740,11 @@ async function main() {
   if (!DRY_RUN && !SKIP_BUILD) {
     log('Production build → dist');
     const projects = changed.join(',');
-    run('yarn nx reset');
-    run(`yarn nx run-many --targets=readme --projects=${projects} --exclude=angular --skip-nx-cache --nxBail`);
-    run(`yarn nx run-many --targets=compodoc --projects=${projects} --exclude=angular,workspace --skip-nx-cache --nxBail`);
-    run(`yarn nx run-many --targets=typedoc --projects=${projects} --exclude=angular,workspace --skip-nx-cache --nxBail`);
-    run(`yarn nx run-many --targets=build --configuration=production --projects=${projects} --exclude=angular --skip-nx-cache --nxBail`);
+    run('pnpm nx reset');
+    run(`pnpm nx run-many --targets=readme --projects=${projects} --exclude=angular --skip-nx-cache --nxBail`);
+    run(`pnpm nx run-many --targets=compodoc --projects=${projects} --exclude=angular,workspace --skip-nx-cache --nxBail`);
+    run(`pnpm nx run-many --targets=typedoc --projects=${projects} --exclude=angular,workspace --skip-nx-cache --nxBail`);
+    run(`pnpm nx run-many --targets=build --configuration=production --projects=${projects} --exclude=angular --skip-nx-cache --nxBail`);
   } else if (SKIP_BUILD) {
     warn('Skipping production build (--skip-build).');
   }
@@ -880,8 +880,8 @@ async function releaseRxapUmbrella({ releaseVersion, releaseChangelog, releasePu
 
   // recompute the umbrella packageGroup from the just-published member versions
   if (!DRY_RUN) {
-    run('yarn nx reset');
-    run('yarn nx run rxap:update-package-group --skip-nx-cache');
+    run('pnpm nx reset');
+    run('pnpm nx run rxap:update-package-group --skip-nx-cache');
     // conventional commit so the umbrella gets a patch (or prerelease) bump
     run('git add -A', { allowFailure: true });
     run('git commit -m "fix(rxap): update package group" --no-verify', { allowFailure: true });
@@ -924,8 +924,8 @@ async function releaseRxapUmbrella({ releaseVersion, releaseChangelog, releasePu
   }
 
   if (!DRY_RUN && !SKIP_BUILD) {
-    run('yarn nx reset');
-    run('yarn nx run rxap:build');
+    run('pnpm nx reset');
+    run('pnpm nx run rxap:build');
   }
 
   await publishGroup(releasePublish, 'rxap', mode);

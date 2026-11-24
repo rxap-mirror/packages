@@ -1,4 +1,4 @@
-// Run with: yarn test:scripts
+// Run with: pnpm test:scripts
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import { yarnHits } from './e2e-package-managers.mjs';

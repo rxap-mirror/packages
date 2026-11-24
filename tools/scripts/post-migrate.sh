@@ -90,12 +90,12 @@ sed -i "s/NESTJS_CACHE_MANAGER_VERSION = '.[0-9]*\.[0-9]*\.[0-9]*/NESTJS_CACHE_M
 echo "Updating nestjs config version in $nestjs_version_file to ~${CURRENT_NESTJS_CONFIG_VERSION}"
 sed -i "s/NESTJS_CONFIG_VERSION = '.[0-9]*\.[0-9]*\.[0-9]*/NESTJS_CONFIG_VERSION = '~${CURRENT_NESTJS_CONFIG_VERSION}/g" "$nestjs_version_file"
 
-yarn
+pnpm install
 
 sh ./tools/scripts/update-nestjs-packages.sh
 
-yarn nx run-many -t fix-dependencies --skip-nx-cache
-yarn
+pnpm nx run-many -t fix-dependencies --skip-nx-cache
+pnpm install
 
-yarn nx run-many -t update-package-group --skip-nx-cache
-yarn
+pnpm nx run-many -t update-package-group --skip-nx-cache
+pnpm install

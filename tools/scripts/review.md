@@ -17,7 +17,7 @@ tools/scripts/review.sh --root-prefix packages/nest --tags scope:utilities --mod
 open review-reports/<timestamp>/index.md
 ```
 
-`yarn review …` works too.
+`pnpm review …` works too.
 
 ### Recipes by goal
 
@@ -101,7 +101,7 @@ nx graph ──► restrict to --root-prefix ──► filter by tags/projects �
 ```
 
 ### Dependency order
-- The graph comes from `yarn nx graph --file=…`. Only **static** dependency edges are used. In this workspace the implicit edges are aggregate ones (`rxap`, the `angular` demo app, `schematic-composer`, …). They would turn umbrella projects into hubs and break the leaf-first order.
+- The graph comes from `pnpm nx graph --file=…`. Only **static** dependency edges are used. In this workspace the implicit edges are aggregate ones (`rxap`, the `angular` demo app, `schematic-composer`, …). They would turn umbrella projects into hubs and break the leaf-first order.
 - **Level 0** holds packages with no selected dependencies. A package is in level *n* when all its selected dependencies are in lower levels.
 - A level starts only when the previous one is done, so every dependency's report exists before its dependents are reviewed.
 - Dependencies **outside** the selection don't affect the order. Their newest report from an *earlier* run is still given to the reviewer as context, labelled with its age (see [History](#history-and-incremental-runs)).
@@ -146,7 +146,7 @@ The lead runs all five in parallel, merges the results, and checks every critica
 | `--concurrency N` | 4 | How many packages are reviewed in parallel within a level. |
 | `--budget-usd N` | 5 | Cost cap per package (print mode only). |
 | `--total-budget-usd N` | – | Cost cap for the whole run. After it's reached, no new packages start (print mode only). |
-| `--run-tests` | off | Let the reviewers run `yarn nx run <project>:lint\|test\|build`. |
+| `--run-tests` | off | Let the reviewers run `pnpm nx run <project>:lint\|test\|build`. |
 | `--write-tests` | off | Let the reviewers write reproducing specs. Implies `--run-tests`. See [Reproducing tests](#reproducing-tests-and-the-merge-request). |
 | `--no-mr` | off | With `--write-tests`: keep the branch local and don't push or open an MR. |
 | `--mr-target <branch>` | current branch | Target branch of the MR. |
@@ -291,9 +291,9 @@ tools/scripts/review.sh --clean --keep 3            # keep the 3 newest runs
 - Old reports stay readable as long as the existing fields keep their meaning.
 
 **Permissions:** the reviewers run with `--permission-mode dontAsk` and a fixed allow-list. Every tool call outside it is denied, never asked.
-- Always allowed: `Read`/`Grep`/`Glob`, subagents, and read-only `git log|diff|show|blame` and `yarn nx show`.
-- `--run-tests` adds `yarn nx run <project>:lint|test|build`.
-- `--write-tests` adds `Write`/`Edit` limited to `<root>/**/*.spec.ts`, plus `yarn jest`.
+- Always allowed: `Read`/`Grep`/`Glob`, subagents, and read-only `git log|diff|show|blame` and `pnpm nx show`.
+- `--run-tests` adds `pnpm nx run <project>:lint|test|build`.
+- `--write-tests` adds `Write`/`Edit` limited to `<root>/**/*.spec.ts`, plus `pnpm jest`.
 
 ---
 

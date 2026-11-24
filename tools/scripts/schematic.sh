@@ -106,7 +106,7 @@ startTimestamp=$(date +%s)
 
 echo "Build project $name:$target"
 
-yarn nx run "$name:$target"
+pnpm nx run "$name:$target"
 
 echo "Build time: $(($(date +%s) - startTimestamp))s"
 
@@ -145,9 +145,9 @@ echo "relative dir: $rel_dir"
 echo "schematic: $schematic"
 echo "current dir: $CURRENT_DIR"
 
-echo "command: yarn --cwd $CURRENT_DIR nx g ./$rel_dir:$schematic $@"
+echo "command: pnpm --dir $CURRENT_DIR nx g ./$rel_dir:$schematic $@"
 
-yarn --cwd "$CURRENT_DIR" nx g "./$rel_dir:$schematic" "$@"
+pnpm --dir "$CURRENT_DIR" nx g "./$rel_dir:$schematic" "$@"
 
 #cd "$CURRENT_DIR" || exit 1
 #

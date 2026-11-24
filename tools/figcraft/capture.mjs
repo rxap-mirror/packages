@@ -5,7 +5,7 @@
  * declarations behind its colours and type, and PNGs in light and dark. Output: `tmp/figcraft-cache/<project>/`.
  *
  * Build the styleguides first (one at a time: they share `applications/prism-host`):
- *   yarn nx run <project>:prism-build
+ *   pnpm nx run <project>:prism-build
  *
  * Usage: node tools/figcraft/capture.mjs [--project a,b] [--only ClassA,ClassB] [--concurrency 4]
  */
@@ -418,7 +418,7 @@ async function saveImages(page, tree) {
 async function captureProject(browser, project) {
   if (!fs.existsSync(path.join(project.dist, 'index.html'))) {
     console.warn(
-      `[figcraft-capture] ${project.name}: no build in ${path.relative(ROOT, project.dist)}; run yarn nx run ${project.name}:prism-build`,
+      `[figcraft-capture] ${project.name}: no build in ${path.relative(ROOT, project.dist)}; run pnpm nx run ${project.name}:prism-build`,
     );
     return 1;
   }

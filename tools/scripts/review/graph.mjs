@@ -21,7 +21,7 @@ export function loadGraph() {
   const file = join(dir, 'graph.json');
   try {
     try {
-      execSync(`yarn nx graph --file=${file}`, { stdio: 'pipe' });
+      execSync(`pnpm nx graph --file=${file}`, { stdio: 'pipe' });
     } catch (e) {
       process.stderr.write(e.stderr ?? '');
       throw new Error('nx graph failed');

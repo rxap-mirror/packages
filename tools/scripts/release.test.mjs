@@ -1,4 +1,4 @@
-// Run with: yarn test:scripts
+// Run with: pnpm test:scripts
 //
 // release.mjs is an orchestration script (nx, git, npm), so it is not executed here. These tests pin the
 // ORDER of its phases in the source, because the order is what keeps a failed build/guard from leaving tags

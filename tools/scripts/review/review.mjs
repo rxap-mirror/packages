@@ -380,7 +380,7 @@ function checksInstructions(project) {
   const available = ['lint', 'test', 'build'].filter((t) => project.targets.includes(t));
   return [
     '## Checks',
-    `Have \`review-tests\` run these targets and report the result in \`checks\` (status \`n/a\` for a missing target): ${available.map((t) => `\`yarn nx run ${project.name}:${t}\``).join(', ') || 'none'}.`,
+    `Have \`review-tests\` run these targets and report the result in \`checks\` (status \`n/a\` for a missing target): ${available.map((t) => `\`pnpm nx run ${project.name}:${t}\``).join(', ') || 'none'}.`,
     'Turn every real failure into a finding with the relevant output as `evidence`.',
   ].join('\n');
 }
@@ -422,15 +422,15 @@ function allowedTools(project, resultFile) {
   const tools = [
     'Read', 'Grep', 'Glob', 'Agent', 'Task',
     'Bash(git log:*)', 'Bash(git diff:*)', 'Bash(git show:*)', 'Bash(git blame:*)',
-    'Bash(yarn nx show:*)',
+    'Bash(pnpm nx show:*)',
   ];
   if (opts.runTests) {
     for (const t of ['lint', 'test', 'build']) {
-      tools.push(`Bash(yarn nx run ${project.name}:${t}:*)`);
+      tools.push(`Bash(pnpm nx run ${project.name}:${t}:*)`);
     }
   }
   if (opts.writeTests) {
-    tools.push(`Write(${project.root}/**/*.spec.ts)`, `Edit(${project.root}/**/*.spec.ts)`, 'Bash(yarn jest:*)');
+    tools.push(`Write(${project.root}/**/*.spec.ts)`, `Edit(${project.root}/**/*.spec.ts)`, 'Bash(pnpm jest:*)');
   }
   if (opts.teams) {
     // agent-team coordination tools + the single result file

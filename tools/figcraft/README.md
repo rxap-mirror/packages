@@ -35,20 +35,20 @@ class).
 ## Regenerating
 
 ```bash
-yarn figcraft          # prism-build of every library (sequential), capture, build, verify
+pnpm figcraft          # prism-build of every library (sequential), capture, build, verify
 ```
 
 or step by step:
 
 ```bash
-yarn nx run-many -t prism-build --parallel=1   # static styleguides in dist/prism/<project>
-yarn figcraft:capture  # renders every variant/state (Playwright) -> tmp/figcraft-cache/
-yarn figcraft:build    # writes packages/angular/rxap.figcraft (figcraft-cli, headless) and publishes it as a library
-yarn figcraft:verify   # coverage + visual diff vs. the browser; report in tmp/figcraft-cache/verify/report.md
+pnpm nx run-many -t prism-build --parallel=1   # static styleguides in dist/prism/<project>
+pnpm figcraft:capture  # renders every variant/state (Playwright) -> tmp/figcraft-cache/
+pnpm figcraft:build    # writes packages/angular/rxap.figcraft (figcraft-cli, headless) and publishes it as a library
+pnpm figcraft:verify   # coverage + visual diff vs. the browser; report in tmp/figcraft-cache/verify/report.md
 ```
 
 All three scripts take `--project <nx project>[,…]` for a quick look at a few libraries
-(`yarn figcraft:build --project angular-layout --out /tmp/x.figcraft`); capture and build also take `--only ClassA,ClassB`.
+(`pnpm figcraft:build --project angular-layout --out /tmp/x.figcraft`); capture and build also take `--only ClassA,ClassB`.
 `prism-build` targets must not run in parallel (they share `applications/prism-host`).
 
 Requirements: `figcraft-cli` on the `PATH`, Playwright's Chromium (`~/.cache/ms-playwright`), `unzip`/`zip`.
