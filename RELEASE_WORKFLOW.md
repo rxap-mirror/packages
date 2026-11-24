@@ -79,7 +79,9 @@ npm, yarn (berry, node-modules) and pnpm, plus yarn PnP as informational only. I
 1. starts Verdaccio on `http://localhost:4873` with its storage in `tmp/e2e-pm/verdaccio/` (the packages of
    this workspace are never proxied to npmjs, everything else, e.g. `@rxap/cli`, is),
 2. builds every publishable project, applies the release dist transforms (`dist-transforms.mjs`) and
-   publishes them with the dist-tag `e2e`,
+   publishes a staged copy (`tmp/e2e-pm/publish/`, `dist/` stays untouched) with the dist-tag `e2e` under
+   run-unique versions `<version>-e2e.<runId>` (internal ranges and package groups are pinned to them), so no npmjs
+   copy and no package-manager cache can serve an older build of the same version,
 3. per package manager, in a temp directory outside the repository: `create-nx-workspace --pm <pm>
    --preset apps --workspaces=false --nxCloud skip`, installs the plugins and `schematic-composer` `@e2e`, runs
    `plugin-workspace:init`, `plugin-gitlab-ci:init`, `@nx/angular:library` + `plugin-angular:init-library`,
