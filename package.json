@@ -6,6 +6,7 @@
   "scripts": {
     "prepare": "husky",
     "release": "env-cmd node tools/scripts/release.mjs",
+    "test:scripts": "node --test tools/scripts/*.test.mjs",
     "release:dry": "env-cmd node tools/scripts/release.mjs --dry-run --verbose",
     "schematic": "bash tools/scripts/schematic.sh",
     "server": "bash tools/scripts/start-local-dev-services.sh",
