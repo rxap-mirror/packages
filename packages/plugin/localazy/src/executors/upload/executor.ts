@@ -1,7 +1,7 @@
 import { ExecutorContext } from '@nx/devkit';
 import {
   GetProjectConfiguration,
-  YarnRun,
+  PackageManagerExec,
 } from '@rxap/plugin-utilities';
 import {
   GetTarget,
@@ -124,7 +124,7 @@ export default async function runExecutor(options: UploadExecutorSchema, context
   }
 
   try {
-    await YarnRun(args);
+    await PackageManagerExec(args, context.root);
   } catch (e: any) {
     console.error(`Could not run 'localazy upload'`, e.message);
     return {
@@ -171,7 +171,7 @@ export default async function runExecutor(options: UploadExecutorSchema, context
       }
       args.push('publish', options.tag);
       console.log('Publish tag', options.tag);
-      await YarnRun(args);
+      await PackageManagerExec(args, context.root);
     } catch (e: any) {
       console.error(`Could not run 'localazy tag publish ${ options.tag }'`, e.message);
       return {

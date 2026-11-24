@@ -1,9 +1,10 @@
-import { YarnRun } from '@rxap/plugin-utilities';
+import { ExecutorContext } from '@nx/devkit';
+import { PackageManagerExec } from '@rxap/plugin-utilities';
 import { GetAutoTag } from '../../lib/get-auto-tag';
 import { NormalizeTag } from '../../lib/normalize-tag';
 import { DownloadExecutorSchema } from './schema';
 
-export default async function runExecutor(options: DownloadExecutorSchema) {
+export default async function runExecutor(options: DownloadExecutorSchema, context?: ExecutorContext) {
 
   if (process.env.LOCALAZY_WRITE_KEY) {
     options.writeKey = process.env.LOCALAZY_WRITE_KEY;
@@ -78,7 +79,7 @@ export default async function runExecutor(options: DownloadExecutorSchema) {
   }
 
   try {
-    await YarnRun(args);
+    await PackageManagerExec(args, context?.root);
   } catch (e: any) {
     console.error(`Could not run 'localazy download'`, e.message);
     return {

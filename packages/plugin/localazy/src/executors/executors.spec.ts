@@ -1,16 +1,16 @@
 import { ExecutorContext } from '@nx/devkit';
-import { YarnRun } from '@rxap/plugin-utilities';
+import { PackageManagerExec } from '@rxap/plugin-utilities';
 import download from './download/executor';
 import upload from './upload/executor';
 
 jest.mock('@rxap/plugin-utilities', () => ({
   ...jest.requireActual('@rxap/plugin-utilities'),
-  YarnRun: jest.fn(),
+  PackageManagerExec: jest.fn(),
 }));
 
 describe('localazy executors', () => {
 
-  const yarnRun = YarnRun as jest.Mock;
+  const packageManagerExec = PackageManagerExec as jest.Mock;
   const envKeys = [ 'LOCALAZY_WRITE_KEY', 'LOCALAZY_READ_KEY', 'LOCALAZY_KEY_MAP', 'CI', 'CI_COMMIT_REF_PROTECTED', 'CI_COMMIT_REF_SLUG' ];
   const saved: Record<string, string | undefined> = {};
   let downloadOptions: any;
@@ -21,7 +21,7 @@ describe('localazy executors', () => {
       saved[key] = process.env[key];
       delete process.env[key];
     }
-    yarnRun.mockReset().mockResolvedValue(undefined);
+    packageManagerExec.mockReset().mockResolvedValue(undefined);
     downloadOptions = { readKey: 'r', writeKey: 'w' };
     context = {
       root: '/ws',
@@ -54,32 +54,32 @@ describe('localazy executors', () => {
         dryRun: true, quite: true, force: true, branch: 'b', param: 'a:b', failOnMissingGroups: true,
       });
       expect(result).toEqual({ success: true });
-      expect(yarnRun).toHaveBeenCalledWith([
+      expect(packageManagerExec).toHaveBeenCalledWith([
         'localazy', 'download', '--read-key r', '--write-key w', '--config "c.json"', '--working-dir "wd"', '--keys "k.json"',
         '--tag my-tag', '--simulate', '--quiet', '--force', '--branch b', '--param a:b', '--failOnMissingGroups',
-      ]);
+      ], undefined);
     });
 
     it('should prefer keys from the environment', async () => {
       process.env['LOCALAZY_READ_KEY'] = 'er';
       process.env['LOCALAZY_WRITE_KEY'] = 'ew';
       await download({});
-      expect(yarnRun).toHaveBeenCalledWith([ 'localazy', 'download', '--read-key er', '--write-key ew' ]);
+      expect(packageManagerExec).toHaveBeenCalledWith([ 'localazy', 'download', '--read-key er', '--write-key ew' ], undefined);
     });
 
     it('should use the auto tag', async () => {
       process.env['CI_COMMIT_REF_PROTECTED'] = 'true';
       process.env['CI_COMMIT_REF_SLUG'] = 'main';
       await download({ autoTag: true });
-      expect(yarnRun).toHaveBeenCalledWith([ 'localazy', 'download', '--tag main' ]);
-      yarnRun.mockClear();
+      expect(packageManagerExec).toHaveBeenCalledWith([ 'localazy', 'download', '--tag main' ], undefined);
+      packageManagerExec.mockClear();
       delete process.env['CI_COMMIT_REF_PROTECTED'];
       await download({ autoTag: true });
-      expect(yarnRun).toHaveBeenCalledWith([ 'localazy', 'download' ]);
+      expect(packageManagerExec).toHaveBeenCalledWith([ 'localazy', 'download' ], undefined);
     });
 
     it('should report failures', async () => {
-      yarnRun.mockRejectedValue(new Error('boom'));
+      packageManagerExec.mockRejectedValue(new Error('boom'));
       expect(await download({})).toEqual({ success: false, error: 'boom' });
     });
 
@@ -90,8 +90,8 @@ describe('localazy executors', () => {
     it('should take keys from the download target and run upload', async () => {
       const result = await upload({}, context);
       expect(result).toEqual({ success: true });
-      expect(yarnRun).toHaveBeenCalledTimes(1);
-      expect(yarnRun).toHaveBeenCalledWith([ 'localazy', 'upload', '--read-key r', '--write-key w' ]);
+      expect(packageManagerExec).toHaveBeenCalledTimes(1);
+      expect(packageManagerExec).toHaveBeenCalledWith([ 'localazy', 'upload', '--read-key r', '--write-key w' ], '/ws');
     });
 
     it('should pass all options and publish the tag', async () => {
@@ -101,12 +101,12 @@ describe('localazy executors', () => {
         tag: 'My Tag',
       }, context);
       expect(result).toEqual({ success: true });
-      expect(yarnRun.mock.calls[0][0]).toEqual([
+      expect(packageManagerExec.mock.calls[0][0]).toEqual([
         'localazy', 'upload', '--read-key r', '--write-key w', '--config "c"', '--working-dir "wd"', '--keys "k"',
         '--app-version 1', '--simulate', '--quiet', '--force', '--branch b', '--param p:v', '--failOnMissingGroups',
         '--project proj', '--async', '--disable-content-length',
       ]);
-      expect(yarnRun.mock.calls[1][0]).toEqual([
+      expect(packageManagerExec.mock.calls[1][0]).toEqual([
         'localazy', 'tag', '--read-key r', '--write-key w', '--config "c"', '--working-dir "wd"', '--keys "k"', 'publish', 'my-tag',
       ]);
     });
@@ -115,24 +115,24 @@ describe('localazy executors', () => {
       process.env['CI_COMMIT_REF_PROTECTED'] = 'true';
       process.env['CI_COMMIT_REF_SLUG'] = 'Main';
       await upload({ autoTag: true }, context);
-      expect(yarnRun.mock.calls[1][0].slice(-2)).toEqual([ 'publish', 'main' ]);
-      yarnRun.mockClear();
+      expect(packageManagerExec.mock.calls[1][0].slice(-2)).toEqual([ 'publish', 'main' ]);
+      packageManagerExec.mockClear();
       delete process.env['CI_COMMIT_REF_SLUG'];
       await upload({ autoTag: true }, context);
-      expect(yarnRun).toHaveBeenCalledTimes(1);
+      expect(packageManagerExec).toHaveBeenCalledTimes(1);
     });
 
     it('should prefer env keys', async () => {
       process.env['LOCALAZY_READ_KEY'] = 'er';
       process.env['LOCALAZY_WRITE_KEY'] = 'ew';
       await upload({}, context);
-      expect(yarnRun.mock.calls[0][0]).toEqual([ 'localazy', 'upload', '--read-key er', '--write-key ew' ]);
+      expect(packageManagerExec.mock.calls[0][0]).toEqual([ 'localazy', 'upload', '--read-key er', '--write-key ew' ]);
     });
 
     it('should exit successfully without write key outside of CI', async () => {
       delete downloadOptions.writeKey;
       expect(await upload({}, context)).toEqual({ success: true });
-      expect(yarnRun).not.toHaveBeenCalled();
+      expect(packageManagerExec).not.toHaveBeenCalled();
     });
 
     it('should fail without write key in CI', async () => {
@@ -147,9 +147,9 @@ describe('localazy executors', () => {
     });
 
     it('should report upload and tag failures', async () => {
-      yarnRun.mockRejectedValueOnce(new Error('up'));
+      packageManagerExec.mockRejectedValueOnce(new Error('up'));
       expect(await upload({}, context)).toEqual({ success: false, error: 'up' });
-      yarnRun.mockResolvedValueOnce(undefined).mockRejectedValueOnce(new Error('tag'));
+      packageManagerExec.mockResolvedValueOnce(undefined).mockRejectedValueOnce(new Error('tag'));
       expect(await upload({ tag: 'x' }, context)).toEqual({ success: false, error: 'tag' });
     });
 
