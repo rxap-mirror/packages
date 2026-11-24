@@ -172,7 +172,7 @@ function executeSchematicCommandFile(
       // this implementation will only trigger the node package installer task after the schematic is executed
       // AddPackageJsonDevDependencyRule(command.package, 'latest', { soft: true }),
       // (_, context) => {
-      //   context.addTask(new NodePackageInstallTask({ packageManager: 'yarn' }));
+      //   context.addTask(new NodePackageInstallTask());
       // },
       () => {
         try {
@@ -389,7 +389,7 @@ export default function (options: ComposeSchematicSchema) {
       (tree, context) => {
         const newRootPackageJson = GetRootPackageJson(tree);
         if (!equals(rootPackageJson.dependencies, newRootPackageJson.dependencies) || !equals(rootPackageJson.devDependencies, newRootPackageJson.devDependencies)) {
-          context.addTask(new NodePackageInstallTask({ packageManager: 'yarn' }));
+          context.addTask(new NodePackageInstallTask());
         } else {
           console.log('No package.json changes detected. Skip package installation'.green);
         }
