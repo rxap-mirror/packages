@@ -9,6 +9,7 @@ import {
   parse,
   stringify,
 } from 'yaml';
+import { ApplySubstitutions } from './package-manager';
 import {
   IsFsTreeLike,
   IsGeneratorTreeLike,
@@ -29,6 +30,11 @@ export interface CoerceFilesStructureOptions {
   target: string;
   overwrite?: boolean;
   mergeStrategies?: FileMergeStrategy[];
+  /**
+   * Replaces `{{key}}` placeholders in files with a `.template` suffix before they are written or merged.
+   * Files without the suffix are copied byte for byte. See `PackageManagerSubstitutions` for the standard keys.
+   */
+  substitutions?: Record<string, string>;
 }
 
 /**
@@ -111,11 +117,17 @@ export function CoerceFilesStructure(tree: TreeLike,
                                        target,
                                        overwrite,
                                        mergeStrategies,
+                                       substitutions,
                                      }: CoerceFilesStructureOptions,
 ) {
   for (const file of EachDirSync(srcFolder)) {
     const filePath = relative(srcFolder, file);
+    const isTemplate = /\.template$/.test(filePath);
     const fullFilePath = join(target, filePath).replace(/\.template$/, '');
+    const readSource = (): Buffer => {
+      const raw = readFileSync(file);
+      return isTemplate && substitutions ? Buffer.from(ApplySubstitutions(raw.toString('utf-8'), substitutions)) : raw;
+    };
     if (!tree.exists(fullFilePath) || overwrite || mergeStrategies?.some(({ match }) => match.test(filePath))) {
       const mergeFunction: FileMergeFunction | undefined = mergeStrategies?.find(
         ({ match }) => match.test(filePath))?.fnc;
@@ -123,21 +135,21 @@ export function CoerceFilesStructure(tree: TreeLike,
         if (tree.exists(fullFilePath)) {
           if (mergeFunction) {
             let content = tree.readText(fullFilePath);
-            content = mergeFunction(content, readFileSync(file, 'utf-8'), file, filePath);
+            content = mergeFunction(content, readSource().toString('utf-8'), file, filePath);
             tree.overwrite(fullFilePath, content);
           } else {
-            tree.overwrite(fullFilePath, readFileSync(file));
+            tree.overwrite(fullFilePath, readSource());
           }
         } else {
-          tree.create(fullFilePath, readFileSync(file));
+          tree.create(fullFilePath, readSource());
         }
       } else if (IsGeneratorTreeLike(tree) || IsFsTreeLike(tree)) {
         if (mergeFunction && tree.exists(fullFilePath)) {
           let content = tree.read(fullFilePath, 'utf-8')!;
-          content = mergeFunction(content, readFileSync(file, 'utf-8'), file, filePath);
+          content = mergeFunction(content, readSource().toString('utf-8'), file, filePath);
           tree.write(fullFilePath, content);
         } else {
-          tree.write(fullFilePath, readFileSync(file));
+          tree.write(fullFilePath, readSource());
         }
       } else {
         throw new Error('Invalid tree type');

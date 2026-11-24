@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`package-manager GetPackageManagerProfile bun 1`] = `
+{
+  "add": "bun add",
+  "addDev": "bun add -d",
+  "cacheClean": "bun pm cache rm",
+  "ciCacheDir": ".bun-cache",
+  "ciInstall": "bun install --frozen-lockfile",
+  "classic": false,
+  "dlx": "bunx npm-check-updates",
+  "dlxPrefix": "bunx",
+  "exec": "bunx nx run-many",
+  "execPrefix": "bunx",
+  "install": "bun install",
+  "lockfile": "bun.lock",
+  "name": "bun",
+  "prodInstall": "bun install --production --frozen-lockfile",
+  "run": "bun run build --prod",
+  "runPrefix": "bun run",
+}
+`;
+
+exports[`package-manager GetPackageManagerProfile npm 1`] = `
+{
+  "add": "npm install",
+  "addDev": "npm install -D",
+  "cacheClean": "npm cache clean --force",
+  "ciCacheDir": ".npm",
+  "ciInstall": "npm ci",
+  "classic": false,
+  "dlx": "npx --yes npm-check-updates",
+  "dlxPrefix": "npx --yes",
+  "exec": "npx nx run-many",
+  "execPrefix": "npx",
+  "install": "npm install",
+  "lockfile": "package-lock.json",
+  "name": "npm",
+  "prodInstall": "npm ci --omit=dev",
+  "run": "npm run build -- --prod",
+  "runPrefix": "npm run",
+}
+`;
+
+exports[`package-manager GetPackageManagerProfile pnpm 1`] = `
+{
+  "add": "pnpm add",
+  "addDev": "pnpm add -D",
+  "cacheClean": "pnpm store prune",
+  "ciCacheDir": ".pnpm-store",
+  "ciInstall": "pnpm install --frozen-lockfile",
+  "classic": false,
+  "dlx": "pnpm dlx npm-check-updates",
+  "dlxPrefix": "pnpm dlx",
+  "exec": "pnpm exec nx run-many",
+  "execPrefix": "pnpm exec",
+  "install": "pnpm install",
+  "lockfile": "pnpm-lock.yaml",
+  "name": "pnpm",
+  "prodInstall": "pnpm install --prod --frozen-lockfile",
+  "run": "pnpm run build --prod",
+  "runPrefix": "pnpm run",
+}
+`;
+
+exports[`package-manager GetPackageManagerProfile yarn 1`] = `
+{
+  "add": "yarn add",
+  "addDev": "yarn add -D",
+  "cacheClean": "yarn cache clean --all",
+  "ciCacheDir": ".yarn/cache",
+  "ciInstall": "yarn install --immutable",
+  "classic": false,
+  "dlx": "yarn dlx npm-check-updates",
+  "dlxPrefix": "yarn dlx",
+  "exec": "yarn nx run-many",
+  "execPrefix": "yarn",
+  "install": "yarn install",
+  "lockfile": "yarn.lock",
+  "name": "yarn",
+  "prodInstall": "yarn workspaces focus --all --production",
+  "run": "yarn build --prod",
+  "runPrefix": "yarn",
+}
+`;

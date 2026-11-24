@@ -1,6 +1,7 @@
 import { CoerceArrayItems } from '@rxap/utilities';
 import { join } from 'path';
 import { UpdateJsonFile } from './json-file';
+import { ResolvePackageManager } from './package-manager';
 import { TreeLike } from './tree';
 
 /**
@@ -14,7 +15,7 @@ import { TreeLike } from './tree';
  * - Sets the `$schema` property to the Lerna JSON schema URL if it is not already defined.
  * - Removes the `useWorkspaces` property if it exists, as its presence can conflict with other settings.
  * - Sets the `version` property to 'independent' to allow independent version management of packages if not specified.
- * - Sets the `npmClient` property to 'yarn' as the default client for managing node packages if not specified.
+ * - Sets the `npmClient` property to the detected package manager of the workspace as the default client for managing node packages if not specified.
  * - Ensures the `command` object exists and initializes nested properties within it:
  * - `command.version` object is ensured and initialized with default settings for managing versions:
  * - `message` set to a default release message.
@@ -32,7 +33,7 @@ export function CoerceLernaJson(tree: TreeLike, baseDir = '') {
       delete lerna.useWorkspaces;
     }
     lerna.version ??= 'independent';
-    lerna.npmClient ??= 'yarn';
+    lerna.npmClient ??= ResolvePackageManager(tree).name;
     lerna.command ??= {};
     lerna.command.version ??= {};
     lerna.command.version.message ??= 'chore(release): version';

@@ -197,6 +197,7 @@ describe('ignore patterns', () => {
 describe('CoerceLernaJson', () => {
   it('creates and normalizes lerna.json', () => {
     const tree = createTreeWithEmptyWorkspace();
+    tree.write('yarn.lock', '');
     writeJson(tree, 'lerna.json', { useWorkspaces: true, version: '1.0.0', command: { version: { allowBranch: ['x'] } } });
     CoerceLernaJson(tree);
     const lerna = GetJsonFile(tree, 'lerna.json');
@@ -211,6 +212,7 @@ describe('CoerceLernaJson', () => {
     const tree = createTreeWithEmptyWorkspace();
     CoerceLernaJson(tree, 'sub');
     expect(GetJsonFile(tree, 'sub/lerna.json').version).toBe('independent');
+    expect(GetJsonFile(tree, 'sub/lerna.json').npmClient).toBe('npm');
   });
 });
 
