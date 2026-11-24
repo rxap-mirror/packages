@@ -15,15 +15,17 @@ Provides Angular providers for integrating Socket.IO client functionality. It si
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/socket-io
+npm install @rxap/socket-io
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core @rxap/config rxjs socket.io-client 
+npm install @angular/core @rxap/config rxjs socket.io-client 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/socket-io:init
+nx g @rxap/socket-io:init
 ```
 # Generators
 

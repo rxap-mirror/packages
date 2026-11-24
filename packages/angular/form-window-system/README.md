@@ -15,15 +15,17 @@ Provides directives and services to simplify opening forms in windows within an 
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/form-window-system
+npm install @rxap/form-window-system
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk @angular/core @rxap/directives @rxap/form-system @rxap/forms @rxap/pattern @rxap/reflect-metadata @rxap/rxjs @rxap/utilities @rxap/window-system rxjs 
+npm install @angular/cdk @angular/core @rxap/directives @rxap/form-system @rxap/forms @rxap/pattern @rxap/reflect-metadata @rxap/rxjs @rxap/utilities @rxap/window-system rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/form-window-system:init
+nx g @rxap/form-window-system:init
 ```
 # Generators
 

@@ -15,11 +15,13 @@ Provides a tree data structure with node manipulation capabilities, including ad
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/data-structure-tree
+npm install @rxap/data-structure-tree
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/data-structure-tree:init
+nx g @rxap/data-structure-tree:init
 ```
 # Generators
 

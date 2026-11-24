@@ -15,15 +15,17 @@ A NestJS cache module that utilizes MinIO as a storage adapter for Keyv. It prov
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-keyv-minio
+npm install @rxap/nest-keyv-minio
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/cache-manager @nestjs/common @rxap/nest-utilities joi keyv minio 
+npm install @nestjs/cache-manager @nestjs/common @rxap/nest-utilities joi keyv minio 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/nest-keyv-minio:init
+nx g @rxap/nest-keyv-minio:init
 ```
 # Generators
 

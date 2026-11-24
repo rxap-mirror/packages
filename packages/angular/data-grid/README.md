@@ -15,15 +15,17 @@ Provides a data grid component for Angular applications. It supports plain and f
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/data-grid
+npm install @rxap/data-grid
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @angular/material @angular/router @rxap/forms @rxap/pattern @rxap/pipes @rxap/rxjs @rxap/utilities rxjs 
+npm install @angular/common @angular/core @angular/material @angular/router @rxap/forms @rxap/pattern @rxap/pipes @rxap/rxjs @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/data-grid:init
+nx g @rxap/data-grid:init
 ```
 # Generators
 

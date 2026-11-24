@@ -15,15 +15,17 @@ This package provides an Angular service and interceptor to simplify integration
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/keycloak
+npm install @rxap/keycloak
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @angular/router keycloak-js rxjs 
+npm install @angular/common @angular/core @angular/router keycloak-js rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/keycloak:init
+nx g @rxap/keycloak:init
 ```
 # Generators
 

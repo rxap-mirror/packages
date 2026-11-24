@@ -16,15 +16,17 @@ This library provides a set of Angular components and services for creating cons
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/layout
+npm install @rxap/layout
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/animations @angular/cdk @angular/common @angular/core @angular/material @angular/router @rxap/browser-utilities @rxap/config @rxap/data-source @rxap/environment @rxap/material-directives @rxap/ngx-pub-sub @rxap/ngx-theme @rxap/pattern @rxap/utilities rxjs 
+npm install @angular/animations @angular/cdk @angular/common @angular/core @angular/material @angular/router @rxap/browser-utilities @rxap/config @rxap/data-source @rxap/environment @rxap/material-directives @rxap/ngx-pub-sub @rxap/ngx-theme @rxap/pattern @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/layout:init
+nx g @rxap/layout:init
 ```
 # Get started
 

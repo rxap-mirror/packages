@@ -15,15 +15,17 @@ Provides utilities and components for managing application environments in Angul
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/environment
+npm install @rxap/environment
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core 
+npm install @angular/common @angular/core 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/environment:init
+nx g @rxap/environment:init
 ```
 # Generators
 

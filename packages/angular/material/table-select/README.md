@@ -15,15 +15,17 @@ Provides components and directives to integrate a table selection window into An
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-material-table-select
+npm install @rxap/ngx-material-table-select
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk @angular/common @angular/core @angular/forms @angular/material @rxap/data-source @rxap/form-system @rxap/forms @rxap/material-directives @rxap/material-form-system @rxap/material-table-system @rxap/material-table-window-system @rxap/mixin @rxap/pattern @rxap/pipes @rxap/reflect-metadata @rxap/rxjs @rxap/utilities @rxap/window-system rxjs 
+npm install @angular/cdk @angular/common @angular/core @angular/forms @angular/material @rxap/data-source @rxap/form-system @rxap/forms @rxap/material-directives @rxap/material-form-system @rxap/material-table-system @rxap/material-table-window-system @rxap/mixin @rxap/pattern @rxap/pipes @rxap/reflect-metadata @rxap/rxjs @rxap/utilities @rxap/window-system rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ngx-material-table-select:init
+nx g @rxap/ngx-material-table-select:init
 ```
 # Generators
 

@@ -15,11 +15,13 @@ This package provides utilities for parsing XML templates within Angular Schemat
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/schematics-xml-parser
+npm install @rxap/schematics-xml-parser
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/schematics-xml-parser:init
+nx g @rxap/schematics-xml-parser:init
 ```
 # Generators
 

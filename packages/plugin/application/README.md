@@ -19,11 +19,13 @@ This package provides generators and executors for initializing and managing app
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/plugin-application
+npm install @rxap/plugin-application
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/plugin-application:init
+nx g @rxap/plugin-application:init
 ```
 # Generators
 

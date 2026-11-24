@@ -15,15 +15,17 @@ This package provides a comprehensive error handling solution for Angular applic
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-error
+npm install @rxap/ngx-error
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk @angular/common @angular/core @rxap/components @rxap/config @rxap/data-grid @rxap/environment @rxap/open-api @sentry/angular rxjs 
+npm install @angular/cdk @angular/common @angular/core @rxap/components @rxap/config @rxap/data-grid @rxap/environment @rxap/open-api @sentry/angular rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ngx-error:init
+nx g @rxap/ngx-error:init
 ```
 # Generators
 

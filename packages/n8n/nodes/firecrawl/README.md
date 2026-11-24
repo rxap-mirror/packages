@@ -14,15 +14,17 @@
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/n8n-nodes-firecrawl
+npm install @rxap/n8n-nodes-firecrawl
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add n8n-workflow zod 
+npm install n8n-workflow zod 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/n8n-nodes-firecrawl:init
+nx g @rxap/n8n-nodes-firecrawl:init
 ```
 # Generators
 

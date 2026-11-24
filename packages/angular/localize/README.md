@@ -15,15 +15,17 @@ This package provides internationalization (i18n) support for Angular applicatio
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-localize
+npm install @rxap/ngx-localize
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @rxap/config @rxap/ngx-user rxjs 
+npm install @angular/common @angular/core @rxap/config @rxap/ngx-user rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ngx-localize:init
+nx g @rxap/ngx-localize:init
 ```
 # Generators
 

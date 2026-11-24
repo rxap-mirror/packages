@@ -15,15 +15,17 @@ This package provides Angular pipes and a directive for displaying dates and tim
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-timeago
+npm install @rxap/ngx-timeago
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core @rxap/utilities rxjs 
+npm install @angular/core @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ngx-timeago:init
+nx g @rxap/ngx-timeago:init
 ```
 # Generators
 

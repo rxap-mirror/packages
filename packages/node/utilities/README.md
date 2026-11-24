@@ -15,11 +15,13 @@ Provides a set of utility functions for Node.js development, including file syst
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/node-utilities
+npm install @rxap/node-utilities
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/node-utilities:init
+nx g @rxap/node-utilities:init
 ```
 # Generators
 

@@ -15,15 +15,17 @@ This package provides Angular components and services to check and display the s
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-status-check
+npm install @rxap/ngx-status-check
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @angular/material @angular/router @rxap/config @rxap/open-api @sentry/angular rxjs 
+npm install @angular/common @angular/core @angular/material @angular/router @rxap/config @rxap/open-api @sentry/angular rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ngx-status-check:init
+nx g @rxap/ngx-status-check:init
 ```
 # Generators
 

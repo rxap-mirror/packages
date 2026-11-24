@@ -16,15 +16,17 @@ Provides an Angular module and directives to manage authorization and permission
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/authorization
+npm install @rxap/authorization
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core @angular/forms @angular/material @rxap/utilities rxjs 
+npm install @angular/core @angular/forms @angular/material @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/authorization:init
+nx g @rxap/authorization:init
 ```
 # Guides
 

@@ -13,9 +13,11 @@ This package provides n8n nodes for interacting with LiteLLM, enabling users to 
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/n8n-nodes-litellm
+npm install @rxap/n8n-nodes-litellm
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add n8n-workflow 
+npm install n8n-workflow 
 ```

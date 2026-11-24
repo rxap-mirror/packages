@@ -15,11 +15,13 @@ Provides a set of decorators and services for parsing and serializing XML docume
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/xml-parser
+npm install @rxap/xml-parser
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/xml-parser:init
+nx g @rxap/xml-parser:init
 ```
 # Generators
 

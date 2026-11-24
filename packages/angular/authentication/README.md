@@ -15,15 +15,17 @@ Provides authentication services, guards, and interceptors for Angular applicati
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/authentication
+npm install @rxap/authentication
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @angular/router @rxap/utilities rxjs 
+npm install @angular/common @angular/core @angular/router @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/authentication:init
+nx g @rxap/authentication:init
 ```
 # Generators
 

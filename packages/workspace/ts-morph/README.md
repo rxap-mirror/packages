@@ -15,11 +15,13 @@ This package provides utilities for transforming workspace files using the TypeS
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/workspace-ts-morph
+npm install @rxap/workspace-ts-morph
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/workspace-ts-morph:init
+nx g @rxap/workspace-ts-morph:init
 ```
 # Generators
 

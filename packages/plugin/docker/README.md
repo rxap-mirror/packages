@@ -20,15 +20,17 @@ This plugin provides executors and generators for building and saving Docker ima
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/plugin-docker
+npm install @rxap/plugin-docker
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/plugin-docker:init
+nx g @rxap/plugin-docker:init
 ```
 **Execute the config generator to use the package with a project:**
 ```bash
-yarn nx g @rxap/plugin-docker:config [project]
+nx g @rxap/plugin-docker:config [project]
 ```
 # Generators
 

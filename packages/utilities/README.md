@@ -14,11 +14,13 @@ A collection of utility functions, types and interfaces.
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/utilities
+npm install @rxap/utilities
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/utilities:init
+nx g @rxap/utilities:init
 ```
 # Generators
 

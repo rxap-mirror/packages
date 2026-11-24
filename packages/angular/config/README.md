@@ -16,15 +16,17 @@ Provides a configuration service for Angular applications, allowing you to load 
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/config
+npm install @rxap/config
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @rxap/environment @rxap/utilities rxjs 
+npm install @angular/common @angular/core @rxap/environment @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/config:init
+nx g @rxap/config:init
 ```
 # Guides
 

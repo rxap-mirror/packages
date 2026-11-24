@@ -15,15 +15,17 @@ Provides an Angular service and guard to manage application lifecycle. It allows
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/life-cycle
+npm install @rxap/life-cycle
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core @angular/router @rxap/utilities rxjs 
+npm install @angular/core @angular/router @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/life-cycle:init
+nx g @rxap/life-cycle:init
 ```
 # Generators
 

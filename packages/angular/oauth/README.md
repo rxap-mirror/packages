@@ -15,15 +15,17 @@ This package provides an authentication guard and service for Angular applicatio
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/oauth
+npm install @rxap/oauth
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core @angular/router @rxap/authentication @rxap/rxjs angular-oauth2-oidc angular-oauth2-oidc-jwks rxjs 
+npm install @angular/core @angular/router @rxap/authentication @rxap/rxjs angular-oauth2-oidc angular-oauth2-oidc-jwks rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/oauth:init
+nx g @rxap/oauth:init
 ```
 # Generators
 

@@ -15,15 +15,17 @@ A Material Design upload button component for Angular that supports file selecti
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/upload
+npm install @rxap/upload
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk @angular/common @angular/core @angular/forms @angular/material @rxap/directives @rxap/pattern rxjs 
+npm install @angular/cdk @angular/common @angular/core @angular/forms @angular/material @rxap/directives @rxap/pattern rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/upload:init
+nx g @rxap/upload:init
 ```
 # Generators
 

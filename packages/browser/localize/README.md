@@ -12,5 +12,7 @@
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/browser-localize
+npm install @rxap/browser-localize
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+

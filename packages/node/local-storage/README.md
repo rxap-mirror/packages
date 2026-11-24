@@ -15,11 +15,13 @@ Provides a simple local storage implementation for Node.js environments, persist
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/node-local-storage
+npm install @rxap/node-local-storage
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/node-local-storage:init
+nx g @rxap/node-local-storage:init
 ```
 # Generators
 

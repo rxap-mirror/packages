@@ -15,11 +15,13 @@ Provides a Tailwind CSS configuration with RXAP-specific theme extensions, inclu
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/browser-tailwind
+npm install @rxap/browser-tailwind
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/browser-tailwind:init
+nx g @rxap/browser-tailwind:init
 ```
 # Generators
 

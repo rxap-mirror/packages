@@ -15,15 +15,17 @@ This package provides an Angular service to integrate with marker.io, a visual f
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-marker-io
+npm install @rxap/ngx-marker-io
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core @marker.io/browser @rxap/config @rxap/environment @rxap/ngx-pub-sub @rxap/utilities rxjs 
+npm install @angular/core @marker.io/browser @rxap/config @rxap/environment @rxap/ngx-pub-sub @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ngx-marker-io:init
+nx g @rxap/ngx-marker-io:init
 ```
 # Generators
 

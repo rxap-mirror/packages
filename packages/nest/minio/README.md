@@ -15,15 +15,17 @@ NestJS module for integrating with Minio object storage. It provides a service f
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-minio
+npm install @rxap/nest-minio
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common @nestjs/config @nestjs/terminus @rxap/nest-utilities joi minio 
+npm install @nestjs/common @nestjs/config @nestjs/terminus @rxap/nest-utilities joi minio 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/nest-minio:init
+nx g @rxap/nest-minio:init
 ```
 # Generators
 

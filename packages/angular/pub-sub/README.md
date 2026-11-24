@@ -15,15 +15,17 @@ Provides a simple publish/subscribe service for Angular applications. It support
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-pub-sub
+npm install @rxap/ngx-pub-sub
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core rxjs 
+npm install @angular/core rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ngx-pub-sub:init
+nx g @rxap/ngx-pub-sub:init
 ```
 # Generators
 

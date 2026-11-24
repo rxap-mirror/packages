@@ -15,15 +15,17 @@ Provides an Angular directive to make any element contenteditable. It supports c
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/contenteditable
+npm install @rxap/contenteditable
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core @rxap/pattern @rxap/utilities 
+npm install @angular/core @rxap/pattern @rxap/utilities 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/contenteditable:init
+nx g @rxap/contenteditable:init
 ```
 # Generators
 

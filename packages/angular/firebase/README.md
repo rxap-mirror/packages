@@ -15,15 +15,17 @@ This package provides Angular modules and services to integrate with Firebase, i
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/firebase
+npm install @rxap/firebase
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @rxap/config @rxap/rxjs @rxap/utilities firebase rxjs 
+npm install @angular/common @angular/core @rxap/config @rxap/rxjs @rxap/utilities firebase rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/firebase:init
+nx g @rxap/firebase:init
 ```
 # Generators
 

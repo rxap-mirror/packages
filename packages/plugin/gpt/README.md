@@ -16,11 +16,13 @@ This package provides a generator to add JSDoc documentation to TypeScript code 
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/plugin-gpt
+npm install @rxap/plugin-gpt
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/plugin-gpt:init
+nx g @rxap/plugin-gpt:init
 ```
 # Generators
 

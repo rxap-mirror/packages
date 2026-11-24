@@ -15,15 +15,17 @@ This n8n node package provides functionality to interact with zip files, specifi
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/n8n-nodes-zip
+npm install @rxap/n8n-nodes-zip
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add n8n-workflow 
+npm install n8n-workflow 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/n8n-nodes-zip:init
+nx g @rxap/n8n-nodes-zip:init
 ```
 # Generators
 

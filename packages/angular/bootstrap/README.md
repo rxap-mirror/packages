@@ -16,15 +16,17 @@ Provides base classes and utilities for bootstrapping Angular applications, incl
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-bootstrap
+npm install @rxap/ngx-bootstrap
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core @angular/platform-browser @angular/platform-browser-dynamic @rxap/config @rxap/environment ngx-logger 
+npm install @angular/core @angular/platform-browser @angular/platform-browser-dynamic @rxap/config @rxap/environment ngx-logger 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ngx-bootstrap:init
+nx g @rxap/ngx-bootstrap:init
 ```
 # Guides
 
@@ -45,7 +47,7 @@ import { ModuleApplication } from '@rxap/ngx-bootstrap/module';
 from `@rxap/ngx-bootstrap/module`:
 
 ```bash
-yarn add @angular/platform-browser-dynamic
+npm install @angular/platform-browser-dynamic
 ```
 
 # Generators

@@ -15,15 +15,17 @@ Provides a directive and service to open a table select component in a window. T
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/material-table-window-system
+npm install @rxap/material-table-window-system
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk @angular/core @angular/material @rxap/data-source @rxap/form-system @rxap/forms @rxap/material-table-system @rxap/mixin @rxap/pattern @rxap/utilities @rxap/window-system rxjs 
+npm install @angular/cdk @angular/core @angular/material @rxap/data-source @rxap/form-system @rxap/forms @rxap/material-table-system @rxap/mixin @rxap/pattern @rxap/utilities @rxap/window-system rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/material-table-window-system:init
+nx g @rxap/material-table-window-system:init
 ```
 # Generators
 

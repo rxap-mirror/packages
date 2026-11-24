@@ -16,15 +16,17 @@ This package provides a NestJS module for integrating with RabbitMQ using exchan
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-rabbitmq
+npm install @rxap/nest-rabbitmq
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common @nestjs/config @nestjs/microservices @nestjs/terminus @rxap/utilities amqp-connection-manager amqplib rxjs 
+npm install @nestjs/common @nestjs/config @nestjs/microservices @nestjs/terminus @rxap/utilities amqp-connection-manager amqplib rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/nest-rabbitmq:init
+nx g @rxap/nest-rabbitmq:init
 ```
 # Guides
 

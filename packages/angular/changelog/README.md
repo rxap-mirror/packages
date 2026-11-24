@@ -15,15 +15,17 @@ This package provides Angular components and services to display changelogs with
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-changelog
+npm install @rxap/ngx-changelog
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @angular/forms @rxap/directives @rxap/environment @rxap/open-api ngx-markdown rxjs 
+npm install @angular/common @angular/core @angular/forms @rxap/directives @rxap/environment @rxap/open-api ngx-markdown rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ngx-changelog:init
+nx g @rxap/ngx-changelog:init
 ```
 # Generators
 

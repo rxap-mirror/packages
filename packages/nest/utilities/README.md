@@ -15,15 +15,17 @@ Provides utility functions, pipes, interceptors, modules, and configuration opti
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-utilities
+npm install @rxap/nest-utilities
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/cache-manager @nestjs/common @nestjs/config @nestjs/core @nestjs/throttler @rxap/utilities class-transformer class-validator joi rxjs 
+npm install @nestjs/cache-manager @nestjs/common @nestjs/config @nestjs/core @nestjs/throttler @rxap/utilities class-transformer class-validator joi rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/nest-utilities:init
+nx g @rxap/nest-utilities:init
 ```
 # Generators
 

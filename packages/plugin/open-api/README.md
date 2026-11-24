@@ -20,11 +20,13 @@ This plugin provides generators and executors for generating code from OpenAPI s
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/plugin-open-api
+npm install @rxap/plugin-open-api
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/plugin-open-api:init
+nx g @rxap/plugin-open-api:init
 ```
 # Generators
 

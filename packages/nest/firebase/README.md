@@ -15,15 +15,17 @@ This package provides Firebase integration for NestJS applications. It includes 
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-firebase
+npm install @rxap/nest-firebase
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common firebase-admin 
+npm install @nestjs/common firebase-admin 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/nest-firebase:init
+nx g @rxap/nest-firebase:init
 ```
 # Generators
 

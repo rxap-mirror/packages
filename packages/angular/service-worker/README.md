@@ -15,15 +15,17 @@ Provides services and components to simplify the management of service worker up
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/service-worker
+npm install @rxap/service-worker
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @angular/service-worker @rxap/environment @rxap/life-cycle rxjs 
+npm install @angular/common @angular/core @angular/service-worker @rxap/environment @rxap/life-cycle rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/service-worker:init
+nx g @rxap/service-worker:init
 ```
 # Generators
 

@@ -23,11 +23,13 @@ This package provides a collection of Nx plugins and generators for workspace ma
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/plugin-workspace
+npm install @rxap/plugin-workspace
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/plugin-workspace:init
+nx g @rxap/plugin-workspace:init
 ```
 # Generators
 
@@ -67,6 +69,7 @@ skipLicense | boolean | false | Whether to skip adding a license file.
 license | string | gpl | 
 repositoryUrl | string |  | The URL of the repository.
 withHusky | boolean |  | Whether to initialize the workspace with Husky.
+packageManager | string |  | The package manager of the workspace. Detected from the root package.json packageManager field or the lockfile when omitted.
 
 ## project-target
 > project-target generator

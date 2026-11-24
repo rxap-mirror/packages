@@ -12,9 +12,11 @@
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-utilities
+npm install @rxap/ngx-utilities
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core 
+npm install @angular/common @angular/core 
 ```

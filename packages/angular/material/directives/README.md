@@ -15,15 +15,17 @@ This package coerces peer dependencies for &#x60;@rxap&#x60; packages, ensuring 
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/material-directives
+npm install @rxap/material-directives
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core @angular/material @rxap/browser-utilities @rxap/ngx-memory @rxap/rxjs @rxap/utilities rxjs 
+npm install @angular/core @angular/material @rxap/browser-utilities @rxap/ngx-memory @rxap/rxjs @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/material-directives:init
+nx g @rxap/material-directives:init
 ```
 # Generators
 

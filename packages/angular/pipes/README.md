@@ -15,15 +15,17 @@ Provides a set of Angular pipes for common data transformations, including curre
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/pipes
+npm install @rxap/pipes
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @angular/platform-browser @rxap/utilities 
+npm install @angular/common @angular/core @angular/platform-browser @rxap/utilities 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/pipes:init
+nx g @rxap/pipes:init
 ```
 # Generators
 

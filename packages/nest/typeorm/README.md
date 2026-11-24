@@ -12,9 +12,11 @@
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-typeorm
+npm install @rxap/nest-typeorm
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common @nestjs/config @nestjs/typeorm @rxap/nest-utilities joi typeorm 
+npm install @nestjs/common @nestjs/config @nestjs/typeorm @rxap/nest-utilities joi typeorm 
 ```

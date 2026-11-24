@@ -14,8 +14,10 @@ This package provides a schematic to compose and execute other schematics based 
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/schematic-composer
+npm install @rxap/schematic-composer
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 # Guides
 
 # Schematic Composer Guide
@@ -31,7 +33,7 @@ The core of this package is the `compose` schematic. It reads a configuration fi
 The most common way to use the composer is by pointing it to a specific configuration file:
 
 ```bash
-yarn nx generate @rxap/schematic-composer:compose --file path/to/your/schematic.yaml
+nx generate @rxap/schematic-composer:compose --file path/to/your/schematic.yaml
 ```
 
 When you use the `--file` option, the composer receives the context of where the file is located. This allows it to automatically infer properties like `project` and `feature` if the schematics you are calling support them.
@@ -104,7 +106,7 @@ Create a file at `libs/my-feature/src/lib/schematics.yaml`:
 Run the command pointing to the file:
 
 ```bash
-yarn nx generate @rxap/schematic-composer:compose --file libs/my-feature/src/lib/schematics.yaml
+nx generate @rxap/schematic-composer:compose --file libs/my-feature/src/lib/schematics.yaml
 ```
 
 The composer will:
@@ -118,11 +120,11 @@ You can define multiple schedulers in a project and run them all at once or filt
 
 **Run all definitions in a library:**
 ```bash
-yarn nx generate @rxap/schematic-composer:compose --directory libs/my-feature
+nx generate @rxap/schematic-composer:compose --directory libs/my-feature
 ```
 
 **Run only definitions in 'tables' subfolders:**
 ```bash
-yarn nx generate @rxap/schematic-composer:compose --directory libs/my-feature --filter tables
+nx generate @rxap/schematic-composer:compose --directory libs/my-feature --filter tables
 ```
 

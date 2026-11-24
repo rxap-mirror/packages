@@ -12,5 +12,7 @@
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/fs
+npm install @rxap/fs
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+

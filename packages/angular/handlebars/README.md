@@ -15,15 +15,17 @@ Provides an Angular pipe that compiles Handlebars templates.  The pipe takes a t
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/handlebars
+npm install @rxap/handlebars
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core 
+npm install @angular/core 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/handlebars:init
+nx g @rxap/handlebars:init
 ```
 # Generators
 

@@ -15,15 +15,17 @@ This package provides a NestJS module that integrates with HashiCorp Vault to re
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-rabbitmq-vault
+npm install @rxap/nest-rabbitmq-vault
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common @nestjs/config @rxap/nest-rabbitmq @rxap/nest-vault 
+npm install @nestjs/common @nestjs/config @rxap/nest-rabbitmq @rxap/nest-vault 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/nest-rabbitmq-vault:init
+nx g @rxap/nest-rabbitmq-vault:init
 ```
 # Generators
 

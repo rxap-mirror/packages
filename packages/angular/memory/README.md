@@ -15,15 +15,17 @@ This package provides Angular services and decorators for interacting with web s
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-memory
+npm install @rxap/ngx-memory
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core 
+npm install @angular/core 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ngx-memory:init
+nx g @rxap/ngx-memory:init
 ```
 # Generators
 

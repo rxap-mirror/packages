@@ -15,15 +15,17 @@ This package provides a set of Angular directives to simplify common tasks such 
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/directives
+npm install @rxap/directives
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core @rxap/pattern @rxap/rxjs @rxap/services @rxap/utilities rxjs 
+npm install @angular/core @rxap/pattern @rxap/rxjs @rxap/services @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/directives:init
+nx g @rxap/directives:init
 ```
 # Generators
 

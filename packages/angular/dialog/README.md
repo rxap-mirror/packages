@@ -15,15 +15,17 @@ This package provides Angular Material-based message and confirm dialog componen
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/dialog
+npm install @rxap/dialog
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk @angular/common @angular/core @angular/material @rxap/pipes rxjs 
+npm install @angular/cdk @angular/common @angular/core @angular/material @rxap/pipes rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/dialog:init
+nx g @rxap/dialog:init
 ```
 # Generators
 

@@ -15,11 +15,13 @@ This package provides a set of utilities and helpers for Angular Schematics, inc
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/schematics-utilities
+npm install @rxap/schematics-utilities
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/schematics-utilities:init
+nx g @rxap/schematics-utilities:init
 ```
 # Generators
 

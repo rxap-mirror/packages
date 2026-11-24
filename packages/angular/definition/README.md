@@ -15,15 +15,17 @@ Provides a base definition class and related utilities for managing and loading 
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/definition
+npm install @rxap/definition
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core @rxap/reflect-metadata @rxap/utilities rxjs 
+npm install @angular/core @rxap/reflect-metadata @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/definition:init
+nx g @rxap/definition:init
 ```
 # Generators
 

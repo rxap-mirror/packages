@@ -15,15 +15,17 @@ Provides browser utilities such as clicking on a link programmatically and obser
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/browser-utilities
+npm install @rxap/browser-utilities
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add rxjs 
+npm install rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/browser-utilities:init
+nx g @rxap/browser-utilities:init
 ```
 # Generators
 

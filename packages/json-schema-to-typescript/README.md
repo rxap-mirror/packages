@@ -16,11 +16,13 @@ Generate TypeScript interfaces from JSON Schema definitions. It allows you to pr
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/json-schema-to-typescript
+npm install @rxap/json-schema-to-typescript
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/json-schema-to-typescript:init
+nx g @rxap/json-schema-to-typescript:init
 ```
 # Generators
 

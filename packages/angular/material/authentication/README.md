@@ -15,15 +15,17 @@ This package provides Angular Material components and services for user authenti
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-material-authentication
+npm install @rxap/ngx-material-authentication
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/animations @angular/common @angular/core @angular/forms @angular/material @angular/router @rxap/authentication @rxap/config @rxap/forms @rxap/material-form-system @rxap/pattern @rxap/rxjs @rxap/utilities rxjs 
+npm install @angular/animations @angular/common @angular/core @angular/forms @angular/material @angular/router @rxap/authentication @rxap/config @rxap/forms @rxap/material-form-system @rxap/pattern @rxap/rxjs @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ngx-material-authentication:init
+nx g @rxap/ngx-material-authentication:init
 ```
 # Generators
 

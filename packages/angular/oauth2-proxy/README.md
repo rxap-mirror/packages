@@ -15,15 +15,17 @@ Provides an Angular guard and utilities for integrating with an OAuth2 Proxy. It
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-oauth2-proxy
+npm install @rxap/ngx-oauth2-proxy
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @angular/router @rxap/config @rxap/data-source @rxap/ngx-pub-sub @rxap/pattern rxjs 
+npm install @angular/common @angular/core @angular/router @rxap/config @rxap/data-source @rxap/ngx-pub-sub @rxap/pattern rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ngx-oauth2-proxy:init
+nx g @rxap/ngx-oauth2-proxy:init
 ```
 # Generators
 

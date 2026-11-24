@@ -15,15 +15,17 @@ This package provides a set of directives, decorators, mixins, and validators to
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/form-system
+npm install @rxap/form-system
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core @angular/forms @angular/material @angular/router @rxap/data-source @rxap/definition @rxap/forms @rxap/mixin @rxap/open-api @rxap/pattern @rxap/reflect-metadata @rxap/remote-method @rxap/rxjs @rxap/utilities @rxap/validator rxjs 
+npm install @angular/core @angular/forms @angular/material @angular/router @rxap/data-source @rxap/definition @rxap/forms @rxap/mixin @rxap/open-api @rxap/pattern @rxap/reflect-metadata @rxap/remote-method @rxap/rxjs @rxap/utilities @rxap/validator rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/form-system:init
+nx g @rxap/form-system:init
 ```
 # Generators
 

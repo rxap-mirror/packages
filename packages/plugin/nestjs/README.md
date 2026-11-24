@@ -32,11 +32,13 @@ This npm package provides generators and executors for NestJS applications withi
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/plugin-nestjs
+npm install @rxap/plugin-nestjs
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/plugin-nestjs:init
+nx g @rxap/plugin-nestjs:init
 ```
 # Guides
 

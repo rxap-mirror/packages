@@ -15,11 +15,13 @@ This package provides utilities for manipulating TypeScript code using ts-morph,
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/schematics-ts-morph
+npm install @rxap/schematics-ts-morph
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/schematics-ts-morph:init
+nx g @rxap/schematics-ts-morph:init
 ```
 # Generators
 

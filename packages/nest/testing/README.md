@@ -15,11 +15,13 @@ Provides factories for creating mock config services and loggers, useful for tes
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-testing
+npm install @rxap/nest-testing
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/nest-testing:init
+nx g @rxap/nest-testing:init
 ```
 # Generators
 

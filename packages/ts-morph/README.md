@@ -15,11 +15,13 @@ Provides utilities for manipulating TypeScript code using the ts-morph library. 
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ts-morph
+npm install @rxap/ts-morph
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ts-morph:init
+nx g @rxap/ts-morph:init
 ```
 # Generators
 

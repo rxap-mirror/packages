@@ -15,15 +15,17 @@ This package provides tools for working with OpenAPI specifications in Angular a
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/open-api
+npm install @rxap/open-api
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @rxap/config @rxap/data-source @rxap/environment @rxap/mixin @rxap/remote-method @rxap/rxjs @rxap/utilities ajv openapi-types rxjs 
+npm install @angular/common @angular/core @rxap/config @rxap/data-source @rxap/environment @rxap/mixin @rxap/remote-method @rxap/rxjs @rxap/utilities ajv openapi-types rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/open-api:init
+nx g @rxap/open-api:init
 ```
 # Generators
 

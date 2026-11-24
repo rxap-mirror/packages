@@ -19,15 +19,17 @@ This package provides executors and generators for integrating Localazy, a trans
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/plugin-localazy
+npm install @rxap/plugin-localazy
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/plugin-localazy:init
+nx g @rxap/plugin-localazy:init
 ```
 **Execute the config generator to use the package with a project:**
 ```bash
-yarn nx g @rxap/plugin-localazy:config [project]
+nx g @rxap/plugin-localazy:config [project]
 ```
 # Generators
 

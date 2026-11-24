@@ -15,15 +15,17 @@ Provides Angular services and data sources for managing user settings such as da
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-user
+npm install @rxap/ngx-user
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core @rxap/data-source @rxap/ngx-pub-sub @rxap/open-api @rxap/utilities rxjs 
+npm install @angular/core @rxap/data-source @rxap/ngx-pub-sub @rxap/open-api @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ngx-user:init
+nx g @rxap/ngx-user:init
 ```
 # Generators
 

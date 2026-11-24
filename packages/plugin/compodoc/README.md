@@ -19,11 +19,13 @@ This Nx plugin generates documentation for Angular, NestJS and other TypeScript 
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/plugin-compodoc
+npm install @rxap/plugin-compodoc
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/plugin-compodoc:init
+nx g @rxap/plugin-compodoc:init
 ```
 # Generators
 

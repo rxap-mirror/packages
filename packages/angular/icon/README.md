@@ -15,15 +15,17 @@ This package provides an Angular module to load SVG icons from specified asset p
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/icon
+npm install @rxap/icon
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @angular/material @angular/platform-browser @rxap/utilities 
+npm install @angular/common @angular/core @angular/material @angular/platform-browser @rxap/utilities 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/icon:init
+nx g @rxap/icon:init
 ```
 # Generators
 

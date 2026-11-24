@@ -15,15 +15,17 @@ Provides NestJS decorators to extract authentication information from request he
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-oauth2-proxy
+npm install @rxap/nest-oauth2-proxy
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common @rxap/utilities 
+npm install @nestjs/common @rxap/utilities 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/nest-oauth2-proxy:init
+nx g @rxap/nest-oauth2-proxy:init
 ```
 # Generators
 

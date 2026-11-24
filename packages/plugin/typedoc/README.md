@@ -19,11 +19,13 @@ A plugin for Nx workspaces to generate TypeDoc documentation. It provides execut
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/plugin-typedoc
+npm install @rxap/plugin-typedoc
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/plugin-typedoc:init
+nx g @rxap/plugin-typedoc:init
 ```
 # Generators
 

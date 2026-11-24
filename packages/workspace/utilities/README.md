@@ -15,11 +15,13 @@ Provides utilities for Nx workspaces, including file manipulation, project confi
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/workspace-utilities
+npm install @rxap/workspace-utilities
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/workspace-utilities:init
+nx g @rxap/workspace-utilities:init
 ```
 # Generators
 

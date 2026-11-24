@@ -15,15 +15,17 @@ This package provides a set of NestJS utilities for JWT (JSON Web Token) authent
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-jwt
+npm install @rxap/nest-jwt
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common @nestjs/config @nestjs/core @nestjs/cqrs @nestjs/jwt @rxap/nest-utilities @rxap/pattern rxjs 
+npm install @nestjs/common @nestjs/config @nestjs/core @nestjs/cqrs @nestjs/jwt @rxap/nest-utilities @rxap/pattern rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/nest-jwt:init
+nx g @rxap/nest-jwt:init
 ```
 # Generators
 

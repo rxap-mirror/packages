@@ -1,4 +1,4 @@
-This package provides a Cypress component testing preset and custom Cypress commands for Angular Material and other UI elements. It also includes an executor to generate a README.md file for the workspace, listing and describing the projects within the workspace. The Cypress commands simplify testing Angular Material components and tables.
+Internal workspace tools: an executor that generates the workspace README.md listing and describing the projects of the workspace.
 
 [![npm version](https://img.shields.io/npm/v/workspace?style=flat-square)](https://www.npmjs.com/package/workspace)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)
@@ -15,11 +15,13 @@ This package provides a Cypress component testing preset and custom Cypress comm
 
 **Add the package to your workspace:**
 ```bash
-yarn add workspace
+npm install workspace
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nx/angular @nx/cypress @nx/devkit @nx/plugin @rxap/plugin-utilities handlebars 
+npm install @nx/angular @nx/devkit @nx/plugin @rxap/plugin-utilities handlebars 
 ```
 # Executors
 

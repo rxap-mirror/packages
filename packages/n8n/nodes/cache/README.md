@@ -15,15 +15,17 @@ This package provides a cache node for n8n workflows, allowing users to cache it
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/n8n-nodes-cache
+npm install @rxap/n8n-nodes-cache
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add n8n-workflow 
+npm install n8n-workflow 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/n8n-nodes-cache:init
+nx g @rxap/n8n-nodes-cache:init
 ```
 # Generators
 

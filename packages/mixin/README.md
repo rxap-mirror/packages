@@ -15,11 +15,13 @@ Provides decorators and utilities for applying the mixin pattern in TypeScript. 
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/mixin
+npm install @rxap/mixin
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/mixin:init
+nx g @rxap/mixin:init
 ```
 # Generators
 

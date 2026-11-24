@@ -15,15 +15,17 @@ Provides a set of utilities and base classes for building NestJS servers, includ
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-server
+npm install @rxap/nest-server
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common @nestjs/config @nestjs/core @nestjs/microservices @nestjs/swagger @rxap/nest-utilities @rxap/utilities cookie-parser helmet 
+npm install @nestjs/common @nestjs/config @nestjs/core @nestjs/microservices @nestjs/swagger @rxap/nest-utilities @rxap/utilities cookie-parser helmet 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/nest-server:init
+nx g @rxap/nest-server:init
 ```
 # Generators
 

@@ -15,15 +15,17 @@ This package provides utilities for initializing Sentry in Angular applications.
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-sentry
+npm install @rxap/ngx-sentry
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @rxap/config @rxap/environment @sentry/angular 
+npm install @rxap/config @rxap/environment @sentry/angular 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ngx-sentry:init
+nx g @rxap/ngx-sentry:init
 ```
 # Generators
 

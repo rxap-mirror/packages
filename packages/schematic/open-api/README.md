@@ -13,5 +13,7 @@ This package provides schematics for generating code from OpenAPI specifications
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/schematics-open-api
+npm install @rxap/schematics-open-api
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+

@@ -15,15 +15,17 @@ This package provides abstractions for defining and executing remote methods in 
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/remote-method
+npm install @rxap/remote-method
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @rxap/definition @rxap/rxjs @rxap/utilities rxjs 
+npm install @angular/common @angular/core @rxap/definition @rxap/rxjs @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/remote-method:init
+nx g @rxap/remote-method:init
 ```
 # Generators
 

@@ -16,11 +16,13 @@ This package provides generators for initializing a workspace with pre-configure
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/preset-workspace
+npm install @rxap/preset-workspace
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/preset-workspace:init
+nx g @rxap/preset-workspace:init
 ```
 # Generators
 
@@ -38,6 +40,7 @@ standalone | boolean |  | If true, the workspace will be initialized for standal
 license | string | gpl | 
 repositoryUrl | string |  | The URL of the repository
 skipInstall | boolean |  | 
+packageManager | string |  | The package manager of the workspace. Detected from the root package.json packageManager field or the lockfile when omitted.
 
 ## init
 > Initialize the package in the workspace

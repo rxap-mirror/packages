@@ -15,11 +15,13 @@ Provides utilities for working with Reflect Metadata. It includes functions for 
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/reflect-metadata
+npm install @rxap/reflect-metadata
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/reflect-metadata:init
+nx g @rxap/reflect-metadata:init
 ```
 # Generators
 

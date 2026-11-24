@@ -15,15 +15,17 @@ This package provides a set of reusable Angular components, including a navigate
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/components
+npm install @rxap/components
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk @angular/common @angular/core @angular/material @angular/router @rxap/rxjs @rxap/utilities rxjs 
+npm install @angular/cdk @angular/common @angular/core @angular/material @angular/router @rxap/rxjs @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/components:init
+nx g @rxap/components:init
 ```
 # Generators
 

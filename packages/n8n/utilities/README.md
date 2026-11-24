@@ -15,15 +15,17 @@ This package provides utility functions and classes for n8n nodes, including cus
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/n8n-utilities
+npm install @rxap/n8n-utilities
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add n8n-workflow 
+npm install n8n-workflow 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/n8n-utilities:init
+nx g @rxap/n8n-utilities:init
 ```
 # Generators
 

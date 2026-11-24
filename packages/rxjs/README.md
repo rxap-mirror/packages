@@ -15,15 +15,17 @@ This package provides a set of RxJS operators and utilities. It includes operato
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/rxjs
+npm install @rxap/rxjs
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @rxap/utilities rxjs 
+npm install @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/rxjs:init
+nx g @rxap/rxjs:init
 ```
 # Generators
 

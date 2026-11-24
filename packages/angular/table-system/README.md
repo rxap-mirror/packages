@@ -15,15 +15,17 @@ This package provides a set of Angular directives, components, and services to e
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/table-system
+npm install @rxap/table-system
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/animations @angular/cdk @angular/common @angular/core @angular/forms @angular/material @rxap/data-source @rxap/material-table-system @rxap/utilities rxjs 
+npm install @angular/animations @angular/cdk @angular/common @angular/core @angular/forms @angular/material @rxap/data-source @rxap/material-table-system @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/table-system:init
+nx g @rxap/table-system:init
 ```
 # Generators
 

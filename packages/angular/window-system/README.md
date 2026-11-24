@@ -15,15 +15,17 @@ A module for creating and managing windows within an Angular application. It pro
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/window-system
+npm install @rxap/window-system
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk @angular/common @angular/core @angular/material @rxap/directives @rxap/material-directives @rxap/rxjs @rxap/services @rxap/utilities rxjs 
+npm install @angular/cdk @angular/common @angular/core @angular/material @rxap/directives @rxap/material-directives @rxap/rxjs @rxap/services @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/window-system:init
+nx g @rxap/window-system:init
 ```
 # Generators
 

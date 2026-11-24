@@ -15,15 +15,17 @@ This package provides an Auth0 module for NestJS applications, simplifying integ
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-auth0
+npm install @rxap/nest-auth0
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common @nestjs/config @nestjs/core @nestjs/jwt @rxap/nest-utilities auth0 joi jsonwebtoken jwks-rsa passport-jwt 
+npm install @nestjs/common @nestjs/config @nestjs/core @nestjs/jwt @rxap/nest-utilities auth0 joi jsonwebtoken jwks-rsa passport-jwt 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/nest-auth0:init
+nx g @rxap/nest-auth0:init
 ```
 # Generators
 

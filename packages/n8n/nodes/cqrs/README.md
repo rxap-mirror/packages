@@ -15,15 +15,17 @@ This package provides base classes for creating n8n nodes that interact with Rab
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/n8n-nodes-cqrs
+npm install @rxap/n8n-nodes-cqrs
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add n8n-workflow rxjs 
+npm install n8n-workflow rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/n8n-nodes-cqrs:init
+nx g @rxap/n8n-nodes-cqrs:init
 ```
 # Generators
 

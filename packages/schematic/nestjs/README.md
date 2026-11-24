@@ -13,5 +13,7 @@ This package provides schematics for NestJS projects. It includes schematics for
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/schematic-nestjs
+npm install @rxap/schematic-nestjs
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+

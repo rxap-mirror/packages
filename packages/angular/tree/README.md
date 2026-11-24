@@ -15,15 +15,17 @@ This package provides a tree component and data source for Angular applications.
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/tree
+npm install @rxap/tree
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk @angular/common @angular/core @angular/material @rxap/contenteditable @rxap/data-source @rxap/data-structure-tree @rxap/forms @rxap/material-directives @rxap/pattern @rxap/rxjs @rxap/utilities rxjs 
+npm install @angular/cdk @angular/common @angular/core @angular/material @rxap/contenteditable @rxap/data-source @rxap/data-structure-tree @rxap/forms @rxap/material-directives @rxap/pattern @rxap/rxjs @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/tree:init
+nx g @rxap/tree:init
 ```
 # Generators
 

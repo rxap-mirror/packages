@@ -16,15 +16,17 @@ This package provides an Angular theme service that allows you to manage and cus
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-theme
+npm install @rxap/ngx-theme
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk @angular/core @rxap/config @rxap/ngx-pub-sub @rxap/rxjs @rxap/utilities rxjs 
+npm install @angular/cdk @angular/core @rxap/config @rxap/ngx-pub-sub @rxap/rxjs @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ngx-theme:init
+nx g @rxap/ngx-theme:init
 ```
 # Guides
 

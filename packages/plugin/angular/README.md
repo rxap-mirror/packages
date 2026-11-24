@@ -29,11 +29,13 @@ This package provides generators and executors for Angular projects within an Nx
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/plugin-angular
+npm install @rxap/plugin-angular
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/plugin-angular:init
+nx g @rxap/plugin-angular:init
 ```
 # Guides
 

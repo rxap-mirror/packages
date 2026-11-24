@@ -14,11 +14,13 @@
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/validator
+npm install @rxap/validator
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/validator:init
+nx g @rxap/validator:init
 ```
 # Generators
 

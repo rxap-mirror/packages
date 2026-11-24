@@ -15,15 +15,17 @@ This package provides a NestJS module for integrating a Socket.IO client. It off
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-socket-io-client
+npm install @rxap/nest-socket-io-client
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common @nestjs/config @nestjs/microservices rxjs socket.io-client 
+npm install @nestjs/common @nestjs/config @nestjs/microservices rxjs socket.io-client 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/nest-socket-io-client:init
+nx g @rxap/nest-socket-io-client:init
 ```
 # Generators
 

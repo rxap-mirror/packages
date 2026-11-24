@@ -15,15 +15,17 @@ A NestJS module for integrating with HashiCorp Vault. It provides a VaultService
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-vault
+npm install @rxap/nest-vault
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common @nestjs/config @nestjs/terminus node-vault 
+npm install @nestjs/common @nestjs/config @nestjs/terminus node-vault 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/nest-vault:init
+nx g @rxap/nest-vault:init
 ```
 # Generators
 

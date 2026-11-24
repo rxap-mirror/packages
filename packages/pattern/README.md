@@ -15,15 +15,17 @@ Provides interfaces and types for implementing common patterns like commands, da
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/pattern
+npm install @rxap/pattern
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add rxjs 
+npm install rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/pattern:init
+nx g @rxap/pattern:init
 ```
 # Generators
 

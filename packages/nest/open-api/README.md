@@ -15,15 +15,17 @@ This package provides tools and utilities for integrating OpenAPI specifications
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-open-api
+npm install @rxap/nest-open-api
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/axios @nestjs/common @nestjs/config @nestjs/core @nestjs/swagger @nestjs/terminus @rxap/nest-utilities @rxap/node-utilities @rxap/utilities @sentry/core class-transformer class-validator openapi-types rxjs 
+npm install @nestjs/axios @nestjs/common @nestjs/config @nestjs/core @nestjs/swagger @nestjs/terminus @rxap/nest-utilities @rxap/node-utilities @rxap/utilities @sentry/core class-transformer class-validator openapi-types rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/nest-open-api:init
+nx g @rxap/nest-open-api:init
 ```
 # Generators
 

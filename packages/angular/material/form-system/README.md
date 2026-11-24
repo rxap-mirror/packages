@@ -15,15 +15,17 @@ Provides directives and a module to enhance Angular Material forms. It includes 
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/material-form-system
+npm install @rxap/material-form-system
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk @angular/common @angular/core @angular/forms @angular/material @angular/router @rxap/form-system @rxap/forms @rxap/mixin @rxap/reflect-metadata @rxap/utilities rxjs 
+npm install @angular/cdk @angular/common @angular/core @angular/forms @angular/material @angular/router @rxap/form-system @rxap/forms @rxap/mixin @rxap/reflect-metadata @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/material-form-system:init
+nx g @rxap/material-form-system:init
 ```
 # Generators
 

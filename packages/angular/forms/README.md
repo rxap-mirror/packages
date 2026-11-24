@@ -15,15 +15,17 @@ This package provides a set of tools and directives to simplify working with Ang
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/forms
+npm install @rxap/forms
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/core @angular/forms @angular/router @rxap/definition @rxap/directives @rxap/pattern @rxap/reflect-metadata @rxap/rxjs @rxap/services @rxap/utilities @rxap/validator rxjs 
+npm install @angular/core @angular/forms @angular/router @rxap/definition @rxap/directives @rxap/pattern @rxap/reflect-metadata @rxap/rxjs @rxap/services @rxap/utilities @rxap/validator rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/forms:init
+nx g @rxap/forms:init
 ```
 # Generators
 

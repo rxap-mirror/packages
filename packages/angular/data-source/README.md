@@ -15,15 +15,17 @@ Provides a set of classes and decorators for creating and managing data sources 
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/data-source
+npm install @rxap/data-source
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/cdk @angular/common @angular/core @angular/material @rxap/data-structure-tree @rxap/definition @rxap/environment @rxap/pattern @rxap/rxjs @rxap/utilities rxjs 
+npm install @angular/cdk @angular/common @angular/core @angular/material @rxap/data-structure-tree @rxap/definition @rxap/environment @rxap/pattern @rxap/rxjs @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/data-source:init
+nx g @rxap/data-source:init
 ```
 # Generators
 

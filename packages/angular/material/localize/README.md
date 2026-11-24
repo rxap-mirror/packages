@@ -15,15 +15,17 @@ Provides components and services to simplify internationalization (i18n) in Angu
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/ngx-material-localize
+npm install @rxap/ngx-material-localize
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @angular/forms @angular/material @rxap/directives @rxap/ngx-localize rxjs 
+npm install @angular/common @angular/core @angular/forms @angular/material @rxap/directives @rxap/ngx-localize rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/ngx-material-localize:init
+nx g @rxap/ngx-material-localize:init
 ```
 # Generators
 

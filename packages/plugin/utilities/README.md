@@ -15,11 +15,13 @@ Provides utility functions for Nx plugins, such as retrieving project dependenci
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/plugin-utilities
+npm install @rxap/plugin-utilities
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/plugin-utilities:init
+nx g @rxap/plugin-utilities:init
 ```
 # Generators
 

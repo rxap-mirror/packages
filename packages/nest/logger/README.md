@@ -15,15 +15,17 @@ A NestJS logger module that integrates with Google Cloud Logging and provides en
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-logger
+npm install @rxap/nest-logger
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common @rxap/nest-utilities @rxap/utilities 
+npm install @nestjs/common @rxap/nest-utilities @rxap/utilities 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/nest-logger:init
+nx g @rxap/nest-logger:init
 ```
 # Generators
 

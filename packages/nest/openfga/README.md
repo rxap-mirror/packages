@@ -16,15 +16,17 @@ A NestJS module for integrating with OpenFGA, a fine-grained authorization servi
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/nest-openfga
+npm install @rxap/nest-openfga
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @nestjs/common @nestjs/config @nestjs/core @openfga/sdk @rxap/nest-utilities joi 
+npm install @nestjs/common @nestjs/config @nestjs/core @openfga/sdk @rxap/nest-utilities joi 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/nest-openfga:init
+nx g @rxap/nest-openfga:init
 ```
 # Get started
 

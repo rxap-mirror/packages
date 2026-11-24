@@ -15,11 +15,13 @@ A utility for creating slugified strings from input strings. It provides options
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/slugify
+npm install @rxap/slugify
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/slugify:init
+nx g @rxap/slugify:init
 ```
 # Generators
 

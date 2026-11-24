@@ -12,5 +12,7 @@
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/browser-theme
+npm install @rxap/browser-theme
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+

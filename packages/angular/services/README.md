@@ -15,15 +15,17 @@ Provides Angular services for common tasks such as loading images, managing load
 
 **Add the package to your workspace:**
 ```bash
-yarn add @rxap/services
+npm install @rxap/services
 ```
+With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
+
 **Install peer dependencies:**
 ```bash
-yarn add @angular/common @angular/core @rxap/rxjs @rxap/utilities rxjs 
+npm install @angular/common @angular/core @rxap/rxjs @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash
-yarn nx g @rxap/services:init
+nx g @rxap/services:init
 ```
 # Generators
 
