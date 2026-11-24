@@ -21,7 +21,7 @@ function indexOf(needle, from = 0) {
 describe('release.mjs phase order (packages group)', () => {
   const commit = indexOf('await releaseChangelog({');
   const build = indexOf('--configuration=production');
-  const guard = indexOf('check-dist-for-ng-prism.mjs');
+  const guard = indexOf('applyDistTransforms({ projects: changed');
   const tag = indexOf('const untagged = tagReleases(changelogResult.projectChangelogs);');
   const publish = indexOf("await publishGroup(releasePublish, 'packages'", tag);
 
@@ -49,5 +49,18 @@ describe('release.mjs phase order (packages group)', () => {
     const arm = indexOf('releaseCommitted = !DRY_RUN;');
     assert.ok(arm > tag && arm < publish, 'releaseCommitted must be set right after tagging');
     assert.equal(source.split('releaseCommitted = !DRY_RUN;').length - 1, 1, 'releaseCommitted must be armed in exactly one place');
+  });
+});
+
+describe('dist-transforms.mjs', () => {
+  it('runs the theme export, the workspace-marker strip, prism-strip and the ng-prism guard in this order', async () => {
+    const { applyDistTransforms } = await import('./dist-transforms.mjs');
+    const commands = [];
+    applyDistTransforms({ projects: ['a', 'b'], run: (cmd) => commands.push(cmd) });
+    assert.equal(commands.length, 4);
+    assert.match(commands[0], /add-theme-entry-point-to-package-json\.sh/);
+    assert.match(commands[1], /remove-blacklisted-package-dependenceis\.sh/);
+    assert.match(commands[2], /--targets=prism-strip --projects=a,b /);
+    assert.match(commands[3], /check-dist-for-ng-prism\.mjs --projects=a,b$/);
   });
 });

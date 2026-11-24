@@ -83,6 +83,7 @@ import { execSync, spawnSync } from 'node:child_process';
 import { createInterface } from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 import { createRequire } from 'node:module';
+import { applyDistTransforms } from './dist-transforms.mjs';
 
 const require = createRequire(import.meta.url);
 
@@ -751,14 +752,9 @@ async function main() {
   // ---- 8. dist transforms (former prepack) ----
   if (!DRY_RUN) {
     log('Dist transforms (theme export, strip workspace marker, strip ng-prism showcases)');
-    run('bash tools/scripts/add-theme-entry-point-to-package-json.sh');
-    run('bash tools/scripts/remove-blacklisted-package-dependenceis.sh');
-    // the @Showcase decorators import @ng-prism/core, which is not a dependency of the published packages.
-    // Only projects with a prism-strip target (@rxap/plugin-ng-prism:init-library) run it; the build already ran.
-    run(`yarn nx run-many --targets=prism-strip --projects=${changed.join(',')} --excludeTaskDependencies --skip-nx-cache --nxBail`);
-    // safety net: nothing that references @ng-prism may be published (a library without a prism-strip target,
-    // a stale dist, a new file type). Fails the release before the publish step.
-    run(`node tools/scripts/check-dist-for-ng-prism.mjs --projects=${changed.join(',')}`);
+    // theme export, workspace marker, prism-strip and the ng-prism guard (check-dist-for-ng-prism.mjs) —
+    // shared with the package-manager e2e matrix. `run` dies on a failure, before anything is tagged.
+    applyDistTransforms({ projects: changed, run });
   }
 
   // ---- 8b. tag the release commit — only now that build and dist checks passed ----

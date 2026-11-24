@@ -24,6 +24,14 @@
         "storage": "tmp/local-registry/storage"
       }
     },
+    "e2e-pm": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "options": {
+        "command": "node tools/scripts/e2e-package-managers.mjs",
+        "forwardAllArgs": true
+      }
+    },
     "readme": {
       "executor": "workspace:readme"
     },
