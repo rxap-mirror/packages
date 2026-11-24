@@ -15,5 +15,5 @@ import { ModuleApplication } from '@rxap/ngx-bootstrap/module';
 from `@rxap/ngx-bootstrap/module`:
 
 ```bash
-yarn add @angular/platform-browser-dynamic
+npm install @angular/platform-browser-dynamic
 ```

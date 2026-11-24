@@ -4,12 +4,12 @@ To create a new workspace, run the following command:
 
 ```bash
 WORKSPACE_NAME=my-workspace
-yarn create nx-workspace --preset @rxap/preset-angular --pm yarn --name $WORKSPACE_NAME
+npx create-nx-workspace --preset @rxap/preset-angular --pm pnpm --name $WORKSPACE_NAME
 ```
 
-Navigate to the newly created workspace and run the yarn install command:
+`--pm` selects the package manager (`npm`, `pnpm` or `yarn`); the workspace is set up for it and the dependencies
+are installed. Navigate to the newly created workspace:
 
 ```bash
 cd $WORKSPACE_NAME
-yarn
 ```

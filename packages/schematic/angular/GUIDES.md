@@ -124,7 +124,7 @@ Here is a complete example that generates a "User Table" with:
 The easiest and recommended way to execute your `schematic.yaml` is by using the `--file` option. This allows the generator to automatically infer the **project**, **feature**, and **target directory** from the file's location.
 
 ```bash
-yarn nx generate @rxap/schematic-composer:compose --file libs/feature/user/src/lib/schematic.yaml
+nx generate @rxap/schematic-composer:compose --file libs/feature/user/src/lib/schematic.yaml
 ```
 
 > [!NOTE]
@@ -135,7 +135,7 @@ yarn nx generate @rxap/schematic-composer:compose --file libs/feature/user/src/l
 If you want the generator to search for all `schematic.yaml` files within a directory tree:
 
 ```bash
-yarn nx generate @rxap/schematic-composer:compose --directory libs/feature/user/src/lib
+nx generate @rxap/schematic-composer:compose --directory libs/feature/user/src/lib
 ```
 
 **Arguments:**
