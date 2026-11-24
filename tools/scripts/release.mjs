@@ -54,6 +54,14 @@
  *                     Needed because `currentVersionResolver: git-tag` ignores the stamp and Nx would
  *                     otherwise bump from the old tag (or find no feat/fix commit and release nothing).
  *                     All other projects keep the conventional-commits bump. Dry-run it first.
+ *   --projects=<a,b>  release only these projects (Nx project names): validate, version, build, dist
+ *                     checks, tags and publish are limited to them, dependents are NOT bumped
+ *                     (updateDependents 'never') and the rxap umbrella pass is skipped. Not combinable
+ *                     with --stamped.
+ *   --final           stable release of the selected --projects on ANY release branch (dist-tag
+ *                     `latest`, prerelease suffix dropped: 24.0.0-dev.1 -> 24.0.0). Meant for the last
+ *                     release of a package before it is deprecated and deleted, while the rest of the
+ *                     workspace stays on its prerelease line. Requires --projects; implies --graduate.
  *   --skip-validate   skip the build/test/lint gate
  *   --skip-build      skip the production build (use existing dist; pair with --publish-only)
  *   --publish-only    jump straight to publish (retry a failed publish without re-versioning)
@@ -100,14 +108,18 @@ const VERBOSE = has('--verbose');
 const SKIP_VALIDATE = has('--skip-validate');
 const SKIP_BUILD = has('--skip-build') || has('--publish-only');
 const PUBLISH_ONLY = has('--publish-only');
-const SKIP_UMBRELLA = has('--skip-umbrella');
+const SKIP_UMBRELLA = has('--skip-umbrella') || valueOf('projects') !== undefined;
 const GITLAB_ONLY = has('--gitlab-releases-only');
 const GITLAB_RELEASE = has('--gitlab-release') || GITLAB_ONLY;
 // --graduate[=<preid>]: promote the latest prerelease line (default preid `dev`) to a stable release.
 // Nx resolves the current version from the newest *stable* tag unless it is told the preid, which
 // would restart the stable line at the old version (e.g. 19.1.2 -> 19.1.3 instead of 21.0.1-dev.1 -> 21.0.1).
 const STAMPED = has('--stamped');
-const GRADUATE = valueOf('graduate') ?? (has('--graduate') ? 'dev' : undefined);
+// --projects=<a,b>: restrict the release to these projects (no dependents, no umbrella)
+const PROJECTS = valueOf('projects')?.split(',').map((p) => p.trim()).filter(Boolean);
+// --final: stable release of the selected projects on any release branch (see the header)
+const FINAL = has('--final');
+const GRADUATE = valueOf('graduate') ?? (has('--graduate') || FINAL ? 'dev' : undefined);
 // graduating means dropping the prerelease suffix: `patch` on `x.y.z-dev.n` yields `x.y.z`
 const FORCED_SPECIFIER = valueOf('specifier') ?? (GRADUATE ? 'patch' : undefined);
 
@@ -235,6 +247,13 @@ function computeReleaseMode() {
     preid = 'dev';
   }
 
+  if (FINAL && isPrerelease !== null) {
+    // the selected projects leave the branch's prerelease line for good
+    isPrerelease = false;
+    distTag = 'latest';
+    preid = '';
+  }
+
   const registry = process.env.PUBLISH_REGISTRY || 'https://registry.npmjs.org';
   return { branch, defaultBranch, isPrerelease, distTag, preid, registry };
 }
@@ -269,6 +288,22 @@ async function preflight(mode) {
   }
   if (mode.isPrerelease === null) {
     die(`Could not resolve a release mode for branch "${mode.branch}".`);
+  }
+  if (FINAL && !PROJECTS?.length) {
+    die('--final requires --projects=<a,b,...>: it must never turn the whole workspace stable.');
+  }
+  if (PROJECTS !== undefined && PROJECTS.length === 0) {
+    die('--projects is empty.');
+  }
+  if (PROJECTS && STAMPED) {
+    die('--projects cannot be combined with --stamped.');
+  }
+  if (PROJECTS) {
+    const known = new Set(listReleaseProjects('packages').map((p) => p.name));
+    const unknown = PROJECTS.filter((p) => !known.has(p));
+    if (unknown.length > 0) {
+      die(`--projects contains projects that are not in the "packages" release group: ${unknown.join(', ')}`);
+    }
   }
 
   run('git fetch');
@@ -308,6 +343,8 @@ async function preflight(mode) {
       `  first-release   = ${FIRST_RELEASE}`,
       `  graduate        = ${GRADUATE ?? false}`,
       `  stamped         = ${STAMPED}`,
+      `  final           = ${FINAL}`,
+      `  projects        = ${PROJECTS?.join(', ') ?? '(all changed)'}`,
       `  gitlab-release  = ${GITLAB_RELEASE}`,
     ].join('\n'),
   );
@@ -551,6 +588,15 @@ function stampedPlan(groupName, mode) {
   return { bySpecifier, rest: rest.map((p) => p.name) };
 }
 
+// --projects: version only the selected projects. updateDependents 'never' keeps every other project
+// (and its version) untouched — with 'auto' Nx would patch-bump all dependents of the selection.
+async function releaseVersionSelected(baseOptions) {
+  const { ReleaseClient } = require('nx/release');
+  const { releaseVersion } = new ReleaseClient({ version: { updateDependents: 'never' } });
+  log(`Version ${PROJECTS.length} selected project(s) at ${FORCED_SPECIFIER ?? '(conventional-commits)'}`);
+  return releaseVersion({ ...baseOptions, projects: PROJECTS, specifier: FORCED_SPECIFIER });
+}
+
 // one releaseVersion call per distinct stamped specifier (+ one for the remaining projects)
 async function releaseVersionStamped(_releaseVersion, groupName, mode, baseOptions) {
   // updateDependents 'never': with 'auto' every filtered call drags in (and patch-bumps from the OLD git
@@ -596,7 +642,7 @@ async function main() {
   // ---- fast path: retry just the publish from existing dist ----
   if (PUBLISH_ONLY) {
     log('Publish-only: publishing existing dist');
-    await publishGroup(releasePublish, 'packages', mode);
+    await publishGroup(releasePublish, 'packages', mode, PROJECTS);
     if (!SKIP_UMBRELLA) await publishGroup(releasePublish, 'rxap', mode);
     if (!DRY_RUN) pushRelease();
     return;
@@ -613,7 +659,11 @@ async function main() {
   if (!DRY_RUN && !SKIP_VALIDATE) {
     log('Validate (build, test, lint)');
     run('yarn nx reset');
-    run('yarn nx run-many --targets=build,test,lint --exclude=angular');
+    run(
+      PROJECTS
+        ? `yarn nx run-many --targets=build,test,lint --projects=${PROJECTS.join(',')}`
+        : 'yarn nx run-many --targets=build,test,lint --exclude=angular',
+    );
   } else if (SKIP_VALIDATE) {
     warn('Skipping validation gate (--skip-validate).');
   }
@@ -631,11 +681,19 @@ async function main() {
   };
   const versionResult = STAMPED
     ? await releaseVersionStamped(releaseVersion, 'packages', mode, packagesVersionOptions)
-    : await releaseVersion({ ...packagesVersionOptions, groups: ['packages'], specifier: FORCED_SPECIFIER });
+    : PROJECTS
+      ? await releaseVersionSelected(packagesVersionOptions)
+      : await releaseVersion({ ...packagesVersionOptions, groups: ['packages'], specifier: FORCED_SPECIFIER });
   const versionData = versionResult.projectsVersionData ?? {};
   const changed = Object.entries(versionData)
     .filter(([, d]) => d?.newVersion)
     .map(([p]) => p);
+  if (PROJECTS) {
+    const outside = changed.filter((p) => !PROJECTS.includes(p));
+    if (outside.length > 0) {
+      die(`--projects: Nx versioned projects outside the selection: ${outside.join(', ')}`);
+    }
+  }
 
   if (changed.length === 0) {
     return ok('No package version changes detected. Nothing to release.');
@@ -648,7 +706,11 @@ async function main() {
     run('yarn nx reset');
     // update-package-group pulls in update-dependencies via its dependsOn (belt-and-suspenders
     // for the internal ^dep pinning that updateDependents/versionPrefix already handles)
-    run('yarn nx run-many --targets=update-package-group --exclude=rxap');
+    run(
+      PROJECTS
+        ? `yarn nx run-many --targets=update-package-group --projects=${changed.join(',')}`
+        : 'yarn nx run-many --targets=update-package-group --exclude=rxap',
+    );
     run('yarn nx reset');
     run('yarn nx run workspace:readme');
     run('yarn install --mode=update-lockfile', { allowFailure: true });
@@ -658,7 +720,7 @@ async function main() {
   log('Changelog + commit + tag (packages group)');
   if (!DRY_RUN) run('git add -A'); // stage version + packageGroup + readme + lockfile changes
   const changelogResult = await releaseChangelog({
-    groups: ['packages'],
+    ...(PROJECTS ? { projects: changed } : { groups: ['packages'] }),
     versionData,
     version: versionResult.workspaceVersion,
     createRelease: false, // Nx 20.5.0 cannot create GitLab releases — handled below
