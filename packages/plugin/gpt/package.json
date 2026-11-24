@@ -8,10 +8,12 @@
     "@rxap/ts-morph": "^1.7.2-dev.0",
     "@rxap/workspace-ts-morph": "^24.0.0-dev.1",
     "@rxap/workspace-utilities": "^24.0.0-dev.1",
+    "colors": "1.4.0",
     "openai": "7.57.0",
     "tiktoken": "1.0.22",
     "ts-morph": "28.0.0",
-    "tslib": "2.9.1"
+    "tslib": "2.9.1",
+    "xml2js": "0.6.2"
   },
   "author": {
     "name": "Merzough Münker",

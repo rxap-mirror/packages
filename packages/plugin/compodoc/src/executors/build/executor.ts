@@ -14,12 +14,12 @@ import {
 } from 'child_process';
 import {
   copyFileSync,
+  cpSync,
   existsSync,
   mkdirSync,
   mkdtempSync,
   writeFileSync,
 } from 'fs';
-import { copySync } from 'fs-extra';
 import { tmpdir } from 'os';
 import {
   join,
@@ -286,7 +286,7 @@ export default async function runExecutor(options: BuildExecutorSchema, context:
   const firstOutputPath = outputPaths.shift();
   for (const outputPath of outputPaths) {
     mkdirSync(outputPath, { recursive: true });
-    copySync(firstOutputPath, outputPath);
+    cpSync(firstOutputPath, outputPath, { recursive: true });
   }
 
   return result;

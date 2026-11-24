@@ -11,6 +11,9 @@
     "ts-morph": "28.0.0",
     "tslib": "2.9.1"
   },
+  "peerDependencies": {
+    "prettier": "^3.0.0"
+  },
   "author": {
     "name": "Merzough Münker",
     "email": "mmuenker@digitaix.com"
