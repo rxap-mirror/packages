@@ -31,6 +31,8 @@ module.exports = {
   // made generator beforeEach() hooks time out. Raise the default for the whole
   // workspace.
   testTimeout: 30000,
+  // every jest task would otherwise start (cores - 1) workers, multiplied by the Nx task parallelism
+  maxWorkers: process.env.JEST_MAX_WORKERS ?? 2,
   // coverage is always collected (also for files no spec imports) so the per-project coverageThreshold is enforced
   collectCoverage: true,
   coverageReporters: [ 'json-summary', 'text-summary' ],

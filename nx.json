@@ -326,7 +326,7 @@
   "cli": {
     "packageManager": "pnpm"
   },
-  "parallel": 12,
+  "parallel": 8,
   "useInferencePlugins": false,
   "defaultBase": "development",
   "release": {
