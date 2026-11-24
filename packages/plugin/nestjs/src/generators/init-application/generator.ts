@@ -32,6 +32,8 @@ import {
   AddPackageJsonDevDependency,
   CoerceFilesStructure,
   GenerateSerializedSchematicFile,
+  PackageManagerSubstitutions,
+  ResolvePackageManagerProfile,
   GetNestApiPrefix,
   GetProject,
   GetProjectRoot,
@@ -205,12 +207,14 @@ export async function initApplicationGenerator(
       srcFolder: join(__dirname, 'files', 'shared'),
       target: '',
       overwrite: options.overwrite,
+      substitutions: PackageManagerSubstitutions(ResolvePackageManagerProfile(tree)),
     });
   } else {
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'shared'),
       target: 'shared/nestjs',
       overwrite: options.overwrite,
+      substitutions: PackageManagerSubstitutions(ResolvePackageManagerProfile(tree)),
     });
   }
 

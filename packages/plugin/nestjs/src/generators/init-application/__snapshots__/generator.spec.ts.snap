@@ -68,10 +68,10 @@ LABEL traefik.http.routers.$TRAEFIK_ROUTER_NAME.rule=PathPrefix(\`$TRAEFIK_ROUTE
 LABEL traefik.http.routers.$TRAEFIK_ROUTER_NAME.priority=$TRAEFIK_ROUTER_PRIORITY
 LABEL traefik.http.routers.$TRAEFIK_ROUTER_NAME.service=$TRAEFIK_SERVICE_NAME
 
-COPY package.json /app
-COPY yarn.lock /app
+COPY package.json package-lock.json /app/
 
-RUN yarn install --production && yarn cache clean
+
+RUN npm ci --omit=dev && npm cache clean --force
 
 COPY . /app
 ",
