@@ -35,8 +35,14 @@ import {
   UpdateNgPackageJson,
   UpdatePackageJson,
 } from '@rxap/workspace-utilities';
+import { isBuiltin } from 'module';
 import { join, dirname } from 'path';
-import { Project } from 'ts-morph';
+import {
+  Node,
+  Project,
+  SourceFile,
+  SyntaxKind,
+} from 'ts-morph';
 import { FixDependenciesGeneratorSchema } from './schema';
 import 'colors';
 
@@ -63,37 +69,84 @@ function resolveProjectDependencies(
   return dependencies.filter((value, index, array) => array.indexOf(value) === index);
 }
 
+/**
+ * Collects the module specifiers of every statement that loads a module at runtime or references its types:
+ * - `import … from 'x'`, `import 'x'` and `import type … from 'x'`
+ * - `export … from 'x'`
+ * - `import x = require('x')`
+ * - `require('x')` and `import('x')` with a string literal argument
+ *
+ * Type-only imports are included on purpose: the `@nx/dependency-checks` lint rule counts them as well, so
+ * a package only used for its types is either declared or listed in the `ignoredDependencies` of the rule.
+ */
+export function getModuleSpecifiersFromSourceFile(sourceFile: SourceFile): string[] {
+  const specifiers: string[] = [];
+  for (const importDeclaration of sourceFile.getImportDeclarations()) {
+    specifiers.push(importDeclaration.getModuleSpecifierValue());
+  }
+  for (const exportDeclaration of sourceFile.getExportDeclarations()) {
+    const moduleSpecifier = exportDeclaration.getModuleSpecifierValue();
+    if (moduleSpecifier) {
+      specifiers.push(moduleSpecifier);
+    }
+  }
+  for (const importEquals of sourceFile.getDescendantsOfKind(SyntaxKind.ImportEqualsDeclaration)) {
+    const moduleReference = importEquals.getModuleReference();
+    if (Node.isExternalModuleReference(moduleReference)) {
+      const expression = moduleReference.getExpression();
+      if (expression && Node.isStringLiteral(expression)) {
+        specifiers.push(expression.getLiteralValue());
+      }
+    }
+  }
+  for (const call of sourceFile.getDescendantsOfKind(SyntaxKind.CallExpression)) {
+    const expression = call.getExpression();
+    const isRequire = Node.isIdentifier(expression) && expression.getText() === 'require';
+    const isDynamicImport = expression.getKind() === SyntaxKind.ImportKeyword;
+    if (!isRequire && !isDynamicImport) {
+      continue;
+    }
+    const [ argument ] = call.getArguments();
+    if (argument && (Node.isStringLiteral(argument) || Node.isNoSubstitutionTemplateLiteral(argument))) {
+      specifiers.push(argument.getLiteralValue());
+    }
+  }
+  return specifiers;
+}
+
+/**
+ * Maps a module specifier to the name of the package that provides it.
+ *
+ * @returns the package name or `null` for relative/absolute paths
+ */
+export function getPackageNameFromModuleSpecifier(moduleSpecifier: string): string | null {
+  if (moduleSpecifier.startsWith('.') || moduleSpecifier.startsWith('/')) {
+    return null;
+  }
+  const match = moduleSpecifier.match(/^([^@][^/]+)\/.+$/) || moduleSpecifier.match(/^(@[^/]+\/[^/]+)\/.+/);
+  return match ? match[1] : moduleSpecifier;
+}
+
+export function isIgnoredPackage(packageName: string): boolean {
+  return isBuiltin(packageName) || PACKAGE_ADD_BLACK_LIST.some(regexOrString => typeof regexOrString === 'string' ?
+    regexOrString === packageName :
+    regexOrString.test(packageName));
+}
+
 function getPackageListFromSourceFiles(project: Project): string[] {
   const packageList: string[] = [];
 
   project.getSourceFiles().forEach(sourceFile => {
-    sourceFile.getImportDeclarations().forEach(importDeclaration => {
-      const moduleSpecifier = importDeclaration.getModuleSpecifierValue();
-
-      if (moduleSpecifier.startsWith('.')) {
-        return;
-      }
-
-      const match = moduleSpecifier.match(/^([^@][^/]+)\/.+$/) || moduleSpecifier.match(/^(@[^/]+\/[^/]+)\/.+/);
-      let packageName: string;
-      if (match) {
-        packageName = match[1];
-      } else {
-        packageName = moduleSpecifier;
-      }
-
-      if (!packageList.includes(packageName)) {
+    for (const moduleSpecifier of getModuleSpecifiersFromSourceFile(sourceFile)) {
+      const packageName = getPackageNameFromModuleSpecifier(moduleSpecifier);
+      if (packageName && !packageList.includes(packageName)) {
         packageList.push(packageName);
         console.log(`Add package ${ packageName } from source file ${ sourceFile.getFilePath() }`);
       }
-    });
+    }
   });
 
-  return packageList
-    .filter((value, index, array) => array.indexOf(value) === index)
-    .filter(packageName => !PACKAGE_ADD_BLACK_LIST.some(regexOrString => typeof regexOrString === 'string' ?
-      regexOrString === packageName :
-      regexOrString.test(packageName)));
+  return packageList.filter(packageName => !isIgnoredPackage(packageName));
 }
 
 const TESTING_FILE_EXTENSIONS = [
@@ -108,95 +161,19 @@ const TESTING_FILE_EXTENSIONS = [
 const TESTING_FOLDERS = [ 'cypress', '.storybook', 'compodoc', 'docs', '.nyc_output', 'coverage', '.angular' ];
 
 const PACKAGE_REMOVE_BLACK_LIST = [ 'tslib' ];
-const PACKAGE_ADD_BLACK_LIST = [
-  /@firebase/,
+/**
+ * Packages that are never added although they are imported. Node builtins (`fs`, `node:path`, …) are
+ * detected with `isBuiltin` and need no entry here.
+ */
+const PACKAGE_ADD_BLACK_LIST: Array<string | RegExp> = [
   // the @Showcase decorators are removed from the built package by the prism-strip target (@rxap/plugin-ng-prism)
   '@ng-prism/core',
-  'fs',
-  'path',
-  'child_process',
-  'os',
-  'crypto',
-  'util',
-  'events',
-  'stream',
-  'assert',
-  'tty',
-  'net',
-  'dns',
-  'tls',
-  'http',
-  'https',
-  'zlib',
-  'url',
-  'querystring',
-  'punycode',
-  'string_decoder',
-  'http2',
-  'perf_hooks',
-  'worker_threads',
-  'v8',
-  'vm',
-  'async_hooks',
-  'inspector',
-  'trace_events',
-  'console',
-  'buffer',
-  'constants',
-  'v8',
-  'domain',
-  'readline',
-  'repl',
-  'timers',
-  'module',
-  'process',
-  'cluster',
-  'dgram',
-  'fs/promises',
-  'perf_hooks',
-  'readline',
-  'repl',
-  'string_decoder',
-  'tls/promises',
-  'trace_events',
-  'tty',
-  'worker_threads',
-  'zlib/promises',
-  'assert',
-  'async_hooks',
-  'buffer',
-  'child_process',
-  'console',
-  'crypto',
-  'dns/promises',
-  'domain',
-  'events',
-  'fs',
-  'http',
-  'http2',
-  'https',
-  'net',
-  'os',
-  'path',
-  'querystring',
-  'stream',
-  'timers',
-  'tls',
-  'tty',
-  'url',
-  'util',
-  'v8',
-  'vm',
-  'zlib',
-  'glob',
-  'fs-extra',
-  'express',
-  'axios',
 ];
 
 const PACKAGE_PEER_DEPENDENCIES_BLACK_LIST = [ 'tslib' ];
 
-const PACKAGE_FORCED_PEER_DEPENDENCIES: Array<string | RegExp> = [ 'rxjs', /@angular\//, /@nestjs\//, /@storybook\//, /@types\// ];
+// `nx` is always provided by the workspace: a nested copy would load a second Nx instance next to the one running the plugin
+const PACKAGE_FORCED_PEER_DEPENDENCIES: Array<string | RegExp> = [ 'nx', 'rxjs', /@angular\//, /@nestjs\//, /@types\// ];
 
 function addDependedProjects(
   projectGraph: ProjectGraph,
@@ -228,6 +205,24 @@ function getUsedPackagesFromSourceRoot(tree: Tree, projectSourceRoot: string) {
                         !TESTING_FILE_EXTENSIONS.some(ext => fileName.endsWith(ext)),
   );
 
+  return getPackageListFromSourceFiles(project);
+}
+
+function isSourceFile(fileName: string) {
+  return fileName.endsWith('.ts') && !fileName.endsWith('.d.ts') && !TESTING_FILE_EXTENSIONS.some(ext => fileName.endsWith(ext));
+}
+
+/**
+ * Returns the packages used by the files directly in the source root (not in sub folders).
+ */
+export function getUsedPackagesFromRootFiles(tree: Tree, projectSourceRoot: string) {
+  const project = CreateProject();
+  for (const fileName of tree.children(projectSourceRoot)) {
+    const filePath = join(projectSourceRoot, fileName);
+    if (tree.isFile(filePath) && isSourceFile(fileName)) {
+      project.createSourceFile(fileName, tree.read(filePath, 'utf-8')!);
+    }
+  }
   return getPackageListFromSourceFiles(project);
 }
 
@@ -267,6 +262,14 @@ function fixDependenciesWithTsMorphProject(
     if (tree.exists(join(projectSourceRoot, 'executors'))) {
       const packageList = getUsedPackagesFromSourceRoot(tree, join(projectSourceRoot, 'executors'));
       dependencyList = dependencyList.concat(packageList);
+    }
+    // files directly in src (index.ts, plugin.ts, …): runtime code of a plugin, else part of the library
+    const rootPackageList = getUsedPackagesFromRootFiles(tree, projectSourceRoot);
+    const isPlugin = [ 'generators', 'executors', 'migrations', 'schematics' ].some(folder => tree.exists(join(projectSourceRoot, folder)));
+    if (isPlugin) {
+      dependencyList = dependencyList.concat(rootPackageList);
+    } else {
+      peerDependencyList = peerDependencyList.concat(rootPackageList);
     }
   }
 
