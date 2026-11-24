@@ -54,6 +54,7 @@ describe('init', () => {
       'package.json',
       'nx.json',
       '.gitignore',
+      '.prettierignore',
       '.yarnrc.yml',
       '.devcontainer/Dockerfile',
       '.devcontainer/devcontainer.json',
@@ -77,7 +78,7 @@ describe('init', () => {
       const generated = generatedFiles();
       if (name !== 'yarn') {
         for (const [ file, content ] of Object.entries(generated)) {
-          expect({ file, content: content ?? '' }).toEqual({ file, content: expect.not.stringMatching(/\byarn\b(?!\.lock)/) });
+          expect({ file, content: content ?? '' }).toEqual({ file, content: expect.not.stringMatching(/\byarn\b/) });
         }
       }
       expect(generated).toMatchSnapshot();

@@ -74,8 +74,6 @@ nx-angular-config.xml
 nx-config.xml
 .DS_Store
 Thumbs.db
-!yarn.lock
-!bun.lock
 documentation.json
 gitlab-ci-setup.sh
 .idea/copilot/chatSessions
@@ -107,6 +105,17 @@ npm install
 . "$(dirname "$0")/_/husky.sh"
 
 npx nx run-many --target lint --quiet
+",
+  ".prettierignore": "
+dist
+coverage
+.angular
+*.handlebars
+node_modules
+tmp
+tmp.*
+.nx
+.nyc_output
 ",
   ".yarnrc.yml": null,
   "nx.json": "{
@@ -439,8 +448,6 @@ nx-angular-config.xml
 nx-config.xml
 .DS_Store
 Thumbs.db
-!yarn.lock
-!bun.lock
 documentation.json
 gitlab-ci-setup.sh
 .idea/copilot/chatSessions
@@ -472,6 +479,17 @@ pnpm install
 . "$(dirname "$0")/_/husky.sh"
 
 pnpm exec nx run-many --target lint --quiet
+",
+  ".prettierignore": "
+dist
+coverage
+.angular
+*.handlebars
+node_modules
+tmp
+tmp.*
+.nx
+.nyc_output
 ",
   ".yarnrc.yml": null,
   "nx.json": "{
@@ -804,8 +822,6 @@ nx-angular-config.xml
 nx-config.xml
 .DS_Store
 Thumbs.db
-!yarn.lock
-!bun.lock
 documentation.json
 gitlab-ci-setup.sh
 .idea/copilot/chatSessions
@@ -821,6 +837,7 @@ gitlab-ci-setup.sh
 .idea/developer-tools.xml
 .idea/dataSources/*/storage_v2
 .firebase
+!yarn.lock
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
@@ -842,6 +859,18 @@ yarn install
 . "$(dirname "$0")/_/husky.sh"
 
 yarn nx run-many --target lint --quiet
+",
+  ".prettierignore": "
+dist
+coverage
+.angular
+*.handlebars
+node_modules
+tmp
+tmp.*
+.nx
+.nyc_output
+.yarn
 ",
   ".yarnrc.yml": "nodeLinker: node-modules
 ",
@@ -1308,8 +1337,6 @@ nx-angular-config.xml
 nx-config.xml
 .DS_Store
 Thumbs.db
-!yarn.lock
-!bun.lock
 documentation.json
 gitlab-ci-setup.sh
 .idea/copilot/chatSessions
@@ -2010,7 +2037,6 @@ exports[`init should init default workspace 10`] = `
 dist
 coverage
 .angular
-.yarn
 *.handlebars
 node_modules
 tmp
@@ -2141,8 +2167,6 @@ nx-angular-config.xml
 nx-config.xml
 .DS_Store
 Thumbs.db
-!yarn.lock
-!bun.lock
 documentation.json
 gitlab-ci-setup.sh
 .idea/copilot/chatSessions
@@ -2165,7 +2189,6 @@ gitlab-ci-setup.sh
 dist
 coverage
 .angular
-.yarn
 *.handlebars
 node_modules
 tmp

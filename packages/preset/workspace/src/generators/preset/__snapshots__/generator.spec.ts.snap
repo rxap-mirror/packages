@@ -206,8 +206,6 @@ nx-angular-config.xml
 nx-config.xml
 .DS_Store
 Thumbs.db
-!yarn.lock
-!bun.lock
 documentation.json
 gitlab-ci-setup.sh
 .idea/copilot/chatSessions
@@ -910,7 +908,6 @@ exports[`preset should use workspace preset 11`] = `
 dist
 coverage
 .angular
-.yarn
 *.handlebars
 node_modules
 tmp

@@ -49,9 +49,6 @@ export const gitIgnore = [
   // system files
   '.DS_Store',
   'Thumbs.db',
-  // lockfiles must be committed even though '*.lock' is ignored
-  '!yarn.lock',
-  '!bun.lock',
   'documentation.json',
   'gitlab-ci-setup.sh',
   // .idea
@@ -74,7 +71,6 @@ export const prettierIgnore = [
   'dist',
   'coverage',
   '.angular',
-  '.yarn',
   '*.handlebars',
   'node_modules',
   'tmp',
@@ -90,6 +86,8 @@ export function gitIgnoreForPackageManager(packageManager: Pick<PackageManagerPr
   switch (packageManager.name) {
     case 'yarn':
       return [
+        // the lockfile must be committed even though '*.lock' is ignored
+        '!yarn.lock',
         '.yarn/*',
         '!.yarn/patches',
         '!.yarn/plugins',
@@ -97,7 +95,16 @@ export function gitIgnoreForPackageManager(packageManager: Pick<PackageManagerPr
         '!.yarn/sdks',
         '!.yarn/versions',
       ];
+    case 'bun':
+      return [ '!bun.lock', packageManager.ciCacheDir ];
     default:
       return [ packageManager.ciCacheDir ];
   }
+}
+
+/**
+ * The .prettierignore entries that only apply to one package manager
+ */
+export function prettierIgnoreForPackageManager(packageManager: Pick<PackageManagerProfile, 'name'>): string[] {
+  return packageManager.name === 'yarn' ? [ '.yarn' ] : [];
 }

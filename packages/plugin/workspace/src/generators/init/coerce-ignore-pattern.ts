@@ -8,10 +8,11 @@ import {
   gitIgnore,
   gitIgnoreForPackageManager,
   prettierIgnore,
+  prettierIgnoreForPackageManager,
 } from './const';
 
 export function coerceIgnorePattern(tree: Tree, packageManager: PackageManagerProfile) {
   CoerceIgnorePattern(tree, '.gitignore', [ ...gitIgnore, ...gitIgnoreForPackageManager(packageManager) ]);
   RemoveIgnorePattern(tree, '.gitignore', [ '/.idea' ]);
-  CoerceIgnorePattern(tree, '.prettierignore', prettierIgnore);
+  CoerceIgnorePattern(tree, '.prettierignore', [ ...prettierIgnore, ...prettierIgnoreForPackageManager(packageManager) ]);
 }
