@@ -71,6 +71,36 @@ with a temporary `currentVersionResolver: disk` / `specifierSource: prompt` conf
 3. `node tools/scripts/deprecate-packages.mjs deprecate` (`--dry-run` first, `check` afterwards).
 4. Delete the package and its references (rxap umbrella, composer, `tsconfig.base.json`, README, `nx.json`).
 
+## Package-manager e2e matrix (before a release)
+
+`tools/scripts/e2e-package-managers.mjs` checks that the published packages work for consumers on
+npm, yarn (berry, node-modules) and pnpm, plus yarn PnP as informational only. It never touches the real registry:
+
+1. starts Verdaccio on `http://localhost:4873` with its storage in `tmp/e2e-pm/verdaccio/` (the packages of
+   this workspace are never proxied to npmjs, everything else, e.g. `@rxap/cli`, is),
+2. builds every publishable project, applies the release dist transforms (`dist-transforms.mjs`) and
+   publishes them with the dist-tag `e2e`,
+3. per package manager, in a temp directory outside the repository: `create-nx-workspace --pm <pm>
+   --preset apps --workspaces=false --nxCloud skip`, installs the plugins and `schematic-composer` `@e2e`, runs
+   `plugin-workspace:init`, `plugin-gitlab-ci:init`, `@nx/angular:library` + `plugin-angular:init-library`,
+   adds `nest-server` and `dialog` `@e2e`, and checks: no `yarn` in the lines the generators added
+   (pm ≠ yarn), the root `packageManager` is unchanged, `nx run-many -t build` is green, and every installed
+   package and every plugin generator/executor implementation loads from the consumer root (this catches
+   undeclared dependencies under pnpm's strict layout; a missing *declared peer* is only a warning).
+
+```bash
+yarn nx run workspace:e2e-pm                       # full matrix, ~15 min with a warm Nx cache
+yarn nx run workspace:e2e-pm --pm=pnpm --keep      # one package manager, keep the temp workspace
+node tools/scripts/e2e-package-managers.mjs --skip-publish --pm=npm   # reuse the packages already published to tmp/e2e-pm
+```
+
+Flags: `--pm=<npm,yarn,pnpm,yarn-pnp>`, `--keep`, `--skip-build` (publish the existing dist),
+`--skip-publish`, `--port=<n>`, `--yarn-version=<v>`, `--pnpm-version=<v>` (defaults are pinned,
+cooldown-eligible versions run through corepack), `--verbose`. It prints a package-manager × check matrix and
+writes `tmp/e2e-pm/report.{md,json}` and per-step logs to `tmp/e2e-pm/logs/<pm>/`. The exit code is 1 when a
+required cell fails (any cell except `yarn-pnp`: Nx itself does not run under Yarn PnP). Port 4873 must be free,
+so stop `workspace:local-registry` first.
+
 ## What the orchestrator does (phase order)
 
 1. **Compute release mode** from the branch (prerelease / preid / dist-tag).
@@ -88,7 +118,8 @@ with a temporary `currentVersionResolver: disk` / `specifierSource: prompt` conf
 8. **Dist transforms** – add the `./theme` export where a `theme.css` exists and strip the
    internal `workspace` marker dependency, remove the ng-prism `@Showcase` decorators
    (`prism-strip`) and verify with `tools/scripts/check-dist-for-ng-prism.mjs` that no built
-   package references `@ng-prism` (the release aborts before publishing otherwise).
+   package references `@ng-prism` (the release aborts before publishing otherwise). These steps
+   live in `tools/scripts/dist-transforms.mjs`, shared with the package-manager e2e matrix above.
 9. **Publish** – `releasePublish` from `dist/{projectRoot}` with the branch dist-tag/registry.
 10. **GitLab releases** – created via the GitLab Releases API (Nx 20.5.0 has no native GitLab
     support), one per published project, using the generated changelog as the body.
