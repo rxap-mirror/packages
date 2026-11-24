@@ -125,32 +125,23 @@ export class RxapFormBuilder<
       providers: this.providers,
     });
 
-    let form: Record<string, Function> & FormDefinition;
+    let injected: (Record<string, Function> & FormDefinition) | null;
 
-    // don't use the notFoundValue feature of the injector.
-    // if used for each call of the get method an "empty" or "fallback"
-    // instance is created
-
+    // `null` as not-found value, never a fallback instance: that would be created on every call. A missing
+    // provider of the definition itself is told apart from a failing one (or a missing dependency of it, which
+    // still throws) by the injector, not by the error message: production builds only report `NG0201`, without
+    // the name of the token.
     try {
-      form = injector.get(this.definition);
+      injected = injector.get<any>(this.definition, null);
     } catch (e: any) {
       const message = typeof e?.message === 'string' ? e.message : '';
-      // Angular 21 throws a RuntimeError NG0201 ("No provider found for `X`.")
-      // instead of the old NullInjectorError ("No provider for X"). Detect both.
-      const isNoProvider =
-        e?.name === 'NullInjectorError' ||
-        message.includes('NG0201') ||
-        message.includes('No provider');
-      if (isNoProvider && message.includes(this.definition.name)) {
-        if (isDevMode()) {
-          console.warn(
-            `Could not inject the definition instance. Fallback and call the constructor of the definition class: ${ message }`);
-        }
-        form = new this.definition() as any;
-      } else {
-        throw new Error(`Could not inject the definition instance: ${ message }`);
-      }
+      throw new Error(`Could not inject the definition instance: ${ message }`);
     }
+    if (injected === null && isDevMode()) {
+      console.warn(
+        `Could not inject the definition instance. Fallback and call the constructor of the definition class: no provider for ${ this.definition.name }`);
+    }
+    const form: Record<string, Function> & FormDefinition = injected ?? (new this.definition() as any);
 
     const controls: Record<string, AbstractControl> = {};
 
