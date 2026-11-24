@@ -57,6 +57,19 @@ with a temporary `currentVersionResolver: disk` / `specifierSource: prompt` conf
   publish failure) without re-versioning.
 - `--skip-validate` / `--skip-build` / `--skip-umbrella` – skip individual phases.
 - `YES=true yarn release` – skip the interactive confirmation.
+- `--projects=<a,b>` – release only these projects: dependents are not bumped and the `rxap` umbrella
+  pass is skipped. Also limits `--publish-only`.
+- `--final` – (requires `--projects`) stable release of the selection on any release branch (dist-tag
+  `latest`, `24.0.0-dev.1` → `24.0.0`), while the rest of the workspace stays on its prerelease line.
+
+### Sunsetting a package
+
+1. Add it to `tools/scripts/sunset-packages.json` (message, `finalRelease`) and prefix its
+   `package.json` description with `DEPRECATED — <message>` (the README is generated from it).
+2. Final stable release: ``yarn release --final --projects=$(node tools/scripts/deprecate-packages.mjs projects)``
+   (dry-run first).
+3. `node tools/scripts/deprecate-packages.mjs deprecate` (`--dry-run` first, `check` afterwards).
+4. Delete the package and its references (rxap umbrella, composer, `tsconfig.base.json`, README, `nx.json`).
 
 ## What the orchestrator does (phase order)
 
