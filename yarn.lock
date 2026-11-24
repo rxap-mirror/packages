@@ -12733,6 +12733,7 @@ __metadata:
     tailwindcss: ^3.4.4
     ts-morph: 28.0.0
     tslib: 2.9.1
+    typescript: ^6.0.0
     yaml: 2.9.1
   peerDependencies:
     nx: ^24.0.0
@@ -34832,7 +34833,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:6.0.3, typescript@npm:~6.0.3":
+"typescript@npm:6.0.3, typescript@npm:^6.0.0, typescript@npm:~6.0.3":
   version: 6.0.3
   resolution: "typescript@npm:6.0.3"
   bin:
@@ -34852,7 +34853,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@6.0.3#~builtin<compat/typescript>, typescript@patch:typescript@~6.0.3#~builtin<compat/typescript>":
+"typescript@patch:typescript@6.0.3#~builtin<compat/typescript>, typescript@patch:typescript@^6.0.0#~builtin<compat/typescript>, typescript@patch:typescript@~6.0.3#~builtin<compat/typescript>":
   version: 6.0.3
   resolution: "typescript@patch:typescript@npm%3A6.0.3#~builtin<compat/typescript>::version=6.0.3&hash=5da071"
   bin:

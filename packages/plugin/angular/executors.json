@@ -19,6 +19,11 @@
       "implementation": "./src/executors/config/executor",
       "schema": "./src/executors/config/schema.json",
       "description": "config executor"
+    },
+    "build-generators": {
+      "implementation": "./src/executors/build-generators/executor",
+      "schema": "./src/executors/build-generators/schema.json",
+      "description": "Compile and stage the generators of an ng-packagr library"
     }
   }
 }
