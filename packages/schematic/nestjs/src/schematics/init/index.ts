@@ -36,6 +36,7 @@ import {
 import {
   GetProjectRoot,
   GetProjectSourceRoot,
+  ResolvePackageManagerProfile,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
 import {
@@ -491,7 +492,7 @@ function writeFiles(options: InitSchema): Rule {
   return tree => {
     const projectSourceRoot = GetProjectSourceRoot(tree, options.project);
     return mergeWith(apply(url('./files'), [
-      applyTemplates(options),
+      applyTemplates({ ...options, packageManager: ResolvePackageManagerProfile(tree) }),
       move(projectSourceRoot),
       forEach(entry => {
         if (tree.exists(entry.path)) {

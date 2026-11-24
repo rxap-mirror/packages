@@ -8,8 +8,10 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY package.json /app
-
-RUN yarn && yarn cache clean
+<% if (packageManager.dockerSetup) { %>
+<%= packageManager.dockerSetup %>
+<% } %>
+RUN <%= packageManager.install %> && <%= packageManager.cacheClean %>
 
 COPY . /app
 
