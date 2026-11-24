@@ -4,18 +4,15 @@ import {
 } from '@nx/devkit';
 import { generatorGenerator } from '@nx/plugin/generators';
 import {
-  Assets,
-  CoerceAssets,
   DeleteRecursive,
-  GetProjectRoot,
   GetProjectSourceRoot,
-  GetTarget,
   HasGenerator,
   IsAngularProject,
   ReadNgPackageJson,
   WriteNgPackageJson,
 } from '@rxap/workspace-utilities';
 import { join } from 'path';
+import { CoerceGeneratorsBuild } from './coerce-generators-build';
 import { InitPublishableGeneratorSchema } from './schema';
 
 export async function CoerceInitGenerator(
@@ -30,45 +27,13 @@ export async function CoerceInitGenerator(
   }
 
   if (HasGenerator(tree, projectName, 'init')) {
+    CoerceGeneratorsBuild(tree, project);
     return;
   }
 
   console.log(`project: ${ projectName } has no init generator`.yellow);
 
-  // region setup build assets options
   const projectSourceRoot = GetProjectSourceRoot(tree, projectName);
-  const projectRoot = GetProjectRoot(tree, projectName);
-
-  if (IsAngularProject(project)) {
-    const ngPackagr = ReadNgPackageJson(tree, project);
-    ngPackagr.assets ??= [];
-    CoerceAssets(ngPackagr.assets, [
-      {
-        input: join('src', 'generators'),
-        glob: '**/!(*.ts|*.js|*.json)',
-        output: join('src', 'generators'),
-      },
-      'generators.json'
-    ]);
-    WriteNgPackageJson(tree, project, ngPackagr);
-  } else {
-    const buildTarget = GetTarget(project, 'build');
-    buildTarget.options ??= {};
-    buildTarget.options.assets ??= [];
-    CoerceAssets(buildTarget.options.assets, [
-      {
-        input: './' + join(projectSourceRoot, 'generators'),
-        glob: '**/!(*.ts|*.js|*.json)',
-        output: './src/generators',
-      },
-      {
-        input: './' + projectRoot,
-        glob: 'generators.json',
-        output: '.',
-      },
-    ]);
-  }
-  // endregion
 
   try {
     await generatorGenerator(tree, {
@@ -82,5 +47,7 @@ export async function CoerceInitGenerator(
   } catch (e: any) {
     console.log(`Error while generating the init generator: ${e.message}`.red);
   }
+
+  CoerceGeneratorsBuild(tree, project, true);
 
 }
