@@ -1,6 +1,6 @@
 @if (value()) {
   <div
-    [ngClass]="[preset()]"
+    [ngClass]="preset() ?? ''"
     [position]="position()"
     [repeat]="repeat()"
     [rxapBackgroundImage]="value()"
