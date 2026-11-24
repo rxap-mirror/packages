@@ -40,7 +40,7 @@
  *   --verbose             stream every command's output (it always goes to tmp/e2e-pm/logs/)
  */
 import { execSync, spawn } from 'node:child_process';
-import { createWriteStream, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync, chmodSync } from 'node:fs';
+import { chmodSync, cpSync, createWriteStream, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { delimiter, dirname, join, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -238,6 +238,34 @@ function publishableProjects() {
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
+/** the version a package is published under in this run: unique, and still matched by the original ^ranges */
+export function e2eVersion(version, runId) {
+  return version.includes('-') ? `${version}.e2e.${runId}` : `${version}-e2e.${runId}`;
+}
+
+/** a dist manifest with its own version and every reference to a package of this run pinned to the run's version */
+export function rewriteManifest(manifest, versions) {
+  const m = structuredClone(manifest);
+  m.version = versions.get(m.name) ?? m.version;
+  for (const key of ['dependencies', 'peerDependencies', 'optionalDependencies', 'devDependencies']) {
+    for (const dep of Object.keys(m[key] ?? {})) {
+      if (versions.has(dep)) m[key][dep] = versions.get(dep);
+    }
+  }
+  for (const group of [m['nx-migrations']?.packageGroup, m['ng-update']?.packageGroup]) {
+    if (Array.isArray(group)) {
+      for (const entry of group) {
+        if (entry && typeof entry === 'object' && versions.has(entry.package)) entry.version = versions.get(entry.package);
+      }
+    } else if (group && typeof group === 'object') {
+      for (const dep of Object.keys(group)) {
+        if (versions.has(dep)) group[dep] = versions.get(dep);
+      }
+    }
+  }
+  return m;
+}
+
 async function buildAndPublish(projects) {
   const names = projects.map((p) => p.name);
   if (!SKIP_BUILD) {
@@ -250,7 +278,25 @@ async function buildAndPublish(projects) {
   log('Dist transforms (shared with the release)');
   applyDistTransforms({ projects: names, run });
 
-  log(`Publish ${projects.length} packages → ${REGISTRY} @${DIST_TAG}`);
+  // every run publishes its own versions (<version>-e2e.<runId>), staged outside dist/ so a later
+  // `yarn release --skip-build` never sees them: a version that existed before (on npmjs, in a yarn/npm/pnpm
+  // metadata or tarball cache anywhere on the machine) can then never be served instead of this build
+  const runId = new Date().toISOString().replace(/\D/g, '').slice(0, 14);
+  const stage = join(E2E_DIR, 'publish');
+  rmSync(stage, { recursive: true, force: true });
+  const missing = projects.filter((p) => !existsSync(join(ROOT, 'dist', p.root, 'package.json')));
+  if (missing.length > 0) {
+    die(`no dist package.json for: ${missing.map((p) => `${p.name} (dist/${p.root})`).join(', ')}`);
+  }
+  const manifests = new Map(projects.map((p) => [p.name, JSON.parse(readFileSync(join(ROOT, 'dist', p.root, 'package.json'), 'utf-8'))]));
+  const versions = new Map([...manifests.values()].map((m) => [m.name, e2eVersion(m.version, runId)]));
+  for (const p of projects) {
+    cpSync(join(ROOT, 'dist', p.root), join(stage, p.root), { recursive: true, dereference: true });
+    writeFileSync(join(stage, p.root, 'package.json'), JSON.stringify(rewriteManifest(manifests.get(p.name), versions), null, 2) + '\n');
+  }
+  writeFileSync(join(E2E_DIR, 'published.json'), JSON.stringify({ runId, versions: Object.fromEntries(versions) }, null, 2) + '\n');
+
+  log(`Publish ${projects.length} packages (<version>-e2e.${runId}) → ${REGISTRY} @${DIST_TAG}`);
   const npmrc = join(E2E_DIR, 'publish.npmrc');
   // a dummy token: Verdaccio allows anonymous publishes ($all), npm refuses to publish without any token. The
   // dedicated userconfig also keeps the real ~/.npmrc (and its npmjs token) out of this run.
@@ -261,11 +307,7 @@ async function buildAndPublish(projects) {
   await Promise.all(
     Array.from({ length: 8 }, async () => {
       for (let p = queue.shift(); p; p = queue.shift()) {
-        const dist = join(ROOT, 'dist', p.root);
-        if (!existsSync(join(dist, 'package.json'))) {
-          failed.push(`${p.name}: no dist/${p.root}/package.json`);
-          continue;
-        }
+        const dist = join(stage, p.root);
         const { code } = await exec('npm', ['publish', dist, '--tag', DIST_TAG, '--registry', `${REGISTRY}/`, '--access', 'public'], {
           env,
           logFile: join(LOG_DIR, 'publish', `${p.name}.log`),
@@ -355,6 +397,8 @@ function consumerEnv(spec, cellDir) {
     YARN_NODE_LINKER: spec.id === 'yarn-pnp' ? 'pnp' : 'node-modules',
     YARN_ENABLE_GLOBAL_CACHE: 'false',
     YARN_CACHE_FOLDER: join(cache, 'yarn'),
+    // the global folder holds yarn's npm metadata cache, which is not covered by the cache folder
+    YARN_GLOBAL_FOLDER: join(cache, 'yarn-global'),
     YARN_ENABLE_IMMUTABLE_INSTALLS: 'false',
     YARN_ENABLE_TELEMETRY: '0',
     YARN_ENABLE_PROGRESS_BARS: 'false',
@@ -521,7 +565,9 @@ async function runCell(id) {
   const nx = (...args) => [nxCmd, [...nxArgs, ...args]];
   await step('g-workspace-init', ...nx('g', '@rxap/plugin-workspace:init', '--no-interactive'), { needs: ['install'] });
   await step('g-gitlab-ci-init', ...nx('g', '@rxap/plugin-gitlab-ci:init', '--no-interactive'), { needs: ['install'] });
-  await step('g-angular-lib', ...nx('g', '@nx/angular:library', 'libs/demo', '--name=demo', '--buildable', '--no-interactive'), { needs: ['install'] });
+  // jest, not the default vitest: with vitest, npm 10.9 crashes in the install of @nx/angular:library itself
+  // ("Cannot read properties of null (reading 'edgesOut')", reproducible in a plain Nx 24.0.6 workspace without rxap)
+  await step('g-angular-lib', ...nx('g', '@nx/angular:library', 'libs/demo', '--name=demo', '--buildable', '--unitTestRunner=jest', '--no-interactive'), { needs: ['install'] });
   await step('g-angular-init-library', ...nx('g', '@rxap/plugin-angular:init-library', '--project=demo', '--no-interactive'), { needs: ['g-angular-lib'] });
   // the runtime libraries come after the generators, as in a real workspace: adding @rxap/dialog first would pull
   // the newest Angular through its peers and conflict with the version @nx/angular:library pins. The add also
