@@ -20,7 +20,7 @@
     "allow": [
       "Bash(ls:*)",
       "Bash(cat:*)",
-      "Bash(yarn jest:*)",
+      "Bash(pnpm jest:*)",
       "Bash(glab auth status)",
       "Bash(glab issue list:*)",
       "Bash(glab issue view:*)",

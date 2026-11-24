@@ -7,7 +7,7 @@
     "ghcr.io/devcontainers/features/docker-in-docker:2": {}
   },
   "forwardPorts": [4200, 8888],
-  "postCreateCommand": "yarn && yarn init:env",
+  "postCreateCommand": "pnpm install && pnpm init:env",
   "customizations": {
     "vscode": {
       "extensions": [

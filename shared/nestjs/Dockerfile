@@ -30,6 +30,6 @@ LABEL traefik.http.routers.$TRAEFIK_ROUTER_NAME.service=$TRAEFIK_SERVICE_NAME
 
 COPY package.json /app
 
-RUN yarn && yarn cache clean
+RUN npm install --omit=dev && npm cache clean --force
 
 COPY . /app

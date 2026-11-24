@@ -1,3 +1,5 @@
-FROM mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye
+FROM mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm
 
-RUN corepack enable && corepack prepare yarn@3.6.0 --activate
+# pnpm in the version of package.json#packageManager, via corepack
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+RUN corepack enable
