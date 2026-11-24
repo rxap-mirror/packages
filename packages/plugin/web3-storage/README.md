@@ -1,5 +1,4 @@
-This plugin provides an executor to deploy your application to web3 storage. It also includes a generator to initialize the plugin. It simplifies the process of deploying web applications to decentralized storage.
-
+DEPRECATED — No longer maintained: the legacy web3.storage API this plugin deploys to has been shut down. This plugin provides an executor to deploy your application to web3 storage. It also includes a generator to initialize the plugin. It simplifies the process of deploying web applications to decentralized storage.
 [![npm version](https://img.shields.io/npm/v/@rxap/plugin-web3-storage?style=flat-square)](https://www.npmjs.com/package/@rxap/plugin-web3-storage)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)

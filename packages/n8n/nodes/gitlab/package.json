@@ -45,5 +45,6 @@
     "directory": "packages/n8n/nodes/gitlab"
   },
   "type": "commonjs",
-  "types": "./src/index.d.ts"
+  "types": "./src/index.d.ts",
+  "description": "DEPRECATED — No longer maintained. Use the built-in n8n GitLab node or the HTTP Request node with the GitLab API credential."
 }

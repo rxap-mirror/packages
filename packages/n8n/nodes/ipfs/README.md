@@ -1,5 +1,4 @@
-An n8n node to download files from IPFS, supporting download as file, JSON, or text, with options for specifying the IPFS gateway, CID, and file path. It allows users to retrieve content from IPFS and integrate it into their n8n workflows.
-
+DEPRECATED — No longer maintained. Use the n8n HTTP Request node against an IPFS gateway. An n8n node to download files from IPFS, supporting download as file, JSON, or text, with options for specifying the IPFS gateway, CID, and file path. It allows users to retrieve content from IPFS and integrate it into their n8n workflows.
 [![npm version](https://img.shields.io/npm/v/@rxap/n8n-nodes-ipfs?style=flat-square)](https://www.npmjs.com/package/@rxap/n8n-nodes-ipfs)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)

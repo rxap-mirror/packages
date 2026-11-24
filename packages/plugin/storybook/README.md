@@ -1,5 +1,4 @@
-This package provides generators to initialize Storybook for Angular projects within an Nx workspace. It automates the configuration of Storybook, including adding dependencies, setting up configurations, and generating stories. It supports both application and library projects, and offers options to customize the setup, such as enabling Compodoc integration and skipping format checks.
-
+DEPRECATED — No longer maintained: rxap replaced Storybook with ng-prism. Use @rxap/plugin-ng-prism. This package provides generators to initialize Storybook for Angular projects within an Nx workspace. It automates the configuration of Storybook, including adding dependencies, setting up configurations, and generating stories. It supports both application and library projects, and offers options to customize the setup, such as enabling Compodoc integration and skipping format checks.
 [![npm version](https://img.shields.io/npm/v/@rxap/plugin-storybook?style=flat-square)](https://www.npmjs.com/package/@rxap/plugin-storybook)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)

@@ -1,4 +1,4 @@
-
+DEPRECATED — No longer maintained. Use the built-in n8n GitLab node or the HTTP Request node with the GitLab API credential.
 [![npm version](https://img.shields.io/npm/v/@rxap/n8n-nodes-gitlab?style=flat-square)](https://www.npmjs.com/package/@rxap/n8n-nodes-gitlab)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)

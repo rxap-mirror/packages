@@ -1,7 +1,7 @@
 {
   "version": "1.0.7-dev.0",
   "name": "@rxap/n8n-nodes-ipfs",
-  "description": "An n8n node to download files from IPFS, supporting download as file, JSON, or text, with options for specifying the IPFS gateway, CID, and file path. It allows users to retrieve content from IPFS and integrate it into their n8n workflows.\n",
+  "description": "DEPRECATED — No longer maintained. Use the n8n HTTP Request node against an IPFS gateway. An n8n node to download files from IPFS, supporting download as file, JSON, or text, with options for specifying the IPFS gateway, CID, and file path. It allows users to retrieve content from IPFS and integrate it into their n8n workflows.",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "24.0.6",

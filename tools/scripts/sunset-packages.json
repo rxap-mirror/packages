@@ -1,0 +1,19 @@
+[
+  { "project": "plugin-cypress", "package": "@rxap/plugin-cypress", "root": "packages/plugin/cypress", "finalRelease": true, "message": "No longer maintained: rxap dropped Cypress. Use Vitest for unit tests and @rxap/plugin-ng-prism for component showcases." },
+  { "project": "workspace-cypress", "package": "@rxap/workspace-cypress", "root": "packages/workspace/cypress", "finalRelease": false, "message": "No longer maintained: rxap dropped Cypress. This package never exported its commands." },
+  { "project": "plugin-storybook", "package": "@rxap/plugin-storybook", "root": "packages/plugin/storybook", "finalRelease": true, "message": "No longer maintained: rxap replaced Storybook with ng-prism. Use @rxap/plugin-ng-prism." },
+  { "project": "generator-ts-morph", "package": "@rxap/generator-ts-morph", "root": "packages/generator/ts-morph", "finalRelease": true, "message": "No longer maintained. Import AddDir from @rxap/workspace-ts-morph." },
+  { "project": "generator-utilities", "package": "@rxap/generator-utilities", "root": "packages/generator/utilities", "finalRelease": false, "message": "No longer maintained: the package has no exports." },
+  { "project": "nest-web3-storage", "package": "@rxap/nest-web3-storage", "root": "packages/nest/web3-storage", "finalRelease": true, "message": "No longer maintained: the legacy web3.storage API this module targets has been shut down." },
+  { "project": "plugin-web3-storage", "package": "@rxap/plugin-web3-storage", "root": "packages/plugin/web3-storage", "finalRelease": true, "message": "No longer maintained: the legacy web3.storage API this plugin deploys to has been shut down." },
+  { "project": "nest-supabase", "package": "@rxap/nest-supabase", "root": "packages/nest/supabase", "finalRelease": true, "message": "No longer maintained. Use @supabase/supabase-js directly." },
+  { "project": "plugin-kraft", "package": "@rxap/plugin-kraft", "root": "packages/plugin/kraft", "finalRelease": true, "message": "No longer maintained. Use the kraft CLI directly." },
+  { "project": "plugin-llm", "package": "@rxap/plugin-llm", "root": "packages/plugin/llm", "finalRelease": true, "message": "No longer maintained. For LLM-generated documentation use @rxap/plugin-gpt." },
+  { "project": "n8n-nodes-gitlab", "package": "@rxap/n8n-nodes-gitlab", "root": "packages/n8n/nodes/gitlab", "finalRelease": true, "message": "No longer maintained. Use the built-in n8n GitLab node or the HTTP Request node with the GitLab API credential." },
+  { "project": "n8n-nodes-open-webui", "package": "@rxap/n8n-nodes-open-webui", "root": "packages/n8n/nodes/open-webui", "finalRelease": true, "message": "No longer maintained. Use the n8n HTTP Request node against the Open WebUI API." },
+  { "project": "n8n-nodes-development", "package": "@rxap/n8n-nodes-development", "root": "packages/n8n/nodes/development", "finalRelease": true, "message": "No longer maintained. Use the built-in n8n Manual Trigger and Execute Workflow Trigger." },
+  { "project": "n8n-nodes-ipfs", "package": "@rxap/n8n-nodes-ipfs", "root": "packages/n8n/nodes/ipfs", "finalRelease": true, "message": "No longer maintained. Use the n8n HTTP Request node against an IPFS gateway." },
+  { "project": "n8n-nodes-file", "package": "@rxap/n8n-nodes-file", "root": "packages/n8n/nodes/file", "finalRelease": true, "message": "No longer maintained. Use the built-in n8n Crypto node to hash binary data." },
+  { "project": "n8n-nodes-neo4j", "package": "@rxap/n8n-nodes-neo4j", "root": "packages/n8n/nodes/neo4j", "finalRelease": false, "message": "No longer maintained: the node was never implemented." },
+  { "project": "plugin-n8n", "package": "@rxap/plugin-n8n", "root": "packages/plugin/n8n", "finalRelease": true, "message": "No longer maintained. Scaffold n8n nodes with the official @n8n/node-cli." }
+]

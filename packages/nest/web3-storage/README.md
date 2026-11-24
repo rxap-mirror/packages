@@ -1,5 +1,4 @@
-NestJS module for interacting with web3.storage. It provides a service for uploading and retrieving data from the decentralized web using the web3.storage service. The module can be configured using the NestJS config service.
-
+DEPRECATED — No longer maintained: the legacy web3.storage API this module targets has been shut down. NestJS module for interacting with web3.storage. It provides a service for uploading and retrieving data from the decentralized web using the web3.storage service. The module can be configured using the NestJS config service.
 [![npm version](https://img.shields.io/npm/v/@rxap/nest-web3-storage?style=flat-square)](https://www.npmjs.com/package/@rxap/nest-web3-storage)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)

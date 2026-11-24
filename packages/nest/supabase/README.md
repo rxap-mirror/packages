@@ -1,5 +1,4 @@
-This package provides a NestJS module for integrating with Supabase. It offers a configurable module with options for setting the Supabase URL and key, and a service for interacting with the Supabase client. The module also includes an options loader for retrieving configuration from NestJS ConfigService.
-
+DEPRECATED — No longer maintained. Use @supabase/supabase-js directly. This package provides a NestJS module for integrating with Supabase. It offers a configurable module with options for setting the Supabase URL and key, and a service for interacting with the Supabase client. The module also includes an options loader for retrieving configuration from NestJS ConfigService.
 [![npm version](https://img.shields.io/npm/v/@rxap/nest-supabase?style=flat-square)](https://www.npmjs.com/package/@rxap/nest-supabase)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)

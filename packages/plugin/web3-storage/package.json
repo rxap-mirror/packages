@@ -1,7 +1,7 @@
 {
   "version": "24.0.0-dev.1",
   "name": "@rxap/plugin-web3-storage",
-  "description": "This plugin provides an executor to deploy your application to web3 storage. It also includes a generator to initialize the plugin. It simplifies the process of deploying web applications to decentralized storage.\n",
+  "description": "DEPRECATED — No longer maintained: the legacy web3.storage API this plugin deploys to has been shut down. This plugin provides an executor to deploy your application to web3 storage. It also includes a generator to initialize the plugin. It simplifies the process of deploying web applications to decentralized storage.",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "24.0.6",
