@@ -1,5 +1,5 @@
 {
-  "version": "1.0.6-dev.0",
+  "version": "1.0.6",
   "name": "@rxap/n8n-nodes-development",
   "description": "DEPRECATED — No longer maintained. Use the built-in n8n Manual Trigger and Execute Workflow Trigger. Provides development trigger nodes for n8n workflows, including a manual trigger and a workflow execution trigger. These nodes are designed to help with designing modular, microservice-like workflows and for testing workflows with specified input data.",
   "license": "GPL-3.0-or-later",

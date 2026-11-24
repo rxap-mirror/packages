@@ -1,3 +1,7 @@
+## 1.0.7 (2026-11-24)
+
+This was a version bump only for n8n-nodes-ipfs to align it with other projects, there were no code changes.
+
 ## 1.0.7-dev.0 (2026-11-23)
 
 ### 🧱 Updated Dependencies

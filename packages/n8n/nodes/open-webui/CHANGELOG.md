@@ -1,3 +1,7 @@
+## 0.0.8 (2026-11-24)
+
+This was a version bump only for n8n-nodes-open-webui to align it with other projects, there were no code changes.
+
 ## 0.0.8-dev.0 (2026-11-23)
 
 ### 🧱 Updated Dependencies

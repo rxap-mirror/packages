@@ -1,3 +1,7 @@
+# 12.0.0 (2026-11-24)
+
+This was a version bump only for nest-web3-storage to align it with other projects, there were no code changes.
+
 ## 12.0.0-dev.1 (2026-11-23)
 
 This was a version bump only for nest-web3-storage to align it with other projects, there were no code changes.

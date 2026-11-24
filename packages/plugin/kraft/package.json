@@ -1,5 +1,5 @@
 {
-  "version": "24.0.0-dev.1",
+  "version": "24.0.0",
   "name": "@rxap/plugin-kraft",
   "description": "DEPRECATED — No longer maintained. Use the kraft CLI directly. This plugin provides executors for interacting with KraftCloud. It allows you to deploy, manage instances, and create tunnels for your KraftCloud applications. The plugin also includes an init generator to set up your workspace for KraftCloud development.",
   "license": "GPL-3.0-or-later",
