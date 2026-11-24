@@ -131,10 +131,24 @@ export interface PackageManagerProfile {
   /** Workspace-relative cache/store directory that CI should cache between jobs */
   ciCacheDir: string;
   cacheClean: string;
+  /**
+   * Dockerfile instructions that make the package manager available in a `node` image (empty for npm). Corepack is
+   * installed explicitly because node >= 25 no longer bundles it.
+   */
+  dockerSetup: string;
   run: (script: string, args?: string) => string;
   exec: (bin: string, args?: string) => string;
   dlx: (pkg: string, args?: string) => string;
 }
+
+const COREPACK_DOCKER_SETUP = 'ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0\nRUN npm install -g corepack && corepack enable';
+
+const DOCKER_SETUP: Record<PackageManagerName, string> = {
+  npm: '',
+  yarn: COREPACK_DOCKER_SETUP,
+  pnpm: COREPACK_DOCKER_SETUP,
+  bun: 'RUN npm install -g bun',
+};
 
 function withArgs(command: string, args?: string) {
   return args ? `${ command } ${ args }` : command;
@@ -150,7 +164,7 @@ export function GetPackageManagerProfile(
 ): PackageManagerProfile {
   const resolved: ResolvedPackageManager = typeof packageManager === 'string' ? { name: packageManager } : packageManager;
   const classic = IsYarnClassic(tree, resolved);
-  let profile: Omit<PackageManagerProfile, 'run' | 'exec' | 'dlx' | 'name' | 'classic'>;
+  let profile: Omit<PackageManagerProfile, 'run' | 'exec' | 'dlx' | 'name' | 'classic' | 'dockerSetup'>;
   switch (resolved.name) {
     case 'pnpm':
       profile = {
@@ -230,6 +244,7 @@ export function GetPackageManagerProfile(
     ...profile,
     name: resolved.name,
     classic,
+    dockerSetup: DOCKER_SETUP[resolved.name] ?? '',
     // npm needs `--` to forward arguments to the script
     run: (script, args) => withArgs(`${ profile.runPrefix } ${ script }`, args && resolved.name === 'npm' ? `-- ${ args }` : args),
     exec: (bin, args) => withArgs(`${ profile.execPrefix } ${ bin }`, args),
@@ -249,7 +264,7 @@ export function ResolvePackageManagerProfile(tree: TreeLike, override?: PackageM
  *
  * `{{pm.name}}`, `{{pm.run}}` (prefix to run a script), `{{pm.exec}}` (prefix to run a binary), `{{pm.dlx}}`,
  * `{{pm.install}}`, `{{pm.ciInstall}}`, `{{pm.prodInstall}}`, `{{pm.add}}`, `{{pm.addDev}}`, `{{pm.lockfile}}`,
- * `{{pm.cacheDir}}` and `{{pm.cacheClean}}`.
+ * `{{pm.cacheDir}}`, `{{pm.cacheClean}}` and `{{pm.dockerSetup}}` (Dockerfile lines, empty for npm).
  */
 export function PackageManagerSubstitutions(profile: PackageManagerProfile): Record<string, string> {
   return {
@@ -265,6 +280,7 @@ export function PackageManagerSubstitutions(profile: PackageManagerProfile): Rec
     'pm.lockfile': profile.lockfile,
     'pm.cacheDir': profile.ciCacheDir,
     'pm.cacheClean': profile.cacheClean,
+    'pm.dockerSetup': profile.dockerSetup,
   };
 }
 

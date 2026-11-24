@@ -10,6 +10,7 @@ exports[`package-manager GetPackageManagerProfile bun 1`] = `
   "classic": false,
   "dlx": "bunx npm-check-updates",
   "dlxPrefix": "bunx",
+  "dockerSetup": "RUN npm install -g bun",
   "exec": "bunx nx run-many",
   "execPrefix": "bunx",
   "install": "bun install",
@@ -31,6 +32,7 @@ exports[`package-manager GetPackageManagerProfile npm 1`] = `
   "classic": false,
   "dlx": "npx --yes npm-check-updates",
   "dlxPrefix": "npx --yes",
+  "dockerSetup": "",
   "exec": "npx nx run-many",
   "execPrefix": "npx",
   "install": "npm install",
@@ -52,6 +54,8 @@ exports[`package-manager GetPackageManagerProfile pnpm 1`] = `
   "classic": false,
   "dlx": "pnpm dlx npm-check-updates",
   "dlxPrefix": "pnpm dlx",
+  "dockerSetup": "ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+RUN npm install -g corepack && corepack enable",
   "exec": "pnpm exec nx run-many",
   "execPrefix": "pnpm exec",
   "install": "pnpm install",
@@ -73,6 +77,8 @@ exports[`package-manager GetPackageManagerProfile yarn 1`] = `
   "classic": false,
   "dlx": "yarn dlx npm-check-updates",
   "dlxPrefix": "yarn dlx",
+  "dockerSetup": "ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+RUN npm install -g corepack && corepack enable",
   "exec": "yarn nx run-many",
   "execPrefix": "yarn",
   "install": "yarn install",
