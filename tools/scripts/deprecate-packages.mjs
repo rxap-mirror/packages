@@ -28,7 +28,7 @@ const DRY_RUN = flags.includes('--dry-run');
 const deprecationMessage = (entry) => `Deprecated: ${entry.message}`;
 
 function view(pkg) {
-  const res = spawnSync('npm', ['view', pkg, 'dist-tags.latest', 'deprecated', '--json'], { encoding: 'utf-8' });
+  const res = spawnSync('npm', ['view', pkg, 'dist-tags.latest', 'deprecated', '--json', '--prefer-online'], { encoding: 'utf-8' });
   if (res.status !== 0) return { error: (res.stderr || res.stdout).trim().split('\n')[0] };
   const out = res.stdout.trim();
   if (!out) return {};
