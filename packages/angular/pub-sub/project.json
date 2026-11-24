@@ -25,7 +25,21 @@
         },
         "development": {}
       },
-      "defaultConfiguration": "production"
+      "defaultConfiguration": "production",
+      "dependsOn": ["^build", "build-generators"]
+    },
+    "build-generators": {
+      "executor": "@rxap/plugin-angular:build-generators",
+      "cache": true,
+      "inputs": [
+        "{projectRoot}/src/generators/**/*",
+        "{projectRoot}/generators.json",
+        "{projectRoot}/tsconfig.generators.json",
+        "{projectRoot}/tsconfig.json",
+        "{workspaceRoot}/tsconfig.base.json"
+      ],
+      "outputs": ["{projectRoot}/dist/generators"],
+      "dependsOn": []
     },
     "test": {
       "executor": "@nx/angular:unit-test",
