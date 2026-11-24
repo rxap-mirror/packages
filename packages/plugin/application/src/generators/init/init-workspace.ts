@@ -3,6 +3,8 @@ import {
   AddPackageJsonDevDependency,
   CoerceFilesStructure,
   JSON_MERGE_STRATEGY,
+  PackageManagerSubstitutions,
+  ResolvePackageManagerProfile,
   UpdatePackageJson,
   YAML_MERGE_STRATEGY,
 } from '@rxap/workspace-utilities';
@@ -27,12 +29,15 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
 
   updateTargetDefaults(tree);
 
+  const substitutions = PackageManagerSubstitutions(ResolvePackageManagerProfile(tree));
+
   if (!options.standalone) {
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'general'),
       target: '',
       overwrite: options.overwrite,
       mergeStrategies: [ YAML_MERGE_STRATEGY, JSON_MERGE_STRATEGY ],
+      substitutions,
     });
     coerceDockerCompose(tree);
     coerceSharedServiceUserConfig(tree);
@@ -44,6 +49,7 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
     target: '',
     overwrite: false,
     mergeStrategies: [ YAML_MERGE_STRATEGY, JSON_MERGE_STRATEGY ],
+    substitutions,
   });
 
   if (options.authentik) {
@@ -52,6 +58,7 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
       target: '',
       overwrite: options.overwrite,
       mergeStrategies: [ YAML_MERGE_STRATEGY, JSON_MERGE_STRATEGY ],
+      substitutions,
     });
   }
 
@@ -63,6 +70,7 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
         target: '',
         overwrite: options.overwrite,
         mergeStrategies: [ YAML_MERGE_STRATEGY, JSON_MERGE_STRATEGY ],
+        substitutions,
       });
       break;
 
@@ -74,6 +82,7 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
       target: '',
       overwrite: options.overwrite,
       mergeStrategies: [ YAML_MERGE_STRATEGY, JSON_MERGE_STRATEGY ],
+      substitutions,
     });
   }
 }

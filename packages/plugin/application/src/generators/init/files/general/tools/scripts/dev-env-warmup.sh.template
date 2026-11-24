@@ -1,6 +1,6 @@
 #!/bin/bash
 
-yarn
+{{pm.install}}
 
 GIT_ROOT=$(git rev-parse --show-toplevel)
 

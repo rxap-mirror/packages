@@ -26,6 +26,20 @@ describe('application init generator', () => {
     expect(readJson(tree, 'nx.json').targetDefaults).toBeDefined();
   });
 
+  it.each([
+    [ 'pnpm-lock.yaml', 'pnpm install', 'pnpm run init:env', 'pnpm exec nx run-many' ],
+    [ 'package-lock.json', 'npm install', 'npm run init:env', 'npx nx run-many' ],
+    [ 'yarn.lock', 'yarn install', 'yarn init:env', 'yarn nx run-many' ],
+  ])('should render the dev scripts for the package manager of %s', async (lockfile, install, initEnv, runMany) => {
+    tree.write(lockfile, '');
+    await initGenerator(tree, { skipProjects: true, skipFormat: true });
+    expect(tree.read('tools/scripts/dev-env-warmup.sh', 'utf-8')).toContain(install);
+    const startScript = tree.read('tools/scripts/start-local-dev-services.sh', 'utf-8');
+    expect(startScript).toContain(initEnv);
+    expect(startScript).toContain(runMany);
+    expect(startScript).not.toContain('{{pm.');
+  });
+
   it('should skip docker compose files in standalone mode', async () => {
     await initGenerator(tree, { skipProjects: true, skipFormat: true, standalone: true });
     expect(tree.exists('docker-compose.yml')).toBe(false);
