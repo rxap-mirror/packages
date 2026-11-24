@@ -10,8 +10,9 @@ exports[`plugin-nestjs:init-application (golden master) should produce a stable 
       "type": "node",
       "request": "launch",
       "name": "Debug api with Nx",
-      "runtimeExecutable": "yarn",
+      "runtimeExecutable": "pnpm",
       "runtimeArgs": [
+        "exec",
         "nx",
         "serve",
         "api"
@@ -241,9 +242,21 @@ module.exports = async function() {
       ],
       "cache": true,
       "executor": "@nx/js:prune-lockfile",
+      "inputs": [
+        "default",
+        "^default",
+        "{workspaceRoot}/pnpm-workspace.yaml",
+        "{workspaceRoot}/package.json",
+        {
+          "runtime": "node -e \\"try{console.log('pnpm major '+require('child_process').execSync('pnpm --version',{stdio:['ignore','pipe','ignore']}).toString().trim().split('.')[0])}catch{console.log('pnpm major unavailable')}\\""
+        }
+      ],
       "outputs": [
         "{workspaceRoot}/dist/api/package.json",
-        "{workspaceRoot}/dist/api/yarn.lock"
+        "{workspaceRoot}/dist/api/pnpm-lock.yaml",
+        "{workspaceRoot}/dist/api/pnpm-workspace.yaml",
+        "{workspaceRoot}/dist/api/patches",
+        "{workspaceRoot}/dist/api/local_path_modules"
       ],
       "options": {
         "buildTarget": "build"

@@ -1,4 +1,8 @@
-import { ExecutorContext } from '@nx/devkit';
+import {
+  ExecutorContext,
+  detectPackageManager,
+  getPackageManagerCommand,
+} from '@nx/devkit';
 import run from 'nx/src/executors/run-commands/run-commands.impl';
 import dockerCompose from './docker-compose/executor';
 import { runExecutor } from './run-generator/executor';
@@ -68,7 +72,8 @@ describe('workspace executors', () => {
     it('should run the schematic script with the workspace package manager in the rxap repository', async () => {
       isRxapRepository.mockReturnValue(true);
       await runExecutor({ generator: '@rxap/schematic-angular:init' }, context);
-      expect(runMock.mock.calls[0][0].command).toMatch(/^yarn schematic @rxap\/schematic-angular:init/);
+      const pm = getPackageManagerCommand(detectPackageManager(context.root), context.root);
+      expect(runMock.mock.calls[0][0].command.startsWith(pm.run('schematic', '@rxap/schematic-angular:init'))).toBe(true);
     });
 
     it('should fail without project or target name', async () => {
