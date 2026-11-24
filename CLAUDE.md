@@ -22,26 +22,26 @@ RxAP is a collection of software modules and tools designed to significantly red
 
 ## Building and Running
 
-The project uses `yarn` and `nx`. Ensure you have Node >=22 and Yarn >=3.6.
+The project uses `pnpm` (version pinned in `package.json#packageManager`, run via corepack) and `nx`. Ensure you have Node >=22 and `corepack enable`.
 
 ### Core Commands
-- **Install:** `yarn`
-- **Build All:** `yarn nx run-many -t build`
-- **Build Project:** `yarn nx run <project-name>:build`
-- **Test:** `yarn nx run <project-name>:test`
-- **Lint:** `yarn nx run <project-name>:lint`
-- **Affected:** `yarn nx affected -t <target>`
+- **Install:** `pnpm install`
+- **Build All:** `pnpm nx run-many -t build`
+- **Build Project:** `pnpm nx run <project-name>:build`
+- **Test:** `pnpm nx run <project-name>:test`
+- **Lint:** `pnpm nx run <project-name>:lint`
+- **Affected:** `pnpm nx affected -t <target>`
 
 ### Development Services
 The project includes a Docker-based backend infrastructure:
-- **Start Services:** `yarn server`
-- **Check Status:** `yarn server:status`
-- **Stop Services:** `yarn server:stop`
+- **Start Services:** `pnpm server`
+- **Check Status:** `pnpm server:status`
+- **Stop Services:** `pnpm server:stop`
 
 ### Initialization & Configuration
-- **Setup Environment:** `yarn init:env`
-- **Update RxAP Packages:** `yarn rxap:update`
-- **Run Schematic:** `yarn schematic <schematic-name>`
+- **Setup Environment:** `pnpm init:env`
+- **Update RxAP Packages:** `pnpm rxap:update`
+- **Run Schematic:** `pnpm schematic <schematic-name>`
 
 ## Development Conventions
 
@@ -53,7 +53,7 @@ The project includes a Docker-based backend infrastructure:
 - **Styling:** Use Tailwind CSS with `RXAP_TAILWIND_CONFIG` preset.
 
 ### Monorepo Workflow
-- **New Library:** `yarn nx g @nx/js:library` followed by `yarn nx g @rxap/plugin-library:init --project <name>`.
+- **New Library:** `pnpm nx g @nx/js:library` followed by `pnpm nx g @rxap/plugin-library:init --project <name>`.
 - **Documentation:** Use `@rxap/plugin-compodoc` for Angular/Nest libraries and `@rxap/plugin-typedoc` for JS/TS libraries.
 - **Commits:** Follow **Conventional Commits**. Use `git cz` or the Commitizen-friendly tools.
 
@@ -69,13 +69,13 @@ The project includes a Docker-based backend infrastructure:
   never the workspace's minor.
 
 ### Code Intelligence
-- **Generators:** Consult `yarn nx list @rxap/plugin-<type>` to see available generators.
-- **Project Mapping:** Use `yarn nx show project <name> --json` to understand project roots and targets.
+- **Generators:** Consult `pnpm nx list @rxap/plugin-<type>` to see available generators.
+- **Project Mapping:** Use `pnpm nx show project <name> --json` to understand project roots and targets.
 
 ## Design (FigCraft)
 - `packages/angular/angular-components.figcraft`: Angular Material + CDK kit (generated in angular/components, linked as a library).
 - `packages/angular/rxap.figcraft`: every rxap Angular component and directive, one page per library, named by selector.
-  **Generated** from the ng-prism styleguides with `yarn figcraft` — never edit by hand; see `tools/figcraft/README.md`.
+  **Generated** from the ng-prism styleguides with `pnpm figcraft` — never edit by hand; see `tools/figcraft/README.md`.
 
 ## Key Files
 - `nx.json`: Core monorepo configuration and target defaults.
@@ -86,30 +86,30 @@ The project includes a Docker-based backend infrastructure:
 
 ## Working in this Nx Workspace
 
-You are operating in an Nx workspace. Access the Nx CLI with `yarn nx <command>`. To get a list of available commands run `yarn nx --help`. Always use the `--help` flag to get detailed information about possible flags and subcommands, e.g. `yarn nx run-many --help`.
+You are operating in an Nx workspace. Access the Nx CLI with `pnpm nx <command>`. To get a list of available commands run `pnpm nx --help`. Always use the `--help` flag to get detailed information about possible flags and subcommands, e.g. `pnpm nx run-many --help`.
 
 Notable commands you will use often:
-- `yarn nx affected`: Run a target for affected projects.
-- `yarn nx generate <generator>`: Generate or update source code (e.g. `yarn nx generate @nx/js:lib mylib`).
-- `yarn nx list [plugin]`: List installed plugins and their capabilities.
-- `yarn nx run [project][:target][:configuration]`: Run a target for a project.
-- `yarn nx run-many`: Run a target for multiple listed projects.
-- `yarn nx show`: Show information about the workspace (e.g. list of projects).
+- `pnpm nx affected`: Run a target for affected projects.
+- `pnpm nx generate <generator>`: Generate or update source code (e.g. `pnpm nx generate @nx/js:lib mylib`).
+- `pnpm nx list [plugin]`: List installed plugins and their capabilities.
+- `pnpm nx run [project][:target][:configuration]`: Run a target for a project.
+- `pnpm nx run-many`: Run a target for multiple listed projects.
+- `pnpm nx show`: Show information about the workspace (e.g. list of projects).
 
 Common usages:
-- Run target "build" for project "backend": `yarn nx run backend:build`
-- Run target "test" for all projects: `yarn nx run-many -t test`
-- Run target "build" for all affected projects: `yarn nx affected -t build`
-- Run "test" for projects affected by specific files: `yarn nx affected -t test --files api/backend/src/app/app.controller.ts`
-- List all installed plugins: `yarn nx list`
-- List generators offered by `@rxap/plugin-angular`: `yarn nx list @rxap/plugin-angular`
-- List options of a generator: `yarn nx generate @rxap/plugin-nestjs:init-library --help`
-- Run a generator for a project: `yarn nx generate @rxap/plugin-nestjs:init-library --project api-app-config`
-- List all projects: `yarn nx show projects`
-- Show project configuration: `yarn nx show project api-profile --json`
-- List targets for a project: `yarn nx show project api-profile --json | jq -r '.targets | keys[]'`
-- Get the project root: `yarn nx show project api-profile --json | jq -r '.root'`
-- Get the project for a specific file: `yarn nx show projects --affected --files <file> | head -n 1`
+- Run target "build" for project "backend": `pnpm nx run backend:build`
+- Run target "test" for all projects: `pnpm nx run-many -t test`
+- Run target "build" for all affected projects: `pnpm nx affected -t build`
+- Run "test" for projects affected by specific files: `pnpm nx affected -t test --files api/backend/src/app/app.controller.ts`
+- List all installed plugins: `pnpm nx list`
+- List generators offered by `@rxap/plugin-angular`: `pnpm nx list @rxap/plugin-angular`
+- List options of a generator: `pnpm nx generate @rxap/plugin-nestjs:init-library --help`
+- Run a generator for a project: `pnpm nx generate @rxap/plugin-nestjs:init-library --project api-app-config`
+- List all projects: `pnpm nx show projects`
+- Show project configuration: `pnpm nx show project api-profile --json`
+- List targets for a project: `pnpm nx show project api-profile --json | jq -r '.targets | keys[]'`
+- Get the project root: `pnpm nx show project api-profile --json | jq -r '.root'`
+- Get the project for a specific file: `pnpm nx show projects --affected --files <file> | head -n 1`
 
 ## Tooling & MCP Integration
 
@@ -120,7 +120,7 @@ The project ships an `.mcp.json` with several MCP servers (Nx, Chrome DevTools, 
 **Strong default:** When an Nx or WebStorm MCP tool fits the task, use it instead of re-deriving the answer with `Bash`/`Read`/`Grep`. Fall back to built-ins only when no MCP tool covers the need. Do not parse Nx config or compute the project graph by hand when an MCP tool returns it directly.
 
 **Use the Nx MCP server for:**
-- Workspace/project info → `nx_workspace`, `nx_project_details` (instead of `yarn nx show project ... --json | jq`).
+- Workspace/project info → `nx_workspace`, `nx_project_details` (instead of `pnpm nx show project ... --json | jq`).
 - Project & task dependency graphs, affected analysis → Nx MCP graph tools (instead of hand-tracing imports).
 - Discovering/scaffolding code → `nx_generators` + `nx_generator_schema` + `nx_run_generator` (instead of guessing generator names/flags).
 - Nx configuration, options, and best practices → `nx_docs` (never answer Nx config questions from memory — docs may be outdated).
@@ -135,6 +135,6 @@ The project ships an `.mcp.json` with several MCP servers (Nx, Chrome DevTools, 
 
 **Keep using built-ins for:**
 - `Read`, `Edit`, `Write`, `Grep`, `Glob` for plain file reads, edits, and text/pattern searches.
-- `Bash` for running `nx`/`yarn` targets (build/test/lint/serve), git, and general terminal tasks. Run long-running tasks (like `nx serve`) in the background.
+- `Bash` for running `nx`/`pnpm` targets (build/test/lint/serve), git, and general terminal tasks. Run long-running tasks (like `nx serve`) in the background.
 
 **Library/framework docs:** use the `context7` MCP server (resolve-library-id → query-docs) before answering API/config/version questions, even for well-known libraries.

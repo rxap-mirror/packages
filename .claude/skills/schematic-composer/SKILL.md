@@ -36,7 +36,7 @@ Use the `compose` schematic to execute the configuration file.
 **Single File Execution (Recommended):**
 
 ```bash
-yarn nx generate @rxap/schematic-composer:compose --file path/to/schematics.yaml
+pnpm nx generate @rxap/schematic-composer:compose --file path/to/schematics.yaml
 ```
 
 **Bulk Execution:**
@@ -44,7 +44,7 @@ yarn nx generate @rxap/schematic-composer:compose --file path/to/schematics.yaml
 To run all `schematics.yaml` files in a directory:
 
 ```bash
-yarn nx generate @rxap/schematic-composer:compose --directory libs/my-feature
+pnpm nx generate @rxap/schematic-composer:compose --directory libs/my-feature
 ```
 
 ## Example: Generating a Table Component
@@ -79,7 +79,7 @@ yarn nx generate @rxap/schematic-composer:compose --directory libs/my-feature
 ### Execution Command
 
 ```bash
-yarn nx generate @rxap/schematic-composer:compose --file libs/my-feature/src/lib/schematics.yaml
+pnpm nx generate @rxap/schematic-composer:compose --file libs/my-feature/src/lib/schematics.yaml
 ```
 
 ## Options Reference

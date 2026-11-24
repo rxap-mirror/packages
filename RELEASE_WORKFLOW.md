@@ -16,10 +16,10 @@ bash-hook pipeline; the orchestrator preserves every pre-step that pipeline perf
 
 ```shell
 # preview everything without writing/publishing anything
-yarn release:dry
+pnpm release:dry
 
 # perform the release for the current branch
-yarn release
+pnpm release
 ```
 
 The branch determines the release channel (ported from the old scripts):
@@ -33,7 +33,7 @@ The branch determines the release channel (ported from the old scripts):
 
 Nx keeps a prerelease line incrementing (`-dev.N`) until you **graduate** it. To graduate to a
 stable release, run on `latest`/`master` with an explicit specifier, e.g.
-`yarn release --specifier=patch` (or `minor` / `major` / an exact version).
+`pnpm release --specifier=patch` (or `minor` / `major` / an exact version).
 
 ### Bootstrap release (done: first 21 / 22 / 11 prerelease)
 
@@ -56,7 +56,7 @@ with a temporary `currentVersionResolver: disk` / `specifierSource: prompt` conf
 - `--publish-only` – retry just the publish from the existing `dist/` (e.g. after a partial
   publish failure) without re-versioning.
 - `--skip-validate` / `--skip-build` / `--skip-umbrella` – skip individual phases.
-- `YES=true yarn release` – skip the interactive confirmation.
+- `YES=true pnpm release` – skip the interactive confirmation.
 - `--projects=<a,b>` – release only these projects: dependents are not bumped and the `rxap` umbrella
   pass is skipped. Also limits `--publish-only`.
 - `--final` – (requires `--projects`) stable release of the selection on any release branch (dist-tag
@@ -66,7 +66,7 @@ with a temporary `currentVersionResolver: disk` / `specifierSource: prompt` conf
 
 1. Add it to `tools/scripts/sunset-packages.json` (message, `finalRelease`) and prefix its
    `package.json` description with `DEPRECATED — <message>` (the README is generated from it).
-2. Final stable release: ``yarn release --final --projects=$(node tools/scripts/deprecate-packages.mjs projects)``
+2. Final stable release: ``pnpm release --final --projects=$(node tools/scripts/deprecate-packages.mjs projects)``
    (dry-run first).
 3. `node tools/scripts/deprecate-packages.mjs deprecate` (`--dry-run` first, `check` afterwards).
 4. Delete the package and its references (rxap umbrella, composer, `tsconfig.base.json`, README, `nx.json`).
@@ -91,8 +91,8 @@ npm, yarn (berry, node-modules) and pnpm, plus yarn PnP as informational only. I
    undeclared dependencies under pnpm's strict layout; a missing *declared peer* is only a warning).
 
 ```bash
-yarn nx run workspace:e2e-pm                       # full matrix, ~15 min with a warm Nx cache
-yarn nx run workspace:e2e-pm --pm=pnpm --keep      # one package manager, keep the temp workspace
+pnpm nx run workspace:e2e-pm                       # full matrix, ~15 min with a warm Nx cache
+pnpm nx run workspace:e2e-pm --pm=pnpm --keep      # one package manager, keep the temp workspace
 node tools/scripts/e2e-package-managers.mjs --skip-publish --pm=npm   # reuse the packages already published to tmp/e2e-pm
 ```
 

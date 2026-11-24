@@ -5,13 +5,13 @@
 To create a new library project, run the command:
 
 ```shell
-yarn nx g @nx/js:library
+pnpm nx g @nx/js:library
 ```
 
 After the library is created run the generator to create and update imported packages files:
 
 ```shell
-yarn nx g @rxap/plugin-library:init --project <project-name>
+pnpm nx g @rxap/plugin-library:init --project <project-name>
 ```
 
 This generate will copy properties from the root package.json and adds the executors `readme`, `update-dependencies`
@@ -20,7 +20,7 @@ and `update-package-group` to the project.
 To add the executor to generate the typedoc documentation for the library run the command:
 
 ```shell
-yarn nx g @enio.ai/typedoc:config <project-name>
+pnpm nx g @enio.ai/typedoc:config <project-name>
 ```
 
 If you want to create a library project for a specific framework or toolset use the generate commands in the following
@@ -31,7 +31,7 @@ sections.
 To create a new nx plugin package, run the command:
 
 ```shell
-yarn nx g @nx/plugin:plugin
+pnpm nx g @nx/plugin:plugin
 ```
 
 #### Generator
@@ -39,7 +39,7 @@ yarn nx g @nx/plugin:plugin
 To create a new generator package, run the command:
 
 ```shell
-yarn nx g @nx/plugin:generator
+pnpm nx g @nx/plugin:generator
 ```
 
 ### Angular Library
@@ -47,19 +47,19 @@ yarn nx g @nx/plugin:generator
 To create a new angular library package, run the command:
 
 ```shell
-yarn nx g @nx/angular:library --importPath @rxap/ngx-<project-name>
+pnpm nx g @nx/angular:library --importPath @rxap/ngx-<project-name>
 ```
 
 To init the library run the command:
 
 ```shell
-yarn nx g @rxap/plugin-library:init --project angular-<project-name>
+pnpm nx g @rxap/plugin-library:init --project angular-<project-name>
 ```
 
 To add the executor to generate the compodoc documentation for the library run the command:
 
 ```shell
-yarn nx g @rxap/plugin-compodoc:init-library <project-name>
+pnpm nx g @rxap/plugin-compodoc:init-library <project-name>
 ```
 
 To add a secondary entry point to the library run the command:
@@ -79,7 +79,7 @@ nx g @nx/angular:cypress-component-configuration --buildTarget=angular:build:dev
 To create a new angular application package, run the command:
 
 ```shell
-yarn nx g @nx/angular:application
+pnpm nx g @nx/angular:application
 ```
 
 Ensure the project `browser-tailwind` is added as implicitDependencies to the project. The ensures that the `browser-tailwind`
@@ -107,13 +107,13 @@ module.exports = {
 To create a new nest library package, run the command:
 
 ```shell
-yarn nx g @nx/nest:library --importPath @rxap/nest-<project-name>
+pnpm nx g @nx/nest:library --importPath @rxap/nest-<project-name>
 ```
 
 To init the library run the command:
 
 ```shell
-yarn nx g @rxap/plugin-library:init --project nest-<project-name>
+pnpm nx g @rxap/plugin-library:init --project nest-<project-name>
 ```
 
 ### Node Library
@@ -123,13 +123,13 @@ yarn nx g @rxap/plugin-library:init --project nest-<project-name>
 To create new schematic library package, run the command:
 
 ```shell
-yarn nx g @nx/js:library --name=angular --directory=schematic --importPath=@rxap/schematic-angular
+pnpm nx g @nx/js:library --name=angular --directory=schematic --importPath=@rxap/schematic-angular
 ```
 
 To add a schematic to the library run the command:
 
 ```shell
-yarn nx g @rxap/plugin-library:schematic --project=schematic-angular --name=<schematic-name>
+pnpm nx g @rxap/plugin-library:schematic --project=schematic-angular --name=<schematic-name>
 ```
 
 # Nest Application
@@ -137,7 +137,7 @@ yarn nx g @rxap/plugin-library:schematic --project=schematic-angular --name=<sch
 To create a new nest application run the command:
 
 ```shell
-yarn nx g @nx/nest:application --name <application-name>
+pnpm nx g @nx/nest:application --name <application-name>
 ```
 
 ```shell
@@ -147,19 +147,19 @@ PROJECT=<directory>-<application-name>
 To initialize the application run the command:
 
 ```shell
-yarn nx g @rxap/plugin-application:init --project $PROJECT
+pnpm nx g @rxap/plugin-application:init --project $PROJECT
 ```
 
 To initialize the **monolithic** nest app run the command:
 
 ```shell
-yarn nx g @rxap/plugin-nestjs:init-application --overwrite --project $PROJECT
+pnpm nx g @rxap/plugin-nestjs:init-application --overwrite --project $PROJECT
 ```
 
 To test if the application is working run the command:
 
 ```shell
-yarn nx run $PROJECT:docker
+pnpm nx run $PROJECT:docker
 ```
 
 # Angular Application
@@ -167,7 +167,7 @@ yarn nx run $PROJECT:docker
 To create a new angular application run the command:
 
 ```shell
-yarn nx g @nx/angular:application --name <application-name>
+pnpm nx g @nx/angular:application --name <application-name>
 ```
 
 ```shell
@@ -177,31 +177,31 @@ PROJECT=<directory>-<application-name>
 To initialize the application run the command:
 
 ```shell
-yarn nx g @rxap/plugin-application:init --project $PROJECT
+pnpm nx g @rxap/plugin-application:init --project $PROJECT
 ```
 
 To initialize the **monolithic** angular app run the command:
 
 ```shell
-yarn nx g @rxap/plugin-angular:init-application --generate-main --cleanup --monolithic --overwrite --project $PROJECT
+pnpm nx g @rxap/plugin-angular:init-application --generate-main --cleanup --monolithic --overwrite --project $PROJECT
 ```
 
 To test if the application is working run the command:
 
 ```shell
-yarn nx run $PROJECT:docker
+pnpm nx run $PROJECT:docker
 ```
 
 Add a feature to the **monolithic** angular app
 
 ```shell
-yarn nx g @rxap/plugin-angular:init-feature --project $PROJECT --name <feature-name>
+pnpm nx g @rxap/plugin-angular:init-feature --project $PROJECT --name <feature-name>
 ```
 
 ## Bundle size analyzer
 
 ```shell
-yarn nx run angular:build --stats-json
+pnpm nx run angular:build --stats-json
 ```
 
 ```shell

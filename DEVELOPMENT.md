@@ -8,25 +8,23 @@ How to develop with the project
 
 # Get started
 
-1. Ensure the node version >=18.17.x <19 is installed and available `node -v`
-2. Ensure the npm version >=9.5.x is installed and available `npm -v`
-3. Ensure the yarn version >=3.6.x is installed and available `yarn -v`
-4. Install the project npm dependencies by running `yarn` in the project root directory
-5. Check if everything is compilable with: `nx run-many --target build`
+1. Ensure the node version >=22 is installed and available `node -v`
+2. Enable corepack: `corepack enable` (Node >= 25 no longer bundles it: `npm install -g corepack` first)
+3. Install the project dependencies by running `pnpm install` in the project root directory (corepack runs the pnpm
+   version pinned in `package.json#packageManager`)
+4. Check if everything is compilable with: `pnpm nx run-many --target build`
 
 ## Install node and npm
 
 1. Install the Node Version Manager - https://github.com/nvm-sh/nvm#install--update-script
 2. Verify the installation - https://github.com/nvm-sh/nvm#verify-installation
-3. Install node version >=18.17.x with: `nvm install lts/hydrogen`
-4. Ensure the node version >=18.17.x is installed and available `node -v`
-5. Ensure the npm version >=9.5.x is installed and available `npm -v`
+3. Install node version >=22 with: `nvm install 22`
+4. Ensure the node version >=22 is installed and available `node -v`
 
-## Install yarn
+## Install pnpm
 
 1. Enable the node corepack: `corepack enable`
-2. Install yarn version >=3.6.x with: `corepack prepare yarn@stable --activate`
-3. Ensure the yarn version >=3.6.x is installed and available `yarn -v`
+2. Run `pnpm --version` in the project root: corepack downloads the version pinned in `package.json#packageManager`
 
 ## JetBrains Webstorm
 
@@ -45,7 +43,7 @@ Recommended Extensions:
 
 # Startup
 
-1. run `yarn server` to start the backend
+1. run `pnpm server` to start the backend
 2. run `nx run angular:serve` to start the frontend
 3. if authentik is not setup follow the instructions in the authentik setup section
 
