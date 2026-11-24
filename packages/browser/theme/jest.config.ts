@@ -6,7 +6,8 @@ module.exports = {
   transform: {
     '^(?!.*/node_modules/).+\\.[tj]s$': ['ts-jest', { tsconfig: '<rootDir>/tsconfig.spec.json', diagnostics: false }],
   },
-  transformIgnorePatterns: ['node_modules/(?!(@material/material-color-utilities)/)'],
+  // anchored to the last node_modules segment so it also matches pnpm's node_modules/.pnpm/<pkg>/node_modules/<pkg>
+  transformIgnorePatterns: ['/node_modules/(?!.*/node_modules/)(?!@material/material-color-utilities/)'],
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../../coverage/packages/browser/theme',
 };
