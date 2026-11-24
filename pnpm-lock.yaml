@@ -646,6 +646,9 @@ importers:
       '@schematics/angular':
         specifier: 22.3.0
         version: 22.3.0(chokidar@6.0.0)
+      '@sentry/browser':
+        specifier: 11.16.0
+        version: 11.16.0
       '@swc-node/register':
         specifier: 1.12.1
         version: 1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3)
@@ -721,6 +724,9 @@ importers:
       '@vitest/coverage-v8':
         specifier: 5.1.0
         version: 5.1.0(vitest@5.1.0)
+      ajv:
+        specifier: 8.20.0
+        version: 8.20.0
       alias-quokka-plugin:
         specifier: 0.1.0
         version: 0.1.0
@@ -733,6 +739,9 @@ importers:
       autoprefixer:
         specifier: 10.6.2
         version: 10.6.2(postcss@8.5.33)
+      axios:
+        specifier: 1.21.1
+        version: 1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       env-cmd:
         specifier: 11.0.0
         version: 11.0.0
@@ -778,6 +787,9 @@ importers:
       jsonc-eslint-parser:
         specifier: 3.3.0
         version: 3.3.0
+      jwks-rsa:
+        specifier: 4.1.0
+        version: 4.1.0(supports-color@8.1.1)
       katex:
         specifier: 0.18.11
         version: 0.18.11
@@ -802,6 +814,9 @@ importers:
       nx-cloud:
         specifier: 19.1.5
         version: 19.1.5(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      openapi-types:
+        specifier: 10.0.0
+        version: 10.0.0
       postcss:
         specifier: 8.5.33
         version: 8.5.33
@@ -865,6 +880,9 @@ importers:
       webpack-dev-server:
         specifier: 5.2.7
         version: 5.2.7(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)(webpack-cli@7.3.1)(webpack@5.113.0)
+      zod:
+        specifier: 3.25.76
+        version: 3.25.76
 
   packages/angular: {}
 
@@ -1559,7 +1577,7 @@ importers:
         version: 6.1.0(keyv@6.1.0)
       '@langchain/core':
         specifier: 0.3.80
-        version: 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
+        version: 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
       '@mendable/firecrawl-js':
         specifier: 4.54.0
         version: 4.54.0(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
@@ -1577,7 +1595,7 @@ importers:
         version: 6.1.0
       langchain:
         specifier: 0.3.37
-        version: 0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0)
+        version: 0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0)
       tslib:
         specifier: 2.9.1
         version: 2.9.1
@@ -1587,19 +1605,19 @@ importers:
     dependencies:
       '@langchain/community':
         specifier: ^0.3.32
-        version: 0.3.32(5972872a69924e38b7a3c1a9e567048d)
+        version: 0.3.32(41e3088f3f484cff1686749e3b2f3c49)
       '@langchain/core':
         specifier: 0.3.80
-        version: 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7))
+        version: 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
       '@langchain/openai':
         specifier: 0.6.17
-        version: 0.6.17(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7)))(ws@8.23.0)
+        version: 0.6.17(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(ws@8.23.0)
       '@langchain/textsplitters':
         specifier: ^0.1.0
-        version: 0.1.0(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7)))
+        version: 0.1.0(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))
       langchain:
         specifier: 0.3.37
-        version: 0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0)
+        version: 0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0)
       lodash:
         specifier: ^4.17.21
         version: 4.18.1
@@ -2121,7 +2139,7 @@ importers:
         version: 1.4.0
       openai:
         specifier: 7.57.0
-        version: 7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7)
+        version: 7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)
       tiktoken:
         specifier: 1.0.22
         version: 1.0.22
@@ -7300,12 +7318,6 @@ packages:
     peerDependencies:
       '@opentelemetry/api': '>=1.0.0 <1.10.0'
 
-  '@opentelemetry/core@2.12.1':
-    resolution: {integrity: sha512-3hr6Pj0/G0oVgIGb97IVcw9BjZ6eudonKjrmQxw7JquyU/XmVbJelkmyoU0sT/OvHGkv+r1tcrwv8MbSX7aKHw==}
-    engines: {node: ^18.19.0 || >=20.6.0}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.0.0 <1.10.0'
-
   '@opentelemetry/core@2.9.0':
     resolution: {integrity: sha512-m2nckMT80NnmjTYSPjJQObBJ+8dgkoajEOUbznL8AHZ3T3yHRk2P7gI1PhEBc1+lOnrYE9UWrWHqJDsmqjmNbw==}
     engines: {node: ^18.19.0 || >=20.6.0}
@@ -7366,12 +7378,6 @@ packages:
     peerDependencies:
       '@opentelemetry/api': '>=1.3.0 <1.10.0'
 
-  '@opentelemetry/resources@2.12.1':
-    resolution: {integrity: sha512-IwrNcuLCvnJAnNLkXxx0Uw+rjBkVW6VGQrhd7PanNf0LavOzkTk9sDAjdqegM7p/VdxefNRrii6d+wBRJfz35g==}
-    engines: {node: ^18.19.0 || >=20.6.0}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.3.0 <1.10.0'
-
   '@opentelemetry/resources@2.9.0':
     resolution: {integrity: sha512-jyA5MBLQ+Dkl3+JsZkUoUvL7yHvU64kLsvpXKarWm6347Sl1t1bXFTFykUePNpT5WH5pm9a2Qtt03iIYQhZ1Fg==}
     engines: {node: ^18.19.0 || >=20.6.0}
@@ -7394,12 +7400,6 @@ packages:
     resolution: {integrity: sha512-GuYQQT7QD2EeO8lcZLRQzcbOyhqAzL+6WWTKTU9mSUBYBazkEDl+VrQcXQhbB08OWM9anD1aHleVadzulpOaUQ==}
     engines: {node: ^18.19.0 || >=20.6.0}
     deprecated: Use @opentelemetry/sdk-trace package
-    peerDependencies:
-      '@opentelemetry/api': '>=1.3.0 <1.10.0'
-
-  '@opentelemetry/sdk-trace-base@2.12.1':
-    resolution: {integrity: sha512-CMrcqFxTikYmYQCuHToBO4kQvWIseRk2ztzWidTd7VutIxj1rljvJZCZnFPJEGNOS7FvaSmRL21Jeuu3/wrCAQ==}
-    engines: {node: ^18.19.0 || >=20.6.0}
     peerDependencies:
       '@opentelemetry/api': '>=1.3.0 <1.10.0'
 
@@ -7430,12 +7430,6 @@ packages:
     peerDependencies:
       '@opentelemetry/api': '>=1.3.0 <1.10.0'
 
-  '@opentelemetry/sdk-trace@2.12.1':
-    resolution: {integrity: sha512-vANdmCYnn+Ka/alBKxwICMl4Koa+aQBlRC9zAZy+Ig1Obbo3RZt2oiyv+8/gET5rrBBYrO3YniPcXfwZrN01rg==}
-    engines: {node: ^18.19.0 || >=20.6.0}
-    peerDependencies:
-      '@opentelemetry/api': '>=1.3.0 <1.10.0'
-
   '@opentelemetry/sdk-trace@2.9.0':
     resolution: {integrity: sha512-sGA19HvtrrSKYsseHphluH6j3p6Xa3fqc7c7y8f/7mYWejc1lyDFcpSdD1kYa50HCLUeEo4zA5bW0pniaPszuw==}
     engines: {node: ^18.19.0 || >=20.6.0}
@@ -7444,10 +7438,6 @@ packages:
 
   '@opentelemetry/semantic-conventions@1.43.0':
     resolution: {integrity: sha512-eSYWTm620tTk45EKSedaUL8MFYI8hW164hIXsgIHyxu3VobUB3fFCu5t0hQby6OoWRPsG1KkKUG2M5UadiLiVg==}
-    engines: {node: '>=14'}
-
-  '@opentelemetry/semantic-conventions@1.45.0':
-    resolution: {integrity: sha512-aOP45mbcOKbQVvFWfQmgoOPT8R2iwbbbgl83k4CujGV9BrJhFr3qG55MFpwFs4YLabpuW3HhzUY9eQxPlDqaZw==}
     engines: {node: '>=14'}
 
   '@oxc-parser/binding-android-arm-eabi@0.152.0':
@@ -17136,7 +17126,7 @@ snapshots:
   '@angular-devkit/core@19.2.24(chokidar@4.0.1)':
     dependencies:
       ajv: 8.18.0
-      ajv-formats: 3.0.1
+      ajv-formats: 3.0.1(ajv@8.18.0)
       jsonc-parser: 3.3.1
       picomatch: 4.0.4
       rxjs: 7.8.1
@@ -17147,7 +17137,7 @@ snapshots:
   '@angular-devkit/core@22.0.4(chokidar@5.0.0)':
     dependencies:
       ajv: 8.20.0
-      ajv-formats: 3.0.1
+      ajv-formats: 3.0.1(ajv@8.20.0)
       jsonc-parser: 3.3.1
       picomatch: 4.0.4
       rxjs: 7.8.2
@@ -17158,7 +17148,7 @@ snapshots:
   '@angular-devkit/core@22.2.7':
     dependencies:
       ajv: 8.20.0
-      ajv-formats: 3.0.1
+      ajv-formats: 3.0.1(ajv@8.20.0)
       jsonc-parser: 3.3.1
       picomatch: 4.0.7
       rxjs: 7.8.2
@@ -17167,7 +17157,7 @@ snapshots:
   '@angular-devkit/core@22.3.0(chokidar@6.0.0)':
     dependencies:
       ajv: 8.20.0
-      ajv-formats: 3.0.1
+      ajv-formats: 3.0.1(ajv@8.20.0)
       jsonc-parser: 3.3.1
       picomatch: 4.0.7
       rxjs: 7.8.2
@@ -21025,17 +21015,17 @@ snapshots:
       - handlebars
       - peggy
 
-  '@langchain/community@0.3.32(5972872a69924e38b7a3c1a9e567048d)':
+  '@langchain/community@0.3.32(41e3088f3f484cff1686749e3b2f3c49)':
     dependencies:
-      '@langchain/core': 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7))
-      '@langchain/openai': 0.4.4(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7)))(encoding@0.1.13)(ws@8.23.0)
+      '@langchain/core': 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
+      '@langchain/openai': 0.4.4(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(encoding@0.1.13)(ws@8.23.0)
       binary-extensions: 2.3.0
       expr-eval: 2.0.2
       flat: 5.0.2
       js-yaml: 4.3.2
-      langchain: 0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0)
-      langsmith: 0.3.87(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7))
-      openai: 7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7)
+      langchain: 0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0)
+      langsmith: 0.3.87(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
+      openai: 7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)
       uuid: 10.0.0
       zod: 3.25.76
       zod-to-json-schema: 3.25.2(zod@3.25.76)
@@ -21096,60 +21086,9 @@ snapshots:
       - '@opentelemetry/sdk-trace-base'
       - openai
 
-  '@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7))':
-    dependencies:
-      '@cfworker/json-schema': 4.1.1
-      ansi-styles: 5.2.0
-      camelcase: 6.3.0
-      decamelize: 1.2.0
-      js-tiktoken: 1.0.19
-      langsmith: 0.3.87(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7))
-      mustache: 4.2.0
-      p-queue: 6.6.2
-      p-retry: 4.6.2
-      uuid: 10.0.0
-      zod: 3.25.76
-      zod-to-json-schema: 3.25.2(zod@3.25.76)
-    transitivePeerDependencies:
-      - '@opentelemetry/api'
-      - '@opentelemetry/exporter-trace-otlp-proto'
-      - '@opentelemetry/sdk-trace-base'
-      - openai
-
-  '@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))':
-    dependencies:
-      '@cfworker/json-schema': 4.1.1
-      ansi-styles: 5.2.0
-      camelcase: 6.3.0
-      decamelize: 1.2.0
-      js-tiktoken: 1.0.19
-      langsmith: 0.3.87(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
-      mustache: 4.2.0
-      p-queue: 6.6.2
-      p-retry: 4.6.2
-      uuid: 10.0.0
-      zod: 3.25.76
-      zod-to-json-schema: 3.25.2(zod@3.25.76)
-    transitivePeerDependencies:
-      - '@opentelemetry/api'
-      - '@opentelemetry/exporter-trace-otlp-proto'
-      - '@opentelemetry/sdk-trace-base'
-      - openai
-
   '@langchain/openai@0.4.4(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(encoding@0.1.13)(ws@8.23.0)':
     dependencies:
       '@langchain/core': 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
-      js-tiktoken: 1.0.19
-      openai: 4.85.4(encoding@0.1.13)(ws@8.23.0)(zod@3.25.76)
-      zod: 3.25.76
-      zod-to-json-schema: 3.25.2(zod@3.25.76)
-    transitivePeerDependencies:
-      - encoding
-      - ws
-
-  '@langchain/openai@0.4.4(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7)))(encoding@0.1.13)(ws@8.23.0)':
-    dependencies:
-      '@langchain/core': 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7))
       js-tiktoken: 1.0.19
       openai: 4.85.4(encoding@0.1.13)(ws@8.23.0)(zod@3.25.76)
       zod: 3.25.76
@@ -21167,37 +21106,9 @@ snapshots:
     transitivePeerDependencies:
       - ws
 
-  '@langchain/openai@0.6.17(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7)))(ws@8.23.0)':
-    dependencies:
-      '@langchain/core': 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7))
-      js-tiktoken: 1.0.19
-      openai: 5.12.2(ws@8.23.0)(zod@3.25.76)
-      zod: 3.25.76
-    transitivePeerDependencies:
-      - ws
-
-  '@langchain/openai@0.6.17(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(ws@8.23.0)':
-    dependencies:
-      '@langchain/core': 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
-      js-tiktoken: 1.0.19
-      openai: 5.12.2(ws@8.23.0)(zod@3.25.76)
-      zod: 3.25.76
-    transitivePeerDependencies:
-      - ws
-
   '@langchain/textsplitters@0.1.0(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))':
     dependencies:
       '@langchain/core': 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
-      js-tiktoken: 1.0.19
-
-  '@langchain/textsplitters@0.1.0(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7)))':
-    dependencies:
-      '@langchain/core': 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7))
-      js-tiktoken: 1.0.19
-
-  '@langchain/textsplitters@0.1.0(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))':
-    dependencies:
-      '@langchain/core': 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
       js-tiktoken: 1.0.19
 
   '@leichtgewicht/ip-codec@2.0.5': {}
@@ -22394,12 +22305,6 @@ snapshots:
       '@opentelemetry/api': 1.9.1
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/core@2.12.1(@opentelemetry/api@1.10.0)':
-    dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/semantic-conventions': 1.45.0
-    optional: true
-
   '@opentelemetry/core@2.9.0(@opentelemetry/api@1.10.0)':
     dependencies:
       '@opentelemetry/api': 1.10.0
@@ -22525,13 +22430,6 @@ snapshots:
       '@opentelemetry/core': 2.10.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/resources@2.12.1(@opentelemetry/api@1.10.0)':
-    dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/semantic-conventions': 1.45.0
-    optional: true
-
   '@opentelemetry/resources@2.9.0(@opentelemetry/api@1.10.0)':
     dependencies:
       '@opentelemetry/api': 1.10.0
@@ -22592,15 +22490,6 @@ snapshots:
       '@opentelemetry/sdk-trace': 2.10.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0)':
-    dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/resources': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/sdk-trace': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/semantic-conventions': 1.45.0
-    optional: true
-
   '@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.1)':
     dependencies:
       '@opentelemetry/api': 1.9.1
@@ -22636,14 +22525,6 @@ snapshots:
       '@opentelemetry/resources': 2.10.0(@opentelemetry/api@1.9.1)
       '@opentelemetry/semantic-conventions': 1.43.0
 
-  '@opentelemetry/sdk-trace@2.12.1(@opentelemetry/api@1.10.0)':
-    dependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/core': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/resources': 2.12.1(@opentelemetry/api@1.10.0)
-      '@opentelemetry/semantic-conventions': 1.45.0
-    optional: true
-
   '@opentelemetry/sdk-trace@2.9.0(@opentelemetry/api@1.10.0)':
     dependencies:
       '@opentelemetry/api': 1.10.0
@@ -22660,9 +22541,6 @@ snapshots:
       '@opentelemetry/semantic-conventions': 1.43.0
 
   '@opentelemetry/semantic-conventions@1.43.0': {}
-
-  '@opentelemetry/semantic-conventions@1.45.0':
-    optional: true
 
   '@oxc-parser/binding-android-arm-eabi@0.152.0':
     optional: true
@@ -24833,12 +24711,16 @@ snapshots:
     dependencies:
       humanize-ms: 1.2.1
 
-  ajv-formats@2.1.1:
-    dependencies:
+  ajv-formats@2.1.1(ajv@8.20.0):
+    optionalDependencies:
       ajv: 8.20.0
 
-  ajv-formats@3.0.1:
-    dependencies:
+  ajv-formats@3.0.1(ajv@8.18.0):
+    optionalDependencies:
+      ajv: 8.18.0
+
+  ajv-formats@3.0.1(ajv@8.20.0):
+    optionalDependencies:
       ajv: 8.20.0
 
   ajv-keywords@3.5.2(ajv@6.15.0):
@@ -25825,7 +25707,7 @@ snapshots:
   conf@11.0.2:
     dependencies:
       ajv: 8.20.0
-      ajv-formats: 2.1.1
+      ajv-formats: 2.1.1(ajv@8.20.0)
       atomically: 2.0.3
       debounce-fn: 5.1.2
       dot-prop: 7.2.0
@@ -28669,58 +28551,6 @@ snapshots:
       - openai
       - ws
 
-  langchain@0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0):
-    dependencies:
-      '@langchain/core': 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7))
-      '@langchain/openai': 0.6.17(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7)))(ws@8.23.0)
-      '@langchain/textsplitters': 0.1.0(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7)))
-      js-tiktoken: 1.0.19
-      js-yaml: 4.3.2
-      jsonpointer: 5.0.1
-      langsmith: 0.3.87(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7))
-      openapi-types: 12.1.3
-      p-retry: 4.6.2
-      uuid: 10.0.0
-      yaml: 2.9.1
-      zod: 3.25.76
-    optionalDependencies:
-      axios: 1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
-      cheerio: 1.2.0
-      handlebars: 4.7.10
-      typeorm: 1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3))
-    transitivePeerDependencies:
-      - '@opentelemetry/api'
-      - '@opentelemetry/exporter-trace-otlp-proto'
-      - '@opentelemetry/sdk-trace-base'
-      - openai
-      - ws
-
-  langchain@0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0):
-    dependencies:
-      '@langchain/core': 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
-      '@langchain/openai': 0.6.17(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(ws@8.23.0)
-      '@langchain/textsplitters': 0.1.0(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))
-      js-tiktoken: 1.0.19
-      js-yaml: 4.3.2
-      jsonpointer: 5.0.1
-      langsmith: 0.3.87(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
-      openapi-types: 12.1.3
-      p-retry: 4.6.2
-      uuid: 10.0.0
-      yaml: 2.9.1
-      zod: 3.25.76
-    optionalDependencies:
-      axios: 1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
-      cheerio: 1.2.0
-      handlebars: 4.7.10
-      typeorm: 1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3))
-    transitivePeerDependencies:
-      - '@opentelemetry/api'
-      - '@opentelemetry/exporter-trace-otlp-proto'
-      - '@opentelemetry/sdk-trace-base'
-      - openai
-      - ws
-
   langsmith@0.3.87(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)):
     dependencies:
       '@types/uuid': 10.0.0
@@ -28733,34 +28563,6 @@ snapshots:
       '@opentelemetry/api': 1.10.0
       '@opentelemetry/exporter-trace-otlp-proto': 0.220.0(@opentelemetry/api@1.10.0)
       '@opentelemetry/sdk-trace-base': 2.10.0(@opentelemetry/api@1.10.0)
-      openai: 7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)
-
-  langsmith@0.3.87(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7)):
-    dependencies:
-      '@types/uuid': 10.0.0
-      chalk: 4.1.2
-      console-table-printer: 2.12.1
-      p-queue: 6.6.2
-      semver: 7.8.6
-      uuid: 10.0.0
-    optionalDependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/exporter-trace-otlp-proto': 0.220.0(@opentelemetry/api@1.10.0)
-      '@opentelemetry/sdk-trace-base': 2.10.0(@opentelemetry/api@1.10.0)
-      openai: 7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7)
-
-  langsmith@0.3.87(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.12.1(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)):
-    dependencies:
-      '@types/uuid': 10.0.0
-      chalk: 4.1.2
-      console-table-printer: 2.12.1
-      p-queue: 6.6.2
-      semver: 7.8.6
-      uuid: 10.0.0
-    optionalDependencies:
-      '@opentelemetry/api': 1.10.0
-      '@opentelemetry/exporter-trace-otlp-proto': 0.220.0(@opentelemetry/api@1.10.0)
-      '@opentelemetry/sdk-trace-base': 2.12.1(@opentelemetry/api@1.10.0)
       openai: 7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)
 
   launch-editor@2.14.2:
@@ -29905,13 +29707,6 @@ snapshots:
       undici: 7.30.2
       ws: 8.23.0
       zod: 3.25.76
-
-  openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@4.6.7):
-    optionalDependencies:
-      google-auth-library: 11.3.4(supports-color@8.1.1)
-      undici: 7.30.2
-      ws: 8.23.0
-      zod: 4.6.7
 
   openapi-types@10.0.0: {}
 
@@ -31525,7 +31320,7 @@ snapshots:
     dependencies:
       '@types/json-schema': 7.0.15
       ajv: 8.20.0
-      ajv-formats: 3.0.1
+      ajv-formats: 3.0.1(ajv@8.20.0)
       ajv-keywords: 5.1.0(ajv@8.20.0)
     optionalDependencies:
       webpack: 5.112.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(clean-css@5.3.3)(cssnano@7.1.9(postcss@8.5.33))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.32)(svgo@4.0.1)(uglify-js@3.19.3)(webpack-cli@7.3.1)
@@ -31534,7 +31329,7 @@ snapshots:
     dependencies:
       '@types/json-schema': 7.0.15
       ajv: 8.20.0
-      ajv-formats: 3.0.1
+      ajv-formats: 3.0.1(ajv@8.20.0)
       ajv-keywords: 5.1.0(ajv@8.20.0)
     optionalDependencies:
       webpack: 5.113.0(@swc/core@1.16.22(@swc/helpers@0.5.24))(clean-css@5.3.3)(cssnano@7.1.9(postcss@8.5.33))(csso@5.0.5)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.33)(svgo@4.0.1)(uglify-js@3.19.3)(webpack-cli@7.3.1)

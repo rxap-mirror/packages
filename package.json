@@ -173,6 +173,7 @@
     "@nx/web": "24.0.6",
     "@nx/webpack": "24.0.6",
     "@schematics/angular": "22.3.0",
+    "@sentry/browser": "11.16.0",
     "@swc-node/register": "1.12.1",
     "@swc/cli": "0.8.2",
     "@swc/core": "1.16.22",
@@ -198,10 +199,12 @@
     "@typescript-eslint/parser": "8.73.0",
     "@typescript-eslint/utils": "8.73.0",
     "@vitest/coverage-v8": "5.1.0",
+    "ajv": "8.20.0",
     "alias-quokka-plugin": "0.1.0",
     "angular-eslint": "22.8.0",
     "angular-quokka-plugin": "1.0.1",
     "autoprefixer": "10.6.2",
+    "axios": "1.21.1",
     "env-cmd": "11.0.0",
     "eslint": "10.15.0",
     "eslint-config-prettier": "10.1.8",
@@ -217,6 +220,7 @@
     "jest-util": "30.5.1",
     "jsdom": "26.1.0",
     "jsonc-eslint-parser": "3.3.0",
+    "jwks-rsa": "4.1.0",
     "katex": "0.18.11",
     "marked-katex-extension": "5.1.13",
     "mock-fs": "5.5.0",
@@ -225,6 +229,7 @@
     "ngx-highlightjs": "^14.0.1",
     "nx": "24.0.6",
     "nx-cloud": "19.1.5",
+    "openapi-types": "10.0.0",
     "postcss": "8.5.33",
     "postcss-import": "17.0.1",
     "postcss-preset-env": "11.6.2",
@@ -245,7 +250,8 @@
     "vitest": "5.1.0",
     "webpack": "5.113.0",
     "webpack-cli": "7.3.1",
-    "webpack-dev-server": "5.2.7"
+    "webpack-dev-server": "5.2.7",
+    "zod": "3.25.76"
   },
   "engines": {
     "node": ">=22"
