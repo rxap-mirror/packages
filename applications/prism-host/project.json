@@ -22,8 +22,7 @@
           "applications/prism-host/src/styles.scss"
         ],
         "polyfills": ["@angular/localize/init"],
-        "allowedCommonJsDependencies": ["highlight.js", "axe-core"],
-        "preserveSymlinks": true
+        "allowedCommonJsDependencies": ["highlight.js", "axe-core"]
       },
       "configurations": {
         "production": {

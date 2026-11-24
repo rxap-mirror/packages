@@ -252,7 +252,6 @@ export async function initWorkspace(tree: Tree, options: InitGeneratorSchema) {
             ],
             polyfills: [ '@angular/localize/init' ],
             allowedCommonJsDependencies: [ 'highlight.js', 'axe-core' ],
-            preserveSymlinks: true,
           },
           configurations: {
             production: { outputHashing: 'all' },
