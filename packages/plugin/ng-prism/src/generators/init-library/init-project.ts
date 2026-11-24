@@ -51,12 +51,13 @@ export async function initProject(tree: Tree, projectName: string, project: Proj
 
   if (!project.targets['prism-strip'] || options.overwrite) {
     // removes the @Showcase decorators from the built package. Without it the published package would
-    // import @ng-prism/core, which is not a dependency of the consumers
+    // import @ng-prism/core, which is not a dependency of the consumers.
+    // nx:run-commands puts node_modules/.bin on the PATH, so no package manager prefix (npx, pnpm exec) is needed
     project.targets['prism-strip'] = {
       executor: 'nx:run-commands',
       dependsOn: [ 'build' ],
       options: {
-        command: `npx ng-prism-strip dist/${ projectRoot }`,
+        command: `ng-prism-strip dist/${ projectRoot }`,
         cwd: '{workspaceRoot}',
       },
     };

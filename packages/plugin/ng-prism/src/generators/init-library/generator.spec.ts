@@ -43,7 +43,7 @@ describe('init-library generator', () => {
     });
     expect(ui.targets?.['prism']?.parallelism).toBe(false);
     expect(ui.targets?.['prism-build']?.parallelism).toBe(false);
-    expect(ui.targets?.['prism-strip']?.options.command).toBe('npx ng-prism-strip dist/libs/ui');
+    expect(ui.targets?.['prism-strip']?.options.command).toBe('ng-prism-strip dist/libs/ui');
   });
 
   it('should also add the targets to a library that only contains directives', async () => {
