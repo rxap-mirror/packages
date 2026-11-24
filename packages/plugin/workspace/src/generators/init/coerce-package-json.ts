@@ -5,30 +5,44 @@ import {
 } from '@rxap/utilities';
 import {
   IsRxapRepository,
+  ParsePackageManagerField,
   UpdatePackageJson,
 } from '@rxap/workspace-utilities';
 import { determineRepositoryUrl } from './determine-repository-url';
+import { WorkspacePackageManager } from './package-manager';
 import { InitGeneratorSchema } from './schema';
 
-export async function coercePackageJson(tree: Tree, options: InitGeneratorSchema) {
+/**
+ * The engines.yarn value older versions of this generator always wrote
+ */
+const LEGACY_YARN_ENGINE = '1.22 || 3.6';
+
+export async function coercePackageJson(tree: Tree, options: InitGeneratorSchema, { profile }: WorkspacePackageManager) {
   const repositoryUrl = await determineRepositoryUrl(tree, options);
 
   UpdatePackageJson(tree, packageJson => {
     packageJson.engines ??= {};
     packageJson.engines.node = '>=18 <21';
-    packageJson.engines.yarn = '1.22 || 3.6';
+    if (profile.name !== 'yarn' && packageJson.engines.yarn === LEGACY_YARN_ENGINE) {
+      delete packageJson.engines.yarn;
+    }
+    // never pin a package manager version here, only drop a field that names another package manager
+    if (packageJson.packageManager && ParsePackageManagerField(packageJson.packageManager)?.name !== profile.name) {
+      console.warn(`Remove the packageManager field '${ packageJson.packageManager }', the workspace uses ${ profile.name }`);
+      delete packageJson.packageManager;
+    }
     packageJson.os ??= [];
-    packageJson.packageManager = 'yarn@3.6.0';
     CoerceArrayItems(packageJson.os, [ '!win32' ]);
     packageJson.repository = {
       type: 'git',
       url: CoerceSuffix(repositoryUrl, '.git'),
     };
     packageJson.scripts ??= {};
-    packageJson.scripts['rxap:update'] = 'npx npm-check-updates --filter /@rxap/ --target newest -u && yarn';
-    packageJson.scripts['rxap:migrate'] = 'yarn rxap:update && yarn rxap:compose';
+    packageJson.scripts['rxap:update'] =
+      `${ profile.dlx('npm-check-updates', '--filter /@rxap/ --target newest -u') } && ${ profile.install }`;
+    packageJson.scripts['rxap:migrate'] = `${ profile.run('rxap:update') } && ${ profile.run('rxap:compose') }`;
     if (IsRxapRepository(tree)) {
-      packageJson.scripts['rxap:compose'] = 'yarn schematic @rxap/schematic-composer:compose';
+      packageJson.scripts['rxap:compose'] = profile.run('schematic', '@rxap/schematic-composer:compose');
     } else {
       packageJson.scripts['rxap:compose'] = 'nx g @rxap/schematic-composer:compose';
     }

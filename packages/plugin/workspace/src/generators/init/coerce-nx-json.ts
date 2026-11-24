@@ -10,10 +10,11 @@ import {
   GetWorkspaceProjectName,
   IsRxapRepository,
   Strategy,
+  PackageManagerProfile,
 } from '@rxap/workspace-utilities';
 import { InitGeneratorSchema } from './schema';
 
-export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
+export function coerceNxJson(tree: Tree, options: InitGeneratorSchema, packageManager: PackageManagerProfile) {
   const nxJson = readNxJson(tree)!;
 
   nxJson.defaultProject ??= GetWorkspaceProjectName(tree);
@@ -78,7 +79,9 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
   });
 
   nxJson.cli ??= {};
-  nxJson.cli.packageManager ??= 'yarn';
+  if (packageManager.name !== 'bun') {
+    nxJson.cli.packageManager ??= packageManager.name;
+  }
 
   if (IsRxapRepository(tree)) {
     CoerceNxPlugin(nxJson, './packages/plugin/workspace/src/plugin.ts');
@@ -90,7 +93,7 @@ export function coerceNxJson(tree: Tree, options: InitGeneratorSchema) {
     nxJson.release ??= {};
     nxJson.release.projectsRelationship ??= 'independent';
     nxJson.release.version ??= {};
-    nxJson.release.version.preVersionCommand ??= 'yarn dlx nx run-many -t build';
+    nxJson.release.version.preVersionCommand ??= packageManager.exec('nx', 'run-many -t build');
     nxJson.release.version.conventionalCommits ??= true;
     nxJson.release.changelog ??= {};
     nxJson.release.changelog.projectChangelogs ??= true;

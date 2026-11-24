@@ -10,6 +10,7 @@ import {
   GetWorkspaceName,
   UpdateJsonFile,
 } from '@rxap/workspace-utilities';
+import { existsSync } from 'fs';
 import { join } from 'path';
 import { addPackageDependencies } from './add-package-dependencies';
 import { coerceDevContainerConfig } from './coerce-dev-container-config';
@@ -21,6 +22,7 @@ import { coercePrettierConfig } from './coerce-prettier-config';
 import { coerceRootPackageJsonScripts } from './coerce-root-package-json-scripts';
 import { coerceToolsProject } from './coerce-tools-project';
 import { coerceWorkspaceProject } from './coerce-workspace-project';
+import { resolveWorkspacePackageManager } from './package-manager';
 import { InitGeneratorSchema } from './schema';
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
@@ -30,17 +32,31 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   }
   console.log('workspace init generator:', options);
 
+  const packageManager = resolveWorkspacePackageManager(tree, options);
+
   CoerceFilesStructure(tree, {
     srcFolder: join(__dirname, 'files', 'general'),
     target: '',
     overwrite: options.overwrite,
+    substitutions: packageManager.substitutions,
   });
+
+  const packageManagerFiles = join(__dirname, 'files', 'package-manager', packageManager.profile.name);
+  if (existsSync(packageManagerFiles)) {
+    CoerceFilesStructure(tree, {
+      srcFolder: packageManagerFiles,
+      target: '',
+      overwrite: options.overwrite,
+      substitutions: packageManager.substitutions,
+    });
+  }
 
   if (options.withHusky) {
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'husky'),
       target: '',
       overwrite: options.overwrite,
+      substitutions: packageManager.substitutions,
     });
   }
 
@@ -58,11 +74,11 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   }
 
   await addPackageDependencies(tree, options);
-  coerceIgnorePattern(tree);
-  await coercePackageJson(tree, options);
+  coerceIgnorePattern(tree, packageManager.profile);
+  await coercePackageJson(tree, options, packageManager);
   coerceWorkspaceProject(tree, options);
-  coerceNxJson(tree, options);
-  coerceDevContainerConfig(tree);
+  coerceNxJson(tree, options, packageManager.profile);
+  coerceDevContainerConfig(tree, packageManager.profile);
   coercePrettierConfig(tree);
   await coerceToolsProject(tree);
   coerceRootPackageJsonScripts(tree, options);

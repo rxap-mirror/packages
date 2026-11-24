@@ -68,7 +68,7 @@ fi
 
 echo "Build project $name"
 
-yarn nx run "$name:build"
+{{pm.exec}} nx run "$name:build"
 
 bash tools/scripts/dist-node-modules-linking.sh
 
@@ -98,4 +98,4 @@ if [ -z "$dir" ]; then
   exit 1
 fi
 
-yarn nx g "./$dir:$schematic" "$@"
+{{pm.exec}} nx g "./$dir:$schematic" "$@"

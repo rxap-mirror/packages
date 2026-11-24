@@ -1,5 +1,8 @@
 import { Tree } from '@nx/devkit';
-import { CoerceFile } from '@rxap/workspace-utilities';
+import {
+  CoerceFile,
+  PackageManagerProfile,
+} from '@rxap/workspace-utilities';
 
 const devContainer = {
   "name": "RxAP Workspace",
@@ -20,7 +23,7 @@ const devContainer = {
     8888
   ],
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "yarn && yarn init:env",
+  "postCreateCommand": "",
   // Configure tool-specific properties.
   "customizations": {
     "vscode": {
@@ -42,8 +45,12 @@ const devContainer = {
   "remoteUser": "root"
 };
 
-export function coerceDevContainerConfig(tree: Tree) {
+export function coerceDevContainerConfig(tree: Tree, packageManager: PackageManagerProfile) {
 
-  CoerceFile(tree, '.devcontainer/devcontainer.json', JSON.stringify(devContainer, null, 2));
+  const config = {
+    ...devContainer,
+    postCreateCommand: `${ packageManager.install } && ${ packageManager.run('init:env') }`,
+  };
+  CoerceFile(tree, '.devcontainer/devcontainer.json', JSON.stringify(config, null, 2));
 
 }

@@ -16,4 +16,6 @@ export interface InitGeneratorSchema {
   /** The URL of the repository */
   repositoryUrl?: string;
   withHusky?: boolean;
+  /** The package manager of the workspace. Detected from the root package.json packageManager field or the lockfile when omitted */
+  packageManager?: 'npm' | 'yarn' | 'pnpm' | 'bun';
 }

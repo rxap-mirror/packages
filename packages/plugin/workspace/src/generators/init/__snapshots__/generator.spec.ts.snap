@@ -1,39 +1,226 @@
 // Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`init should init default workspace 1`] = `
-[
-  ".oxfmtrc.json",
-  "package.json",
-  "nx.json",
-  "tsconfig.base.json",
-  "apps",
-  "libs",
-  ".commitlintrc.js",
-  ".devcontainer",
-  ".renovaterc.json",
-  ".run",
-  ".yarnrc.yml",
-  "tools",
-  "angular.json",
-  "LICENSE",
-  ".gitignore",
-  ".prettierignore",
-  "project.json",
-  ".prettierrc",
-  "jest.preset.js",
-  "jest.config.ts",
-  "schematic.yaml",
-]
-`;
+exports[`init package manager should render the files for npm detected from package-lock.json 1`] = `
+{
+  ".devcontainer/Dockerfile": "FROM mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye
 
-exports[`init should init default workspace 2`] = `
-"{
+",
+  ".devcontainer/devcontainer.json": "{
+  "name": "RxAP Workspace",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "forwardPorts": [
+    4200,
+    8888
+  ],
+  "postCreateCommand": "npm install && npm run init:env",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Angular.ng-template",
+        "vivaxy.vscode-conventional-commits",
+        "nrwl.angular-console",
+        "redhat.vscode-yaml",
+        "esbenp.prettier-vscode",
+        "firsttris.vscode-jest-runner",
+        "dbaeumer.vscode-eslint"
+      ]
+    },
+    "jetbrains": {
+      "backend": "WebStorm"
+    }
+  },
+  "remoteUser": "root"
+}",
+  ".gitignore": "
+/migrations.json
+~
+.angular
+.nx
+/docker-compose.frontends.yml
+/docker-compose.services.yml
+dist
+tmp
+tmp.*
+/out-tsc
+node_modules
+.project
+.classpath
+.c9
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.sass-cache
+connect.lock
+coverage
+.nyc_output
+*.log
+*.lock
+*.patch
+typings
+.env
+junit.xml
+/junit
+nx-angular-config.xml
+nx-config.xml
+.DS_Store
+Thumbs.db
+!yarn.lock
+!bun.lock
+documentation.json
+gitlab-ci-setup.sh
+.idea/copilot/chatSessions
+.idea/jsLibraryMappings.xml
+.idea/nx-angular-config.xml
+.idea/nx-console.xml
+.idea/cody_history.xml
+.idea/JetClient
+.idea/vcs.xml
+.idea/shelf/
+.idea/workspace.xml
+.idea/httpRequests/
+.idea/developer-tools.xml
+.idea/dataSources/*/storage_v2
+.firebase
+.npm
+",
+  ".husky/commit-msg": "#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx commitlint --edit $1
+",
+  ".husky/post-checkout": "#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npm install
+",
+  ".husky/pre-commit": "#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx nx run-many --target lint --quiet
+",
+  ".yarnrc.yml": null,
+  "nx.json": "{
+  "affected": {
+    "defaultBase": "main"
+  },
+  "targetDefaults": {
+    "build": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    }
+  },
+  "defaultProject": "workspace",
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*"
+    ],
+    "build": [
+      "production",
+      "{projectRoot}/package.json",
+      "{projectRoot}/collection.json",
+      "{projectRoot}/generators.json",
+      "{projectRoot}/executors.json"
+    ],
+    "production": [
+      "typescript",
+      "{projectRoot}/src/**/*",
+      "!{projectRoot}/**/*.{spec,stories,cy}.ts",
+      "!{projectRoot}/jest.config.ts",
+      "!{projectRoot}/src/test-setup.[jt]s",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/cypress/**/*",
+      "!{projectRoot}/**/*.cy.[jt]s?(x)",
+      "!{projectRoot}/cypress.config.[jt]s",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/tsconfig.storybook.json",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/jest.config.{cjs,mjs,js,cts,mts,ts}",
+      "!{projectRoot}/test-setup.[jt]s"
+    ],
+    "test": [
+      "typescript",
+      "{projectRoot}/src/**/*",
+      "!{projectRoot}/tsconfig.lib.json",
+      "!{projectRoot}/tsconfig.lib.prod.json"
+    ],
+    "typescript": [
+      "{projectRoot}/**/*.ts",
+      "{projectRoot}/tsconfig.json",
+      "{projectRoot}/tsconfig.*.json"
+    ]
+  },
+  "generators": {
+    "@nx/plugin:plugin": {
+      "publishable": false,
+      "tags": "plugin,nx,nx-plugin"
+    },
+    "@nx/js:library": {
+      "unitTestRunner": "jest",
+      "publishable": false,
+      "buildable": false
+    },
+    "@nx/nest:library": {
+      "tags": "nest",
+      "publishable": false,
+      "buildable": false
+    },
+    "@nx/nest:application": {
+      "e2eTestRunner": "none",
+      "tags": "nest",
+      "strict": true
+    },
+    "@nx/plugin:executor": {
+      "unitTestRunner": "none"
+    },
+    "@nx/plugin:generator": {
+      "unitTestRunner": "none"
+    }
+  },
+  "cli": {
+    "packageManager": "npm"
+  },
+  "plugins": [
+    "@rxap/plugin-workspace/plugin",
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      }
+    }
+  ],
+  "release": {
+    "projectsRelationship": "independent",
+    "version": {
+      "preVersionCommand": "npx nx run-many -t build",
+      "conventionalCommits": true
+    },
+    "changelog": {
+      "projectChangelogs": true
+    }
+  }
+}
+",
+  "package.json": "{
   "name": "@proj/source",
   "license": "GPL-3.0-or-later",
   "scripts": {
-    "rxap:update": "npx npm-check-updates --filter /@rxap/ --target newest -u && yarn",
-    "rxap:migrate": "yarn rxap:update && yarn rxap:compose",
+    "rxap:update": "npx --yes npm-check-updates --filter /@rxap/ --target newest -u && npm install",
+    "rxap:migrate": "npm run rxap:update && npm run rxap:compose",
     "rxap:compose": "nx g @rxap/schematic-composer:compose",
+    "prepare": "husky install",
     "schematic": "bash tools/scripts/schematic.sh"
   },
   "dependencies": {
@@ -49,6 +236,7 @@ exports[`init should init default workspace 2`] = `
     "@swc/helpers": "~0.5.18",
     "@types/jest": "~30.0.0",
     "@types/node": "^22.0.0",
+    "husky": "latest",
     "jest": "~30.3.0",
     "jest-environment-node": "~30.3.0",
     "jest-util": "~30.3.0",
@@ -60,23 +248,604 @@ exports[`init should init default workspace 2`] = `
     "typescript": "~6.0.3"
   },
   "engines": {
-    "node": ">=18 <21",
-    "yarn": "1.22 || 3.6"
+    "node": ">=18 <21"
   },
   "os": [
     "!win32"
   ],
-  "packageManager": "yarn@3.6.0",
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/rxap/packages/testing.git"
   }
 }
-"
+",
+  "tools/scripts/schematic.sh": "#!/bin/bash
+
+BASE_DIR=$(git rev-parse --show-toplevel)
+
+cd "$BASE_DIR" || exit 1
+
+rm /tmp/name.txt || false
+
+# This script will exit on the first error
+set -e
+
+externalSchematic=$1
+
+echo "externalSchematic: $externalSchematic"
+
+# Set the IFS variable to :
+IFS=':'
+
+# Use the read command to split the value into two variables
+read -r package schematic <<<"$1"
+
+echo "package: $package"
+echo "schematic: $schematic"
+
+# Remove the first parameter
+shift
+
+echo "arguments: $@"
+
+# Search for package.json files in the current directory and its subdirectories
+find . \\( -type d \\( -name node_modules -o -name dist -o -name .angular \\) \\) -prune -o -name "package.json" -type f | while read -r file; do
+  # Check if the name property equals to $package
+  if [ "$(jq -r .name "$file")" = "$package" ]; then
+    # Get the directory of the matched package.json
+    dir=$(dirname "$file")
+
+    # Read the name property from the project.json file in the same directory
+    if [ -f "$dir/project.json" ]; then
+      name=$(jq -r .name "$dir/project.json")
+
+      # Print out the name for verification
+      echo "Name from project.json: $name"
+
+      # If you want to use this variable outside the while loop you would need to
+      # write it to a file or pass it to a command as argument here,
+      # because each iteration in the loop runs in a subshell
+      echo "$name" >/tmp/name.txt
+    else
+      echo "No project.json file found in $dir"
+      exit 1
+    fi
+  fi
+done
+
+# test if /tmp/name.txt exists
+if [ ! -f /tmp/name.txt ]; then
+  echo "No package found with name $package"
+  exit 1
+fi
+
+# Read the name from the file
+name=$(cat /tmp/name.txt)
+
+if [ -z "$name" ]; then
+  echo "No package found with name $package"
+  exit 1
+fi
+
+echo "Build project $name"
+
+npx nx run "$name:build"
+
+bash tools/scripts/dist-node-modules-linking.sh
+
+# Search for package.json files in the current directory and its subdirectories
+find dist -type d -name node_modules -prune -o -name "package.json" -type f | while read -r file; do
+  # Check if the name property equals to $package
+  if [ "$(jq -r .name "$file")" = "$package" ]; then
+    # Get the directory of the matched package.json
+    dir=$(dirname "$file")
+
+    echo "Output directory for the package: $dir"
+
+    # If you want to use this variable outside the while loop you would need to
+    # write it to a file or pass it to a command as argument here,
+    # because each iteration in the loop runs in a subshell
+    echo "$dir" >/tmp/dir.txt
+  fi
+done
+
+echo "detect $package in $dir"
+
+# Read the dir from the file
+dir=$(cat /tmp/dir.txt)
+
+if [ -z "$dir" ]; then
+  echo "No output dir for package found with name $package"
+  exit 1
+fi
+
+npx nx g "./$dir:$schematic" "$@"
+",
+}
 `;
 
-exports[`init should init default workspace 3`] = `
-"{
+exports[`init package manager should render the files for pnpm detected from pnpm-lock.yaml 1`] = `
+{
+  ".devcontainer/Dockerfile": "FROM mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+RUN npm install -g corepack && corepack enable
+",
+  ".devcontainer/devcontainer.json": "{
+  "name": "RxAP Workspace",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "forwardPorts": [
+    4200,
+    8888
+  ],
+  "postCreateCommand": "pnpm install && pnpm run init:env",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Angular.ng-template",
+        "vivaxy.vscode-conventional-commits",
+        "nrwl.angular-console",
+        "redhat.vscode-yaml",
+        "esbenp.prettier-vscode",
+        "firsttris.vscode-jest-runner",
+        "dbaeumer.vscode-eslint"
+      ]
+    },
+    "jetbrains": {
+      "backend": "WebStorm"
+    }
+  },
+  "remoteUser": "root"
+}",
+  ".gitignore": "
+/migrations.json
+~
+.angular
+.nx
+/docker-compose.frontends.yml
+/docker-compose.services.yml
+dist
+tmp
+tmp.*
+/out-tsc
+node_modules
+.project
+.classpath
+.c9
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.sass-cache
+connect.lock
+coverage
+.nyc_output
+*.log
+*.lock
+*.patch
+typings
+.env
+junit.xml
+/junit
+nx-angular-config.xml
+nx-config.xml
+.DS_Store
+Thumbs.db
+!yarn.lock
+!bun.lock
+documentation.json
+gitlab-ci-setup.sh
+.idea/copilot/chatSessions
+.idea/jsLibraryMappings.xml
+.idea/nx-angular-config.xml
+.idea/nx-console.xml
+.idea/cody_history.xml
+.idea/JetClient
+.idea/vcs.xml
+.idea/shelf/
+.idea/workspace.xml
+.idea/httpRequests/
+.idea/developer-tools.xml
+.idea/dataSources/*/storage_v2
+.firebase
+.pnpm-store
+",
+  ".husky/commit-msg": "#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+pnpm exec commitlint --edit $1
+",
+  ".husky/post-checkout": "#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+pnpm install
+",
+  ".husky/pre-commit": "#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+pnpm exec nx run-many --target lint --quiet
+",
+  ".yarnrc.yml": null,
+  "nx.json": "{
+  "affected": {
+    "defaultBase": "main"
+  },
+  "targetDefaults": {
+    "build": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    }
+  },
+  "defaultProject": "workspace",
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*"
+    ],
+    "build": [
+      "production",
+      "{projectRoot}/package.json",
+      "{projectRoot}/collection.json",
+      "{projectRoot}/generators.json",
+      "{projectRoot}/executors.json"
+    ],
+    "production": [
+      "typescript",
+      "{projectRoot}/src/**/*",
+      "!{projectRoot}/**/*.{spec,stories,cy}.ts",
+      "!{projectRoot}/jest.config.ts",
+      "!{projectRoot}/src/test-setup.[jt]s",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/cypress/**/*",
+      "!{projectRoot}/**/*.cy.[jt]s?(x)",
+      "!{projectRoot}/cypress.config.[jt]s",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/tsconfig.storybook.json",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/jest.config.{cjs,mjs,js,cts,mts,ts}",
+      "!{projectRoot}/test-setup.[jt]s"
+    ],
+    "test": [
+      "typescript",
+      "{projectRoot}/src/**/*",
+      "!{projectRoot}/tsconfig.lib.json",
+      "!{projectRoot}/tsconfig.lib.prod.json"
+    ],
+    "typescript": [
+      "{projectRoot}/**/*.ts",
+      "{projectRoot}/tsconfig.json",
+      "{projectRoot}/tsconfig.*.json"
+    ]
+  },
+  "generators": {
+    "@nx/plugin:plugin": {
+      "publishable": false,
+      "tags": "plugin,nx,nx-plugin"
+    },
+    "@nx/js:library": {
+      "unitTestRunner": "jest",
+      "publishable": false,
+      "buildable": false
+    },
+    "@nx/nest:library": {
+      "tags": "nest",
+      "publishable": false,
+      "buildable": false
+    },
+    "@nx/nest:application": {
+      "e2eTestRunner": "none",
+      "tags": "nest",
+      "strict": true
+    },
+    "@nx/plugin:executor": {
+      "unitTestRunner": "none"
+    },
+    "@nx/plugin:generator": {
+      "unitTestRunner": "none"
+    }
+  },
+  "cli": {
+    "packageManager": "pnpm"
+  },
+  "plugins": [
+    "@rxap/plugin-workspace/plugin",
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      }
+    }
+  ],
+  "release": {
+    "projectsRelationship": "independent",
+    "version": {
+      "preVersionCommand": "pnpm exec nx run-many -t build",
+      "conventionalCommits": true
+    },
+    "changelog": {
+      "projectChangelogs": true
+    }
+  }
+}
+",
+  "package.json": "{
+  "name": "@proj/source",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "rxap:update": "pnpm dlx npm-check-updates --filter /@rxap/ --target newest -u && pnpm install",
+    "rxap:migrate": "pnpm run rxap:update && pnpm run rxap:compose",
+    "rxap:compose": "nx g @rxap/schematic-composer:compose",
+    "prepare": "husky install",
+    "schematic": "bash tools/scripts/schematic.sh"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "@nx/jest": "24.0.6",
+    "@nx/js": "24.0.6",
+    "@rxap/cli": "latest",
+    "@rxap/schematic-composer": "latest",
+    "@swc/helpers": "~0.5.18",
+    "@types/jest": "~30.0.0",
+    "@types/node": "^22.0.0",
+    "husky": "latest",
+    "jest": "~30.3.0",
+    "jest-environment-node": "~30.3.0",
+    "jest-util": "~30.3.0",
+    "nx-cloud": "latest",
+    "oxfmt": "^0.72.0",
+    "rxap": "latest",
+    "ts-jest": "^29.4.7",
+    "ts-node": "10.9.1",
+    "typescript": "~6.0.3"
+  },
+  "engines": {
+    "node": ">=18 <21"
+  },
+  "os": [
+    "!win32"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages/testing.git"
+  }
+}
+",
+  "tools/scripts/schematic.sh": "#!/bin/bash
+
+BASE_DIR=$(git rev-parse --show-toplevel)
+
+cd "$BASE_DIR" || exit 1
+
+rm /tmp/name.txt || false
+
+# This script will exit on the first error
+set -e
+
+externalSchematic=$1
+
+echo "externalSchematic: $externalSchematic"
+
+# Set the IFS variable to :
+IFS=':'
+
+# Use the read command to split the value into two variables
+read -r package schematic <<<"$1"
+
+echo "package: $package"
+echo "schematic: $schematic"
+
+# Remove the first parameter
+shift
+
+echo "arguments: $@"
+
+# Search for package.json files in the current directory and its subdirectories
+find . \\( -type d \\( -name node_modules -o -name dist -o -name .angular \\) \\) -prune -o -name "package.json" -type f | while read -r file; do
+  # Check if the name property equals to $package
+  if [ "$(jq -r .name "$file")" = "$package" ]; then
+    # Get the directory of the matched package.json
+    dir=$(dirname "$file")
+
+    # Read the name property from the project.json file in the same directory
+    if [ -f "$dir/project.json" ]; then
+      name=$(jq -r .name "$dir/project.json")
+
+      # Print out the name for verification
+      echo "Name from project.json: $name"
+
+      # If you want to use this variable outside the while loop you would need to
+      # write it to a file or pass it to a command as argument here,
+      # because each iteration in the loop runs in a subshell
+      echo "$name" >/tmp/name.txt
+    else
+      echo "No project.json file found in $dir"
+      exit 1
+    fi
+  fi
+done
+
+# test if /tmp/name.txt exists
+if [ ! -f /tmp/name.txt ]; then
+  echo "No package found with name $package"
+  exit 1
+fi
+
+# Read the name from the file
+name=$(cat /tmp/name.txt)
+
+if [ -z "$name" ]; then
+  echo "No package found with name $package"
+  exit 1
+fi
+
+echo "Build project $name"
+
+pnpm exec nx run "$name:build"
+
+bash tools/scripts/dist-node-modules-linking.sh
+
+# Search for package.json files in the current directory and its subdirectories
+find dist -type d -name node_modules -prune -o -name "package.json" -type f | while read -r file; do
+  # Check if the name property equals to $package
+  if [ "$(jq -r .name "$file")" = "$package" ]; then
+    # Get the directory of the matched package.json
+    dir=$(dirname "$file")
+
+    echo "Output directory for the package: $dir"
+
+    # If you want to use this variable outside the while loop you would need to
+    # write it to a file or pass it to a command as argument here,
+    # because each iteration in the loop runs in a subshell
+    echo "$dir" >/tmp/dir.txt
+  fi
+done
+
+echo "detect $package in $dir"
+
+# Read the dir from the file
+dir=$(cat /tmp/dir.txt)
+
+if [ -z "$dir" ]; then
+  echo "No output dir for package found with name $package"
+  exit 1
+fi
+
+pnpm exec nx g "./$dir:$schematic" "$@"
+",
+}
+`;
+
+exports[`init package manager should render the files for yarn detected from yarn.lock 1`] = `
+{
+  ".devcontainer/Dockerfile": "FROM mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye
+ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+RUN npm install -g corepack && corepack enable
+",
+  ".devcontainer/devcontainer.json": "{
+  "name": "RxAP Workspace",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
+  },
+  "forwardPorts": [
+    4200,
+    8888
+  ],
+  "postCreateCommand": "yarn install && yarn init:env",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Angular.ng-template",
+        "vivaxy.vscode-conventional-commits",
+        "nrwl.angular-console",
+        "redhat.vscode-yaml",
+        "esbenp.prettier-vscode",
+        "firsttris.vscode-jest-runner",
+        "dbaeumer.vscode-eslint"
+      ]
+    },
+    "jetbrains": {
+      "backend": "WebStorm"
+    }
+  },
+  "remoteUser": "root"
+}",
+  ".gitignore": "
+/migrations.json
+~
+.angular
+.nx
+/docker-compose.frontends.yml
+/docker-compose.services.yml
+dist
+tmp
+tmp.*
+/out-tsc
+node_modules
+.project
+.classpath
+.c9
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.sass-cache
+connect.lock
+coverage
+.nyc_output
+*.log
+*.lock
+*.patch
+typings
+.env
+junit.xml
+/junit
+nx-angular-config.xml
+nx-config.xml
+.DS_Store
+Thumbs.db
+!yarn.lock
+!bun.lock
+documentation.json
+gitlab-ci-setup.sh
+.idea/copilot/chatSessions
+.idea/jsLibraryMappings.xml
+.idea/nx-angular-config.xml
+.idea/nx-console.xml
+.idea/cody_history.xml
+.idea/JetClient
+.idea/vcs.xml
+.idea/shelf/
+.idea/workspace.xml
+.idea/httpRequests/
+.idea/developer-tools.xml
+.idea/dataSources/*/storage_v2
+.firebase
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+",
+  ".husky/commit-msg": "#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+yarn commitlint --edit $1
+",
+  ".husky/post-checkout": "#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+yarn install
+",
+  ".husky/pre-commit": "#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+yarn nx run-many --target lint --quiet
+",
+  ".yarnrc.yml": "nodeLinker: node-modules
+",
+  "nx.json": "{
   "affected": {
     "defaultBase": "main"
   },
@@ -167,6 +936,334 @@ exports[`init should init default workspace 3`] = `
         "targetName": "test"
       }
     }
+  ],
+  "release": {
+    "projectsRelationship": "independent",
+    "version": {
+      "preVersionCommand": "yarn nx run-many -t build",
+      "conventionalCommits": true
+    },
+    "changelog": {
+      "projectChangelogs": true
+    }
+  }
+}
+",
+  "package.json": "{
+  "name": "@proj/source",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "rxap:update": "yarn dlx npm-check-updates --filter /@rxap/ --target newest -u && yarn install",
+    "rxap:migrate": "yarn rxap:update && yarn rxap:compose",
+    "rxap:compose": "nx g @rxap/schematic-composer:compose",
+    "prepare": "husky install",
+    "schematic": "bash tools/scripts/schematic.sh"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "@nx/jest": "24.0.6",
+    "@nx/js": "24.0.6",
+    "@rxap/cli": "latest",
+    "@rxap/schematic-composer": "latest",
+    "@swc/helpers": "~0.5.18",
+    "@types/jest": "~30.0.0",
+    "@types/node": "^22.0.0",
+    "husky": "latest",
+    "jest": "~30.3.0",
+    "jest-environment-node": "~30.3.0",
+    "jest-util": "~30.3.0",
+    "nx-cloud": "latest",
+    "oxfmt": "^0.72.0",
+    "rxap": "latest",
+    "ts-jest": "^29.4.7",
+    "ts-node": "10.9.1",
+    "typescript": "~6.0.3"
+  },
+  "engines": {
+    "node": ">=18 <21"
+  },
+  "os": [
+    "!win32"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages/testing.git"
+  }
+}
+",
+  "tools/scripts/schematic.sh": "#!/bin/bash
+
+BASE_DIR=$(git rev-parse --show-toplevel)
+
+cd "$BASE_DIR" || exit 1
+
+rm /tmp/name.txt || false
+
+# This script will exit on the first error
+set -e
+
+externalSchematic=$1
+
+echo "externalSchematic: $externalSchematic"
+
+# Set the IFS variable to :
+IFS=':'
+
+# Use the read command to split the value into two variables
+read -r package schematic <<<"$1"
+
+echo "package: $package"
+echo "schematic: $schematic"
+
+# Remove the first parameter
+shift
+
+echo "arguments: $@"
+
+# Search for package.json files in the current directory and its subdirectories
+find . \\( -type d \\( -name node_modules -o -name dist -o -name .angular \\) \\) -prune -o -name "package.json" -type f | while read -r file; do
+  # Check if the name property equals to $package
+  if [ "$(jq -r .name "$file")" = "$package" ]; then
+    # Get the directory of the matched package.json
+    dir=$(dirname "$file")
+
+    # Read the name property from the project.json file in the same directory
+    if [ -f "$dir/project.json" ]; then
+      name=$(jq -r .name "$dir/project.json")
+
+      # Print out the name for verification
+      echo "Name from project.json: $name"
+
+      # If you want to use this variable outside the while loop you would need to
+      # write it to a file or pass it to a command as argument here,
+      # because each iteration in the loop runs in a subshell
+      echo "$name" >/tmp/name.txt
+    else
+      echo "No project.json file found in $dir"
+      exit 1
+    fi
+  fi
+done
+
+# test if /tmp/name.txt exists
+if [ ! -f /tmp/name.txt ]; then
+  echo "No package found with name $package"
+  exit 1
+fi
+
+# Read the name from the file
+name=$(cat /tmp/name.txt)
+
+if [ -z "$name" ]; then
+  echo "No package found with name $package"
+  exit 1
+fi
+
+echo "Build project $name"
+
+yarn nx run "$name:build"
+
+bash tools/scripts/dist-node-modules-linking.sh
+
+# Search for package.json files in the current directory and its subdirectories
+find dist -type d -name node_modules -prune -o -name "package.json" -type f | while read -r file; do
+  # Check if the name property equals to $package
+  if [ "$(jq -r .name "$file")" = "$package" ]; then
+    # Get the directory of the matched package.json
+    dir=$(dirname "$file")
+
+    echo "Output directory for the package: $dir"
+
+    # If you want to use this variable outside the while loop you would need to
+    # write it to a file or pass it to a command as argument here,
+    # because each iteration in the loop runs in a subshell
+    echo "$dir" >/tmp/dir.txt
+  fi
+done
+
+echo "detect $package in $dir"
+
+# Read the dir from the file
+dir=$(cat /tmp/dir.txt)
+
+if [ -z "$dir" ]; then
+  echo "No output dir for package found with name $package"
+  exit 1
+fi
+
+yarn nx g "./$dir:$schematic" "$@"
+",
+}
+`;
+
+exports[`init should init default workspace 1`] = `
+[
+  ".oxfmtrc.json",
+  "package.json",
+  "nx.json",
+  "tsconfig.base.json",
+  "apps",
+  "libs",
+  ".commitlintrc.js",
+  ".devcontainer",
+  ".renovaterc.json",
+  ".run",
+  "tools",
+  "angular.json",
+  "LICENSE",
+  ".gitignore",
+  ".prettierignore",
+  "project.json",
+  ".prettierrc",
+  "jest.preset.js",
+  "jest.config.ts",
+  "schematic.yaml",
+]
+`;
+
+exports[`init should init default workspace 2`] = `
+"{
+  "name": "@proj/source",
+  "license": "GPL-3.0-or-later",
+  "scripts": {
+    "rxap:update": "npx --yes npm-check-updates --filter /@rxap/ --target newest -u && npm install",
+    "rxap:migrate": "npm run rxap:update && npm run rxap:compose",
+    "rxap:compose": "nx g @rxap/schematic-composer:compose",
+    "schematic": "bash tools/scripts/schematic.sh"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "latest",
+    "@commitlint/config-conventional": "latest",
+    "@nx/jest": "24.0.6",
+    "@nx/js": "24.0.6",
+    "@rxap/cli": "latest",
+    "@rxap/schematic-composer": "latest",
+    "@swc/helpers": "~0.5.18",
+    "@types/jest": "~30.0.0",
+    "@types/node": "^22.0.0",
+    "jest": "~30.3.0",
+    "jest-environment-node": "~30.3.0",
+    "jest-util": "~30.3.0",
+    "nx-cloud": "latest",
+    "oxfmt": "^0.72.0",
+    "rxap": "latest",
+    "ts-jest": "^29.4.7",
+    "ts-node": "10.9.1",
+    "typescript": "~6.0.3"
+  },
+  "engines": {
+    "node": ">=18 <21"
+  },
+  "os": [
+    "!win32"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages/testing.git"
+  }
+}
+"
+`;
+
+exports[`init should init default workspace 3`] = `
+"{
+  "affected": {
+    "defaultBase": "main"
+  },
+  "targetDefaults": {
+    "build": {
+      "cache": true
+    },
+    "lint": {
+      "cache": true
+    }
+  },
+  "defaultProject": "workspace",
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*"
+    ],
+    "build": [
+      "production",
+      "{projectRoot}/package.json",
+      "{projectRoot}/collection.json",
+      "{projectRoot}/generators.json",
+      "{projectRoot}/executors.json"
+    ],
+    "production": [
+      "typescript",
+      "{projectRoot}/src/**/*",
+      "!{projectRoot}/**/*.{spec,stories,cy}.ts",
+      "!{projectRoot}/jest.config.ts",
+      "!{projectRoot}/src/test-setup.[jt]s",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/cypress/**/*",
+      "!{projectRoot}/**/*.cy.[jt]s?(x)",
+      "!{projectRoot}/cypress.config.[jt]s",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/tsconfig.storybook.json",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/jest.config.{cjs,mjs,js,cts,mts,ts}",
+      "!{projectRoot}/test-setup.[jt]s"
+    ],
+    "test": [
+      "typescript",
+      "{projectRoot}/src/**/*",
+      "!{projectRoot}/tsconfig.lib.json",
+      "!{projectRoot}/tsconfig.lib.prod.json"
+    ],
+    "typescript": [
+      "{projectRoot}/**/*.ts",
+      "{projectRoot}/tsconfig.json",
+      "{projectRoot}/tsconfig.*.json"
+    ]
+  },
+  "generators": {
+    "@nx/plugin:plugin": {
+      "publishable": false,
+      "tags": "plugin,nx,nx-plugin"
+    },
+    "@nx/js:library": {
+      "unitTestRunner": "jest",
+      "publishable": false,
+      "buildable": false
+    },
+    "@nx/nest:library": {
+      "tags": "nest",
+      "publishable": false,
+      "buildable": false
+    },
+    "@nx/nest:application": {
+      "e2eTestRunner": "none",
+      "tags": "nest",
+      "strict": true
+    },
+    "@nx/plugin:executor": {
+      "unitTestRunner": "none"
+    },
+    "@nx/plugin:generator": {
+      "unitTestRunner": "none"
+    }
+  },
+  "cli": {
+    "packageManager": "npm"
+  },
+  "plugins": [
+    "@rxap/plugin-workspace/plugin",
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      }
+    }
   ]
 }
 "
@@ -211,13 +1308,8 @@ nx-angular-config.xml
 nx-config.xml
 .DS_Store
 Thumbs.db
-.yarn/*
 !yarn.lock
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+!bun.lock
 documentation.json
 gitlab-ci-setup.sh
 .idea/copilot/chatSessions
@@ -233,6 +1325,7 @@ gitlab-ci-setup.sh
 .idea/developer-tools.xml
 .idea/dataSources/*/storage_v2
 .firebase
+.npm
 "
 `;
 
@@ -288,11 +1381,6 @@ exports[`init should init default workspace 8`] = `
 `;
 
 exports[`init should init default workspace 9`] = `
-"nodeLinker: node-modules
-"
-`;
-
-exports[`init should init default workspace 10`] = `
 "                    GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
@@ -917,7 +2005,7 @@ copy of the Program in return for a fee.
 "
 `;
 
-exports[`init should init default workspace 11`] = `
+exports[`init should init default workspace 10`] = `
 "
 dist
 coverage
@@ -932,7 +2020,7 @@ tmp.*
 "
 `;
 
-exports[`init should init default workspace 12`] = `
+exports[`init should init default workspace 11`] = `
 "{
   "name": "workspace",
   "$schema": "node_modules/nx/schemas/project-schema.json"
@@ -940,17 +2028,17 @@ exports[`init should init default workspace 12`] = `
 "
 `;
 
+exports[`init should init default workspace 12`] = `null`;
+
 exports[`init should init default workspace 13`] = `null`;
 
-exports[`init should init default workspace 14`] = `null`;
-
-exports[`init should init default workspace 15`] = `
+exports[`init should init default workspace 14`] = `
 "const nxPreset = require('@nx/jest/preset').default;
 
 module.exports = { ...nxPreset };"
 `;
 
-exports[`init should init default workspace 16`] = `
+exports[`init should init default workspace 15`] = `
 "import type { Config } from 'jest';
 import { getJestProjectsAsync } from '@nx/jest';
 
@@ -959,7 +2047,7 @@ export default async (): Promise<Config> => ({
 });"
 `;
 
-exports[`init should init default workspace 17`] = `
+exports[`init should init default workspace 16`] = `
 "package: "@rxap/plugin-workspace"
 name: init
 options:
@@ -983,7 +2071,6 @@ exports[`init should init default workspace: generated-tree 1`] = `
 ",
   ".devcontainer/Dockerfile": "FROM mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye
 
-RUN corepack enable && corepack prepare yarn@3.6.0 --activate
 ",
   ".devcontainer/devcontainer.json": "{
   "name": "RxAP Workspace",
@@ -997,7 +2084,7 @@ RUN corepack enable && corepack prepare yarn@3.6.0 --activate
     4200,
     8888
   ],
-  "postCreateCommand": "yarn && yarn init:env",
+  "postCreateCommand": "npm install && npm run init:env",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -1054,13 +2141,8 @@ nx-angular-config.xml
 nx-config.xml
 .DS_Store
 Thumbs.db
-.yarn/*
 !yarn.lock
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+!bun.lock
 documentation.json
 gitlab-ci-setup.sh
 .idea/copilot/chatSessions
@@ -1076,6 +2158,7 @@ gitlab-ci-setup.sh
 .idea/developer-tools.xml
 .idea/dataSources/*/storage_v2
 .firebase
+.npm
 ",
   ".oxfmtrc.json": "{"singleQuote":true}",
   ".prettierignore": "
@@ -1117,8 +2200,6 @@ tmp.*
         <method v="2"/>
     </configuration>
 </component>
-",
-  ".yarnrc.yml": "nodeLinker: node-modules
 ",
   "LICENSE": "                    GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
@@ -1839,7 +2920,7 @@ module.exports = { ...nxPreset };",
     }
   },
   "cli": {
-    "packageManager": "yarn"
+    "packageManager": "npm"
   },
   "plugins": [
     "@rxap/plugin-workspace/plugin",
@@ -1856,8 +2937,8 @@ module.exports = { ...nxPreset };",
   "name": "@proj/source",
   "license": "GPL-3.0-or-later",
   "scripts": {
-    "rxap:update": "npx npm-check-updates --filter /@rxap/ --target newest -u && yarn",
-    "rxap:migrate": "yarn rxap:update && yarn rxap:compose",
+    "rxap:update": "npx --yes npm-check-updates --filter /@rxap/ --target newest -u && npm install",
+    "rxap:migrate": "npm run rxap:update && npm run rxap:compose",
     "rxap:compose": "nx g @rxap/schematic-composer:compose",
     "schematic": "bash tools/scripts/schematic.sh"
   },
@@ -1885,13 +2966,11 @@ module.exports = { ...nxPreset };",
     "typescript": "~6.0.3"
   },
   "engines": {
-    "node": ">=18 <21",
-    "yarn": "1.22 || 3.6"
+    "node": ">=18 <21"
   },
   "os": [
     "!win32"
   ],
-  "packageManager": "yarn@3.6.0",
   "repository": {
     "type": "git",
     "url": "https://gitlab.com/rxap/packages/testing.git"
@@ -2025,7 +3104,7 @@ fi
 
 echo "Build project $name"
 
-yarn nx run "$name:build"
+npx nx run "$name:build"
 
 bash tools/scripts/dist-node-modules-linking.sh
 
@@ -2055,7 +3134,7 @@ if [ -z "$dir" ]; then
   exit 1
 fi
 
-yarn nx g "./$dir:$schematic" "$@"
+npx nx g "./$dir:$schematic" "$@"
 ",
   "tools/scripts/semver.sh": "#!/usr/bin/env bash
 

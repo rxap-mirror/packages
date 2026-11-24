@@ -1,3 +1,5 @@
+import { PackageManagerProfile } from '@rxap/workspace-utilities';
+
 export const gitIgnore = [
   // nx
   '/migrations.json',
@@ -47,15 +49,9 @@ export const gitIgnore = [
   // system files
   '.DS_Store',
   'Thumbs.db',
-  // yarn
-  '.yarn/*',
+  // lockfiles must be committed even though '*.lock' is ignored
   '!yarn.lock',
-  '!.yarn/patches',
-  '!.yarn/plugins',
-  '!.yarn/releases',
-  '!.yarn/sdks',
-  '!.yarn/versions',
-  // '!.yarn/cache',
+  '!bun.lock',
   'documentation.json',
   'gitlab-ci-setup.sh',
   // .idea
@@ -86,3 +82,22 @@ export const prettierIgnore = [
   '.nx',
   '.nyc_output',
 ];
+
+/**
+ * The .gitignore entries that only apply to one package manager (its install state and CI cache dir)
+ */
+export function gitIgnoreForPackageManager(packageManager: Pick<PackageManagerProfile, 'name' | 'ciCacheDir'>): string[] {
+  switch (packageManager.name) {
+    case 'yarn':
+      return [
+        '.yarn/*',
+        '!.yarn/patches',
+        '!.yarn/plugins',
+        '!.yarn/releases',
+        '!.yarn/sdks',
+        '!.yarn/versions',
+      ];
+    default:
+      return [ packageManager.ciCacheDir ];
+  }
+}

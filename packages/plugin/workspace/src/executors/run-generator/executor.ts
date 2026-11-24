@@ -1,4 +1,8 @@
-import { ExecutorContext } from '@nx/devkit';
+import {
+  detectPackageManager,
+  ExecutorContext,
+  getPackageManagerCommand,
+} from '@nx/devkit';
 import {
   GetProjectRoot,
   GetProjectSourceRoot,
@@ -74,7 +78,7 @@ export async function runExecutor(options: RunGeneratorExecutorSchema, context: 
 
   if (IsRxapRepository(context.root)) {
     if (options.generator?.match(/@rxap\/schematic/)) {
-      command = `yarn schematic ${ options.generator }`;
+      command = getPackageManagerCommand(detectPackageManager(context.root), context.root).run('schematic', options.generator);
     }
   }
 
