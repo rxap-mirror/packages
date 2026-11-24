@@ -3,6 +3,7 @@ import {
   SchematicsException,
 } from '@angular-devkit/schematics';
 import { UpdatePackageJsonRule } from './package-json-file';
+import { ResolveFromWorkspace } from './resolve-from-workspace';
 
 /**
  * Checks if all provided packages are installed and listed as dependencies
@@ -19,10 +20,10 @@ export function CheckIfPackagesAreInstalled(packageList: string[]): Rule {
     const notReferenced = packageList.filter(packageName => !(packageJson.dependencies ?? {})[packageName] &&
       !(packageJson.devDependencies ?? {})[packageName]);
 
-    // check if not referenced packages are installed and can be imported
+    // check if not referenced packages are installed and can be resolved from the workspace root
     const notInstalled = notReferenced.filter(packageName => {
       try {
-        require(packageName);
+        ResolveFromWorkspace(packageName);
       } catch (e: any) {
         return true;
       }

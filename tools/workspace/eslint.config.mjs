@@ -13,6 +13,13 @@ export default [
     },
   },
   {
+    // workspace-internal plugin, never published: it runs with the root node_modules
+    files: ['package.json'],
+    rules: {
+      '@nx/dependency-checks': 'off',
+    },
+  },
+  {
     ignores: ['docs/**'],
   },
 ];

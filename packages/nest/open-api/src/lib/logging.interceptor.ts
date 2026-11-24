@@ -6,7 +6,7 @@ import {
   Logger,
   NestInterceptor,
 } from '@nestjs/common';
-import {
+import type {
   Request,
   Response,
 } from 'express';

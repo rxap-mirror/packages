@@ -10,7 +10,9 @@
   "peerDependencies": {
     "@rxap/config": "^22.0.0-dev.1",
     "@rxap/environment": "^22.0.0-dev.1",
-    "@sentry/angular": "^11.0.0"
+    "@sentry/angular": "^11.0.0",
+    "@sentry/browser": "^11.0.0",
+    "@sentry/core": "^11.0.0"
   },
   "author": {
     "name": "Merzough Münker",

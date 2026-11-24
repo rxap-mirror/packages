@@ -1,5 +1,5 @@
 import { SetMetadata } from '@nestjs/common';
-import { Request } from 'express';
+import type { Request } from 'express';
 
 export const OPEN_FGA_METADATA = Symbol('open-fga');
 

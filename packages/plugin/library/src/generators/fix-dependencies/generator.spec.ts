@@ -6,7 +6,12 @@ import {
 } from '@nx/devkit';
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import { LoadProjectToPackageMapping } from '@rxap/workspace-utilities';
+import { Project } from 'ts-morph';
 import fixDependenciesGenerator, {
+  getModuleSpecifiersFromSourceFile,
+  getPackageNameFromModuleSpecifier,
+  getUsedPackagesFromRootFiles,
+  isIgnoredPackage,
   removePackageFromDependencies,
   widenPeerDependencyRange,
   removeSelfReferenceFromDependencies,
@@ -86,6 +91,55 @@ describe('fix-dependencies generator', () => {
     expect(packageJson.peerDependencies['gone']).toBeUndefined();
   });
 
+  it('should detect packages from re-exports, require calls and dynamic imports', async () => {
+    tree.write(`${ root }/src/lib/b.ts`, [
+      `export { a } from 're-exported';`,
+      `export * from 'star-exported';`,
+      `import type { T } from 'type-only';`,
+      `import fsExtra = require('import-equals');`,
+      `const glob = require('glob');`,
+      `const lazy = () => import('dynamic-import');`,
+      `const variable = 'not-detected'; require(variable);`,
+      `import { readFileSync } from 'node:fs';`,
+      `import { pipeline } from 'stream/promises';`,
+    ].join('\n'));
+    await fixDependenciesGenerator(tree, { projects: [ 'lib' ] });
+    const { peerDependencies } = readJson(tree, `${ root }/package.json`);
+    for (const name of [ 're-exported', 'star-exported', 'type-only', 'import-equals', 'glob', 'dynamic-import' ]) {
+      expect(peerDependencies[name]).toBeDefined();
+    }
+    for (const name of [ 'not-detected', 'node:fs', 'stream', 'fs' ]) {
+      expect(peerDependencies[name]).toBeUndefined();
+    }
+  });
+
+  it('should scan the files in the source root', async () => {
+    tree.write(`${ root }/src/plugin.ts`, `import { globSync } from 'glob';`);
+    tree.write(`${ root }/src/plugin.spec.ts`, `import 'ignored-test-package';`);
+    await fixDependenciesGenerator(tree, { projects: [ 'lib' ] });
+    const packageJson = readJson(tree, `${ root }/package.json`);
+    // a project with generators is a plugin: its root files are runtime code
+    expect(packageJson.dependencies['glob']).toBe('latest');
+    expect(packageJson.peerDependencies['glob']).toBeUndefined();
+    expect(packageJson.dependencies['ignored-test-package']).toBeUndefined();
+  });
+
+  it('should add the packages of the root files of a library to the peer dependencies', async () => {
+    tree.delete(`${ root }/src/generators`);
+    tree.write(`${ root }/src/index.ts`, `export * from 'root-export';`);
+    await fixDependenciesGenerator(tree, { projects: [ 'lib' ] });
+    expect(readJson(tree, `${ root }/package.json`).peerDependencies['root-export']).toBe('latest');
+  });
+
+  it('should declare nx as a peer dependency', async () => {
+    tree.write(`${ root }/src/generators/g.ts`, `import { readJsonFile } from 'nx/src/utils/fileutils';`);
+    writeJson(tree, 'package.json', { name: 'ws', dependencies: { nx: '24.0.6' } });
+    await fixDependenciesGenerator(tree, { projects: [ 'lib' ] });
+    const packageJson = readJson(tree, `${ root }/package.json`);
+    expect(packageJson.peerDependencies['nx']).toBe('^24.0.0');
+    expect(packageJson.dependencies['nx']).toBeUndefined();
+  });
+
   it('should resolve latest versions and fail in strict mode', async () => {
     await expect(fixDependenciesGenerator(tree, { projects: [ 'lib' ], strict: true })).rejects.toThrow('unknown version');
     await fixDependenciesGenerator(tree, { projects: [ 'lib' ], resolve: true });
@@ -144,6 +198,54 @@ describe('fix-dependencies generator', () => {
       };
       removeSelfReferenceFromDependencies('lib', packageJson);
       expect(packageJson).toEqual({ dependencies: {}, peerDependencies: {}, devDependencies: {}, optionalDependencies: {} });
+    });
+
+  });
+
+  describe('module scanning', () => {
+
+    const specifiers = (code: string) => getModuleSpecifiersFromSourceFile(
+      new Project({ useInMemoryFileSystem: true }).createSourceFile('a.ts', code));
+
+    it('collects every kind of module reference', () => {
+      expect(specifiers([
+        `import a from 'a';`,
+        `import 'side-effect';`,
+        `import type { B } from 'b';`,
+        `export { c } from 'c';`,
+        `export type { D } from 'd';`,
+        `export const local = 1;`,
+        `import e = require('e');`,
+        `const f = require('f');`,
+        `const g = require(\`g\`);`,
+        `const h = import('h');`,
+        `const i = require(name);`,
+        `const j = require.resolve('j');`,
+      ].join('\n'))).toEqual([ 'a', 'side-effect', 'b', 'c', 'd', 'e', 'f', 'g', 'h' ]);
+    });
+
+    it('maps module specifiers to package names', () => {
+      expect(getPackageNameFromModuleSpecifier('nx/src/utils/fileutils')).toBe('nx');
+      expect(getPackageNameFromModuleSpecifier('@nx/devkit/testing')).toBe('@nx/devkit');
+      expect(getPackageNameFromModuleSpecifier('@nx/devkit')).toBe('@nx/devkit');
+      expect(getPackageNameFromModuleSpecifier('./local')).toBeNull();
+      expect(getPackageNameFromModuleSpecifier('/absolute')).toBeNull();
+    });
+
+    it('ignores node builtins and the release-stripped ng-prism package only', () => {
+      for (const name of [ 'fs', 'node:fs', 'fs/promises', 'child_process', '@ng-prism/core' ]) {
+        expect(isIgnoredPackage(name)).toBe(true);
+      }
+      for (const name of [ 'glob', 'fs-extra', 'express', 'axios', '@firebase/app' ]) {
+        expect(isIgnoredPackage(name)).toBe(false);
+      }
+    });
+
+    it('only scans the files directly in the source root', () => {
+      tree.write('libs/x/src/plugin.ts', `import 'root-package';`);
+      tree.write('libs/x/src/types.d.ts', `import 'declaration-package';`);
+      tree.write('libs/x/src/lib/nested.ts', `import 'nested-package';`);
+      expect(getUsedPackagesFromRootFiles(tree, 'libs/x/src')).toEqual([ 'root-package' ]);
     });
 
   });

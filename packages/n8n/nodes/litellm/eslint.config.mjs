@@ -1,17 +1,14 @@
 import * as jsoncEslintParser from 'jsonc-eslint-parser';
-import baseConfig from '../../../../eslint.config.mjs';
+import baseConfig, { dependencyChecksOptions } from '../../../../eslint.config.mjs';
 
 export default [
   ...baseConfig,
   {
-    files: ['**/*.json'],
+    files: ['**/package.json'],
     rules: {
       '@nx/dependency-checks': [
         'error',
-        {
-          ignoredFiles: ['{projectRoot}/eslint.config.{js,cjs,mjs}'],
-          ignoredDependencies: ['zod'],
-        },
+        dependencyChecksOptions(['zod']),
       ],
     },
     languageOptions: {

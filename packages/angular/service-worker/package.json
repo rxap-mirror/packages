@@ -8,8 +8,8 @@
     "tslib": "2.9.1"
   },
   "peerDependencies": {
-    "@angular/common": "^22.0.0",
     "@angular/core": "^22.0.0",
+    "@angular/material": "^22.0.0",
     "@angular/service-worker": "^22.0.0",
     "@rxap/environment": "^22.0.0-dev.1",
     "@rxap/life-cycle": "^22.0.0-dev.1",

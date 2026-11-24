@@ -10,7 +10,6 @@
   "peerDependencies": {
     "@angular/core": "^22.0.0",
     "@rxap/config": "^22.0.0-dev.1",
-    "rxjs": "^7.0.0",
     "socket.io-client": "^4.0.0"
   },
   "author": {

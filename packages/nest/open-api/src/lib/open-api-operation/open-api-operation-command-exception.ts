@@ -1,5 +1,5 @@
 import { Scope } from '@sentry/core';
-import {
+import type {
   AxiosRequestConfig,
   AxiosResponse,
 } from 'axios';

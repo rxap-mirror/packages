@@ -12,7 +12,7 @@ import { ExtractJwt } from 'passport-jwt';
 import { AUTH0_BYPASS_KEY } from './auth0-bypass';
 import { Auth0Options } from './auth0-options';
 import { AUTH0_OPTIONS } from './tokens';
-import { Request } from 'express';
+import type { Request } from 'express';
 
 @Injectable()
 export class Auth0Guard implements CanActivate {

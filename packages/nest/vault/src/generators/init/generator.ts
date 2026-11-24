@@ -5,8 +5,24 @@ import {
   Tree,
 } from '@nx/devkit';
 import { existsSync, readFileSync } from 'fs';
-import { join } from 'path';
+import { dirname, join } from 'path';
 import { InitGeneratorSchema } from './schema';
+
+/**
+ * Resolves the directory of a package installed in the workspace. The lookup starts at the
+ * workspace root, not at this package: with an isolated node_modules layout (pnpm) or Yarn PnP
+ * the peer is not resolvable from here. The plain node_modules path is the fallback for packages
+ * whose `exports` map hides their package.json.
+ */
+function resolvePackageDir(root: string, packageName: string): string {
+  try {
+    return dirname(
+      require.resolve(`${packageName}/package.json`, { paths: [root] })
+    );
+  } catch {
+    return join(root, 'node_modules', ...packageName.split('/'));
+  }
+}
 
 export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
   // The package's own package.json lives on disk next to the compiled generator
@@ -84,9 +100,9 @@ export async function initGenerator(tree: Tree, options: InitGeneratorSchema) {
 
   for (const peer of Object.keys(missingPeerDependencies)) {
     console.log(`Peer dependency ${peer} added to package.json`);
-    // node_modules is physical and excluded from the virtual Tree, so resolve
-    // peer files from disk relative to the workspace root.
-    const peerPackageDir = join(tree.root, 'node_modules', ...peer.split('/'));
+    // node_modules is physical and excluded from the virtual Tree, so read the
+    // peer files from disk.
+    const peerPackageDir = resolvePackageDir(tree.root, peer);
     const peerPackageJsonFilePath = join(peerPackageDir, 'package.json');
     if (!existsSync(peerPackageJsonFilePath)) {
       console.log(`Peer dependency ${peer} has no package.json`);

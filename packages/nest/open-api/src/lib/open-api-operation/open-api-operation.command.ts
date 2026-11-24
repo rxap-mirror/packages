@@ -9,7 +9,7 @@ import {
   assertsObject,
   coerceArray,
 } from '@rxap/utilities';
-import {
+import type {
   AxiosRequestConfig,
   AxiosResponse,
   RawAxiosRequestHeaders,

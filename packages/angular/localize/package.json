@@ -10,6 +10,7 @@
   "peerDependencies": {
     "@angular/common": "^22.0.0",
     "@angular/core": "^22.0.0",
+    "@angular/localize": "^22.0.0",
     "@rxap/config": "^22.0.0-dev.1",
     "@rxap/ngx-user": "^22.0.0-dev.1",
     "rxjs": "^7.0.0"

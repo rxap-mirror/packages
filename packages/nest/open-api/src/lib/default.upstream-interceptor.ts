@@ -6,8 +6,8 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { REQUEST } from '@nestjs/core';
-import { AxiosRequestConfig } from 'axios';
-import { Request } from 'express';
+import type { AxiosRequestConfig } from 'axios';
+import type { Request } from 'express';
 import { OpenApiServerId } from './open-api-operation/open-api-server-id';
 import { OpenApiUpstreamInterceptor } from './open-api-operation/types';
 

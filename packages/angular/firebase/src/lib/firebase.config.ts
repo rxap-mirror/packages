@@ -1,8 +1,8 @@
 import type {
   FirestoreSettings,
   PersistenceSettings,
-} from '@firebase/firestore';
-import type { AuthSettings } from '@firebase/auth';
+} from 'firebase/firestore';
+import type { AuthSettings } from 'firebase/auth';
 
 export interface FirebaseConfig {
   firebase: null | {

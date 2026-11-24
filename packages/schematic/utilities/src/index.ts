@@ -93,6 +93,7 @@ export * from './lib/json-file';
 export * from './lib/nx-json-file';
 export * from './lib/package-json-file';
 export * from './lib/required';
+export * from './lib/resolve-from-workspace';
 export * from './lib/search-file';
 export * from './lib/workspace';
 // endregion

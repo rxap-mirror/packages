@@ -10,6 +10,36 @@ const compat = new FlatCompat({
   recommendedConfig: js.configs.recommended,
 });
 
+/**
+ * Options of the `@nx/dependency-checks` rule shared by every publishable project.
+ *
+ * ESLint replaces (not merges) rule options, so a project that needs extra exceptions re-declares the
+ * rule with `dependencyChecksOptions(['extra-package'])` instead of copying this object.
+ *
+ * @param {string[]} ignoredDependencies project specific packages the rule should not report
+ */
+export function dependencyChecksOptions(ignoredDependencies = []) {
+  return {
+    buildTargets: ['build'],
+    checkMissingDependencies: true,
+    checkObsoleteDependencies: true,
+    checkVersionMismatches: true,
+    // ng-packagr and tsc (importHelpers) emit tslib helper imports that are not part of the source
+    runtimeHelpers: ['tslib'],
+    ignoredFiles: [
+      '{projectRoot}/eslint.config.{js,cjs,mjs}',
+      '{projectRoot}/{vite,vitest,jest}.config.{js,cjs,mjs,ts,mts,cts}',
+      '{projectRoot}/**/*.{spec,test}.{ts,tsx}',
+      '{projectRoot}/**/test-setup.ts',
+    ],
+    ignoredDependencies: [
+      // the @Showcase decorators are removed from the published package by the prism-strip target (@rxap/plugin-ng-prism)
+      '@ng-prism/core',
+      ...ignoredDependencies,
+    ],
+  };
+}
+
 export default [
   ...nx.configs['flat/base'],
   {
@@ -204,6 +234,17 @@ export default [
     files: ['**/*.json'],
     // Override or add rules here
     rules: {},
+    languageOptions: {
+      parser: jsoncEslintParser,
+    },
+  },
+  {
+    // Every published package must declare what its build output imports: under pnpm's isolated
+    // node_modules (and with npm/yarn when hoisting differs) an undeclared dependency does not resolve.
+    files: ['**/package.json'],
+    rules: {
+      '@nx/dependency-checks': ['error', dependencyChecksOptions()],
+    },
     languageOptions: {
       parser: jsoncEslintParser,
     },

@@ -15,6 +15,7 @@
     "@angular/material": "^22.0.0",
     "@rxap/directives": "^22.0.0-dev.1",
     "@rxap/pattern": "^1.1.17-dev.0",
+    "@rxap/utilities": "^16.5.3-dev.0",
     "rxjs": "^7.0.0"
   },
   "author": {

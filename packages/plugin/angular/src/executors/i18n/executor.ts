@@ -9,7 +9,7 @@ import {
   readFileSync,
   writeFileSync,
 } from 'fs';
-import { copy } from 'fs-extra';
+import { cp } from 'fs/promises';
 import { glob } from 'glob';
 import { compile } from 'handlebars';
 import {
@@ -75,7 +75,7 @@ async function copyFiles(
       }
       const assetOutputPath = join(outputPath, basename(assetPath));
       try {
-        await copy(assetPath, assetOutputPath);
+        await cp(assetPath, assetOutputPath, { recursive: true });
       } catch (e: any) {
         throw new Error(`Could not copy assets '${ assetPath }' to '${ outputPath }': ${ e.message }`);
       }
@@ -86,7 +86,7 @@ async function copyFiles(
       const assetOutputPath = join(outputPath, assetPath.output);
       try {
         const files = await glob(assetPath.input + assetPath.glob);
-        await Promise.all(files.map(file => copy(file, join(assetOutputPath, relative(assetPath.input, file)))));
+        await Promise.all(files.map(file => cp(file, join(assetOutputPath, relative(assetPath.input, file)), { recursive: true })));
       } catch (e: any) {
         throw new Error(`Could not copy assets '${ JSON.stringify(assetPath) }' to '${ outputPath }': ${ e.message }`);
       }

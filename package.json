@@ -109,6 +109,7 @@
     "ngx-markdown": "22.1.1",
     "node-vault": "0.13.0",
     "openai": "7.57.0",
+    "passport-jwt": "4.0.1",
     "react": "19.3.1",
     "react-dom": "19.3.1",
     "reflect-metadata": "0.2.2",

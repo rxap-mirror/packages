@@ -3,7 +3,7 @@ import {
   isRequestWithUser,
   isRequestWithUserSub,
 } from '@rxap/nest-jwt';
-import { Request } from 'express';
+import type { Request } from 'express';
 
 export class UserContext extends AsyncContext {
   static fromRequest(request: Request) {
