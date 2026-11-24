@@ -4,7 +4,7 @@ import {
   AddPackageJsonDependency,
   IsAlreadyExecuted,
 } from '@rxap/workspace-utilities';
-import { ANGULAR_VERSION } from '../../lib/angular-version';
+import { GetWorkspaceAngularVersion } from '../../lib/angular-version';
 import { InitLibraryGeneratorSchema } from './schema';
 import { setGeneralTargetDefaults } from './set-general-target-defaults';
 
@@ -17,7 +17,7 @@ export async function initWorkspace(tree: Tree, options: InitLibraryGeneratorSch
   console.log('init angular library workspace');
 
   // must always be added as some rxap components use the i18n tag
-  await AddPackageJsonDependency(tree, '@angular/localize', ANGULAR_VERSION, { soft: true });
+  await AddPackageJsonDependency(tree, '@angular/localize', GetWorkspaceAngularVersion(tree), { soft: true });
 
   LibraryInitWorkspace(tree, options);
 

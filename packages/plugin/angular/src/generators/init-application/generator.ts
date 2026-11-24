@@ -32,7 +32,7 @@ import {
   join,
   relative,
 } from 'path';
-import { ANGULAR_VERSION } from '../../lib/angular-version';
+import { GetWorkspaceAngularVersion } from '../../lib/angular-version';
 import { coerceTestSetup } from '../../lib/coerce-test-setup';
 import { cleanup } from './cleanup';
 import { coerceAppConfig } from './coerce-app-config';
@@ -122,7 +122,7 @@ export async function initApplicationGenerator(
   await AddPackageJsonDependency(tree, '@rxap/reflect-metadata', 'latest', { soft: true });
   await AddPackageJsonDevDependency(tree, '@rxap/browser-tailwind', 'latest', { soft: true, withoutNonRxapPeerDependencies: false });
   // must always be added as some rxap components use the i18n tag
-  await AddPackageJsonDependency(tree, '@angular/localize', ANGULAR_VERSION, { soft: true });
+  await AddPackageJsonDependency(tree, '@angular/localize', GetWorkspaceAngularVersion(tree), { soft: true });
   // must always be added as some rxap components use interfaces from the package
   // TODO : refactor the @rxap/ngx-error and @rxap/ngx-status-check to be independent from the @sentry/angular package
   await AddPackageJsonDependency(tree, '@sentry/angular', 'latest', { soft: true });
@@ -134,14 +134,14 @@ export async function initApplicationGenerator(
   }
 
   if (options.material) {
-    await AddPackageJsonDependency(tree, '@angular/material', ANGULAR_VERSION, { soft: true });
-    await AddPackageJsonDependency(tree, '@angular/cdk', ANGULAR_VERSION, { soft: true });
+    await AddPackageJsonDependency(tree, '@angular/material', GetWorkspaceAngularVersion(tree), { soft: true });
+    await AddPackageJsonDependency(tree, '@angular/cdk', GetWorkspaceAngularVersion(tree), { soft: true });
   }
 
   if (options.serviceWorker) {
     await AddPackageJsonDependency(tree, '@rxap/service-worker', 'latest', { soft: true });
     await AddPackageJsonDependency(tree, '@rxap/life-cycle', 'latest', { soft: true });
-    await AddPackageJsonDependency(tree, '@angular/service-worker', ANGULAR_VERSION, { soft: true });
+    await AddPackageJsonDependency(tree, '@angular/service-worker', GetWorkspaceAngularVersion(tree), { soft: true });
   }
 
   if (options.monolithic) {

@@ -45,6 +45,9 @@ describe('plugin-angular:init-library (golden master)', () => {
       project: 'feat',
     } as any);
 
+    // the workspace init (runs once per process) adds @angular/localize with the angular version of the workspace
+    expect(readJson(tree, 'package.json').dependencies['@angular/localize']).toBe('22.1.8');
+
     // Golden master: full cumulative tree (the @nx/angular library scaffold +
     // the RxAP angular init-library layering). An Nx/@nx/angular migration that
     // changes either produces a reviewable snapshot diff.
@@ -53,5 +56,21 @@ describe('plugin-angular:init-library (golden master)', () => {
     expect(CompileGeneratedFiles(SnapshotGeneratedTree(tree))).toEqual([]);
 
   }, 5000 * 10);
+
+});
+
+describe('plugin-angular:init-library without unit tests', () => {
+
+  it('should init a library that has no tsconfig.spec.json', async () => {
+    const tree = createTreeWithEmptyWorkspace();
+    await libraryGenerator(tree, {
+      name: 'plain',
+      directory: 'plain',
+      skipFormat: true,
+      unitTestRunner: 'none',
+    } as any);
+    expect(tree.exists('plain/tsconfig.spec.json')).toBe(false);
+    await expect(initLibraryGenerator(tree, { project: 'plain' } as any)).resolves.not.toThrow();
+  });
 
 });
