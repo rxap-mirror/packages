@@ -61,14 +61,19 @@ describe('initGenerator', () => {
     });
 
     it('does not change package.json when all peers exist', async () => {
+      // tooling packages (plugin, workspace, schematic) are kept in the devDependencies
+      const section = /^@rxap\/(plugin|workspace|schematic)/.test(pkg.name)
+        ? 'devDependencies'
+        : 'dependencies';
       const deps = { [pkg.name]: '1.0.0', ...peers };
       writeJson(tree, 'package.json', {
         name: 'root',
-        dependencies: deps,
+        dependencies: {},
         devDependencies: {},
+        [section]: deps,
       });
       await initGenerator(tree, {} as any);
-      expect(readJson(tree, 'package.json').dependencies).toEqual(deps);
+      expect(readJson(tree, 'package.json')[section]).toEqual(deps);
     });
 
     it('adds peers to devDependencies when the package is a dev dependency', async () => {
