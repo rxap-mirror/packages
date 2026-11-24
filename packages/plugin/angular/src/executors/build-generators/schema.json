@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "version": 2,
+  "title": "BuildGenerators executor",
+  "description": "Compiles the generators of an ng-packagr library to CommonJS and stages them (with generators.json and the generator assets) so that ng-packagr can copy them into the package.",
+  "type": "object",
+  "properties": {
+    "tsConfig": {
+      "type": "string",
+      "description": "Path of the generators tsconfig, relative to the project root.",
+      "default": "tsconfig.generators.json"
+    },
+    "outputPath": {
+      "type": "string",
+      "description": "Staging directory, relative to the project root. Must be inside the project root: ng-packagr refuses to copy assets from outside of it.",
+      "default": "dist/generators"
+    },
+    "generatorsDir": {
+      "type": "string",
+      "description": "Directory of the generators, relative to the project root.",
+      "default": "src/generators"
+    }
+  },
+  "required": []
+}

@@ -16,7 +16,17 @@
         "assets": [
           "packages/nest/dto/*.md",
           "packages/nest/dto/docs",
-          "packages/nest/dto/compodoc"
+          "packages/nest/dto/compodoc",
+          {
+            "input": "./packages/nest/dto",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/nest/dto/src/generators",
+            "glob": "**/!(*.ts|*.snap)",
+            "output": "./src/generators"
+          }
         ]
       },
       "configurations": {

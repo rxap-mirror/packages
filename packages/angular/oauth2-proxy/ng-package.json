@@ -6,22 +6,17 @@
   },
   "allowedNonPeerDependencies": ["@nx/devkit"],
   "assets": [
-    {
-      "input": "./packages/angular/oauth2-proxy/src/generators",
-      "glob": "**/!(*.ts|*.js|*.json)",
-      "output": "./src/generators"
-    },
-    {
-      "input": "./packages/angular/oauth2-proxy",
-      "glob": "generators.json",
-      "output": "."
-    },
     "README.md",
     "CHANGELOG.md",
     "LICENSE",
     "LICENSE.md",
     "theme.css",
     "compodoc",
-    "docs"
+    "docs",
+    {
+      "input": "dist/generators",
+      "glob": "**/*",
+      "output": "."
+    }
   ]
 }

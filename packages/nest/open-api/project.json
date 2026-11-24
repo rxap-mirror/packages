@@ -16,7 +16,17 @@
         "assets": [
           "packages/nest/open-api/*.md",
           "packages/nest/open-api/docs",
-          "packages/nest/open-api/compodoc"
+          "packages/nest/open-api/compodoc",
+          {
+            "input": "./packages/nest/open-api",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/nest/open-api/src/generators",
+            "glob": "**/!(*.ts|*.snap)",
+            "output": "./src/generators"
+          }
         ]
       },
       "configurations": {

@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node10",
+    "target": "es2021",
+    "lib": ["es2022"],
+    "types": ["node"],
+    "declaration": false,
+    "sourceMap": false,
+    "importHelpers": false,
+    "ignoreDeprecations": "6.0"
+  },
+  "include": ["src/generators/**/*.ts"],
+  "exclude": ["src/generators/**/*.spec.ts", "src/generators/**/*.d.ts"]
+}

@@ -6,11 +6,6 @@
   },
   "allowedNonPeerDependencies": ["@nx/devkit"],
   "assets": [
-    {
-      "input": "src/generators",
-      "glob": "**/!(*.ts|*.js|*.json)",
-      "output": "src/generators"
-    },
     "generators.json",
     "README.md",
     "CHANGELOG.md",
@@ -18,6 +13,11 @@
     "LICENSE.md",
     "theme.css",
     "compodoc",
-    "docs"
+    "docs",
+    {
+      "input": "dist/generators",
+      "glob": "**/*",
+      "output": "."
+    }
   ]
 }

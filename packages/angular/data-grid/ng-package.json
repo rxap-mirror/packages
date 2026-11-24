@@ -13,13 +13,8 @@
     "compodoc",
     "docs",
     {
-      "input": "./packages/angular/data-grid/src/generators",
-      "glob": "**/!(*.ts|*.js|*.json)",
-      "output": "./src/generators"
-    },
-    {
-      "input": "./packages/angular/data-grid",
-      "glob": "generators.json",
+      "input": "dist/generators",
+      "glob": "**/*",
       "output": "."
     }
   ],

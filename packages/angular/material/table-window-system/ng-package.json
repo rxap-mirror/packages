@@ -13,13 +13,8 @@
     "compodoc",
     "docs",
     {
-      "input": "./packages/angular/material/table-window-system/src/generators",
-      "glob": "**/!(*.ts|*.js|*.json)",
-      "output": "./src/generators"
-    },
-    {
-      "input": "./packages/angular/material/table-window-system",
-      "glob": "generators.json",
+      "input": "dist/generators",
+      "glob": "**/*",
       "output": "."
     }
   ],

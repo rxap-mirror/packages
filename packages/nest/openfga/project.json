@@ -15,18 +15,18 @@
         "main": "packages/nest/openfga/src/index.ts",
         "assets": [
           "packages/nest/openfga/*.md",
-          {
-            "input": "./packages/nest/openfga/src/generators",
-            "glob": "**/!(*.ts|*.js|*.json)",
-            "output": "./src/generators"
-          },
+          "packages/nest/openfga/docs",
+          "packages/nest/openfga/compodoc",
           {
             "input": "./packages/nest/openfga",
             "glob": "generators.json",
             "output": "."
           },
-          "packages/nest/openfga/docs",
-          "packages/nest/openfga/compodoc"
+          {
+            "input": "./packages/nest/openfga/src/generators",
+            "glob": "**/!(*.ts|*.snap)",
+            "output": "./src/generators"
+          }
         ]
       },
       "configurations": {

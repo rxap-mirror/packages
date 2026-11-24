@@ -13,13 +13,8 @@
     "compodoc",
     "docs",
     {
-      "input": "./packages/angular/services/src/generators",
-      "glob": "**/!(*.ts|*.js|*.json)",
-      "output": "./src/generators"
-    },
-    {
-      "input": "./packages/angular/services",
-      "glob": "generators.json",
+      "input": "dist/generators",
+      "glob": "**/*",
       "output": "."
     }
   ],

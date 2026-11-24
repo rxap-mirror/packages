@@ -16,7 +16,17 @@
         "assets": [
           "packages/nest/firebase/*.md",
           "packages/nest/firebase/docs",
-          "packages/nest/firebase/compodoc"
+          "packages/nest/firebase/compodoc",
+          {
+            "input": "./packages/nest/firebase",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/nest/firebase/src/generators",
+            "glob": "**/!(*.ts|*.snap)",
+            "output": "./src/generators"
+          }
         ]
       },
       "configurations": {

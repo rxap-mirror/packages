@@ -14,13 +14,8 @@
     "compodoc",
     "docs",
     {
-      "input": "./packages/angular/handlebars/src/generators",
-      "glob": "**/!(*.ts|*.js|*.json)",
-      "output": "./src/generators"
-    },
-    {
-      "input": "./packages/angular/handlebars",
-      "glob": "generators.json",
+      "input": "dist/generators",
+      "glob": "**/*",
       "output": "."
     }
   ]

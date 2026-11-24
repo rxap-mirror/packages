@@ -15,18 +15,18 @@
         "main": "packages/nest/oauth2-proxy/src/index.ts",
         "assets": [
           "packages/nest/oauth2-proxy/*.md",
-          {
-            "input": "./packages/nest/oauth2-proxy/src/generators",
-            "glob": "**/!(*.ts|*.js|*.json)",
-            "output": "./src/generators"
-          },
+          "packages/nest/oauth2-proxy/docs",
+          "packages/nest/oauth2-proxy/compodoc",
           {
             "input": "./packages/nest/oauth2-proxy",
             "glob": "generators.json",
             "output": "."
           },
-          "packages/nest/oauth2-proxy/docs",
-          "packages/nest/oauth2-proxy/compodoc"
+          {
+            "input": "./packages/nest/oauth2-proxy/src/generators",
+            "glob": "**/!(*.ts|*.snap)",
+            "output": "./src/generators"
+          }
         ]
       },
       "configurations": {

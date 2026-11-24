@@ -15,18 +15,18 @@
         "main": "packages/nest/auth0/src/index.ts",
         "assets": [
           "packages/nest/auth0/*.md",
-          {
-            "input": "./packages/nest/auth0/src/generators",
-            "glob": "**/!(*.ts|*.js|*.json)",
-            "output": "./src/generators"
-          },
+          "packages/nest/auth0/docs",
+          "packages/nest/auth0/compodoc",
           {
             "input": "./packages/nest/auth0",
             "glob": "generators.json",
             "output": "."
           },
-          "packages/nest/auth0/docs",
-          "packages/nest/auth0/compodoc"
+          {
+            "input": "./packages/nest/auth0/src/generators",
+            "glob": "**/!(*.ts|*.snap)",
+            "output": "./src/generators"
+          }
         ]
       },
       "configurations": {
