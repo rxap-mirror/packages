@@ -14,6 +14,7 @@
     "@rxap/data-source": "^22.0.0-dev.1",
     "@rxap/environment": "^22.0.0-dev.1",
     "@rxap/mixin": "^16.0.18-dev.0",
+    "@rxap/pattern": "^1.1.17-dev.0",
     "@rxap/remote-method": "^22.0.0-dev.1",
     "@rxap/rxjs": "^1.1.19-dev.0",
     "@rxap/utilities": "^16.5.3-dev.0",

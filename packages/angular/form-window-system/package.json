@@ -17,8 +17,7 @@
     "@rxap/reflect-metadata": "^1.0.19-dev.0",
     "@rxap/rxjs": "^1.1.19-dev.0",
     "@rxap/utilities": "^16.5.3-dev.0",
-    "@rxap/window-system": "^22.0.0-dev.1",
-    "rxjs": "^7.0.0"
+    "@rxap/window-system": "^22.0.0-dev.1"
   },
   "author": {
     "name": "Merzough Münker",

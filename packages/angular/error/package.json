@@ -16,6 +16,7 @@
     "@rxap/data-grid": "^22.0.0-dev.1",
     "@rxap/environment": "^22.0.0-dev.1",
     "@rxap/open-api": "^22.0.0-dev.1",
+    "@rxap/utilities": "^16.5.3-dev.0",
     "@sentry/angular": "^11.0.0",
     "rxjs": "^7.0.0"
   },
