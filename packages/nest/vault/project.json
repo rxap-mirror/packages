@@ -16,7 +16,17 @@
         "assets": [
           "packages/nest/vault/*.md",
           "packages/nest/vault/docs",
-          "packages/nest/vault/compodoc"
+          "packages/nest/vault/compodoc",
+          {
+            "input": "./packages/nest/vault",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/nest/vault/src/generators",
+            "glob": "**/!(*.ts|*.snap)",
+            "output": "./src/generators"
+          }
         ]
       },
       "configurations": {

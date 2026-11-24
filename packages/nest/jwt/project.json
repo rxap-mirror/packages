@@ -16,7 +16,17 @@
         "assets": [
           "packages/nest/jwt/*.md",
           "packages/nest/jwt/docs",
-          "packages/nest/jwt/compodoc"
+          "packages/nest/jwt/compodoc",
+          {
+            "input": "./packages/nest/jwt",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/nest/jwt/src/generators",
+            "glob": "**/!(*.ts|*.snap)",
+            "output": "./src/generators"
+          }
         ]
       },
       "configurations": {

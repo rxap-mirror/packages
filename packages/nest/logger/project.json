@@ -26,7 +26,17 @@
             "output": "./src/migrations"
           },
           "packages/nest/logger/docs",
-          "packages/nest/logger/compodoc"
+          "packages/nest/logger/compodoc",
+          {
+            "input": "./packages/nest/logger",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/nest/logger/src/generators",
+            "glob": "**/!(*.ts|*.snap)",
+            "output": "./src/generators"
+          }
         ]
       },
       "configurations": {

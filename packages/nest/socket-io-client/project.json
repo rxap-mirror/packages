@@ -16,7 +16,17 @@
         "assets": [
           "packages/nest/socket-io-client/*.md",
           "packages/nest/socket-io-client/docs",
-          "packages/nest/socket-io-client/compodoc"
+          "packages/nest/socket-io-client/compodoc",
+          {
+            "input": "./packages/nest/socket-io-client",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/nest/socket-io-client/src/generators",
+            "glob": "**/!(*.ts|*.snap)",
+            "output": "./src/generators"
+          }
         ]
       },
       "configurations": {

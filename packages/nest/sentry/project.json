@@ -26,7 +26,17 @@
             "output": "./src/migrations"
           },
           "packages/nest/sentry/docs",
-          "packages/nest/sentry/compodoc"
+          "packages/nest/sentry/compodoc",
+          {
+            "input": "./packages/nest/sentry",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/nest/sentry/src/generators",
+            "glob": "**/!(*.ts|*.snap)",
+            "output": "./src/generators"
+          }
         ]
       },
       "configurations": {

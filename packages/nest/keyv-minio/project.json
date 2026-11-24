@@ -15,18 +15,18 @@
         "main": "packages/nest/keyv-minio/src/index.ts",
         "assets": [
           "packages/nest/keyv-minio/*.md",
-          {
-            "input": "./packages/nest/keyv-minio/src/generators",
-            "glob": "**/!(*.ts|*.js|*.json)",
-            "output": "./src/generators"
-          },
+          "packages/nest/keyv-minio/docs",
+          "packages/nest/keyv-minio/compodoc",
           {
             "input": "./packages/nest/keyv-minio",
             "glob": "generators.json",
             "output": "."
           },
-          "packages/nest/keyv-minio/docs",
-          "packages/nest/keyv-minio/compodoc"
+          {
+            "input": "./packages/nest/keyv-minio/src/generators",
+            "glob": "**/!(*.ts|*.snap)",
+            "output": "./src/generators"
+          }
         ]
       },
       "configurations": {

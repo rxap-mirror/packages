@@ -16,7 +16,17 @@
         "assets": [
           "packages/nest/minio/*.md",
           "packages/nest/minio/docs",
-          "packages/nest/minio/compodoc"
+          "packages/nest/minio/compodoc",
+          {
+            "input": "./packages/nest/minio",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/nest/minio/src/generators",
+            "glob": "**/!(*.ts|*.snap)",
+            "output": "./src/generators"
+          }
         ]
       },
       "configurations": {

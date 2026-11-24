@@ -15,18 +15,18 @@
         "main": "packages/nest/rabbitmq-vault/src/index.ts",
         "assets": [
           "packages/nest/rabbitmq-vault/*.md",
-          {
-            "input": "./packages/nest/rabbitmq-vault/src/generators",
-            "glob": "**/!(*.ts|*.js|*.json)",
-            "output": "./src/generators"
-          },
+          "packages/nest/rabbitmq-vault/docs",
+          "packages/nest/rabbitmq-vault/compodoc",
           {
             "input": "./packages/nest/rabbitmq-vault",
             "glob": "generators.json",
             "output": "."
           },
-          "packages/nest/rabbitmq-vault/docs",
-          "packages/nest/rabbitmq-vault/compodoc"
+          {
+            "input": "./packages/nest/rabbitmq-vault/src/generators",
+            "glob": "**/!(*.ts|*.snap)",
+            "output": "./src/generators"
+          }
         ]
       },
       "configurations": {
