@@ -26,9 +26,6 @@
       "path": "./tsconfig.compodoc.json"
     },
     {
-      "path": "./.storybook/tsconfig.json"
-    },
-    {
       "path": "./tsconfig.typedoc.json"
     }
   ],

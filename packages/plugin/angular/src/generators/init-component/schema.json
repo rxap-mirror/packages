@@ -135,16 +135,6 @@
       "default": false,
       "x-priority": "internal"
     },
-    "interactionTests": {
-      "type": "boolean",
-      "description": "Whether to set up Storybook interaction tests for the component.",
-      "x-priority": "important",
-      "default": true
-    },
-    "cypressProject": {
-      "type": "string",
-      "description": "The Cypress project to generate the stories under. By default, inferred from `projectName`."
-    },
     "specDirectory": {
       "type": "string",
       "description": "Directory where to place the generated spec file. By default matches the value of the `componentPath` option."

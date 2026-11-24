@@ -71,63 +71,6 @@
         ]
       }
     },
-    "storybook": {
-      "executor": "@storybook/angular:start-storybook",
-      "continuous": true,
-      "options": {
-        "port": 4400,
-        "configDir": "packages/angular/layout/.storybook",
-        "browserTarget": "angular:build:development",
-        "compodoc": true,
-        "compodocArgs": ["-e", "json", "-d", "packages/angular/layout"]
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      },
-      "readyWhen": {
-        "port": "{env.SBCONFIG_PORT ?? options.port ?? 9009}",
-        "host": "{env.SBCONFIG_HOSTNAME ?? options.host ?? localhost}"
-      }
-    },
-    "build-storybook": {
-      "executor": "@storybook/angular:build-storybook",
-      "outputs": ["{options.outputDir}"],
-      "defaultConfiguration": "ci",
-      "options": {
-        "outputDir": "dist/storybook/angular-layout",
-        "configDir": "packages/angular/layout/.storybook",
-        "browserTarget": "angular:build:development",
-        "compodoc": true,
-        "compodocArgs": ["-e", "json", "-d", "packages/angular/layout"],
-        "styles": ["shared/angular/styles/_index.scss"]
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      }
-    },
-    "test-storybook": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "test-storybook -c packages/angular/layout/.storybook --url=http://localhost:4400"
-      }
-    },
-    "static-storybook": {
-      "executor": "@nx/web:file-server",
-      "options": {
-        "buildTarget": "angular:build:development",
-        "staticFilePath": "dist/storybook/angular-layout",
-        "spa": true
-      },
-      "configurations": {
-        "ci": {
-          "buildTarget": "angular:build:development"
-        }
-      }
-    },
     "prism": {
       "executor": "@ng-prism/core:serve",
       "parallelism": false,

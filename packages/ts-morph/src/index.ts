@@ -49,7 +49,6 @@ export * from './lib/angular/coerce-layout-routes';
 export * from './lib/angular/coerce-module-provider';
 export * from './lib/angular/coerce-route-guard';
 export * from './lib/angular/coerce-routes';
-export * from './lib/angular/coerce-stories';
 export * from './lib/angular/coerce-token-export';
 export * from './lib/angular/find-parent-route';
 export * from './lib/angular/get-component-class';

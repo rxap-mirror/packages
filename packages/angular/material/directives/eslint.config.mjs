@@ -26,7 +26,6 @@ export default [
       'coverage/**',
       'node_modules/**',
       '.angular/**',
-      'storybook-static/**',
     ],
   },
 ];

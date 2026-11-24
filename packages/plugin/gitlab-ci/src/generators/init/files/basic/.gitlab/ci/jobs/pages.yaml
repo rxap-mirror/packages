@@ -37,12 +37,6 @@ pages:
       cp -r dist/compodoc/* "$output/compodoc/"
     fi
 
-    if [ -d dist/storybook ]; then
-      echo "Copy storybook to $output"
-      mkdir -p "$output/storybook"
-      cp -r dist/storybook/* "$output/storybook/"
-    fi
-
     echo "generate index.html"
     apindex public
   environment:

@@ -1,7 +1,0 @@
-Your task is to generate complete TSDoc documentation for the provided TypeScript `{{}}`. The context supplied consists of two parts:
-
-1. The source code and all related files (both files referenced by the source code and files that use the source code) are provided as context formatted according to the schema in the context.xsd file below.
-
-2. An overview of the available TSDoc block tags is provided in the block-tags.txt file below. You must use these tags in your documentation.
-
-Use the following file contents as reference:

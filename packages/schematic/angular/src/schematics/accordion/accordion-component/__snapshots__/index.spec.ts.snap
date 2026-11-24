@@ -26,7 +26,6 @@ exports[`accordion-component minimal: file-tree 1`] = `
   "/ui/lib/src/index.ts",
   "/ui/lib/src/lib/test-accordion/test-accordion.component.html",
   "/ui/lib/src/lib/test-accordion/test-accordion.component.scss",
-  "/ui/lib/src/lib/test-accordion/test-accordion.component.stories.ts",
   "/ui/lib/src/lib/test-accordion/test-accordion.component.ts",
   "/ui/lib/src/lib/ui-lib.module.ts",
   "/ui/lib/tsconfig.json",

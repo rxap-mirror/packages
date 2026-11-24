@@ -9,7 +9,6 @@ This package provides generators for creating and managing GitLab CI configurati
 
 - [Installation](#installation)
 - [Generators](#generators)
-  - [component-test](#component-test)
   - [init](#init)
   - [docker](#docker)
 
@@ -24,19 +23,6 @@ yarn add @rxap/plugin-gitlab-ci
 yarn nx g @rxap/plugin-gitlab-ci:init
 ```
 # Generators
-
-## component-test
-> component-test generator
-
-```bash
-nx g @rxap/plugin-gitlab-ci:component-test
-```
-
-Option | Type | Default | Description
---- | --- | --- | ---
-browserList | array | chrome,firefox,edge | The list of browsers to run component tests against.
-excludeList | array |  | The list of projects to exclude from the component test CI configuration.
-cypressImage | string | cypress/included:cypress-13.3.3-node-${NODE_VERSION}-chrome-118.0.5993.88-1-ff-118.0.2-edge-118.0.2088.46-1 | The Docker image containing Cypress to use for running tests.
 
 ## init
 > init generator

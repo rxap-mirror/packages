@@ -206,18 +206,4 @@ export function updateProjectTargets(
       },
     });
   }
-
-  if (options.deploy) {
-    switch (options.deploy) {
-      case 'web3-storage':
-        if (options.i18n && options.i18nStandalone) {
-          CoerceTarget(project, 'i18n-index-html', {});
-        }
-        CoerceTarget(project, 'deploy', {
-          executor: '@rxap/plugin-web3-storage:deploy',
-          outputs: [ 'dist/{projectRoot}/ipfs-cid.txt' ],
-        }, Strategy.OVERWRITE);
-        break;
-    }
-  }
 }

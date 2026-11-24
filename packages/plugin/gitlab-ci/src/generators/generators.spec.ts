@@ -4,7 +4,6 @@ import {
 } from '@nx/devkit';
 import { createTreeWithEmptyWorkspace } from '@nx/devkit/testing';
 import { parse } from 'yaml';
-import componentTestGenerator from './component-test/generator';
 import dockerGenerator from './docker/generator';
 import { skipProject } from './docker/skip-project';
 import initGenerator from './init/generator';
@@ -112,24 +111,6 @@ describe('gitlab-ci generators', () => {
     it('should require the nx-workspace component', async () => {
       tree.write('.gitlab-ci.yml', 'include: []\n');
       await expect(dockerGenerator(tree, { skipFormat: true, components: true })).rejects.toThrow('nx-workspace');
-    });
-
-  });
-
-  describe('component-test', () => {
-
-    it('should require a browser', async () => {
-      await expect(componentTestGenerator(tree, { browserList: [] })).rejects.toThrow('At least one browser');
-    });
-
-    it('should generate a matrix job for projects with component-test target', async () => {
-      addProjectConfiguration(tree, 'a', { root: 'libs/a', targets: { 'component-test': { executor: 'x' } } });
-      addProjectConfiguration(tree, 'b', { root: 'libs/b', targets: { 'component-test': { executor: 'x' } } });
-      addProjectConfiguration(tree, 'c', { root: 'libs/c', targets: {} });
-      await componentTestGenerator(tree, { browserList: [ 'chrome' ], excludeList: [ 'b' ], cypressImage: 'cypress/included' });
-      const yaml = parse(tree.read('.gitlab/ci/jobs/component-test.yaml', 'utf-8')!);
-      expect(yaml['component-test'].parallel.matrix.map((m: any) => m.PROJECT)).toContain('a');
-      expect(yaml['component-test'].image.name).toBe('cypress/included');
     });
 
   });

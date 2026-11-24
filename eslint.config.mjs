@@ -145,7 +145,7 @@ export default [
     },
   },
   {
-    files: ['**/*.spec.ts', '**/*.cy.ts', '**/*.stories.ts'],
+    files: ['**/*.spec.ts'],
     rules: {
       '@nx/enforce-module-boundaries': [
         'error',
@@ -156,12 +156,6 @@ export default [
           depConstraints: [],
         },
       ],
-    },
-  },
-  {
-    files: ['cypress.config.ts', 'cypress/**'],
-    rules: {
-      '@nx/enforce-module-boundaries': 'off',
     },
   },
   ...nx.configs['flat/typescript'],

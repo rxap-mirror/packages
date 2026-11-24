@@ -154,10 +154,6 @@
         "version": "20.5.0"
       },
       {
-        "package": "@nx/cypress",
-        "version": "20.5.0"
-      },
-      {
         "package": "@nx/devkit",
         "version": "20.5.0"
       },
@@ -191,10 +187,6 @@
       },
       {
         "package": "@nx/plugin",
-        "version": "20.5.0"
-      },
-      {
-        "package": "@nx/storybook",
         "version": "20.5.0"
       },
       {
@@ -278,14 +270,6 @@
         "version": "19.0.0-dev.1"
       },
       {
-        "package": "@rxap/generator-ts-morph",
-        "version": "1.0.16-dev.1"
-      },
-      {
-        "package": "@rxap/generator-utilities",
-        "version": "1.1.11-dev.1"
-      },
-      {
         "package": "@rxap/handlebars",
         "version": "19.0.0-dev.1"
       },
@@ -328,10 +312,6 @@
       {
         "package": "@rxap/mixin",
         "version": "16.0.11-dev.1"
-      },
-      {
-        "package": "@rxap/n8n-nodes-neo4j",
-        "version": "0.0.4-dev.1"
       },
       {
         "package": "@rxap/n8n-nodes-yaml",
@@ -386,10 +366,6 @@
         "version": "10.1.7-dev.1"
       },
       {
-        "package": "@rxap/nest-supabase",
-        "version": "10.0.9-dev.1"
-      },
-      {
         "package": "@rxap/nest-testing",
         "version": "10.0.9-dev.1"
       },
@@ -400,10 +376,6 @@
       {
         "package": "@rxap/nest-vault",
         "version": "10.1.2-dev.1"
-      },
-      {
-        "package": "@rxap/nest-web3-storage",
-        "version": "10.0.9-dev.1"
       },
       {
         "package": "@rxap/ngx-bootstrap",
@@ -506,10 +478,6 @@
         "version": "20.0.0-dev.1"
       },
       {
-        "package": "@rxap/plugin-cypress",
-        "version": "20.0.0-dev.1"
-      },
-      {
         "package": "@rxap/plugin-docker",
         "version": "20.0.0-dev.1"
       },
@@ -530,10 +498,6 @@
         "version": "20.0.0-dev.1"
       },
       {
-        "package": "@rxap/plugin-n8n",
-        "version": "20.0.0-dev.1"
-      },
-      {
         "package": "@rxap/plugin-nestjs",
         "version": "20.0.0-dev.1"
       },
@@ -542,19 +506,11 @@
         "version": "20.0.0-dev.1"
       },
       {
-        "package": "@rxap/plugin-storybook",
-        "version": "20.0.0-dev.1"
-      },
-      {
         "package": "@rxap/plugin-typedoc",
         "version": "20.0.0-dev.1"
       },
       {
         "package": "@rxap/plugin-utilities",
-        "version": "20.0.0-dev.1"
-      },
-      {
-        "package": "@rxap/plugin-web3-storage",
         "version": "20.0.0-dev.1"
       },
       {
@@ -652,10 +608,6 @@
       {
         "package": "@rxap/window-system",
         "version": "19.0.0-dev.1"
-      },
-      {
-        "package": "@rxap/workspace-cypress",
-        "version": "19.0.4"
       },
       {
         "package": "@rxap/workspace-open-api",

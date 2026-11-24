@@ -54,8 +54,7 @@
           "lines": 90,
           "statements": 90
         }
-      },
-      "dependsOn": ["test-generators"]
+      }
     },
     "test-generators": {
       "executor": "nx:run-commands",
@@ -87,73 +86,6 @@
           "packages/angular/material/directives/button/**/*.ts",
           "packages/angular/material/directives/button/**/*.html"
         ]
-      }
-    },
-    "storybook": {
-      "executor": "@storybook/angular:start-storybook",
-      "continuous": true,
-      "readyWhen": {
-        "port": "{env.SBCONFIG_PORT ?? options.port ?? 9009}",
-        "host": "{env.SBCONFIG_HOSTNAME ?? options.host ?? localhost}"
-      },
-      "options": {
-        "port": 4400,
-        "configDir": "packages/angular/material/directives/.storybook",
-        "browserTarget": "angular:build:development",
-        "compodoc": true,
-        "compodocArgs": [
-          "-e",
-          "json",
-          "-d",
-          "packages/angular/material/directives"
-        ]
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      }
-    },
-    "build-storybook": {
-      "executor": "@storybook/angular:build-storybook",
-      "outputs": ["{options.outputDir}"],
-      "defaultConfiguration": "ci",
-      "options": {
-        "outputDir": "dist/storybook/angular-material-directives",
-        "configDir": "packages/angular/material/directives/.storybook",
-        "browserTarget": "angular:build:development",
-        "compodoc": true,
-        "compodocArgs": [
-          "-e",
-          "json",
-          "-d",
-          "packages/angular/material/directives"
-        ],
-        "styles": ["shared/angular/styles/_index.scss"]
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      }
-    },
-    "test-storybook": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "test-storybook -c packages/angular/material/directives/.storybook --url=http://localhost:4400"
-      }
-    },
-    "static-storybook": {
-      "executor": "@nx/web:file-server",
-      "options": {
-        "buildTarget": "angular-material-directives:build-storybook",
-        "staticFilePath": "dist/storybook/angular-material-directives",
-        "spa": true
-      },
-      "configurations": {
-        "ci": {
-          "buildTarget": "angular:build:development"
-        }
       }
     },
     "prism": {

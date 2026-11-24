@@ -43,10 +43,6 @@ export interface InitComponentGeneratorSchema {
   export?: boolean;
   /** Skip formatting files. */
   skipFormat?: boolean;
-  /** Set up Storybook interaction tests. */
-  interactionTests?: boolean;
-  /** The Cypress project to generate the stories under. By default, inferred from `projectName`. */
-  cypressProject?: string;
   /** Directory where to place the generated spec file. By default matches the value of the `componentPath` option. */
   specDirectory?: string;
 }

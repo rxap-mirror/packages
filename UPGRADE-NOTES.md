@@ -92,7 +92,6 @@ built with: `fix-dependencies` (`@rxap/plugin-library`) generates them that way.
 | `@langchain/*`, `langchain` | 0.3.x | `@langchain/community` 1.x is deprecated upstream. It is only used by the litellm n8n node (document loaders). Its optional peer ranges for `typeorm`, `ignore` and `firebase-admin` are deliberately ignored (`dependency-cooldown.mjs --ignore-peers-of @langchain/community`), yarn prints peer warnings for them |
 | `jsdom` | 26.1.0 | 27+ pulls ESM-only dependencies (`@exodus/bytes`, `bcp-47`, ...) that the CommonJS jest runtime cannot load |
 | `webpack-dev-server` / `verdaccio` | 5.x / 6.x | `@nx/webpack` / `@nx/js` peer ranges |
-| `@storybook/*` | unchanged | Storybook is being replaced by ng-prism |
 
 `@csstools/*` (via `postcss-preset-env` 11.6.2) resolved to releases that were only 6.1 days old on 2026-11-23 and
 have no older version inside the parent's range; re-run `audit-lockfile-cooldown.mjs` after 2026-11-24.

@@ -66,7 +66,7 @@ export default [
     },
   },
   {
-    files: ['**/test-setup.ts', '.storybook/preview.ts'],
+    files: ['**/test-setup.ts'],
     rules: {
       '@nx/enforce-module-boundaries': 'off',
     },

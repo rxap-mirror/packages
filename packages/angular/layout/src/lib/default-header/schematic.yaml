@@ -15,4 +15,3 @@ options:
   type: component
   defaultExport: false
   export: false
-  interactionTests: true

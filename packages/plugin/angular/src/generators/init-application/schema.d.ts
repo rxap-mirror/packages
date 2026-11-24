@@ -13,8 +13,6 @@ export interface InitApplicationGeneratorSchema {
   skipDocker?: boolean;
   /** Host project for module federation. Implies moduleFederation remote. Only supported for existing projects */
   host?: string;
-  /** Add target to deploy to after build */
-  deploy?: 'web3-storage' | 'test';
   sentry?: boolean;
   apiStatusCheck?: boolean;
   authentication?: 'oauth2-proxy' | boolean;

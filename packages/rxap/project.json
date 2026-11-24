@@ -3,9 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/rxap",
   "projectType": "library",
-  "tags": [
-    "standalone"
-  ],
+  "tags": ["standalone"],
   "implicitDependencies": [
     "angular-authentication",
     "angular-authorization",
@@ -65,20 +63,12 @@
     "browser-utilities",
     "data-structure-tree",
     "fs",
-    "generator-ts-morph",
-    "generator-utilities",
     "json-schema-to-typescript",
     "mixin",
     "n8n-nodes-cache",
     "n8n-nodes-cqrs",
-    "n8n-nodes-development",
-    "n8n-nodes-file",
     "n8n-nodes-firecrawl",
-    "n8n-nodes-gitlab",
-    "n8n-nodes-ipfs",
     "n8n-nodes-litellm",
-    "n8n-nodes-neo4j",
-    "n8n-nodes-open-webui",
     "n8n-nodes-sanitize-html",
     "n8n-nodes-tar",
     "n8n-nodes-yaml",
@@ -99,12 +89,10 @@
     "nest-sentry",
     "nest-server",
     "nest-socket-io-client",
-    "nest-supabase",
     "nest-testing",
     "nest-typeorm",
     "nest-utilities",
     "nest-vault",
-    "nest-web3-storage",
     "node-local-storage",
     "node-utilities",
     "open-api-service-app-angular-accordion",
@@ -118,22 +106,16 @@
     "plugin-angular",
     "plugin-application",
     "plugin-compodoc",
-    "plugin-cypress",
     "plugin-docker",
     "plugin-gitlab-ci",
     "plugin-gpt",
-    "plugin-kraft",
     "plugin-library",
-    "plugin-llm",
     "plugin-localazy",
-    "plugin-n8n",
     "plugin-nestjs",
     "plugin-ng-prism",
     "plugin-open-api",
-    "plugin-storybook",
     "plugin-typedoc",
     "plugin-utilities",
-    "plugin-web3-storage",
     "plugin-workspace",
     "preset-angular",
     "preset-workspace",
@@ -152,7 +134,6 @@
     "ts-morph",
     "utilities",
     "validator",
-    "workspace-cypress",
     "workspace-open-api",
     "workspace-ts-morph",
     "workspace-utilities",
@@ -160,44 +141,28 @@
   ],
   "targets": {
     "build": {
-      "dependsOn": [
-        "readme",
-        "check-version"
-      ],
-      "outputs": [
-        "{workspaceRoot}/dist/{projectRoot}"
-      ],
+      "dependsOn": ["readme", "check-version"],
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "bash ./packages/rxap/build.sh"
-        ]
+        "commands": ["bash ./packages/rxap/build.sh"]
       }
     },
     "update-implicit-dependencies": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "bash ./packages/rxap/update-implicit-dependencies.sh"
-        ]
+        "commands": ["bash ./packages/rxap/update-implicit-dependencies.sh"]
       }
     },
     "update-include-packages": {
-      "dependsOn": [
-        "update-implicit-dependencies"
-      ],
+      "dependsOn": ["update-implicit-dependencies"],
       "executor": "nx:run-commands",
       "options": {
-        "commands": [
-          "bash ./packages/rxap/update-include-packages.sh"
-        ]
+        "commands": ["bash ./packages/rxap/update-include-packages.sh"]
       }
     },
     "update-package-group": {
-      "dependsOn": [
-        "update-include-packages",
-        "update-implicit-dependencies"
-      ],
+      "dependsOn": ["update-include-packages", "update-implicit-dependencies"],
       "options": {
         "includeDependencies": true,
         "include": [
@@ -229,13 +194,13 @@
           "@nestjs/terminus",
           "@nestjs/throttler",
           "@nestjs/typeorm",
+          "@angular/build",
           "@angular/cli",
           "@angular/compiler-cli",
           "@angular/language-service",
           "@nestjs/schematics",
           "@nestjs/testing",
           "@nx/angular",
-          "@nx/cypress",
           "@nx/devkit",
           "@nx/esbuild",
           "@nx/eslint",
@@ -245,7 +210,6 @@
           "@nx/nest",
           "@nx/node",
           "@nx/plugin",
-          "@nx/storybook",
           "@nx/web",
           "@nx/webpack",
           "nx"

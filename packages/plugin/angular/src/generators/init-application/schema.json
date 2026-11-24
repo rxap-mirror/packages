@@ -43,11 +43,6 @@
       "type": "string",
       "description": "Host project for module federation. Implies moduleFederation remote. Only supported for existing projects (see moduleFederation)."
     },
-    "deploy": {
-      "type": "string",
-      "description": "Add target to deploy to after build",
-      "enum": ["web3-storage"]
-    },
     "sentry": {
       "type": "boolean",
       "default": true,

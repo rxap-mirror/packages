@@ -1,9 +1,0 @@
-{
-  "executors": {
-    "deploy": {
-      "implementation": "./executors/deploy/executor",
-      "schema": "./executors/deploy/schema.json",
-      "description": "deploy executor"
-    }
-  }
-}

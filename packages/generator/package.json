@@ -1,7 +1,0 @@
-{
-  "name": "generator",
-  "private": true,
-  "workspaces": [
-    "./*"
-  ]
-}

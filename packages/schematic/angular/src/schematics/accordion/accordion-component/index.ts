@@ -12,7 +12,6 @@ import {
   NormalizedAccordionComponentOptions,
 } from './normalize-accordion-component-options';
 import { AccordionComponentOptions } from './schema';
-import { storiesRule } from './stories-rule';
 
 function printOptions(options: NormalizedAccordionComponentOptions) {
   PrintAngularOptions('accordion-component', options);
@@ -37,7 +36,6 @@ export default function (options: AccordionComponentOptions) {
     );
     return chain([
       componentRule(normalizedOptions, hasMissing),
-      storiesRule(normalizedOptions),
       backendRule(normalizedOptions),
       itemListRule(normalizedOptions),
     ]);

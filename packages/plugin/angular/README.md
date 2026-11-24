@@ -184,7 +184,6 @@ layoutRoutePath | string |  | The route path for layout children components.
 standaloneImport | boolean |  | Whether to import the MFE remote as a standalone unit.
 skipDocker | boolean |  | Whether to skip the docker configuration
 host | string |  | Host project for module federation. Implies moduleFederation remote. Only supported for existing projects (see moduleFederation).
-deploy | string |  | Add target to deploy to after build
 sentry | boolean | true | 
 apiStatusCheck | boolean | false | Whether to enable API status check during bootstrap.
 authentication |  |  | 
@@ -315,8 +314,6 @@ type | string | component | Adds a developer-defined type to the filename, in th
 defaultExport | boolean | false | Whether the component class should be the default export of the file.
 export | boolean | false | Whether the component should be exported from the declaring NgModule or project entry point.
 skipFormat | boolean | false | Skip formatting files.
-interactionTests | boolean | true | Whether to set up Storybook interaction tests for the component.
-cypressProject | string |  | The Cypress project to generate the stories under. By default, inferred from &#x60;projectName&#x60;.
 specDirectory | string |  | Directory where to place the generated spec file. By default matches the value of the &#x60;componentPath&#x60; option.
 
 ## convert-to-buildable-library

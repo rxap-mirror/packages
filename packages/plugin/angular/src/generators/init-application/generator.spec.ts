@@ -66,7 +66,6 @@ describe('plugin-angular init-application', () => {
       openApi: true,
       config: true,
       apiStatusCheck: true,
-      deploy: 'web3-storage',
       overwrite: true,
       cleanup: true,
       generateMain: true,
@@ -86,7 +85,7 @@ describe('plugin-angular init-application', () => {
     const tree = await setup();
     tree.write('project.json', JSON.stringify({ name: 'workspace', targets: {} }));
     await initApplicationGenerator(tree, {
-      project: 'app', authentication: 'oauth2-proxy', openApi: true, openApiLegacy: true, generateMain: true, skipDocker: true, deploy: 'test', skipFormat: true,
+      project: 'app', authentication: 'oauth2-proxy', openApi: true, openApiLegacy: true, generateMain: true, skipDocker: true, skipFormat: true,
     } as any);
     expect(tree.exists('app/project.json')).toBe(true);
   }, 120000);

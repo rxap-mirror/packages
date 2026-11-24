@@ -1,8 +1,4 @@
-import {
-  componentGenerator,
-  componentStoryGenerator,
-  componentTestGenerator,
-} from '@nx/angular/generators';
+import { componentGenerator } from '@nx/angular/generators';
 import { Tree } from '@nx/devkit';
 import { CoerceDefaultClassExport } from '@rxap/ts-morph';
 import {
@@ -16,7 +12,6 @@ import {
   GetProject,
   GetProjectRoot,
   GetProjectSourceRoot,
-  HasTarget,
   IsLibraryProject,
 } from '@rxap/workspace-utilities';
 import {
@@ -105,30 +100,6 @@ export async function initComponentGenerator(
       ...componentOptions,
       // @nx/angular >= 21 treats path as the file path (the last segment is replaced by the component name)
       path: join(directory, dasherize(options.name)),
-    });
-  }
-
-  if (!tree.exists(join(directory, componentFileName + '.stories.ts')) && HasTarget(tree, options.project, 'storybook')) {
-    console.log('Generate component story'.blue);
-    await componentStoryGenerator(tree, {
-      projectPath: projectRoot,
-      interactionTests: componentOptions.interactionTests,
-      componentName,
-      componentPath,
-      componentFileName,
-      skipFormat: componentOptions.skipFormat,
-    });
-
-  }
-
-  if (!tree.exists(join(directory, componentFileName + '.cy.ts')) && HasTarget(tree, options.project, 'component-test')) {
-    console.log('Generate component test'.blue);
-    await componentTestGenerator(tree, {
-      project: options.project,
-      componentName,
-      componentDir: componentPath,
-      componentFileName,
-      skipFormat: componentOptions.skipFormat
     });
   }
 

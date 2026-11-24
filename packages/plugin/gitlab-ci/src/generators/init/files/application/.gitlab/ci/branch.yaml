@@ -7,14 +7,6 @@ include:
     rules:
       - exists:
           - tools/scripts/deployment/ci/**
-  - local: .gitlab/ci/jobs/e2e.yaml
-    rules:
-      - exists:
-          - "**/cypress.config.ts"
-  - local: .gitlab/ci/jobs/component-test.yaml
-    rules:
-      - exists:
-          - "**/cypress.config.ts"
   - local: .gitlab/ci/jobs/writerside.yaml
     rules:
       - exists:

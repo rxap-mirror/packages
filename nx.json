@@ -20,16 +20,10 @@
     "production": [
       "typescript",
       "{projectRoot}/src/**/*",
-      "!{projectRoot}/**/*.{spec,stories,cy}.ts",
+      "!{projectRoot}/**/*.spec.ts",
       "!{projectRoot}/jest.config.ts",
       "!{projectRoot}/src/test-setup.[jt]s",
       "!{projectRoot}/tsconfig.spec.json",
-      "!{projectRoot}/cypress/**/*",
-      "!{projectRoot}/**/*.cy.[jt]s?(x)",
-      "!{projectRoot}/cypress.config.[jt]s",
-      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
-      "!{projectRoot}/.storybook/**/*",
-      "!{projectRoot}/tsconfig.storybook.json",
       "!{projectRoot}/eslint.config.mjs"
     ],
     "build": [
@@ -59,32 +53,8 @@
       "input": ["production", "^production"],
       "cache": true
     },
-    "component-test": {
-      "executor": "@nx/cypress:cypress",
-      "inputs": ["default", "^production"],
-      "configurations": {
-        "open": {
-          "watch": true
-        }
-      },
-      "options": {
-        "testingType": "component",
-        "skipServe": true,
-        "devServerTarget": "angular:build:development"
-      },
-      "cache": true
-    },
     "config": {
       "executor": "@rxap/plugin-application:config"
-    },
-    "build-storybook": {
-      "cache": true,
-      "inputs": [
-        "default",
-        "^production",
-        "{projectRoot}/.storybook/**/*",
-        "{projectRoot}/tsconfig.storybook.json"
-      ]
     },
     "build": {
       "dependsOn": [
@@ -432,10 +402,7 @@
     "./packages/plugin/typedoc/src/plugin.ts",
     "./packages/plugin/localazy/src/plugin.ts",
     "./packages/plugin/docker/src/plugin.ts",
-    "./packages/plugin/web3-storage/src/plugin.ts",
-    "./packages/plugin/kraft/src/plugin.ts",
     "./packages/plugin/workspace/src/plugin.ts",
-    "./packages/plugin/n8n/src/plugin.ts",
     "./packages/plugin/open-api/src/plugin.ts",
     {
       "plugin": "@nx/webpack/plugin",
