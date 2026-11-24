@@ -15,18 +15,21 @@
  *   3. validate                (build/test/lint)
  *   4. version (source)        (releaseVersion — bumps source package.json + pins ^deps)
  *   5. source mutations        (update-package-group, readme, lockfile)
- *   6. changelog + commit + tag (releaseChangelog — writes CHANGELOG.md, single commit; the
- *                              tags are created per project by this script, see tagReleases)
+ *   6. changelog + commit      (releaseChangelog — writes CHANGELOG.md, single LOCAL commit; NO tags yet)
  *   7. production build → dist (docs + build; dist inherits version + packageGroup + CHANGELOG)
- *   8. dist transforms         (theme export, strip the `workspace` marker dep)
+ *   8. dist transforms         (theme export, strip the `workspace` marker dep, strip ng-prism + guard)
+ *   8b. tag                    (tagReleases — one annotated tag per project, ONLY after the dist passed
+ *                              every check, so a failed build/guard never leaves tags behind)
  *   9. publish                 (releasePublish — from dist/{projectRoot}, with dist-tag)
  *  10. GitLab releases         (opt-in via --gitlab-release; uses the `glab` CLI)
  *  11. rxap umbrella pass      (update-package-group → version → build → publish, group "rxap")
  *  12. push                    (git push --follow-tags)
  *  13. report                  (per-project failures of steps 6-12)
  *
- * Failure handling: once the release commit exists (step 6), a failure of a single project in
- * the tag, publish or GitLab release step does NOT abort the run. It is recorded, the remaining
+ * Failure handling: a failure before the tags exist (steps 6-8: changelog, build, dist transforms,
+ * ng-prism guard) aborts the run WITHOUT pushing anything: there are no tags and nothing is published,
+ * the release commit stays local and is reverted with `git reset --hard HEAD~1`. Once the tags exist
+ * (step 8b), a failure of a single project in the tag, publish or GitLab release step does NOT abort the run. It is recorded, the remaining
  * projects are released, the commit + tags are always pushed, and a report is printed at the end
  * (exit code 1 if anything failed). Aborting there would leave the release commit and its tags
  * local only while packages are already on npm; after the next reset those tags are orphaned and
@@ -117,10 +120,21 @@ const C = {
 const log = (msg) => console.log(C.blue(`\n▶ ${msg}`));
 const ok = (msg) => console.log(C.green(`✔ ${msg}`));
 const warn = (msg) => console.warn(C.yellow(`⚠ ${msg}`));
-// set once the release commit exists — from then on an abort must still push commit + tags
+// set once the release commit exists but is not tagged yet — an abort leaves it local (nothing was released)
+let unreleasedCommit = false;
+// set once the release commit is tagged — from then on an abort must still push commit + tags
 let releaseCommitted = false;
 const die = (msg) => {
   console.error(C.red(`✗ ${msg}`));
+  if (unreleasedCommit && !DRY_RUN) {
+    console.error(
+      C.yellow(
+        '  Aborted before tagging: no tags were created, nothing was published or pushed.\n' +
+          '  The release commit is still local. Fix the cause and run the release again after\n' +
+          '  `git reset --hard HEAD~1` (drops the release commit and its version/changelog changes).',
+      ),
+    );
+  }
   if (releaseCommitted && !DRY_RUN) {
     releaseCommitted = false; // no recursion if the push itself fails
     console.error(C.yellow('  Pushing the release commit and tags before aborting so they are not orphaned.'));
@@ -657,8 +671,7 @@ async function main() {
     verbose: VERBOSE,
     firstRelease: FIRST_RELEASE,
   });
-  releaseCommitted = !DRY_RUN;
-  const untagged = tagReleases(changelogResult.projectChangelogs);
+  unreleasedCommit = !DRY_RUN;
 
   // ---- 7. production build → dist (carries bumped version + packageGroup + CHANGELOG) ----
   if (!DRY_RUN && !SKIP_BUILD) {
@@ -685,6 +698,11 @@ async function main() {
     // a stale dist, a new file type). Fails the release before the publish step.
     run(`node tools/scripts/check-dist-for-ng-prism.mjs --projects=${changed.join(',')}`);
   }
+
+  // ---- 8b. tag the release commit — only now that build and dist checks passed ----
+  const untagged = tagReleases(changelogResult.projectChangelogs);
+  unreleasedCommit = false;
+  releaseCommitted = !DRY_RUN;
 
   // ---- 9. publish the `packages` group from dist ----
   // a project whose tag could not be created is not published: its version is ambiguous
