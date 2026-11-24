@@ -1,9 +1,10 @@
 // One-shot helper to realign every @rxap/* workspace dependency range to the
 // current workspace package version. post-migrate.sh stamped source versions to
 // the new framework majors but its fix-dependencies step crashed before
-// updating dependent ranges, so yarn installed stale published @rxap packages
-// instead of symlinking source. Aligning the ranges lets `yarn install`
-// symlink all workspace packages again.
+// updating dependent ranges, so the package manager installed stale published
+// @rxap packages instead of linking source. pnpm (linkWorkspacePackages: deep)
+// only links a workspace package whose version satisfies the range, so aligning
+// the ranges lets `pnpm install` link all workspace packages again.
 import { execSync } from 'node:child_process';
 import { readFileSync, writeFileSync } from 'node:fs';
 
