@@ -17,4 +17,4 @@ export const RXAP_SOCKET_IO_OPTIONS = new InjectionToken<Partial<ManagerOptions 
   'rxap-socket-io/options',
 );
 
-export const RXAP_SOCKET_IO = new InjectionToken<Socket>('rxap-socket-io/instance');
+export const RXAP_SOCKET_IO: InjectionToken<Socket> = new InjectionToken<Socket>('rxap-socket-io/instance');

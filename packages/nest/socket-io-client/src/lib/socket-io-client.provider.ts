@@ -52,7 +52,7 @@ export class SocketIoClientProvider {
   private readonly config!: ConfigService;
   private socket?: Socket;
 
-  getSocket = () => {
+  getSocket = (): Socket => {
     if (!this.socket) {
       return this.connect();
     }
