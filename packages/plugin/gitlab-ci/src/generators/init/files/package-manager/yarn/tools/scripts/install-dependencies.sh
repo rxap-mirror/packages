@@ -1,7 +1,8 @@
 #!/bin/sh
 
+# corepack is no longer bundled with node >= 25; it activates the yarn version of the packageManager field
+command -v corepack >/dev/null 2>&1 || npm install -g corepack
 corepack enable
-corepack prepare yarn@3.6.0 --activate
 
 echo "RUN: yarn --version"
 yarn --version

@@ -28,6 +28,27 @@ describe('gitlab-ci generators', () => {
       expect(tree.children('').some(name => name.includes('gitlab'))).toBe(true);
     });
 
+    it.each([
+      [ 'pnpm', 'pnpm-lock.yaml', '.pnpm-store', 'pnpm exec nx run-many', 'pnpm install --frozen-lockfile' ],
+      [ 'npm', 'package-lock.json', '.npm', 'npx nx run-many', 'npm ci' ],
+      [ 'yarn', 'yarn.lock', '.yarn/cache', 'yarn nx run-many', 'yarn --immutable' ],
+    ])('should render the ci files for %s', async (name, lockfile, cacheDir, runMany, install) => {
+      tree.write(lockfile, '');
+      await initGenerator(tree, { skipFormat: true });
+      const npmCache = parse(tree.read('.gitlab/ci/utilities/npm-cache.yaml', 'utf-8')!);
+      expect(npmCache['.with_npm_cache'].cache.key.files).toEqual([ lockfile ]);
+      expect(npmCache['.with_npm_cache'].cache.paths).toContain(cacheDir);
+      expect(tree.read('.gitlab/ci/utilities/nx.yaml', 'utf-8')).toContain(runMany);
+      expect(tree.read('tools/scripts/install-dependencies.sh', 'utf-8')).toContain(install);
+      if (name !== 'yarn') {
+        for (const { path } of tree.listChanges()) {
+          if (path.startsWith('.gitlab') || path.startsWith('tools/scripts')) {
+            expect({ path, content: tree.read(path, 'utf-8') }).toEqual({ path, content: expect.not.stringMatching(/\byarn\b/) });
+          }
+        }
+      }
+    });
+
     it('should generate the gitlab setup script with release-it', async () => {
       await initGenerator(tree, { skipFormat: true, release: 'release-it' });
       const files = tree.listChanges().map(change => change.path);

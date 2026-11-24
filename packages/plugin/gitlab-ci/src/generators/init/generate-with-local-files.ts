@@ -2,7 +2,10 @@ import { Tree } from '@nx/devkit';
 import {
   CoerceFile,
   CoerceFilesStructure,
+  PackageManagerSubstitutions,
+  ResolvePackageManagerProfile,
 } from '@rxap/workspace-utilities';
+import { existsSync } from 'fs';
 import { join } from 'path';
 import {
   parse,
@@ -16,23 +19,39 @@ import {
 import { InitGeneratorSchema } from './schema';
 
 export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema) {
+  const packageManager = ResolvePackageManagerProfile(tree);
+  const substitutions = PackageManagerSubstitutions(packageManager);
+
   CoerceFilesStructure(tree, {
     srcFolder: join(__dirname, 'files', 'basic'),
     target: '',
     overwrite: options.overwrite,
+    substitutions,
   });
+
+  const packageManagerFiles = join(__dirname, 'files', 'package-manager', packageManager.name);
+  if (existsSync(packageManagerFiles)) {
+    CoerceFilesStructure(tree, {
+      srcFolder: packageManagerFiles,
+      target: '',
+      overwrite: options.overwrite,
+      substitutions,
+    });
+  }
 
   if (options.onlyPackages) {
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'packages'),
       target: '',
       overwrite: options.overwrite,
+      substitutions,
     });
   } else {
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'application'),
       target: '',
       overwrite: options.overwrite,
+      substitutions,
     });
   }
 
@@ -41,12 +60,14 @@ export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema)
       srcFolder: join(__dirname, 'files', 'dte'),
       target: '',
       overwrite: options.overwrite,
+      substitutions,
     });
   } else {
     CoerceFilesStructure(tree, {
       srcFolder: join(__dirname, 'files', 'simple'),
       target: '',
       overwrite: options.overwrite,
+      substitutions,
     });
   }
 
@@ -55,6 +76,7 @@ export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema)
       srcFolder: join(__dirname, 'files', 'angular'),
       target: '',
       overwrite: options.overwrite,
+      substitutions,
     });
   }
 
@@ -63,6 +85,7 @@ export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema)
       srcFolder: join(__dirname, 'files', 'release-it'),
       target: '',
       overwrite: options.overwrite,
+      substitutions,
     });
   }
 
@@ -71,6 +94,7 @@ export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema)
       srcFolder: join(__dirname, 'files', 'semantic-release'),
       target: '',
       overwrite: options.overwrite,
+      substitutions,
     });
   }
 
@@ -79,6 +103,7 @@ export function generateWithLocalFiles(tree: Tree, options: InitGeneratorSchema)
       srcFolder: join(__dirname, 'files', 'update-helm-chart-version'),
       target: '',
       overwrite: options.overwrite,
+      substitutions,
     });
     const pipelineFile = tree.read('.gitlab/ci/pipelines/update-helm-chart-version.yaml', 'utf-8')!;
     const pipeline = parse(pipelineFile);

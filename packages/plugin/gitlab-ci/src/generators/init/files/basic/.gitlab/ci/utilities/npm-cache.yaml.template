@@ -7,10 +7,10 @@
   cache:
     key:
       files:
-        - yarn.lock
+        - {{pm.lockfile}}
     paths:
       - "**/node_modules/**"
-      - .yarn/cache
+      - {{pm.cacheDir}}
   rules:
     - if: '$SKIP_SETUP == "true"'
       when: never
@@ -25,7 +25,7 @@
     - if: '$CI_COMMIT_MESSAGE =~ /\[setup\]/'
       when: always
     - changes:
-        - yarn.lock
+        - {{pm.lockfile}}
       when: always
 
 .with_npm_cache:
@@ -37,10 +37,10 @@
   cache:
     key:
       files:
-        - yarn.lock
+        - {{pm.lockfile}}
     paths:
       - "**/node_modules/**"
-      - .yarn/cache
+      - {{pm.cacheDir}}
     policy: pull
   before_script:
     - apk add --no-cache git || apt-get update && apt-get install -y git || true

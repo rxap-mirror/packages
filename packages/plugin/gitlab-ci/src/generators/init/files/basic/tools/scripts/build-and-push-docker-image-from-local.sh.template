@@ -11,13 +11,13 @@ cd "$BASE_DIR" || exit 1
 
 echo -e "${BLUE}Build all projects${NC}"
 
-nx run-many --target build --configuration production
+{{pm.exec}} nx run-many --target build --configuration production
 
 echo -e "${BLUE}Generate nx graph${NC}"
 
 json_file="$(mktemp).json"
 
-nx graph --file $json_file
+{{pm.exec}} nx graph --file $json_file
 
 # Ensure that a file name is passed as argument
 if [[ -z "$json_file" ]]; then
