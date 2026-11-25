@@ -177,6 +177,8 @@ trustPolicyExclude:
   - "jose@4.15.9"
   - "langchain@0.3.37"
   - "pino@9.14.0"
+  # reviewed 2026-11-25: security fix of the 6.x line by maintainer fenster, who also published the 6.11.5 it replaces
+  - "protobufjs@6.11.6"
   - "semver@5.7.2"
   - "semver@6.3.1"
   - "undici-types@6.21.0"
@@ -206,6 +208,11 @@ patchedDependencies:
   "@ng-prism/plugin-jsdoc@22.8.0": patches/@ng-prism__plugin-jsdoc@22.8.0.patch
   nx@24.0.6: patches/nx@24.0.6.patch
 overrides:
+  # security fixes (pnpm audit, 2026-11-25): patched versions inside the same major, already past their cooldown
+  "ws@>=8.0.0 <8.21.0": 8.23.0
+  "protobufjs@<6.11.6": 6.11.6
+  "@grpc/grpc-js@<1.13.6": 1.14.7
+  "semver@>=7.0.0 <7.5.2": 7.7.3
   "@csstools/postcss-alpha-function@^2.0.17": 2.0.17
   "@csstools/postcss-color-function-display-p3-linear@^2.0.16": 2.0.16
   "@csstools/postcss-color-function@^5.0.16": 5.0.16
@@ -261,3 +268,4 @@ overrides:
   style-mod@^4.0.0: 4.1.4
   style-mod@^4.1.0: 4.1.4
   jose@^6.1.3: 6.2.17
+  nice-grpc-client-middleware-retry@^3.1.13: 3.1.17

@@ -1,1 +1,156 @@
-[]
+[
+  {
+    "id": "GHSA-qr28-fpjm-wq7f",
+    "package": "decode-uri-component@0.2.2",
+    "severity": "high",
+    "reason": "via query-string 7; fixed only in decode-uri-component 0.5 (breaking 0.x minor)",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-3644-q5cj-c5c7",
+    "package": "langsmith@0.3.87",
+    "severity": "high",
+    "reason": "via @langchain/* 0.3 (deliberately held back, UPGRADE-NOTES section 4); fixed only in langsmith 0.6",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-hcrg-fc28-fcg5",
+    "package": "parse-duration@1.1.2",
+    "severity": "high",
+    "reason": "via ipfs-core-utils (legacy web3.storage stack); fixed only in parse-duration 2",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-66ff-xgx4-vchm",
+    "package": "protobufjs@6.11.6",
+    "severity": "high",
+    "reason": "6.x via the legacy web3.storage/ipfs-car stack; fixed only in protobufjs 7, which those packages do not support",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-685m-2w69-288q",
+    "package": "protobufjs@6.11.6",
+    "severity": "high",
+    "reason": "6.x via the legacy web3.storage/ipfs-car stack; fixed only in protobufjs 7, which those packages do not support",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-75px-5xx7-5xc7",
+    "package": "protobufjs@6.11.6",
+    "severity": "high",
+    "reason": "6.x via the legacy web3.storage/ipfs-car stack; fixed only in protobufjs 7, which those packages do not support",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-jvwf-75h9-cwgg",
+    "package": "protobufjs@6.11.6",
+    "severity": "high",
+    "reason": "6.x via the legacy web3.storage/ipfs-car stack; fixed only in protobufjs 7, which those packages do not support",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-wcpc-wj8m-hjx6",
+    "package": "protobufjs@6.11.6",
+    "severity": "high",
+    "reason": "6.x via the legacy web3.storage/ipfs-car stack; fixed only in protobufjs 7, which those packages do not support",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-27p8-2357-5qqv",
+    "package": "xmldom@0.6.0",
+    "severity": "high",
+    "reason": "no fixed xmldom release (package renamed to @xmldom/xmldom); direct dependency of @rxap/xml-parser, migration is a separate task",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-2v35-w6hq-6mfw",
+    "package": "xmldom@0.6.0",
+    "severity": "high",
+    "reason": "no fixed xmldom release (package renamed to @xmldom/xmldom); direct dependency of @rxap/xml-parser, migration is a separate task",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-4w3w-2rp5-g8jm",
+    "package": "xmldom@0.6.0",
+    "severity": "high",
+    "reason": "no fixed xmldom release (package renamed to @xmldom/xmldom); direct dependency of @rxap/xml-parser, migration is a separate task",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-8344-3jmq-59r6",
+    "package": "xmldom@0.6.0",
+    "severity": "high",
+    "reason": "no fixed xmldom release (package renamed to @xmldom/xmldom); direct dependency of @rxap/xml-parser, migration is a separate task",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-93r5-fhx6-vmg9",
+    "package": "xmldom@0.6.0",
+    "severity": "high",
+    "reason": "no fixed xmldom release (package renamed to @xmldom/xmldom); direct dependency of @rxap/xml-parser, migration is a separate task",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-965w-775f-mr7g",
+    "package": "xmldom@0.6.0",
+    "severity": "high",
+    "reason": "no fixed xmldom release (package renamed to @xmldom/xmldom); direct dependency of @rxap/xml-parser, migration is a separate task",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-c7q8-3ch8-vqpv",
+    "package": "xmldom@0.6.0",
+    "severity": "high",
+    "reason": "no fixed xmldom release (package renamed to @xmldom/xmldom); direct dependency of @rxap/xml-parser, migration is a separate task",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-crh6-fp67-6883",
+    "package": "xmldom@0.6.0",
+    "severity": "critical",
+    "reason": "no fixed xmldom release (package renamed to @xmldom/xmldom); direct dependency of @rxap/xml-parser, migration is a separate task",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-f6ww-3ggp-fr8h",
+    "package": "xmldom@0.6.0",
+    "severity": "high",
+    "reason": "no fixed xmldom release (package renamed to @xmldom/xmldom); direct dependency of @rxap/xml-parser, migration is a separate task",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-j759-j44w-7fr8",
+    "package": "xmldom@0.6.0",
+    "severity": "high",
+    "reason": "no fixed xmldom release (package renamed to @xmldom/xmldom); direct dependency of @rxap/xml-parser, migration is a separate task",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-w2rr-34g9-rvrj",
+    "package": "xmldom@0.6.0",
+    "severity": "high",
+    "reason": "no fixed xmldom release (package renamed to @xmldom/xmldom); direct dependency of @rxap/xml-parser, migration is a separate task",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-wh4c-j3r5-mjhp",
+    "package": "xmldom@0.6.0",
+    "severity": "high",
+    "reason": "no fixed xmldom release (package renamed to @xmldom/xmldom); direct dependency of @rxap/xml-parser, migration is a separate task",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-x6wf-f3px-wcqx",
+    "package": "xmldom@0.6.0",
+    "severity": "high",
+    "reason": "no fixed xmldom release (package renamed to @xmldom/xmldom); direct dependency of @rxap/xml-parser, migration is a separate task",
+    "expires": "2026-12-25"
+  },
+  {
+    "id": "GHSA-mrhx-c7xc-m3w5",
+    "package": "zod@3.25.76",
+    "severity": "high",
+    "reason": "zod 3 is required by @langchain/* 0.3 and the litellm node; fixed only in zod 4",
+    "expires": "2026-12-25"
+  }
+]
