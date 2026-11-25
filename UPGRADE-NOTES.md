@@ -29,7 +29,8 @@ Two things are only possible because of workarounds for Nx releases that do not 
 - **Impact here:** none on our libraries (built with `@nx/js:tsc`, tests green on Nest 12). Only apps generated through
   `@nx/nest` or the `@rxap/plugin-nestjs` generators get Nest 11 versions and have to be bumped by hand; the
   `@rxap/plugin-nestjs` generators still emit `@nx/webpack:webpack` targets (executor removed in Nx 24).
-- **Remove when:** Nx 24.1 is stable → bump Nx (`pnpm nx migrate`), re-check peer warnings for `@nx/nest`, and
+- **Remove when:** Nx 24.1 is stable and past its cooldown → the framework watch opens the migration
+  (`migrate/nx/24.1.x`, `FRAMEWORK-WATCH.md`); re-check peer warnings for `@nx/nest`, and
   modernise the `@rxap/plugin-nestjs` application generators (inferred webpack/rspack plugin instead of the executor).
 
 ## 3. Release cadence (basis for "when can we drop the workarounds")
@@ -52,7 +53,8 @@ Observed (GitHub releases, `nrwl/nx`):
 - **Estimate (inference, not a statement from the Nx team):** 24.1.0 GA most likely in early to mid December 2026
   (beta → GA took 4–7 weeks for the last minors), possibly slipping past the holidays. A 24.0.7 with the architect fix
   could come earlier, but is not announced.
-- Re-check: `gh release list --repo nrwl/nx --limit 15` and the two upstream issues above.
+- Re-check: `gh release list --repo nrwl/nx --limit 15` and the two upstream issues above, or
+  `node tools/scripts/framework-watch.mjs` (which Nx / Angular / NestJS version is eligible, and what still waits).
 
 ## 4. Dependency upgrade policy (release cooldown)
 

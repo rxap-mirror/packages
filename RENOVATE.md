@@ -19,8 +19,12 @@ Renovate keeps the dependencies of this repository up to date. It runs as a sche
 5. **Automerge** for patch, minor, pin, digest and the weekly lockfile maintenance once the pipeline is green.
    Majors need approval on the dependency dashboard and are merged by hand.
 
-Not updated by Renovate (disabled in `renovate.json5`): `@rxap/*`, Angular, Nx, NestJS (`nx migrate`,
-`tools/scripts/update-nestjs-packages.sh`), and the majors held back in `UPGRADE-NOTES.md` section 4.
+Not updated by Renovate (disabled in `renovate.json5`): `@rxap/*`, Angular, Nx, NestJS (framework watch,
+`FRAMEWORK-WATCH.md`), and the majors held back in `UPGRADE-NOTES.md` section 4.
+
+Red Renovate merge requests get one or two repair attempts from the fix agent (`docs/agent-fix.md`). Renovate treats
+the agent's commit as a manual change and stops rebasing that branch; automerge still applies once the pipeline is
+green.
 
 Never merge a Renovate merge request by hand while `supply-chain:check` is red. A pending update only needs time;
 an exception follows the process in `UPGRADE-NOTES.md` section 4.
@@ -48,5 +52,7 @@ an exception follows the process in `UPGRADE-NOTES.md` section 4.
    and `renovate/*` branches allowed to push for the bot.
 5. Run the `Renovate` schedule once by hand, check the job log and the "Dependency Dashboard" issue.
 6. Check that the scheduled pipelines only contain the `renovate` / `supply-chain:audit` job.
-7. Retire the old Renovate runner (`rxap/gitlab-ci` `renovate/`, systemd timer) and revoke the tokens hardcoded in its
+7. Framework watch and fix agent: activation steps in `FRAMEWORK-WATCH.md` and `docs/agent-fix.md` (`GITLAB_TOKEN`,
+   `OPENROUTER_API_KEY`, schedule `FRAMEWORK_WATCH=true`). The Renovate bot token may serve as `GITLAB_TOKEN` too.
+8. Retire the old Renovate runner (`rxap/gitlab-ci` `renovate/`, systemd timer) and revoke the tokens hardcoded in its
    `renovate.service`.

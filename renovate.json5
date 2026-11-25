@@ -75,7 +75,7 @@
       enabled: false,
     },
 
-    // --- updated through nx migrate / the framework watch (Phase 5), never by Renovate ---
+    // --- updated as groups through the framework watch + nx migrate (FRAMEWORK-WATCH.md), never by Renovate ---
     {
       description: 'workspace packages',
       matchPackageNames: ['@rxap/**'],
@@ -92,7 +92,7 @@
       enabled: false,
     },
     {
-      description: 'NestJS: tools/scripts/update-nestjs-packages.sh (post-migrate)',
+      description: 'NestJS: framework watch / tools/scripts/update-nestjs-packages.sh',
       matchPackageNames: ['@nestjs/**', 'cache-manager', 'class-transformer', 'class-validator', 'cookie-parser', '@types/cookie-parser', 'helmet', 'swagger-ui-express', 'csurf', '@types/csurf', 'express'],
       enabled: false,
     },

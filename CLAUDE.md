@@ -72,6 +72,9 @@ The project includes a Docker-based backend infrastructure:
   Run `pnpm supply-chain:check` after every dependency change (the pre-push hook runs it too).
 - Renovate (`RENOVATE.md`, `renovate.json5`) runs as a scheduled job of this repo. Never merge a Renovate MR while
   `supply-chain:check` is red; run `pnpm renovate:tiers` after adding a root dependency by hand.
+- Angular / Nx / NestJS move as groups through the framework watch (`FRAMEWORK-WATCH.md`, `migrate/*` branches,
+  `tools/scripts/lib/framework-groups.mjs`). Never bump one member of a group alone; use
+  `align-framework-group.mjs` / `update-nestjs-packages.sh`. Framework merge requests are always merged by hand.
 
 ### Code Intelligence
 - **Generators:** Consult `pnpm nx list @rxap/plugin-<type>` to see available generators.
