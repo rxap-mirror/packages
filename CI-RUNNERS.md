@@ -23,7 +23,7 @@ Online runners: 25731501 `run`, `run-many`, `dte-agent` (e2-standard-8) · 25731
 
 | Path | Trigger | Jobs (stage) |
 |---|---|---|
-| Push `development` (default) | push | `setup` (.pre) → `test`, `semgrep-sast`, `secret_detection` (test) → `run-many` (build), `writerside`, `workspace:typedoc`, `workspace:compodoc` (build) → `pages`, `coverage-report`, `trigger:rxap-compose` (.post) |
+| Push `development` (default) | push | `setup` (.pre) → `test`, `semgrep-sast`, `secret_detection` (test) → `run-many` (build) → `trigger:rxap-compose` (.post); manual: `writerside`, `workspace:typedoc`, `workspace:compodoc` (build), `pages`, `coverage-report` (.post) |
 | Push `latest` | push | as above, `pages` + `coverage-report` manual, no `writerside` / rxap-compose |
 | `renovate/*` branch / MR | push, MR | `setup`, `supply-chain:check`, `workspace:typedoc`; red → `agent:fix` |
 | `migrate/*` branch | push | `nx-migrate` (+ `agent:fix` on a red MR pipeline) |

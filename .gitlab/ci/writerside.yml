@@ -1,0 +1,8 @@
+# writerside (nx-workspace component, templates/writerside.yml) on demand only, to save runner time. Included with
+# the component's own include rules for writerside (.gitlab-ci.yml): an override of a job that does not exist would
+# make the pipeline invalid.
+writerside:
+  rules:
+    - exists:
+        - Writerside/*.tree
+      when: manual

@@ -63,6 +63,12 @@ include:
         - mlr-linux-medium-amd64
         - docker
         - e2e
+      # documentation and coverage only on demand (Run the manual jobs), to save runner time
+      typedoc_when: manual
+      compodoc_when: manual
+      pages_when: manual
+      pages_merge_request_when: manual
+      coverage_report_when: manual
       pages_needs:
         - job: run-many
           optional: true
@@ -73,6 +79,17 @@ include:
 
   - local: .gitlab/ci/workspace.yml
     rules: *workspace-pipeline
+  # writerside only exists where the component includes it (tags, default branch): same rules
+  - local: .gitlab/ci/writerside.yml
+    rules:
+      - if: '$RENOVATE == "true" || $SUPPLY_CHAIN_AUDIT == "true" || $FRAMEWORK_WATCH == "true" || $NX_RELEASE'
+        when: never
+      - if: '$AI_ISSUE_IID || $AI_EPIC_IID'
+        when: never
+      - if: '$CI_COMMIT_BRANCH && $CI_COMMIT_MESSAGE =~ /^release:/'
+        when: never
+      - if: '$CI_COMMIT_TAG'
+      - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
   - local: .gitlab/ci/supply-chain.yml
   - local: .gitlab/ci/renovate.yml
   - local: .gitlab/ci/framework-watch.yml

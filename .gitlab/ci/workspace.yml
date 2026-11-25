@@ -24,7 +24,7 @@ workspace:typedoc:
       when: never
     - if: '$NX_MIGRATE_PACKAGE == "true"'
       when: never
-    - when: on_success
+    - when: manual # on demand only (runner time); allow_failure: true from the component job
 
 # nx-migrate (rxap/gitlab-ci templates/nx-migrate.yml) runs on every push to a migrate/* branch except its own
 # commits. The fix agent (FRAMEWORK-WATCH.md) commits with an `Agent-Fix: <n>` trailer: those commits must not
@@ -63,5 +63,8 @@ pages:
   tags:
     - mlr-linux-xsmall-amd64
 coverage-report:
+  tags:
+    - mlr-linux-xsmall-amd64
+trigger:rxap-compose: # only recreates the rxap/compose branch (glab)
   tags:
     - mlr-linux-xsmall-amd64
