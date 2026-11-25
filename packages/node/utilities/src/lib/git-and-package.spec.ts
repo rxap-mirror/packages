@@ -98,6 +98,19 @@ describe('GetPackageInfo / GetPackagePeerDependencies / GetLatestPackageVersion'
     expect(get).not.toHaveBeenCalled();
   });
 
+  it('reads the disk cache lazily per package and treats a corrupt file as a miss', async () => {
+    const folder = join(tmpdir(), 'rxap', 'package-info');
+    mkdirSync(folder, { recursive: true });
+    writeFileSync(join(folder, 'corrupt.json'), '{ not json');
+    const readSpy = jest.spyOn(require('fs'), 'readFileSync');
+    load();
+    expect(readSpy).not.toHaveBeenCalled();
+    const pkg = { 'dist-tags': { latest: '2.0.0' }, versions: {} };
+    respond(JSON.stringify(pkg));
+    expect(await info.GetPackageInfo('corrupt')).toEqual(pkg);
+    expect(get).toHaveBeenCalledTimes(1);
+  });
+
   it('resolves null for registry errors, invalid json and network errors', async () => {
     load();
     respond('{"error":"Not found"}');

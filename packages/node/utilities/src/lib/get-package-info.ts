@@ -1,16 +1,13 @@
 import {
   existsSync,
   mkdirSync,
+  readFileSync,
   writeFileSync,
 } from 'fs';
 import { get } from 'https';
 import { tmpdir } from 'os';
-import {
-  basename,
-  join,
-} from 'path';
+import { join } from 'path';
 import { PackageJson } from './package-json';
-import { SearchFileInDirectory } from './search-file-in-directory';
 
 export interface NpmPackageInfo {
   'dist-tags': {
@@ -22,16 +19,31 @@ export interface NpmPackageInfo {
 
 const CACHE_FOLDER = join(tmpdir(), 'rxap', 'package-info');
 
-const PACKAGE_INFO_CACHE: Record<string, NpmPackageInfo> = (() => {
-  const cache: Record<string, NpmPackageInfo> = {};
-  if (existsSync(CACHE_FOLDER)) {
-    for (const {content, filePath} of SearchFileInDirectory(CACHE_FOLDER)) {
-      const packageName = basename(filePath).replace('.json', '').replace(/___/g, '/');
-      cache[packageName] = JSON.parse(content);
+const PACKAGE_INFO_CACHE: Record<string, NpmPackageInfo> = {};
+
+function cacheFilePath(packageName: string) {
+  return join(CACHE_FOLDER, `${ packageName.replace(/\//g, '___') }.json`);
+}
+
+/**
+ * Returns the cached package information, reading the cache file of this one package on first access.
+ *
+ * The cache folder can hold hundreds of megabytes of npm metadata. It is read lazily per package, so importing
+ * this module (e.g. in every Nx plugin worker) costs no memory.
+ */
+function readPackageInfoCache(packageName: string): NpmPackageInfo | undefined {
+  if (!PACKAGE_INFO_CACHE[packageName]) {
+    const filePath = cacheFilePath(packageName);
+    if (existsSync(filePath)) {
+      try {
+        PACKAGE_INFO_CACHE[packageName] = JSON.parse(readFileSync(filePath, 'utf-8'));
+      } catch {
+        // a corrupt cache file is treated as a cache miss
+      }
     }
   }
-  return cache;
-})();
+  return PACKAGE_INFO_CACHE[packageName];
+}
 
 /**
  * Updates the local cache with the provided package information and writes it to a file.
@@ -47,7 +59,7 @@ const PACKAGE_INFO_CACHE: Record<string, NpmPackageInfo> = (() => {
 function updatePackageInfoCache(packageName: string, content: NpmPackageInfo) {
   PACKAGE_INFO_CACHE[packageName] = content;
   mkdirSync(CACHE_FOLDER, { recursive: true });
-  writeFileSync(join(CACHE_FOLDER, `${packageName.replace(/\//g, '___')}.json`), JSON.stringify(content, null, 2));
+  writeFileSync(cacheFilePath(packageName), JSON.stringify(content, null, 2));
 }
 
 /**
@@ -64,8 +76,11 @@ function updatePackageInfoCache(packageName: string, content: NpmPackageInfo) {
  */
 export async function GetPackageInfo(packageName: string, skipCache?: boolean): Promise<NpmPackageInfo | null> {
 
-  if (!skipCache && PACKAGE_INFO_CACHE[packageName]) {
-    return PACKAGE_INFO_CACHE[packageName];
+  if (!skipCache) {
+    const cached = readPackageInfoCache(packageName);
+    if (cached) {
+      return cached;
+    }
   }
 
   return new Promise((resolve, reject) => {
