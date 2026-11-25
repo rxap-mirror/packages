@@ -8,14 +8,16 @@ rxap/gitlab-ci `nx-migrate` job). Framework merge requests never automerge, with
 
 ## Process
 
-1. A branch pipeline of `renovate/*` or `migrate/*` fails. The job `agent:fix` (`.gitlab/ci/agent-fix.yml`, stage
-   `.post`, `when: on_failure`) starts. It never runs in `RENOVATE`, `SUPPLY_CHAIN_AUDIT`, `FRAMEWORK_WATCH` or
-   `RELEASE_IT` pipelines, nor in merge request pipelines. `resource_group: agent-fix/<branch>` keeps it to one
-   agent per branch.
+1. A merge request pipeline of a `renovate/*` or `migrate/*` branch fails (nx-workspace runs builds and tests of
+   these branches only in MR pipelines: branch pipelines are skipped for branches with an open MR and for
+   `migrate/*`). The job `agent:fix` (`.gitlab/ci/agent-fix.yml`, stage `.post`, `when: on_failure`) starts and
+   works on `CI_MERGE_REQUEST_SOURCE_BRANCH_NAME`. It never runs in `RENOVATE`, `SUPPLY_CHAIN_AUDIT`,
+   `FRAMEWORK_WATCH` or `RELEASE_IT` pipelines. `resource_group: agent-fix/<branch>` keeps it to one agent per
+   branch.
 2. `tools/scripts/agent-fix-context.mjs` decides whether the agent runs at all and prepares its input:
    - **skip** (job ends green, no agent, no cost) when
      - the branch moved on since this pipeline (a newer pipeline decides),
-     - a `migrate/*` branch has no open MR yet (`nx-migrate` opens it as its last step),
+     - a `migrate/*` branch has no open MR (only relevant if the job is ever run in a branch pipeline),
      - the attempt cap is reached → label `agent-fix::gave-up` + MR note listing the failed jobs,
      - only `supply-chain:*` jobs failed (cooldown / advisory) → label `agent-fix::blocked` + MR note;
    - **otherwise** writes `.claude-ci/context.md`: failed jobs of the pipeline and its child pipelines (allowed
@@ -41,6 +43,10 @@ or `tools/scripts/audit-allowlist.json`, skip/delete/weaken tests or lint rules,
 `SKIP_SUPPLY_CHAIN=1` or `HUSKY=0`, edit CI files. A red `supply-chain:check` is reported, never fixed. The rules are
 in the skill and repeated in the job prompt; the Husky `pre-push` gate and `supply-chain:check` in the next pipeline
 catch a lockfile change anyway. Review agent commits like any other commit before merging.
+
+The `nx-migrate` job of the branch pipeline ignores commits whose message contains `Agent-Fix:`
+(`.gitlab/ci/framework-watch.yml`), so an agent push never re-runs the migration. Keep the trailer format exactly
+`Agent-Fix: <n>`.
 
 ## Attempt cap
 
@@ -81,6 +87,7 @@ Optional job variables: `AGENT_FIX_MAX_ATTEMPTS` (default 2), `AGENT_FIX_BASE_BR
 
 ## Known limitations
 
+- Only merge request pipelines trigger the agent; a red branch pipeline without an MR is ignored.
 - `when: on_failure` only sees jobs of earlier stages of the same pipeline. A failure in a child pipeline counts
   only if its trigger job uses `strategy: depend`/`mirror`.
 - Component jobs: the claude component's own `agent:fix:issue` / `…:epic` jobs are disabled with `when: never`

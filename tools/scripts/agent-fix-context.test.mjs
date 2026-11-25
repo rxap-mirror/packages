@@ -220,6 +220,22 @@ describe('agent-fix-context prepare', () => {
     assert.match(r.files['.claude-ci/skip'], /not a renovate/);
   });
 
+  it('reads branch, MR and head from the merge request pipeline variables', async () => {
+    const { api } = fakeApi({
+      'projects/7/pipelines/100/jobs': [ job(1, 'run-many') ],
+      'projects/7/pipelines/100/bridges': [],
+      'projects/7/merge_requests/9': { ...MR, iid: 9 },
+      'projects/7/jobs/1/trace': 'boom',
+    });
+    const r = await run({
+      api,
+      env: { CI_COMMIT_BRANCH: '', CI_MERGE_REQUEST_SOURCE_BRANCH_NAME: 'renovate/zod', CI_MERGE_REQUEST_IID: '9', CI_COMMIT_SHA: 'merge-commit', CI_MERGE_REQUEST_SOURCE_BRANCH_SHA: 'sha-head' },
+    });
+    assert.equal(r.run, true);
+    assert.match(r.files['.claude-ci/context.md'], /Branch: `renovate\/zod`/);
+    assert.match(r.files['.claude-ci/context.md'], /Merge request: !9/);
+  });
+
   it('skips an outdated pipeline when the branch moved on', async () => {
     const r = await run({ api: () => assert.fail('no API call expected'), env: { CI_COMMIT_SHA: 'older' } });
     assert.equal(r.run, false);

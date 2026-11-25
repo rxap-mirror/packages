@@ -24,7 +24,7 @@ include:
         The failed jobs, the attempt number and the merge request are in .claude-ci/context.md.
         Never change a dependency version, pnpm-workspace.yaml or tools/scripts/audit-allowlist.json,
         never skip or delete tests or lint rules, never use --no-verify.
-        Commit with the trailer from the context, push to $CI_COMMIT_BRANCH and leave one short MR note.
+        Commit with the trailer from the context, push to $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME and leave one short MR note.
       claude_rules:
         - when: never
       epic_rules:
@@ -60,6 +60,10 @@ agent:fix:
       - .pnpm-store
     policy: pull
   script:
+    # merge request pipelines have no CI_COMMIT_BRANCH and only fetch refs/merge-requests/<iid>/head: ciSetupGit (and
+    # the skill's push) work on the source branch
+    - export CI_COMMIT_BRANCH="${CI_COMMIT_BRANCH:-$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME}"
+    - git fetch --quiet origin "+refs/heads/$CI_COMMIT_BRANCH:refs/remotes/origin/$CI_COMMIT_BRANCH"
     - ciSetupGit
     # branch pipelines only fetch their own branch; the attempt count and the diff need the merge base
     - git fetch --quiet origin "$AGENT_FIX_BASE_BRANCH"
@@ -79,7 +83,7 @@ agent:fix:
   rules:
     - if: '$RENOVATE == "true" || $SUPPLY_CHAIN_AUDIT == "true" || $FRAMEWORK_WATCH == "true" || $RELEASE_IT == "true"'
       when: never
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: never
-    - if: '$CI_COMMIT_BRANCH =~ /^(renovate|migrate)\//'
+    # nx-workspace runs builds/tests of renovate/* and migrate/* only in merge request pipelines (branch pipelines are
+    # skipped for branches with an open MR and for migrate/*), so the agent reacts to those
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^(renovate|migrate)\//'
       when: on_failure

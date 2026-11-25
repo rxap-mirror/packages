@@ -65,7 +65,8 @@ a different version resolves): stop and report what would be needed.
    ```
 
    Scope = the Nx project name (e.g. `angular-forms`) or `workspace`.
-8. **Push** (CI only — locally stop after the commit unless the user asks): `git push origin HEAD:$CI_COMMIT_BRANCH`.
+8. **Push** (CI only — locally stop after the commit unless the user asks): `git push origin HEAD:$CI_COMMIT_BRANCH`
+   (the job sets `CI_COMMIT_BRANCH` to the MR source branch; it runs in merge request pipelines).
    The remote already carries `GITLAB_TOKEN` (set up by `ciSetupGit`); never print the token or the remote URL. The
    push starts a new pipeline; if that one is red again, the next attempt starts automatically until the cap (2) is
    reached.

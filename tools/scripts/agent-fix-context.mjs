@@ -12,7 +12,9 @@
  *       * only supply-chain jobs failed: a cooldown/advisory violation is never fixed by the agent,
  *         the MR gets the label agent-fix::blocked and a note.
  *
- * Environment: CI_API_V4_URL, CI_PROJECT_ID, CI_PIPELINE_ID, CI_COMMIT_BRANCH, GITLAB_TOKEN,
+ * Runs in merge request pipelines (nx-workspace skips the branch pipelines of branches with an open MR and of migrate/*).
+ * Environment: CI_API_V4_URL, CI_PROJECT_ID, CI_PIPELINE_ID, GITLAB_TOKEN, CI_MERGE_REQUEST_SOURCE_BRANCH_NAME and
+ * CI_MERGE_REQUEST_IID (CI_COMMIT_BRANCH as fallback for branch pipelines),
  * optional AGENT_FIX_BASE_BRANCH (default development), AGENT_FIX_MAX_ATTEMPTS (default 2).
  * Never prints the token.
  */
@@ -249,7 +251,10 @@ export async function collectFailedJobs(api, projectId, pipelineId, seen = new S
   return jobs;
 }
 
-async function findMergeRequest(api, projectId, branch) {
+async function findMergeRequest(api, projectId, branch, iid) {
+  if (iid) {
+    return api('GET', `projects/${ projectId }/merge_requests/${ iid }`);
+  }
   const mrs = await api('GET', `projects/${ projectId }/merge_requests?state=opened&source_branch=${ encodeURIComponent(branch) }`);
   return mrs[0] ?? null;
 }
@@ -281,7 +286,9 @@ export async function prepare({
   outDir = '.claude-ci',
   log = console.log,
 } = {}) {
-  const branch = env.CI_COMMIT_BRANCH ?? '';
+  const branch = env.CI_MERGE_REQUEST_SOURCE_BRANCH_NAME || env.CI_COMMIT_BRANCH || '';
+  // merged-results pipelines run on a merge commit; the source branch head is in CI_MERGE_REQUEST_SOURCE_BRANCH_SHA
+  const pipelineSha = env.CI_MERGE_REQUEST_SOURCE_BRANCH_SHA || env.CI_COMMIT_SHA;
   const projectId = env.CI_PROJECT_ID;
   const pipelineId = env.CI_PIPELINE_ID;
   const max = Number.parseInt(env.AGENT_FIX_MAX_ATTEMPTS ?? '2', 10);
@@ -299,7 +306,7 @@ export async function prepare({
 
   // a newer push (Renovate rebase, nx-migrate commits, an earlier agent attempt) has its own pipeline that decides
   const remoteHead = remoteBranchHead(git, branch);
-  if (remoteHead && env.CI_COMMIT_SHA && remoteHead !== env.CI_COMMIT_SHA) {
+  if (remoteHead && pipelineSha && remoteHead !== pipelineSha) {
     return skip(`pipeline is outdated: ${ branch } moved to ${ remoteHead.slice(0, 8) }`);
   }
 
@@ -308,7 +315,7 @@ export async function prepare({
     ? parseAttempts(git('log', '--format=%(trailers:key=' + TRAILER + ',valueonly,separator=%x2C)', `${ base }..HEAD`))
     : [];
   const jobs = relevantFailedJobs(await collectFailedJobs(api, projectId, pipelineId), env.CI_JOB_ID);
-  const mr = await findMergeRequest(api, projectId, branch);
+  const mr = await findMergeRequest(api, projectId, branch, env.CI_MERGE_REQUEST_IID);
 
   if (branchKind(branch) === 'migrate' && !mr) {
     // nx-migrate opens the MR as its last step: without it the migration has not finished (or failed itself)
