@@ -633,7 +633,7 @@ module.exports = { ...nxPreset };",
   "package.json": "{
   "name": "@proj/source",
   "dependencies": {
-    "@nestjs/cache-manager": "^3.0.1",
+    "@nestjs/cache-manager": "12.0.5",
     "@nestjs/common": "^11.0.0",
     "@nestjs/config": "12.1.1",
     "@nestjs/core": "11.1.1",

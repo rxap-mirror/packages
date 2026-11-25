@@ -6,13 +6,18 @@ cd "$BASE_DIR" || exit 1
 
 set -e
 
-CURRENT_ANGULAR_VERSION=$(jq -r '.dependencies["@angular/core"]' package.json)
+# the version of a root dependency without a range prefix (^1.2.3 / ~1.2.3 / >=1.2.3 -> 1.2.3)
+rootVersion() {
+  jq -r --arg name "$1" '.dependencies[$name] // .devDependencies[$name] // empty' package.json | sed -E 's/^[^0-9]*//'
+}
+
+CURRENT_ANGULAR_VERSION=$(rootVersion "@angular/core")
 CURRENT_ANGULAR_MAJOR_VERSION=$(echo "$CURRENT_ANGULAR_VERSION" | cut -d. -f1)
 
-CURRENT_NESTJS_VERSION=$(jq -r '.dependencies["@nestjs/core"]' package.json)
+CURRENT_NESTJS_VERSION=$(rootVersion "@nestjs/core")
 CURRENT_NESTJS_MAJOR_VERSION=$(echo "$CURRENT_NESTJS_VERSION" | cut -d. -f1)
 
-CURRENT_NX_VERSION=$(jq -r '.devDependencies["nx"]' package.json)
+CURRENT_NX_VERSION=$(rootVersion "nx")
 CURRENT_NX_MAJOR_VERSION=$(echo "$CURRENT_NX_VERSION" | cut -d. -f1)
 
 setNewVersion() {
@@ -43,7 +48,7 @@ setNewVersion() {
     fi
     # check if the current major version is the same as the new major version
     current_version=$(jq -r '.version' "$file")
-    current_major_version=$(echo "$current_version" | cut -d. -f1)
+    current_major_version=$(echo "$current_version" | sed -E 's/^[^0-9]*//' | cut -d. -f1)
     new_major_version=$(echo "$new_version" | cut -d. -f1)
     if [[ "$current_major_version" == "$new_major_version" ]]; then
       echo "Skipping $file. Current major version is $current_major_version, new major version is $new_major_version"
@@ -62,33 +67,26 @@ setNewVersion "${CURRENT_NX_MAJOR_VERSION}.0.0" "packages/plugin"
 setNewVersion "${CURRENT_NX_MAJOR_VERSION}.0.0" "packages/rxap"
 setNewVersion "${CURRENT_NX_MAJOR_VERSION}.0.0" "packages/workspace"
 
-# File Content
-# export const ANGULAR_VERSION = '~16.2.0';
-angular_version_file="packages/plugin/angular/src/lib/angular-version.ts"
+# setVersionConstant <file> <CONSTANT> <package>: export const <CONSTANT> = '~<root version of package>';
+# only the quoted value of that one constant is replaced (comments and other constants stay untouched)
+setVersionConstant() {
+  local file=$1 constant=$2 version
+  version=$(rootVersion "$3")
+  if [[ -z "$version" ]]; then
+    echo "No root dependency $3: $constant in $file stays as it is"
+    return
+  fi
+  echo "Updating $constant in $file to ~$version"
+  sed -i -E "s/(export const ${constant} = ')[^']*'/\1~${version}'/" "$file"
+}
 
-# replace the version in the file
-echo "Updating version in $angular_version_file to ~${CURRENT_ANGULAR_VERSION}"
-sed -i "s/.[0-9]*\.[0-9]*\.[0-9]*/~${CURRENT_ANGULAR_VERSION}/g" "$angular_version_file"
-# File Content
-# export const NESTJS_VERSION = '^10.0.0';
-# export const NESTJS_THROTTLE_VERSION = '^5.1.2';
-# export const NESTJS_CACHE_MANAGER_VERSION = '^2.2.2';
-# export const NESTJS_CONFIG_VERSION = '^3.2.2';
+setVersionConstant "packages/plugin/angular/src/lib/angular-version.ts" ANGULAR_VERSION "@angular/core"
 nestjs_version_file="packages/plugin/nestjs/src/lib/nestjs-version.ts"
-CURRENT_NESTJS_THROTTLE_VERSION=$(jq -r '.dependencies["@nestjs/throttler"]' package.json)
-CURRENT_NESTJS_TERMINUS_VERSION=$(jq -r '.dependencies["@nestjs/terminus"]' package.json)
-CURRENT_NESTJS_CACHE_MANAGER_VERSION=$(jq -r '.dependencies["@nestjs/cache-manager"]' package.json)
-CURRENT_NESTJS_CONFIG_VERSION=$(jq -r '.dependencies["@nestjs/config"]' package.json)
-echo "Updating nestjs version in $nestjs_version_file to ~${CURRENT_NESTJS_VERSION}"
-sed -i "s/NESTJS_VERSION = '.[0-9]*\.[0-9]*\.[0-9]*/NESTJS_VERSION = '~${CURRENT_NESTJS_VERSION}/g" "$nestjs_version_file"
-echo "Updating nestjs throttle version in $nestjs_version_file to ~${CURRENT_NESTJS_THROTTLE_VERSION}"
-sed -i "s/NESTJS_THROTTLE_VERSION = '.[0-9]*\.[0-9]*\.[0-9]*/NESTJS_THROTTLE_VERSION = '~${CURRENT_NESTJS_THROTTLE_VERSION}/g" "$nestjs_version_file"
-echo "Updating nestjs terminus version in $nestjs_version_file to ~${CURRENT_NESTJS_TERMINUS_VERSION}"
-sed -i "s/NESTJS_TERMINUS_VERSION = '.[0-9]*\.[0-9]*\.[0-9]*/NESTJS_TERMINUS_VERSION = '~${CURRENT_NESTJS_TERMINUS_VERSION}/g" "$nestjs_version_file"
-echo "Updating nestjs cache manager version in $nestjs_version_file to ~${CURRENT_NESTJS_CACHE_MANAGER_VERSION}"
-sed -i "s/NESTJS_CACHE_MANAGER_VERSION = '.[0-9]*\.[0-9]*\.[0-9]*/NESTJS_CACHE_MANAGER_VERSION = '~${CURRENT_NESTJS_CACHE_MANAGER_VERSION}/g" "$nestjs_version_file"
-echo "Updating nestjs config version in $nestjs_version_file to ~${CURRENT_NESTJS_CONFIG_VERSION}"
-sed -i "s/NESTJS_CONFIG_VERSION = '.[0-9]*\.[0-9]*\.[0-9]*/NESTJS_CONFIG_VERSION = '~${CURRENT_NESTJS_CONFIG_VERSION}/g" "$nestjs_version_file"
+setVersionConstant "$nestjs_version_file" NESTJS_VERSION "@nestjs/core"
+setVersionConstant "$nestjs_version_file" NESTJS_THROTTLE_VERSION "@nestjs/throttler"
+setVersionConstant "$nestjs_version_file" NESTJS_TERMINUS_VERSION "@nestjs/terminus"
+setVersionConstant "$nestjs_version_file" NESTJS_CACHE_MANAGER_VERSION "@nestjs/cache-manager"
+setVersionConstant "$nestjs_version_file" NESTJS_CONFIG_VERSION "@nestjs/config"
 
 pnpm install
 
