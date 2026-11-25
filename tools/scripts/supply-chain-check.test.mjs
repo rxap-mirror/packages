@@ -1,7 +1,7 @@
 // Run with: pnpm test:scripts
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { auditFindings, partitionAllowlist, resolveBase } from './supply-chain-check.mjs';
+import { auditFindings, excludes, partitionAllowlist, readExclusions, resolveBase } from './supply-chain-check.mjs';
 
 describe('supply-chain-check', () => {
   it('prefers the explicit base, then the upstream merge base, then origin/development', () => {
@@ -40,5 +40,35 @@ describe('supply-chain-check', () => {
     };
     assert.deepEqual(auditFindings(report, [ { id: 'GHSA-ok' } ]).map(f => [ f.id, f.versions, f.patched ]), [ [ 'GHSA-high', '1.0.0', '>=1.0.1' ] ]);
     assert.deepEqual(auditFindings(report).map(f => f.id), [ 'GHSA-ok', 'GHSA-high' ]);
+  });
+
+  it('reads the exclusions with the removal date of the closest comment', () => {
+    const text = [
+      'minimumReleaseAgeExclude:',
+      '  # permanent: our own packages',
+      '  - "@rxap/*"',
+      '  # from before the rule: remove after 2026-11-26',
+      '  - "a@1.0.0"',
+      '  - b',
+      '  # remove after 2026-12-01',
+      '  - "c@2.0.0 || 2.0.1"',
+      'trustPolicy: no-downgrade',
+    ].join('\n');
+    assert.deepEqual(readExclusions(text), [
+      { pattern: '@rxap/*', removeAfter: null },
+      { pattern: 'a@1.0.0', removeAfter: '2026-11-26' },
+      { pattern: 'b', removeAfter: '2026-11-26' },
+      { pattern: 'c@2.0.0 || 2.0.1', removeAfter: '2026-12-01' },
+    ]);
+    assert.deepEqual(readExclusions('packages: []'), []);
+  });
+
+  it('matches names, scope globs and exact versions like pnpm', () => {
+    assert.ok(excludes('@rxap/*', '@rxap/utilities', '1.0.0'));
+    assert.ok(!excludes('@rxap/*', '@rxapx/utilities', '1.0.0'));
+    assert.ok(excludes('left-pad', 'left-pad', '9.9.9'));
+    assert.ok(excludes('@scope/lib@2.0.1', '@scope/lib', '2.0.1'));
+    assert.ok(!excludes('@scope/lib@2.0.1', '@scope/lib', '2.0.2'));
+    assert.ok(excludes('c@2.0.0 || 2.0.1', 'c', '2.0.1'));
   });
 });

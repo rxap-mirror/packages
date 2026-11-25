@@ -5,6 +5,8 @@
  * 1. Cooldown: every package version that pnpm-lock.yaml resolves but the lockfile of <base-ref> does not must be
  *    older than the cooldown of its popularity tier (7/14/30 days, see audit-lockfile-cooldown.mjs). pnpm's
  *    `minimumReleaseAge` (pnpm-workspace.yaml) only enforces the flat 7-day floor.
+ *    Versions listed in `minimumReleaseAgeExclude` (pnpm-workspace.yaml) are accepted; an entry below a comment
+ *    `remove after YYYY-MM-DD` whose date has passed is a finding of its own.
  * 2. Vulnerabilities: `pnpm audit` must report no advisory of severity high or critical, except the ones listed in
  *    tools/scripts/audit-allowlist.json. Every allowlist entry has a reason and an expiry date; an expired entry is a
  *    finding of its own.
@@ -15,10 +17,15 @@
  */
 import { execFileSync, spawnSync } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
+import { createRequire } from 'node:module';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { auditLockfile, formatViolation } from './audit-lockfile-cooldown.mjs';
 
+const require = createRequire(import.meta.url);
+const YAML = require('yaml');
+
+export const WORKSPACE_FILE = 'pnpm-workspace.yaml';
 export const ALLOWLIST_FILE = 'tools/scripts/audit-allowlist.json';
 export const FAILING_SEVERITIES = [ 'high', 'critical' ];
 
@@ -37,6 +44,32 @@ export function resolveBase(explicit, git = defaultGit) {
     }
   }
   throw new Error('cannot determine the base ref: pass it as the first argument');
+}
+
+/**
+ * The `minimumReleaseAgeExclude` entries of a pnpm-workspace.yaml, each with the `remove after YYYY-MM-DD` date of
+ * the closest comment above it (null below a comment without a date, e.g. "permanent: ...").
+ */
+export function readExclusions(text) {
+  const seq = YAML.parseDocument(text).get('minimumReleaseAgeExclude', true);
+  const entries = [];
+  let removeAfter = null;
+  (seq?.items ?? []).forEach((item, i) => {
+    const comment = [ i === 0 ? seq.commentBefore : '', item.commentBefore ].filter(Boolean).join('\n');
+    if (comment) {
+      removeAfter = /remove after (\d{4}-\d{2}-\d{2})/.exec(comment)?.[1] ?? null;
+    }
+    entries.push({ pattern: String(item.value ?? item), removeAfter });
+  });
+  return entries;
+}
+
+/** does a pnpm exclusion pattern (`name`, `@scope/*`, `name@1.0.0`, `name@1.0.0 || 2.0.0`) cover name@version */
+export function excludes(pattern, name, version) {
+  const at = pattern.lastIndexOf('@');
+  const [ namePart, versions ] = at > 0 ? [ pattern.slice(0, at), pattern.slice(at + 1).split('||').map(v => v.trim()) ] : [ pattern, null ];
+  const nameRe = new RegExp(`^${ namePart.split('*').map(p => p.replace(/[.+?^${}()|[\]\\/]/g, '\\$&')).join('.*') }$`);
+  return nameRe.test(name) && (!versions || versions.includes(version));
 }
 
 /** split allowlist entries into the ones still valid on `today` (YYYY-MM-DD) and the expired ones */
@@ -85,10 +118,15 @@ async function main() {
 
   if (!args.includes('--no-cooldown')) {
     console.log(`== cooldown (base ${ base })`);
+    const today = new Date().toISOString().slice(0, 10);
+    const exclusions = readExclusions(readFileSync(WORKSPACE_FILE, 'utf8'));
+    const overdue = exclusions.filter(e => e.removeAfter && e.removeAfter < today);
+    overdue.forEach(e => console.log(`EXPIRED EXCLUSION ${ e.pattern } (remove after ${ e.removeAfter }) in ${ WORKSPACE_FILE }`));
     const { violations } = await auditLockfile(base);
-    violations.forEach(v => console.log(formatViolation(v)));
-    console.log(`${ violations.length } cooldown violation(s)`);
-    failed ||= violations.length > 0;
+    const open = violations.filter(v => !exclusions.some(e => excludes(e.pattern, v.name, v.version)));
+    open.forEach(v => console.log(formatViolation(v)));
+    console.log(`${ open.length } cooldown violation(s), ${ violations.length - open.length } excluded, ${ overdue.length } expired exclusion(s)`);
+    failed ||= open.length > 0 || overdue.length > 0;
   }
 
   if (!args.includes('--no-audit')) {
