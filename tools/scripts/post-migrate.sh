@@ -11,6 +11,18 @@ rootVersion() {
   jq -r --arg name "$1" '.dependencies[$name] // .devDependencies[$name] // empty' package.json | sed -E 's/^[^0-9]*//'
 }
 
+# 1. complete the framework group(s) the migration touched: lockstep members + followers, all through the release
+#    cooldown (fails when a member is too young; the migration has to wait then)
+BASE_REF="origin/${CI_DEFAULT_BRANCH:-development}"
+if BASE=$(git merge-base HEAD "$BASE_REF" 2>/dev/null); then
+  node tools/scripts/align-framework-group.mjs --changed-since "$BASE"
+else
+  echo "No merge base with $BASE_REF: aligning every framework group"
+  node tools/scripts/align-framework-group.mjs
+fi
+node tools/scripts/align-framework-dep-versions.mjs
+
+# 2. stamp the package majors and the version constants of the generators
 CURRENT_ANGULAR_VERSION=$(rootVersion "@angular/core")
 CURRENT_ANGULAR_MAJOR_VERSION=$(echo "$CURRENT_ANGULAR_VERSION" | cut -d. -f1)
 
@@ -89,8 +101,6 @@ setVersionConstant "$nestjs_version_file" NESTJS_CACHE_MANAGER_VERSION "@nestjs/
 setVersionConstant "$nestjs_version_file" NESTJS_CONFIG_VERSION "@nestjs/config"
 
 pnpm install
-
-sh ./tools/scripts/update-nestjs-packages.sh
 
 pnpm nx run-many -t fix-dependencies --skip-nx-cache
 pnpm install
