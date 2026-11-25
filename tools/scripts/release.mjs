@@ -20,21 +20,20 @@
  *   8. dist transforms         (theme export, strip the `workspace` marker dep, strip ng-prism + guard)
  *   8b. tag                    (tagReleases — one annotated tag per project, ONLY after the dist passed
  *                              every check, so a failed build/guard never leaves tags behind)
+ *   8c. push                   (release commit + exactly this run's tags, one atomic push to
+ *                              origin/<branch>, push option `ci.skip`) — BEFORE anything is published
  *   9. publish                 (releasePublish — from dist/{projectRoot}, with dist-tag)
- *  10. GitLab releases         (opt-in via --gitlab-release; uses the `glab` CLI)
- *  11. rxap umbrella pass      (update-package-group → version → build → publish, group "rxap")
- *  12. push                    (git push --follow-tags)
- *  13. report                  (per-project failures of steps 6-12)
+ *  10. GitLab releases         (opt-in via --gitlab-release; REST API in CI, the `glab` CLI locally)
+ *  11. rxap umbrella pass      (update-package-group → version → build → push → publish, group "rxap")
+ *  12. report                  (per-project failures of steps 8b-11)
  *
- * Failure handling: a failure before the tags exist (steps 6-8: changelog, build, dist transforms,
- * ng-prism guard) aborts the run WITHOUT pushing anything: there are no tags and nothing is published,
- * the release commit stays local and is reverted with `git reset --hard HEAD~1`. Once the tags exist
- * (step 8b), a failure of a single project in the tag, publish or GitLab release step does NOT abort the run. It is recorded, the remaining
- * projects are released, the commit + tags are always pushed, and a report is printed at the end
- * (exit code 1 if anything failed). Aborting there would leave the release commit and its tags
- * local only while packages are already on npm; after the next reset those tags are orphaned and
- * collide with the recomputed version on the following run
- * (`fatal: tag '@rxap/<pkg>@<version>' already exists`).
+ * Failure handling: any abort before the push (changelog, build, dist transforms, ng-prism guard, a
+ * rejected push because the branch moved) leaves the release commit and its tags local and NOTHING is
+ * published; reset with `git reset --hard origin/<branch>` (+ delete the printed tags) and run again.
+ * After the push, a failure of a single project in the publish or GitLab release step does NOT abort the
+ * run: it is recorded, the remaining projects are released and a report is printed at the end (exit code 1).
+ * Retry failed publishes with `--publish-only` (`--rebuild` in CI, where no dist exists): the tags are
+ * already on the remote, so a published version never lacks its tag.
  *
  * Flags:
  *   --dry-run         thread dryRun through nx; skip all git/publish/GitLab side effects
@@ -64,7 +63,9 @@
  *                     workspace stays on its prerelease line. Requires --projects; implies --graduate.
  *   --skip-validate   skip the build/test/lint gate
  *   --skip-build      skip the production build (use existing dist; pair with --publish-only)
- *   --publish-only    jump straight to publish (retry a failed publish without re-versioning)
+ *   --publish-only    jump straight to publish (retry a failed publish without re-versioning); never pushes
+ *   --rebuild         with --publish-only: rebuild the dist of the projects of the release commit(s) at HEAD
+ *                     first (CI, fresh checkout); limited by --projects
  *   --skip-umbrella   skip the rxap umbrella pass
  *   --gitlab-release  also create a GitLab release per released project (via the `glab` CLI,
  *                     which must be installed and authenticated: `glab auth login`). Off by default.
@@ -77,6 +78,9 @@
  *   YES=true          skip the interactive confirmation
  *   PUBLISH_REGISTRY  npm registry (default https://registry.npmjs.org)
  *   GIT_BRANCH        override the detected branch (also reads CI_COMMIT_REF_NAME)
+ *   RELEASE_PUSH_OPTIONS  git push options of the release push, comma separated (default `ci.skip`, '' = none)
+ *   RELEASE_GITLAB_TOKEN  (CI) GitLab releases through the REST API (with CI_API_V4_URL, CI_PROJECT_ID)
+ *   CI                with it, a git identity (GIT_COMMITTER_EMAIL or git config user.email) is required
  */
 
 import { execSync, spawnSync } from 'node:child_process';
@@ -84,6 +88,7 @@ import { createInterface } from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 import { createRequire } from 'node:module';
 import { applyDistTransforms } from './dist-transforms.mjs';
+import { listReleaseProjects as listGroupProjects, pushArgs, stampedPlan as planStamped } from './lib/release-plan.mjs';
 
 const require = createRequire(import.meta.url);
 
@@ -109,6 +114,10 @@ const VERBOSE = has('--verbose');
 const SKIP_VALIDATE = has('--skip-validate');
 const SKIP_BUILD = has('--skip-build') || has('--publish-only');
 const PUBLISH_ONLY = has('--publish-only');
+// --rebuild (with --publish-only): rebuild the dist of the release commit(s) at HEAD first (CI has no dist)
+const REBUILD = has('--rebuild');
+// git push options of the release push (default `ci.skip`: no pipelines for the release commit and its tags)
+const PUSH_OPTIONS = (process.env.RELEASE_PUSH_OPTIONS ?? 'ci.skip').split(',').map((o) => o.trim()).filter(Boolean);
 const SKIP_UMBRELLA = has('--skip-umbrella') || valueOf('projects') !== undefined;
 const GITLAB_ONLY = has('--gitlab-releases-only');
 const GITLAB_RELEASE = has('--gitlab-release') || GITLAB_ONLY;
@@ -133,31 +142,26 @@ const C = {
 const log = (msg) => console.log(C.blue(`\n▶ ${msg}`));
 const ok = (msg) => console.log(C.green(`✔ ${msg}`));
 const warn = (msg) => console.warn(C.yellow(`⚠ ${msg}`));
-// set once the release commit exists but is not tagged yet — an abort leaves it local (nothing was released)
-let unreleasedCommit = false;
-// set once the release commit is tagged — from then on an abort must still push commit + tags
-let releaseCommitted = false;
+// set once a release commit exists locally but is not pushed yet — an abort leaves it (and its tags) local,
+// nothing was published (the push always precedes the publish)
+let unpushedRelease = false;
+// the branch being released (for the abort hint)
+let releaseBranch;
+// the tags created by this run (pushed together with the release commit)
+const createdTags = [];
 const die = (msg) => {
   console.error(C.red(`✗ ${msg}`));
-  if (unreleasedCommit && !DRY_RUN) {
+  if (unpushedRelease && !DRY_RUN) {
+    const tags = createdTags.map((t) => `"${t}"`).join(' ');
     console.error(
       C.yellow(
-        '  Aborted before tagging: no tags were created, nothing was published or pushed.\n' +
+        '  Aborted before the push: nothing of this release was published or pushed.\n' +
           '  The release commit is still local. Fix the cause and run the release again after\n' +
-          '  `git reset --hard HEAD~1` (drops the release commit and its version/changelog changes).',
+          `  \`git reset --hard origin/${releaseBranch}\`` + (tags ? ` and \`git tag -d ${tags}\`` : '') + '.',
       ),
     );
   }
-  if (releaseCommitted && !DRY_RUN) {
-    releaseCommitted = false; // no recursion if the push itself fails
-    console.error(C.yellow('  Pushing the release commit and tags before aborting so they are not orphaned.'));
-    try {
-      execSync('git push --follow-tags', { stdio: 'inherit', env: process.env });
-    } catch {
-      console.error(C.red('  git push --follow-tags failed — push the release commit and tags manually.'));
-    }
-    printReport();
-  }
+  if (failures.length > 0) printReport();
   process.exit(1);
 };
 
@@ -307,8 +311,15 @@ async function preflight(mode) {
     }
   }
 
+  // CI: commits need an identity (GIT_AUTHOR_*/GIT_COMMITTER_* from the job or git config)
+  if (process.env.CI && !DRY_RUN && !PUBLISH_ONLY && !GITLAB_ONLY) {
+    const email = process.env.GIT_COMMITTER_EMAIL || spawnSync('git', ['config', 'user.email'], { encoding: 'utf-8' }).stdout.trim();
+    if (!email) die('No git identity: set GIT_AUTHOR_NAME/EMAIL and GIT_COMMITTER_NAME/EMAIL (or git config user.*).');
+  }
+
   run('git fetch');
-  const behind = capture(
+  // --publish-only never pushes and may run on an older release commit: the behind check does not apply
+  const behind = PUBLISH_ONLY ? '0' : capture(
     `git rev-list HEAD...origin/${mode.branch} --left-right 2>/dev/null | grep -c '^>' || true`,
   );
   if (Number(behind) > 0) {
@@ -322,7 +333,7 @@ async function preflight(mode) {
     die('Working tree has uncommitted changes. Commit or stash before releasing.');
   }
 
-  if (GITLAB_RELEASE) {
+  if (GITLAB_RELEASE && !gitlabApi()) {
     const auth = spawnSync('glab', ['auth', 'status'], { encoding: 'utf-8' });
     if (auth.error?.code === 'ENOENT') {
       die('--gitlab-release requires the `glab` CLI, which was not found in PATH.');
@@ -370,12 +381,39 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 // credentials from the git remote and `glab auth login`; arguments are passed without a shell).
 // Retries rate limits (429), 5xx and network errors with exponential backoff; an already
 // existing release (409) counts as success.
+// CI: the GitLab REST API with RELEASE_GITLAB_TOKEN (no glab in the image); null on the laptop
+function gitlabApi() {
+  const { CI_API_V4_URL: api, CI_PROJECT_ID: project, RELEASE_GITLAB_TOKEN: token } = process.env;
+  return api && project && token ? { url: `${api}/projects/${encodeURIComponent(project)}/releases`, token } : null;
+}
+
+// one POST through fetch; errors carry "(HTTP nnn)" like glab's, for the shared retry logic
+async function postGitLabReleaseRest({ url, token }, tagName, description) {
+  try {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'PRIVATE-TOKEN': token, 'content-type': 'application/json' },
+      body: JSON.stringify({ tag_name: tagName, name: tagName, description }),
+    });
+    if (res.ok) return { ok: true };
+    return { ok: false, text: `(HTTP ${res.status}) ${(await res.text()).slice(0, 300)}` };
+  } catch (e) {
+    return { ok: false, text: String(e?.message ?? e) };
+  }
+}
+
 async function postGitLabRelease(tagName, description) {
   const MAX_ATTEMPTS = 6;
+  const rest = gitlabApi();
   let lastError = '';
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     const wait = Math.min(2000 * 2 ** (attempt - 1), 60000);
-    const res = spawnSync(
+    if (rest) {
+      const r = await postGitLabReleaseRest(rest, tagName, description);
+      if (r.ok) return { ok: true };
+      lastError = r.text;
+    }
+    const res = rest ? null : spawnSync(
       'glab',
       [
         'api', '--method', 'POST', 'projects/:id/releases',
@@ -385,8 +423,10 @@ async function postGitLabRelease(tagName, description) {
       ],
       { encoding: 'utf-8', maxBuffer: 16 * 1024 * 1024 },
     );
-    if (res.status === 0) return { ok: true };
-    lastError = (res.error?.message ?? `${res.stderr}${res.stdout}`).trim();
+    if (res) {
+      if (res.status === 0) return { ok: true };
+      lastError = (res.error?.message ?? `${res.stderr}${res.stdout}`).trim();
+    }
     const status = Number(lastError.match(/\(HTTP (\d{3})\)/)?.[1]);
     if (status === 409) return { ok: true, existed: true };
     if (status && status !== 429 && status < 500) break; // not retryable
@@ -439,10 +479,10 @@ function changelogSection(changelog, version) {
   return lines.slice(start + 1, end).join('\n').trim();
 }
 
-// --gitlab-releases-only: rebuild the release list from the release commit(s) + tags and
-// (re)create the GitLab releases; existing releases are skipped (409).
-async function gitlabReleasesOnly() {
-  log('GitLab releases only');
+// The projects released by the latest release run: the newest `chore(release): version` commit at or below HEAD
+// plus a newer `version rxap` umbrella commit (or the commits given with --commit=<sha,...>).
+// Returns [{ commit, file, project, version, tagName }] read from the CHANGELOG.md files each commit touched.
+function releaseCommitEntries() {
   let commits = (valueOf('commit') ?? '').split(',').filter(Boolean);
   if (commits.length === 0) {
     // the newest `version` commit ends the run; an umbrella commit (`version rxap`) is newer
@@ -458,43 +498,50 @@ async function gitlabReleasesOnly() {
   if (commits.length === 0) die('No `chore(release): version` commit found in the last 50 commits.');
   console.log(`  release commit(s): ${commits.map((c) => c.slice(0, 9)).join(', ')}`);
 
-  let created = 0;
+  const entries = [];
   for (const commit of commits) {
     const changelogs = capture(`git show --name-only --format= ${commit}`)
       .split('\n')
       .filter((f) => f.endsWith('/CHANGELOG.md') || f === 'CHANGELOG.md');
     for (const file of changelogs) {
       const dir = file.includes('/') ? file.slice(0, file.lastIndexOf('/')) : '.';
-      let project;
-      let version;
       try {
-        project = JSON.parse(capture(`git show ${commit}:${dir === '.' ? '' : dir + '/'}project.json`)).name;
-        version = JSON.parse(capture(`git show ${commit}:${dir === '.' ? '' : dir + '/'}package.json`)).version;
+        const project = JSON.parse(capture(`git show ${commit}:${dir === '.' ? '' : dir + '/'}project.json`)).name;
+        const version = JSON.parse(capture(`git show ${commit}:${dir === '.' ? '' : dir + '/'}package.json`)).version;
+        entries.push({ commit, file, project, version, tagName: project === 'rxap' ? `rxap@${version}` : `@rxap/${project}@${version}` });
       } catch {
         warn(`Skipping ${file}: no project.json/package.json at ${commit.slice(0, 9)}.`);
-        continue;
       }
-      const tagName = project === 'rxap' ? `rxap@${version}` : `@rxap/${project}@${version}`;
-      try {
-        capture(`git rev-parse --verify --quiet "refs/tags/${tagName}"`);
-      } catch {
-        fail('gitlab-release', project, `tag ${tagName} does not exist locally (git fetch --tags?)`);
-        continue;
-      }
-      const body = changelogSection(capture(`git show ${commit}:${file}`), version) || `Release ${tagName}`;
-      if (DRY_RUN) {
-        console.log(`  [dry-run] would create GitLab release ${tagName}`);
-        continue;
-      }
-      const result = await postGitLabRelease(tagName, body);
-      if (result.ok) {
-        created++;
-        ok(`GitLab release ${result.existed ? 'already exists' : 'created'}: ${tagName}`);
-      } else {
-        fail('gitlab-release', project, `${tagName}: ${result.error}`);
-      }
-      await sleep(300);
     }
+  }
+  return entries;
+}
+
+// --gitlab-releases-only: rebuild the release list from the release commit(s) + tags and
+// (re)create the GitLab releases; existing releases are skipped (409).
+async function gitlabReleasesOnly() {
+  log('GitLab releases only');
+  let created = 0;
+  for (const { commit, file, project, version, tagName } of releaseCommitEntries()) {
+    try {
+      capture(`git rev-parse --verify --quiet "refs/tags/${tagName}"`);
+    } catch {
+      fail('gitlab-release', project, `tag ${tagName} does not exist locally (git fetch --tags?)`);
+      continue;
+    }
+    const body = changelogSection(capture(`git show ${commit}:${file}`), version) || `Release ${tagName}`;
+    if (DRY_RUN) {
+      console.log(`  [dry-run] would create GitLab release ${tagName}`);
+      continue;
+    }
+    const result = await postGitLabRelease(tagName, body);
+    if (result.ok) {
+      created++;
+      ok(`GitLab release ${result.existed ? 'already exists' : 'created'}: ${tagName}`);
+    } else {
+      fail('gitlab-release', project, `${tagName}: ${result.error}`);
+    }
+    await sleep(300);
   }
   ok(`Processed GitLab releases (${created} created or existing).`);
 }
@@ -517,76 +564,14 @@ function loadNxRelease() {
 // --stamped: release projects at the major their package.json was stamped to
 // ---------------------------------------------------------------------------
 function listReleaseProjects(groupName) {
-  const semver = require('semver');
-  const fs = require('node:fs');
-  const path = require('node:path');
-  const tags = capture('git tag -l').split('\n').filter(Boolean);
-  const skip = new Set(['node_modules', 'dist', '.git', '.nx', 'tmp', 'demos']);
-  const found = [];
-  const walk = (dir) => {
-    for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
-      if (!e.isDirectory() || e.name.startsWith('.') || skip.has(e.name)) continue;
-      const p = path.join(dir, e.name);
-      const pj = path.join(p, 'project.json');
-      const pk = path.join(p, 'package.json');
-      if (fs.existsSync(pj) && fs.existsSync(pk)) {
-        const project = JSON.parse(fs.readFileSync(pj, 'utf-8'));
-        const pkg = JSON.parse(fs.readFileSync(pk, 'utf-8'));
-        const inGroup = groupName === 'rxap' ? project.name === 'rxap' : (project.tags ?? []).includes('packages') && project.name !== 'rxap';
-        if (inGroup && !pkg.private) {
-          found.push({ name: project.name, pkgName: pkg.name, disk: pkg.version, deps: Object.keys({ ...pkg.dependencies, ...pkg.peerDependencies, ...pkg.optionalDependencies, ...pkg.devDependencies }) });
-        }
-      }
-      walk(p);
-    }
-  };
-  walk('.');
-  const seen = new Set();
-  return found.filter(({ name }) => !seen.has(name) && seen.add(name)).map(({ name, pkgName, disk, deps }) => {
-    const prefix = name === 'rxap' ? 'rxap@' : `@rxap/${name}@`;
-    const versions = tags.filter((t) => t.startsWith(prefix)).map((t) => t.slice(prefix.length)).filter((v) => semver.valid(v)).sort(semver.compare);
-    return { name, pkgName, deps, disk, latestTag: versions.at(-1) };
-  });
+  return listGroupProjects(groupName);
 }
 
-// returns { bySpecifier: Map<specifier, projects[]>, rest: projects[] }
-// Projects that are not stamped but (transitively) depend on a project that is being released get a
-// `prepatch` bump: their ^range on the new `-dev.N` version would otherwise not be rewritten and a
-// `^24.0.0` range does not match `24.0.0-dev.0` — exactly what updateDependents does in a normal run.
+// returns { bySpecifier: Map<specifier, projects[]>, rest: projects[] } (lib/release-plan.mjs stampedPlan)
 function stampedPlan(groupName, mode) {
-  const semver = require('semver');
-  const bySpecifier = new Map();
-  const add = (specifier, name) => {
-    if (!bySpecifier.has(specifier)) bySpecifier.set(specifier, []);
-    bySpecifier.get(specifier).push(name);
-  };
-  const projects = listReleaseProjects(groupName);
-  const released = new Set(); // npm names of the projects that get a new version
-  let rest = [];
-  for (const p of projects) {
-    if (p.latestTag && semver.valid(p.disk) && semver.major(p.disk) > semver.major(p.latestTag)) {
-      const target = semver.prerelease(p.disk) || !mode.isPrerelease ? p.disk : `${p.disk}-${mode.preid}.0`;
-      add(target, p.name);
-      released.add(p.pkgName);
-      console.log(`  stamped: ${p.name.padEnd(38)} ${p.latestTag} -> ${target}`);
-    } else {
-      rest.push(p);
-    }
-  }
-  // transitive closure over the remaining projects
-  for (let changed = true; changed; ) {
-    changed = false;
-    rest = rest.filter((p) => {
-      if (!p.deps.some((d) => released.has(d))) return true;
-      const specifier = mode.isPrerelease ? 'prepatch' : 'patch';
-      add(specifier, p.name);
-      released.add(p.pkgName);
-      changed = true;
-      console.log(`  dependent: ${p.name.padEnd(36)} ${p.latestTag} -> ${specifier}`);
-      return false;
-    });
-  }
-  return { bySpecifier, rest: rest.map((p) => p.name) };
+  const plan = planStamped(listReleaseProjects(groupName), mode);
+  for (const line of plan.lines) console.log(`  ${line}`);
+  return plan;
 }
 
 // --projects: version only the selected projects. updateDependents 'never' keeps every other project
@@ -632,6 +617,7 @@ async function main() {
   process.chdir(capture('git rev-parse --show-toplevel'));
 
   const mode = computeReleaseMode();
+  releaseBranch = mode.branch;
   await preflight(mode);
 
   if (GITLAB_ONLY) {
@@ -640,12 +626,28 @@ async function main() {
 
   const { releaseVersion, releaseChangelog, releasePublish } = loadNxRelease();
 
-  // ---- fast path: retry just the publish from existing dist ----
+  // ---- fast path: retry just the publish (the release commit and its tags are already pushed) ----
   if (PUBLISH_ONLY) {
-    log('Publish-only: publishing existing dist');
-    await publishGroup(releasePublish, 'packages', mode, PROJECTS);
-    if (!SKIP_UMBRELLA) await publishGroup(releasePublish, 'rxap', mode);
-    if (!DRY_RUN) pushRelease();
+    let projects = PROJECTS;
+    let umbrella = !SKIP_UMBRELLA;
+    if (REBUILD) {
+      // CI: a fresh checkout has no dist — rebuild the projects of the release commit(s) at HEAD
+      const entries = releaseCommitEntries();
+      projects = entries.map((e) => e.project).filter((p) => p !== 'rxap' && (!PROJECTS || PROJECTS.includes(p)));
+      umbrella = umbrella && entries.some((e) => e.project === 'rxap');
+      log(`Publish-only: rebuild ${projects.length} project(s)${umbrella ? ' + rxap' : ''} of the release commit`);
+      if (!DRY_RUN) {
+        if (projects.length > 0) {
+          buildDist(projects);
+          applyDistTransforms({ projects, run });
+        }
+        if (umbrella) run('pnpm nx run rxap:build');
+      }
+    } else {
+      log('Publish-only: publishing existing dist');
+    }
+    await publishGroup(releasePublish, 'packages', mode, projects);
+    if (umbrella) await publishGroup(releasePublish, 'rxap', mode);
     return;
   }
 
@@ -734,17 +736,11 @@ async function main() {
     verbose: VERBOSE,
     firstRelease: FIRST_RELEASE,
   });
-  unreleasedCommit = !DRY_RUN;
+  unpushedRelease = !DRY_RUN;
 
   // ---- 7. production build → dist (carries bumped version + packageGroup + CHANGELOG) ----
   if (!DRY_RUN && !SKIP_BUILD) {
-    log('Production build → dist');
-    const projects = changed.join(',');
-    run('pnpm nx reset');
-    run(`pnpm nx run-many --targets=readme --projects=${projects} --exclude=angular --skip-nx-cache --nxBail`);
-    run(`pnpm nx run-many --targets=compodoc --projects=${projects} --exclude=angular,workspace --skip-nx-cache --nxBail`);
-    run(`pnpm nx run-many --targets=typedoc --projects=${projects} --exclude=angular,workspace --skip-nx-cache --nxBail`);
-    run(`pnpm nx run-many --targets=build --configuration=production --projects=${projects} --exclude=angular --skip-nx-cache --nxBail`);
+    buildDist(changed);
   } else if (SKIP_BUILD) {
     warn('Skipping production build (--skip-build).');
   }
@@ -759,8 +755,10 @@ async function main() {
 
   // ---- 8b. tag the release commit — only now that build and dist checks passed ----
   const untagged = tagReleases(changelogResult.projectChangelogs);
-  unreleasedCommit = false;
-  releaseCommitted = !DRY_RUN;
+
+  // ---- 8c. push commit + tags BEFORE publishing: a rejected push (branch moved meanwhile) aborts with
+  // nothing published, and every published version has its tag on the remote ----
+  pushRelease(mode);
 
   // ---- 9. publish the `packages` group from dist ----
   // a project whose tag could not be created is not published: its version is ambiguous
@@ -781,15 +779,37 @@ async function main() {
     await releaseRxapUmbrella({ releaseVersion, releaseChangelog, releasePublish, mode });
   }
 
-  // ---- 12. push commit + tags — always, so the release commit and its tags never stay local ----
-  if (!DRY_RUN) pushRelease();
 }
 
-function pushRelease() {
-  log('Push commit and tags');
-  if (!run('git push --follow-tags', { allowFailure: true })) {
-    fail('push', '(all)', 'git push --follow-tags failed — push the release commit and tags manually');
+// production build of the given projects into dist/{projectRoot} (docs first: the build copies them)
+function buildDist(projects) {
+  log('Production build → dist');
+  const list = projects.join(',');
+  run('pnpm nx reset');
+  run(`pnpm nx run-many --targets=readme --projects=${list} --exclude=angular --skip-nx-cache --nxBail`);
+  run(`pnpm nx run-many --targets=compodoc --projects=${list} --exclude=angular,workspace --skip-nx-cache --nxBail`);
+  run(`pnpm nx run-many --targets=typedoc --projects=${list} --exclude=angular,workspace --skip-nx-cache --nxBail`);
+  run(`pnpm nx run-many --targets=build --configuration=production --projects=${list} --exclude=angular --skip-nx-cache --nxBail`);
+}
+
+// Push the release commit(s) and the tags of this run in one atomic push to origin/<branch>. Runs before the
+// publish: when it is rejected (the branch moved during the release) nothing was published, so the run aborts
+// and is simply repeated — rebasing the release commit instead would tag a tree that was not built.
+function pushRelease(mode) {
+  if (DRY_RUN) {
+    console.log(`  [dry-run] would push HEAD:${mode.branch} + ${createdTags.length} tag(s)`);
+    return;
   }
+  log(`Push release commit + ${createdTags.length} tag(s) → origin/${mode.branch}`);
+  const args = pushArgs({ branch: mode.branch, tags: createdTags, pushOptions: PUSH_OPTIONS });
+  console.log(C.blue(`  $ git ${args.slice(0, 5 + PUSH_OPTIONS.length * 2).join(' ')} ...`));
+  const res = spawnSync('git', args, { stdio: 'inherit', env: process.env });
+  if (res.status !== 0) {
+    die(`git push to origin/${mode.branch} was rejected (branch moved or no push permission) — nothing was published.`);
+  }
+  unpushedRelease = false;
+  createdTags.length = 0;
+  ok('Pushed.');
 }
 
 // Create one annotated tag per released project (same format as nx). A failure only affects that
@@ -815,6 +835,7 @@ function tagReleases(projectChangelogs) {
     }
     if (existing === head) {
       ok(`Tag already on the release commit: ${tag}`);
+      createdTags.push(tag);
       continue;
     }
     if (existing) {
@@ -830,6 +851,7 @@ function tagReleases(projectChangelogs) {
     }
     try {
       execSync(`git tag --annotate "${tag}" --message "${tag}"`, { stdio: 'pipe' });
+      createdTags.push(tag);
       ok(`Tagged ${tag}`);
     } catch (e) {
       fail('tag', project, `git tag ${tag} failed: ${e?.stderr?.toString().trim() || e?.message}`);
@@ -884,7 +906,9 @@ async function releaseRxapUmbrella({ releaseVersion, releaseChangelog, releasePu
     run('pnpm nx run rxap:update-package-group --skip-nx-cache');
     // conventional commit so the umbrella gets a patch (or prerelease) bump
     run('git add -A', { allowFailure: true });
-    run('git commit -m "fix(rxap): update package group" --no-verify', { allowFailure: true });
+    if (run('git commit -m "fix(rxap): update package group" --no-verify', { allowFailure: true })) {
+      unpushedRelease = true;
+    }
   }
 
   const umbrellaVersionOptions = {
@@ -901,6 +925,7 @@ async function releaseRxapUmbrella({ releaseVersion, releaseChangelog, releasePu
     : await releaseVersion({ ...umbrellaVersionOptions, groups: ['rxap'], specifier: FORCED_SPECIFIER });
   const versionData = versionResult.projectsVersionData ?? {};
   if (!Object.values(versionData).some((d) => d?.newVersion)) {
+    if (unpushedRelease) pushRelease(mode); // the package group commit alone
     return warn('rxap umbrella has no version change; skipping umbrella publish.');
   }
 
@@ -919,6 +944,7 @@ async function releaseRxapUmbrella({ releaseVersion, releaseChangelog, releasePu
     verbose: VERBOSE,
     firstRelease: FIRST_RELEASE,
   });
+  unpushedRelease = !DRY_RUN;
   if (tagReleases(changelogResult.projectChangelogs).length > 0) {
     return; // already reported by tagReleases
   }
@@ -928,6 +954,7 @@ async function releaseRxapUmbrella({ releaseVersion, releaseChangelog, releasePu
     run('pnpm nx run rxap:build');
   }
 
+  pushRelease(mode);
   await publishGroup(releasePublish, 'rxap', mode);
   await createGitLabReleases(changelogResult.projectChangelogs);
 }
