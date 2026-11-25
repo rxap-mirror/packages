@@ -16,7 +16,7 @@ automatically, through the same release cooldown as every other dependency (`UPG
    root ranges into the packages, stamps the package majors (`<framework major>.0.0`) and the version constants of
    `@rxap/plugin-angular` / `@rxap/plugin-nestjs`, then `fix-dependencies` and `update-package-group`.
 4. **Merge request pipeline:** the workspace pipeline plus `supply-chain:check`. If it is red, the fix agent
-   (`docs/agent-fix.md`) tries to repair it, at most twice.
+   (`AGENT-FIX.md`) tries to repair it, at most twice.
 5. **You merge.** Framework updates are never merged automatically. After a **major** release run
    `pnpm release --stamped` (dry run first, `RELEASE_WORKFLOW.md`).
 
@@ -63,8 +63,9 @@ A framework update always moves its whole group (`tools/scripts/lib/framework-gr
 ## Activation (at the final push, together with `RENOVATE.md`)
 
 1. CI variable `GITLAB_TOKEN`: project access token (role *Developer*, scopes `api` and `write_repository`, expiry
-   date; masked, protected). Used by the watch (create / delete branches, close merge requests), `nx-migrate` (push,
-   merge request) and the fix agent.
+   date; masked and hidden). Used by the watch (create / delete branches, close merge requests), `nx-migrate` (push,
+   merge request) and the fix agent. **Not protected** unless `migrate/*` and `renovate/*` are protected branches:
+   `nx-migrate` and the agent run on those branches, and protected variables only reach protected branches.
 2. Schedule `Framework watch`: daily, target branch `development`, variable `FRAMEWORK_WATCH=true`.
 3. `migrate/*` branches: allowed to push for the token's bot user.
 4. Run the schedule once by hand: the job log lists the plan of every group (`pending ...` lines explain what waits).

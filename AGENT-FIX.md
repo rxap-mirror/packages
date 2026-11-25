@@ -81,9 +81,8 @@ Optional job variables: `AGENT_FIX_MAX_ATTEMPTS` (default 2), `AGENT_FIX_BASE_BR
 
 ## Activation
 
-1. Add `- local: .gitlab/ci/agent-fix.yml` to the includes of `.gitlab-ci.yml`.
-2. Set the CI variables and create the two labels.
-3. Watch the first run on a real red Renovate branch (`.claude-ci/claude.log`).
+1. Set the CI variables and create the two labels.
+2. Watch the first run on a real red Renovate branch (`.claude-ci/claude.log`).
 
 ## Known limitations
 

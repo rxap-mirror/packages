@@ -2,8 +2,8 @@
 # FRAMEWORK_WATCH=true). Finds the newest Angular / Nx / NestJS version whose whole package group passed the release
 # cooldown and creates the branch migrate/<leader>/<version>; the push pipeline of that branch runs nx-migrate.
 #
-# Needs the CI variable GITLAB_TOKEN (project access token, role Developer, scopes api + write_repository; masked +
-# protected). Without it the job only prints the plan.
+# Needs the CI variable GITLAB_TOKEN (project access token, role Developer, scopes api + write_repository; masked,
+# not protected: nx-migrate needs it on migrate/* branches). Without it the job only prints the plan.
 
 framework-watch:
   extends: .supply-chain

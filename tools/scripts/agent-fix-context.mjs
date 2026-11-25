@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Prepares the agent:fix job (.gitlab/ci/agent-fix.yml, docs/agent-fix.md).
+ * Prepares the agent:fix job (.gitlab/ci/agent-fix.yml, AGENT-FIX.md).
  *
  * Runs on a red renovate/* or migrate/* branch pipeline before the agent starts and either
  *   - writes `.claude-ci/context.md` (failed jobs + trace tails, migration info, diff stat, next attempt number)

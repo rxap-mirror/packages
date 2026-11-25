@@ -1,5 +1,5 @@
 # Agent fix: repairs a red pipeline on a dependency update branch (renovate/*, migrate/*) with Claude Code through
-# claudish/OpenRouter. Process, attempt cap, labels and CI variables: docs/agent-fix.md.
+# claudish/OpenRouter. Process, attempt cap, labels and CI variables: AGENT-FIX.md.
 #
 # Needs the CI variables GITLAB_TOKEN (project access token, role Developer, scopes api + write_repository; masked +
 # protected only if renovate/* and migrate/* are protected branches) and OPENROUTER_API_KEY (key with a spending limit).

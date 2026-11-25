@@ -47,6 +47,6 @@ include:
   - local: .gitlab/ci/supply-chain.yml
   - local: .gitlab/ci/renovate.yml
   - local: .gitlab/ci/framework-watch.yml
-  # fix agent for red renovate/* and migrate/* merge request pipelines (docs/agent-fix.md)
+  # fix agent for red renovate/* and migrate/* merge request pipelines (AGENT-FIX.md)
   - local: .gitlab/ci/agent-fix.yml
     rules: *workspace-pipeline
