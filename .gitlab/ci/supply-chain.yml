@@ -34,7 +34,7 @@ supply-chain:check:
         git fetch --quiet origin "$CI_DEFAULT_BRANCH"
         BASE=$(git merge-base HEAD "origin/$CI_DEFAULT_BRANCH")
       fi
-    - echo "RUN: pnpm supply-chain:check $BASE"
+    - 'echo "RUN: pnpm supply-chain:check $BASE"'
     - pnpm supply-chain:check "$BASE"
   rules:
     - if: '$RENOVATE == "true" || $SUPPLY_CHAIN_AUDIT == "true" || $FRAMEWORK_WATCH == "true" || $RELEASE_IT == "true" || $NX_RELEASE'

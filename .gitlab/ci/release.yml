@@ -77,7 +77,8 @@ release:stable:
 release:publish-only:
   extends: .release
   script:
-    - git checkout --detach "$(git log -1 --format=%H --grep='^chore(release): version' "origin/$CI_COMMIT_BRANCH")"
+    - |
+      git checkout --detach "$(git log -1 --format=%H --grep='^chore(release): version' "origin/$CI_COMMIT_BRANCH")"
     - |
       YES=true node tools/scripts/release.mjs --publish-only --rebuild --pack="$RELEASE_PACK_DIR" || {
         if [ -f "$RELEASE_PACK_DIR/manifest.json" ]; then exit 3; fi; exit 1;
