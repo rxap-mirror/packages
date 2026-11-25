@@ -82,6 +82,34 @@ Tooling (pnpm's `minimumReleaseAge` is a flat floor without popularity tiers, so
 Peer ranges of published packages are the major (`^22.0.0`, `^0.20.0` for 0.x), not the version the workspace is
 built with: `fix-dependencies` (`@rxap/plugin-library`) generates them that way.
 
+### Enforcement (since 2026-11-25)
+
+- **pnpm floor** (`pnpm-workspace.yaml`): `minimumReleaseAge: 10080` (7 days, strict) makes pnpm refuse any version
+  below the lowest tier, also for a hand-typed `pnpm add`, and verifies the lockfile on every install.
+  `trustPolicy: no-downgrade` refuses a version published with less trust (provenance / trusted publisher) than an
+  earlier one; `trustPolicyExclude` lists the reviewed exceptions.
+- **`pnpm supply-chain:check [<base-ref>]`** (`tools/scripts/supply-chain-check.mjs`): the tiered cooldown of every
+  version the lockfile change adds (base: merge base with the upstream branch, else `origin/development`) plus
+  `pnpm audit` at high/critical. Run it after every dependency change.
+- **Husky `pre-push`** runs the check when the push changes `pnpm-lock.yaml` or `pnpm-workspace.yaml`
+  (skip with `SKIP_SUPPLY_CHAIN=1 git push`). CI and Renovate will run the same script later.
+- Never install with `npx <pkg>` / `pnpm dlx <pkg>` without an exact, cooldown-checked version: they bypass the
+  lockfile. `rxap:update` and `tools/scripts/update-nestjs-packages.sh` go through the cooldown tooling.
+
+**Exceptions** (also for a security fix whose patched version is still too young) are manual and dated:
+
+- too young: an exact `name@version` entry in `minimumReleaseAgeExclude` below a comment
+  `# <reason>: remove after YYYY-MM-DD` (the date covers every entry up to the next such comment), plus an exact pin in
+  `overrides` where needed. `supply-chain:check` fails once the date has passed.
+- known advisory without a usable fix: an entry in `tools/scripts/audit-allowlist.json` with `id` (GHSA),
+  `package`, `reason` and `expires`; an expired entry fails the check.
+
+State on 2026-11-25: the versions locked by the 2026-11-22 framework upgrade (one day before the cooldown rule) are
+dated `minimumReleaseAgeExclude` entries, the last ones drop out on 2026-12-16. `pnpm audit --fix update` plus four
+same-major overrides (`ws`, `protobufjs` 6, `@grpc/grpc-js`, `semver` 7) fixed 42 of 64 high/critical advisories; the
+22 left are allowlisted until 2026-12-25 (xmldom in `@rxap/xml-parser`, the legacy web3.storage/ipfs stack, zod 3 and
+langsmith via `@langchain/*` 0.3, query-string's `decode-uri-component`).
+
 ### Deliberately not at the newest major (2026-11-23)
 
 | Package | Stays on | Reason |

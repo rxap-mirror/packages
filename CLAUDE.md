@@ -67,6 +67,9 @@ The project includes a Docker-based backend infrastructure:
   deliberately stay on an older major: `UPGRADE-NOTES.md` section 4.
 - Aim for the highest *compatible* major; `peerDependencies` of published packages are the major (`^22.0.0`),
   never the workspace's minor.
+- pnpm enforces a 7-day floor (`minimumReleaseAge`) and `trustPolicy: no-downgrade`. Never lower them or add an
+  exclusion without a dated comment (`remove after YYYY-MM-DD`); never `npx`/`pnpm dlx` an unpinned package.
+  Run `pnpm supply-chain:check` after every dependency change (the pre-push hook runs it too).
 
 ### Code Intelligence
 - **Generators:** Consult `pnpm nx list @rxap/plugin-<type>` to see available generators.
