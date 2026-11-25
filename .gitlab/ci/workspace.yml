@@ -65,6 +65,21 @@ pages:
 coverage-report:
   tags:
     - mlr-linux-xsmall-amd64
-trigger:rxap-compose: # only recreates the rxap/compose branch (glab)
+# Recreates the rxap/compose branch; its push runs rxap-compose (schematic composer → merge request). Only offered
+# when a schematics file changed (not on every lockfile change: Renovate), and only started by hand; RXAP_COMPOSE=true
+# (Run pipeline) still runs it at once. The component's rules are replaced.
+trigger:rxap-compose:
   tags:
     - mlr-linux-xsmall-amd64
+  rules:
+    - if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
+      when: never
+    - if: '$CI_COMMIT_MESSAGE == "chore: update workspace"'
+      when: never
+    - if: '$RXAP_COMPOSE == "true"'
+      when: on_success
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+      changes:
+        - "**/schematics.{yml,yaml,json}"
+        - "**/schematic.{yml,yaml,json}"
+      when: manual
