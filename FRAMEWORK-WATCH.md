@@ -62,6 +62,9 @@ A framework update always moves its whole group (`tools/scripts/lib/framework-gr
 
 ## Activation (at the final push, together with `RENOVATE.md`)
 
+All setup steps of every CI automation in one checklist (runners, tokens with fine-grained permissions, variables,
+settings, order): `CI-SETUP.md`.
+
 1. CI variable `GITLAB_TOKEN`: project access token (role *Developer*, scopes `api` and `write_repository`, expiry
    date; masked and hidden). Used by the watch (create / delete branches, close merge requests), `nx-migrate` (push,
    merge request) and the fix agent. **Not protected** unless `migrate/*` and `renovate/*` are protected branches:

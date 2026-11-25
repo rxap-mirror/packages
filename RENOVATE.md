@@ -41,6 +41,9 @@ an exception follows the process in `UPGRADE-NOTES.md` section 4.
 
 ## Activation checklist (once `development` is pushed)
 
+All setup steps of every CI automation in one checklist (runners, tokens with fine-grained permissions, variables,
+settings, order): `CI-SETUP.md`.
+
 1. **Bot token:** Settings → Access tokens → project access token `renovate-bot`, role *Developer*, scopes `api` and
    `write_repository`, with an expiry date. Store it as CI/CD variable `RENOVATE_TOKEN` (masked, protected).
 2. Optional: a fine-grained GitHub token without permissions (public read, for release notes and the rate limit) as

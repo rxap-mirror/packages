@@ -203,6 +203,9 @@ next nightly publish through CI.
 
 ### Activation (at the final push, together with `RENOVATE.md`, `FRAMEWORK-WATCH.md`, `AGENT-FIX.md`)
 
+All setup steps of every CI automation in one checklist (runners, tokens with fine-grained permissions, variables,
+settings, order): `CI-SETUP.md`.
+
 1. Project access token `release-bot` (role *Maintainer*, scopes `api` + `write_repository`, expiry date) → CI
    variable `RELEASE_GITLAB_TOKEN` (masked, hidden, **protected**: the release jobs only run on `development` and
    `latest`). Protected branches `development` and `latest`: allow the bot to push.
