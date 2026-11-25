@@ -12,23 +12,15 @@
  *
  * Usage: node tools/scripts/renovate-tiers.mjs [--missing-only] [--check]   (--check: exit 1 if the file is outdated)
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createDownloads, TIERS, tierDays } from './lib/cooldown.mjs';
+
+export { TIERS, tierDays };
 
 export const OUTPUT = 'renovate-tiers.json';
-export const TIERS = [
-  { minWeekly: 1_000_000, days: 7 },
-  { minWeekly: 100_000, days: 14 },
-  { minWeekly: 0, days: 30 },
-];
-const CACHE_PATH = 'node_modules/.cache/dependency-cooldown-downloads.json';
 const CACHE_TTL = 7 * 86_400_000;
-
-/** cooldown days for a weekly download count (unknown -> strictest tier) */
-export function tierDays(weekly) {
-  return TIERS.find(t => (weekly ?? -1) >= t.minWeekly)?.days ?? TIERS.at(-1).days;
-}
 
 /** the root dependencies that Renovate may update (workspace packages are excluded) */
 export function rootDependencies(pkg) {
@@ -69,45 +61,14 @@ export function buildTiers(downloads) {
 
 export const serialize = content => `${ JSON.stringify(content, null, 2) }\n`;
 
-function readCache() {
-  try {
-    return JSON.parse(readFileSync(CACHE_PATH, 'utf8'));
-  } catch {
-    return {};
-  }
-}
-
-async function weeklyDownloads(name, cache) {
-  if (cache[name] && Date.now() - cache[name].at < CACHE_TTL) {
-    return cache[name].weekly;
-  }
-  for (let attempt = 0; attempt < 8; attempt++) {
-    const res = await fetch(`https://api.npmjs.org/downloads/point/last-week/${ name.replace('/', '%2f') }`);
-    if (res.status === 429) {
-      await new Promise(r => setTimeout(r, (Number(res.headers.get('retry-after')) || 2 * (attempt + 1)) * 1000));
-      continue;
-    }
-    if (!res.ok) {
-      return null;
-    }
-    const weekly = (await res.json()).downloads ?? 0;
-    cache[name] = { weekly, at: Date.now() };
-    await new Promise(r => setTimeout(r, 150));
-    return weekly;
-  }
-  return null;
-}
-
 async function main() {
   const pkg = JSON.parse(readFileSync('package.json', 'utf8'));
-  const cache = readCache();
+  const weeklyDownloads = createDownloads({ ttl: CACHE_TTL });
   const known = process.argv.includes('--missing-only') && existsSync(OUTPUT) ? classified(JSON.parse(readFileSync(OUTPUT, 'utf8'))) : {};
   const downloads = {};
   for (const name of rootDependencies(pkg)) {
-    downloads[name] = name in known ? weeklyForDays(known[name]) : await weeklyDownloads(name, cache);
+    downloads[name] = name in known ? weeklyForDays(known[name]) : await weeklyDownloads(name);
   }
-  mkdirSync(dirname(CACHE_PATH), { recursive: true });
-  writeFileSync(CACHE_PATH, JSON.stringify(cache));
 
   const next = serialize(buildTiers(downloads));
   const unknown = Object.keys(downloads).filter(n => downloads[n] === null);
