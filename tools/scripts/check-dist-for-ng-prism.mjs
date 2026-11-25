@@ -33,7 +33,7 @@ const ALLOWED_FILE = [
 
 /** project name -> project root, found by walking the workspace for project.json files */
 function projectRoots() {
-  const skip = new Set(['node_modules', 'dist', '.git', '.nx', '.yarn', 'tmp', 'coverage']);
+  const skip = new Set(['node_modules', 'dist', '.git', '.nx', '.pnpm-store', 'tmp', 'coverage']);
   const roots = new Map();
   const walk = (dir) => {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {

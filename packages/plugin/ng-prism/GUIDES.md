@@ -84,7 +84,7 @@ directives is skipped.
 
 ng-prism 22.x is compiled with Angular 22. Its component styles contain the `%NS%` placeholder for the css variable
 namespace, which only the Angular 22 renderer replaces. With Angular 21 the styleguide shell is unstyled. The
-workspace removes the placeholder with the yarn patches in `.yarn/patches` (see `resolutions` in `package.json`).
+workspace removes the placeholder with the pnpm patches in `patches/` (see `patchedDependencies` in `pnpm-workspace.yaml`).
 Remove them after the update to Angular 22.
 
 ## Unit tests
