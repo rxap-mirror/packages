@@ -60,6 +60,8 @@ with a temporary `currentVersionResolver: disk` / `specifierSource: prompt` conf
 - `--publish-only` – retry just the publish from the existing `dist/` (e.g. after a partial
   publish failure) without re-versioning. Never pushes (the release commit and its tags were pushed before the
   publish). `--rebuild` rebuilds the dist of the projects of the release commit(s) at HEAD first (CI).
+- `--pack=<dir>` – pack every released project into `<dir>` (+ `manifest.json`, `publish-tarballs.mjs`) instead of
+  publishing; the CI's `release:npm` job uploads them (see "Releases in CI").
 - `--skip-validate` / `--skip-build` / `--skip-umbrella` – skip individual phases.
 - `YES=true pnpm release` – skip the interactive confirmation.
 - `--projects=<a,b>` – release only these projects: dependents are not bumped and the `rxap` umbrella
@@ -159,11 +161,25 @@ would otherwise fail the range check), and `nx-release-publish.packageRoot = dis
 `.gitlab/ci/release.yml` → [`tools/scripts/release-ci.mjs`](tools/scripts/release-ci.mjs) → `release.mjs`. Release
 pipelines (`NX_RELEASE` set) load only the release jobs; `resource_group: release` keeps them from overlapping.
 
+Every release pipeline has two jobs, so that only the upload costs GitLab compute minutes:
+
+1. **Build job** (`release:nightly` / `release:stable` / `release:publish-only`, our runners,
+   `RELEASE_BUILD_RUNNER_TAG`, default `run-many-mega`): gate, version, changelog, release commit, build, dist
+   transforms, tags, push — then `release.mjs --pack=dist/release` packs every released project into a tarball and
+   lists it in `dist/release/manifest.json` (artifact, 2 weeks). It has no npm credentials. Exit code 3 = some
+   projects failed after the push (see the report), the others were packed: the job is allowed to fail with 3, so
+   the upload still runs.
+2. **`release:npm`** (GitLab-hosted, `RELEASE_PUBLISH_RUNNER_TAG`, default `saas-linux-small-amd64`): no checkout,
+   no install; [`publish-tarballs.mjs`](tools/scripts/publish-tarballs.mjs) (copied into the artifact) runs
+   `npm publish <tarball> --tag <dist-tag>` per package, packages group first, the `rxap` umbrella only when every
+   member is on the registry. Versions that are already published are skipped, so **after a failure just retry
+   this job**. Without a manifest (gate skipped, nothing to release) it ends at once.
+
 | Pipeline | Trigger | What happens |
 |---|---|---|
 | `NX_RELEASE=nightly` | schedule on `development` (or Run pipeline) | gate, then `release.mjs --skip-validate [--stamped]` → `-dev.N` on dist-tag `development` |
 | `NX_RELEASE=stable` | Run pipeline on `latest`, optional `RELEASE_SPECIFIER` (`minor`, `major`, exact) | `latest` := `development` (fast-forward), gate, `release.mjs --graduate --gitlab-release`, `development` := `latest` |
-| `NX_RELEASE=publish-only` | Run pipeline on `development` / `latest` | checks out the newest release commit, `release.mjs --publish-only --rebuild` (after a partial publish failure; published versions are skipped) |
+| `NX_RELEASE=publish-only` | Run pipeline on `development` / `latest` | checks out the newest release commit, `release.mjs --publish-only --rebuild --pack` (only when the artifact of the build job expired; otherwise retry `release:npm`; published versions are skipped) |
 
 **Gate** (`release-ci.mjs`): the push pipeline of the newest non-release commit on `development` must be green
 (running / red / missing → the nightly waits for the next night, the stable job fails), so the release skips its own
@@ -173,12 +189,12 @@ releasable decides `release.mjs` itself (conventional commits since the last tag
 `RELEASE_SPECIFIER=prerelease` on a nightly bumps every package (bootstrap below).
 Check the decision locally: `node tools/scripts/release-ci.mjs nightly --dry-run`.
 
-**npm trusted publishing:** the jobs get an OIDC ID token (`id_tokens: NPM_ID_TOKEN`, audience
-`npm:registry.npmjs.org`); `pnpm publish` exchanges it per package for a short-lived token and attaches provenance
-(public project). The trusted publisher of each package names project `rxap/packages`, file `.gitlab-ci.yml` and
-environment `npm`. It only works on **GitLab.com hosted runners** (`RELEASE_RUNNER_TAG`, default
-`saas-linux-large-amd64`), not on the self-hosted runners of the workspace pipeline. The jobs refuse to run when an
-npm token is configured.
+**npm trusted publishing:** only `release:npm` gets an OIDC ID token (`id_tokens: NPM_ID_TOKEN`, audience
+`npm:registry.npmjs.org`); npm (pinned `npm@11.21.2`) exchanges it per package for a short-lived token and attaches
+provenance (public project). The trusted publisher of each package names project `rxap/packages`, file
+`.gitlab-ci.yml` and environment `npm`. npm only accepts it from **GitLab.com hosted runners**, which is why the
+build runs on our runners and only the upload (a few seconds per package) runs hosted. `release:npm` refuses to run
+when an npm token is configured.
 
 **New package:** trusted publishing cannot create a package (the nightly fails and names it). Publish its first
 version by hand (`pnpm release --projects=<project>` with your npm login and 2FA), then
@@ -198,7 +214,7 @@ next nightly publish through CI.
    ends), then `node tools/scripts/npm-trust.mjs check`.
 4. Bootstrap: Run pipeline on `development` with `NX_RELEASE=nightly` and `RELEASE_SPECIFIER=prerelease` (every
    package gets its next `-dev.N`, so every trust configuration sees a publish). Packages that failed: recreate
-   their configuration (`npm trust revoke`, `configure --from`) and run `NX_RELEASE=publish-only`.
+   their configuration (`npm trust revoke`, `configure --from`) and retry `release:npm`.
 5. Schedule `Nightly release`: daily 02:00, branch `development`, variable `NX_RELEASE=nightly`.
 6. After the first green nightly: revoke the npm publish token of `~/.npmrc` on npmjs.com; then
    `node tools/scripts/npm-trust.mjs lock` ("require 2FA and disallow tokens" per package).
