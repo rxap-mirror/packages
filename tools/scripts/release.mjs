@@ -798,6 +798,7 @@ function buildDist(projects) {
 function pushRelease(mode) {
   if (DRY_RUN) {
     console.log(`  [dry-run] would push HEAD:${mode.branch} + ${createdTags.length} tag(s)`);
+    createdTags.length = 0;
     return;
   }
   log(`Push release commit + ${createdTags.length} tag(s) → origin/${mode.branch}`);
@@ -825,6 +826,7 @@ function tagReleases(projectChangelogs) {
     }
     if (DRY_RUN) {
       console.log(`  [dry-run] would tag ${tag}`);
+      createdTags.push(tag);
       continue;
     }
     let existing = '';
