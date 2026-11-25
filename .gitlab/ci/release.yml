@@ -2,36 +2,34 @@
 #
 #   NX_RELEASE=nightly       daily schedule on development: -dev prerelease, only after a green push pipeline
 #   NX_RELEASE=stable        Run pipeline on latest (manual): graduation (RELEASE_SPECIFIER optional, e.g. minor)
-#   NX_RELEASE=publish-only  Run pipeline on development: rebuild + publish the newest release commit again
-#                            (after a partial publish failure; already published versions are skipped)
+#   NX_RELEASE=publish-only  Run pipeline on development / latest: rebuild + pack the newest release commit again
+#                            (when its tarball artifacts expired; already published versions are skipped)
 #   RELEASE_SPECIFIER=prerelease with nightly: bump every package (bootstrap of npm trusted publishing)
 #
-# npm: trusted publishing only (OIDC, NPM_ID_TOKEN; pnpm exchanges it per package, provenance included). It works
-# on GitLab.com hosted runners only, so these jobs do not use the self-hosted runner tags of the workspace.
+# Two jobs per release, so that only the upload runs on GitLab-hosted runners (compute minutes):
+#   1. release:nightly / release:stable / release:publish-only (our runners): gate, version, changelog, release
+#      commit, build, dist transforms, tags, push — then `release.mjs --pack` writes one tarball per package and
+#      dist/release/manifest.json (artifact). No npm credentials of any kind.
+#   2. release:npm (GitLab-hosted, small): no checkout, no install — npm publishes the tarballs with trusted
+#      publishing (OIDC, NPM_ID_TOKEN; provenance included), which npm only accepts from GitLab.com hosted runners.
+#      Already published versions are skipped: after a failure just retry the job.
 # The trusted publisher of every package (tools/scripts/npm-trust.mjs) names .gitlab-ci.yml and the environment npm.
 #
 # GitLab: RELEASE_GITLAB_TOKEN (project access token "release-bot", Maintainer, api + write_repository; masked,
 # hidden, protected) pushes the release commit and tags to development / latest, reads the pipeline status and
-# creates the GitLab releases.
+# creates the GitLab releases. Only the build job sees it.
 
 .release:
   extends: .supply-chain
   stage: deploy
   tags:
-    - $RELEASE_RUNNER_TAG
-  timeout: 3h # the OIDC ID token lives until the job timeout
+    - $RELEASE_BUILD_RUNNER_TAG
+  timeout: 3h
   resource_group: release
   interruptible: false
-  environment:
-    name: npm
-    deployment_tier: production
-  id_tokens:
-    NPM_ID_TOKEN:
-      aud: npm:registry.npmjs.org
-    SIGSTORE_ID_TOKEN:
-      aud: sigstore
   variables:
-    RELEASE_RUNNER_TAG: saas-linux-large-amd64
+    RELEASE_BUILD_RUNNER_TAG: run-many-mega
+    RELEASE_PACK_DIR: dist/release
     GIT_DEPTH: 0
     GIT_STRATEGY: clone
     HUSKY: "0"
@@ -48,14 +46,19 @@
       if [ -z "$RELEASE_GITLAB_TOKEN" ]; then
         echo "RELEASE_GITLAB_TOKEN is not set (RELEASE_WORKFLOW.md, activation)"; exit 1
       fi
-      if [ -n "$NPM_TOKEN$NODE_AUTH_TOKEN$NPM_CONFIG__AUTHTOKEN" ] || grep -qs '_authToken' .npmrc ~/.npmrc; then
-        echo "an npm token is configured: releases publish through trusted publishing only"; exit 1
-      fi
     # push + fetch as the release bot (the URL is never printed)
     - git remote set-url origin "https://release-bot:${RELEASE_GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git"
     - git fetch --quiet --tags --force origin
     - corepack enable
     - pnpm install --frozen-lockfile --prefer-offline
+  # 3 = some projects failed after the push, the others were packed: release:npm still publishes those
+  allow_failure:
+    exit_codes: [ 3 ]
+  artifacts:
+    when: always
+    expire_in: 2 weeks
+    paths:
+      - $RELEASE_PACK_DIR/
 
 release:nightly:
   extends: .release
@@ -75,6 +78,52 @@ release:publish-only:
   extends: .release
   script:
     - git checkout --detach "$(git log -1 --format=%H --grep='^chore(release): version' "origin/$CI_COMMIT_BRANCH")"
-    - YES=true node tools/scripts/release.mjs --publish-only --rebuild
+    - |
+      YES=true node tools/scripts/release.mjs --publish-only --rebuild --pack="$RELEASE_PACK_DIR" || {
+        if [ -f "$RELEASE_PACK_DIR/manifest.json" ]; then exit 3; fi; exit 1;
+      }
   rules:
+    - if: '$NX_RELEASE == "publish-only" && ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "latest") && $CI_PIPELINE_SOURCE == "web"'
+
+release:npm:
+  image: node:jod-bookworm-slim
+  stage: deploy
+  tags:
+    - $RELEASE_PUBLISH_RUNNER_TAG
+  needs:
+    - job: release:nightly
+      optional: true
+    - job: release:stable
+      optional: true
+    - job: release:publish-only
+      optional: true
+  timeout: 1h # the OIDC ID token lives until the job timeout
+  resource_group: release
+  interruptible: false
+  environment:
+    name: npm
+    deployment_tier: production
+  id_tokens:
+    NPM_ID_TOKEN:
+      aud: npm:registry.npmjs.org
+    SIGSTORE_ID_TOKEN:
+      aud: sigstore
+  variables:
+    RELEASE_PUBLISH_RUNNER_TAG: saas-linux-small-amd64
+    GIT_STRATEGY: none
+    RELEASE_PACK_DIR: dist/release
+  script:
+    - |
+      if [ ! -f "$RELEASE_PACK_DIR/manifest.json" ]; then
+        echo "nothing was packed (gate skipped or nothing to release)"; exit 0
+      fi
+      if [ -n "$NPM_TOKEN$NODE_AUTH_TOKEN$NPM_CONFIG__AUTHTOKEN" ] || grep -qs '_authToken' ~/.npmrc; then
+        echo "an npm token is configured: releases publish through trusted publishing only"; exit 1
+      fi
+    # npm >= 11.5.1 for trusted publishing; the pinned version passed the release cooldown
+    - npm install --global --no-audit --no-fund npm@11.21.2
+    - node "$RELEASE_PACK_DIR/publish-tarballs.mjs" "$RELEASE_PACK_DIR"
+  rules:
+    - if: '$NX_RELEASE == "nightly" && $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH && ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web")'
+    - if: '$NX_RELEASE == "stable" && $CI_COMMIT_BRANCH == "latest" && $CI_PIPELINE_SOURCE == "web"'
     - if: '$NX_RELEASE == "publish-only" && ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "latest") && $CI_PIPELINE_SOURCE == "web"'
