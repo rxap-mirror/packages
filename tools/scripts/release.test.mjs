@@ -56,6 +56,13 @@ describe('release.mjs phase order (packages group)', () => {
     assert.match(pushFn, /unpushedRelease = false/);
   });
 
+  it('packs instead of publishing with --pack, into a fresh folder with the publisher script', () => {
+    const publishFn = source.slice(indexOf('async function publishGroup('), indexOf('function packGroup('));
+    assert.match(publishFn, /if \(PACK_DIR\) \{\s+return packGroup\(/, '--pack must replace every publish');
+    assert.ok(indexOf('preparePackDir();') < indexOf('if (PUBLISH_ONLY) {'), 'the pack folder is reset before any pack');
+    assert.match(source, /copyFileSync\(join\('tools', 'scripts', 'publish-tarballs\.mjs'\)/);
+  });
+
   it('pushes only this run\'s tags (no --follow-tags)', () => {
     assert.ok(!source.includes("'git push --follow-tags'"), 'a bare --follow-tags push needs an upstream and pushes stale local tags');
     assert.match(source, /createdTags\.push\(tag\)/);

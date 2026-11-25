@@ -13,11 +13,15 @@
  *            the release commit(s).
  *
  * Usage: node tools/scripts/release-ci.mjs <nightly|stable> [--dry-run]
+ * Exit 3 (PARTIAL): release.mjs failed for some projects after the push but packed the others; the job is allowed
+ *   to fail with 3 so the publish job still uploads what was packed (the report above names the failures).
  *   --dry-run: only prints the decision (no token needed: the pipeline gate is reported as unknown)
- * Env: RELEASE_GITLAB_TOKEN (api read), CI_API_V4_URL, CI_PROJECT_ID, RELEASE_SPECIFIER (optional)
+ * Env: RELEASE_GITLAB_TOKEN (api read), CI_API_V4_URL, CI_PROJECT_ID, RELEASE_SPECIFIER (optional),
+ *      RELEASE_PACK_DIR (CI: pack into this folder; the GitLab-hosted job release:npm publishes it)
  */
 import { execFileSync, spawnSync } from 'node:child_process';
-import { resolve } from 'node:path';
+import { existsSync } from 'node:fs';
+import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { pool } from './lib/cooldown.mjs';
 import { isReleaseCommit, isStamped, listReleaseProjects } from './lib/release-plan.mjs';
@@ -34,9 +38,10 @@ export const baseCommit = commits => commits.find(c => !isReleaseCommit(c.subjec
  * @param stamped names of projects with a stamped framework major
  * @param missing npm names that do not exist on the registry
  * @param specifier optional RELEASE_SPECIFIER
+ * @param pack optional RELEASE_PACK_DIR: release.mjs packs instead of publishing (the publish job uploads)
  * @returns { action: 'run' | 'skip' | 'fail', reasons: string[], args: string[], base }
  */
-export function decide({ kind, commits, pipeline, stamped = [], missing = [], specifier }) {
+export function decide({ kind, commits, pipeline, stamped = [], missing = [], specifier, pack }) {
   const base = baseCommit(commits);
   const reasons = [];
   if (missing.length > 0) {
@@ -70,6 +75,9 @@ export function decide({ kind, commits, pipeline, stamped = [], missing = [], sp
   }
   if (specifier) {
     args.push(`--specifier=${ specifier }`);
+  }
+  if (pack) {
+    args.push(`--pack=${ pack }`);
   }
   return { action: 'run', base, args, reasons };
 }
@@ -123,6 +131,14 @@ export async function missingOnNpm(names, registry = process.env.PUBLISH_REGISTR
   return missing.sort();
 }
 
+/** exit code of a release run that failed for some projects but packed the others (the publish job still runs) */
+export const PARTIAL = 3;
+
+/** release.mjs failed: PARTIAL when it already pushed and packed something, its own code otherwise */
+export const releaseExit = (code, packed) => code === 0 ? 0 : packed ? PARTIAL : code;
+
+const packed = () => Boolean(process.env.RELEASE_PACK_DIR) && existsSync(join(process.env.RELEASE_PACK_DIR, 'manifest.json'));
+
 function run(cmd, args, env = {}) {
   console.log(`$ ${ cmd } ${ args.join(' ') }`);
   const res = spawnSync(cmd, args, { stdio: 'inherit', env: { ...process.env, ...env } });
@@ -145,7 +161,8 @@ async function main([ kind, ...argv ]) {
   const stamped = packages.filter(isStamped).map(p => p.name);
   const names = [ ...packages, ...listReleaseProjects('rxap') ].map(p => p.pkgName);
   const missing = await missingOnNpm(names);
-  const decision = decide({ kind, commits, pipeline, stamped, missing, specifier: process.env.RELEASE_SPECIFIER || undefined });
+  const decision = decide({ kind, commits, pipeline, stamped, missing, specifier: process.env.RELEASE_SPECIFIER || undefined,
+    pack: process.env.RELEASE_PACK_DIR || undefined });
 
   console.log(`${ kind }: ${ decision.action } — ${ decision.reasons.join('; ') }`);
   if (decision.action !== 'run') {
@@ -160,7 +177,7 @@ async function main([ kind, ...argv ]) {
   if (kind === 'nightly') {
     // release the branch tip the gate looked at (the job may have started on an older commit)
     git('checkout', '-B', source, `origin/${ source }`);
-    return run('node', release, { YES: 'true', GIT_BRANCH: source });
+    return releaseExit(run('node', release, { YES: 'true', GIT_BRANCH: source }), packed());
   }
 
   // stable: latest := development (fast-forward only), release on latest, development := latest
@@ -169,8 +186,8 @@ async function main([ kind, ...argv ]) {
     return 1;
   }
   git('checkout', '-B', 'latest', `origin/${ source }`);
-  const code = run('node', release, { YES: 'true', GIT_BRANCH: 'latest' });
-  if (code !== 0) {
+  const code = releaseExit(run('node', release, { YES: 'true', GIT_BRANCH: 'latest' }), packed());
+  if (code !== 0 && code !== PARTIAL) {
     return code;
   }
   if (run('git', [ 'push', '-o', 'ci.skip', 'origin', `HEAD:refs/heads/${ source }` ]) !== 0) {
@@ -178,7 +195,7 @@ async function main([ kind, ...argv ]) {
       `  git fetch origin && git checkout ${ source } && git merge --ff-only origin/latest || git merge origin/latest`);
     return 1;
   }
-  return 0;
+  return code;
 }
 
 const isMain = process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url);

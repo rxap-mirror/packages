@@ -1,7 +1,7 @@
 // Run with: pnpm test:scripts
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { baseCommit, decide } from './release-ci.mjs';
+import { baseCommit, decide, PARTIAL, releaseExit } from './release-ci.mjs';
 
 const c = (sha, subject) => ({ sha: sha.padEnd(40, '0'), subject });
 const commits = [
@@ -51,9 +51,20 @@ describe('release-ci gate', () => {
     assert.equal(decide({ kind: 'stable', commits, pipeline: 'success', stamped: [ 'forms' ] }).action, 'fail');
   });
 
+  it('packs instead of publishing when a pack folder is given (CI)', () => {
+    const d = decide({ kind: 'nightly', commits, pipeline: 'success', pack: 'dist/release' });
+    assert.deepEqual(d.args, [ '--skip-validate', '--pack=dist/release' ]);
+  });
+
   it('reports an unchecked pipeline in a dry run without a token', () => {
     const d = decide({ kind: 'nightly', commits, pipeline: 'unknown' });
     assert.equal(d.action, 'run');
     assert.match(d.reasons[0], /not checked/);
+  });
+
+  it('lets the publish job run after a partial failure that packed something', () => {
+    assert.equal(releaseExit(0, true), 0);
+    assert.equal(releaseExit(1, true), PARTIAL);
+    assert.equal(releaseExit(1, false), 1);
   });
 });

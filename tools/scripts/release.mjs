@@ -22,7 +22,8 @@
  *                              every check, so a failed build/guard never leaves tags behind)
  *   8c. push                   (release commit + exactly this run's tags, one atomic push to
  *                              origin/<branch>, push option `ci.skip`) — BEFORE anything is published
- *   9. publish                 (releasePublish — from dist/{projectRoot}, with dist-tag)
+ *   9. publish                 (releasePublish — from dist/{projectRoot}, with dist-tag; with --pack: tarballs +
+ *                              manifest for the separate publish job instead)
  *  10. GitLab releases         (opt-in via --gitlab-release; REST API in CI, the `glab` CLI locally)
  *  11. rxap umbrella pass      (update-package-group → version → build → push → publish, group "rxap")
  *  12. report                  (per-project failures of steps 8b-11)
@@ -66,6 +67,11 @@
  *   --publish-only    jump straight to publish (retry a failed publish without re-versioning); never pushes
  *   --rebuild         with --publish-only: rebuild the dist of the projects of the release commit(s) at HEAD
  *                     first (CI, fresh checkout); limited by --projects
+ *   --pack=<dir>      instead of publishing: pack every released project (dist/{projectRoot}) into <dir> and list
+ *                     it in <dir>/manifest.json (release order, dist-tag, registry); copies publish-tarballs.mjs
+ *                     there. CI: the build runs on our runners, a GitLab-hosted job publishes the tarballs with
+ *                     npm trusted publishing (`node <dir>/publish-tarballs.mjs <dir>`). Combinable with
+ *                     --publish-only --rebuild.
  *   --skip-umbrella   skip the rxap umbrella pass
  *   --gitlab-release  also create a GitLab release per released project (via the `glab` CLI,
  *                     which must be installed and authenticated: `glab auth login`). Off by default.
@@ -84,6 +90,8 @@
  */
 
 import { execSync, spawnSync } from 'node:child_process';
+import { copyFileSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { basename, join, resolve } from 'node:path';
 import { createInterface } from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 import { createRequire } from 'node:module';
@@ -117,6 +125,9 @@ const PUBLISH_ONLY = has('--publish-only');
 // --rebuild (with --publish-only): rebuild the dist of the release commit(s) at HEAD first (CI has no dist)
 const REBUILD = has('--rebuild');
 // git push options of the release push (default `ci.skip`: no pipelines for the release commit and its tags)
+// --pack=<dir>: pack the dist of every released project into <dir> + <dir>/manifest.json instead of publishing
+// (CI: a GitLab-hosted job publishes the tarballs with npm trusted publishing, tools/scripts/publish-tarballs.mjs)
+const PACK_DIR = valueOf('pack') ? resolve(valueOf('pack')) : undefined;
 const PUSH_OPTIONS = (process.env.RELEASE_PUSH_OPTIONS ?? 'ci.skip').split(',').map((o) => o.trim()).filter(Boolean);
 const SKIP_UMBRELLA = has('--skip-umbrella') || valueOf('projects') !== undefined;
 const GITLAB_ONLY = has('--gitlab-releases-only');
@@ -625,6 +636,7 @@ async function main() {
   }
 
   const { releaseVersion, releaseChangelog, releasePublish } = loadNxRelease();
+  preparePackDir();
 
   // ---- fast path: retry just the publish (the release commit and its tags are already pushed) ----
   if (PUBLISH_ONLY) {
@@ -866,6 +878,9 @@ function tagReleases(projectChangelogs) {
 // publish a release group from dist. nx runs every project's publish (no bail); failures are
 // recorded for the final report instead of aborting. Returns the failed projects.
 async function publishGroup(releasePublish, group, mode, projects) {
+  if (PACK_DIR) {
+    return packGroup(group, mode, projects);
+  }
   log(`Publish (${group} group) → ${mode.registry} @${mode.distTag}`);
   if (projects && projects.length === 0) {
     warn(`No publishable projects in group "${group}".`);
@@ -895,6 +910,54 @@ async function publishGroup(releasePublish, group, mode, projects) {
   const published = Object.keys(result ?? {}).length - failed.length;
   ok(`Published ${published} project(s) of group "${group}".`);
   return failed;
+}
+
+// --pack: one tarball per project of the group (from dist/{projectRoot}, the same folder nx publishes) plus a
+// manifest entry, in release order (packages group before the umbrella). Returns the failed projects.
+function packGroup(group, mode, projects) {
+  const all = listGroupProjects(group, { tags: [] });
+  const selected = projects ? all.filter((p) => projects.includes(p.name)) : all;
+  log(`Pack (${group} group) → ${PACK_DIR} @${mode.distTag}`);
+  const manifestFile = join(PACK_DIR, 'manifest.json');
+  const manifest = existsSync(manifestFile)
+    ? JSON.parse(readFileSync(manifestFile, 'utf-8'))
+    : { distTag: mode.distTag, registry: mode.registry, packages: [] };
+  const failed = [];
+  for (const project of selected) {
+    const dist = join('dist', project.root);
+    if (DRY_RUN) {
+      console.log(`  [dry-run] would pack ${dist}`);
+      continue;
+    }
+    const res = spawnSync('pnpm', ['pack', '--pack-destination', PACK_DIR, '--json'], { cwd: dist, encoding: 'utf-8' });
+    let packed;
+    try {
+      packed = JSON.parse(res.stdout);
+    } catch {
+      packed = null;
+    }
+    if (res.status !== 0 || !packed?.filename) {
+      fail('pack', project.name, `pnpm pack in ${dist} failed: ${(res.stderr || res.stdout || '').trim().slice(0, 300)}`);
+      failed.push(project.name);
+      continue;
+    }
+    manifest.packages.push({ group, project: project.name, name: packed.name, version: packed.version, file: basename(packed.filename) });
+    ok(`Packed ${packed.name}@${packed.version}`);
+  }
+  if (!DRY_RUN) {
+    writeFileSync(manifestFile, JSON.stringify(manifest, null, 2) + '\n');
+  }
+  return failed;
+}
+
+// fresh pack directory with the publisher script next to the tarballs (the publish job runs without a checkout)
+function preparePackDir() {
+  if (!PACK_DIR || DRY_RUN) {
+    return;
+  }
+  rmSync(PACK_DIR, { recursive: true, force: true });
+  mkdirSync(PACK_DIR, { recursive: true });
+  copyFileSync(join('tools', 'scripts', 'publish-tarballs.mjs'), join(PACK_DIR, 'publish-tarballs.mjs'));
 }
 
 // rxap umbrella: regenerate its packageGroup against finalized member versions, then
