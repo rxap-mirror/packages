@@ -28,7 +28,7 @@
   resource_group: release
   interruptible: false
   variables:
-    RELEASE_BUILD_RUNNER_TAG: run-many-mega
+    RELEASE_BUILD_RUNNER_TAG: mlr-linux-medium-amd64
     RELEASE_PACK_DIR: dist/release
     GIT_DEPTH: 0
     GIT_STRATEGY: clone

@@ -8,6 +8,12 @@ variables:
   # The local plugins are ESM-syntax .ts sources: Node's native type stripping fails on them ("Failed to load the
   # ES module" warning per plugin) before Nx falls back to swc-node. Use swc-node directly.
   NX_PREFER_NODE_STRIP_TYPES: "false"
+# No job of this project runs untagged: the GitLab-hosted runners are enabled for release:npm only (tag
+# saas-linux-small-amd64), an untagged job would land there and use the free compute minutes. Jobs without tags of
+# their own (writerside and other GitLab / component templates) get the small size; see CI-RUNNERS.md §4.
+default:
+  tags:
+    - mlr-linux-small-amd64
 include:
   # scheduled maintenance pipelines (Renovate, supply-chain audit, framework watch, releases) only run their own
   # job: the workspace components (setup, run-many, pages, ...) are not loaded for them
@@ -36,10 +42,27 @@ include:
           variables:
             ENVIRONMENT_NAME: 'review/$CI_MERGE_REQUEST_IID'
         - when: always
+      # runner size tags (CI-RUNNERS.md §4): set by the runner platform on every runner of that size
       setup_tags:
-        - setup
-      run_many_tags:
-        - run-many-mega
+        - mlr-linux-small-amd64
+      run_many_tags: # run-many and test; test is raised to large in .gitlab/ci/workspace.yml
+        - mlr-linux-medium-amd64
+      nx_migrate_tags:
+        - mlr-linux-medium-amd64
+      rxap_compose_tags:
+        - mlr-linux-medium-amd64
+      localazy_tags:
+        - mlr-linux-xsmall-amd64
+      docker_tags:
+        - mlr-linux-medium-amd64
+        - docker
+      startup_tags:
+        - mlr-linux-medium-amd64
+        - docker
+      service_e2e_tags:
+        - mlr-linux-medium-amd64
+        - docker
+        - e2e
       pages_needs:
         - job: run-many
           optional: true

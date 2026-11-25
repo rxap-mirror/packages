@@ -6,7 +6,7 @@
   image: node:jod-bookworm
   stage: test
   tags:
-    - run
+    - mlr-linux-small-amd64
   variables:
     GIT_DEPTH: 0
     COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"

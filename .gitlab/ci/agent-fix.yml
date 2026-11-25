@@ -34,7 +34,7 @@ agent:fix:
   extends: .claude
   stage: .post
   tags:
-    - run
+    - mlr-linux-medium-amd64
   # one agent per branch; a second red pipeline of the same branch queues instead of racing for the push
   resource_group: agent-fix/$CI_COMMIT_REF_SLUG
   interruptible: false
