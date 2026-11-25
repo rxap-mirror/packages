@@ -2,6 +2,12 @@ variables:
   ADDITIONAL_TARGET_OPTIONS: --exclude tag:demo
   NX_MIGRATE_POST_SCRIPT: post-migrate
   RXAP_COMPOSE_COMMAND: schematic
+  # Load the Nx plugins in the Nx process instead of one worker process per plugin (13 plugins): the project graph
+  # peaks at 0.9 GiB instead of 2.8 GiB (CI-RUNNERS.md). CI runs with NX_DAEMON=false, one Nx process per job.
+  NX_ISOLATE_PLUGINS: "false"
+  # The local plugins are ESM-syntax .ts sources: Node's native type stripping fails on them ("Failed to load the
+  # ES module" warning per plugin) before Nx falls back to swc-node. Use swc-node directly.
+  NX_PREFER_NODE_STRIP_TYPES: "false"
 include:
   # scheduled maintenance pipelines (Renovate, supply-chain audit, framework watch, releases) only run their own
   # job: the workspace components (setup, run-many, pages, ...) are not loaded for them
