@@ -96,6 +96,11 @@ built with: `fix-dependencies` (`@rxap/plugin-library`) generates them that way.
 - Never install with `npx <pkg>` / `pnpm dlx <pkg>` without an exact, cooldown-checked version: they bypass the
   lockfile. `rxap:update` and `tools/scripts/update-nestjs-packages.sh` go through the cooldown tooling.
 
+- **Renovate** (`RENOVATE.md`) proposes updates only after the cooldown (`minimumReleaseAge` 30 days by default,
+  7/14 days from the generated `renovate-tiers.json`), runs `tools/scripts/renovate-post-upgrade.mjs` on every branch
+  and automerges patch/minor only after a green pipeline including `supply-chain:check`. In CI the check runs on every
+  merge request that changes dependencies, plus a daily scheduled `supply-chain:audit`.
+
 **Exceptions** (also for a security fix whose patched version is still too young) are manual and dated:
 
 - too young: an exact `name@version` entry in `minimumReleaseAgeExclude` below a comment

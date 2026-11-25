@@ -70,6 +70,8 @@ The project includes a Docker-based backend infrastructure:
 - pnpm enforces a 7-day floor (`minimumReleaseAge`) and `trustPolicy: no-downgrade`. Never lower them or add an
   exclusion without a dated comment (`remove after YYYY-MM-DD`); never `npx`/`pnpm dlx` an unpinned package.
   Run `pnpm supply-chain:check` after every dependency change (the pre-push hook runs it too).
+- Renovate (`RENOVATE.md`, `renovate.json5`) runs as a scheduled job of this repo. Never merge a Renovate MR while
+  `supply-chain:check` is red; run `pnpm renovate:tiers` after adding a root dependency by hand.
 
 ### Code Intelligence
 - **Generators:** Consult `pnpm nx list @rxap/plugin-<type>` to see available generators.
