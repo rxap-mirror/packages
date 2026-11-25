@@ -141,7 +141,7 @@ export interface PackageManagerProfile {
   dlx: (pkg: string, args?: string) => string;
 }
 
-const COREPACK_DOCKER_SETUP = 'ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0\nRUN npm install -g corepack && corepack enable';
+const COREPACK_DOCKER_SETUP = 'ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0\nRUN npm install -g corepack@0.36.0 && corepack enable';
 
 const DOCKER_SETUP: Record<PackageManagerName, string> = {
   npm: '',

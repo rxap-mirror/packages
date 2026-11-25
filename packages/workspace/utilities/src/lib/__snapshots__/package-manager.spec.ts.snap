@@ -55,7 +55,7 @@ exports[`package-manager GetPackageManagerProfile pnpm 1`] = `
   "dlx": "pnpm dlx npm-check-updates",
   "dlxPrefix": "pnpm dlx",
   "dockerSetup": "ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
-RUN npm install -g corepack && corepack enable",
+RUN npm install -g corepack@0.36.0 && corepack enable",
   "exec": "pnpm exec nx run-many",
   "execPrefix": "pnpm exec",
   "install": "pnpm install",
@@ -78,7 +78,7 @@ exports[`package-manager GetPackageManagerProfile yarn 1`] = `
   "dlx": "yarn dlx npm-check-updates",
   "dlxPrefix": "yarn dlx",
   "dockerSetup": "ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
-RUN npm install -g corepack && corepack enable",
+RUN npm install -g corepack@0.36.0 && corepack enable",
   "exec": "yarn nx run-many",
   "execPrefix": "yarn",
   "install": "yarn install",

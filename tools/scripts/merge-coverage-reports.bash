@@ -15,7 +15,7 @@ else
   echo "coverage files found:"
   echo "$COVERAGE_FILES"
   echo "merging coverage files"
-  echo "$COVERAGE_FILES" | xargs npx istanbul-merge --out .nyc_output/out.json
+  echo "$COVERAGE_FILES" | xargs npx --yes istanbul-merge@2.0.0 --out .nyc_output/out.json
   echo "generating coverage report"
-  npx nyc report --report-dir coverage --reporter html --reporter text --reporter cobertura
+  npx --yes nyc@18.0.0 report --report-dir coverage --reporter html --reporter text --reporter cobertura
 fi

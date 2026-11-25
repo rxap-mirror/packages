@@ -2,7 +2,7 @@
 set -e
 
 # corepack is no longer bundled with node >= 25; it activates the pnpm version of the packageManager field
-command -v corepack >/dev/null 2>&1 || npm install -g corepack
+command -v corepack >/dev/null 2>&1 || npm install -g corepack@0.36.0
 corepack enable
 
 echo "RUN: pnpm --version"

@@ -377,7 +377,7 @@ exports[`init package manager should render the files for pnpm detected from pnp
 {
   ".devcontainer/Dockerfile": "FROM mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
-RUN npm install -g corepack && corepack enable
+RUN npm install -g corepack@0.36.0 && corepack enable
 ",
   ".devcontainer/devcontainer.json": "{
   "name": "RxAP Workspace",
@@ -751,7 +751,7 @@ exports[`init package manager should render the files for yarn detected from yar
 {
   ".devcontainer/Dockerfile": "FROM mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye
 ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
-RUN npm install -g corepack && corepack enable
+RUN npm install -g corepack@0.36.0 && corepack enable
 ",
   ".devcontainer/devcontainer.json": "{
   "name": "RxAP Workspace",

@@ -4,7 +4,7 @@
 
 export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
 # corepack is no longer bundled with Node >= 25
-command -v corepack >/dev/null 2>&1 || npm install -g corepack
+command -v corepack >/dev/null 2>&1 || npm install -g corepack@0.36.0
 corepack enable
 
 echo "RUN: pnpm --version"
