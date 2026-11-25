@@ -37,7 +37,7 @@ supply-chain:check:
     - echo "RUN: pnpm supply-chain:check $BASE"
     - pnpm supply-chain:check "$BASE"
   rules:
-    - if: '$RENOVATE == "true" || $SUPPLY_CHAIN_AUDIT == "true" || $FRAMEWORK_WATCH == "true" || $RELEASE_IT == "true"'
+    - if: '$RENOVATE == "true" || $SUPPLY_CHAIN_AUDIT == "true" || $FRAMEWORK_WATCH == "true" || $RELEASE_IT == "true" || $NX_RELEASE'
       when: never
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH =~ /^renovate\//'
       changes:

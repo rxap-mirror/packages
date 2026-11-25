@@ -3,11 +3,11 @@ variables:
   NX_MIGRATE_POST_SCRIPT: post-migrate
   RXAP_COMPOSE_COMMAND: schematic
 include:
-  # scheduled maintenance pipelines (Renovate, supply-chain audit, framework watch) only run their own job: the
-  # workspace components (setup, run-many, pages, ...) are not loaded for them
+  # scheduled maintenance pipelines (Renovate, supply-chain audit, framework watch, releases) only run their own
+  # job: the workspace components (setup, run-many, pages, ...) are not loaded for them
   - component: gitlab.com/rxap/gitlab-ci/base@~latest
     rules: &workspace-pipeline
-      - if: '$RENOVATE == "true" || $SUPPLY_CHAIN_AUDIT == "true" || $FRAMEWORK_WATCH == "true"'
+      - if: '$RENOVATE == "true" || $SUPPLY_CHAIN_AUDIT == "true" || $FRAMEWORK_WATCH == "true" || $NX_RELEASE'
         when: never
       - when: always
   - component: gitlab.com/rxap/gitlab-ci/nx-workspace@6.4.0-edge.65
@@ -47,6 +47,8 @@ include:
   - local: .gitlab/ci/supply-chain.yml
   - local: .gitlab/ci/renovate.yml
   - local: .gitlab/ci/framework-watch.yml
+  # nightly / stable / publish-only releases with npm trusted publishing (RELEASE_WORKFLOW.md)
+  - local: .gitlab/ci/release.yml
   # fix agent for red renovate/* and migrate/* merge request pipelines (AGENT-FIX.md)
   - local: .gitlab/ci/agent-fix.yml
     rules: *workspace-pipeline

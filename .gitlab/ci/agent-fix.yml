@@ -81,7 +81,7 @@ agent:fix:
     - pnpm install --frozen-lockfile --prefer-offline
     - ciClaudeRun
   rules:
-    - if: '$RENOVATE == "true" || $SUPPLY_CHAIN_AUDIT == "true" || $FRAMEWORK_WATCH == "true" || $RELEASE_IT == "true"'
+    - if: '$RENOVATE == "true" || $SUPPLY_CHAIN_AUDIT == "true" || $FRAMEWORK_WATCH == "true" || $RELEASE_IT == "true" || $NX_RELEASE'
       when: never
     # nx-workspace runs builds/tests of renovate/* and migrate/* only in merge request pipelines (branch pipelines are
     # skipped for branches with an open MR and for migrate/*), so the agent reacts to those
