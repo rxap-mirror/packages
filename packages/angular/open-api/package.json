@@ -18,7 +18,7 @@
     "@rxap/remote-method": "^22.0.0-dev.1",
     "@rxap/rxjs": "^1.1.19-dev.0",
     "@rxap/utilities": "^16.5.3-dev.0",
-    "ajv": "^8.12.0",
+    "ajv": "^8.0.0",
     "openapi-types": "^10.0.0",
     "rxjs": "^7.0.0"
   },

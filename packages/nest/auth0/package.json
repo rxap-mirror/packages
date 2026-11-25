@@ -17,7 +17,7 @@
     "joi": "^18.0.0",
     "jsonwebtoken": "*",
     "jwks-rsa": "*",
-    "passport-jwt": "^4.0.1"
+    "passport-jwt": "^4.0.0"
   },
   "author": {
     "name": "Merzough Münker",
