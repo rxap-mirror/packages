@@ -7,23 +7,33 @@ One checklist for everything that has to be set up in GitLab, on npm and on the 
 
 ## 1. Runners
 
-Tags the jobs ask for **today** (the `mlr-linux-*` size tags of `CI-RUNNERS.md` §4 are proposed, not applied):
+Every job asks for exactly one size tag (`CI-RUNNERS.md` §4), plus a capability tag where it needs one. Jobs without
+tags of their own get `mlr-linux-small-amd64` from `default: tags` in `.gitlab-ci.yml`, so no job runs untagged.
 
-| Tag | Jobs | Needs at least | Runner today |
-|---|---|---|---|
-| `setup` | `setup` | 2 vCPU / 4 GB, fast network | 25731714 (e2-standard-4), online |
-| `run` | `supply-chain:*`, `renovate`, `framework-watch`, `agent:fix`, `workspace:typedoc`, `workspace:compodoc` | 4 vCPU / 16 GB | 25731501 (e2-standard-8), online |
-| `run-many-mega` | `run-many`, `test`, `release:nightly` / `stable` / `publish-only` (`RELEASE_BUILD_RUNNER_TAG`) | 8 vCPU / 32 GB (`test` peaks at ~10 GB) | 37411030, **stale since 2025-09-29** |
-| `saas-linux-small-amd64` | `release:npm` only (`RELEASE_PUBLISH_RUNNER_TAG`) | GitLab-hosted | needs "Instance runners" on |
-| untagged | `writerside`, `semgrep-sast`, `secret_detection`, `pages`, `coverage-report` | 1–2 vCPU / 2–4 GB | 25731692, 60080662 |
+| Size tag | vCPU / RAM | Jobs |
+|---|---|---|
+| `mlr-linux-xsmall-amd64` | 2 (shared) / 2 GB | `secret_detection`, `pages`, `coverage-report`, `localazy-upload` |
+| `mlr-linux-small-amd64` | 2 / 8 GB | `setup`, `supply-chain:*`, `renovate`, `framework-watch`, `semgrep-sast`, `writerside` (default) |
+| `mlr-linux-medium-amd64` | 4 / 16 GB | `run-many`, `workspace:typedoc`, `workspace:compodoc`, `nx-migrate`, `rxap-compose`, `agent:fix`, `release:nightly` / `stable` / `publish-only` |
+| `mlr-linux-large-amd64` | 8 / 32 GB | `test` (~10 GB peak) |
+| `saas-linux-small-amd64` | GitLab-hosted | `release:npm` only |
 
-To do:
-1. **`run-many-mega`:** register a runner with this tag (8 vCPU / 32 GB), or add the tag to the online
-   e2-standard-8 runner 25731501. Without it no pipeline turns green, and the nightly release waits forever.
-2. **Before enabling the GitLab-hosted runners** (needed by `release:npm`): give every untagged job a tag (apply the
-   `CI-RUNNERS.md` §4 tags, or tag those five jobs) and turn off "Run untagged jobs" on the self-hosted runners.
-   Otherwise the untagged jobs land on the hosted runners again and use the 400 free minutes.
-3. Remove the stale runners 34814006, 34814013, 37411030, 37446766 once the replacement runs.
+Capability tags: `docker` (`docker`, `startup`, `e2e:service`) and `e2e` (`e2e:service`). Those jobs do not run in
+this project's pipelines today. Overrides: `RELEASE_BUILD_RUNNER_TAG` and `RELEASE_PUBLISH_RUNNER_TAG` (CI variables).
+
+The `mlr-*` tags are meant to be set automatically by the ML-Runner platform. **Until it exists**, add them by hand
+to the current runners (Settings → CI/CD → Runners → edit; keep the old tags, other rxap projects still use them):
+
+| Runner | Machine | Add the tags |
+|---|---|---|
+| 25731501 | e2-standard-8 | `mlr-linux-large-amd64`, `mlr-linux-medium-amd64` |
+| 25731714 | e2-standard-4 | `mlr-linux-medium-amd64`, `mlr-linux-small-amd64` |
+| 25731692 | e2-standard-2 | `mlr-linux-small-amd64`, `mlr-linux-xsmall-amd64` (it already has `docker`) |
+
+A runner with several size tags also takes smaller jobs; that is fine for the transition. Then:
+1. Turn off "Run untagged jobs" on the self-hosted runners (no job of this project is untagged any more).
+2. Remove the stale runners 34814006, 34814013, 37411030 (`run-many-mega`), 37446766.
+3. Only after that, turn on the GitLab-hosted runners for `release:npm` (§4).
 
 ## 2. Tokens
 
@@ -71,7 +81,7 @@ Other credentials:
 | `OPENROUTER_API_KEY` | masked and hidden | no (same reason as `GITLAB_TOKEN`) | |
 | `GITHUB_COM_TOKEN` | masked | yes | optional |
 
-Optional (defaults in the YAML): `RELEASE_BUILD_RUNNER_TAG` (`run-many-mega`), `RELEASE_PUBLISH_RUNNER_TAG`
+Optional (defaults in the YAML): `RELEASE_BUILD_RUNNER_TAG` (`mlr-linux-medium-amd64`), `RELEASE_PUBLISH_RUNNER_TAG`
 (`saas-linux-small-amd64`), `AGENT_FIX_MAX_ATTEMPTS` (2), `AGENT_FIX_BASE_BRANCH` (default branch).
 
 Pipeline variables (set in the schedule or in "Run pipeline", not in Settings): `RENOVATE=true`,
@@ -84,7 +94,7 @@ Pipeline variables (set in the schedule or in "Run pipeline", not in Settings): 
    allowed).
 2. **Protected environment `npm`** (Settings → CI/CD → Protected environments; the environment exists after the
    first `release:npm` run, or create it under Operate → Environments): deployments by Maintainers + the bot.
-3. **Instance runners on** (Settings → CI/CD → Runners), only after §1 step 2.
+3. **Instance runners on** (Settings → CI/CD → Runners), only after the runner steps of §1.
 4. **Merge requests:** "Pipelines must succeed" on.
 5. **Labels:** `agent-fix::gave-up`, `agent-fix::blocked`.
 6. **Schedules** (Build → Pipeline schedules, target branch `development`):
@@ -111,7 +121,7 @@ Pipeline variables (set in the schedule or in "Run pipeline", not in Settings): 
 
 ## 6. Order
 
-1. Runners (§1 step 1), tag the untagged jobs (§1 step 2).
+1. Runners: add the `mlr-*` tags, turn off untagged jobs, remove the stale runners (§1).
 2. Bot account + tokens, variables, labels, protected branches (§2–§4).
 3. Push `development`; the push pipeline must turn green.
 4. Run the `Renovate` and `Framework watch` schedules once by hand, check the logs.

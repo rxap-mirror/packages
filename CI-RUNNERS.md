@@ -64,7 +64,7 @@ Conclusions:
 - The jobs scale with cores up to `--parallel 3`; more cores than ~8 are not used.
 - Everything that is not Nx (scripts, triggers, scanners, pages) needs ≤ 1 core and ≤ 2–4 GiB.
 
-## 4. Proposed runner classes and tags
+## 4. Runner size tags (applied)
 
 Size tags named like GitLab's hosted runners (`saas-linux-<size>-amd64`), prefix `mlr` (ML-Runner): the runner
 platform sets these tags automatically on every runner of a size, so projects never define custom runner tags. A
@@ -72,8 +72,8 @@ job always asks for exactly one size tag; capability tags combine with it.
 
 | Size tag | vCPU / RAM | GCP type | For |
 |---|---|---|---|
-| `mlr-linux-xsmall-amd64` | 2 (shared) / 2 GB | e2-small | triggers (glab), `pages`, `coverage-report`, `secret_detection` |
-| `mlr-linux-small-amd64` | 2 / 8 GB | e2-standard-2 | `setup`, `supply-chain:*`, `framework-watch`, `renovate`, `semgrep-sast`, `writerside` |
+| `mlr-linux-xsmall-amd64` | 2 (shared) / 2 GB | e2-small | `pages`, `coverage-report`, `secret_detection`, `localazy-upload` |
+| `mlr-linux-small-amd64` | 2 / 8 GB | e2-standard-2 | `setup`, `supply-chain:*`, `framework-watch`, `renovate`, `semgrep-sast`, `writerside`; default for every job without tags |
 | `mlr-linux-medium-amd64` | 4 / 16 GB | e2-standard-4 | `run-many` (build), lint, `workspace:typedoc`, `workspace:compodoc`, `nx-migrate`, `rxap-compose`, `agent:fix*`, `release:nightly` / `stable` / `publish-only` |
 | `mlr-linux-large-amd64` | 8 / 32 GB | e2-standard-8 | `test` |
 | `saas-linux-small-amd64` | GitLab-hosted | — | `release:npm` only |
@@ -83,12 +83,13 @@ dependencies). The old tags (`run`, `run-many`, `run-many-mega`, `setup`, …) s
 until every consumer project uses the new names.
 
 Rules:
-1. **No untagged jobs.** Every job gets a size tag (the GitLab templates `semgrep-sast`, `secret_detection`,
-   `writerside`, `pages`, `coverage-report` via a local override), and the self-hosted runners do not run untagged
-   jobs. Then enabling the hosted runners for `release:npm` cannot leak other jobs onto them.
+1. **No untagged jobs.** `default: tags` in `.gitlab-ci.yml` gives every job without tags the small size; component
+   inputs (`setup_tags`, `run_many_tags`, …) and overrides in `.gitlab/ci/workspace.yml` (`test`, `semgrep-sast`,
+   `secret_detection`, `pages`, `coverage-report`, `workspace:compodoc`) set the others. The self-hosted runners do
+   not run untagged jobs, so enabling the hosted runners for `release:npm` cannot leak other jobs onto them.
 2. `NX_ISOLATE_PLUGINS=false` and `NX_DAEMON=false` for all Nx jobs.
-3. `test` gets its own tag input (today it shares `run_many_tags` with `run-many`): component input
-   `test_tags` in rxap/gitlab-ci, or a local override of `test:tags`.
+3. `test` shares the component input `run_many_tags` with `run-many`; a local override raises it to large (a
+   `test_tags` input in rxap/gitlab-ci would be cleaner).
 
 Expected effect: the workspace pipeline needs one large and a few medium/small machines for minutes instead of
 an 8-core/32 GB machine per job; with `run-many` and `test` running again the pipeline can turn green.

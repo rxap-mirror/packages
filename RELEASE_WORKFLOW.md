@@ -164,7 +164,7 @@ pipelines (`NX_RELEASE` set) load only the release jobs; `resource_group: releas
 Every release pipeline has two jobs, so that only the upload costs GitLab compute minutes:
 
 1. **Build job** (`release:nightly` / `release:stable` / `release:publish-only`, our runners,
-   `RELEASE_BUILD_RUNNER_TAG`, default `run-many-mega`): gate, version, changelog, release commit, build, dist
+   `RELEASE_BUILD_RUNNER_TAG`, default `mlr-linux-medium-amd64`): gate, version, changelog, release commit, build, dist
    transforms, tags, push — then `release.mjs --pack=dist/release` packs every released project into a tarball and
    lists it in `dist/release/manifest.json` (artifact, 2 weeks). It has no npm credentials. Exit code 3 = some
    projects failed after the push (see the report), the others were packed: the job is allowed to fail with 3, so
