@@ -3,10 +3,17 @@ variables:
   NX_MIGRATE_POST_SCRIPT: post-migrate
   RXAP_COMPOSE_COMMAND: schematic
 include:
+  # scheduled maintenance pipelines (Renovate, daily supply-chain audit) only run their own job: the workspace
+  # components (setup, run-many, pages, ...) are not loaded for them
   - component: gitlab.com/rxap/gitlab-ci/base@~latest
-  - component: gitlab.com/rxap/gitlab-ci/nx-workspace@6.3.2-edge.2
+    rules: &workspace-pipeline
+      - if: '$RENOVATE == "true" || $SUPPLY_CHAIN_AUDIT == "true"'
+        when: never
+      - when: always
+  - component: gitlab.com/rxap/gitlab-ci/nx-workspace@6.4.0-edge.65
+    rules: *workspace-pipeline
     inputs:
-      version: "6.3.2-edge.2"
+      version: "6.4.0-edge.65"
       workflow_rules:
         # skip realseit pipelines. currently the group terraform will add the release it nighlity pipeline schdule
         # this will trigger a nighlty run with RELEASE_IT=true, but this repo does not use release-it but nx release
@@ -35,6 +42,9 @@ include:
         - job: workspace:typedoc
           optional: true
 
+  - local: .gitlab/ci/supply-chain.yml
+  - local: .gitlab/ci/renovate.yml
+
 workspace:typedoc:
   extends: .run
   stage: build
@@ -51,6 +61,8 @@ workspace:typedoc:
       - docs
     expire_in: 1 week
   rules:
+    - if: '$RENOVATE == "true" || $SUPPLY_CHAIN_AUDIT == "true"'
+      when: never
     - if: '$RELEASE_IT == "true"'
       when: never
     - if: '$RXAP_COMPOSE == "true"'

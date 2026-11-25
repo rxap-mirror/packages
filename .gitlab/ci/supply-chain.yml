@@ -1,0 +1,56 @@
+# Supply-chain gate (tools/scripts/supply-chain-check.mjs, see UPGRADE-NOTES.md section 4).
+# Standalone jobs: they also run in the scheduled SUPPLY_CHAIN_AUDIT pipeline, where the workspace components are not
+# loaded, so they install the workspace themselves (scripts only need yaml/semver, no builds).
+
+.supply-chain:
+  image: node:jod-bookworm
+  stage: test
+  tags:
+    - run
+  variables:
+    GIT_DEPTH: 0
+    COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
+    npm_config_store_dir: $CI_PROJECT_DIR/.pnpm-store
+  cache:
+    key:
+      prefix: supply-chain
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - .pnpm-store
+  before_script:
+    - corepack enable
+    - pnpm install --frozen-lockfile --ignore-scripts --prefer-offline
+
+# Every change of the lockfile or the pnpm settings: tiered release cooldown of the added versions + pnpm audit.
+# Blocks the merge request and with it the Renovate automerge.
+supply-chain:check:
+  extends: .supply-chain
+  script:
+    - |
+      if [ -n "$CI_MERGE_REQUEST_DIFF_BASE_SHA" ]; then
+        BASE="$CI_MERGE_REQUEST_DIFF_BASE_SHA"
+      else
+        git fetch --quiet origin "$CI_DEFAULT_BRANCH"
+        BASE=$(git merge-base HEAD "origin/$CI_DEFAULT_BRANCH")
+      fi
+    - echo "RUN: pnpm supply-chain:check $BASE"
+    - pnpm supply-chain:check "$BASE"
+  rules:
+    - if: '$RENOVATE == "true" || $SUPPLY_CHAIN_AUDIT == "true" || $RELEASE_IT == "true"'
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" || $CI_COMMIT_BRANCH =~ /^renovate\//'
+      changes:
+        - pnpm-lock.yaml
+        - pnpm-workspace.yaml
+        - package.json
+        - "**/package.json"
+        - tools/scripts/audit-allowlist.json
+
+# Daily schedule (SUPPLY_CHAIN_AUDIT=true): new advisories and expired exceptions without a lockfile change.
+supply-chain:audit:
+  extends: .supply-chain
+  script:
+    - pnpm supply-chain:check HEAD
+  rules:
+    - if: '$SUPPLY_CHAIN_AUDIT == "true"'
