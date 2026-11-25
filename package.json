@@ -16,7 +16,7 @@
     "setup:local-deploy": "env-cmd bash ./docker/traefik/setup.sh",
     "webpack-bundle-analyzer": "webpack-bundle-analyzer",
     "init:env": "bash tools/scripts/setup-env-file.sh",
-    "rxap:update": "pnpm dlx npm-check-updates --filter /@rxap/ --target newest -u && pnpm install",
+    "rxap:update": "node tools/scripts/align-rxap-dep-ranges.mjs && pnpm install",
     "rxap:migrate": "pnpm rxap:update && pnpm rxap:compose",
     "rxap:compose": "pnpm schematic @rxap/schematic-composer:compose",
     "post-migrate": "bash tools/scripts/post-migrate.sh",
