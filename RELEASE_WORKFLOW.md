@@ -4,6 +4,10 @@ Releases are driven by **`nx release`** (Nx 22.x) through the orchestrator at
 [`tools/scripts/release.mjs`](tools/scripts/release.mjs). This replaced the former Lerna +
 bash-hook pipeline; the orchestrator preserves every pre-step that pipeline performed.
 
+**Releases run in CI** (section [Releases in CI](#releases-in-ci)): a nightly `-dev` prerelease of
+`development`, the stable graduation as a manual pipeline. npm is reached through trusted publishing only, no npm
+token exists. The laptop flow below stays as the fallback and for the first version of a new package.
+
 ## Prerequisites
 
 - Only for `--gitlab-release`: the [`glab`](https://gitlab.com/gitlab-org/cli) CLI must be installed
@@ -54,7 +58,8 @@ with a temporary `currentVersionResolver: disk` / `specifierSource: prompt` conf
   existing tags and `CHANGELOG.md` files (existing releases are skipped; `--commit=<sha>` selects
   the release commit explicitly). GitLab release creation retries 429/5xx with backoff.
 - `--publish-only` – retry just the publish from the existing `dist/` (e.g. after a partial
-  publish failure) without re-versioning.
+  publish failure) without re-versioning. Never pushes (the release commit and its tags were pushed before the
+  publish). `--rebuild` rebuilds the dist of the projects of the release commit(s) at HEAD first (CI).
 - `--skip-validate` / `--skip-build` / `--skip-umbrella` – skip individual phases.
 - `YES=true pnpm release` – skip the interactive confirmation.
 - `--projects=<a,b>` – release only these projects: dependents are not bumped and the `rxap` umbrella
@@ -122,12 +127,16 @@ so stop `workspace:local-registry` first.
    (`prism-strip`) and verify with `tools/scripts/check-dist-for-ng-prism.mjs` that no built
    package references `@ng-prism` (the release aborts before publishing otherwise). These steps
    live in `tools/scripts/dist-transforms.mjs`, shared with the package-manager e2e matrix above.
-9. **Publish** – `releasePublish` from `dist/{projectRoot}` with the branch dist-tag/registry.
-10. **GitLab releases** – created via the GitLab Releases API (Nx 20.5.0 has no native GitLab
-    support), one per published project, using the generated changelog as the body.
-11. **rxap umbrella** – regenerate the `rxap` meta-package's package group against the finalized
-    member versions, then version/changelog/build/publish it as its own release group.
-12. **Push** – `git push --follow-tags`.
+9. **Push** – the release commit and exactly this run's tags in one atomic push to `origin/<branch>`
+   (`git push --atomic -o ci.skip origin HEAD:refs/heads/<branch> <tags>`; works on a detached HEAD, no pipelines
+   for the release commit and the tags). **Before** the publish: a rejected push (the branch moved during the
+   release) aborts with nothing published — reset (`git reset --hard origin/<branch>`, delete the printed tags) and
+   run again. So a published version always has its tag on the remote.
+10. **Publish** – `releasePublish` from `dist/{projectRoot}` with the branch dist-tag/registry.
+11. **GitLab releases** – created via the GitLab Releases API (Nx has no native GitLab support), one per published
+    project, using the generated changelog as the body (REST API with `RELEASE_GITLAB_TOKEN` in CI, `glab` locally).
+12. **rxap umbrella** – regenerate the `rxap` meta-package's package group against the finalized
+    member versions, then version/changelog/build/push/publish it as its own release group.
 
 ## Configuration
 
@@ -144,3 +153,52 @@ would otherwise fail the range check), and `nx-release-publish.packageRoot = dis
 > `@rxap/environment`), the existing tag won't match and the current version is read from disk;
 > Nx then creates a new-scheme tag going forward. **Run the first migrated release with
 > `--first-release`** so changelog generation doesn't require a prior matching tag.
+
+## Releases in CI
+
+`.gitlab/ci/release.yml` → [`tools/scripts/release-ci.mjs`](tools/scripts/release-ci.mjs) → `release.mjs`. Release
+pipelines (`NX_RELEASE` set) load only the release jobs; `resource_group: release` keeps them from overlapping.
+
+| Pipeline | Trigger | What happens |
+|---|---|---|
+| `NX_RELEASE=nightly` | schedule on `development` (or Run pipeline) | gate, then `release.mjs --skip-validate [--stamped]` → `-dev.N` on dist-tag `development` |
+| `NX_RELEASE=stable` | Run pipeline on `latest`, optional `RELEASE_SPECIFIER` (`minor`, `major`, exact) | `latest` := `development` (fast-forward), gate, `release.mjs --graduate --gitlab-release`, `development` := `latest` |
+| `NX_RELEASE=publish-only` | Run pipeline on `development` / `latest` | checks out the newest release commit, `release.mjs --publish-only --rebuild` (after a partial publish failure; published versions are skipped) |
+
+**Gate** (`release-ci.mjs`): the push pipeline of the newest non-release commit on `development` must be green
+(running / red / missing → the nightly waits for the next night, the stable job fails), so the release skips its own
+build/test/lint. Every package must already exist on npm. A framework stamp from a migration
+(`FRAMEWORK-WATCH.md`, package major on disk > newest tag) adds `--stamped` automatically. Whether anything is
+releasable decides `release.mjs` itself (conventional commits since the last tag, before it builds anything).
+`RELEASE_SPECIFIER=prerelease` on a nightly bumps every package (bootstrap below).
+Check the decision locally: `node tools/scripts/release-ci.mjs nightly --dry-run`.
+
+**npm trusted publishing:** the jobs get an OIDC ID token (`id_tokens: NPM_ID_TOKEN`, audience
+`npm:registry.npmjs.org`); `pnpm publish` exchanges it per package for a short-lived token and attaches provenance
+(public project). The trusted publisher of each package names project `rxap/packages`, file `.gitlab-ci.yml` and
+environment `npm`. It only works on **GitLab.com hosted runners** (`RELEASE_RUNNER_TAG`, default
+`saas-linux-large-amd64`), not on the self-hosted runners of the workspace pipeline. The jobs refuse to run when an
+npm token is configured.
+
+**New package:** trusted publishing cannot create a package (the nightly fails and names it). Publish its first
+version by hand (`pnpm release --projects=<project>` with your npm login and 2FA), then
+`node tools/scripts/npm-trust.mjs configure --from <npm name>` (for that one package: stop after it) and let the
+next nightly publish through CI.
+
+### Activation (at the final push, together with `RENOVATE.md`, `FRAMEWORK-WATCH.md`, `AGENT-FIX.md`)
+
+1. Project access token `release-bot` (role *Maintainer*, scopes `api` + `write_repository`, expiry date) → CI
+   variable `RELEASE_GITLAB_TOKEN` (masked, hidden, **protected**: the release jobs only run on `development` and
+   `latest`). Protected branches `development` and `latest`: allow the bot to push.
+2. Protected environment `npm` (deployments: Maintainers + the bot) and GitLab.com hosted runners enabled for the
+   project.
+3. Trusted publishers, **on the same day as step 4** (a new configuration expires when nothing is published
+   through it within 2 days): `npm login`, then `node tools/scripts/npm-trust.mjs configure` (`--dry-run` first;
+   the first call asks for 2FA — tick "skip 2FA for 5 minutes", continue with `--from <name>` when the window
+   ends), then `node tools/scripts/npm-trust.mjs check`.
+4. Bootstrap: Run pipeline on `development` with `NX_RELEASE=nightly` and `RELEASE_SPECIFIER=prerelease` (every
+   package gets its next `-dev.N`, so every trust configuration sees a publish). Packages that failed: recreate
+   their configuration (`npm trust revoke`, `configure --from`) and run `NX_RELEASE=publish-only`.
+5. Schedule `Nightly release`: daily 02:00, branch `development`, variable `NX_RELEASE=nightly`.
+6. After the first green nightly: revoke the npm publish token of `~/.npmrc` on npmjs.com; then
+   `node tools/scripts/npm-trust.mjs lock` ("require 2FA and disallow tokens" per package).

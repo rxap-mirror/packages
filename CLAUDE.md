@@ -75,6 +75,9 @@ The project includes a Docker-based backend infrastructure:
 - Angular / Nx / NestJS move as groups through the framework watch (`FRAMEWORK-WATCH.md`, `migrate/*` branches,
   `tools/scripts/lib/framework-groups.mjs`). Never bump one member of a group alone; use
   `align-framework-group.mjs` / `update-nestjs-packages.sh`. Framework merge requests are always merged by hand.
+- Releases run in CI (nightly `-dev` from `development`, stable as a manual pipeline; npm trusted publishing, no
+  npm token — `RELEASE_WORKFLOW.md` "Releases in CI"). Never publish from the laptop except the first version of a
+  new package.
 
 ### Code Intelligence
 - **Generators:** Consult `pnpm nx list @rxap/plugin-<type>` to see available generators.
