@@ -1,0 +1,89 @@
+# Agent fix: repairs a red pipeline on a dependency update branch (renovate/*, migrate/*) with Claude Code through
+# claudish/OpenRouter. Process, attempt cap, labels and CI variables: docs/agent-fix.md.
+#
+# Needs the CI variables GITLAB_TOKEN (project access token, role Developer, scopes api + write_repository; masked +
+# protected only if renovate/* and migrate/* are protected branches) and OPENROUTER_API_KEY (key with a spending limit).
+#
+# The rxap/gitlab-ci claude component is included only for its hidden `.claude` template (image, glab/git setup, the
+# su-to-node invocation, log + artifacts). Its own issue and epic jobs are switched off through claude_rules and
+# epic_rules; agent:fix below extends `.claude` and replaces `script`, `rules` and `resource_group`.
+
+include:
+  - component: gitlab.com/rxap/gitlab-ci/claude@6.4.0-edge.65
+    inputs:
+      version: "6.4.0-edge.65"
+      as: agent:fix:issue
+      stage: .post
+      backend: claudish
+      timeout: 1h
+      # the skill lives in this repository (.claude/skills/fix-dependency-branch); no marketplace plugins needed
+      plugin_marketplaces: ""
+      plugins: ""
+      prompt: >-
+        Use the fix-dependency-branch skill (.claude/skills/fix-dependency-branch/SKILL.md) to repair this branch.
+        The failed jobs, the attempt number and the merge request are in .claude-ci/context.md.
+        Never change a dependency version, pnpm-workspace.yaml or tools/scripts/audit-allowlist.json,
+        never skip or delete tests or lint rules, never use --no-verify.
+        Commit with the trailer from the context, push to $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME and leave one short MR note.
+      claude_rules:
+        - when: never
+      epic_rules:
+        - when: never
+
+agent:fix:
+  extends: .claude
+  stage: .post
+  tags:
+    - run
+  # one agent per branch; a second red pipeline of the same branch queues instead of racing for the push
+  resource_group: agent-fix/$CI_COMMIT_REF_SLUG
+  interruptible: false
+  variables:
+    COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
+    npm_config_store_dir: $CI_PROJECT_DIR/.pnpm-store
+    # distinct author: Renovate treats the branch as modified and stops force-rebasing it over the agent commits
+    GIT_AUTHOR_NAME: rxap agent-fix
+    GIT_AUTHOR_EMAIL: agent-fix@noreply.gitlab.com
+    GIT_COMMITTER_NAME: rxap agent-fix
+    GIT_COMMITTER_EMAIL: agent-fix@noreply.gitlab.com
+    # the agent reproduces single targets on a shared runner
+    NX_PARALLEL: "2"
+    NX_NO_CLOUD: "true"
+    AGENT_FIX_MAX_ATTEMPTS: "2"
+    AGENT_FIX_BASE_BRANCH: $CI_DEFAULT_BRANCH
+  cache:
+    key:
+      prefix: supply-chain
+      files:
+        - pnpm-lock.yaml
+    paths:
+      - .pnpm-store
+    policy: pull
+  script:
+    # merge request pipelines have no CI_COMMIT_BRANCH and only fetch refs/merge-requests/<iid>/head: ciSetupGit (and
+    # the skill's push) work on the source branch
+    - export CI_COMMIT_BRANCH="${CI_COMMIT_BRANCH:-$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME}"
+    - git fetch --quiet origin "+refs/heads/$CI_COMMIT_BRANCH:refs/remotes/origin/$CI_COMMIT_BRANCH"
+    - ciSetupGit
+    # branch pipelines only fetch their own branch; the attempt count and the diff need the merge base
+    - git fetch --quiet origin "$AGENT_FIX_BASE_BRANCH"
+    - mkdir -p .claude-ci
+    - node tools/scripts/agent-fix-context.mjs
+    - |
+      if [ -f .claude-ci/skip ]; then
+        echo "Agent not started: $(cat .claude-ci/skip)"
+        exit 0
+      fi
+    # .mcp.json starts MCP servers via `npx -y <pkg>@latest` (no release cooldown, network in CI): hide it from the
+    # agent without the deletion ever showing up in `git status`
+    - git update-index --skip-worktree .mcp.json && rm -f .mcp.json
+    - corepack enable
+    - pnpm install --frozen-lockfile --prefer-offline
+    - ciClaudeRun
+  rules:
+    - if: '$RENOVATE == "true" || $SUPPLY_CHAIN_AUDIT == "true" || $FRAMEWORK_WATCH == "true" || $RELEASE_IT == "true"'
+      when: never
+    # nx-workspace runs builds/tests of renovate/* and migrate/* only in merge request pipelines (branch pipelines are
+    # skipped for branches with an open MR and for migrate/*), so the agent reacts to those
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^(renovate|migrate)\//'
+      when: on_failure
