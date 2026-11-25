@@ -1,0 +1,6 @@
+# Supply-chain gate (tools/scripts/supply-chain-check.mjs): runs only when the push changes the lockfile or the
+# pnpm settings. Skip with SKIP_SUPPLY_CHAIN=1 git push.
+[ "$SKIP_SUPPLY_CHAIN" = "1" ] && exit 0
+base=$(git merge-base HEAD @{upstream} 2>/dev/null || git merge-base HEAD origin/development 2>/dev/null) || exit 0
+git diff --quiet "$base" HEAD -- pnpm-lock.yaml pnpm-workspace.yaml && exit 0
+pnpm supply-chain:check "$base"

@@ -145,6 +145,38 @@ function baseResolutions(base) {
   }
 }
 
+/**
+ * Every registry version resolved in the current pnpm-lock.yaml but not in the lockfile of `base`, and the ones of
+ * them that are younger than the cooldown of their popularity tier (at least `minAge` days).
+ */
+export async function auditLockfile(base, { minAge = 0, lockText = readFileSync(LOCKFILE, 'utf8'), log = console.log } = {}) {
+  const before = baseResolutions(base);
+  const after = pnpmResolutions(lockText);
+  const added = [ ...after.entries() ].filter(([ key ]) => !before.has(key)).map(([ , v ]) => v);
+  log(`${ added.length } new package versions in ${ LOCKFILE } compared to ${ base }`);
+
+  const dated = await pool(added, 8, async ({ name, version }) => {
+    const time = (await publishTimes(name))[version];
+    return { name, version, ageDays: time ? (Date.now() - Date.parse(time)) / DAY : undefined };
+  });
+
+  const young = dated.filter(d => d.ageDays === undefined || d.ageDays < Math.max(30, minAge));
+  const violations = [];
+  for (const d of young) {
+    const dl = d.ageDays === undefined ? 0 : (await getJson(`https://api.npmjs.org/downloads/point/last-week/${ encode(d.name) }`))?.downloads ?? 0;
+    const required = Math.max(dl >= 1_000_000 ? 7 : dl >= 100_000 ? 14 : 30, minAge);
+    if (d.ageDays === undefined || d.ageDays < required) {
+      violations.push({ ...d, weekly: dl, required });
+    }
+    await new Promise(r => setTimeout(r, 150));
+  }
+  return { added, violations: violations.sort((a, b) => (a.ageDays ?? 0) - (b.ageDays ?? 0)) };
+}
+
+/** one report line per violation */
+export const formatViolation = v =>
+  `TOO YOUNG ${ v.name }@${ v.version }  ${ v.ageDays === undefined ? 'unknown age' : `${ v.ageDays.toFixed(1) }d old` } < ${ v.required }d (${ v.weekly }/wk)`;
+
 async function main() {
   const base = process.argv[2];
   if (!base) {
@@ -155,26 +187,7 @@ async function main() {
   const MIN_AGE = minAgeIdx >= 0 ? Number(process.argv[minAgeIdx + 1]) : 0;
 
   const lockText = readFileSync(LOCKFILE, 'utf8');
-  const before = baseResolutions(base);
-  const after = pnpmResolutions(lockText);
-  const added = [ ...after.entries() ].filter(([ key ]) => !before.has(key)).map(([ , v ]) => v);
-  console.log(`${ added.length } new package versions in ${ LOCKFILE } compared to ${ base }`);
-
-  const dated = await pool(added, 8, async ({ name, version }) => {
-    const time = (await publishTimes(name))[version];
-    return { name, version, ageDays: time ? (Date.now() - Date.parse(time)) / DAY : undefined };
-  });
-
-  const young = dated.filter(d => d.ageDays === undefined || d.ageDays < Math.max(30, MIN_AGE));
-  const violations = [];
-  for (const d of young) {
-    const dl = d.ageDays === undefined ? 0 : (await getJson(`https://api.npmjs.org/downloads/point/last-week/${ encode(d.name) }`))?.downloads ?? 0;
-    const required = Math.max(dl >= 1_000_000 ? 7 : dl >= 100_000 ? 14 : 30, MIN_AGE);
-    if (d.ageDays === undefined || d.ageDays < required) {
-      violations.push({ ...d, weekly: dl, required });
-    }
-    await new Promise(r => setTimeout(r, 150));
-  }
+  const { added, violations } = await auditLockfile(base, { minAge: MIN_AGE, lockText });
 
   if (process.argv.includes('--write-resolutions')) {
     const lock = pnpmLockDocument(lockText);
@@ -199,8 +212,8 @@ async function main() {
     console.log(`wrote ${ written } override(s) to ${ WORKSPACE_FILE }`);
   }
 
-  for (const v of violations.sort((a, b) => (a.ageDays ?? 0) - (b.ageDays ?? 0))) {
-    console.log(`TOO YOUNG ${ v.name }@${ v.version }  ${ v.ageDays === undefined ? 'unknown age' : `${ v.ageDays.toFixed(1) }d old` } < ${ v.required }d (${ v.weekly }/wk)`);
+  for (const v of violations) {
+    console.log(formatViolation(v));
   }
   console.log(`\n${ violations.length } violation(s) among ${ added.length } new versions`);
   process.exit(violations.length ? 1 : 0);
