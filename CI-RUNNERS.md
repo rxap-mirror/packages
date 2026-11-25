@@ -66,15 +66,16 @@ Conclusions:
 
 ## 4. Proposed runner classes and tags
 
-Size tags named like GitLab's hosted runners (`saas-linux-<size>-amd64`), plus capability tags that combine with
-a size. A job always asks for exactly one size tag.
+Size tags named like GitLab's hosted runners (`saas-linux-<size>-amd64`), prefix `mlr` (ML-Runner): the runner
+platform sets these tags automatically on every runner of a size, so projects never define custom runner tags. A
+job always asks for exactly one size tag; capability tags combine with it.
 
 | Size tag | vCPU / RAM | GCP type | For |
 |---|---|---|---|
-| `rxap-linux-xsmall-amd64` | 2 (shared) / 2 GB | e2-small | triggers (glab), `pages`, `coverage-report`, `secret_detection` |
-| `rxap-linux-small-amd64` | 2 / 8 GB | e2-standard-2 | `setup`, `supply-chain:*`, `framework-watch`, `renovate`, `semgrep-sast`, `writerside` |
-| `rxap-linux-medium-amd64` | 4 / 16 GB | e2-standard-4 | `run-many` (build), lint, `workspace:typedoc`, `workspace:compodoc`, `nx-migrate`, `rxap-compose`, `agent:fix*`, `release:nightly` / `stable` / `publish-only` |
-| `rxap-linux-large-amd64` | 8 / 32 GB | e2-standard-8 | `test` |
+| `mlr-linux-xsmall-amd64` | 2 (shared) / 2 GB | e2-small | triggers (glab), `pages`, `coverage-report`, `secret_detection` |
+| `mlr-linux-small-amd64` | 2 / 8 GB | e2-standard-2 | `setup`, `supply-chain:*`, `framework-watch`, `renovate`, `semgrep-sast`, `writerside` |
+| `mlr-linux-medium-amd64` | 4 / 16 GB | e2-standard-4 | `run-many` (build), lint, `workspace:typedoc`, `workspace:compodoc`, `nx-migrate`, `rxap-compose`, `agent:fix*`, `release:nightly` / `stable` / `publish-only` |
+| `mlr-linux-large-amd64` | 8 / 32 GB | e2-standard-8 | `test` |
 | `saas-linux-small-amd64` | GitLab-hosted | — | `release:npm` only |
 
 Capability tags: `docker` (privileged / BuildKit: `docker`, `startup`, `service-e2e`), `e2e` (browser
