@@ -1,0 +1,45 @@
+# Jobs that extend or override jobs of the nx-workspace component. Included with the same rules as the component
+# (.gitlab-ci.yml, &workspace-pipeline): in the scheduled maintenance pipelines the component is not loaded, and a
+# job extending one of its templates would make the pipeline invalid.
+
+workspace:typedoc:
+  extends: .run
+  stage: build
+  tags:
+    - run
+  environment:
+    action: prepare
+    name: $CI_COMMIT_REF_NAME
+  variables:
+    ADDITIONAL_TARGET_OPTIONS: "--skip-nx-cache"
+  artifacts:
+    name: "${CI_COMMIT_REF_SLUG}_run_workspace_typedoc"
+    paths:
+      - docs
+    expire_in: 1 week
+  rules:
+    - if: '$RELEASE_IT == "true"'
+      when: never
+    - if: '$RXAP_COMPOSE == "true"'
+      when: never
+    - if: '$NX_MIGRATE_PACKAGE == "true"'
+      when: never
+    - when: on_success
+
+# nx-migrate (rxap/gitlab-ci templates/nx-migrate.yml) runs on every push to a migrate/* branch except its own
+# commits. The fix agent (FRAMEWORK-WATCH.md) commits with an `Agent-Fix: <n>` trailer: those commits must not
+# start the migration again. The rules repeat the component's rules, plus the agent rule.
+nx-migrate:
+  rules:
+    - if: '$CI_COMMIT_MESSAGE =~ /Agent-Fix: \d+/'
+      when: never
+    - if: '$CI_COMMIT_MESSAGE =~ /^chore\(workspace\): migrate package/'
+      when: never
+    - if: '$CI_COMMIT_MESSAGE =~ /^nx-migrate:/'
+      when: never
+    - if: '$CI_COMMIT_MESSAGE =~ /^chore\(deps\): migrate package/'
+      when: never
+    - if: '$CI_COMMIT_MESSAGE =~ /^chore\(workspace\): run post migration script/'
+      when: never
+    - if: '$CI_COMMIT_BRANCH =~ /^migrate\//'
+      when: always
