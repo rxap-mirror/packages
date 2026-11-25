@@ -106,7 +106,7 @@
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "command": "npx ng-prism-strip dist/packages/angular/material/localize",
+        "command": "ng-prism-strip dist/packages/angular/material/localize",
         "cwd": "{workspaceRoot}"
       }
     }

@@ -120,7 +120,7 @@
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "command": "npx ng-prism-strip dist/packages/angular/material/table-window-system",
+        "command": "ng-prism-strip dist/packages/angular/material/table-window-system",
         "cwd": "{workspaceRoot}"
       }
     }
