@@ -77,6 +77,8 @@
     "nest-auth0",
     "nest-dto",
     "nest-firebase",
+    "nest-gitlab",
+    "nest-gitlab-release",
     "nest-jwt",
     "nest-keyv-minio",
     "nest-logger",
