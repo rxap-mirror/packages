@@ -203,14 +203,14 @@ next nightly publish through CI.
 
 ### Activation (at the final push, together with `RENOVATE.md`, `FRAMEWORK-WATCH.md`, `AGENT-FIX.md`)
 
-All setup steps of every CI automation in one checklist (runners, tokens with fine-grained permissions, variables,
-settings, order): `CI-SETUP.md`.
+All setup steps of every CI automation in one checklist (runners, service-account tokens from `rxap/terraform`,
+variables, settings, order): `CI-SETUP.md`.
 
-1. Project access token `release-bot` (role *Maintainer*, scopes `api` + `write_repository`, expiry date) → CI
-   variable `RELEASE_GITLAB_TOKEN` (masked, hidden, **protected**: the release jobs only run on `development` and
-   `latest`). Protected branches `development` and `latest`: allow the bot to push.
-2. Protected environment `npm` (deployments: Maintainers + the bot) and GitLab.com hosted runners enabled for the
-   project.
+1. Service account `rxap-release-bot` (Maintainer, `api` + `write_repository`), managed in `rxap/terraform` →
+   CI variable `RELEASE_GITLAB_TOKEN` (masked, **protected**: the release jobs only run on `development` and
+   `latest`, where Maintainers may push).
+2. GitLab.com hosted runners enabled for the project. The environment `npm` stays unprotected (protected
+   environments are Premium); the trusted publisher still names it.
 3. Trusted publishers, **on the same day as step 4** (a new configuration expires when nothing is published
    through it within 2 days): `npm login`, then `node tools/scripts/npm-trust.mjs configure` (`--dry-run` first;
    the first call asks for 2FA — tick "skip 2FA for 5 minutes", continue with `--from <name>` when the window

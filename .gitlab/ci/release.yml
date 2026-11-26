@@ -15,7 +15,7 @@
 #      Already published versions are skipped: after a failure just retry the job.
 # The trusted publisher of every package (tools/scripts/npm-trust.mjs) names .gitlab-ci.yml and the environment npm.
 #
-# GitLab: RELEASE_GITLAB_TOKEN (project access token "release-bot", Maintainer, api + write_repository; masked,
+# GitLab: RELEASE_GITLAB_TOKEN (service account rxap-release-bot from rxap/terraform, Maintainer, api + write_repository; masked,
 # hidden, protected) pushes the release commit and tags to development / latest, reads the pipeline status and
 # creates the GitLab releases. Only the build job sees it.
 
