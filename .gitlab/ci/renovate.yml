@@ -25,6 +25,10 @@ renovate:
     RENOVATE_REPOSITORY_CACHE: enabled
     RENOVATE_GIT_AUTHOR: "rxap renovate bot <renovate-bot@rxap.dev>"
     LOG_LEVEL: info
+    # The runner restores the cache as root, while the renovate image runs as an unprivileged user (EACCES on
+    # .renovate/cache). With this flag the runner hands the build directory, including the restored cache, to the
+    # image's user (id -u / id -g) instead of relying on umask 0000.
+    FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR: "true"
   cache:
     key: renovate
     paths:
