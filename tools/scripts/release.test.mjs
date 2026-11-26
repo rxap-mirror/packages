@@ -4,7 +4,8 @@
 // ORDER of its phases in the source, because the order is what keeps a failed build/guard from leaving tags
 // behind (regression: the release was aborted by the ng-prism guard AFTER the tags had been created and pushed).
 import assert from 'node:assert/strict';
-import { readFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { describe, it } from 'node:test';
 import { fileURLToPath } from 'node:url';
@@ -108,14 +109,41 @@ describe('lib/release-plan.mjs', () => {
 });
 
 describe('dist-transforms.mjs', () => {
-  it('runs the theme export, the workspace-marker strip, prism-strip and the ng-prism guard in this order', async () => {
+  function fixture() {
+    const root = mkdtempSync(join(tmpdir(), 'dist-transforms-'));
+    const write = (dir, manifest, theme) => {
+      mkdirSync(join(root, dir), { recursive: true });
+      writeFileSync(join(root, dir, 'package.json'), JSON.stringify(manifest));
+      if (theme) {
+        writeFileSync(join(root, dir, 'theme.css'), '');
+      }
+    };
+    write('dist/packages/angular/layout', { name: 'l', exports: { '.': './index.js' }, dependencies: { workspace: '*' } }, true);
+    write('dist/packages/angular/icon', { name: 'i' });
+    write('dist/packages/nest/gitlab', { name: 'g', peerDependencies: { workspace: '*', a: '1' } });
+    return root;
+  }
+  const read = (root, dir) => JSON.parse(readFileSync(join(root, dir, 'package.json'), 'utf8'));
+
+  it('adds the theme export and strips the workspace marker in-process, then runs prism-strip and the guard', async () => {
     const { applyDistTransforms } = await import('./dist-transforms.mjs');
+    const root = fixture();
     const commands = [];
-    applyDistTransforms({ projects: ['a', 'b'], run: (cmd) => commands.push(cmd) });
-    assert.equal(commands.length, 4);
-    assert.match(commands[0], /add-theme-entry-point-to-package-json\.sh/);
-    assert.match(commands[1], /remove-blacklisted-package-dependenceis\.sh/);
-    assert.match(commands[2], /--targets=prism-strip --projects=a,b /);
-    assert.match(commands[3], /check-dist-for-ng-prism\.mjs --projects=a,b$/);
+    applyDistTransforms({ projects: ['a', 'b'], run: (cmd) => commands.push(cmd), root });
+    assert.deepEqual(read(root, 'dist/packages/angular/layout'), {
+      name: 'l', exports: { '.': './index.js', './theme': './theme.css' }, dependencies: {},
+    });
+    assert.deepEqual(read(root, 'dist/packages/angular/icon'), { name: 'i' });
+    assert.deepEqual(read(root, 'dist/packages/nest/gitlab'), { name: 'g', peerDependencies: { a: '1' } });
+    assert.equal(commands.length, 2);
+    assert.match(commands[0], /--targets=prism-strip --projects=a,b /);
+    assert.match(commands[1], /check-dist-for-ng-prism\.mjs --projects=a,b$/);
+  });
+
+  it('throws on a broken dist package.json instead of skipping it', async () => {
+    const { stripWorkspaceMarker } = await import('./dist-transforms.mjs');
+    const root = fixture();
+    writeFileSync(join(root, 'dist/packages/nest/gitlab/package.json'), '{');
+    assert.throws(() => stripWorkspaceMarker(root));
   });
 });
