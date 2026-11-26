@@ -96,7 +96,7 @@ import { createInterface } from 'node:readline/promises';
 import { stdin as input, stdout as output } from 'node:process';
 import { createRequire } from 'node:module';
 import { applyDistTransforms } from './dist-transforms.mjs';
-import { listReleaseProjects as listGroupProjects, pushArgs, stampedPlan as planStamped } from './lib/release-plan.mjs';
+import { listReleaseProjects as listGroupProjects, pushArgs, stampedPlan as planStamped, strayDocsProjects } from './lib/release-plan.mjs';
 
 const require = createRequire(import.meta.url);
 
@@ -801,6 +801,10 @@ function buildDist(projects) {
   run(`pnpm nx run-many --targets=readme --projects=${list} --exclude=angular --skip-nx-cache --nxBail`);
   run(`pnpm nx run-many --targets=compodoc --projects=${list} --exclude=angular,workspace --skip-nx-cache --nxBail`);
   run(`pnpm nx run-many --targets=typedoc --projects=${list} --exclude=angular,workspace --skip-nx-cache --nxBail`);
+  const stray = strayDocsProjects();
+  if (stray.length > 0) {
+    die(`generated docs contain project.json copies (a README links to a sibling folder; link the npm page instead):\n  ${stray.join('\n  ')}`);
+  }
   run(`pnpm nx run-many --targets=build --configuration=production --projects=${list} --exclude=angular --skip-nx-cache --nxBail`);
 }
 

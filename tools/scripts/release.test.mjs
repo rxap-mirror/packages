@@ -99,6 +99,15 @@ describe('lib/release-plan.mjs', () => {
     assert.deepEqual([...stampedPlan(projects, { isPrerelease: false }).bySpecifier][0], ['22.0.0', ['utilities']]);
   });
 
+  it('finds project.json copies that typedoc put into a docs folder', async () => {
+    const { strayDocsProjects } = await import('./lib/release-plan.mjs');
+    const root = mkdtempSync(join(tmpdir(), 'stray-docs-'));
+    mkdirSync(join(root, 'packages/nest/a/docs/markdown/_media/b'), { recursive: true });
+    writeFileSync(join(root, 'packages/nest/a/project.json'), '{}');
+    writeFileSync(join(root, 'packages/nest/a/docs/markdown/_media/b/project.json'), '{}');
+    assert.deepEqual(strayDocsProjects(root), [ 'packages/nest/a/docs/markdown/_media/b/project.json' ]);
+  });
+
   it('recognises the commits release.mjs writes', async () => {
     const { isReleaseCommit } = await import('./lib/release-plan.mjs');
     assert.ok(isReleaseCommit('chore(release): version'));

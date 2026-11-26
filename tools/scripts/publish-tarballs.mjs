@@ -12,9 +12,12 @@
  * - a version that is already on the registry is skipped, so a retry of the job only publishes what is missing
  * - the rxap umbrella is only published when every package of the packages group is on the registry (its
  *   packageGroup pins those versions)
- * Env: NPM_BIN (default npm)
+ * - publishes PUBLISH_CONCURRENCY packages at once (default 8): npm exchanges the job's OIDC ID token per publish,
+ *   and the registry stopped accepting it ~5 minutes into the job (bootstrap 2026-11-26: 42 of 125 published
+ *   one by one, then ENEEDAUTH for the rest). Each npm run is logged verbosely; the log is printed only on failure.
+ * Env: NPM_BIN (default npm), PUBLISH_CONCURRENCY
  */
-import { spawnSync } from 'node:child_process';
+import { spawn } from 'node:child_process';
 import { existsSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -33,6 +36,57 @@ export const blockedByMembers = (entry, failed) => entry.group === 'rxap' && fai
 
 export const publishArgs = (file, { distTag, registry }) =>
   [ 'publish', file, '--tag', distTag, '--access', 'public', '--registry', registry ];
+
+/** run a command, collect stdout + stderr in one string */
+function runCaptured(cmd, args) {
+  return new Promise((done) => {
+    const child = spawn(cmd, args, { stdio: [ 'ignore', 'pipe', 'pipe' ] });
+    let output = '';
+    child.stdout.on('data', (chunk) => (output += chunk));
+    child.stderr.on('data', (chunk) => (output += chunk));
+    child.on('error', (error) => done({ status: 1, output: `${ output }\n${ error.message }` }));
+    child.on('close', (status) => done({ status, output }));
+  });
+}
+
+/**
+ * Publish the `packages` group `concurrency` at a time, then the umbrella (only when no member failed).
+ * @param steps from plan()
+ * @param publishOne async (step) => boolean
+ * @returns the failed steps
+ */
+export async function publishAll(steps, publishOne, concurrency = 8) {
+  const failed = [];
+  const id = (step) => `${ step.name }@${ step.version }`;
+  const runStep = async (step) => {
+    if (await publishOne(step)) {
+      console.log(`✔ ${ id(step) }`);
+    } else {
+      console.error(`✗ ${ id(step) } failed`);
+      failed.push(step);
+    }
+  };
+  for (const step of steps.filter((s) => s.action === 'skip')) {
+    console.log(`= ${ id(step) } already published`);
+  }
+  const todo = steps.filter((s) => s.action === 'publish');
+  const members = todo.filter((s) => s.group !== 'rxap');
+  const queue = [ ...members ];
+  await Promise.all(Array.from({ length: Math.min(concurrency, queue.length) }, async () => {
+    while (queue.length > 0) {
+      await runStep(queue.shift());
+    }
+  }));
+  for (const step of todo.filter((s) => s.group === 'rxap')) {
+    if (blockedByMembers(step, failed)) {
+      console.error(`✗ ${ id(step) } not published: member packages failed (retry the job)`);
+      failed.push(step);
+    } else {
+      await runStep(step);
+    }
+  }
+  return failed;
+}
 
 async function publishedVersions(registry, name) {
   const res = await fetch(`${ registry.replace(/\/$/, '') }/${ name.replace('/', '%2f') }`, {
@@ -68,31 +122,22 @@ async function main([ dirArg, ...argv ]) {
   console.log(`${ steps.length } package(s) → ${ manifest.registry } @${ manifest.distTag }`);
 
   const npm = process.env.NPM_BIN || 'npm';
-  const failed = [];
-  for (const step of steps) {
-    const id = `${ step.name }@${ step.version }`;
-    if (step.action === 'skip') {
-      console.log(`= ${ id } already published`);
-      continue;
-    }
-    if (blockedByMembers(step, failed)) {
-      console.error(`✗ ${ id } not published: member packages failed (retry the job)`);
-      failed.push(step);
-      continue;
-    }
-    const args = publishArgs(join(dir, step.file), manifest);
-    console.log(`$ ${ npm } ${ args.join(' ') }`);
+  const concurrency = Number(process.env.PUBLISH_CONCURRENCY) || 8;
+  const publishOne = async (step) => {
+    const args = [ ...publishArgs(join(dir, step.file), manifest), '--loglevel', 'verbose' ];
     if (dryRun) {
-      continue;
+      console.log(`$ ${ npm } ${ args.join(' ') }`);
+      return true;
     }
-    const res = spawnSync(npm, args, { stdio: 'inherit' });
-    if (res.status !== 0) {
-      console.error(`✗ ${ id } failed (exit ${ res.status })`);
-      failed.push(step);
-    } else {
-      console.log(`✔ ${ id }`);
+    const { status, output } = await runCaptured(npm, args);
+    if (status !== 0) {
+      console.error(`--- npm output for ${ step.name }@${ step.version } ---\n${ output.trim() }\n---`);
     }
-  }
+    return status === 0;
+  };
+  const started = Date.now();
+  const failed = await publishAll(steps, publishOne, concurrency);
+  console.log(`done in ${ Math.round((Date.now() - started) / 1000) } s`);
   if (failed.length > 0) {
     console.error(`${ failed.length } package(s) not published: ${ failed.map(f => f.name).join(', ') } — retry the job`);
     return 1;

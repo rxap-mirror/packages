@@ -137,3 +137,19 @@ export function pushArgs({ remote = 'origin', branch, tags, pushOptions = [ 'ci.
     ...[ ...new Set(tags) ].map(t => `refs/tags/${ t }:refs/tags/${ t }`),
   ];
 }
+
+/**
+ * project.json files below a generated `docs/` folder. typedoc copies a relatively linked folder (e.g. a README link
+ * to `../other-lib`) into `docs/**\/_media` — with its project.json, so Nx sees that project twice and may pick the
+ * copy (the release then builds and packs the wrong folder).
+ */
+export function strayDocsProjects(root = process.cwd()) {
+  const base = join(root, 'packages');
+  if (!existsSync(base)) {
+    return [];
+  }
+  return readdirSync(base, { recursive: true })
+    .map(String)
+    .filter((file) => !file.includes('node_modules') && /(^|\/)docs\/(.+\/)?project\.json$/.test(file))
+    .map((file) => join('packages', file));
+}
