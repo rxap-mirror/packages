@@ -1,3 +1,27 @@
+## 24.0.0-dev.2 (2026-11-26)
+
+### 🚀 Features
+
+- **plugin-workspace:** set up workspaces for the package manager they use
+
+### 🩹 Fixes
+
+- **workspace-utilities,plugin-gitlab-ci:** pin corepack instead of installing the latest
+- **plugin-library:** stop writing publishConfig.directory
+- **plugin-workspace:** only add the yarn ignore entries to yarn workspaces
+- **plugin:** declare the dependencies the plugins import
+- **workspace-utilities:** let an unambiguous lockfile win over a stale packageManager field
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 24.0.0-dev.2
+- Updated plugin-utilities to 24.0.0-dev.2
+- Updated utilities to 16.5.3-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 24.0.0-dev.1 (2026-11-23)
 
 ### 🧱 Updated Dependencies

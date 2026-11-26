@@ -1,5 +1,5 @@
 {
-  "version": "22.0.0-dev.1",
+  "version": "22.0.0-dev.2",
   "name": "@rxap/table-system",
   "description": "This package provides a set of Angular directives, components, and services to enhance data tables with features like row expansion, full-text search, and row selection with checkboxes. It includes modules for easy integration of these features into existing Angular Material tables. The package offers components for controlling row expansion, displaying checkbox-based row selection, and filtering table data using full-text search.\n",
   "license": "GPL-3.0-or-later",
@@ -13,8 +13,8 @@
     "@angular/core": "^22.0.0",
     "@angular/forms": "^22.0.0",
     "@angular/material": "^22.0.0",
-    "@rxap/data-source": "^22.0.0-dev.1",
-    "@rxap/material-table-system": "^22.0.0-dev.1",
+    "@rxap/data-source": "^22.0.0-dev.2",
+    "@rxap/material-table-system": "^22.0.0-dev.2",
     "rxjs": "^7.0.0"
   },
   "author": {
@@ -72,75 +72,75 @@
       },
       {
         "package": "@rxap/browser-utilities",
-        "version": "1.1.16-dev.0"
+        "version": "1.1.16-dev.1"
       },
       {
         "package": "@rxap/components",
-        "version": "22.0.0-dev.1"
+        "version": "22.0.0-dev.2"
       },
       {
         "package": "@rxap/data-source",
-        "version": "22.0.0-dev.1"
+        "version": "22.0.0-dev.2"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.20-dev.0"
+        "version": "1.1.20-dev.1"
       },
       {
         "package": "@rxap/definition",
-        "version": "22.0.0-dev.1"
+        "version": "22.0.0-dev.2"
       },
       {
         "package": "@rxap/directives",
-        "version": "22.0.0-dev.1"
+        "version": "22.0.0-dev.2"
       },
       {
         "package": "@rxap/environment",
-        "version": "22.0.0-dev.1"
+        "version": "22.0.0-dev.2"
       },
       {
         "package": "@rxap/forms",
-        "version": "22.0.0-dev.1"
+        "version": "22.0.0-dev.2"
       },
       {
         "package": "@rxap/material-directives",
-        "version": "22.0.0-dev.1"
+        "version": "22.0.0-dev.2"
       },
       {
         "package": "@rxap/material-table-system",
-        "version": "22.0.0-dev.1"
+        "version": "22.0.0-dev.2"
       },
       {
         "package": "@rxap/ngx-memory",
-        "version": "22.0.0-dev.1"
+        "version": "22.0.0-dev.2"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.17-dev.0"
+        "version": "1.1.17-dev.1"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.19-dev.0"
+        "version": "1.0.19-dev.1"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.19-dev.0"
+        "version": "1.1.19-dev.1"
       },
       {
         "package": "@rxap/services",
-        "version": "22.0.0-dev.1"
+        "version": "22.0.0-dev.2"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.3-dev.0"
+        "version": "16.5.3-dev.1"
       },
       {
         "package": "@rxap/validator",
-        "version": "3.0.16-dev.0"
+        "version": "3.0.16-dev.1"
       },
       {
         "package": "@rxap/window-system",
-        "version": "22.0.0-dev.1"
+        "version": "22.0.0-dev.2"
       }
     ]
   },

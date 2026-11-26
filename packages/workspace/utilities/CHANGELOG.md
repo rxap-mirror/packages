@@ -1,3 +1,26 @@
+## 24.0.0-dev.2 (2026-11-26)
+
+### 🚀 Features
+
+- **workspace-utilities:** add the Dockerfile setup of the package manager to the profile
+- **workspace-utilities:** detect the package manager and render templates for it
+
+### 🩹 Fixes
+
+- **workspace-utilities,plugin-gitlab-ci:** pin corepack instead of installing the latest
+- **plugin-library:** stop writing publishConfig.directory
+- resolve peers from the workspace root
+- **workspace-utilities:** let an unambiguous lockfile win over a stale packageManager field
+
+### 🧱 Updated Dependencies
+
+- Updated node-utilities to 1.3.14-dev.1
+- Updated utilities to 16.5.3-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 24.0.0-dev.1 (2026-11-23)
 
 ### 🚀 Features

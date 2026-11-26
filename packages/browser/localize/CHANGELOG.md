@@ -1,3 +1,13 @@
+## 0.1.2-dev.1 (2026-11-26)
+
+### 🩹 Fixes
+
+- **plugin-library:** stop writing publishConfig.directory
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 0.1.2-dev.0 (2026-11-23)
 
 This was a version bump only for browser-localize to align it with other projects, there were no code changes.

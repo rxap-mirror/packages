@@ -1,3 +1,22 @@
+## 22.0.0-dev.2 (2026-11-26)
+
+### 🩹 Fixes
+
+- **plugin-library:** stop writing publishConfig.directory
+- resolve peers from the workspace root
+- **schematic-composer:** install with the package manager of the workspace
+
+### 🧱 Updated Dependencies
+
+- Updated schematic-utilities to 22.0.0-dev.2
+- Updated workspace-utilities to 24.0.0-dev.2
+- Updated schematic-ts-morph to 22.0.0-dev.2
+- Updated utilities to 16.5.3-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 22.0.0-dev.1 (2026-11-23)
 
 ### 🧱 Updated Dependencies

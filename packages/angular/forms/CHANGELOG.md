@@ -1,3 +1,27 @@
+## 22.0.0-dev.2 (2026-11-26)
+
+### 🩹 Fixes
+
+- **plugin-library:** stop writing publishConfig.directory
+- **angular:** ship the generators in the published packages
+- resolve peers from the workspace root
+- **angular:** fall back to the definition constructor in production builds
+
+### 🧱 Updated Dependencies
+
+- Updated angular-definition to 22.0.0-dev.2
+- Updated angular-directives to 22.0.0-dev.2
+- Updated angular-services to 22.0.0-dev.2
+- Updated reflect-metadata to 1.0.19-dev.1
+- Updated utilities to 16.5.3-dev.1
+- Updated validator to 3.0.16-dev.1
+- Updated pattern to 1.1.17-dev.1
+- Updated rxjs to 1.1.19-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 22.0.0-dev.1 (2026-11-23)
 
 ### 🚀 Features

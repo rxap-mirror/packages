@@ -1,3 +1,27 @@
+## 22.0.0-dev.2 (2026-11-26)
+
+### 🩹 Fixes
+
+- **plugin-library:** stop writing publishConfig.directory
+- **browser-theme,angular-tree:** anchor jest transformIgnorePatterns for the pnpm layout
+- **angular:** ship the generators in the published packages
+- resolve peers from the workspace root
+
+### 🧱 Updated Dependencies
+
+- Updated angular-material-directives to 22.0.0-dev.2
+- Updated angular-contenteditable to 22.0.0-dev.2
+- Updated angular-data-source to 22.0.0-dev.2
+- Updated data-structure-tree to 1.1.20-dev.1
+- Updated angular-forms to 22.0.0-dev.2
+- Updated utilities to 16.5.3-dev.1
+- Updated pattern to 1.1.17-dev.1
+- Updated rxjs to 1.1.19-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 22.0.0-dev.1 (2026-11-23)
 
 ### 🚀 Features

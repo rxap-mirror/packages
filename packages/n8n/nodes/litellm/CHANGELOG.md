@@ -1,3 +1,14 @@
+## 0.0.7-dev.1 (2026-11-26)
+
+### 🩹 Fixes
+
+- update vulnerable dependencies within their ranges
+- **plugin-library:** stop writing publishConfig.directory
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 0.0.7-dev.0 (2026-11-23)
 
 This was a version bump only for n8n-nodes-litellm to align it with other projects, there were no code changes.

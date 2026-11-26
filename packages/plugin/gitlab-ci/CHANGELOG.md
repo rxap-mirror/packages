@@ -1,3 +1,22 @@
+## 24.0.0-dev.2 (2026-11-26)
+
+### 🩹 Fixes
+
+- **workspace-utilities,plugin-gitlab-ci:** pin corepack instead of installing the latest
+- **plugin-library:** stop writing publishConfig.directory
+- **plugin-gitlab-ci:** render the ci templates for the workspace package manager
+- **plugin-application:** render the dev scripts for the workspace package manager
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 24.0.0-dev.2
+- Updated plugin-utilities to 24.0.0-dev.2
+- Updated utilities to 16.5.3-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 24.0.0-dev.1 (2026-11-23)
 
 ### 🧱 Updated Dependencies

@@ -1,5 +1,5 @@
 {
-  "version": "22.0.0-dev.1",
+  "version": "22.0.0-dev.2",
   "name": "@rxap/service-worker",
   "description": "Provides services and components to simplify the management of service worker updates in Angular applications. It includes features such as automatic updates, dialog prompts for updates, and logging of update events. The package also offers utilities to unregister service workers and initialize peer dependencies.\n",
   "license": "GPL-3.0-or-later",
@@ -11,8 +11,8 @@
     "@angular/core": "^22.0.0",
     "@angular/material": "^22.0.0",
     "@angular/service-worker": "^22.0.0",
-    "@rxap/environment": "^22.0.0-dev.1",
-    "@rxap/life-cycle": "^22.0.0-dev.1",
+    "@rxap/environment": "^22.0.0-dev.2",
+    "@rxap/life-cycle": "^22.0.0-dev.2",
     "rxjs": "^7.0.0"
   },
   "author": {
@@ -37,11 +37,27 @@
   "nx-migrations": {
     "packageGroup": [
       {
+        "package": "@angular/cdk",
+        "version": "22.3.0"
+      },
+      {
         "package": "@angular/common",
         "version": "22.3.0"
       },
       {
+        "package": "@angular/compiler",
+        "version": "22.3.0"
+      },
+      {
         "package": "@angular/core",
+        "version": "22.3.0"
+      },
+      {
+        "package": "@angular/forms",
+        "version": "22.3.0"
+      },
+      {
+        "package": "@angular/material",
         "version": "22.3.0"
       },
       {
@@ -58,15 +74,15 @@
       },
       {
         "package": "@rxap/environment",
-        "version": "22.0.0-dev.1"
+        "version": "22.0.0-dev.2"
       },
       {
         "package": "@rxap/life-cycle",
-        "version": "22.0.0-dev.1"
+        "version": "22.0.0-dev.2"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.3-dev.0"
+        "version": "16.5.3-dev.1"
       }
     ]
   },

@@ -1,3 +1,15 @@
+## 1.1.3-dev.1 (2026-11-26)
+
+### 🩹 Fixes
+
+- update vulnerable dependencies within their ranges
+- **plugin-library:** stop writing publishConfig.directory
+- resolve peers from the workspace root
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 1.1.3-dev.0 (2026-11-23)
 
 This was a version bump only for browser-tailwind to align it with other projects, there were no code changes.

@@ -1,3 +1,24 @@
+## 24.0.0-dev.2 (2026-11-26)
+
+### 🚀 Features
+
+- **plugin-utilities:** add PackageManagerExec and deprecate YarnRun
+
+### 🩹 Fixes
+
+- **plugin-library:** stop writing publishConfig.directory
+- resolve peers from the workspace root
+- **plugin:** declare the dependencies the plugins import
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 24.0.0-dev.2
+- Updated node-utilities to 1.3.14-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 24.0.0-dev.1 (2026-11-23)
 
 ### 🧱 Updated Dependencies

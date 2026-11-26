@@ -1,3 +1,28 @@
+## 22.0.0-dev.2 (2026-11-26)
+
+### 🩹 Fixes
+
+- **angular-open-api,n8n-nodes-cqrs,n8n-nodes-firecrawl,nest-auth0,plugin-angular,plugin-gpt,schematic-open-api,workspace-open-api:** align the dependency ranges with the workspace
+- **plugin-library:** stop writing publishConfig.directory
+- **angular:** ship the generators in the published packages
+- resolve peers from the workspace root
+- **angular:** declare the dependencies the angular packages import
+
+### 🧱 Updated Dependencies
+
+- Updated angular-remote-method to 22.0.0-dev.2
+- Updated angular-data-source to 22.0.0-dev.2
+- Updated angular-environment to 22.0.0-dev.2
+- Updated angular-config to 22.0.0-dev.2
+- Updated utilities to 16.5.3-dev.1
+- Updated pattern to 1.1.17-dev.1
+- Updated mixin to 16.0.18-dev.1
+- Updated rxjs to 1.1.19-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 22.0.0-dev.1 (2026-11-23)
 
 ### 🚀 Features

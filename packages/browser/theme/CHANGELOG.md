@@ -1,3 +1,14 @@
+## 0.1.3-dev.1 (2026-11-26)
+
+### 🩹 Fixes
+
+- **plugin-library:** stop writing publishConfig.directory
+- **browser-theme,angular-tree:** anchor jest transformIgnorePatterns for the pnpm layout
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 0.1.3-dev.0 (2026-11-23)
 
 This was a version bump only for browser-theme to align it with other projects, there were no code changes.

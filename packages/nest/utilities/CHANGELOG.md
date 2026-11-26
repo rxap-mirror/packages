@@ -1,3 +1,20 @@
+## 12.0.0-dev.2 (2026-11-26)
+
+### 🩹 Fixes
+
+- **plugin-library:** stop writing publishConfig.directory
+- **nest:** ship generators.json and the generator schemas
+- resolve peers from the workspace root
+- **nest:** declare the dependencies the nest packages import
+
+### 🧱 Updated Dependencies
+
+- Updated utilities to 16.5.3-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 12.0.0-dev.1 (2026-11-23)
 
 ### 🧱 Updated Dependencies

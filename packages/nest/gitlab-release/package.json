@@ -1,5 +1,5 @@
 {
-  "version": "12.0.0-dev.1",
+  "version": "12.0.0-dev.2",
   "name": "@rxap/nest-gitlab-release",
   "description": "NestJS service for GitLab releases: list releases as options, filter them (environment tier, asset presence) and check whether a release asset is downloadable. Builds on @rxap/nest-gitlab.\n",
   "license": "GPL-3.0-or-later",
@@ -9,9 +9,9 @@
   "peerDependencies": {
     "@nestjs/common": "^12.0.0",
     "@gitbeaker/rest": "^43.8.0",
-    "@rxap/nest-dto": "^12.0.0-dev.1",
-    "@rxap/nest-gitlab": "^12.0.0-dev.1",
-    "@rxap/nest-open-api": "^12.0.0-dev.1",
+    "@rxap/nest-dto": "^12.0.0-dev.2",
+    "@rxap/nest-gitlab": "^12.0.0-dev.2",
+    "@rxap/nest-open-api": "^12.0.0-dev.2",
     "class-transformer": "^0.5.0"
   },
   "author": {

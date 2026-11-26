@@ -1,5 +1,5 @@
 {
-  "version": "12.0.0-dev.1",
+  "version": "12.0.0-dev.2",
   "name": "@rxap/nest-minio",
   "description": "NestJS module for integrating with Minio object storage. It provides a service for interacting with Minio, a configurable module builder, and a health indicator for monitoring Minio's status. The module also includes options loader for configuration.\n",
   "license": "GPL-3.0-or-later",
@@ -11,7 +11,7 @@
     "@nestjs/common": "^12.0.0",
     "@nestjs/config": "^12.0.0",
     "@nestjs/terminus": "^12.0.0",
-    "@rxap/nest-utilities": "^12.0.0-dev.1",
+    "@rxap/nest-utilities": "^12.0.0-dev.2",
     "joi": "^18.0.0",
     "minio": "^8.0.0"
   },
@@ -85,11 +85,11 @@
       },
       {
         "package": "@rxap/nest-utilities",
-        "version": "12.0.0-dev.1"
+        "version": "12.0.0-dev.2"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.3-dev.0"
+        "version": "16.5.3-dev.1"
       }
     ]
   },

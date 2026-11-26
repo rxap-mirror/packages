@@ -1,3 +1,22 @@
+## 1.3.14-dev.1 (2026-11-26)
+
+### 🩹 Fixes
+
+- **plugin-library:** stop writing publishConfig.directory
+- resolve peers from the workspace root
+
+### 🔥 Performance
+
+- **node-utilities:** read the package info cache lazily
+
+### 🧱 Updated Dependencies
+
+- Updated utilities to 16.5.3-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 1.3.14-dev.0 (2026-11-23)
 
 ### 🧱 Updated Dependencies

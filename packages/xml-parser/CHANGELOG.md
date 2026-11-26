@@ -1,3 +1,20 @@
+## 16.3.3-dev.1 (2026-11-26)
+
+### 🩹 Fixes
+
+- **plugin-library:** stop writing publishConfig.directory
+- resolve peers from the workspace root
+
+### 🧱 Updated Dependencies
+
+- Updated reflect-metadata to 1.0.19-dev.1
+- Updated utilities to 16.5.3-dev.1
+- Updated mixin to 16.0.18-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 16.3.3-dev.0 (2026-11-23)
 
 ### 🧱 Updated Dependencies

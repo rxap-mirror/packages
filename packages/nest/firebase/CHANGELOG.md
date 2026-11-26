@@ -1,3 +1,15 @@
+## 12.0.0-dev.2 (2026-11-26)
+
+### 🩹 Fixes
+
+- **plugin-library:** stop writing publishConfig.directory
+- **nest:** ship generators.json and the generator schemas
+- resolve peers from the workspace root
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 12.0.0-dev.1 (2026-11-23)
 
 This was a version bump only for nest-firebase to align it with other projects, there were no code changes.

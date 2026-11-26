@@ -1,3 +1,24 @@
+## 22.0.0-dev.2 (2026-11-26)
+
+### 🚀 Features
+
+- **preset-workspace,preset-angular:** pass the packageManager option to the workspace init
+
+### 🩹 Fixes
+
+- **plugin-library:** stop writing publishConfig.directory
+- **plugin-workspace:** only add the yarn ignore entries to yarn workspaces
+- resolve peers from the workspace root
+
+### 🧱 Updated Dependencies
+
+- Updated plugin-workspace to 24.0.0-dev.2
+- Updated plugin-angular to 24.0.0-dev.2
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 22.0.0-dev.1 (2026-11-23)
 
 ### 🧱 Updated Dependencies

@@ -1,3 +1,20 @@
+## 24.0.0-dev.2 (2026-11-26)
+
+### 🩹 Fixes
+
+- **plugin-library:** stop writing publishConfig.directory
+- **plugin:** declare the dependencies the plugins import
+- **plugin-localazy:** run the localazy cli with the workspace package manager
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 24.0.0-dev.2
+- Updated plugin-utilities to 24.0.0-dev.2
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 24.0.0-dev.1 (2026-11-23)
 
 ### 🧱 Updated Dependencies

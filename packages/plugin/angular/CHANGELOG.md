@@ -1,3 +1,33 @@
+## 24.0.0-dev.2 (2026-11-26)
+
+### 🚀 Features
+
+- **plugin-angular:** add build-generators executor
+
+### 🩹 Fixes
+
+- **angular-open-api,n8n-nodes-cqrs,n8n-nodes-firecrawl,nest-auth0,plugin-angular,plugin-gpt,schematic-open-api,workspace-open-api:** align the dependency ranges with the workspace
+- update vulnerable dependencies within their ranges
+- **plugin-library:** stop writing publishConfig.directory
+- **plugin-angular:** add angular packages with the installed angular version
+- **plugin-angular:** init libraries that have no tsconfig.spec.json
+- **plugin-angular:** add angular packages with the angular version of the workspace
+- **plugin:** declare the dependencies the plugins import
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 24.0.0-dev.2
+- Updated plugin-application to 24.0.0-dev.2
+- Updated workspace-ts-morph to 24.0.0-dev.2
+- Updated plugin-utilities to 24.0.0-dev.2
+- Updated plugin-library to 24.0.0-dev.2
+- Updated utilities to 16.5.3-dev.1
+- Updated ts-morph to 1.7.2-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 24.0.0-dev.1 (2026-11-23)
 
 ### 🩹 Fixes

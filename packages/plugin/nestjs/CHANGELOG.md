@@ -1,3 +1,32 @@
+## 24.0.0-dev.2 (2026-11-26)
+
+### 🚀 Features
+
+- **workspace-utilities:** add the Dockerfile setup of the package manager to the profile
+
+### 🩹 Fixes
+
+- **tools:** read framework versions without range prefix in post-migrate
+- **plugin-library:** stop writing publishConfig.directory
+- **plugin:** declare the dependencies the plugins import
+- **plugin-nestjs:** install the production dependencies with the workspace package manager
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 24.0.0-dev.2
+- Updated plugin-application to 24.0.0-dev.2
+- Updated workspace-ts-morph to 24.0.0-dev.2
+- Updated plugin-utilities to 24.0.0-dev.2
+- Updated plugin-open-api to 24.0.0-dev.2
+- Updated node-utilities to 1.3.14-dev.1
+- Updated plugin-library to 24.0.0-dev.2
+- Updated utilities to 16.5.3-dev.1
+- Updated ts-morph to 1.7.2-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 24.0.0-dev.1 (2026-11-23)
 
 ### 🧱 Updated Dependencies

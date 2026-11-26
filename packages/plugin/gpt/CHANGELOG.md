@@ -1,3 +1,22 @@
+## 24.0.0-dev.2 (2026-11-26)
+
+### 🩹 Fixes
+
+- **angular-open-api,n8n-nodes-cqrs,n8n-nodes-firecrawl,nest-auth0,plugin-angular,plugin-gpt,schematic-open-api,workspace-open-api:** align the dependency ranges with the workspace
+- **plugin-library:** stop writing publishConfig.directory
+- resolve peers from the workspace root
+- **plugin:** declare the dependencies the plugins import
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 24.0.0-dev.2
+- Updated workspace-ts-morph to 24.0.0-dev.2
+- Updated ts-morph to 1.7.2-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 24.0.0-dev.1 (2026-11-23)
 
 ### 🧱 Updated Dependencies

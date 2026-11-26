@@ -1,3 +1,21 @@
+## 12.0.0-dev.2 (2026-11-26)
+
+### 🩹 Fixes
+
+- **angular-open-api,n8n-nodes-cqrs,n8n-nodes-firecrawl,nest-auth0,plugin-angular,plugin-gpt,schematic-open-api,workspace-open-api:** align the dependency ranges with the workspace
+- **plugin-library:** stop writing publishConfig.directory
+- **nest:** ship generators.json and the generator schemas
+- resolve peers from the workspace root
+- **nest:** declare the dependencies the nest packages import
+
+### 🧱 Updated Dependencies
+
+- Updated nest-utilities to 12.0.0-dev.2
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 12.0.0-dev.1 (2026-11-23)
 
 ### 🧱 Updated Dependencies

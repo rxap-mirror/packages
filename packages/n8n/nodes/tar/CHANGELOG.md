@@ -1,3 +1,17 @@
+## 0.1.4-dev.1 (2026-11-26)
+
+### 🩹 Fixes
+
+- **plugin-library:** stop writing publishConfig.directory
+
+### 🧱 Updated Dependencies
+
+- Updated n8n-utilities to 1.2.5-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 0.1.4-dev.0 (2026-11-23)
 
 ### 🧱 Updated Dependencies

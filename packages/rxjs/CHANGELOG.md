@@ -1,3 +1,18 @@
+## 1.1.19-dev.1 (2026-11-26)
+
+### 🩹 Fixes
+
+- **plugin-library:** stop writing publishConfig.directory
+- resolve peers from the workspace root
+
+### 🧱 Updated Dependencies
+
+- Updated utilities to 16.5.3-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 1.1.19-dev.0 (2026-11-23)
 
 ### 🧱 Updated Dependencies

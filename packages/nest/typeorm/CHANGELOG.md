@@ -1,3 +1,17 @@
+## 12.0.0-dev.2 (2026-11-26)
+
+### 🩹 Fixes
+
+- **plugin-library:** stop writing publishConfig.directory
+
+### 🧱 Updated Dependencies
+
+- Updated nest-utilities to 12.0.0-dev.2
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 12.0.0-dev.1 (2026-11-23)
 
 ### 🧱 Updated Dependencies

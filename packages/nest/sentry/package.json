@@ -1,19 +1,19 @@
 {
-  "version": "12.0.0-dev.1",
+  "version": "12.0.0-dev.2",
   "name": "@rxap/nest-sentry",
   "description": "This package provides a Sentry integration for NestJS applications. It includes a logger, interceptor, and module to simplify error tracking and performance monitoring with Sentry. It offers configurable options for setting up Sentry in your NestJS application.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "24.0.6",
-    "@rxap/ts-morph": "^1.7.2-dev.0",
-    "@rxap/workspace-utilities": "^24.0.0-dev.1",
+    "@rxap/ts-morph": "^1.7.2-dev.1",
+    "@rxap/workspace-utilities": "^24.0.0-dev.2",
     "tslib": "2.9.1"
   },
   "peerDependencies": {
     "@nestjs/common": "^12.0.0",
     "@nestjs/config": "^12.0.0",
-    "@rxap/nest-logger": "^12.0.0-dev.1",
-    "@rxap/nest-utilities": "^12.0.0-dev.1",
+    "@rxap/nest-logger": "^12.0.0-dev.2",
+    "@rxap/nest-utilities": "^12.0.0-dev.2",
     "@sentry/core": "^11.0.0",
     "@sentry/nestjs": "^11.0.0",
     "@sentry/node": "^11.0.0",
@@ -60,32 +60,20 @@
         "version": "12.6.0"
       },
       {
-        "package": "@nestjs/microservices",
-        "version": "12.6.0"
-      },
-      {
-        "package": "@nestjs/platform-express",
-        "version": "12.6.0"
-      },
-      {
         "package": "@nestjs/throttler",
         "version": "6.8.0"
       },
       {
-        "package": "@nestjs/websockets",
-        "version": "12.0.0"
-      },
-      {
         "package": "@rxap/nest-logger",
-        "version": "12.0.0-dev.1"
+        "version": "12.0.0-dev.2"
       },
       {
         "package": "@rxap/nest-utilities",
-        "version": "12.0.0-dev.1"
+        "version": "12.0.0-dev.2"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.3-dev.0"
+        "version": "16.5.3-dev.1"
       },
       {
         "package": "@sentry/core",
@@ -102,14 +90,6 @@
       {
         "package": "@sentry/profiling-node",
         "version": "11.16.0"
-      },
-      {
-        "package": "@sentry/types",
-        "version": "10.75.2"
-      },
-      {
-        "package": "@sentry/utils",
-        "version": "8.55.2"
       }
     ]
   },

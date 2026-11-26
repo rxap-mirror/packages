@@ -1,3 +1,20 @@
+## 0.3.3-dev.1 (2026-11-26)
+
+### 🩹 Fixes
+
+- **angular-open-api,n8n-nodes-cqrs,n8n-nodes-firecrawl,nest-auth0,plugin-angular,plugin-gpt,schematic-open-api,workspace-open-api:** align the dependency ranges with the workspace
+- **plugin-library:** stop writing publishConfig.directory
+- resolve peers from the workspace root
+
+### 🧱 Updated Dependencies
+
+- Updated n8n-utilities to 1.2.5-dev.1
+- Updated utilities to 16.5.3-dev.1
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 0.3.3-dev.0 (2026-11-23)
 
 ### 🧱 Updated Dependencies
