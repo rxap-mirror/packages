@@ -23,7 +23,7 @@ renovate:
     RENOVATE_ALLOWED_COMMANDS: '["^node tools/scripts/renovate-post-upgrade\\.mjs$"]'
     RENOVATE_BASE_DIR: $CI_PROJECT_DIR/.renovate
     RENOVATE_REPOSITORY_CACHE: enabled
-    RENOVATE_GIT_AUTHOR: "Renovate Bot <renovate-bot@noreply.gitlab.com>"
+    RENOVATE_GIT_AUTHOR: "rxap renovate bot <renovate-bot@rxap.dev>"
     LOG_LEVEL: info
   cache:
     key: renovate

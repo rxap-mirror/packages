@@ -57,7 +57,7 @@ An attempt that commits nothing does not count, but it also pushes nothing, so n
 To allow new attempts after `agent-fix::gave-up`: remove the label and drop or squash away the `Agent-Fix` commits
 (e.g. let Renovate recreate the branch via the rebase checkbox).
 
-Renovate sees the agent commits (author `rxap agent-fix`) as a manual modification and stops force-rebasing the
+Renovate sees the agent commits (author `rxap agent bot`, `agent-bot@rxap.dev`) as a manual modification and stops force-rebasing the
 branch; the rebase checkbox in the MR still recreates it from scratch, which also resets the attempt count.
 
 ## Labels

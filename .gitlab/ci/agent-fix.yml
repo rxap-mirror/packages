@@ -42,10 +42,10 @@ agent:fix:
     COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
     npm_config_store_dir: $CI_PROJECT_DIR/.pnpm-store
     # distinct author: Renovate treats the branch as modified and stops force-rebasing it over the agent commits
-    GIT_AUTHOR_NAME: rxap agent-fix
-    GIT_AUTHOR_EMAIL: agent-fix@noreply.gitlab.com
-    GIT_COMMITTER_NAME: rxap agent-fix
-    GIT_COMMITTER_EMAIL: agent-fix@noreply.gitlab.com
+    GIT_AUTHOR_NAME: rxap agent bot
+    GIT_AUTHOR_EMAIL: agent-bot@rxap.dev
+    GIT_COMMITTER_NAME: rxap agent bot
+    GIT_COMMITTER_EMAIL: agent-bot@rxap.dev
     # the agent reproduces single targets on a shared runner
     NX_PARALLEL: "2"
     NX_NO_CLOUD: "true"
