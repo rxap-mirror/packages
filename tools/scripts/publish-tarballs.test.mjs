@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { describe, it } from 'node:test';
 import { fileURLToPath } from 'node:url';
-import { blockedByMembers, plan, publishAll, publishArgs } from './publish-tarballs.mjs';
+import { blockedByMembers, isTransient, plan, publishAll, publishArgs } from './publish-tarballs.mjs';
 
 const manifest = {
   distTag: 'development',
@@ -62,6 +62,13 @@ describe('publish-tarballs', () => {
     }, 2);
     assert.deepEqual(failed.map((f) => f.name).sort(), [ '@rxap/b', 'rxap' ]);
     assert.ok(!published.includes('rxap'));
+  });
+
+  it('retries sigstore and network hiccups, not auth or version conflicts', () => {
+    assert.ok(isTransient('npm error code TLOG_CREATE_ENTRY_ERROR'));
+    assert.ok(isTransient('npm error code E503'));
+    assert.ok(!isTransient('npm error code ENEEDAUTH'));
+    assert.ok(!isTransient('npm error code E403'));
   });
 
   it('imports node built-ins only (it runs without a checkout)', () => {

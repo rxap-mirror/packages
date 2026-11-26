@@ -37,6 +37,14 @@ export const blockedByMembers = (entry, failed) => entry.group === 'rxap' && fai
 export const publishArgs = (file, { distTag, registry }) =>
   [ 'publish', file, '--tag', distTag, '--access', 'public', '--registry', registry ];
 
+/**
+ * A failure worth retrying: the Sigstore transparency log (rekor) answered 5xx — npm then retries itself, gets 409
+ * for the entry its first attempt already wrote, and gives up (TLOG_CREATE_ENTRY_ERROR; bootstrap 2026-11-26: 23 of
+ * 126) — or the network dropped. A retry signs again and writes a new entry.
+ */
+export const isTransient = (output) =>
+  /TLOG_CREATE_ENTRY_ERROR|code E5\d\d|ETIMEDOUT|ECONNRESET|EAI_AGAIN|socket hang up/.test(output);
+
 /** run a command, collect stdout + stderr in one string */
 function runCaptured(cmd, args) {
   return new Promise((done) => {
@@ -129,11 +137,16 @@ async function main([ dirArg, ...argv ]) {
       console.log(`$ ${ npm } ${ args.join(' ') }`);
       return true;
     }
-    const { status, output } = await runCaptured(npm, args);
-    if (status !== 0) {
-      console.error(`--- npm output for ${ step.name }@${ step.version } ---\n${ output.trim() }\n---`);
+    let result = await runCaptured(npm, args);
+    for (let attempt = 1; result.status !== 0 && attempt <= 2 && isTransient(result.output); attempt++) {
+      console.error(`↻ ${ step.name }@${ step.version }: transient failure, retry ${ attempt } in ${ 10 * attempt } s`);
+      await new Promise((r) => setTimeout(r, 10_000 * attempt));
+      result = await runCaptured(npm, args);
     }
-    return status === 0;
+    if (result.status !== 0) {
+      console.error(`--- npm output for ${ step.name }@${ step.version } ---\n${ result.output.trim() }\n---`);
+    }
+    return result.status === 0;
   };
   const started = Date.now();
   const failed = await publishAll(steps, publishOne, concurrency);
