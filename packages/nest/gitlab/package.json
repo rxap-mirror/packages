@@ -1,0 +1,47 @@
+{
+  "version": "12.0.0-dev.0",
+  "name": "@rxap/nest-gitlab",
+  "description": "NestJS module for the GitLab API. Wraps the @gitbeaker/rest client as an injectable service, with a configurable module (register/registerAsync), a config-based options factory, a Joi validation schema, a health indicator and a file fingerprint lookup (HEAD) for repository files.\n",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "tslib": "2.9.1"
+  },
+  "peerDependencies": {
+    "@gitbeaker/requester-utils": "^43.8.0",
+    "@gitbeaker/rest": "^43.8.0",
+    "@nestjs/common": "^12.0.0",
+    "@nestjs/config": "^12.0.0",
+    "@nestjs/terminus": "^12.0.0",
+    "@rxap/nest-utilities": "^12.0.0-dev.1",
+    "joi": "^18.0.0"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/gitlab",
+  "keywords": [
+    "gitlab",
+    "gitbeaker",
+    "nest",
+    "nest-gitlab",
+    "packages",
+    "rxap",
+    "scope:integration"
+  ],
+  "main": "./src/index.js",
+  "types": "./src/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/nest/gitlab"
+  },
+  "type": "commonjs"
+}

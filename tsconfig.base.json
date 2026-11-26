@@ -137,6 +137,8 @@
       "@rxap/nest-auth0": ["packages/nest/auth0/src/index.ts"],
       "@rxap/nest-dto": ["packages/nest/dto/src/index.ts"],
       "@rxap/nest-firebase": ["packages/nest/firebase/src/index.ts"],
+      "@rxap/nest-gitlab": ["packages/nest/gitlab/src/index.ts"],
+      "@rxap/nest-gitlab-release": ["packages/nest/gitlab-release/src/index.ts"],
       "@rxap/nest-jwt": ["packages/nest/jwt/src/index.ts"],
       "@rxap/nest-keyv-minio": ["packages/nest/keyv-minio/src/index.ts"],
       "@rxap/nest-logger": ["packages/nest/logger/src/index.ts"],

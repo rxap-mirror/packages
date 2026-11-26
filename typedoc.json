@@ -74,6 +74,8 @@
     "packages/nest/auth0",
     "packages/nest/dto",
     "packages/nest/firebase",
+    "packages/nest/gitlab",
+    "packages/nest/gitlab-release",
     "packages/nest/jwt",
     "packages/nest/keyv-minio",
     "packages/nest/logger",

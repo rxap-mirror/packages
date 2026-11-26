@@ -1,0 +1,36 @@
+{
+  "name": "nest-gitlab-release",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/nest/gitlab-release/src",
+  "projectType": "library",
+  "tags": ["nest", "packages"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "development",
+      "options": {
+        "outputPath": "dist/packages/nest/gitlab-release",
+        "tsConfig": "packages/nest/gitlab-release/tsconfig.lib.json",
+        "packageJson": "packages/nest/gitlab-release/package.json",
+        "main": "packages/nest/gitlab-release/src/index.ts",
+        "assets": [
+          "packages/nest/gitlab-release/*.md",
+          "packages/nest/gitlab-release/docs",
+          "packages/nest/gitlab-release/compodoc"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/gitlab-release/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      }
+    },
+    "lint": {
+      "options": {
+        "lintFilePatterns": ["packages/nest/gitlab-release/**/*.ts"]
+      }
+    }
+  }
+}

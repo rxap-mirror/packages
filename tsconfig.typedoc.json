@@ -270,7 +270,11 @@
     "packages/nest/keyv-minio/src/lib/**/*.ts",
     "packages/nest/keyv-minio/src/index.ts",
     "packages/angular/utilities/src/lib/**/*.ts",
-    "packages/angular/utilities/src/index.ts"
+    "packages/angular/utilities/src/index.ts",
+    "packages/nest/gitlab/src/lib/**/*.ts",
+    "packages/nest/gitlab/src/index.ts",
+    "packages/nest/gitlab-release/src/lib/**/*.ts",
+    "packages/nest/gitlab-release/src/index.ts"
   ],
   "exclude": [
     "**/*.stories.ts",
