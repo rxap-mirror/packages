@@ -24,7 +24,7 @@ npm install @nestjs/common @gitbeaker/rest @rxap/nest-dto @rxap/nest-gitlab @rxa
 ```
 # Get started
 
-Release helpers on top of [`@rxap/nest-gitlab`](../gitlab).
+Release helpers on top of [`@rxap/nest-gitlab`](https://www.npmjs.com/package/@rxap/nest-gitlab).
 
 ```bash
 pnpm add @rxap/nest-gitlab-release@development @rxap/nest-gitlab@development

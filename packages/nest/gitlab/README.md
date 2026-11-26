@@ -171,6 +171,6 @@ reported). Without a token `/metadata` answers `401`; that still proves the inst
 
 ## Releases
 
-The release helpers (`GitlabReleaseService`) live in [`@rxap/nest-gitlab-release`](../gitlab-release), so this package
+The release helpers (`GitlabReleaseService`) live in [`@rxap/nest-gitlab-release`](https://www.npmjs.com/package/@rxap/nest-gitlab-release), so this package
 has no dependency on `@rxap/nest-dto` / `@rxap/nest-open-api`.
 
