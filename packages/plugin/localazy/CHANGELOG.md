@@ -1,3 +1,10 @@
+## 24.0.0-dev.3 (2026-11-26)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 24.0.0-dev.3
+- Updated plugin-utilities to 24.0.0-dev.3
+
 ## 24.0.0-dev.2 (2026-11-26)
 
 ### 🩹 Fixes

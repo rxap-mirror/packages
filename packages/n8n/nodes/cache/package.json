@@ -1,11 +1,11 @@
 {
-  "version": "1.0.7-dev.1",
+  "version": "1.0.7-dev.2",
   "name": "@rxap/n8n-nodes-cache",
   "description": "This package provides a cache node for n8n workflows, allowing users to cache items using a MinIO client. It supports both reading from and writing to the cache, with options to disable caching and configure bucket names and keys. The node can improve workflow performance by storing and retrieving data from a cache instead of re-executing expensive operations.\n",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@nx/devkit": "24.0.6",
-    "@rxap/n8n-utilities": "^1.2.5-dev.1",
+    "@rxap/n8n-utilities": "^1.2.5-dev.2",
     "minio": "8.0.7",
     "tslib": "2.9.1"
   },

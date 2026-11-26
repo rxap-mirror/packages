@@ -1,3 +1,20 @@
+## 22.0.0-dev.3 (2026-11-26)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-material-directives to 22.0.0-dev.3
+- Updated angular-data-source to 22.0.0-dev.3
+- Updated angular-environment to 22.0.0-dev.3
+- Updated workspace-utilities to 24.0.0-dev.3
+- Updated workspace-ts-morph to 24.0.0-dev.3
+- Updated browser-utilities to 1.1.16-dev.2
+- Updated angular-pub-sub to 22.0.0-dev.3
+- Updated angular-config to 22.0.0-dev.3
+- Updated angular-theme to 22.0.0-dev.3
+- Updated utilities to 16.5.3-dev.2
+- Updated ts-morph to 1.7.2-dev.2
+- Updated pattern to 1.1.17-dev.2
+
 ## 22.0.0-dev.2 (2026-11-26)
 
 ### 🩹 Fixes

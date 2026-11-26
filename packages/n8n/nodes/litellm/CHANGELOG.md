@@ -1,3 +1,7 @@
+## 0.0.7-dev.2 (2026-11-26)
+
+This was a version bump only for n8n-nodes-litellm to align it with other projects, there were no code changes.
+
 ## 0.0.7-dev.1 (2026-11-26)
 
 ### 🩹 Fixes

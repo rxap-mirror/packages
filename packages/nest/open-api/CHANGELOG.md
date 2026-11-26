@@ -1,3 +1,12 @@
+## 12.0.0-dev.3 (2026-11-26)
+
+### 🧱 Updated Dependencies
+
+- Updated nest-utilities to 12.0.0-dev.3
+- Updated node-utilities to 1.3.14-dev.2
+- Updated nest-testing to 12.0.0-dev.3
+- Updated utilities to 16.5.3-dev.2
+
 ## 12.0.0-dev.2 (2026-11-26)
 
 ### 🩹 Fixes

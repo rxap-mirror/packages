@@ -1,3 +1,9 @@
+## 22.0.0-dev.3 (2026-11-26)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-config to 22.0.0-dev.3
+
 ## 22.0.0-dev.2 (2026-11-26)
 
 ### 🩹 Fixes

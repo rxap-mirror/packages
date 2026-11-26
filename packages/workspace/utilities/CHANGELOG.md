@@ -1,3 +1,10 @@
+## 24.0.0-dev.3 (2026-11-26)
+
+### 🧱 Updated Dependencies
+
+- Updated node-utilities to 1.3.14-dev.2
+- Updated utilities to 16.5.3-dev.2
+
 ## 24.0.0-dev.2 (2026-11-26)
 
 ### 🚀 Features

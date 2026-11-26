@@ -1,3 +1,12 @@
+## 22.0.0-dev.3 (2026-11-26)
+
+### 🧱 Updated Dependencies
+
+- Updated schematic-utilities to 22.0.0-dev.3
+- Updated workspace-utilities to 24.0.0-dev.3
+- Updated schematic-ts-morph to 22.0.0-dev.3
+- Updated utilities to 16.5.3-dev.2
+
 ## 22.0.0-dev.2 (2026-11-26)
 
 ### 🩹 Fixes
