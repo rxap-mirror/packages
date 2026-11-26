@@ -1,5 +1,5 @@
 {
-  "version": "12.0.0-dev.0",
+  "version": "12.0.0-dev.1",
   "name": "@rxap/nest-gitlab",
   "description": "NestJS module for the GitLab API. Wraps the @gitbeaker/rest client as an injectable service, with a configurable module (register/registerAsync), a config-based options factory, a Joi validation schema, a health indicator and a file fingerprint lookup (HEAD) for repository files.\n",
   "license": "GPL-3.0-or-later",
