@@ -25,14 +25,10 @@ renovate:
     RENOVATE_REPOSITORY_CACHE: enabled
     RENOVATE_GIT_AUTHOR: "rxap renovate bot <renovate-bot@rxap.dev>"
     LOG_LEVEL: info
-    # The runner restores the cache as root, while the renovate image runs as an unprivileged user (EACCES on
-    # .renovate/cache). With this flag the runner hands the build directory, including the restored cache, to the
-    # image's user (id -u / id -g) instead of relying on umask 0000.
-    FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR: "true"
-  cache:
-    key: renovate
-    paths:
-      - .renovate/cache
+  # No GitLab cache: the runner restores it as root, while the renovate image runs as the unprivileged user 12021, so
+  # every run after the first failed with EACCES on .renovate/cache. Neither FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR
+  # (the runner then writes CI_SERVER_TLS_CA_FILE as root) nor running as root (containerbase chowns its tools, which
+  # cap_drop ALL on the ML runner forbids) works. Each run starts cold until a cache setup is found that does.
   script:
     - |
       if [ -z "$RENOVATE_TOKEN" ]; then
