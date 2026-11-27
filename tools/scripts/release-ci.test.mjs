@@ -1,7 +1,7 @@
 // Run with: pnpm test:scripts
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
-import { baseCommit, decide, PARTIAL, releaseExit } from './release-ci.mjs';
+import { baseCommit, decide, parseProjects, PARTIAL, releaseExit } from './release-ci.mjs';
 
 const c = (sha, subject) => ({ sha: sha.padEnd(40, '0'), subject });
 const commits = [
@@ -36,6 +36,19 @@ describe('release-ci gate', () => {
   it('adds --stamped for a pending framework stamp and passes a specifier', () => {
     const d = decide({ kind: 'nightly', commits, pipeline: 'success', stamped: [ 'forms' ], specifier: 'prerelease' });
     assert.deepEqual(d.args, [ '--skip-validate', '--stamped', '--specifier=prerelease' ]);
+  });
+
+  it('restricts the release to RELEASE_PROJECTS (--projects) and keeps the other flags', () => {
+    const d = decide({ kind: 'nightly', commits, pipeline: 'success', specifier: 'prerelease', projects: [ 'nest-valkey', 'nest-foo' ] });
+    assert.deepEqual(d.args, [ '--skip-validate', '--specifier=prerelease', '--projects=nest-valkey,nest-foo' ]);
+    assert.ok(!decide({ kind: 'nightly', commits, pipeline: 'success', projects: [] }).args.some(a => a.startsWith('--projects')));
+  });
+
+  it('parses RELEASE_PROJECTS: comma or space separated, trimmed, empty means all', () => {
+    assert.deepEqual(parseProjects('nest-valkey, nest-foo  nest-bar'), [ 'nest-valkey', 'nest-foo', 'nest-bar' ]);
+    assert.deepEqual(parseProjects(''), []);
+    assert.deepEqual(parseProjects(undefined), []);
+    assert.deepEqual(parseProjects(' , '), []);
   });
 
   it('fails when a package does not exist on npm (no first publish through OIDC)', () => {

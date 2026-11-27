@@ -17,7 +17,7 @@
  *   to fail with 3 so the publish job still uploads what was packed (the report above names the failures).
  *   --dry-run: only prints the decision (no token needed: the pipeline gate is reported as unknown)
  * Env: RELEASE_GITLAB_TOKEN (api read), CI_API_V4_URL, CI_PROJECT_ID, RELEASE_SPECIFIER (optional),
- *      RELEASE_PACK_DIR (CI: pack into this folder; the GitLab-hosted job release:npm publishes it)
+ *      RELEASE_PROJECTS (optional, nx project names: release only these), RELEASE_PACK_DIR (CI: pack into this folder; the GitLab-hosted job release:npm publishes it)
  */
 import { execFileSync, spawnSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
@@ -38,10 +38,11 @@ export const baseCommit = commits => commits.find(c => !isReleaseCommit(c.subjec
  * @param stamped names of projects with a stamped framework major
  * @param missing npm names that do not exist on the registry
  * @param specifier optional RELEASE_SPECIFIER
+ * @param projects optional RELEASE_PROJECTS (nx project names): release only these (`--projects`)
  * @param pack optional RELEASE_PACK_DIR: release.mjs packs instead of publishing (the publish job uploads)
  * @returns { action: 'run' | 'skip' | 'fail', reasons: string[], args: string[], base }
  */
-export function decide({ kind, commits, pipeline, stamped = [], missing = [], specifier, pack }) {
+export function decide({ kind, commits, pipeline, stamped = [], missing = [], specifier, projects = [], pack }) {
   const base = baseCommit(commits);
   const reasons = [];
   if (missing.length > 0) {
@@ -76,11 +77,17 @@ export function decide({ kind, commits, pipeline, stamped = [], missing = [], sp
   if (specifier) {
     args.push(`--specifier=${ specifier }`);
   }
+  if (projects.length > 0) {
+    args.push(`--projects=${ projects.join(',') }`);
+  }
   if (pack) {
     args.push(`--pack=${ pack }`);
   }
   return { action: 'run', base, args, reasons };
 }
+
+/** RELEASE_PROJECTS: nx project names separated by comma or whitespace; empty = every project */
+export const parseProjects = value => (value ?? '').split(/[\s,]+/).filter(Boolean);
 
 const git = (...args) => execFileSync('git', args, { encoding: 'utf-8', maxBuffer: 64 * 1024 * 1024 }).trim();
 
@@ -159,9 +166,13 @@ async function main([ kind, ...argv ]) {
   const pipeline = base ? await pipelineStatus(base.sha, source) : null;
   const packages = listReleaseProjects('packages');
   const stamped = packages.filter(isStamped).map(p => p.name);
-  const names = [ ...packages, ...listReleaseProjects('rxap') ].map(p => p.pkgName);
+  const projects = parseProjects(process.env.RELEASE_PROJECTS);
+  // with RELEASE_PROJECTS only the selected packages must exist on npm: a brand-new package elsewhere in the
+  // workspace (first publish by hand still pending) must not block the release of the others
+  const names = [ ...packages, ...listReleaseProjects('rxap') ]
+    .filter(p => projects.length === 0 || projects.includes(p.name)).map(p => p.pkgName);
   const missing = await missingOnNpm(names);
-  const decision = decide({ kind, commits, pipeline, stamped, missing, specifier: process.env.RELEASE_SPECIFIER || undefined,
+  const decision = decide({ kind, commits, pipeline, stamped, missing, specifier: process.env.RELEASE_SPECIFIER || undefined, projects,
     pack: process.env.RELEASE_PACK_DIR || undefined });
 
   console.log(`${ kind }: ${ decision.action } — ${ decision.reasons.join('; ') }`);

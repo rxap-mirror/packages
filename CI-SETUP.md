@@ -93,7 +93,7 @@ Optional (defaults in the YAML): `RELEASE_BUILD_RUNNER_TAG` (`mlr-linux-medium-a
 (`saas-linux-small-amd64`), `AGENT_FIX_MAX_ATTEMPTS` (2), `AGENT_FIX_BASE_BRANCH` (default branch).
 
 Pipeline variables (set in the schedule or in "Run pipeline", not in Settings): `RENOVATE=true`,
-`SUPPLY_CHAIN_AUDIT=true`, `FRAMEWORK_WATCH=true`, `NX_RELEASE=nightly|stable|publish-only`, `RELEASE_SPECIFIER`.
+`SUPPLY_CHAIN_AUDIT=true`, `FRAMEWORK_WATCH=true`, `NX_RELEASE=nightly|stable|publish-only`, `RELEASE_SPECIFIER`, `RELEASE_PROJECTS`.
 
 ## 4. Project settings
 

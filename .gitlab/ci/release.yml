@@ -5,6 +5,8 @@
 #   NX_RELEASE=publish-only  Run pipeline on development / latest: rebuild + pack the newest release commit again
 #                            (when its tarball artifacts expired; already published versions are skipped)
 #   RELEASE_SPECIFIER=prerelease with nightly: bump every package (bootstrap of npm trusted publishing)
+#   RELEASE_PROJECTS=a,b     (any release kind) release only these nx projects, e.g. RELEASE_SPECIFIER=prerelease
+#                            RELEASE_PROJECTS=nest-valkey bumps just that package (first OIDC publish of a new package)
 #
 # Two jobs per release, so that only the upload runs on GitLab-hosted runners (compute minutes):
 #   1. release:nightly / release:stable / release:publish-only (our runners): gate, version, changelog, release

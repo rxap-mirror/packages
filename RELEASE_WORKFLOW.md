@@ -187,6 +187,9 @@ build/test/lint. Every package must already exist on npm. A framework stamp from
 (`FRAMEWORK-WATCH.md`, package major on disk > newest tag) adds `--stamped` automatically. Whether anything is
 releasable decides `release.mjs` itself (conventional commits since the last tag, before it builds anything).
 `RELEASE_SPECIFIER=prerelease` on a nightly bumps every package (bootstrap below).
+`RELEASE_PROJECTS=a,b` (nx project names, comma or space separated) restricts any release to these projects
+(`release.mjs --projects`); only they must exist on npm. Use `RELEASE_SPECIFIER=prerelease RELEASE_PROJECTS=<project>`
+for the first OIDC publish of a single new package instead of bumping everything.
 Check the decision locally: `node tools/scripts/release-ci.mjs nightly --dry-run`.
 
 **npm trusted publishing:** only `release:npm` gets an OIDC ID token (`id_tokens: NPM_ID_TOKEN`, audience
