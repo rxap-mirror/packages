@@ -1,3 +1,15 @@
+## 24.0.0-dev.4 (2026-11-27)
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 24.0.0-dev.4
+- Updated workspace-open-api to 24.0.0-dev.4
+- Updated workspace-ts-morph to 24.0.0-dev.4
+- Updated plugin-utilities to 24.0.0-dev.4
+- Updated node-utilities to 1.3.14-dev.3
+- Updated plugin-library to 24.0.0-dev.4
+- Updated utilities to 16.5.3-dev.3
+
 ## 24.0.0-dev.3 (2026-11-26)
 
 ### 🧱 Updated Dependencies

@@ -1,3 +1,16 @@
+## 22.0.0-dev.4 (2026-11-27)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-remote-method to 22.0.0-dev.4
+- Updated angular-data-source to 22.0.0-dev.4
+- Updated angular-environment to 22.0.0-dev.4
+- Updated angular-config to 22.0.0-dev.4
+- Updated utilities to 16.5.3-dev.3
+- Updated pattern to 1.1.17-dev.3
+- Updated mixin to 16.0.18-dev.3
+- Updated rxjs to 1.1.19-dev.3
+
 ## 22.0.0-dev.3 (2026-11-26)
 
 ### 🧱 Updated Dependencies

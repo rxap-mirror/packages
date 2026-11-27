@@ -1,5 +1,5 @@
 {
-  "version": "22.0.0-dev.3",
+  "version": "22.0.0-dev.4",
   "name": "@rxap/ngx-material-localize",
   "description": "Provides components and services to simplify internationalization (i18n) in Angular Material applications. It offers components for language selection and utilities to localize Material components like Datepicker, Paginator and Stepper. This package aims to streamline the process of adapting your Angular Material UI to different languages.\n",
   "license": "GPL-3.0-or-later",
@@ -12,8 +12,8 @@
     "@angular/core": "^22.0.0",
     "@angular/forms": "^22.0.0",
     "@angular/material": "^22.0.0",
-    "@rxap/directives": "^22.0.0-dev.3",
-    "@rxap/ngx-localize": "^22.0.0-dev.3",
+    "@rxap/directives": "^22.0.0-dev.4",
+    "@rxap/ngx-localize": "^22.0.0-dev.4",
     "rxjs": "^7.0.0"
   },
   "author": {
@@ -76,71 +76,71 @@
       },
       {
         "package": "@rxap/config",
-        "version": "22.0.0-dev.3"
+        "version": "22.0.0-dev.4"
       },
       {
         "package": "@rxap/data-source",
-        "version": "22.0.0-dev.3"
+        "version": "22.0.0-dev.4"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.20-dev.2"
+        "version": "1.1.20-dev.3"
       },
       {
         "package": "@rxap/definition",
-        "version": "22.0.0-dev.3"
+        "version": "22.0.0-dev.4"
       },
       {
         "package": "@rxap/directives",
-        "version": "22.0.0-dev.3"
+        "version": "22.0.0-dev.4"
       },
       {
         "package": "@rxap/environment",
-        "version": "22.0.0-dev.3"
+        "version": "22.0.0-dev.4"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.18-dev.2"
+        "version": "16.0.18-dev.3"
       },
       {
         "package": "@rxap/ngx-localize",
-        "version": "22.0.0-dev.3"
+        "version": "22.0.0-dev.4"
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "22.0.0-dev.3"
+        "version": "22.0.0-dev.4"
       },
       {
         "package": "@rxap/ngx-user",
-        "version": "22.0.0-dev.3"
+        "version": "22.0.0-dev.4"
       },
       {
         "package": "@rxap/open-api",
-        "version": "22.0.0-dev.3"
+        "version": "22.0.0-dev.4"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.17-dev.2"
+        "version": "1.1.17-dev.3"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.19-dev.2"
+        "version": "1.0.19-dev.3"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "22.0.0-dev.3"
+        "version": "22.0.0-dev.4"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.19-dev.2"
+        "version": "1.1.19-dev.3"
       },
       {
         "package": "@rxap/services",
-        "version": "22.0.0-dev.3"
+        "version": "22.0.0-dev.4"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.3-dev.2"
+        "version": "16.5.3-dev.3"
       }
     ]
   },

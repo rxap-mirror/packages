@@ -1,3 +1,22 @@
+## 22.0.0-dev.4 (2026-11-27)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-material-table-window-system to 22.0.0-dev.4
+- Updated angular-material-table-system to 22.0.0-dev.4
+- Updated angular-material-form-system to 22.0.0-dev.4
+- Updated angular-material-directives to 22.0.0-dev.4
+- Updated angular-window-system to 22.0.0-dev.4
+- Updated angular-data-source to 22.0.0-dev.4
+- Updated angular-form-system to 22.0.0-dev.4
+- Updated reflect-metadata to 1.0.19-dev.3
+- Updated angular-forms to 22.0.0-dev.4
+- Updated angular-pipes to 22.0.0-dev.4
+- Updated utilities to 16.5.3-dev.3
+- Updated pattern to 1.1.17-dev.3
+- Updated mixin to 16.0.18-dev.3
+- Updated rxjs to 1.1.19-dev.3
+
 ## 22.0.0-dev.3 (2026-11-26)
 
 ### 🧱 Updated Dependencies

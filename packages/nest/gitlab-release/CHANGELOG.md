@@ -1,3 +1,11 @@
+## 12.0.0-dev.4 (2026-11-27)
+
+### 🧱 Updated Dependencies
+
+- Updated nest-open-api to 12.0.0-dev.4
+- Updated nest-gitlab to 12.0.0-dev.4
+- Updated nest-dto to 12.0.0-dev.4
+
 ## 12.0.0-dev.3 (2026-11-26)
 
 ### 🧱 Updated Dependencies

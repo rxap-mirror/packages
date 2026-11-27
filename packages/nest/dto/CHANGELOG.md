@@ -1,3 +1,7 @@
+## 12.0.0-dev.4 (2026-11-27)
+
+This was a version bump only for nest-dto to align it with other projects, there were no code changes.
+
 ## 12.0.0-dev.3 (2026-11-26)
 
 This was a version bump only for nest-dto to align it with other projects, there were no code changes.
