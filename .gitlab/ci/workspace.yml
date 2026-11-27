@@ -47,22 +47,11 @@ nx-migrate:
 # Runner size tags (CI-RUNNERS.md §4) for component and GitLab template jobs without a tags input that need another
 # size than the default (.gitlab-ci.yml `default: tags`). Only jobs that are defined in every workspace pipeline can
 # be overridden here (writerside is not defined on latest: it takes the default).
-# `test` (large runner) is overridden in workspace-test.yml: that file needs its own include rules.
+# Jobs that the component only includes under conditions (test, semgrep-sast, secret_detection, pages,
+# coverage-report) are overridden in workspace-test.yml and workspace-conditional.yml with their own include rules.
 workspace:compodoc:
   tags:
     - mlr-linux-medium-amd64
-semgrep-sast:
-  tags:
-    - mlr-linux-small-amd64
-secret_detection:
-  tags:
-    - mlr-linux-xsmall-amd64
-pages:
-  tags:
-    - mlr-linux-xsmall-amd64
-coverage-report:
-  tags:
-    - mlr-linux-xsmall-amd64
 # Recreates the rxap/compose branch; its push runs rxap-compose (schematic composer → merge request). Only offered
 # when a schematics file changed (not on every lockfile change: Renovate), and only started by hand; RXAP_COMPOSE=true
 # (Run pipeline) still runs it at once. The component's rules are replaced.

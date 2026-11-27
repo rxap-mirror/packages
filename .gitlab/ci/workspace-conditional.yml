@@ -1,0 +1,15 @@
+# Runner size of component / GitLab template jobs that are only defined under conditions: semgrep-sast,
+# secret_detection (GitLab templates), pages, coverage-report. See workspace-test.yml for why such an override must
+# not exist when the job itself is dropped ("jobs ... config should implement the script").
+semgrep-sast:
+  tags:
+    - mlr-linux-small-amd64
+secret_detection:
+  tags:
+    - mlr-linux-xsmall-amd64
+pages:
+  tags:
+    - mlr-linux-xsmall-amd64
+coverage-report:
+  tags:
+    - mlr-linux-xsmall-amd64
