@@ -298,7 +298,7 @@ importers:
         version: 2.2.2
       '@langchain/community':
         specifier: ^0.3.58
-        version: 0.3.58(107fdf4c65658261f3f05f80f81d0a3c)
+        version: 0.3.58(e087d3fbd10c03b03caf01b4ebba9ec4)
       '@langchain/core':
         specifier: 0.3.80
         version: 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
@@ -343,7 +343,7 @@ importers:
         version: 12.0.5(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))
       '@nestjs/microservices':
         specifier: 12.6.0
-        version: 12.6.0(@grpc/grpc-js@1.14.7)(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(amqp-connection-manager@5.0.1(amqplib@2.4.0))(amqplib@2.4.0)(cache-manager@7.2.9)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+        version: 12.6.0(@grpc/grpc-js@1.14.7)(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(amqp-connection-manager@5.0.1(amqplib@2.4.0))(amqplib@2.4.0)(cache-manager@7.2.9)(ioredis@6.0.0(supports-color@8.1.1))(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/mongoose':
         specifier: 12.0.1
         version: 12.0.1(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(rxjs@7.8.2)
@@ -361,13 +361,13 @@ importers:
         version: 12.1.2(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(typescript@6.0.3)
       '@nestjs/terminus':
         specifier: 12.2.0
-        version: 12.2.0(0776d29da20dd13e28ce2b6cd52ff3e7)
+        version: 12.2.0(564ef62515a5ab2a1dcb5a89f93490a1)
       '@nestjs/throttler':
         specifier: 6.8.0
         version: 6.8.0(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(reflect-metadata@0.2.2)
       '@nestjs/typeorm':
         specifier: 12.0.3
-        version: 12.0.3(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))
+        version: 12.0.3(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)(typeorm@1.1.3(babel-plugin-macros@3.1.0)(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))
       '@openfga/sdk':
         specifier: 0.9.8
         version: 0.9.8(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
@@ -461,6 +461,9 @@ importers:
       ignore:
         specifier: 7.0.14
         version: 7.0.14
+      ioredis:
+        specifier: 6.0.0
+        version: 6.0.0(supports-color@8.1.1)
       joi:
         specifier: 18.3.2
         version: 18.3.2
@@ -472,7 +475,7 @@ importers:
         version: 6.1.0
       langchain:
         specifier: 0.3.37
-        version: 0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0)
+        version: 0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0)
       marked:
         specifier: 18.2.0
         version: 18.2.0
@@ -538,7 +541,7 @@ importers:
         version: 2.9.1
       typeorm:
         specifier: 1.1.3
-        version: 1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3))
+        version: 1.1.3(babel-plugin-macros@3.1.0)(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3))
       web3.storage:
         specifier: ^4.5.5
         version: 4.5.5(encoding@0.1.13)(node-fetch@3.3.2)(supports-color@8.1.1)
@@ -1544,7 +1547,7 @@ importers:
         version: 6.1.0
       langchain:
         specifier: 0.3.37
-        version: 0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0)
+        version: 0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0)
       tslib:
         specifier: 2.9.1
         version: 2.9.1
@@ -1553,7 +1556,7 @@ importers:
     dependencies:
       '@langchain/community':
         specifier: ^0.3.58
-        version: 0.3.58(f23e26419501b0597651d57b6f5a25f1)
+        version: 0.3.58(55c1600720202e6adea82d1d924b8071)
       '@langchain/core':
         specifier: 0.3.80
         version: 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
@@ -1565,7 +1568,7 @@ importers:
         version: 0.1.0(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))
       langchain:
         specifier: 0.3.37
-        version: 0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0)
+        version: 0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0)
       lodash:
         specifier: ^4.17.21
         version: 4.18.1
@@ -1847,6 +1850,12 @@ importers:
       '@nx/devkit':
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
+      tslib:
+        specifier: 2.9.1
+        version: 2.9.1
+
+  packages/nest/valkey:
+    dependencies:
       tslib:
         specifier: 2.9.1
         version: 2.9.1
@@ -5498,6 +5507,9 @@ packages:
     peerDependenciesMeta:
       '@types/node':
         optional: true
+
+  '@ioredis/commands@2.0.0':
+    resolution: {integrity: sha512-vrx0AE/T0h7cRZwfo1M39Cr+ZhZrkf0V8mQN75wucKCxCLD9l/VX6no3gFvrLqD1IlG/1LtzWovqEw3t0Vr9zg==}
 
   '@ipld/car@3.2.4':
     resolution: {integrity: sha512-rezKd+jk8AsTGOoJKqzfjLJ3WVft7NZNH95f0pfPbicROvzTyvHCNy567HzSUd6gRXZ9im29z5ZEv9Hw49jSYw==}
@@ -10282,6 +10294,10 @@ packages:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
 
+  cluster-key-slot@1.1.1:
+    resolution: {integrity: sha512-rwHwUfXL40Chm1r08yrhU3qpUvdVlgkKNeyeGPOxnW8/SyVDvgRaed/Uz54AqWNaTCAThlj6QAs3TZcKI0xDEw==}
+    engines: {node: '>=0.10.0'}
+
   co@4.6.0:
     resolution: {integrity: sha512-QVb0dM5HvG+uaxitm8wONl7jltx8dqhfU33DcqtOZcLSVIKSDDLDi7+0LbAKiyI8hD9u42m2YxXSkMGWThaecQ==}
     engines: {iojs: '>= 1.0.0', node: '>= 0.12.0'}
@@ -10774,6 +10790,10 @@ packages:
   delayed-stream@1.0.0:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}
     engines: {node: '>=0.4.0'}
+
+  denque@2.1.0:
+    resolution: {integrity: sha512-HVQE3AAb/pxF8fQAoiqpvg9i3evqug3hoiwakOyZAwJm+6vZehbkYXZ0l4JxS+I3QxM97v5aaRNhj8v5oBhekw==}
+    engines: {node: '>=0.10'}
 
   depd@1.1.2:
     resolution: {integrity: sha512-7emPTl6Dpo6JRXOXjLRxck+FlLRX5847cLKEn00PLAgc3g2hTZZgr+e4c2v6QpSmLeFP3n5yUo7ft6avBK/5jQ==}
@@ -11992,6 +12012,10 @@ packages:
   interpret@3.1.1:
     resolution: {integrity: sha512-6xwYfHbajpoF0xLW+iwLkhwgvLoZDfjYfoFNu8ftMoXINzwuymNLd9u/KmwtdT2GbR+/Cz66otEGEVVUHX9QLQ==}
     engines: {node: '>=10.13.0'}
+
+  ioredis@6.0.0:
+    resolution: {integrity: sha512-f+Dtubxfpf6KYFq7WVXJoOLn0bk4TJrMrN9SzeE+jrWrCWj7XX3fA6vkryafhADX+GMymRxgDJDOI33COkJc0w==}
+    engines: {node: '>=20.0.0'}
 
   ip-regex@2.1.0:
     resolution: {integrity: sha512-58yWmlHpp7VYfcdTwMTvwMmqx/Elfxjd9RXTDyMsbL7lLWmhMylLEqiYVLKuLzOZqVgiWXD9MfR62Vv89VRxkw==}
@@ -14844,6 +14868,10 @@ packages:
     resolution: {integrity: sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg==}
     engines: {node: '>=8'}
 
+  redis-errors@1.2.0:
+    resolution: {integrity: sha512-1qny3OExCf0UvUV/5wpYKf2YwPcOqXzkwKKSmKHiE6ZMQs5heeE/c8eXK+PNllPvmjgAbfnsbpkGZWy8cBpn9w==}
+    engines: {node: '>=4'}
+
   reflect-metadata@0.1.10:
     resolution: {integrity: sha512-oYJQNaTL+aECnOmLtlsD+eyeNXfXm8VSg1MOENAUnYsRKNCkk4uq5zohyZsUwG2CDHa4dZ/qExt5Xzw+9pGpww==}
 
@@ -15496,6 +15524,9 @@ packages:
   stack-utils@2.0.6:
     resolution: {integrity: sha512-XlkWvfIm6RmsWtNJx+uqtKLS8eqFbxUg0ZzLXqY0caEy9l7hruX8IpiDnjsLavoBgqCCR71TqWO8MaXYheJ3RQ==}
     engines: {node: '>=10'}
+
+  standard-as-callback@2.1.0:
+    resolution: {integrity: sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A==}
 
   statuses@1.5.0:
     resolution: {integrity: sha512-OpZ3zP+jT1PI7I8nemJX4AKmAX070ZkYPVWV/AaKTJl+tXCTGyVdC1a4SL8RUQYEwk/f34ZX8UTykN68FwrqAA==}
@@ -20372,6 +20403,8 @@ snapshots:
     optionalDependencies:
       '@types/node': 22.20.5
 
+  '@ioredis/commands@2.0.0': {}
+
   '@ipld/car@3.2.4':
     dependencies:
       '@ipld/dag-cbor': 7.0.3
@@ -20885,7 +20918,7 @@ snapshots:
 
   '@kvs/types@2.2.2': {}
 
-  '@langchain/community@0.3.58(107fdf4c65658261f3f05f80f81d0a3c)':
+  '@langchain/community@0.3.58(55c1600720202e6adea82d1d924b8071)':
     dependencies:
       '@langchain/core': 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
       '@langchain/openai': 0.6.17(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(ws@8.23.0)
@@ -20893,7 +20926,7 @@ snapshots:
       binary-extensions: 2.3.0
       flat: 5.0.2
       js-yaml: 4.3.2
-      langchain: 0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0)
+      langchain: 0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0)
       langsmith: 0.3.87(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
       math-expression-evaluator: 2.0.7
       openai: 7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)
@@ -20907,13 +20940,14 @@ snapshots:
       fast-xml-parser: 5.12.1
       firebase-admin: 14.5.1(@firebase/app-compat@0.5.22)(@firebase/app@0.16.6)(supports-color@8.1.1)
       google-auth-library: 11.3.4(supports-color@8.1.1)
-      ignore: 7.0.14
+      ignore: 5.3.2
+      ioredis: 6.0.0(supports-color@8.1.1)
       jsdom: 26.1.0(supports-color@8.1.1)
       jsonwebtoken: 9.0.3
       lodash: 4.18.1
       neo4j-driver: 6.3.2
       pg: 8.23.1
-      typeorm: 1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3))
+      typeorm: 1.1.3(babel-plugin-macros@3.1.0)(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3))
       weaviate-client: 3.15.3
       ws: 8.23.0
     transitivePeerDependencies:
@@ -20936,7 +20970,7 @@ snapshots:
       - handlebars
       - peggy
 
-  '@langchain/community@0.3.58(f23e26419501b0597651d57b6f5a25f1)':
+  '@langchain/community@0.3.58(e087d3fbd10c03b03caf01b4ebba9ec4)':
     dependencies:
       '@langchain/core': 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
       '@langchain/openai': 0.6.17(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(ws@8.23.0)
@@ -20944,7 +20978,7 @@ snapshots:
       binary-extensions: 2.3.0
       flat: 5.0.2
       js-yaml: 4.3.2
-      langchain: 0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0)
+      langchain: 0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0)
       langsmith: 0.3.87(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
       math-expression-evaluator: 2.0.7
       openai: 7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)
@@ -20958,13 +20992,14 @@ snapshots:
       fast-xml-parser: 5.12.1
       firebase-admin: 14.5.1(@firebase/app-compat@0.5.22)(@firebase/app@0.16.6)(supports-color@8.1.1)
       google-auth-library: 11.3.4(supports-color@8.1.1)
-      ignore: 5.3.2
+      ignore: 7.0.14
+      ioredis: 6.0.0(supports-color@8.1.1)
       jsdom: 26.1.0(supports-color@8.1.1)
       jsonwebtoken: 9.0.3
       lodash: 4.18.1
       neo4j-driver: 6.3.2
       pg: 8.23.1
-      typeorm: 1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3))
+      typeorm: 1.1.3(babel-plugin-macros@3.1.0)(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3))
       weaviate-client: 3.15.3
       ws: 8.23.0
     transitivePeerDependencies:
@@ -21320,7 +21355,7 @@ snapshots:
       tslib: 2.9.1
       uid: 2.0.2
     optionalDependencies:
-      '@nestjs/microservices': 12.6.0(@grpc/grpc-js@1.14.7)(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(amqp-connection-manager@5.0.1(amqplib@2.4.0))(amqplib@2.4.0)(cache-manager@7.2.9)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/microservices': 12.6.0(@grpc/grpc-js@1.14.7)(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(amqp-connection-manager@5.0.1(amqplib@2.4.0))(amqplib@2.4.0)(cache-manager@7.2.9)(ioredis@6.0.0(supports-color@8.1.1))(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/platform-express': 12.6.0(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(rxjs@7.8.2)(supports-color@8.1.1)
 
   '@nestjs/cqrs@12.1.3(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)':
@@ -21344,7 +21379,7 @@ snapshots:
       class-transformer: 0.5.1
       class-validator: 0.15.1
 
-  '@nestjs/microservices@12.6.0(@grpc/grpc-js@1.14.7)(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(amqp-connection-manager@5.0.1(amqplib@2.4.0))(amqplib@2.4.0)(cache-manager@7.2.9)(reflect-metadata@0.2.2)(rxjs@7.8.2)':
+  '@nestjs/microservices@12.6.0(@grpc/grpc-js@1.14.7)(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(amqp-connection-manager@5.0.1(amqplib@2.4.0))(amqplib@2.4.0)(cache-manager@7.2.9)(ioredis@6.0.0(supports-color@8.1.1))(reflect-metadata@0.2.2)(rxjs@7.8.2)':
     dependencies:
       '@nestjs/common': 12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1)
       '@nestjs/core': 12.6.0(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/microservices@12.6.0)(@nestjs/platform-express@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -21357,6 +21392,7 @@ snapshots:
       amqp-connection-manager: 5.0.1(amqplib@2.4.0)
       amqplib: 2.4.0
       cache-manager: 7.2.9
+      ioredis: 6.0.0(supports-color@8.1.1)
 
   '@nestjs/mongoose@12.0.1(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(rxjs@7.8.2)':
     dependencies:
@@ -21435,7 +21471,7 @@ snapshots:
       class-validator: 0.15.1
       typescript: 6.0.3
 
-  '@nestjs/terminus@12.2.0(0776d29da20dd13e28ce2b6cd52ff3e7)':
+  '@nestjs/terminus@12.2.0(564ef62515a5ab2a1dcb5a89f93490a1)':
     dependencies:
       '@nestjs/common': 12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1)
       '@nestjs/core': 12.6.0(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/microservices@12.6.0)(@nestjs/platform-express@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
@@ -21445,12 +21481,12 @@ snapshots:
       '@grpc/grpc-js': 1.14.7
       '@grpc/proto-loader': 0.8.1
       '@nestjs/axios': 12.0.2(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(rxjs@7.8.2)
-      '@nestjs/microservices': 12.6.0(@grpc/grpc-js@1.14.7)(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(amqp-connection-manager@5.0.1(amqplib@2.4.0))(amqplib@2.4.0)(cache-manager@7.2.9)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/microservices': 12.6.0(@grpc/grpc-js@1.14.7)(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(amqp-connection-manager@5.0.1(amqplib@2.4.0))(amqplib@2.4.0)(cache-manager@7.2.9)(ioredis@6.0.0(supports-color@8.1.1))(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/mongoose': 12.0.1(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(rxjs@7.8.2)
       '@nestjs/sequelize': 12.0.1(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/swagger': 12.1.2(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(typescript@6.0.3)
-      '@nestjs/typeorm': 12.0.3(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))
-      typeorm: 1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3))
+      '@nestjs/typeorm': 12.0.3(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)(typeorm@1.1.3(babel-plugin-macros@3.1.0)(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))
+      typeorm: 1.1.3(babel-plugin-macros@3.1.0)(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3))
 
   '@nestjs/testing@12.6.0(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(@nestjs/microservices@12.6.0)(@nestjs/platform-express@12.6.0)':
     dependencies:
@@ -21458,7 +21494,7 @@ snapshots:
       '@nestjs/core': 12.6.0(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/microservices@12.6.0)(@nestjs/platform-express@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       tslib: 2.9.1
     optionalDependencies:
-      '@nestjs/microservices': 12.6.0(@grpc/grpc-js@1.14.7)(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(amqp-connection-manager@5.0.1(amqplib@2.4.0))(amqplib@2.4.0)(cache-manager@7.2.9)(reflect-metadata@0.2.2)(rxjs@7.8.2)
+      '@nestjs/microservices': 12.6.0(@grpc/grpc-js@1.14.7)(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(amqp-connection-manager@5.0.1(amqplib@2.4.0))(amqplib@2.4.0)(cache-manager@7.2.9)(ioredis@6.0.0(supports-color@8.1.1))(reflect-metadata@0.2.2)(rxjs@7.8.2)
       '@nestjs/platform-express': 12.6.0(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(rxjs@7.8.2)(supports-color@8.1.1)
 
   '@nestjs/throttler@6.8.0(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(reflect-metadata@0.2.2)':
@@ -21467,13 +21503,13 @@ snapshots:
       '@nestjs/core': 12.6.0(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/microservices@12.6.0)(@nestjs/platform-express@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       reflect-metadata: 0.2.2
 
-  '@nestjs/typeorm@12.0.3(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))':
+  '@nestjs/typeorm@12.0.3(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/core@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)(typeorm@1.1.3(babel-plugin-macros@3.1.0)(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))':
     dependencies:
       '@nestjs/common': 12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1)
       '@nestjs/core': 12.6.0(@nestjs/common@12.6.0(class-transformer@0.5.1)(class-validator@0.15.1)(reflect-metadata@0.2.2)(rxjs@7.8.2)(supports-color@8.1.1))(@nestjs/microservices@12.6.0)(@nestjs/platform-express@12.6.0)(reflect-metadata@0.2.2)(rxjs@7.8.2)
       reflect-metadata: 0.2.2
       rxjs: 7.8.2
-      typeorm: 1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3))
+      typeorm: 1.1.3(babel-plugin-macros@3.1.0)(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3))
 
   '@ng-prism/core@22.8.0(patch_hash=cdc0a39bca9940f802dc6ac0365838b165d3d09123eaeb5d8b60862fb4e1817d)(@angular-devkit/architect@0.2203.0(chokidar@6.0.0))(@angular-devkit/core@22.3.0(chokidar@6.0.0))(@angular-devkit/schematics@22.3.0(chokidar@6.0.0))(@angular/common@22.3.0(@angular/core@22.3.0(@angular/compiler@22.3.0)(rxjs@7.8.2))(rxjs@7.8.2))(@angular/compiler@22.3.0)(@angular/core@22.3.0(@angular/compiler@22.3.0)(rxjs@7.8.2))(highlight.js@11.12.0)(ngx-highlightjs@14.0.1(1bf01ae19f5f64ebbedc3687b2ea2f50))(typescript@6.0.3)':
     dependencies:
@@ -25536,6 +25572,8 @@ snapshots:
 
   clone@1.0.4: {}
 
+  cluster-key-slot@1.1.1: {}
+
   co@4.6.0: {}
 
   code-block-writer@13.0.3: {}
@@ -26021,6 +26059,8 @@ snapshots:
       object-keys: 1.1.1
 
   delayed-stream@1.0.0: {}
+
+  denque@2.1.0: {}
 
   depd@1.1.2: {}
 
@@ -27488,6 +27528,17 @@ snapshots:
 
   interpret@3.1.1: {}
 
+  ioredis@6.0.0(supports-color@8.1.1):
+    dependencies:
+      '@ioredis/commands': 2.0.0
+      cluster-key-slot: 1.1.1
+      debug: 4.4.3(supports-color@8.1.1)
+      denque: 2.1.0
+      redis-errors: 1.2.0
+      standard-as-callback: 2.1.0
+    transitivePeerDependencies:
+      - supports-color
+
   ip-regex@2.1.0: {}
 
   ip-regex@4.3.0: {}
@@ -28434,7 +28485,7 @@ snapshots:
 
   kind-of@6.0.3: {}
 
-  langchain@0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0):
+  langchain@0.3.37(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(axios@1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(cheerio@1.2.0)(handlebars@4.7.10)(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))(typeorm@1.1.3(babel-plugin-macros@3.1.0)(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)))(ws@8.23.0):
     dependencies:
       '@langchain/core': 0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76))
       '@langchain/openai': 0.6.17(@langchain/core@0.3.80(@opentelemetry/api@1.10.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.10.0))(@opentelemetry/sdk-trace-base@2.10.0(@opentelemetry/api@1.10.0))(openai@7.57.0(google-auth-library@11.3.4(supports-color@8.1.1))(undici@7.30.2)(ws@8.23.0)(zod@3.25.76)))(ws@8.23.0)
@@ -28452,7 +28503,7 @@ snapshots:
       axios: 1.21.1(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
       cheerio: 1.2.0
       handlebars: 4.7.10
-      typeorm: 1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3))
+      typeorm: 1.1.3(babel-plugin-macros@3.1.0)(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3))
     transitivePeerDependencies:
       - '@opentelemetry/api'
       - '@opentelemetry/exporter-trace-otlp-proto'
@@ -30853,6 +30904,8 @@ snapshots:
       indent-string: 4.0.0
       strip-indent: 3.0.0
 
+  redis-errors@1.2.0: {}
+
   reflect-metadata@0.1.10: {}
 
   reflect-metadata@0.2.2: {}
@@ -31559,6 +31612,8 @@ snapshots:
     dependencies:
       escape-string-regexp: 2.0.0
 
+  standard-as-callback@2.1.0: {}
+
   statuses@1.5.0: {}
 
   statuses@2.0.2: {}
@@ -32209,7 +32264,7 @@ snapshots:
       typescript: 6.0.3
       yaml: 2.9.1
 
-  typeorm@1.1.3(babel-plugin-macros@3.1.0)(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)):
+  typeorm@1.1.3(babel-plugin-macros@3.1.0)(ioredis@6.0.0(supports-color@8.1.1))(pg@8.23.1)(supports-color@8.1.1)(ts-node@10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)):
     dependencies:
       '@sqltools/formatter': 1.2.5
       ansis: 4.5.0
@@ -32222,6 +32277,7 @@ snapshots:
       tslib: 2.9.1
       yargs: 18.2.0
     optionalDependencies:
+      ioredis: 6.0.0(supports-color@8.1.1)
       pg: 8.23.1
       ts-node: 10.9.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(@types/node@22.20.5)(typescript@6.0.3)
     transitivePeerDependencies:

@@ -96,6 +96,7 @@
     "nest-testing",
     "nest-typeorm",
     "nest-utilities",
+    "nest-valkey",
     "nest-vault",
     "node-local-storage",
     "node-utilities",

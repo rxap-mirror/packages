@@ -1,0 +1,46 @@
+{
+  "version": "12.0.0-dev.4",
+  "name": "@rxap/nest-valkey",
+  "description": "NestJS module for Valkey (Redis-compatible): JSON cache service, distributed lock API with fencing tokens, idempotency keys and a Terminus health indicator.",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "tslib": "2.9.1"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^12.0.0",
+    "@nestjs/config": "^12.0.0",
+    "@nestjs/terminus": "^12.0.0",
+    "@rxap/nest-utilities": "^12.0.0-dev.5",
+    "ioredis": "^6.0.0",
+    "joi": "^18.0.0"
+  },
+  "author": {
+    "name": "Merzough Münker",
+    "email": "mmuenker@digitaix.com"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/rxap/packages/-/issues",
+    "email": "incoming+rxap-packages-14898188-issue-@incoming.gitlab.com"
+  },
+  "homepage": "https:/gitlab.com/rxap/packages/packages/nest/valkey",
+  "keywords": [
+    "nest",
+    "nest-valkey",
+    "valkey",
+    "redis",
+    "lock",
+    "packages",
+    "rxap"
+  ],
+  "main": "./src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/rxap/packages.git",
+    "directory": "packages/nest/valkey"
+  },
+  "type": "commonjs",
+  "types": "./src/index.d.ts"
+}

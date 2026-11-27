@@ -1,0 +1,32 @@
+{
+  "name": "nest-valkey",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/nest/valkey/src",
+  "projectType": "library",
+  "tags": ["nest", "packages"],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/nest/valkey",
+        "tsConfig": "packages/nest/valkey/tsconfig.lib.json",
+        "packageJson": "packages/nest/valkey/package.json",
+        "main": "packages/nest/valkey/src/index.ts",
+        "assets": ["packages/nest/valkey/*.md"]
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "packages/nest/valkey/tsconfig.lib.prod.json"
+        },
+        "development": {}
+      },
+      "defaultConfiguration": "development"
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/{projectRoot}"
+      }
+    }
+  }
+}

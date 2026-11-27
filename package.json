@@ -102,6 +102,7 @@
     "handlebars": "4.7.10",
     "helmet": "8.3.0",
     "ignore": "7.0.14",
+    "ioredis": "6.0.0",
     "joi": "18.3.2",
     "keycloak-js": "26.2.5",
     "keyv": "6.1.0",
