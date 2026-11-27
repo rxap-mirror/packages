@@ -53,9 +53,8 @@
     # push + fetch as the release bot (the URL is never printed)
     - git remote set-url origin "https://release-bot:${RELEASE_GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git"
     - git fetch --quiet --tags --force origin
-    # Node >= 25 images no longer ship corepack (pinned, past the release cooldown)
-    - command -v corepack > /dev/null || npm install --global --no-audit --no-fund corepack@0.36.0
-    - corepack enable
+    # pinned corepack in .ci-tools, activates package.json#packageManager (gitlab-ci package-manager component)
+    - !reference [.ci-package-manager, before_script]
     - pnpm install --frozen-lockfile --prefer-offline
   # 3 = some projects failed after the push, the others were packed: release:npm still publishes those
   allow_failure:

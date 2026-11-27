@@ -195,10 +195,10 @@ include:
       - if: '$RENOVATE == "true" || $SUPPLY_CHAIN_AUDIT == "true" || $FRAMEWORK_WATCH == "true" || $NX_RELEASE || $CI_PROJECT_PATH !~ /^(?:$[[ inputs.release ]])/'
         when: never
       - when: always
-  - component: gitlab.com/rxap/gitlab-ci/nx-workspace@6.4.0-edge.65
+  - component: gitlab.com/rxap/gitlab-ci/nx-workspace@6.4.0-edge.67
     rules: *workspace-pipeline
     inputs:
-      version: "6.4.0-edge.65"
+      version: "6.4.0-edge.67"
       # keep in sync with .nvmrc (the component default is the Node 22 image jod-alpine)
       node_version: "26.13-alpine"
       workflow_rules:
@@ -322,6 +322,9 @@ include:
         when: never
       - if: '$CI_COMMIT_TAG'
       - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+  # .ci-package-manager (pinned corepack, package.json#packageManager) for the standalone jobs below (supply-chain,
+  # framework watch, releases, agent:fix): loaded in every pipeline, also where the workspace components are not
+  - component: gitlab.com/rxap/gitlab-ci/package-manager@6.4.0-edge.67
   - local: .gitlab/ci/supply-chain.yml
   - local: .gitlab/ci/renovate.yml
   - local: .gitlab/ci/framework-watch.yml

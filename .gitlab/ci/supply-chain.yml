@@ -9,7 +9,6 @@
     - mlr-linux-small-amd64
   variables:
     GIT_DEPTH: 0
-    COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
     npm_config_store_dir: $CI_PROJECT_DIR/.pnpm-store
   cache:
     key:
@@ -18,10 +17,10 @@
         - pnpm-lock.yaml
     paths:
       - .pnpm-store
+      - .corepack
   before_script:
-    # Node >= 25 images no longer ship corepack (pinned, past the release cooldown)
-    - command -v corepack > /dev/null || npm install --global --no-audit --no-fund corepack@0.36.0
-    - corepack enable
+    # pinned corepack in .ci-tools, activates package.json#packageManager (gitlab-ci package-manager component)
+    - !reference [.ci-package-manager, before_script]
     - pnpm install --frozen-lockfile --ignore-scripts --prefer-offline
 
 # Every change of the lockfile or the pnpm settings: tiered release cooldown of the added versions + pnpm audit.

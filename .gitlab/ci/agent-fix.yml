@@ -10,9 +10,9 @@
 # epic_rules; agent:fix below extends `.claude` and replaces `script`, `rules` and `resource_group`.
 
 include:
-  - component: gitlab.com/rxap/gitlab-ci/claude@6.4.0-edge.65
+  - component: gitlab.com/rxap/gitlab-ci/claude@6.4.0-edge.67
     inputs:
-      version: "6.4.0-edge.65"
+      version: "6.4.0-edge.67"
       as: agent:fix:issue
       stage: .post
       backend: claudish
@@ -51,7 +51,6 @@ agent:fix:
     - export GITLAB_TOKEN="$AGENT_GITLAB_TOKEN"
     - !reference [ .claude, before_script ]
   variables:
-    COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
     npm_config_store_dir: $CI_PROJECT_DIR/.pnpm-store
     # distinct author: Renovate treats the branch as modified and stops force-rebasing it over the agent commits
     GIT_AUTHOR_NAME: rxap agent bot
@@ -89,9 +88,8 @@ agent:fix:
     # .mcp.json starts MCP servers via `npx -y <pkg>@latest` (no release cooldown, network in CI): hide it from the
     # agent without the deletion ever showing up in `git status`
     - git update-index --skip-worktree .mcp.json && rm -f .mcp.json
-    # Node >= 25 images no longer ship corepack (pinned, past the release cooldown)
-    - command -v corepack > /dev/null || npm install --global --no-audit --no-fund corepack@0.36.0
-    - corepack enable
+    # pinned corepack in .ci-tools, activates package.json#packageManager (gitlab-ci package-manager component)
+    - !reference [.ci-package-manager, before_script]
     - pnpm install --frozen-lockfile --prefer-offline
     - ciClaudeRun
   rules:
