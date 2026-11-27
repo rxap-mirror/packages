@@ -49,8 +49,6 @@
     # push + fetch as the release bot (the URL is never printed)
     - git remote set-url origin "https://release-bot:${RELEASE_GITLAB_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_PATH}.git"
     - git fetch --quiet --tags --force origin
-    # project targets (e.g. rxap:update-implicit-dependencies) call jq, which the node image does not ship
-    - apt-get update -qq && apt-get install -y -qq --no-install-recommends jq > /dev/null
     - corepack enable
     - pnpm install --frozen-lockfile --prefer-offline
   # 3 = some projects failed after the push, the others were packed: release:npm still publishes those

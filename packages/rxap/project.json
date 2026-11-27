@@ -153,14 +153,14 @@
     "update-implicit-dependencies": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["bash ./packages/rxap/update-implicit-dependencies.sh"]
+        "commands": ["node ./packages/rxap/update-implicit-dependencies.mjs"]
       }
     },
     "update-include-packages": {
       "dependsOn": ["update-implicit-dependencies"],
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["bash ./packages/rxap/update-include-packages.sh"]
+        "commands": ["node ./packages/rxap/update-include-packages.mjs"]
       }
     },
     "update-package-group": {
