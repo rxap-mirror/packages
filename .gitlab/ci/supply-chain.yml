@@ -19,6 +19,8 @@
     paths:
       - .pnpm-store
   before_script:
+    # Node >= 25 images no longer ship corepack (pinned, past the release cooldown)
+    - command -v corepack > /dev/null || npm install --global --no-audit --no-fund corepack@0.36.0
     - corepack enable
     - pnpm install --frozen-lockfile --ignore-scripts --prefer-offline
 

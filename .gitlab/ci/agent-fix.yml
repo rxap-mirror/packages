@@ -89,6 +89,8 @@ agent:fix:
     # .mcp.json starts MCP servers via `npx -y <pkg>@latest` (no release cooldown, network in CI): hide it from the
     # agent without the deletion ever showing up in `git status`
     - git update-index --skip-worktree .mcp.json && rm -f .mcp.json
+    # Node >= 25 images no longer ship corepack (pinned, past the release cooldown)
+    - command -v corepack > /dev/null || npm install --global --no-audit --no-fund corepack@0.36.0
     - corepack enable
     - pnpm install --frozen-lockfile --prefer-offline
     - ciClaudeRun
