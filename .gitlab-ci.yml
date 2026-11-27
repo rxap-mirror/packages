@@ -34,6 +34,19 @@ include:
         # so this will trigger a full pipeline run per night and drain the CI credits
         - if: '$RELEASE_IT == "true"'
           when: never
+        # Same two rules as the component default (templates/nx-workspace.yml `workflow_rules`), which this list
+        # replaces: a plain push to a `<prefix>/` branch (feature/, fix/, claude/, epic/ ...) starts no pipeline, its
+        # merge request pipeline covers it. Without them the component drops the `test` job for such a branch but
+        # .gitlab/ci/workspace.yml still overrides it ("jobs test config should implement the script").
+        # rxap/, renovate/ and migrate/ branches (rxap-compose, Renovate, framework watch: the nx-migrate job runs in
+        # their push pipeline) keep it (RE2 has no negative lookahead: matched first).
+        - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH =~ /^(rxap|renovate|migrate)\//'
+          variables:
+            ENVIRONMENT_NAME: 'branch/$CI_COMMIT_REF_SLUG'
+        - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH =~ /^[^\/]+\//'
+          variables:
+            ENVIRONMENT_NAME: 'branch/$CI_COMMIT_REF_SLUG'
+          when: never
         - if: '$CI_COMMIT_BRANCH'
           variables:
             ENVIRONMENT_NAME: 'branch/$CI_COMMIT_REF_SLUG'
