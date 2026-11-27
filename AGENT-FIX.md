@@ -73,8 +73,8 @@ Create both labels in the project once (scoped labels, so only one `agent-fix::*
 
 | Variable | What | Settings |
 |---|---|---|
-| `AGENT_GITLAB_TOKEN` | Token of the service account `rxap-agent-bot` (role Developer, scopes `api`, `write_repository`; set by `rxap/terraform`). The job exports it as `GITLAB_TOKEN`. Pushes the fix (a push with the job token would not start a pipeline), reads job traces, sets labels and notes. | masked; protected only if `renovate/*` and `migrate/*` are protected branches |
-| `OPENROUTER_API_KEY` | OpenRouter key for claudish. Use a dedicated key **with a monthly spending limit**. | masked |
+| `AGENT_GITLAB_TOKEN` | Token of the service account `rxap-agent-bot` (role Developer, scopes `api`, `write_repository`; set by `rxap/terraform`, environment scope `agent-fix`). The job exports it as `GITLAB_TOKEN`. Pushes the fix (a push with the job token would not start a pipeline), reads job traces, sets labels and notes. | masked; protected only if `renovate/*` and `migrate/*` are protected branches |
+| `OPENROUTER_API_KEY` | OpenRouter key for claudish. Use a dedicated key **with a monthly spending limit**. | masked, environment scope `agent-fix` (declared by the job) |
 
 Optional job variables: `AGENT_FIX_MAX_ATTEMPTS` (default 2), `AGENT_FIX_BASE_BRANCH` (default
 `$CI_DEFAULT_BRANCH`). The model comes from the component input `model` (default `openrouter@z-ai/glm-5.3-flash`).

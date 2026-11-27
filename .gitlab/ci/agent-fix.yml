@@ -39,6 +39,11 @@ agent:fix:
   # one agent per branch; a second red pipeline of the same branch queues instead of racing for the push
   resource_group: agent-fix/$CI_COMMIT_REF_SLUG
   interruptible: false
+  # AGENT_GITLAB_TOKEN and OPENROUTER_API_KEY are scoped to this environment, so other jobs do not receive them. Not a
+  # hard boundary (any job could declare it; protected environments are Premium). `prepare`: no deployment is recorded.
+  environment:
+    name: agent-fix
+    action: prepare
   # the template (glab login, ciSetupGit, the agent's push) uses GITLAB_TOKEN, which is the token of
   # rxap-maintenance-bot; the agent works as rxap-agent-bot. A job variable cannot override a project variable, so the
   # swap happens in the shell before the template's before_script.

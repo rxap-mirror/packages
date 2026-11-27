@@ -77,17 +77,18 @@ Other credentials (set by hand):
 |---|---|---|---|---|
 | `RELEASE_GITLAB_TOKEN` | Terraform | masked | **yes** | the release jobs only run on `development` / `latest` |
 | `GITLAB_TOKEN` | Terraform | masked | no | `migrate/*` and `rxap/compose` are not protected branches |
-| `AGENT_GITLAB_TOKEN` | Terraform | masked | no | `renovate/*` and `migrate/*` are not protected branches |
+| `AGENT_GITLAB_TOKEN` | Terraform | masked | no | environment scope `agent-fix`; `renovate/*` and `migrate/*` are not protected branches |
 | `RENOVATE_TOKEN` | Terraform | masked | yes | the `renovate` schedules run on `development` |
-| `OPENROUTER_API_KEY` | by hand | masked and hidden | no | see below |
+| `OPENROUTER_API_KEY` | by hand | masked and hidden | no | environment scope **`agent-fix`**; see below |
 | `GITHUB_COM_TOKEN` | by hand | masked | yes | optional |
 
 `OPENROUTER_API_KEY` stays **unprotected**: protecting it would need protected `renovate/*` / `migrate/*` branches,
 and only Maintainers may delete protected branches (Free cannot allow single users), so the bots would need
 Maintainer. Forks never receive project variables; only members who can push (the owner and the bots) can start a
 pipeline that sees it, and `agent:fix` only starts for pipelines of the bots or the owner (`$GITLAB_USER_LOGIN` rule).
-Environment-scoped variables are no guard either: any job can declare the environment (protected environments are
-Premium). The spending limit is the real guard.
+Both agent secrets have the environment scope `agent-fix`, which only the `agent:fix` job declares, so other jobs do
+not receive them. That is not a hard boundary (any job could declare the environment); with Premium the environment
+can become protected. The spending limit is the real guard.
 
 Optional (defaults in the YAML): `RELEASE_BUILD_RUNNER_TAG` (`mlr-linux-medium-amd64`), `RELEASE_PUBLISH_RUNNER_TAG`
 (`saas-linux-small-amd64`), `AGENT_FIX_MAX_ATTEMPTS` (2), `AGENT_FIX_BASE_BRANCH` (default branch).
