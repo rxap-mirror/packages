@@ -1,27 +1,45 @@
 # Get started
 
-1. Install the package and its peers (see README).
-2. Add the validation schema and the module:
+NestJS module for [Valkey](https://valkey.io) (and Redis-compatible servers): a JSON cache service,
+a **distributed lock API**, idempotency keys and a Terminus health indicator.
+
+Install the peers: `npm install @nestjs/common @nestjs/config @nestjs/terminus @rxap/nest-utilities ioredis joi`
+
+## Configuration
+
+| Variable          | Default     | Description                                                                 |
+|-------------------|-------------|-----------------------------------------------------------------------------|
+| `VALKEY_URL`      | _(empty)_   | `redis://` / `rediss://` URL. **Takes precedence** over host/port. `rediss://` implies TLS. |
+| `VALKEY_HOST`     | `localhost` | Host (ignored when `VALKEY_URL` is set)                                     |
+| `VALKEY_PORT`     | `6379`      | Port (ignored when `VALKEY_URL` is set)                                     |
+| `VALKEY_PASSWORD` | _(empty)_   | Password; overrides one embedded in the URL                                 |
+| `VALKEY_TLS`      | `false`     | `true`/`1` enables TLS for host/port connections                            |
+
+Empty strings are valid for every variable (docker compose passes unset variables through as `""`).
+The password is never logged: connection errors and cache failures are redacted (URL credentials
+and the configured password are masked).
 
 ```typescript
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
-import { ValkeyModule, ValkeyModuleOptionsFactory, valkeyValidationSchema } from '@rxap/nest-valkey';
-import * as Joi from 'joi';
+ConfigModule.forRoot({
+  validationSchema: Joi.object({ ...valkeyValidationSchema(environment) }),
+});
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      validationSchema: Joi.object({ ...valkeyValidationSchema('production' as any) }),
+    ValkeyModule.registerAsync({
+      imports: [ConfigModule],
+      useClass: ValkeyModuleOptionsFactory,
     }),
-    ValkeyModule.registerAsync({ imports: [ConfigModule], useClass: ValkeyModuleOptionsFactory }),
   ],
 })
 export class AppModule {}
 ```
 
-3. Configure via environment: `VALKEY_URL=rediss://:password@valkey.example:6380` (or `VALKEY_HOST`/`VALKEY_PORT`/`VALKEY_PASSWORD`/`VALKEY_TLS`).
-4. Use the lock API:
+`ValkeyModule` is global; `ValkeyService`, `ValkeyLockService` and `ValkeyHealthIndicator` can be injected anywhere.
+For options without the environment use `ValkeyModule.register({ url, tls: { ca } })`; `tls` may also be a
+`tls.ConnectionOptions` object.
+
+## Quick example
 
 ```typescript
 @Injectable()
@@ -40,4 +58,4 @@ export class ExportService {
 }
 ```
 
-A Valkey outage raises `ValkeyUnavailableError` from the lock API (fail-closed) – answer with 503.
+A Valkey outage raises `ValkeyUnavailableError` from the lock API (fail-closed) – answer with HTTP 503.

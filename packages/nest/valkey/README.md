@@ -1,27 +1,37 @@
+NestJS module for Valkey (Redis-compatible): JSON cache service, distributed lock API with fencing tokens, idempotency keys and a Terminus health indicator.
 [![npm version](https://img.shields.io/npm/v/@rxap/nest-valkey?style=flat-square)](https://www.npmjs.com/package/@rxap/nest-valkey)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+![Libraries.io dependency status for latest release, scoped npm package](https://img.shields.io/librariesio/release/npm/@rxap/nest-valkey)
 ![npm](https://img.shields.io/npm/dm/@rxap/nest-valkey)
 ![NPM](https://img.shields.io/npm/l/@rxap/nest-valkey)
 
-NestJS module for [Valkey](https://valkey.io) (and Redis-compatible servers): a JSON cache
-service, a **distributed lock API**, idempotency keys and a Terminus health indicator.
-
 - [Installation](#installation)
-- [Configuration](#configuration)
-- [Services](#services)
-- [Fail-soft vs. fail-closed](#fail-soft-vs-fail-closed)
-- [Tests](#tests)
+- [Get started](#get-started)
+- [Guides](#guides)
 
 # Installation
 
+**Add the package to your workspace:**
 ```bash
 npm install @rxap/nest-valkey
-npm install @nestjs/common @nestjs/config @nestjs/terminus @rxap/nest-utilities ioredis joi
 ```
 With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
 
-# Configuration
+**Install peer dependencies:**
+```bash
+npm install @nestjs/common @nestjs/config @nestjs/terminus @rxap/nest-utilities ioredis joi 
+```
+# Get started
+
+# Get started
+
+NestJS module for [Valkey](https://valkey.io) (and Redis-compatible servers): a JSON cache service,
+a **distributed lock API**, idempotency keys and a Terminus health indicator.
+
+Install the peers: `npm install @nestjs/common @nestjs/config @nestjs/terminus @rxap/nest-utilities ioredis joi`
+
+## Configuration
 
 | Variable          | Default     | Description                                                                 |
 |-------------------|-------------|-----------------------------------------------------------------------------|
@@ -55,14 +65,39 @@ export class AppModule {}
 For options without the environment use `ValkeyModule.register({ url, tls: { ca } })`; `tls` may also be a
 `tls.ConnectionOptions` object.
 
-# Services
+## Quick example
 
-## ValkeyService
+```typescript
+@Injectable()
+export class ExportService {
+  constructor(private readonly locks: ValkeyLockService) {}
+
+  async run(id: string) {
+    const lease = await this.locks.acquire(`lock:export:${id}`, 30_000, 'worker-1', { action: 'export' });
+    if (!lease) return { busy: await this.locks.holder(`lock:export:${id}`) };
+    try {
+      /* ... */
+    } finally {
+      await this.locks.release(lease);
+    }
+  }
+}
+```
+
+A Valkey outage raises `ValkeyUnavailableError` from the lock API (fail-closed) – answer with HTTP 503.
+
+# Guides
+
+# Guides
+
+## Services
+
+### ValkeyService
 
 JSON cache: `get`, `mget`, `set(key, value, ttlSeconds?)`, `del`, `delStrict`, `incr`, `ping`.
 The raw [ioredis](https://github.com/redis/ioredis) client is available as `valkey.client` (readonly) for special cases.
 
-## ValkeyLockService
+### ValkeyLockService
 
 | Method                                     | Description                                                                                 |
 |--------------------------------------------|---------------------------------------------------------------------------------------------|
@@ -101,7 +136,7 @@ if (!r.created) return r.existing; // replay of an earlier request
 > A lock is also only safe while the holder finishes within the TTL: renew it for long jobs and treat a
 > failed `renew` as "lock lost" (stop working).
 
-# Fail-soft vs. fail-closed
+## Fail-soft vs. fail-closed
 
 * **Cache methods** (`get`, `set`, `del`) are *fail-soft*: an unreachable Valkey degrades to a miss / no-op.
   `mget`, `incr`, `delStrict`, `ping` propagate errors.
@@ -121,7 +156,11 @@ try {
 Invalid arguments (non-positive/non-integer TTL, empty key, non-serializable value) throw
 `RangeError` / `TypeError` before any command is sent.
 
-# Tests
+## Health check
+
+Add `ValkeyHealthIndicator.isHealthy()` to a Terminus `HealthCheckService.check([...])` (PING with a 5 s timeout).
+
+## Tests
 
 Unit tests use a mocked client. An integration suite against a real Valkey runs only when
 `TEST_VALKEY_URL` is set:
@@ -130,3 +169,4 @@ Unit tests use a mocked client. An integration suite against a real Valkey runs 
 docker run -d --rm -p 127.0.0.1:16379:6379 valkey/valkey:8
 TEST_VALKEY_URL=redis://127.0.0.1:16379 pnpm nx test nest-valkey
 ```
+

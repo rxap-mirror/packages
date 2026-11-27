@@ -1,7 +1,7 @@
 {
   "version": "12.0.0-dev.5",
   "name": "@rxap/nest-valkey",
-  "description": "NestJS module for Valkey (Redis-compatible): JSON cache service, distributed lock API with fencing tokens, idempotency keys and a Terminus health indicator.",
+  "description": "NestJS module for Valkey (Redis-compatible): JSON cache service, distributed lock API (token-guarded, fail-closed), idempotency keys and a Terminus health indicator.",
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "tslib": "2.9.1"
