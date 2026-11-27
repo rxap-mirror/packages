@@ -1,3 +1,28 @@
+## 24.0.0-dev.1 (2026-11-27)
+
+### 🚀 Features
+
+- ⚠️  **firebase:** replace @angular/fire with the modular firebase sdk
+
+### 🩹 Fixes
+
+- **rxap:** update package group
+- **rxap:** update the umbrella project without jq
+- **plugin-library:** stop writing publishConfig.directory
+
+### ⚠️  Breaking Changes
+
+- **firebase:** replace @angular/fire with the modular firebase sdk
+  the compat tokens and classes of @angular/fire (for
+  example AngularFireAuth, AngularFirestore, AngularFireMessaging and their
+  SETTINGS/USE_EMULATOR tokens) are no longer provided. Inject the new
+  FIREBASE_* tokens, which resolve to the modular firebase sdk instances.
+
+### ❤️ Thank You
+
+- Merzough Münker
+- RxAP Bot
+
 ## 24.0.0-dev.0 (2026-11-22)
 
 This was a version bump only for rxap to align it with other projects, there were no code changes.
