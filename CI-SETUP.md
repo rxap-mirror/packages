@@ -44,7 +44,8 @@ value goes straight into the CI variable; nobody copies tokens by hand.
 
 | Service account | Email (Cloudflare Email Routing → must be confirmed once) | Role on `rxap/packages` | CI variable |
 |---|---|---|---|
-| `rxap-bot` | `bot@rxap.dev` | Developer | `GITLAB_TOKEN` (`framework-watch`, `nx-migrate`, `rxap-compose`, `agent:fix`) |
+| `rxap-maintenance-bot` | `maintenance-bot@rxap.dev` | Developer | `GITLAB_TOKEN` (`framework-watch`, `nx-migrate`, `rxap-compose`) |
+| `rxap-agent-bot` | `agent-bot@rxap.dev` | Developer | `AGENT_GITLAB_TOKEN` (`agent:fix`; the job exports it as `GITLAB_TOKEN`) |
 | `rxap-release-bot` | `release-bot@rxap.dev` | Maintainer (push to `development` / `latest`) | `RELEASE_GITLAB_TOKEN` |
 | `rxap-renovate-bot` | `renovate-bot@rxap.dev` | Developer | `RENOVATE_TOKEN` |
 | `rxap-terraform-bot` | `terraform-bot@rxap.dev` | Owner (of the group) | CI token of `rxap/terraform` itself |
@@ -54,7 +55,9 @@ renovate bot <renovate-bot@rxap.dev>`, `rxap agent bot <agent-bot@rxap.dev>`.
 
 - **Email confirmation:** an unconfirmed service account gets `403 primary email address is not confirmed` from the
   API. GitLab sends the confirmation only when the account is created or its email changes, so the Cloudflare
-  forwarding rule must exist **before** the apply that creates the account.
+  forwarding rule must exist **before** the apply that creates the account (`rxap.dev` has a catch-all rule).
+  A lost confirmation cannot be recovered reliably: `rxap-bot` (`bot@rxap.dev`) never got confirmed, even after it
+  was recreated, and was replaced by `rxap-maintenance-bot` and `rxap-agent-bot` (2026-11-27).
 - Pushes with these tokens start pipelines (a push with `CI_JOB_TOKEN` would not), which is why the agent and
   `nx-migrate` need a real token. The release push uses `-o ci.skip`.
 
@@ -73,7 +76,8 @@ Other credentials (set by hand):
 | Variable | Set by | Visibility | Protected | Note |
 |---|---|---|---|---|
 | `RELEASE_GITLAB_TOKEN` | Terraform | masked | **yes** | the release jobs only run on `development` / `latest` |
-| `GITLAB_TOKEN` | Terraform | masked | no | `renovate/*` and `migrate/*` are not protected branches |
+| `GITLAB_TOKEN` | Terraform | masked | no | `migrate/*` and `rxap/compose` are not protected branches |
+| `AGENT_GITLAB_TOKEN` | Terraform | masked | no | `renovate/*` and `migrate/*` are not protected branches |
 | `RENOVATE_TOKEN` | Terraform | masked | yes | the `renovate` schedules run on `development` |
 | `OPENROUTER_API_KEY` | by hand | masked and hidden | no | see below |
 | `GITHUB_COM_TOKEN` | by hand | masked | yes | optional |

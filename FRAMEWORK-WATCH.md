@@ -65,10 +65,11 @@ A framework update always moves its whole group (`tools/scripts/lib/framework-gr
 All setup steps of every CI automation in one checklist (runners, tokens with fine-grained permissions, variables,
 settings, order): `CI-SETUP.md`.
 
-1. CI variable `GITLAB_TOKEN`: project access token (role *Developer*, scopes `api` and `write_repository`, expiry
-   date; masked and hidden). Used by the watch (create / delete branches, close merge requests), `nx-migrate` (push,
-   merge request) and the fix agent. **Not protected** unless `migrate/*` and `renovate/*` are protected branches:
-   `nx-migrate` and the agent run on those branches, and protected variables only reach protected branches.
+1. CI variable `GITLAB_TOKEN`: token of the service account `rxap-maintenance-bot` (role *Developer*, scopes `api` and
+   `write_repository`; set and rotated by `rxap/terraform`, masked). Used by the watch (create / delete branches, close
+   merge requests) and `nx-migrate` (push, merge request); the fix agent has its own `AGENT_GITLAB_TOKEN`. **Not
+   protected** unless `migrate/*` is a protected branch: `nx-migrate` runs on those branches, and protected variables
+   only reach protected branches.
 2. Schedule `Framework watch`: daily, target branch `development`, variable `FRAMEWORK_WATCH=true`.
 3. `migrate/*` branches: allowed to push for the token's bot user.
 4. Run the schedule once by hand: the job log lists the plan of every group (`pending ...` lines explain what waits).

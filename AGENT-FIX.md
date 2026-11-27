@@ -29,7 +29,7 @@ rxap/gitlab-ci `nx-migrate` job). Framework merge requests never automerge, with
    cooldown), `pnpm install --frozen-lockfile` installs the workspace, then the rxap/gitlab-ci `claude` component runs
    Claude Code through claudish/OpenRouter with the skill `.claude/skills/fix-dependency-branch`.
 4. The skill reproduces only the failed targets (`pnpm nx run <project>:<target>`), fixes the cause, re-runs them,
-   commits (Conventional Commits, trailer `Agent-Fix: <n>`), pushes to the branch with `GITLAB_TOKEN` and leaves one
+   commits (Conventional Commits, trailer `Agent-Fix: <n>`), pushes to the branch with `AGENT_GITLAB_TOKEN` and leaves one
    short MR note (fixed / still open). The push starts a new pipeline; if it is red again, the next attempt runs.
 5. The log of every run is in the job artifact `.claude-ci/claude.log` (kept 1 week) next to `context.md`.
 
@@ -73,7 +73,7 @@ Create both labels in the project once (scoped labels, so only one `agent-fix::*
 
 | Variable | What | Settings |
 |---|---|---|
-| `GITLAB_TOKEN` | Project access token (role Developer, scopes `api`, `write_repository`). Pushes the fix (a push with the job token would not start a pipeline), reads job traces, sets labels and notes. | masked; protected only if `renovate/*` and `migrate/*` are protected branches |
+| `AGENT_GITLAB_TOKEN` | Token of the service account `rxap-agent-bot` (role Developer, scopes `api`, `write_repository`; set by `rxap/terraform`). The job exports it as `GITLAB_TOKEN`. Pushes the fix (a push with the job token would not start a pipeline), reads job traces, sets labels and notes. | masked; protected only if `renovate/*` and `migrate/*` are protected branches |
 | `OPENROUTER_API_KEY` | OpenRouter key for claudish. Use a dedicated key **with a monthly spending limit**. | masked |
 
 Optional job variables: `AGENT_FIX_MAX_ATTEMPTS` (default 2), `AGENT_FIX_BASE_BRANCH` (default

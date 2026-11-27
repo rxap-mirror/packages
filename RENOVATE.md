@@ -56,6 +56,6 @@ settings, order): `CI-SETUP.md`.
 5. Run the `Renovate` schedule once by hand, check the job log and the "Dependency Dashboard" issue.
 6. Check that the scheduled pipelines only contain the `renovate` / `supply-chain:audit` job.
 7. Framework watch and fix agent: activation steps in `FRAMEWORK-WATCH.md` and `AGENT-FIX.md` (`GITLAB_TOKEN`,
-   `OPENROUTER_API_KEY`, schedule `FRAMEWORK_WATCH=true`). The Renovate bot token may serve as `GITLAB_TOKEN` too.
+   `AGENT_GITLAB_TOKEN`, `OPENROUTER_API_KEY`, schedule `FRAMEWORK_WATCH=true`).
 8. Retire the old Renovate runner (`rxap/gitlab-ci` `renovate/`, systemd timer) and revoke the tokens hardcoded in its
    `renovate.service`.

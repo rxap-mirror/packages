@@ -1,8 +1,9 @@
 # Agent fix: repairs a red pipeline on a dependency update branch (renovate/*, migrate/*) with Claude Code through
 # claudish/OpenRouter. Process, attempt cap, labels and CI variables: AGENT-FIX.md.
 #
-# Needs the CI variables GITLAB_TOKEN (project access token, role Developer, scopes api + write_repository; masked +
-# protected only if renovate/* and migrate/* are protected branches) and OPENROUTER_API_KEY (key with a spending limit).
+# Needs the CI variables AGENT_GITLAB_TOKEN (token of the service account rxap-agent-bot, set by rxap/terraform; role
+# Developer, scopes api + write_repository; masked, not protected: renovate/* and migrate/* are not protected branches)
+# and OPENROUTER_API_KEY (key with a spending limit).
 #
 # The rxap/gitlab-ci claude component is included only for its hidden `.claude` template (image, glab/git setup, the
 # su-to-node invocation, log + artifacts). Its own issue and epic jobs are switched off through claude_rules and
@@ -38,6 +39,12 @@ agent:fix:
   # one agent per branch; a second red pipeline of the same branch queues instead of racing for the push
   resource_group: agent-fix/$CI_COMMIT_REF_SLUG
   interruptible: false
+  # the template (glab login, ciSetupGit, the agent's push) uses GITLAB_TOKEN, which is the token of
+  # rxap-maintenance-bot; the agent works as rxap-agent-bot. A job variable cannot override a project variable, so the
+  # swap happens in the shell before the template's before_script.
+  before_script:
+    - export GITLAB_TOKEN="$AGENT_GITLAB_TOKEN"
+    - !reference [ .claude, before_script ]
   variables:
     COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
     npm_config_store_dir: $CI_PROJECT_DIR/.pnpm-store
