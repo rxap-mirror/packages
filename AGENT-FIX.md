@@ -90,6 +90,10 @@ settings, order): `CI-SETUP.md`.
 ## Known limitations
 
 - Only merge request pipelines trigger the agent; a red branch pipeline without an MR is ignored.
+- Only pipelines started by `rxap-renovate-bot`, `rxap-maintenance-bot`, `rxap-agent-bot` or the owner (`mmuenker`)
+  start the agent (`$GITLAB_USER_LOGIN` rule): nobody else can spend `OPENROUTER_API_KEY` by pushing a `renovate/*`
+  or `migrate/*` branch. Forks never receive project variables. Hard cost cap: the key's monthly spending limit, plus
+  `AGENT_FIX_MAX_ATTEMPTS` (2 per branch, commit trailer `Agent-Fix: <n>`).
 - `when: on_failure` only sees jobs of earlier stages of the same pipeline. A failure in a child pipeline counts
   only if its trigger job uses `strategy: depend`/`mirror`.
 - Component jobs: the claude component's own `agent:fix:issue` / `…:epic` jobs are disabled with `when: never`

@@ -90,6 +90,10 @@ agent:fix:
   rules:
     - if: '$RENOVATE == "true" || $SUPPLY_CHAIN_AUDIT == "true" || $FRAMEWORK_WATCH == "true" || $RELEASE_IT == "true" || $NX_RELEASE'
       when: never
+    # the agent spends OPENROUTER_API_KEY: only pipelines started by the bots that create and update these branches
+    # (Renovate, framework watch / nx-migrate, the agent's own follow-up push) or by the owner may start it
+    - if: '$GITLAB_USER_LOGIN !~ /^(rxap-renovate-bot|rxap-maintenance-bot|rxap-agent-bot|mmuenker)$/'
+      when: never
     # nx-workspace runs builds/tests of renovate/* and migrate/* only in merge request pipelines (branch pipelines are
     # skipped for branches with an open MR and for migrate/*), so the agent reacts to those
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME =~ /^(renovate|migrate)\//'
