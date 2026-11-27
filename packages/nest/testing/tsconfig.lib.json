@@ -7,7 +7,9 @@
       "jest",
       "node"
     ],
-    "target": "es2021",
+    "target": "es2024",
+    // keep the pre-ES2022 class field semantics: decorated fields and `override x!: T` must not be re-initialised to undefined
+    "useDefineForClassFields": false,
     "strictNullChecks": true,
     "noImplicitAny": true,
     "strictBindCallApply": true,

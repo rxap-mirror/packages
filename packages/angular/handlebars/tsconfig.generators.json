@@ -3,8 +3,8 @@
   "compilerOptions": {
     "module": "commonjs",
     "moduleResolution": "node10",
-    "target": "es2021",
-    "lib": ["es2022"],
+    "target": "es2024",
+    "lib": ["es2024"],
     "types": ["node"],
     "declaration": false,
     "sourceMap": false,
