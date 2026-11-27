@@ -36,8 +36,8 @@ include:
           when: never
         # Same two rules as the component default (templates/nx-workspace.yml `workflow_rules`), which this list
         # replaces: a plain push to a `<prefix>/` branch (feature/, fix/, claude/, epic/ ...) starts no pipeline, its
-        # merge request pipeline covers it. Without them the component drops the `test` job for such a branch but
-        # .gitlab/ci/workspace.yml still overrides it ("jobs test config should implement the script").
+        # merge request pipeline covers it (a pipeline is created otherwise; the config itself is kept valid for
+        # such refs by the include rules of workspace-test.yml).
         # rxap/, renovate/ and migrate/ branches (rxap-compose, Renovate, framework watch: the nx-migrate job runs in
         # their push pipeline) keep it (RE2 has no negative lookahead: matched first).
         - if: '$CI_PIPELINE_SOURCE == "push" && $CI_COMMIT_BRANCH =~ /^(rxap|renovate|migrate)\//'
@@ -94,6 +94,26 @@ include:
 
   - local: .gitlab/ci/workspace.yml
     rules: *workspace-pipeline
+  # the component's `test` job, same conditions as its own include (see the file); the maintenance pipelines first
+  - local: .gitlab/ci/workspace-test.yml
+    rules:
+      - if: '$RENOVATE == "true" || $SUPPLY_CHAIN_AUDIT == "true" || $FRAMEWORK_WATCH == "true" || $NX_RELEASE'
+        when: never
+      - if: '$AI_ISSUE_IID || $AI_EPIC_IID'
+        when: never
+      - if: '$CI_MERGE_REQUEST_EVENT_TYPE == "merge_train"'
+        when: always
+      - if: '$CI_COMMIT_BRANCH =~ /^[0-9]+-/'
+        when: never
+      - if: '$CI_COMMIT_BRANCH =~ /^.+\/.+/'
+        when: never
+      - if: '$CI_COMMIT_BRANCH && $CI_COMMIT_MESSAGE =~ /^release:/'
+        when: never
+      - if: '$CI_COMMIT_BRANCH == "rxap/compose"'
+        when: never
+      - if: '$CI_OPEN_MERGE_REQUESTS && $CI_COMMIT_BRANCH'
+        when: never
+      - when: always
   # writerside only exists where the component includes it (tags, default branch): same rules
   - local: .gitlab/ci/writerside.yml
     rules:

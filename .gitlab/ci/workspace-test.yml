@@ -1,0 +1,10 @@
+# Runner size of the component's `test` job (CI-RUNNERS.md §4): 3 projects x 2 jest workers: ~10 GiB.
+#
+# This file is included with the SAME conditions as the component's own `test` include (nx-workspace
+# `templates/nx-workspace.yml`, the include with `as: test`). If the component drops its `test` job (push to a
+# `<prefix>/` branch, a branch with an open merge request, an AI pipeline ...) while this file still defined `test:`,
+# GitLab would see a job without script and refuse the whole pipeline ("jobs test config should implement the
+# script:, run:, or trigger: keyword"). Keep the rules in .gitlab-ci.yml in sync with the component when it is updated.
+test:
+  tags:
+    - mlr-linux-large-amd64

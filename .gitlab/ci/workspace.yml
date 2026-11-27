@@ -47,9 +47,7 @@ nx-migrate:
 # Runner size tags (CI-RUNNERS.md §4) for component and GitLab template jobs without a tags input that need another
 # size than the default (.gitlab-ci.yml `default: tags`). Only jobs that are defined in every workspace pipeline can
 # be overridden here (writerside is not defined on latest: it takes the default).
-test:
-  tags: # 3 projects x 2 jest workers: ~10 GiB
-    - mlr-linux-large-amd64
+# `test` (large runner) is overridden in workspace-test.yml: that file needs its own include rules.
 workspace:compodoc:
   tags:
     - mlr-linux-medium-amd64
