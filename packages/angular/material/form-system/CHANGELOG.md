@@ -1,3 +1,13 @@
+## 22.0.0-dev.5 (2026-11-27)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-form-system to 22.0.0-dev.5
+- Updated reflect-metadata to 1.0.19-dev.4
+- Updated angular-forms to 22.0.0-dev.5
+- Updated utilities to 16.5.3-dev.4
+- Updated mixin to 16.0.18-dev.4
+
 ## 22.0.0-dev.4 (2026-11-27)
 
 ### 🧱 Updated Dependencies

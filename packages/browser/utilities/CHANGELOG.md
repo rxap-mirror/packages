@@ -1,3 +1,7 @@
+## 1.1.16-dev.4 (2026-11-27)
+
+This was a version bump only for browser-utilities to align it with other projects, there were no code changes.
+
 ## 1.1.16-dev.3 (2026-11-27)
 
 This was a version bump only for browser-utilities to align it with other projects, there were no code changes.

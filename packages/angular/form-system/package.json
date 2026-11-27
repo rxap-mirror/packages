@@ -1,5 +1,5 @@
 {
-  "version": "22.0.0-dev.4",
+  "version": "22.0.0-dev.5",
   "name": "@rxap/form-system",
   "description": "This package provides a set of directives, decorators, mixins, and validators to simplify the creation of dynamic forms in Angular applications. It offers features such as automatic control creation, data source integration, component customization, and hide/show logic based on form state. The library aims to streamline form development by providing reusable components and abstractions for common form-related tasks.\n",
   "license": "GPL-3.0-or-later",
@@ -12,17 +12,17 @@
     "@angular/forms": "^22.0.0",
     "@angular/material": "^22.0.0",
     "@angular/router": "^22.0.0",
-    "@rxap/data-source": "^22.0.0-dev.4",
-    "@rxap/definition": "^22.0.0-dev.4",
-    "@rxap/forms": "^22.0.0-dev.4",
-    "@rxap/mixin": "^16.0.18-dev.3",
-    "@rxap/open-api": "^22.0.0-dev.4",
-    "@rxap/pattern": "^1.1.17-dev.3",
-    "@rxap/reflect-metadata": "^1.0.19-dev.3",
-    "@rxap/remote-method": "^22.0.0-dev.4",
-    "@rxap/rxjs": "^1.1.19-dev.3",
-    "@rxap/utilities": "^16.5.3-dev.3",
-    "@rxap/validator": "^3.0.16-dev.3",
+    "@rxap/data-source": "^22.0.0-dev.5",
+    "@rxap/definition": "^22.0.0-dev.5",
+    "@rxap/forms": "^22.0.0-dev.5",
+    "@rxap/mixin": "^16.0.18-dev.4",
+    "@rxap/open-api": "^22.0.0-dev.5",
+    "@rxap/pattern": "^1.1.17-dev.4",
+    "@rxap/reflect-metadata": "^1.0.19-dev.4",
+    "@rxap/remote-method": "^22.0.0-dev.5",
+    "@rxap/rxjs": "^1.1.19-dev.4",
+    "@rxap/utilities": "^16.5.3-dev.4",
+    "@rxap/validator": "^3.0.16-dev.4",
     "rxjs": "^7.0.0"
   },
   "author": {
@@ -80,67 +80,67 @@
       },
       {
         "package": "@rxap/config",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/data-source",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.20-dev.3"
+        "version": "1.1.20-dev.4"
       },
       {
         "package": "@rxap/definition",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/directives",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/environment",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/forms",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.18-dev.3"
+        "version": "16.0.18-dev.4"
       },
       {
         "package": "@rxap/open-api",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.17-dev.3"
+        "version": "1.1.17-dev.4"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.19-dev.3"
+        "version": "1.0.19-dev.4"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.19-dev.3"
+        "version": "1.1.19-dev.4"
       },
       {
         "package": "@rxap/services",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.3-dev.3"
+        "version": "16.5.3-dev.4"
       },
       {
         "package": "@rxap/validator",
-        "version": "3.0.16-dev.3"
+        "version": "3.0.16-dev.4"
       }
     ]
   },

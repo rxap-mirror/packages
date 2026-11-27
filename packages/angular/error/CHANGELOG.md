@@ -1,3 +1,14 @@
+## 22.0.0-dev.5 (2026-11-27)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-environment to 22.0.0-dev.5
+- Updated angular-components to 22.0.0-dev.5
+- Updated angular-data-grid to 22.0.0-dev.5
+- Updated angular-open-api to 22.0.0-dev.5
+- Updated angular-config to 22.0.0-dev.5
+- Updated utilities to 16.5.3-dev.4
+
 ## 22.0.0-dev.4 (2026-11-27)
 
 ### 🧱 Updated Dependencies

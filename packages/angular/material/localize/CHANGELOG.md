@@ -1,3 +1,10 @@
+## 22.0.0-dev.5 (2026-11-27)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-directives to 22.0.0-dev.5
+- Updated angular-localize to 22.0.0-dev.5
+
 ## 22.0.0-dev.4 (2026-11-27)
 
 ### 🧱 Updated Dependencies

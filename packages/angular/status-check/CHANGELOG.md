@@ -1,3 +1,10 @@
+## 22.0.0-dev.5 (2026-11-27)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-open-api to 22.0.0-dev.5
+- Updated angular-config to 22.0.0-dev.5
+
 ## 22.0.0-dev.4 (2026-11-27)
 
 ### 🧱 Updated Dependencies

@@ -1,3 +1,16 @@
+## 22.0.0-dev.5 (2026-11-27)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-window-system to 22.0.0-dev.5
+- Updated angular-form-system to 22.0.0-dev.5
+- Updated angular-directives to 22.0.0-dev.5
+- Updated reflect-metadata to 1.0.19-dev.4
+- Updated angular-forms to 22.0.0-dev.5
+- Updated utilities to 16.5.3-dev.4
+- Updated pattern to 1.1.17-dev.4
+- Updated rxjs to 1.1.19-dev.4
+
 ## 22.0.0-dev.4 (2026-11-27)
 
 ### 🧱 Updated Dependencies

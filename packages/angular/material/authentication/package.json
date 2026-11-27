@@ -1,5 +1,5 @@
 {
-  "version": "22.0.0-dev.4",
+  "version": "22.0.0-dev.5",
   "name": "@rxap/ngx-material-authentication",
   "description": "This package provides Angular Material components and services for user authentication, including login, reset password, and loading functionalities. It offers pre-built forms, methods, and UI components to streamline the implementation of authentication flows in Angular applications. The package also includes an authentication container component and route configurations for easy integration.\n",
   "license": "GPL-3.0-or-later",
@@ -14,13 +14,13 @@
     "@angular/forms": "^22.0.0",
     "@angular/material": "^22.0.0",
     "@angular/router": "^22.0.0",
-    "@rxap/authentication": "^22.0.0-dev.4",
-    "@rxap/config": "^22.0.0-dev.4",
-    "@rxap/forms": "^22.0.0-dev.4",
-    "@rxap/material-form-system": "^22.0.0-dev.4",
-    "@rxap/pattern": "^1.1.17-dev.3",
-    "@rxap/rxjs": "^1.1.19-dev.3",
-    "@rxap/utilities": "^16.5.3-dev.3",
+    "@rxap/authentication": "^22.0.0-dev.5",
+    "@rxap/config": "^22.0.0-dev.5",
+    "@rxap/forms": "^22.0.0-dev.5",
+    "@rxap/material-form-system": "^22.0.0-dev.5",
+    "@rxap/pattern": "^1.1.17-dev.4",
+    "@rxap/rxjs": "^1.1.19-dev.4",
+    "@rxap/utilities": "^16.5.3-dev.4",
     "rxjs": "^7.0.0"
   },
   "author": {
@@ -77,79 +77,79 @@
       },
       {
         "package": "@rxap/authentication",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/config",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/data-source",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.20-dev.3"
+        "version": "1.1.20-dev.4"
       },
       {
         "package": "@rxap/definition",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/directives",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/environment",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/form-system",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/forms",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/material-form-system",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.18-dev.3"
+        "version": "16.0.18-dev.4"
       },
       {
         "package": "@rxap/open-api",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.17-dev.3"
+        "version": "1.1.17-dev.4"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.19-dev.3"
+        "version": "1.0.19-dev.4"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.19-dev.3"
+        "version": "1.1.19-dev.4"
       },
       {
         "package": "@rxap/services",
-        "version": "22.0.0-dev.4"
+        "version": "22.0.0-dev.5"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.3-dev.3"
+        "version": "16.5.3-dev.4"
       },
       {
         "package": "@rxap/validator",
-        "version": "3.0.16-dev.3"
+        "version": "3.0.16-dev.4"
       }
     ]
   },
