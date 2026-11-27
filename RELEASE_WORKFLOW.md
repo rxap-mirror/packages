@@ -192,6 +192,13 @@ releasable decides `release.mjs` itself (conventional commits since the last tag
 for the first OIDC publish of a single new package instead of bumping everything.
 Check the decision locally: `node tools/scripts/release-ci.mjs nightly --dry-run`.
 
+**Run pipeline form:** the release choices are pipeline inputs (`spec:inputs` header of `.gitlab-ci.yml`) with
+dropdowns: `release` (→ `NX_RELEASE`), `release_specifier` (→ `RELEASE_SPECIFIER`) and one multi-select per package
+family, `release_projects_*` (→ `RELEASE_PROJECTS`; angular is split in two because GitLab allows at most 50 options
+per input). The header is generated from the `packages` release group: after adding, renaming or removing a package
+run `node tools/scripts/release-inputs.mjs` (`pnpm test:scripts` fails until then). A variable of the same name set on
+the form or by a schedule still wins, e.g. `RELEASE_SPECIFIER=24.1.0` (an exact version is not in the dropdown).
+
 **npm trusted publishing:** only `release:npm` gets an OIDC ID token (`id_tokens: NPM_ID_TOKEN`, audience
 `npm:registry.npmjs.org`); npm (pinned `npm@11.21.2`) exchanges it per package for a short-lived token and attaches
 provenance (public project). The trusted publisher of each package names project `rxap/packages`, file
@@ -202,7 +209,8 @@ when an npm token is configured.
 **New package:** trusted publishing cannot create a package (the nightly fails and names it). Publish its first
 version by hand (`pnpm release --projects=<project>` with your npm login and 2FA), then
 `node tools/scripts/npm-trust.mjs configure --from <npm name>` (for that one package: stop after it) and let the
-next nightly publish through CI.
+next nightly publish through CI. Regenerate the release inputs (`node tools/scripts/release-inputs.mjs`) so the
+package appears in the Run pipeline form.
 
 ### Activation (at the final push, together with `RENOVATE.md`, `FRAMEWORK-WATCH.md`, `AGENT-FIX.md`)
 

@@ -86,8 +86,12 @@ export function decide({ kind, commits, pipeline, stamped = [], missing = [], sp
   return { action: 'run', base, args, reasons };
 }
 
-/** RELEASE_PROJECTS: nx project names separated by comma or whitespace; empty = every project */
-export const parseProjects = value => (value ?? '').split(/[\s,]+/).filter(Boolean);
+/**
+ * RELEASE_PROJECTS: nx project names separated by comma or whitespace; empty = every project. The release inputs of
+ * the Run pipeline form (.gitlab-ci.yml, tools/scripts/release-inputs.mjs) arrive as JSON arrays, one per package
+ * family (`["a", "b"] [] ["c"]`): brackets and quotes are separators too.
+ */
+export const parseProjects = value => [ ...new Set((value ?? '').split(/[\s,[\]"']+/).filter(Boolean)) ];
 
 const git = (...args) => execFileSync('git', args, { encoding: 'utf-8', maxBuffer: 64 * 1024 * 1024 }).trim();
 

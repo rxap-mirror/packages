@@ -49,6 +49,9 @@ describe('release-ci gate', () => {
     assert.deepEqual(parseProjects(''), []);
     assert.deepEqual(parseProjects(undefined), []);
     assert.deepEqual(parseProjects(' , '), []);
+    // release inputs of the Run pipeline form: one JSON array per package family
+    assert.deepEqual(parseProjects('["angular-forms", "angular-icon"] [] [] ["plugin-library"] []'), [ 'angular-forms', 'angular-icon', 'plugin-library' ]);
+    assert.deepEqual(parseProjects('[] [] [] [] []'), []);
   });
 
   it('fails when a package does not exist on npm (no first publish through OIDC)', () => {
