@@ -19,6 +19,10 @@ npm install @rxap/workspace-ts-morph
 ```
 With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
 
+**Install peer dependencies:**
+```bash
+npm install prettier 
+```
 **Execute the init generator:**
 ```bash
 nx g @rxap/workspace-ts-morph:init

@@ -22,7 +22,7 @@ With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
 
 **Install peer dependencies:**
 ```bash
-npm install @angular/common @angular/core @rxap/environment @rxap/utilities rxjs 
+npm install @angular/common @angular/core @rxap/environment @rxap/rxjs @rxap/utilities rxjs 
 ```
 **Execute the init generator:**
 ```bash

@@ -22,7 +22,7 @@ With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
 
 **Install peer dependencies:**
 ```bash
-npm install @nestjs/common @nestjs/config @nestjs/core @openfga/sdk @rxap/nest-utilities joi 
+npm install @nestjs/common @nestjs/config @nestjs/core @nestjs/terminus @openfga/sdk @rxap/nest-utilities joi 
 ```
 **Execute the init generator:**
 ```bash

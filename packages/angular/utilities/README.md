@@ -18,5 +18,5 @@ With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
 
 **Install peer dependencies:**
 ```bash
-npm install @angular/common @angular/core 
+npm install @angular/core @rxap/pattern @rxap/utilities 
 ```

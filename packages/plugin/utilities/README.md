@@ -19,6 +19,10 @@ npm install @rxap/plugin-utilities
 ```
 With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
 
+**Install peer dependencies:**
+```bash
+npm install typescript 
+```
 **Execute the init generator:**
 ```bash
 nx g @rxap/plugin-utilities:init

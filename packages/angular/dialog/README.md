@@ -21,7 +21,7 @@ With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
 
 **Install peer dependencies:**
 ```bash
-npm install @angular/cdk @angular/common @angular/core @angular/material @rxap/pipes rxjs 
+npm install @angular/cdk @angular/common @angular/core @angular/material @rxap/ngx-error @rxap/pipes rxjs 
 ```
 **Execute the init generator:**
 ```bash

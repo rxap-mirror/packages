@@ -44,6 +44,10 @@ npm install @rxap/plugin-library
 ```
 With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
 
+**Install peer dependencies:**
+```bash
+npm install nx 
+```
 **Execute the init generator:**
 ```bash
 nx g @rxap/plugin-library:init

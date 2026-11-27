@@ -24,6 +24,7 @@ This package provides generators and executors for Angular projects within an Nx
   - [check-ng-package](#check-ng-package)
   - [i18n](#i18n)
   - [config](#config)
+  - [build-generators](#build-generators)
 
 # Installation
 
@@ -33,6 +34,10 @@ npm install @rxap/plugin-angular
 ```
 With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
 
+**Install peer dependencies:**
+```bash
+npm install nx 
+```
 **Execute the init generator:**
 ```bash
 nx g @rxap/plugin-angular:init
@@ -360,4 +365,14 @@ assets |  |  |
 ## config
 > config executor
 
+
+## build-generators
+> Compile and stage the generators of an ng-packagr library
+
+
+Option | Type | Default | Description
+--- | --- | --- | ---
+tsConfig | string | tsconfig.generators.json | Path of the generators tsconfig, relative to the project root.
+outputPath | string | dist/generators | Staging directory, relative to the project root. Must be inside the project root: ng-packagr refuses to copy assets from outside of it.
+generatorsDir | string | src/generators | Directory of the generators, relative to the project root.
 

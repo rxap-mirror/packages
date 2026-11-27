@@ -21,7 +21,7 @@ With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
 
 **Install peer dependencies:**
 ```bash
-npm install @rxap/config @rxap/environment @sentry/angular 
+npm install @rxap/config @rxap/environment @sentry/angular @sentry/browser @sentry/core 
 ```
 **Execute the init generator:**
 ```bash

@@ -21,7 +21,7 @@ With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
 
 **Install peer dependencies:**
 ```bash
-npm install @angular/common @angular/core @angular/material @angular/platform-browser @rxap/utilities 
+npm install @angular/core @angular/material @angular/platform-browser @rxap/utilities 
 ```
 **Execute the init generator:**
 ```bash

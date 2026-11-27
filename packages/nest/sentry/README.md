@@ -21,7 +21,7 @@ With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
 
 **Install peer dependencies:**
 ```bash
-npm install @nestjs/common @nestjs/config @nestjs/core @rxap/nest-logger @rxap/nest-utilities @sentry/core @sentry/nestjs @sentry/node @sentry/profiling-node @sentry/types @sentry/utils joi rxjs 
+npm install @nestjs/common @nestjs/config @rxap/nest-logger @rxap/nest-utilities @sentry/core @sentry/nestjs @sentry/node @sentry/profiling-node joi 
 ```
 **Execute the init generator:**
 ```bash

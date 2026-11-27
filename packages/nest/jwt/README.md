@@ -21,7 +21,7 @@ With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
 
 **Install peer dependencies:**
 ```bash
-npm install @nestjs/common @nestjs/config @nestjs/core @nestjs/cqrs @nestjs/jwt @rxap/nest-utilities @rxap/pattern rxjs 
+npm install @nestjs/common @nestjs/config @nestjs/core @nestjs/cqrs @nestjs/jwt @rxap/nest-utilities @rxap/pattern passport-jwt rxjs 
 ```
 **Execute the init generator:**
 ```bash

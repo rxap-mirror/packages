@@ -22,7 +22,7 @@ With pnpm or yarn use `pnpm add` or `yarn add` instead of `npm install`.
 
 **Install peer dependencies:**
 ```bash
-npm install @angular/core @angular/platform-browser @angular/platform-browser-dynamic @rxap/config @rxap/environment ngx-logger 
+npm install @angular/core @angular/platform-browser @angular/platform-browser-dynamic @rxap/config @rxap/environment 
 ```
 **Execute the init generator:**
 ```bash
