@@ -89,7 +89,7 @@ release:publish-only:
     - if: '$NX_RELEASE == "publish-only" && ($CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH || $CI_COMMIT_BRANCH == "latest") && $CI_PIPELINE_SOURCE == "web"'
 
 release:npm:
-  image: node:jod-bookworm-slim
+  image: node:26.13-bookworm-slim
   stage: deploy
   tags:
     - $RELEASE_PUBLISH_RUNNER_TAG

@@ -26,6 +26,8 @@ include:
     rules: *workspace-pipeline
     inputs:
       version: "6.4.0-edge.65"
+      # keep in sync with .nvmrc (the component default is the Node 22 image jod-alpine)
+      node_version: "26.13-alpine"
       workflow_rules:
         # skip realseit pipelines. currently the group terraform will add the release it nighlity pipeline schdule
         # this will trigger a nighlty run with RELEASE_IT=true, but this repo does not use release-it but nx release

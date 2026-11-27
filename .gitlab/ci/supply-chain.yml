@@ -3,7 +3,7 @@
 # loaded, so they install the workspace themselves (scripts only need yaml/semver, no builds).
 
 .supply-chain:
-  image: node:jod-bookworm
+  image: node:26.13-bookworm
   stage: test
   tags:
     - mlr-linux-small-amd64

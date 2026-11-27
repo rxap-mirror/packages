@@ -99,7 +99,7 @@
 
     // --- deliberately held back (UPGRADE-NOTES.md section 4, "Deliberately not at the newest major") ---
     { matchPackageNames: ['typescript'], allowedVersions: '<6.1', description: 'Angular 22 requires <6.1' },
-    { matchPackageNames: ['@types/node'], allowedVersions: '<23', description: 'minimum supported Node runtime (22)' },
+    { matchPackageNames: ['@types/node'], allowedVersions: '<27', description: 'minimum supported Node runtime (26)' },
     { matchDatasources: ['docker'], matchPackageNames: ['node'], allowedVersions: '<23', description: 'CI images follow the supported Node runtime (22)' },
     { matchPackageNames: ['zod'], allowedVersions: '<4', description: '@langchain/* 0.3 and the litellm node require zod 3' },
     { matchPackageNames: ['tailwindcss'], allowedVersions: '<4', description: 'v4 is a migration' },

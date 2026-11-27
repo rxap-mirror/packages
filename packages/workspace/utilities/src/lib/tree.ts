@@ -281,7 +281,7 @@ export class FsTree implements TreeLike {
   read(path: string, encoding: BufferEncoding): string | null;
   read(path: string): Buffer | null;
   read(path: string, encoding?: BufferEncoding): Buffer | string | null {
-    return readFileSync(join(this.root, path), encoding);
+    return encoding ? readFileSync(join(this.root, path), encoding) : readFileSync(join(this.root, path));
   }
 
   write(filePath: string, content: Buffer | string, options?: TreeWriteOptions): void {

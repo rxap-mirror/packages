@@ -193,7 +193,7 @@
     "@types/lodash": "4.17.27",
     "@types/marked": "5.0.2",
     "@types/mock-fs": "4.13.4",
-    "@types/node": "22.20.5",
+    "@types/node": "26.6.6",
     "@types/passport-jwt": "^4.0.1",
     "@types/sanitize-html": "2.16.2",
     "@types/semver": "7.8.0",
@@ -259,7 +259,7 @@
     "zod": "3.25.76"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=26.13"
   },
   "homepage": "https://gitlab.com/rxap/packages",
   "jest-junit": {

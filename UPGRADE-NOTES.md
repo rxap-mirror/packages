@@ -122,7 +122,7 @@ langsmith via `@langchain/*` 0.3, query-string's `decode-uri-component`).
 | Package | Stays on | Reason |
 | --- | --- | --- |
 | `typescript` | 6.0.3 | Angular 22 (`@angular/compiler-cli`, `@angular-devkit/build-angular`) requires `<6.1`; TS 7 is rejected |
-| `@types/node` | 22.x | typings follow the minimum supported Node runtime (`engines.node >=22`) |
+| `@types/node` | 26.x | typings follow the minimum supported Node runtime (`engines.node >=26.13`) |
 | `tailwindcss` | 3.x | v4 is a migration (config format, `@tailwindcss/postcss`, the `RXAP_TAILWIND_CONFIG` preset and the app generators), not a version bump |
 | `@langchain/*`, `langchain` | 0.3.x | `@langchain/community` 1.x is deprecated upstream. It is only used by the litellm n8n node (document loaders). Its optional peer ranges for `typeorm`, `ignore` and `firebase-admin` are deliberately ignored (`dependency-cooldown.mjs --ignore-peers-of @langchain/community`), pnpm prints peer warnings for them |
 | `jsdom` | 26.1.0 | 27+ pulls ESM-only dependencies (`@exodus/bytes`, `bcp-47`, ...) that the CommonJS jest runtime cannot load |
