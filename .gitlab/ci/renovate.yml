@@ -31,6 +31,9 @@ renovate:
   # read-only for renovate (EACCES). The script sets umask 0000 itself, so the files it writes stay writable after a
   # root restore. Only cache/renovate (repository + package cache) is kept: renovate recreates
   # cache/__renovate-private-cache on every run. The key is v2 because the earlier archive was written with 0022.
+  # Interim patch (2026-11-27), revisit once the ML runner offers an external cache: move the repository cache to it
+  # (RENOVATE_REPOSITORY_CACHE_TYPE=s3://…) and the package cache to Redis (RENOVATE_REDIS_URL), then drop this
+  # cache block and the umask line. Background: gitlab-org/gitlab#576350 (cache/artifacts not writable for non-root).
   cache:
     key: renovate-v2
     paths:
@@ -41,6 +44,7 @@ renovate:
         echo "RENOVATE_TOKEN is not set (see RENOVATE.md)"
         exit 1
       fi
+    # see the cache comment above: keeps the cached files writable after the runner restores them as root
     - umask 0000
     - renovate
   rules:
