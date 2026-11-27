@@ -25,16 +25,23 @@ renovate:
     RENOVATE_REPOSITORY_CACHE: enabled
     RENOVATE_GIT_AUTHOR: "rxap renovate bot <renovate-bot@rxap.dev>"
     LOG_LEVEL: info
-  # No GitLab cache: the runner restores it as root, while the renovate image runs as the unprivileged user 12021, so
-  # every run after the first failed with EACCES on .renovate/cache. Neither FF_DISABLE_UMASK_FOR_DOCKER_EXECUTOR
-  # (the runner then writes CI_SERVER_TLS_CA_FILE as root) nor running as root (containerbase chowns its tools, which
-  # cap_drop ALL on the ML runner forbids) works. Each run starts cold until a cache setup is found that does.
+  # The runner's helper restores the cache as root and cannot hand it back to user 12021: the ML runner drops all
+  # capabilities (cap_drop ALL), so the owner restore (lchown) fails silently, while the mode bits are kept. The
+  # runner's umask 0000 only applies to its helper container; the renovate image keeps 0022, so the restored cache was
+  # read-only for renovate (EACCES). The script sets umask 0000 itself, so the files it writes stay writable after a
+  # root restore. Only cache/renovate (repository + package cache) is kept: renovate recreates
+  # cache/__renovate-private-cache on every run. The key is v2 because the earlier archive was written with 0022.
+  cache:
+    key: renovate-v2
+    paths:
+      - .renovate/cache/renovate
   script:
     - |
       if [ -z "$RENOVATE_TOKEN" ]; then
         echo "RENOVATE_TOKEN is not set (see RENOVATE.md)"
         exit 1
       fi
+    - umask 0000
     - renovate
   rules:
     - if: '$RENOVATE == "true" && ($CI_PIPELINE_SOURCE == "schedule" || $CI_PIPELINE_SOURCE == "web")'
