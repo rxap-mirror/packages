@@ -1,3 +1,7 @@
+## 1.2.3-dev.5 (2026-11-28)
+
+This was a version bump only for fs to align it with other projects, there were no code changes.
+
 ## 1.2.3-dev.4 (2026-11-27)
 
 This was a version bump only for fs to align it with other projects, there were no code changes.

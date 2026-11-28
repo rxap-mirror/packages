@@ -1,3 +1,11 @@
+## 22.0.0-dev.6 (2026-11-28)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-definition to 22.0.0-dev.6
+- Updated utilities to 16.5.3-dev.5
+- Updated rxjs to 1.1.19-dev.5
+
 ## 22.0.0-dev.5 (2026-11-27)
 
 ### 🧱 Updated Dependencies

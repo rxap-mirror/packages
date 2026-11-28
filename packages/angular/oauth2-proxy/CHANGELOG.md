@@ -1,3 +1,12 @@
+## 22.0.0-dev.6 (2026-11-28)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-data-source to 22.0.0-dev.6
+- Updated angular-pub-sub to 22.0.0-dev.6
+- Updated angular-config to 22.0.0-dev.6
+- Updated pattern to 1.1.17-dev.5
+
 ## 22.0.0-dev.5 (2026-11-27)
 
 ### 🧱 Updated Dependencies

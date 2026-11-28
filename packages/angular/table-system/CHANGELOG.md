@@ -1,3 +1,18 @@
+## 22.0.0-dev.6 (2026-11-28)
+
+### 🩹 Fixes
+
+- **rxap:** update package group
+
+### 🧱 Updated Dependencies
+
+- Updated angular-material-table-system to 22.0.0-dev.6
+- Updated angular-data-source to 22.0.0-dev.6
+
+### ❤️ Thank You
+
+- RxAP Bot
+
 ## 22.0.0-dev.5 (2026-11-27)
 
 ### 🧱 Updated Dependencies

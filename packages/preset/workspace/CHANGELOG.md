@@ -1,3 +1,9 @@
+## 24.0.0-dev.6 (2026-11-28)
+
+### 🧱 Updated Dependencies
+
+- Updated plugin-workspace to 24.0.0-dev.6
+
 ## 24.0.0-dev.5 (2026-11-27)
 
 ### 🧱 Updated Dependencies

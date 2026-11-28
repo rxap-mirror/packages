@@ -1,3 +1,16 @@
+## 22.0.0-dev.6 (2026-11-28)
+
+### 🧱 Updated Dependencies
+
+- Updated angular-definition to 22.0.0-dev.6
+- Updated angular-directives to 22.0.0-dev.6
+- Updated angular-services to 22.0.0-dev.6
+- Updated reflect-metadata to 1.0.19-dev.5
+- Updated utilities to 16.5.3-dev.5
+- Updated validator to 3.0.16-dev.5
+- Updated pattern to 1.1.17-dev.5
+- Updated rxjs to 1.1.19-dev.5
+
 ## 22.0.0-dev.5 (2026-11-27)
 
 ### 🧱 Updated Dependencies

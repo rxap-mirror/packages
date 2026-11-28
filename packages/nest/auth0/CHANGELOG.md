@@ -1,3 +1,9 @@
+## 12.0.0-dev.6 (2026-11-28)
+
+### 🧱 Updated Dependencies
+
+- Updated nest-utilities to 12.0.0-dev.6
+
 ## 12.0.0-dev.5 (2026-11-27)
 
 ### 🧱 Updated Dependencies

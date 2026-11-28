@@ -1,3 +1,22 @@
+## 22.0.0-dev.6 (2026-11-28)
+
+### 🩹 Fixes
+
+- **rxap:** update package group
+
+### 🧱 Updated Dependencies
+
+- Updated angular-environment to 22.0.0-dev.6
+- Updated angular-components to 22.0.0-dev.6
+- Updated angular-data-grid to 22.0.0-dev.6
+- Updated angular-open-api to 22.0.0-dev.6
+- Updated angular-config to 22.0.0-dev.6
+- Updated utilities to 16.5.3-dev.5
+
+### ❤️ Thank You
+
+- RxAP Bot
+
 ## 22.0.0-dev.5 (2026-11-27)
 
 ### 🧱 Updated Dependencies

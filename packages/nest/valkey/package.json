@@ -1,5 +1,5 @@
 {
-  "version": "12.0.0-dev.5",
+  "version": "12.0.0",
   "name": "@rxap/nest-valkey",
   "description": "NestJS module for Valkey (Redis-compatible): JSON cache service, distributed lock API (token-guarded, fail-closed), idempotency keys and a Terminus health indicator.",
   "license": "GPL-3.0-or-later",
@@ -10,7 +10,7 @@
     "@nestjs/common": "^12.0.0",
     "@nestjs/config": "^12.0.0",
     "@nestjs/terminus": "^12.0.0",
-    "@rxap/nest-utilities": "^12.0.0-dev.5",
+    "@rxap/nest-utilities": "^12.0.0-dev.6",
     "ioredis": "^6.0.0",
     "joi": "^18.0.0"
   },

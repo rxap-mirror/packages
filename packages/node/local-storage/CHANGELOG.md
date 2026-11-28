@@ -1,3 +1,7 @@
+## 1.0.16-dev.5 (2026-11-28)
+
+This was a version bump only for node-local-storage to align it with other projects, there were no code changes.
+
 ## 1.0.16-dev.4 (2026-11-27)
 
 This was a version bump only for node-local-storage to align it with other projects, there were no code changes.

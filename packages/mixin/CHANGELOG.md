@@ -1,3 +1,10 @@
+## 16.0.18-dev.5 (2026-11-28)
+
+### 🧱 Updated Dependencies
+
+- Updated reflect-metadata to 1.0.19-dev.5
+- Updated utilities to 16.5.3-dev.5
+
 ## 16.0.18-dev.4 (2026-11-27)
 
 ### 🧱 Updated Dependencies

@@ -1,5 +1,5 @@
 {
-  "version": "12.0.0-dev.5",
+  "version": "12.0.0-dev.6",
   "name": "@rxap/nest-auth0",
   "description": "This package provides an Auth0 module for NestJS applications, simplifying integration with Auth0 for authentication and authorization. It includes a configurable module, JWT strategy, and service for interacting with the Auth0 Authentication API. The module also offers validation schemas for environment variables related to Auth0 configuration.\n",
   "license": "GPL-3.0-or-later",
@@ -12,7 +12,7 @@
     "@nestjs/config": "^12.0.0",
     "@nestjs/core": "^12.0.0",
     "@nestjs/jwt": "^12.0.0",
-    "@rxap/nest-utilities": "^12.0.0-dev.5",
+    "@rxap/nest-utilities": "^12.0.0-dev.6",
     "auth0": "^7.0.0",
     "joi": "^18.0.0",
     "jsonwebtoken": "*",

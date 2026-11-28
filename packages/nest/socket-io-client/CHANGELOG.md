@@ -1,3 +1,7 @@
+## 12.0.0-dev.6 (2026-11-28)
+
+This was a version bump only for nest-socket-io-client to align it with other projects, there were no code changes.
+
 ## 12.0.0-dev.5 (2026-11-27)
 
 This was a version bump only for nest-socket-io-client to align it with other projects, there were no code changes.

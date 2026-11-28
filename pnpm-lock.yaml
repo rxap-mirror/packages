@@ -1098,13 +1098,13 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/ts-morph':
-        specifier: ^1.7.2-dev.4
+        specifier: ^1.7.2-dev.5
         version: link:../../ts-morph
       '@rxap/workspace-ts-morph':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/ts-morph
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       tslib:
         specifier: 2.9.1
@@ -1432,10 +1432,10 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/rxjs':
-        specifier: ^1.1.19-dev.4
+        specifier: ^1.1.19-dev.5
         version: link:../../rxjs
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       tslib:
         specifier: 2.9.1
@@ -1456,7 +1456,7 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../utilities
       ts-morph:
         specifier: 28.0.0
@@ -1471,10 +1471,10 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/reflect-metadata':
-        specifier: ^1.0.19-dev.4
+        specifier: ^1.0.19-dev.5
         version: link:../reflect-metadata
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../utilities
       reflect-metadata:
         specifier: 0.2.2
@@ -1489,7 +1489,7 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/n8n-utilities':
-        specifier: ^1.2.5-dev.4
+        specifier: ^1.2.5-dev.5
         version: link:../../utilities
       minio:
         specifier: 8.0.7
@@ -1504,10 +1504,10 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/n8n-utilities':
-        specifier: ^1.2.5-dev.4
+        specifier: ^1.2.5-dev.5
         version: link:../../utilities
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../../utilities
       amqplib:
         specifier: 2.4.0
@@ -1537,10 +1537,10 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/n8n-utilities':
-        specifier: ^1.2.5-dev.4
+        specifier: ^1.2.5-dev.5
         version: link:../../utilities
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../../utilities
       keyv:
         specifier: 6.1.0
@@ -1585,7 +1585,7 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/n8n-utilities':
-        specifier: ^1.2.5-dev.4
+        specifier: ^1.2.5-dev.5
         version: link:../../utilities
       sanitize-html:
         specifier: 2.18.2
@@ -1597,7 +1597,7 @@ importers:
   packages/n8n/nodes/tar:
     dependencies:
       '@rxap/n8n-utilities':
-        specifier: ^1.2.5-dev.4
+        specifier: ^1.2.5-dev.5
         version: link:../../utilities
       tar:
         specifier: 7.5.23
@@ -1633,7 +1633,7 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/n8n-utilities':
-        specifier: ^1.2.5-dev.4
+        specifier: ^1.2.5-dev.5
         version: link:../../utilities
       adm-zip:
         specifier: 0.6.1
@@ -1651,7 +1651,7 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       form-data:
         specifier: 4.0.6
@@ -1734,10 +1734,10 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/ts-morph':
-        specifier: ^1.7.2-dev.4
+        specifier: ^1.7.2-dev.5
         version: link:../../ts-morph
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       tslib:
         specifier: 2.9.1
@@ -1803,10 +1803,10 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/ts-morph':
-        specifier: ^1.7.2-dev.4
+        specifier: ^1.7.2-dev.5
         version: link:../../ts-morph
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       tslib:
         specifier: 2.9.1
@@ -1886,7 +1886,7 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       ignore:
         specifier: 7.0.14
@@ -1915,25 +1915,25 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/plugin-application':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../application
       '@rxap/plugin-library':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../library
       '@rxap/plugin-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../utilities
       '@rxap/ts-morph':
-        specifier: ^1.7.2-dev.4
+        specifier: ^1.7.2-dev.5
         version: link:../../ts-morph
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-ts-morph':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/ts-morph
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       colors:
         specifier: 1.4.0
@@ -1969,13 +1969,13 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/plugin-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../utilities
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       glob:
         specifier: 14.0.6
@@ -1996,13 +1996,13 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/plugin-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../utilities
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       colors:
         specifier: 1.4.0
@@ -2017,16 +2017,16 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/node-utilities':
-        specifier: ^1.3.14-dev.4
+        specifier: ^1.3.14-dev.5
         version: link:../../node/utilities
       '@rxap/plugin-gitlab-ci':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../gitlab-ci
       '@rxap/plugin-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../utilities
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       colors:
         specifier: 1.4.0
@@ -2041,13 +2041,13 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/plugin-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../utilities
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       tslib:
         specifier: 2.9.1
@@ -2062,13 +2062,13 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/ts-morph':
-        specifier: ^1.7.2-dev.4
+        specifier: ^1.7.2-dev.5
         version: link:../../ts-morph
       '@rxap/workspace-ts-morph':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/ts-morph
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       colors:
         specifier: 1.4.0
@@ -2101,25 +2101,25 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(f268ca6cc785c713f2532aba3f38e4f4)
       '@rxap/json-schema-to-typescript':
-        specifier: ^16.1.6-dev.4
+        specifier: ^16.1.6-dev.5
         version: link:../../json-schema-to-typescript
       '@rxap/node-utilities':
-        specifier: ^1.3.14-dev.4
+        specifier: ^1.3.14-dev.5
         version: link:../../node/utilities
       '@rxap/plugin-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../utilities
       '@rxap/ts-morph':
-        specifier: ^1.7.2-dev.4
+        specifier: ^1.7.2-dev.5
         version: link:../../ts-morph
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-ts-morph':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/ts-morph
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       colors:
         specifier: 1.4.0
@@ -2146,10 +2146,10 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/plugin-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../utilities
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       colors:
         specifier: 1.4.0
@@ -2170,31 +2170,31 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(73f87b283cbc8ae5f4e81be4d4ca2c33)
       '@rxap/node-utilities':
-        specifier: ^1.3.14-dev.4
+        specifier: ^1.3.14-dev.5
         version: link:../../node/utilities
       '@rxap/plugin-application':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../application
       '@rxap/plugin-library':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../library
       '@rxap/plugin-open-api':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../open-api
       '@rxap/plugin-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../utilities
       '@rxap/ts-morph':
-        specifier: ^1.7.2-dev.4
+        specifier: ^1.7.2-dev.5
         version: link:../../ts-morph
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-ts-morph':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/ts-morph
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       colors:
         specifier: 1.4.0
@@ -2215,10 +2215,10 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       tslib:
         specifier: 2.9.1
@@ -2230,25 +2230,25 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/node-utilities':
-        specifier: ^1.3.14-dev.4
+        specifier: ^1.3.14-dev.5
         version: link:../../node/utilities
       '@rxap/plugin-library':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../library
       '@rxap/plugin-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../utilities
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-open-api':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/open-api
       '@rxap/workspace-ts-morph':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/ts-morph
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       colors:
         specifier: 1.4.0
@@ -2266,13 +2266,13 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/plugin-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../utilities
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       colors:
         specifier: 1.4.0
@@ -2287,10 +2287,10 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/node-utilities':
-        specifier: ^1.3.14-dev.4
+        specifier: ^1.3.14-dev.5
         version: link:../../node/utilities
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       tslib:
         specifier: 2.9.1
@@ -2305,13 +2305,13 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(@babel/traverse@7.29.15(supports-color@8.1.1))(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/cli@0.8.2(@swc/core@1.16.22(@swc/helpers@0.5.24))(chokidar@5.0.0)(supports-color@8.1.1))(@swc/core@1.16.22(@swc/helpers@0.5.24))(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))(supports-color@8.1.1)(verdaccio@6.11.1(encoding@0.1.13)(supports-color@8.1.1))
       '@rxap/plugin-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../utilities
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       colors:
         specifier: 1.4.0
@@ -2329,10 +2329,10 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/plugin-angular':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../plugin/angular
       '@rxap/plugin-workspace':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../plugin/workspace
       tslib:
         specifier: 2.9.1
@@ -2344,7 +2344,7 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/plugin-workspace':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../plugin/workspace
       tslib:
         specifier: 2.9.1
@@ -2356,7 +2356,7 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../utilities
       reflect-metadata:
         specifier: 0.2.2
@@ -2394,22 +2394,22 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/schematics-ts-morph':
-        specifier: ^22.0.0-dev.5
+        specifier: ^22.0.0-dev.6
         version: link:../ts-morph
       '@rxap/schematics-utilities':
-        specifier: ^22.0.0-dev.5
+        specifier: ^22.0.0-dev.6
         version: link:../utilities
       '@rxap/ts-morph':
-        specifier: ^1.7.2-dev.4
+        specifier: ^1.7.2-dev.5
         version: link:../../ts-morph
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-ts-morph':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/ts-morph
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       colors:
         specifier: 1.4.0
@@ -2433,16 +2433,16 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/schematics-ts-morph':
-        specifier: ^22.0.0-dev.5
+        specifier: ^22.0.0-dev.6
         version: link:../ts-morph
       '@rxap/schematics-utilities':
-        specifier: ^22.0.0-dev.5
+        specifier: ^22.0.0-dev.6
         version: link:../utilities
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       colors:
         specifier: 1.4.0
@@ -2466,19 +2466,19 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/schematics-ts-morph':
-        specifier: ^22.0.0-dev.5
+        specifier: ^22.0.0-dev.6
         version: link:../ts-morph
       '@rxap/schematics-utilities':
-        specifier: ^22.0.0-dev.5
+        specifier: ^22.0.0-dev.6
         version: link:../utilities
       '@rxap/ts-morph':
-        specifier: ^1.7.2-dev.4
+        specifier: ^1.7.2-dev.5
         version: link:../../ts-morph
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       ts-morph:
         specifier: 28.0.0
@@ -2502,22 +2502,22 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/json-schema-to-typescript':
-        specifier: ^16.1.6-dev.4
+        specifier: ^16.1.6-dev.5
         version: link:../../json-schema-to-typescript
       '@rxap/schematics-ts-morph':
-        specifier: ^22.0.0-dev.5
+        specifier: ^22.0.0-dev.6
         version: link:../ts-morph
       '@rxap/schematics-utilities':
-        specifier: ^22.0.0-dev.5
+        specifier: ^22.0.0-dev.6
         version: link:../utilities
       '@rxap/ts-morph':
-        specifier: ^1.7.2-dev.4
+        specifier: ^1.7.2-dev.5
         version: link:../../ts-morph
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       openapi-types:
         specifier: 10.0.0
@@ -2541,19 +2541,19 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/schematics-utilities':
-        specifier: ^22.0.0-dev.5
+        specifier: ^22.0.0-dev.6
         version: link:../utilities
       '@rxap/ts-morph':
-        specifier: ^1.7.2-dev.4
+        specifier: ^1.7.2-dev.5
         version: link:../../ts-morph
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-ts-morph':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/ts-morph
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       colors:
         specifier: 1.4.0
@@ -2577,10 +2577,10 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../../workspace/utilities
       tslib:
         specifier: 2.9.1
@@ -2598,13 +2598,13 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/schematics-ts-morph':
-        specifier: ^22.0.0-dev.5
+        specifier: ^22.0.0-dev.6
         version: link:../ts-morph
       '@rxap/schematics-utilities':
-        specifier: ^22.0.0-dev.5
+        specifier: ^22.0.0-dev.6
         version: link:../utilities
       '@rxap/xml-parser':
-        specifier: ^16.3.3-dev.4
+        specifier: ^16.3.3-dev.5
         version: link:../../xml-parser
       ts-morph:
         specifier: 28.0.0
@@ -2628,7 +2628,7 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../utilities
       colors:
         specifier: 1.4.0
@@ -2664,13 +2664,13 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/json-schema-to-typescript':
-        specifier: ^16.1.6-dev.4
+        specifier: ^16.1.6-dev.5
         version: link:../../json-schema-to-typescript
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../utilities
       openapi-types:
         specifier: 10.0.0
@@ -2691,13 +2691,13 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/ts-morph':
-        specifier: ^1.7.2-dev.4
+        specifier: ^1.7.2-dev.5
         version: link:../../ts-morph
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       '@rxap/workspace-utilities':
-        specifier: ^24.0.0-dev.5
+        specifier: ^24.0.0-dev.6
         version: link:../utilities
       ts-morph:
         specifier: 28.0.0
@@ -2712,10 +2712,10 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/node-utilities':
-        specifier: ^1.3.14-dev.4
+        specifier: ^1.3.14-dev.5
         version: link:../../node/utilities
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../../utilities
       colors:
         specifier: 1.4.0
@@ -2739,13 +2739,13 @@ importers:
         specifier: 24.0.6
         version: 24.0.6(nx@24.0.6(patch_hash=aad4edad17a3b4b0de688e6650078eb09edcbc6062d9610224f43600e846e181)(@swc-node/register@1.12.1(@swc/core@1.16.22(@swc/helpers@0.5.24))(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@6.0.3))(@swc/core@1.16.22(@swc/helpers@0.5.24)))
       '@rxap/mixin':
-        specifier: ^16.0.18-dev.4
+        specifier: ^16.0.18-dev.5
         version: link:../mixin
       '@rxap/reflect-metadata':
-        specifier: ^1.0.19-dev.4
+        specifier: ^1.0.19-dev.5
         version: link:../reflect-metadata
       '@rxap/utilities':
-        specifier: ^16.5.3-dev.4
+        specifier: ^16.5.3-dev.5
         version: link:../utilities
       tslib:
         specifier: 2.9.1

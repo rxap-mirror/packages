@@ -1,3 +1,20 @@
+## 24.0.0-dev.6 (2026-11-28)
+
+### 🩹 Fixes
+
+- **rxap:** update package group
+
+### 🧱 Updated Dependencies
+
+- Updated workspace-utilities to 24.0.0-dev.6
+- Updated plugin-gitlab-ci to 24.0.0-dev.6
+- Updated plugin-utilities to 24.0.0-dev.6
+- Updated node-utilities to 1.3.14-dev.5
+
+### ❤️ Thank You
+
+- RxAP Bot
+
 ## 24.0.0-dev.5 (2026-11-27)
 
 ### 🧱 Updated Dependencies

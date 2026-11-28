@@ -1,5 +1,5 @@
 {
-  "version": "12.0.0-dev.5",
+  "version": "12.0.0-dev.6",
   "name": "@rxap/nest-server",
   "description": "Provides a set of utilities and base classes for building NestJS servers, including monolithic, microservice, and hybrid applications. It offers features such as environment configuration, logger integration, and setup for common middleware like cookie parsing, CORS, and Swagger. This package aims to streamline the process of setting up and configuring NestJS applications for various deployment scenarios.\n",
   "license": "GPL-3.0-or-later",
@@ -13,8 +13,8 @@
     "@nestjs/core": "^12.0.0",
     "@nestjs/microservices": "^12.0.0",
     "@nestjs/swagger": "^12.0.0",
-    "@rxap/nest-utilities": "^12.0.0-dev.5",
-    "@rxap/utilities": "^16.5.3-dev.4",
+    "@rxap/nest-utilities": "^12.0.0-dev.6",
+    "@rxap/utilities": "^16.5.3-dev.5",
     "cookie-parser": "^1.0.0",
     "helmet": "^8.0.0",
     "joi": "^18.0.0"
@@ -77,11 +77,11 @@
       },
       {
         "package": "@rxap/nest-utilities",
-        "version": "12.0.0-dev.5"
+        "version": "12.0.0-dev.6"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.3-dev.4"
+        "version": "16.5.3-dev.5"
       }
     ]
   },

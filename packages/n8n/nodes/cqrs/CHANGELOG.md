@@ -1,3 +1,10 @@
+## 0.0.9-dev.5 (2026-11-28)
+
+### 🧱 Updated Dependencies
+
+- Updated n8n-utilities to 1.2.5-dev.5
+- Updated utilities to 16.5.3-dev.5
+
 ## 0.0.9-dev.4 (2026-11-27)
 
 ### 🧱 Updated Dependencies

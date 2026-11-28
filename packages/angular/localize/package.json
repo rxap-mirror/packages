@@ -1,5 +1,5 @@
 {
-  "version": "22.0.0-dev.5",
+  "version": "22.0.0-dev.6",
   "name": "@rxap/ngx-localize",
   "description": "This package provides internationalization (i18n) support for Angular applications, including services for language management, an HTTP interceptor for setting the `Accept-Language` header, and a language selector component. It allows you to set and manage the current language of your application, redirect users based on their language preference, and configure available languages. The package also includes an init generator to handle peer dependencies.\n",
   "license": "GPL-3.0-or-later",
@@ -11,8 +11,8 @@
     "@angular/common": "^22.0.0",
     "@angular/core": "^22.0.0",
     "@angular/localize": "^22.0.0",
-    "@rxap/config": "^22.0.0-dev.5",
-    "@rxap/ngx-user": "^22.0.0-dev.5",
+    "@rxap/config": "^22.0.0-dev.6",
+    "@rxap/ngx-user": "^22.0.0-dev.6",
     "rxjs": "^7.0.0"
   },
   "author": {
@@ -73,59 +73,59 @@
       },
       {
         "package": "@rxap/config",
-        "version": "22.0.0-dev.5"
+        "version": "22.0.0-dev.6"
       },
       {
         "package": "@rxap/data-source",
-        "version": "22.0.0-dev.5"
+        "version": "22.0.0-dev.6"
       },
       {
         "package": "@rxap/data-structure-tree",
-        "version": "1.1.20-dev.4"
+        "version": "1.1.20-dev.5"
       },
       {
         "package": "@rxap/definition",
-        "version": "22.0.0-dev.5"
+        "version": "22.0.0-dev.6"
       },
       {
         "package": "@rxap/environment",
-        "version": "22.0.0-dev.5"
+        "version": "22.0.0-dev.6"
       },
       {
         "package": "@rxap/mixin",
-        "version": "16.0.18-dev.4"
+        "version": "16.0.18-dev.5"
       },
       {
         "package": "@rxap/ngx-pub-sub",
-        "version": "22.0.0-dev.5"
+        "version": "22.0.0-dev.6"
       },
       {
         "package": "@rxap/ngx-user",
-        "version": "22.0.0-dev.5"
+        "version": "22.0.0-dev.6"
       },
       {
         "package": "@rxap/open-api",
-        "version": "22.0.0-dev.5"
+        "version": "22.0.0-dev.6"
       },
       {
         "package": "@rxap/pattern",
-        "version": "1.1.17-dev.4"
+        "version": "1.1.17-dev.5"
       },
       {
         "package": "@rxap/reflect-metadata",
-        "version": "1.0.19-dev.4"
+        "version": "1.0.19-dev.5"
       },
       {
         "package": "@rxap/remote-method",
-        "version": "22.0.0-dev.5"
+        "version": "22.0.0-dev.6"
       },
       {
         "package": "@rxap/rxjs",
-        "version": "1.1.19-dev.4"
+        "version": "1.1.19-dev.5"
       },
       {
         "package": "@rxap/utilities",
-        "version": "16.5.3-dev.4"
+        "version": "16.5.3-dev.5"
       }
     ]
   },
