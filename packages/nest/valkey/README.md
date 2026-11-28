@@ -1,4 +1,4 @@
-NestJS module for Valkey (Redis-compatible): JSON cache service, distributed lock API with fencing tokens, idempotency keys and a Terminus health indicator.
+NestJS module for Valkey (Redis-compatible): JSON cache service, distributed lock API (token-guarded, fail-closed), idempotency keys and a Terminus health indicator.
 [![npm version](https://img.shields.io/npm/v/@rxap/nest-valkey?style=flat-square)](https://www.npmjs.com/package/@rxap/nest-valkey)
 [![commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg?style=flat-square)](https://commitizen.github.io/cz-cli/)
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
