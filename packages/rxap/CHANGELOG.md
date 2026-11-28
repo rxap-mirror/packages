@@ -1,3 +1,13 @@
+## 24.0.0-dev.2 (2026-11-28)
+
+### 🚀 Features
+
+- **nest-valkey:** add @rxap/nest-valkey with lock API
+
+### ❤️ Thank You
+
+- Merzough Münker
+
 ## 24.0.0-dev.1 (2026-11-27)
 
 ### 🚀 Features
